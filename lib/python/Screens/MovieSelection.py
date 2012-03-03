@@ -938,9 +938,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.reloadList()
 
 	def can_delete(self, item):
-		if not item:
+		try:
+			if not item:
+				return False
+			return canDelete(item) or isTrashFolder(item[0])
+		except:
 			return False
-		return canDelete(item) or isTrashFolder(item[0])
 
 	def can_move(self, item):
 		return canMove(item)
