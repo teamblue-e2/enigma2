@@ -293,24 +293,23 @@ class TryQuitMainloop(MessageBox):
 		self.retval = retvalue
 		self.connected = False
 		reason = getReasons(session)
-		if reason:
+		if reason and not(internalHDDNotSleeping() and retvalue in (3, 6, 42)):
 			text = { 1: _("Really shutdown your %s %s now?") % (MACHINEBRAND, MACHINENAME),
 				2: _("Really reboot your %s %s now?") % (MACHINEBRAND, MACHINENAME),
 				3: _("Really restart your %s %s now?") % (MACHINEBRAND, MACHINENAME),
 				4: _("Really upgrade the frontprocessor and reboot now?"),
 				42: _("Really upgrade your %s %s and reboot now?") % (MACHINEBRAND, MACHINENAME),
-				43: _("Really WOL now?")}.get(retvalue)
-			if text:
-				MessageBox.__init__(self, session, "%s\n%s" % (reason, text), type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
-				self.skinName = "MessageBoxSimple"
-				session.nav.record_event.append(self.getRecordEvent)
-				self.connected = True
-				self.onShow.append(self.__onShow)
-				self.onHide.append(self.__onHide)
-				return
-		self.skin = """<screen position="0,0" size="0,0"/>"""
-		Screen.__init__(self, session)
-		self.close(True)
+				43: _("Really WOL now?") }.get(retvalue, _("Invalid reason"))
+			MessageBox.__init__(self, session, "%s\n%s" % (reason, text), type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
+			self.skinName = "MessageBoxSimple"
+			session.nav.record_event.append(self.getRecordEvent)
+			self.connected = True
+			self.onShow.append(self.__onShow)
+			self.onHide.append(self.__onHide)
+		else:
+			self.skin = """<screen position="0,0" size="0,0"/>"""
+			Screen.__init__(self, session)
+			self.close(True)
 
 	def getRecordEvent(self, recservice, event):
 		#if event == iRecordableService.evEnd and checkTimeshiftRunning:
