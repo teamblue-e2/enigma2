@@ -16,6 +16,7 @@
 #define PyString_AS_STRING PyUnicode_AsUTF8
 #define PyString_AsString PyUnicode_AsUTF8
 #define PyString_Check PyUnicode_Check
+#define PyString_Size PyBytes_Size
 
 #define PyInt_AsLong PyLong_AsLong
 #define PyInt_Check PyLong_Check
@@ -54,7 +55,7 @@ public:
 	ePyObject &operator=(PyListObject *ob) { return operator=((PyObject*)ob); }
 	ePyObject &operator=(PyStringObject *ob) { return operator=((PyObject*)ob); }
 	operator PyObject*();
-	operator PyVarObject*() { return (PyVarObject*)operator PyObject*(); }
+	operator PyVarObject*() { return (PyVarObject*)operator PyVarObject*(); }
 	operator PyTupleObject*() { return (PyTupleObject*)operator PyObject*(); }
 	operator PyListObject*() { return (PyListObject*)operator PyObject*(); }
 	operator PyStringObject*() { return (PyStringObject*)operator PyObject*(); }
