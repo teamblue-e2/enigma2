@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import re
+from shutil import copyfile
 from stat import S_IMODE
 from enigma import eEnv
 
@@ -242,12 +243,11 @@ def getRecordingFilename(basename, dirname = None):
 
 	if not os.path.isfile("%s.ts" % filename):
 		return filename
-	for i in range(0,1000):
+	for i in range(1,1000):
 		newfilename = "%s_%03d" % (filename, i)
-		if os.path.isfile("%s.ts" % newfilename):
-			if not os.path.islink("%s.eit" % newfilename):
-				os.symlink("%s.eit" % filename, "%s.eit" % newfilename)
-		else:
+		if not os.path.isfile("%s.eit" % newfilename):
+			copyfile("%s.eit" % filename, "%s.eit" % newfilename)
+		if not os.path.isfile("%s.ts" % newfilename):
 			break
 	return newfilename
 
@@ -355,3 +355,29 @@ def getSize(path, pattern=".*"):
 	elif os.path.isfile(path):
 		path_size = os.path.getsize(path)
 	return path_size
+
+def lsof():
+	lsof = []
+	for pid in os.listdir('/proc'):
+		if pid.isdigit():
+			try:
+				prog = os.readlink(os.path.join('/proc', pid, 'exe'))
+				dir = os.path.join('/proc', pid, 'fd')
+				for file in [os.path.join(dir, file) for file in os.listdir(dir)]:
+					lsof.append((pid, prog, os.readlink(file)))
+			except:
+				pass
+	return lsof
+
+def getExtension(file):
+	filename, file_extension = os.path.splitext(file)
+	return file_extension
+
+def mediafilesInUse(session):
+	from Components.MovieList import KNOWN_EXTENSIONS
+	files = [x[2] for x in lsof() if getExtension(x[2]) in KNOWN_EXTENSIONS]
+	service = session.nav.getCurrentlyPlayingServiceOrGroup()
+	filename = service and service.getPath()
+	if filename and "://" in filename: #when path is a stream ignore it
+		filename = None
+	return set([file for file in files if not(filename and file.startswith(filename) and files.count(filename) < 2)])
