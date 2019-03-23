@@ -59,9 +59,9 @@ def resolveFilename(scope, base = "", path_prefix = None):
 	if scope == SCOPE_CURRENT_SKIN:
 		from Components.config import config
 		# allow files in the config directory to replace skin files
-		tmp = defaultPaths[SCOPE_CONFIG][0]
+		path = tmp = defaultPaths[SCOPE_CONFIG][0]
 		if base and pathExists("%s%s" % (tmp, base)):
-			path = tmp
+			return "%s%s" % (tmp, base)
 		else:
 			path = defaultPaths[SCOPE_SKIN][0]
 			pos = config.skin.primary_skin.value.rfind('/')
@@ -70,12 +70,12 @@ def resolveFilename(scope, base = "", path_prefix = None):
 				#  remove skin name from base if exist
 				if base.startswith(skinname):
 					skinname = ""
-				for dir in ("%s%s" % (path, skinname), path, "%s%s" % (path, "skin_default/")):
-					for file in (base, os.path.basename(base)):
-						if pathExists("%s%s"% (dir, file)):
-							return "%s%s" % (dir, file)
 			else:
-				path = tmp
+				skinname = ""
+			for dir in ("%s%s" % (path, skinname), path, "%s%s" % (path, "skin_default/")):
+				for file in (base, os.path.basename(base)):
+					if pathExists("%s%s"% (dir, file)):
+						return "%s%s" % (dir, file)
 
 	elif scope == SCOPE_ACTIVE_SKIN:
 		from Components.config import config
@@ -355,6 +355,9 @@ def getSize(path, pattern=".*"):
 	elif os.path.isfile(path):
 		path_size = os.path.getsize(path)
 	return path_size
+
+def shellquote(s):
+	return "'" + s.replace("'", "'\\''") + "'"
 
 def lsof():
 	lsof = []
