@@ -103,7 +103,7 @@ class SecConfigure:
 
 	def linkInternally(self, slotid):
 		nim = self.NimManager.getNim(slotid)
-		if nim.internallyConnectableTo() is not None and nim.internallyConnectableTo() >= 0:
+		if nim.internallyConnectableTo is not None:
 			nim.setInternalLink()
 
 	def linkNIMs(self, sec, nim1, nim2):
@@ -125,7 +125,7 @@ class SecConfigure:
 		sec = secClass.getInstance()
 		self.configuredSatellites = set()
 		for slotid in self.NimManager.getNimListOfType("DVB-S"):
-			if self.NimManager.nimInternallyConnectableTo(slotid) is not None and self.NimManager.nimInternallyConnectableTo(slotid) >= 0:
+			if self.NimManager.nimInternallyConnectableTo(slotid) is not None:
 				self.NimManager.nimRemoveInternalLink(slotid)
 		sec.clear() ## this do unlinking NIMs too !!
 		print "[SecConfigure] sec config cleared"
@@ -507,7 +507,7 @@ class NIM(object):
 			}
 
 		# get multi type using delsys information
-		self.hotswitchable = False
+		self.combined = False
 		if self.frontend_id is not None:
 			types = [type for type in nim_types if eDVBResourceManager.getInstance().frontendIsCompatible(self.frontend_id, type)]
 			if "DVB-T2" in types:
@@ -518,13 +518,13 @@ class NIM(object):
 				types.remove("DVB-S")
 			if len(types) > 1:
 				self.multi_type = {}
-				self.hotswitchable = not(os.path.exists("/proc/stb/frontend/%d/mode" % self.frontend_id) or self.isFBCTuner())
+				self.combined = not(os.path.exists("/proc/stb/frontend/%d/mode" % self.frontend_id) or self.isFBCTuner())
 				for type in types:
 					self.multi_type[str(types.index(type))] = type
 
 	def getTunerTypesEnabled(self):
 		try:
-			if self.hotswitchable:
+			if self.combined:
 				return [x for x in self.multi_type.values() if
 					self.config.configModeDVBS.value and x.startswith("DVB-S") or
 					self.config.configModeDVBC.value and x.startswith("DVB-C") or
@@ -542,7 +542,7 @@ class NIM(object):
 
 	def getType(self):
 		try:
-			if self.isHotSwitchable():
+			if self.isCombined():
 				return [x for x in self.multi_type.values() if x.startswith("DVB-S")][0]
 			if self.isMultiType():
 				return self.multi_type[self.config.multiType.value]
@@ -582,20 +582,20 @@ class NIM(object):
 		return self.internally_connectable
 
 	def setInternalLink(self):
-		if self.internally_connectable is not None and self.internally_connectable >= 0:
+		if self.internally_connectable is not None:
 			print "[NIM] setting internal link on frontend id", self.frontend_id
 			open("/proc/stb/frontend/%d/rf_switch" % self.frontend_id, "w").write("internal")
 
 	def removeInternalLink(self):
-		if self.internally_connectable is not None and self.internally_connectable >= 0:
+		if self.internally_connectable is not None:
 			print "[NIM] removing internal link on frontend id", self.frontend_id
 			open("/proc/stb/frontend/%d/rf_switch" % self.frontend_id, "w").write("external")
 
 	def isMultiType(self):
-		return not self.isHotSwitchable() and bool(len(self.multi_type))
+		return not self.isCombined() and bool(len(self.multi_type))
 
-	def isHotSwitchable(self):
-		return self.hotswitchable
+	def isCombined(self):
+		return self.combined
 
 	def isEmpty(self):
 		return self.__is_empty
@@ -635,7 +635,7 @@ class NIM(object):
 	def getFriendlyType(self):
 		if self.multi_type.values():
 			returnValue = "/".join([x[1].replace("DVB-", "") for x in sorted([({ "DVB-S" :1, "DVB-C": 2, "DVB-T": 3, "ATSC": 4}[x[:5]], x) for x in self.multi_type.values()])])
-			return "%s %s" % (_("Combined") if self.hotswitchable else _("MultiType"), returnValue if returnValue == 'ATSC' else "DVB-%s" % returnValue)
+			return "%s %s" % (_("Combined") if self.combined else _("MultiType"), returnValue if returnValue == 'ATSC' else "DVB-%s" % returnValue)
 		return self.getType() or _("empty")
 
 	def getFullDescription(self):
@@ -834,7 +834,7 @@ class NimManager:
 				entries[current_slot]["frontend_device"] = input
 			elif  line.startswith("Mode"):
 				# "Mode 0: DVB-T" -> ["Mode 0", "DVB-T"]
-				split = line.split(":")
+				split = line.split(": ")
 				if len(split) > 1 and split[1]:
 					# "Mode 0" -> ["Mode", "0"]
 					split2 = split[0].split(" ")
@@ -1165,7 +1165,7 @@ def InitSecParams():
 # the C(++) part should can handle this
 # the configElement should be only visible when diseqc 1.2 is disabled
 
-def InitNimManager(nimmgr, update_slots = None):
+def InitNimManager(nimmgr, update_slots=None):
 	update_slots = [] if update_slots is None else update_slots
 	hw = HardwareInfo()
 
@@ -1510,7 +1510,7 @@ def InitNimManager(nimmgr, update_slots = None):
 	def tunerTypeChanged(nimmgr, configElement, initial=False):
 		fe_id = configElement.fe_id
 		if configElement.value == 'nothing':
-			"[InitNimManager] disable multitype tuner %s" % fe_id
+			print "[InitNimManager] disable multitype tuner %s" % fe_id
 			eDVBResourceManager.getInstance().setFrontendType(nimmgr.nim_slots[fe_id].frontend_id, "UNDEFINED")
 		else:
 			print "[InitNimManager] tunerTypeChanged: setFrontendType %s" % nimmgr.nim_slots[fe_id].getType()
@@ -1566,23 +1566,23 @@ def InitNimManager(nimmgr, update_slots = None):
 			except Exception as e:
 				print "[InitNimManager] tunerTypeChanged error: ", e
 
-	def hotswitchableConfigChanged(nim, slot, slot_id, configElement=None):
+	def combinedConfigChanged(nim, slot, slot_id, configElement=None):
 		tunersEnabled = slot.getTunerTypesEnabled()
 		if tunersEnabled:
 			tunersEnabled = ",".join(tunersEnabled)
-			print "[InitNimManager] enable hotswitchable tuner type(s) %s" % tunersEnabled
+			print "[InitNimManager] enable combined tuner type(s) %s" % tunersEnabled
 			eDVBResourceManager.getInstance().setFrontendType(nimmgr.nim_slots[slot_id].frontend_id, tunersEnabled)
 			if nim.configMode.value == 'nothing':
 				nim.configMode.value = nim.configMode.default = "simple" if "DVB-S" in tunersEnabled else "enabled"
 		else:
-			print "[InitNimManager] disable hotswitchable tuner"
+			print "[InitNimManager] disable combined tuner"
 			eDVBResourceManager.getInstance().setFrontendType(nimmgr.nim_slots[slot_id].frontend_id, "UNDEFINED")
 			nim.configMode.choices.choices.update({ "nothing": _("Disabled")})
 			nim.configMode.value = nim.configMode.default = "nothing"
 
 	def createConfig(nim, slot):
 		slot_id = slot.slot
-		if slot.isHotSwitchable() and slot.canBeCompatible("DVB-S") or slot.isCompatible("DVB-S"):
+		if slot.isCombined() and slot.canBeCompatible("DVB-S") or slot.isCompatible("DVB-S"):
 			if slot.isFBCLink():
 				config_mode_choices = { "nothing": _("FBC automatic"), "advanced": _("FBC SCR (Unicable/JESS)")}
 			else:
@@ -1632,21 +1632,24 @@ def InitNimManager(nimmgr, update_slots = None):
 			if nim.multiType.value == "nothing":
 				nim.configMode.value = "nothing"
 
-		if slot.isHotSwitchable():
-			if not hasattr(nim, "multiType"):
-				nim.multiType = ConfigText(default = "")
-			if nim.multiType.value:
-				#To arrange that after an upgrade the tuner is currectly re-configured
-				nim.configModeDVBS.value = nim.multiType.value.startswith("DVB-S")
-				nim.configModeDVBC.value = nim.multiType.value.startswith("DVB-C")
-				nim.configModeDVBT.value = nim.multiType.value.startswith("DVB-T")
-				nim.configModeATSC.value = nim.multiType.value.startswith("ATSC")
-				nim.multiType.value = ""
+		if slot.isCombined():
 
-			nim.configModeDVBS.addNotifier(boundFunction(hotswitchableConfigChanged, nim, slot, slot_id), initial_call=False)
-			nim.configModeDVBC.addNotifier(boundFunction(hotswitchableConfigChanged, nim, slot, slot_id), initial_call=False)
-			nim.configModeDVBT.addNotifier(boundFunction(hotswitchableConfigChanged, nim, slot, slot_id), initial_call=False)
-			nim.configModeATSC.addNotifier(boundFunction(hotswitchableConfigChanged, nim, slot, slot_id))
+			#Convert during an upgrade that multiType is 'converted' to combined config when needed
+			if nim.configMode.value != "nothing" and not slot.getTunerTypesEnabled():
+				nim.multiType = ConfigText(default = "")
+				if nim.multiType.value:
+					type = slot.multi_type.get(nim.multiType.value[:5], "")
+					nim.configModeDVBS.value = type == "DVB-S"
+					nim.configModeDVBC.value = type == "DVB-C"
+					nim.configModeDVBT.value = type == "DVB-T"
+					nim.configModeATSC.value = type == "ATSC"
+					nim.multiType.value = ""
+					nim.save()
+
+			nim.configModeDVBS.addNotifier(boundFunction(combinedConfigChanged, nim, slot, slot_id), initial_call=False)
+			nim.configModeDVBC.addNotifier(boundFunction(combinedConfigChanged, nim, slot, slot_id), initial_call=False)
+			nim.configModeDVBT.addNotifier(boundFunction(combinedConfigChanged, nim, slot, slot_id), initial_call=False)
+			nim.configModeATSC.addNotifier(boundFunction(combinedConfigChanged, nim, slot, slot_id))
 
 	nimmgr.sec = SecConfigure(nimmgr)
 
