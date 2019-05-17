@@ -61,12 +61,13 @@ void eFilePushThread::thread()
 		size_t bytes_read = 0;
 		off_t current_span_offset = 0;
 		size_t current_span_remaining = 0;
+		m_sof = 0;
 
 		while (!m_stop)
 		{
 			if (m_sg && !current_span_remaining)
 			{
-				m_sg->getNextSourceSpan(m_current_position, bytes_read, current_span_offset, current_span_remaining, m_blocksize);
+				m_sg->getNextSourceSpan(m_current_position, bytes_read, current_span_offset, current_span_remaining, m_blocksize, m_sof);
 				ASSERT(!(current_span_remaining % m_blocksize));
 				m_current_position = current_span_offset;
 				bytes_read = 0;
@@ -81,7 +82,7 @@ void eFilePushThread::thread()
 			/* align to blocksize */
 			maxread -= maxread % m_blocksize;
 
-			if (maxread)
+			if (maxread && !m_sof)
 			{
 #ifdef SHOW_WRITE_TIME
 				struct timeval starttime = {};
@@ -119,7 +120,7 @@ void eFilePushThread::thread()
 			if (d)
 				buf_end -= d;
 
-			if (buf_end == 0)
+			if (buf_end == 0 || m_sof == 1)
 			{
 				/* on EOF, try COMMITting once. */
 				if (m_send_pvr_commit)
@@ -129,18 +130,18 @@ void eFilePushThread::thread()
 					pfd.events = POLLIN;
 					switch (poll(&pfd, 1, 250)) // wait for 250ms
 					{
-					case 0:
-						eDebug("[eFilePushThread] wait for driver eof timeout");
-						continue;
-					case 1:
-						eDebug("[eFilePushThread] wait for driver eof ok");
-						break;
-					default:
-						eDebug("[eFilePushThread] wait for driver eof aborted by signal");
-						/* Check m_stop after interrupted syscall. */
-						if (m_stop)
+						case 0:
+							eDebug("[eFilePushThread] wait for driver eof timeout");
+							continue;
+						case 1:
+							eDebug("[eFilePushThread] wait for driver eof ok");
 							break;
-						continue;
+						default:
+							eDebug("[eFilePushThread] wait for driver eof aborted by signal");
+							/* Check m_stop after interrupted syscall. */
+							if (m_stop)
+								break;
+							continue;
 					}
 				}
 
@@ -150,7 +151,10 @@ void eFilePushThread::thread()
 				/* in stream_mode, we are sending EOF events
 				   over and over until somebody responds.
 				   in stream_mode, think of evtEOF as "buffer underrun occurred". */
-				sendEvent(evtEOF);
+				if (m_sof == 0)
+					sendEvent(evtEOF);
+				else
+					sendEvent(evtUser); // start of file event
 
 				if (m_stream_mode)
 				{
@@ -186,15 +190,10 @@ void eFilePushThread::thread()
 							break;
 						}
 						if (w < 0 && (errno == EINTR || errno == EAGAIN || errno == EBUSY))
-						{
-#if HAVE_CPULOADFIX
-							sleep(2);
-#endif
 #if HAVE_HISILICON
 							usleep(100000);
 #endif
 							continue;
-						}
 						eDebug("[eFilePushThread] write: %m");
 						sendEvent(evtWriteError);
 						break;
@@ -361,15 +360,6 @@ eFilePushThreadRecorder::eFilePushThreadRecorder(unsigned char* buffer, size_t b
 	CONNECT(m_messagepump.recv_msg, eFilePushThreadRecorder::recvEvent);
 }
 
-#define copy16(a,i,v) { a[i] = ((v)>>8) & 0xFF; a[i+1] = (v) & 0xFF; }
-#define copy32(a,i,v) { a[i] = ((v)>>24) & 0xFF;\
-                        a[i+1] = ((v)>>16) & 0xFF;\
-                        a[i+2] = ((v)>>8) & 0xFF;\
-                        a[i+3] = (v) & 0xFF; }
-#define _PROTO_RTSP_UDP 1
-#define _PROTO_RTSP_TCP 2
-
-
 int eFilePushThreadRecorder::pushReply(void *buf, int len)
 {
 	m_reply.insert(m_reply.end(), (unsigned char *)buf, (unsigned char *)buf+len);
@@ -377,125 +367,11 @@ int eFilePushThreadRecorder::pushReply(void *buf, int len)
 	return 0;
 }
 
-static int errs;
-
 int64_t eFilePushThreadRecorder::getTick()
 {         //ms
 	struct timespec ts;
 	clock_gettime(CLOCK_MONOTONIC, &ts);
 	return (ts.tv_nsec / 1000000) + (ts.tv_sec * 1000);
-}
-
-// wrapper around ::read, to read multiple of 188 or error (it does not block)
-int eFilePushThreadRecorder::read_ts(int fd, unsigned char *buf, int size)
-{
-	int rb = 0, bytes = 0;
-	int left = size;
-	do
-	{
-		rb = ::read(fd, buf + bytes, left);
-		if (rb > 0 && ((bytes % 188) != 0))
-			eDebug("%s read %d out of %d bytes, total %d, size %d, fd %d", ((bytes + rb) % 188) ? "incomplete" : "completed", rb, left, bytes, size, fd);
-
-		if (rb <= 0 && errno != EAGAIN && errno != EINTR)
-			return rb;
-
-		if (rb > 0)
-		{
-			bytes += rb;
-			left -= rb;
-		}
-		if ((bytes % 188) != 0)
-		{
-			left = 188 - (bytes % 188);
-		}
-
-	} while ((bytes % 188) != 0);
-
-	if (bytes == 0)
-		return rb;
-
-	return bytes;
-}
-int eFilePushThreadRecorder::read_dmx(int fd, void *m_buffer, int size)
-{
-	unsigned char *buf;
-	int it = 0, pos = 0, bytes = 0;
-	int max_pack = 42;
-	int i, left;
-	static int cnt;
-	unsigned char *b;
-	uint64_t start = getTick();
-	while (size - pos > 188 + 16)
-	{
-		left = size - pos - 16;
-		left = (left > 188 * max_pack) ? 188 * max_pack : (((int)(left / 188) - 1) * 188);
-		if (left < 188)
-			break;
-
-		buf = (unsigned char *)m_buffer + pos;
-
-		bytes = read_ts(fd, buf + 16, left);
-
-		if (bytes <= 0 && errno != EAGAIN && errno != EINTR)
-		{
-			eDebug("error reading from DMX handle %d, errno %d: %m", fd, errno);
-			break;
-		}
-
-		if (bytes > 0)
-		{
-			if ((bytes % 188) != 0)
-				eDebug("incomplete packet read from %d with size %d", fd, bytes);
-
-			m_packet_no++;
-			it++;
-			for (i = 0; i < bytes; i += 188)
-			{
-				b = buf + 16 + i;
-				int pid = (b[1] & 0x1F) * 256 + b[2];
-
-				if ((b[3] & 0x80)) // mark decryption failed if not decrypted by enigma
-				{
-					if ((errs++ % 100) == 0)
-						eDebug("decrypt errs %d, pid %d, m_buffer %p, pos %d, buf %p, i %d: %02X %02X %02X %02X", errs, pid, m_buffer, pos, buf, i, b[0], b[1], b[2], b[3]);
-					b[1] |= 0x1F;
-					b[2] |= 0xFF;
-				}
-			}
-			buf[0] = 0x24;
-			buf[1] = 0;
-			copy16(buf, 2, (uint16_t)(bytes + 12));
-			copy16(buf, 4, 0x8021);
-			copy16(buf, 6, m_stream_id);
-			copy32(buf, 8, cnt);
-			copy32(buf, 12, m_session_id);
-			cnt++;
-			pos += bytes + 16;
-		}
-		if (m_reply.size() > 0)
-		{
-			pos = m_reply.size();
-			buf[0] = 0;
-			memcpy(m_buffer, m_reply.data(), pos);
-			// eDebug("added reply of %d bytes", pos, m_buffer);
-			m_reply.clear();
-			break; // reply to the server ASAP
-		}
-		uint64_t ts = getTick() - start;
-
-		if ((pos > 0) && (bytes == -1) && (ts > 50)) // do not block more than 50ms if there is available data
-			break;
-
-		if (bytes < 0)
-			usleep(5000);
-	}
-	uint64_t ts = getTick() - start;
-	if (ts > 1000)
-		eDebug("returning %d bytes from %d, last read %d bytes in %jd ms (iteration %d)", pos, size, bytes, ts, m_packet_no);
-	if (pos == 0)
-		return bytes;
-	return pos;
 }
 
 void eFilePushThreadRecorder::thread()
