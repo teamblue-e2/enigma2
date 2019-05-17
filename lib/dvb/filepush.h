@@ -11,7 +11,7 @@
 class iFilePushScatterGather
 {
 public:
-	virtual void getNextSourceSpan(off_t current_offset, size_t bytes_read, off_t &start, size_t &size, int blocksize)=0;
+	virtual void getNextSourceSpan(off_t current_offset, size_t bytes_read, off_t &start, size_t &size, int blocksize, int &sof)=0;
 	virtual ~iFilePushScatterGather() {}
 };
 
@@ -47,6 +47,7 @@ private:
 	int m_fd_dest;
 	int m_send_pvr_commit;
 	int m_stream_mode;
+	int m_sof;
 	int m_blocksize;
 	size_t m_buffersize;
 	unsigned char* m_buffer;
@@ -76,11 +77,9 @@ public:
 	int getProtocol() { return m_protocol;}
         void setProtocol(int i){ m_protocol = i;}
         void setSession(int se, int st) { m_session_id = se; m_stream_id = st;}
-	int read_dmx(int fd, void *m_buffer, int size);
 	int pushReply(void *buf, int len);
 	void sendEvent(int evt);
 	static int64_t getTick();
-	static int read_ts(int fd, unsigned char *buf, int size);
 protected:
 	// This method should write the data out and return the number of bytes written.
 	// If result <0, set 'errno'. The simplest implementation is just "::write(m_buffer, ...)"
