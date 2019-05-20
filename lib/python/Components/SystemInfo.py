@@ -1,7 +1,7 @@
 from enigma import eDVBResourceManager, Misc_Options, eDVBCIInterfaces
 from Tools.Directories import fileExists, fileCheck, fileHas, pathExists, resolveFilename, SCOPE_SKIN
 from Tools.HardwareInfo import HardwareInfo
-from boxbranding import getBoxType, getMachineBuild
+from boxbranding import getBoxType, getMachineBuild, getBrandOEM
 
 SystemInfo = {}
 
@@ -86,10 +86,6 @@ SystemInfo["HasBypassEdidChecking"] = fileCheck("/proc/stb/hdmi/bypass_edid_chec
 SystemInfo["HasColorspace"] = fileCheck("/proc/stb/video/hdmi_colorspace")
 SystemInfo["HasColorspaceSimple"] = SystemInfo["HasColorspace"] and getBoxType() in ('vusolo4k', )
 SystemInfo["HasMultichannelPCM"] = fileCheck("/proc/stb/audio/multichannel_pcm")
-SystemInfo["HasMMC"] = fileExists("/proc/cmdline") and "root=/dev/mmcblk" in open("/proc/cmdline", "r").read()
-SystemInfo["HasSwap"] = pathExists("/dev/mmcblk0p10")
-SystemInfo["HasMultiBoot"] = fileCheck("/boot/STARTUP_1") and getMachineBuild() not in ('gb7252', 'gbmv200' )
-SystemInfo["HasMultiBootGB"] = SystemInfo["HasSwap"] and fileCheck("/boot/STARTUP_1") and getMachineBuild() in ('gb7252', )
 SystemInfo["HasTranscoding"] = pathExists("/proc/stb/encoder/0") or fileCheck("/dev/bcm_enc0")
 SystemInfo["HasH265Encoder"] = fileHas("/proc/stb/encoder/0/vcodec_choices", "h265")
 SystemInfo["CanNotDoSimultaneousTranscodeAndPIP"] = getBoxType() in ('vusolo4k') or getMachineBuild() in ('gb7252', )
@@ -117,7 +113,6 @@ SystemInfo["HasOfflineDecoding"] = getBoxType() not in ('osmini', 'osminiplus', 
 SystemInfo["CanDownmixWMApro"] = fileExists("/proc/stb/audio/wmapro_choices") or fileExists("/proc/stb/audio/wmapro")
 SystemInfo["CanAACTranscode"] = fileExists("/proc/stb/audio/aac_transcode_choices") or fileExists("/proc/stb/audio/aac_transcode")
 SystemInfo["HDRSupport"] = fileExists("/proc/stb/hdmi/hlg_support_choices") or fileExists("/proc/stb/hdmi/hlg_support")
-SystemInfo["HasRootSubdir"] = fileHas("/proc/cmdline", "rootsubdir=") and getMachineBuild() not in ('gbmv200', )
 SystemInfo["CanDownmixAC3"] = fileHas("/proc/stb/audio/ac3_choices", "downmix")
 SystemInfo["CanDownmixAC3Plus"] = fileHas("/proc/stb/audio/ac3plus_choices", "downmix")
 SystemInfo["CanDownmixDTS"] = fileHas("/proc/stb/audio/dts_choices", "downmix")
@@ -125,4 +120,14 @@ SystemInfo["CanDownmixDTSHD"] = fileHas("/proc/stb/audio/dtshd_choices", "downmi
 SystemInfo["CanDownmixAAC"] = fileHas("/proc/stb/audio/aac_choices", "downmix")
 SystemInfo["CanDownmixAACPlus"] = fileHas("/proc/stb/audio/aacplus_choices", "downmix")
 SystemInfo["HDMIAudioSource"] = fileCheck("/proc/stb/hdmi/audio_source")
+SystemInfo["HasRootSubdir"] = fileHas("/proc/cmdline", "rootsubdir=") and getMachineBuild() not in ('gbmv200', )
+SystemInfo["RecoveryMode"] = SystemInfo["HasRootSubdir"] and getMachineBuild() not in ('vs1500','hd51','h7') or fileCheck("/proc/stb/fp/boot_mode")
+SystemInfo["canMultiBoot"] = getMachineBuild() in ('gb7252') and (3, 3, 'mmcblk0p') or getMachineBuild() in ('gbmv200',) and fileCheck("/dev/sda") and (0, 3, 'sda')
+SystemInfo["canMode12"] = getMachineBuild() in ('hd51','vs1500','h7') and ('brcm_cma=440M@328M brcm_cma=192M@768M', 'brcm_cma=520M@248M brcm_cma=200M@768M')
+SystemInfo["HAScmdline"] = fileCheck("/boot/cmdline.txt")
+SystemInfo["HasMMC"] = fileHas("/proc/cmdline", "root=/dev/mmcblk") or SystemInfo["canMultiBoot"] and fileHas("/proc/cmdline", "root=/dev/sda")
+SystemInfo["HasSDmmc"] = SystemInfo["canMultiBoot"] and "sd" in SystemInfo["canMultiBoot"][2] and "mmcblk" in getMachineMtdRoot() 
+SystemInfo["HasSDswap"] = getMachineBuild() in ("h9", "i55plus") and pathExists("/dev/mmcblk0p1")
+SystemInfo["CanProc"] = SystemInfo["HasMMC"] and getBrandOEM() != "vuplus"
+SystemInfo["canRecovery"] = getMachineBuild() in ('gbmv200',) and ('usb_update.bin','none')
 SystemInfo["FlashOnlineBackup"] = getMachineBuild() not in ('gbmv200', )
