@@ -13,7 +13,7 @@ from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 from Components.RcModel import rc_model
 from boxbranding import getBoxType
-# from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import SystemInfo
 
 colorNames = {}
 switchPixmap = {}
@@ -80,11 +80,11 @@ def skin_user_skinname():
 
 # example: loadSkin("nemesis_greenline/skin.xml")
 config.skin = ConfigSubsection()
-DEFAULT_SKIN = "GigabluePax/skin.xml"
-# DEFAULT_SKIN = SystemInfo["HasFullHDSkinSupport"] and "PLi-FullNightHD/skin.xml" or "PLi-HD/skin.xml"
+#DEFAULT_SKIN = "GigabluePax/skin.xml"
+DEFAULT_SKIN = SystemInfo["HasFullHDSkinSupport"] and "PLi-FullHD/skin.xml" or "PLi-HD/skin.xml"
 # on SD hardware, PLi-HD will not be available
 if not fileExists(resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)):
-	DEFAULT_SKIN = "om-black/skin.xml"
+	DEFAULT_SKIN = "GigabluePax/skin.xml"
 
 config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
 
