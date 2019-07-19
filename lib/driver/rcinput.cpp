@@ -131,6 +131,15 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	}
 #endif
 
+#if KEY_CONTEXT_MENU_TO_KEY_AUX
+	if (ev->code == KEY_CONTEXT_MENU)
+	{
+		/* define when rc sends a KEY_CONTEXT_MENU event for its HDMIIN functionality */
+		ev->code = KEY_AUX;
+	}
+#endif
+
+
 #if KEY_GUIDE_TO_KEY_EPG
 	if (ev->code == KEY_HELP)
 	{
