@@ -39,49 +39,7 @@ class About(Screen):
 		#	hddsplit = AboutHddSplit
                 
 		if boxtype == 'vusolo2':
-			BoxName = "VU+ Solo2"
-		if boxtype == 'gb800solo':
-			BoxName = "GigaBlue HD 800SOLO"
-		elif boxtype == 'gb800se':
-			BoxName = "GigaBlue HD 800SE"
-		elif boxtype == 'gb800ue':
-			BoxName = "GigaBlue HD 800UE"
-		elif boxtype == 'gbquad':
-			BoxName = "GigaBlue Quad"
-		elif boxtype == 'gbquad4k':
-			BoxName = "GigaBlue Quad 4k"
-		elif boxtype == 'gbue4k':
-			BoxName = "GigaBlue UE 4k"
-		elif boxtype == 'gbtrio4k':
-			BoxName = "GigaBlue TRIO 4k"
-		elif boxtype == 'gbquadplus':
-			BoxName = "GigaBlue HD Quadplus"
-		elif boxtype == 'gb800seplus':
-			BoxName = "GigaBlue HD 800SEplus"
-		elif boxtype == 'gb800ueplus':
-			BoxName = "GigaBlue HD 800UEplus"
-		elif boxtype == 'gbipbox':
-			BoxName = "GigaBlue IP Box"
-		elif boxtype == 'gbultra':
-			BoxName = "GigaBlue HD Ultra"
-		elif boxtype == 'gbultraue':
-			BoxName = "GigaBlue HD Ultra UE"
-		elif boxtype == 'gbultraueh':
-			BoxName = "GigaBlue HD Ultra UEh"
-		elif boxtype == 'gbultrase':
-			BoxName = "GigaBlue HD Ultra SE"
-		elif boxtype == 'gbx1':
-			BoxName = "GigaBlue X1"
-		elif boxtype == 'gbx2':
-			BoxName = "GigaBlue X2"
-		elif boxtype == 'gbx3':
-			BoxName = "GigaBlue X3"
-		elif boxtype == 'gbx3h':
-			BoxName = "GigaBlue X3h"
-		elif boxtype == 'spycat':
-			BoxName = "XCORE Spycat"
-		elif boxtype == 'quadbox2400':
-			BoxName = "AX Quadbox HD2400"
+			BoxName = "VU+ Solo²"
 		else:
 			BoxName = about.getHardwareTypeString()
 
@@ -98,7 +56,7 @@ class About(Screen):
 		AboutHeader = _("About") + " " + BoxName 
 		self["AboutHeader"] = StaticText(AboutHeader)
 
-		AboutText = BoxName + " - " + ImageType + serial + "\n"
+		AboutText = BoxName + " - " + ImageType + serial + " (Mod Redouane ...) " + "\n"
 
 		#AboutText += _("Hardware: ") + about.getHardwareTypeString() + "\n"
 		#AboutText += _("CPU: ") + about.getCPUInfoString() + "\n"
