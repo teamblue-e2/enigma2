@@ -37,7 +37,9 @@ class About(Screen):
 		#	hddsplit = skin.parameters.get("AboutHddSplit",(0))[0]
 		#except:
 		#	hddsplit = AboutHddSplit
-
+                
+		if boxtype == 'vusolo2':
+			BoxName = "VU+ Solo2"
 		if boxtype == 'gb800solo':
 			BoxName = "GigaBlue HD 800SOLO"
 		elif boxtype == 'gb800se':
