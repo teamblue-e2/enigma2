@@ -20,6 +20,7 @@ from Tools.StbHardware import getFPVersion
 
 from boxbranding import getBoxType, getMachineBuild
 boxtype = getBoxType()
+BOXMODEL = 'Vuplus STB ....'
 
 from enigma import eTimer, eLabel, eConsoleAppContainer, getDesktop
 
@@ -39,11 +40,11 @@ class About(Screen):
 		#	hddsplit = AboutHddSplit
                 
 		if boxtype == 'vusolo2':
-			BoxName = "VU+ Solo²"
+			BoxName = "VU+ Solo2"
 		else:
 			BoxName = about.getHardwareTypeString()
 
-		self.setTitle(_("About") + " " + BoxName)
+		self.setTitle(_("About") + " " + BOXMODEL)
 
 		ImageType = about.getImageTypeString()
 		self["ImageType"] = StaticText(ImageType)
@@ -53,10 +54,10 @@ class About(Screen):
 		if Boxserial != "":
 			serial = ":Serial : " + Boxserial
 
-		AboutHeader = _("About") + " " + BoxName 
+		AboutHeader = _("About") + " " + BOXMODEL 
 		self["AboutHeader"] = StaticText(AboutHeader)
 
-		AboutText = BoxName + " - " + ImageType + serial + " (Mod Redouane ...) " + "\n"
+		AboutText = BoxName + " - " + ImageType + serial + " - " + " (Mod Redouane ...) " + "\n"
 
 		#AboutText += _("Hardware: ") + about.getHardwareTypeString() + "\n"
 		#AboutText += _("CPU: ") + about.getCPUInfoString() + "\n"
