@@ -158,9 +158,8 @@ def getActiveSubservicesForCurrentChannel(service):
 	activeSubservices = []
 	if current_service:
 		possibleSubservices = getPossibleSubservicesForCurrentChannel(current_service)
-		epgCache = eEPGCache.getInstance()
 		for subservice in possibleSubservices:
-			events = epgCache.lookupEvent(['BDTS', (subservice, 0, -1)])
+			events = eEPGCache.getInstance().lookupEvent(['BDTS', (subservice, 0, -1)])
 			if events and len(events) == 1:
 				event = events[0]
 				title = event[2]
@@ -178,8 +177,7 @@ def getActiveSubservicesForCurrentChannel(service):
 	return activeSubservices
 
 def hasActiveSubservicesForCurrentChannel(service):
-	activeSubservices = getActiveSubservicesForCurrentChannel(service)
-	return bool(activeSubservices and len(activeSubservices))
+	return bool(getActiveSubservicesForCurrentChannel(service))
 
 class InfoBarDish:
 	def __init__(self):
@@ -2911,7 +2909,7 @@ class InfoBarSubserviceSelection:
 		if serviceRef:
 			service = self.session.nav.getCurrentService()
 			subservices = getActiveSubservicesForCurrentChannel(service)
-			if subservices and serviceRef.toString() in [x[1] for x in subservices]:
+			if subservices and len(subservices) >= 2 and serviceRef.toString() in [x[1] for x in subservices]:
 				selection = [x[1] for x in subservices].index(serviceRef.toString())
 				selection += direction % len(subservices)
 				try:
@@ -2926,7 +2924,7 @@ class InfoBarSubserviceSelection:
 		if serviceRef:
 			service = self.session.nav.getCurrentService()
 			subservices = getActiveSubservicesForCurrentChannel(service)
-			if subservices and (serviceRef.toString() in [x[1] for x in subservices] or service.subServices()):
+			if subservices and len(subservices) >= 2 and (serviceRef.toString() in [x[1] for x in subservices] or service.subServices()):
 				try:
 					selection = [x[1] for x in subservices].index(serviceRef.toString())
 				except:
