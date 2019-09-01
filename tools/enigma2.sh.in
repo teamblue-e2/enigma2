@@ -28,7 +28,7 @@ if [ ! -d /etc/enigma2 ] ; then
 fi
 
 # check for update-ca-certificates
-if [ -f /usr/sbin/update-ca-certificates ] ; then
+if [ -f @sbindir@/update-ca-certificates ] ; then
 	update-ca-certificates
 fi
 
@@ -54,7 +54,7 @@ fi
 
 ## update NTP time if NTP Time Enabled
 #if [ "$(grep config.misc.SyncTimeUsing /etc/enigma2/settings)" == "config.misc.SyncTimeUsing=1" ]; then
-#	/usr/sbin/ntpdate -s -u pool.ntp.org &
+#	@sbindir@/ntpdate -s -u pool.ntp.org &
 #fi
 
 # update permissions of autofs config files
@@ -163,7 +163,7 @@ case $ret in
 		;;
 	4)
 		/sbin/rmmod lcd
-		/usr/sbin/fpupgrade --upgrade 2>&1 | tee /home/root/fpupgrade.log
+		@sbindir@/fpupgrade --upgrade 2>&1 | tee /home/root/fpupgrade.log
 		sleep 1;
 		/sbin/rmmod fp
 		/sbin/modprobe fp
@@ -177,7 +177,7 @@ case $ret in
 		;;
 	44)
 		echo "    " > /dev/lcd0
-		/usr/bin/gigablue_wol
+		@bindir@/gigablue_wol
 		;;
 	*)
 		;;
