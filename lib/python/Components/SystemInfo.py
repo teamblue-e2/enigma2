@@ -129,4 +129,5 @@ SystemInfo["HasSDmmc"] = SystemInfo["canMultiBoot"] and "sd" in SystemInfo["canM
 SystemInfo["HasSDswap"] = getMachineBuild() in ("h9", "i55plus") and pathExists("/dev/mmcblk0p1")
 SystemInfo["CanProc"] = SystemInfo["HasMMC"] and getBrandOEM() != "vuplus"
 SystemInfo["canRecovery"] = getMachineBuild() in ('gbmv200',) and ('usb_update.bin','none')
+SystemInfo["FlashOnlineBackup"] = getMachineBuild() not in ('dummy')
 SystemInfo["LnbPowerAlwaysOn"] = getBoxType() in ('vusolo4k', 'vuduo4k', 'vuultimo4k')
