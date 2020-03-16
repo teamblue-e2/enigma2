@@ -161,7 +161,7 @@ class FlashOnline(Screen):
 			self.read_current_multiboot()
 
 	def read_current_multiboot(self):
-		if getMachineBuild() in ("gbmv200"):
+		if getMachineBuild() in ("gbmv200","gb72604"):
 			if self.list[self.selection] == "Recovery":
 				cmdline = self.read_startup("/boot/STARTUP").split("=",1)[1].split(" ",1)[0]
 			else:
@@ -192,7 +192,7 @@ class FlashOnline(Screen):
 		files = []
 		if SystemInfo["canMultiBoot"]:
 			path = PATH
-			if getMachineBuild() in ("gbmv200"):
+			if getMachineBuild() in ("gbmv200","gb72604"):
 				for name in os.listdir(path):
 					if name != 'bootname' and os.path.isfile(os.path.join(path, name)):
 						try:
