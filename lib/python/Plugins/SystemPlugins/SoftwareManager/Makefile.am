@@ -11,7 +11,8 @@ install_PYTHON =	\
 	ImageBackup.py \
 	PluginBackup.py \
 	PluginRestore.py \
-	Flash_online.py
+	Flash_online.py \
+	Multibootmgr.py
 
 dist_install_DATA = \
 	restorewizard.xml \
