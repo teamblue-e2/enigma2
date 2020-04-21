@@ -26,7 +26,7 @@ dist_install_DATA = \
 	upgrade.png \
 	PluginBackup.sh \
 	PluginRestore.sh
-	
+
 install-data-hook:
 	chmod +x $(DESTDIR)$(installdir)/PluginBackup.sh; \
 	chmod +x $(DESTDIR)$(installdir)/PluginRestore.sh;
