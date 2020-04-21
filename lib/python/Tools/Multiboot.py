@@ -16,11 +16,13 @@ def getMBbootdevice():
 		mkdir(Imagemount)
 	for device in ('/dev/block/by-name/bootoptions', '/dev/mmcblk0p1', '/dev/mmcblk1p1', '/dev/mmcblk0p3', '/dev/mmcblk0p4'):
 		if path.exists(device):
-			Console().ePopen("mount %s %s" % (device, Imagemount))
+			for i in range(2):
+				Console().ePopen("mount %s %s" % (device, Imagemount))
 			if path.isfile(path.join(Imagemount, "STARTUP")):
 				print '[Multiboot] Startupdevice found:', device
 				return device
-			Console().ePopen("umount %s" % Imagemount)
+			while path.ismount(Imagemount):
+				Console().ePopen("umount %s" % Imagemount)
 	if not path.ismount(Imagemount):
 		rmdir(Imagemount)
 
@@ -63,7 +65,8 @@ def getMultibootslots():
 				if slot:
 					bootslots[int(slotnumber)] = slot
 		print "[multiboot1] getMultibootslots bootslots = %s" %bootslots
-		Console().ePopen("umount %s" % Imagemount)
+		while path.ismount(Imagemount):
+			Console().ePopen("umount %s" % Imagemount)
 		if not path.ismount(Imagemount):
 			rmdir(Imagemount)
 	return bootslots
