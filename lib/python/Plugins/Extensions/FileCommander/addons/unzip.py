@@ -28,7 +28,7 @@ class UnzipMenuScreen(ArchiverMenuScreen):
 		self.pversion = pversion
 
 	def unpackModus(self, id):
-		print "[UnzipMenuScreen] unpackModus", id
+		print("[UnzipMenuScreen] unpackModus", id)
 		if id == 1:
 			cmd = ("unzip", "-l", self.sourceDir + self.filename)
 			self.unpackPopen(cmd, UnpackInfoScreen)

@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 import RecordTimer
 import Components.ParentalControl
@@ -64,7 +65,7 @@ class RealStandby(Screen):
 		self.skinName = "Standby"
 		self.avswitch = AVSwitch()
 
-		print "[Standby] enter standby"
+		print("[Standby] enter standby")
 		if os.path.exists("/usr/script/Standby.sh"):
 			Console().ePopen("/usr/script/Standby.sh off")
 		if os.path.exists("/usr/script/standby_enter.sh"):
@@ -181,7 +182,7 @@ class RealStandby(Screen):
 			config.misc.standbyCounter.value += 1
 
 	def Power(self):
-		print "[Standby] leave standby"
+		print("[Standby] leave standby")
 		self.close(True)
 
 	def setMute(self):

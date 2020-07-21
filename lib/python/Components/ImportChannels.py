@@ -1,4 +1,5 @@
 import threading, urllib2, os, shutil, tempfile
+from __future__ import print_function
 from json import loads
 from enigma import eDVBDB, eEPGCache
 from Screens.MessageBox import MessageBox
@@ -59,13 +60,13 @@ class ImportChannels():
 		self.getTerrestrialRegion(settings)
 		self.tmp_dir = tempfile.mkdtemp(prefix="ImportChannels")
 		if "epg" in config.usage.remote_fallback_import.value:
-			print "Writing epg.dat file on sever box"
+			print("Writing epg.dat file on sever box")
 			try:
 				self.getUrl("%s/web/saveepg" % self.url, timeout=30).read()
 			except:
 				self.ImportChannelsDone(False, _("Error when writing epg.dat on server"))
 				return
-			print "[Import Channels] Get EPG Location"
+			print("[Import Channels] Get EPG Location")
 			try:
 				epgdatfile = self.getFallbackSettingsValue(settings, "config.misc.epgcache_filename") or "/hdd/epg.dat"
 				try:
@@ -77,7 +78,7 @@ class ImportChannels():
 				self.ImportChannelsDone(False, _("Error while retreiving location of epg.dat on server"))
 				return
 			if epg_location:
-				print "[Import Channels] Copy EPG file..."
+				print("[Import Channels] Copy EPG file...")
 				try:
 					open(os.path.join(self.tmp_dir, "epg.dat"), "wb").write(self.getUrl("%s/file?file=%s" % (self.url, epg_location)).read())
 					shutil.move(os.path.join(self.tmp_dir, "epg.dat"), config.misc.epgcache_filename.value)
@@ -87,12 +88,16 @@ class ImportChannels():
 			else:
 				self.ImportChannelsDone(False, _("No epg.dat file found server"))
 		if "channels" in config.usage.remote_fallback_import.value:
-			print "[Import Channels] reading dir"
+			try:
+				os.mkdir("/tmp/tmp")
+			except:
+				pass
+			print("[Import Channels] reading dir")
 			try:
 				files = [file for file in loads(self.getUrl("%s/file?dir=/etc/enigma2" % self.url).read())["files"] if os.path.basename(file).startswith(settingfiles)]
 				for file in files:
 					file = file.encode("UTF-8")
-					print "[Import Channels] Downloading %s" % file
+					print("[Import Channels] Downloading %s" % file)
 					try:
 						open(os.path.join(self.tmp_dir, os.path.basename(file)), "wb").write(self.getUrl("%s/file?file=%s" % (self.url, file)).read())
 					except:
@@ -101,12 +106,13 @@ class ImportChannels():
 			except:
 				self.ImportChannelsDone(False, _("Error %s") % self.url)
 				return
-			print "[Import Channels] Removing files..."
+
+			print("[Import Channels] Removing files...")
 			files = [file for file in os.listdir("/etc/enigma2") if file.startswith(settingfiles)]
 			for file in files:
-				os.remove(os.path.join("/etc/enigma2", file))
-			print "[Import Channels] copying files..."
-			files = [x for x in os.listdir(self.tmp_dir) if x.startswith(settingfiles)]
+				os.remove("/etc/enigma2/%s" % file)
+			print("[Import Channels] copying files...")
+			files = [x for x in os.listdir("/tmp/tmp") if x.startswith(settingfiles)]
 			for file in files:
 				shutil.move(os.path.join(self.tmp_dir, file), os.path.join("/etc/enigma2", file))
 		self.ImportChannelsDone(True, {"channels": _("Channels"), "epg": _("EPG"), "channels_epg": _("Channels and EPG")}[config.usage.remote_fallback_import.value])

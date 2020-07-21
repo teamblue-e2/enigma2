@@ -1,4 +1,6 @@
+<<<<<<< HEAD
 from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService, setPreferredTuner, eStreamServer, iRecordableServicePtr
+from __future__ import print_function
 from Components.ImportChannels import ImportChannels
 from Components.ParentalControl import parentalControl
 from Components.SystemInfo import SystemInfo
@@ -54,15 +56,15 @@ class Navigation:
 
 		wasTimerWakeup = getFPWasTimerWakeup()
 		if not wasTimerWakeup: #work-around for boxes where driver not sent was_timer_wakeup signal to e2
-			print"[NAVIGATION] getNextRecordingTime= %s" % self.RecordTimer.getNextRecordingTime()
-			print"[NAVIGATION] current Time=%s" % time()
-			print"[NAVIGATION] timediff=%s" % abs(self.RecordTimer.getNextRecordingTime() - time())
+			print("[NAVIGATION] getNextRecordingTime= %s" % self.RecordTimer.getNextRecordingTime())
+			print("[NAVIGATION] current Time=%s" % time())
+			print("[NAVIGATION] timediff=%s" % abs(self.RecordTimer.getNextRecordingTime() - time()))
 
 			if time() <= 31536000: # check for NTP-time sync, if no sync, wait for transponder time
 				self.timesynctimer = eTimer()
 				self.timesynctimer.callback.append(self.TimeSynctimer)
 				self.timesynctimer.start(5000, True)
-				print"[NAVIGATION] wait for time sync"
+				print("[NAVIGATION] wait for time sync")
 				
 			elif abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360: # if there is a recording sheduled in the next 5 mins, set the wasTimerWakeup flag
 				wasTimerWakeup = True
@@ -70,7 +72,7 @@ class Navigation:
 				file = f.write(str(wasTimerWakeup))
 				f.close()
 
-		print"[NAVIGATION] wasTimerWakeup = %s" % wasTimerWakeup
+		print("[NAVIGATION] wasTimerWakeup = %s" % wasTimerWakeup)
 
 		if wasTimerWakeup:
 			self.__wasTimerWakeup = True
@@ -78,11 +80,11 @@ class Navigation:
 				self.timesynctimer = eTimer()
 				self.timesynctimer.callback.append(self.TimeSynctimer)
 				self.timesynctimer.start(5000, True)
-				print"[NAVIGATION] wait for time sync"
+				print("[NAVIGATION] wait for time sync")
 	
 			elif nextRecordTimerAfterEventActionAuto and abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:
 				self.__wasRecTimerWakeup = True
-				print 'RECTIMER: wakeup to standby detected.'
+				print("RECTIMER: wakeup to standby detected.")
 				f = open("/tmp/was_rectimer_wakeup", "w")
 				f.write('1')
 				f.close()
@@ -120,10 +122,10 @@ class Navigation:
 		self.syncCount += 1
 		if self.nextRecordTimerAfterEventActionAuto and abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360:
 			self.__wasRecTimerWakeup = True
-			print 'RECTIMER: wakeup to standby detected.'
-			print"[NAVIGATION] getNextRecordingTime= %s" % self.RecordTimer.getNextRecordingTime()
-			print"[NAVIGATION] current Time=%s" % time()
-			print"[NAVIGATION] timediff=%s" % abs(self.RecordTimer.getNextRecordingTime() - time())
+			print("RECTIMER: wakeup to standby detected.")
+			print("[NAVIGATION] getNextRecordingTime= %s" % self.RecordTimer.getNextRecordingTime())
+			print("[NAVIGATION] current Time=%s" % time())
+			print("[NAVIGATION] timediff=%s" % abs(self.RecordTimer.getNextRecordingTime() - time()))
 			f = open("/tmp/was_rectimer_wakeup", "w")
 			f.write('1')
 			f.close()
@@ -132,9 +134,9 @@ class Navigation:
 			if self.syncCount <= 24 and time() <= 31536000: # max 2 mins or when time is in sync
 				self.timesynctimer.start(5000, True)
 			else:
-				print"[NAVIGATION] No Recordings found, end work-around"
+				print("[NAVIGATION] No Recordings found, end work-around")
 
-		print"[NAVIGATION] wasTimerWakeup after time sync = %s, sync time = %s sec." % (self.__wasRecTimerWakeup, self.syncCount * 5)
+		print("[NAVIGATION] wasTimerWakeup after time sync = %s, sync time = %s sec." % (self.__wasRecTimerWakeup, self.syncCount * 5))
 
 	def gotostandby(self):
 		from Tools import Notifications
@@ -154,16 +156,16 @@ class Navigation:
 			self.currentlyPlayingService = None
 
 	def dispatchRecordEvent(self, rec_service, event):
-#		print "[Navigation] record_event", rec_service, event
+#		print("[Navigation] record_event", rec_service, event)
 		for x in self.record_event:
 			x(rec_service, event)
 
 	def playService(self, ref, checkParentalControl=True, forceRestart=False, adjust=True):
 		oldref = self.currentlyPlayingServiceOrGroup
 		if ref and oldref and ref == oldref and not forceRestart:
-			print "[Navigation] ignore request to play already running service(1)"
+			print("[Navigation] ignore request to play already running service(1)")
 			return 1
-		print "[Navigation] playing: ", ref and ref.toString()
+		print("[Navigation] playing: ", ref and ref.toString())
 		if ref is None:
 			self.stopService()
 			return 0
@@ -177,9 +179,9 @@ class Navigation:
 					alternative_ci_ref = ResolveCiAlternative(ref, playref)
 					if alternative_ci_ref:
 						playref = alternative_ci_ref
-				print "[Navigation] alternative ref: ", playref and playref.toString()
+				print("[Navigation] alternative ref: ", playref and playref.toString())
 				if playref and oldref and playref == oldref and not forceRestart:
-					print "[Navigation] ignore request to play already running service(2)"
+					print("[Navigation] ignore request to play already running service(2)")
 					return 1
 				if not playref:
 					alternativeref = getBestPlayableServiceReference(ref, eServiceReference(), True)
@@ -188,7 +190,7 @@ class Navigation:
 						self.currentlyPlayingServiceReference = alternativeref
 						self.currentlyPlayingServiceOrGroup = ref
 						if self.pnav.playService(alternativeref):
-							print "[Navigation] Failed to start: ", alternativeref.toString()
+							print("[Navigation] Failed to start: ", alternativeref.toString())
 							self.currentlyPlayingServiceReference = None
 							self.currentlyPlayingServiceOrGroup = None
 					return 0
@@ -233,7 +235,7 @@ class Navigation:
 									setPreferredTuner(int(config.usage.frontend_priority_dvbs.value))
 									setPriorityFrontend = True
 				if self.pnav.playService(playref):
-					print "[Navigation] Failed to start: ", playref.toString()
+					print("[Navigation] Failed to start: ", playref.toString())
 					self.currentlyPlayingServiceReference = None
 					self.currentlyPlayingServiceOrGroup = None
 				if setPriorityFrontend:
@@ -251,7 +253,7 @@ class Navigation:
 
 	def recordService(self, ref, simulate=False):
 		service = None
-		if not simulate: print "[Navigation] recording service: %s" % (str(ref))
+		if not simulate: print("[Navigation] recording service: %s" % (str(ref)))
 		if isinstance(ref, ServiceReference):
 			ref = ref.ref
 		if ref:
@@ -259,7 +261,7 @@ class Navigation:
 				ref = getBestPlayableServiceReference(ref, eServiceReference(), simulate)
 			service = ref and self.pnav and self.pnav.recordService(ref, simulate)
 			if service is None:
-				print "[Navigation] record returned non-zero"
+				print("[Navigation] record returned non-zero")
 		return service
 
 	def stopRecordService(self, service):

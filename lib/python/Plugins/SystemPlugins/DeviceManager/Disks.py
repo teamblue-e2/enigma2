@@ -126,7 +126,7 @@ class Disks():
 			res = mount.split(" ")
 			if res and len(res) > 1:
 				if res[0][:8] == "/dev/%s" % device:
-					print "[DeviceManager] umount %s" % res[0]
+					print("[DeviceManager] umount %s" % res[0])
 					if os.system("umount -f %s" % res[0]) != 0:
 						mounts.close()
 						return False
@@ -162,18 +162,18 @@ class Disks():
 	# -2 -> sfdisk failed
 	def fdisk(self, device, size, type, fstype=0):
 		if self.isMounted(device):
-			print "[DeviceManager] device is mounted... umount"
+			print("[DeviceManager] device is mounted... umount")
 			if not self.umount(device):
-				print "[DeviceManager] umount failed!"
+				print("[DeviceManager] umount failed!")
 				return -1
 
 		if fstype == 0:
 			ptype = "ext4"
 		elif fstype == 1:
 			ptype = "ext3"
-		print "[DeviceManager] size = ", size
+		print("[DeviceManager] size = ", size)
 		psize = (size / (1024*1024))
-		print "[DeviceManager] (size / (1024*1024)) = ", psize
+		print("[DeviceManager] (size / (1024*1024)) = ", psize)
 		if type == 0:
 				cmd = '/usr/sbin/parted --align optimal /dev/%s --script mklabel msdos mkpart primary %s 0%% 100%%' % (device, ptype)
 		elif type == 1:
@@ -184,7 +184,7 @@ class Disks():
 				cmd = '/usr/sbin/parted --align optimal /dev/%s --script mklabel msdos mkpart primary %s 0%% 33%% mkpart primary %s 33%% 66%% mkpart primary %s 66%% 100%%' % (device, ptype, ptype, ptype)
 		elif type == 4:
 				cmd = '/usr/sbin/parted --align optimal /dev/%s --script mklabel msdos mkpart primary %s 0%% 25%% mkpart primary %s 25%% 50%% mkpart primary %s 50%% 75%% mkpart primary %s 75%% 100%%' % (device, ptype, ptype, ptype, ptype)
-		print "[DeviceManager] used cmd = ", cmd
+		print("[DeviceManager] used cmd = ", cmd)
 		sfdisk = os.popen(cmd, "w")
 		if sfdisk.close():
 			return -2
@@ -199,12 +199,12 @@ class Disks():
 	# -2 -> sfdisk failed
 	def chkfs(self, device, partition, fstype=0):
 		fdevice = "%s%d" % (device, partition)
-		print "[DeviceManager] checking device %s" % fdevice
+		print("[DeviceManager] checking device %s" % fdevice)
 		if self.isMountedP(device, partition):
 			oldmp = self.getMountedP(device, partition)
-			print "[DeviceManager] partition is mounted... umount"
+			print("[DeviceManager] partition is mounted... umount")
 			if not self.umountP(device, partition):
-				print "[DeviceManager] umount failed!"
+				print("[DeviceManager] umount failed!")
 				return -1
 		else:
 			oldmp = ""
@@ -243,9 +243,9 @@ class Disks():
 
 		if self.isMountedP(device, partition):
 			oldmp = self.getMountedP(device, partition)
-			print "[DeviceManager] partition is mounted... umount"
+			print("[DeviceManager] partition is mounted... umount")
 			if not self.umountP(device, partition):
-				print "[DeviceManager] umount failed!"
+				print("[DeviceManager] umount failed!")
 				return -2
 		else:
 			oldmp = ""
@@ -253,7 +253,7 @@ class Disks():
 		if fstype == 0:
 			cmd = "/sbin/mkfs.ext4 "
 			cmd += "-F -m0 -O dir_index /dev/" + dev
-			print "[DeviceManager] EXT4 command to format ", cmd
+			print("[DeviceManager] EXT4 command to format ", cmd)
 		elif fstype == 1:
 			cmd = "/sbin/mkfs.ext3 "
 			psize = (size / (1024))
@@ -267,12 +267,12 @@ class Disks():
 				# Over 2GB: 32 i-nodes per megabyte
 				cmd += "-F -T largefile -N %s " % str(psize * 32)
 			cmd += "-m0 -O dir_index /dev/" + dev
-			print "[DeviceManager] EXT3 command to format ", cmd
+			print("[DeviceManager] EXT3 command to format ", cmd)
 		else:
 			if len(oldmp) > 0:
 				self.mount(dev, oldmp)
 			return -3
-		print "[DeviceManager] executing command to format ", cmd
+		print("[DeviceManager] executing command to format ", cmd)
 		ret = os.system(cmd)
 
 		if len(oldmp) > 0:

@@ -85,4 +85,4 @@ if __name__ == "__main__":
 	scaler = UnitScaler(**kwargs)
 	for arg in sys.argv:
 		val = eval(arg)
-		print arg, val, scaler(val)
+		print(arg, val, scaler(val))

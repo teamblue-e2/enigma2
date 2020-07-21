@@ -53,7 +53,7 @@ class GetFPS(object):
         self.file.seek(0)
         while 1:
             class_id, length = self.eblm()
-            # print "class_id: %X length %i position:%i" % (class_id, length, self.file.tell())
+            # print("class_id: %X length %i position:%i" % (class_id, length, self.file.tell()))
             if (class_id == 0x83):
                 track = ord(self.file.read(1))
             elif (class_id == 0x23E383 and track == 1):
@@ -310,7 +310,7 @@ def to_srt(list):
 def sub_fix_times(sub):
     for i in range(len(sub) - 2):
         approx = min(1 + (len(" ".join(sub[i][2:])) / 10), 9.9)                 # 10 char per second
-#       print sub[i][0],sub[i][1], sub[i][1] - sub[i][0], approx
+#       print(sub[i][0],sub[i][1], sub[i][1] - sub[i][0], approx)
         if (sub[i + 1][0] <= sub[i][0]):
             sub[i + 1][0] = sub[i][0] + approx + 0.2
         # if less than 1 sec
@@ -395,38 +395,38 @@ def read_sub(fmt, subs):
 
 def to_srt_utf8(subs_org, file, digest=0, info="", fps=0):
     p, f = os.path.split(file)
-    print "Processing subtitle for:\n Path: %s\n File: %s %s" % (p, f, info)
+    print("Processing subtitle for:\n Path: %s\n File: %s %s" % (p, f, info))
     try:
         subs_org = subs_org.replace("\r", "")
         dest = file[:-4] + '.srt'
         subs_u, org_cod = convert_to_unicode(subs_org)
         subs = subs_u.split('\n')
         fmt = detect_format(subs)
-        print " Oryginal subtitle format: ", fmt, org_cod,
+        print(" Oryginal subtitle format: ", fmt, org_cod,)
 
         if fmt == "mdvd":
             if fps < 22 < 32:
                 f = GetFPS(file)
                 fps = f.fps()
             if not 22 < fps < 32:
-                print " failback to napifps ",
+                print(" failback to napifps ",)
                 fps = napiprojekt_fps(digest)
-            print "FPS:", str(fps)[0:5],
+            print("FPS:", str(fps)[0:5],)
             subs = "".join(to_srt(sub_fix_times(read_mdvd(subs, fps))))
         elif fmt != "srt":
             subs = "".join(to_srt(sub_fix_times(read_sub(fmt, subs))))
         else:
             subs = subs_u
 
-        print "     Saved as SRT utf8."
+        print("     Saved as SRT utf8.")
 
         dst = open(dest, 'w')
         dst.write(subs.encode("utf-8-sig"))
         dst.close()
-        print " Saved:", dest
+        print(" Saved:", dest)
 
     except:
-        print "  Error: %s" % (sys.exc_info()[1])
+        print("  Error: %s" % (sys.exc_info()[1]))
 
 def get_sub_from_napi(file, fps=0):
         digest = hashFile(file)['npb']
@@ -439,7 +439,7 @@ def convert(file, src, fps=0):
             raise Exception('Suspicious file size: %s %i' % (src, os.path.getsize(src)))
         to_srt_utf8(subs_org=open(src).read(), file=file, info="\n Convert from: " + os.path.split(src)[1], fps=fps)
     except:
-        print "  Error: %s" % (sys.exc_info()[1])
+        print("  Error: %s" % (sys.exc_info()[1]))
 
 
 prere = (
@@ -530,10 +530,10 @@ def hashFile(name):
         hash &= 0xFFFFFFFFFFFFFFFF
         f.close()
         ret = dict(osb="%016x" % hash, npb=d.hexdigest(), fsize=filesize)
-#       print "[DMnapi] hashFile: ", name, ret
+#       print("[DMnapi] hashFile: ", name, ret)
         return ret
     except:
-        print "[DMnapi] Error hashFile: ", name
+        print("[DMnapi] Error hashFile: ", name)
         return dict(osb="%016x" % 0, npb=d.hexdigest(), fsize=filesize)
 
 def get_sub_from_n24(file, id, fps=0):

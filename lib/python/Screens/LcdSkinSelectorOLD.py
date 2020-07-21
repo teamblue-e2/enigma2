@@ -87,7 +87,7 @@ class LCDSkinSelectorOLD(Screen):
 
 	def ok(self):
 		skinfile = self["SkinList"].getCurrent()
-		print "LCDSkinSelectorOLD: Selected Skin: ", skinfile
+		print("LCDSkinSelectorOLD: Selected Skin: ", skinfile)
 		config.skin.display_skin.value = "lcd_skin/" + skinfile
 		config.skin.display_skin.save()
 		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply a new skin\nDo you want to Restart the GUI now?"), MessageBox.TYPE_YESNO)

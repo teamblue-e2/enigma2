@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screen import Screen
 import Screens.InfoBar
 from Components.ServiceScan import ServiceScan as CScan
@@ -41,13 +42,14 @@ class ServiceScan(Screen):
 		self.session.summary.updateService(self["servicelist"].getCurrentSelection()[0])
 
 	def ok(self):
+		print("ok")
 		if self["scan"].isDone():
 			try:
 				from Plugins.SystemPlugins.LCNScanner.plugin import LCNBuildHelper
 				lcn = LCNBuildHelper()
 				lcn.buildAfterScan()
-			except Exception, e:
-				print e
+			except Exception as e:
+				print(e)
 
 			if self.currentInfobar.__class__.__name__ == "InfoBar":
 				selectedService = self["servicelist"].getCurrentSelection()
@@ -137,4 +139,5 @@ class ServiceScan(Screen):
 		self.scanTimer.start(250)
 
 	def createSummary(self):
+		print("ServiceScanCreateSummary")
 		return ServiceScanSummary

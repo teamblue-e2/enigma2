@@ -1,4 +1,7 @@
 import errno
+from __future__ import print_function
+from Tools.Profile import profile
+profile("LOAD:ElementTree")
 import xml.etree.cElementTree
 
 from enigma import addFont, eLabel, ePixmap, ePoint, eRect, eSize, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gRGB

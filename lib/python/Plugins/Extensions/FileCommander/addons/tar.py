@@ -23,7 +23,7 @@ class TarMenuScreen(ArchiverMenuScreen):
 		self.pversion = pversion
 
 	def unpackModus(self, id):
-		print "[TarMenuScreen] unpackModus", id
+		print("[TarMenuScreen] unpackModus", id)
 		if id == 1:
 			cmd = ("tar", "-tf", self.sourceDir + self.filename)
 			self.unpackPopen(cmd, UnpackInfoScreen)

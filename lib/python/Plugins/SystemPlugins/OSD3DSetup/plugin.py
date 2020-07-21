@@ -101,7 +101,7 @@ class auto3D(Screen):
 			{
 				iPlayableService.evStart: self.__evStart
 			})
-		print "[OSD3D] auto3D started"
+		print("[OSD3D] auto3D started")
 
 	def checkIfDedicated3D(self):
 			service = self.session.nav.getCurrentlyPlayingServiceReference()
@@ -137,7 +137,7 @@ def startSetup(menuid):
 
 def autostart(reason, **kwargs):
 	"session" in kwargs and kwargs["session"].open(auto3D)
-	print "[OSD3D] session autostart"
+	print("[OSD3D] session autostart")
 
 def Plugins(**kwargs):
 	if SystemInfo["3DMode"]:

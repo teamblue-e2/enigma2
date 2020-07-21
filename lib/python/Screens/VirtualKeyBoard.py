@@ -458,7 +458,27 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			"ar_SY": [_("Arabic"), _("Syrian Arab Republic"), self.arabic(self.english)],
 			"ar_AE": [_("Arabic"), _("United Arab Emirates"), self.arabic(self.english)],
 			"ar_YE": [_("Arabic"), _("Yemen"), self.arabic(self.english)],
-			"cs_CZ": [_("Czech"), _("Czechia"), self.czech],
+			"cs_CZ": [_("Czech"), _("Czechia"), [
+				[
+					[u";", u"+", u"\u011B", u"\u0161", u"\u010D", u"\u0159", u"\u017E", u"\u00FD", u"\u00E1", u"\u00ED", u"\u00E9", u"=", u"", u"BACKSPACE"],
+					[u"FIRST", u"q", u"w", u"e", u"r", u"t", u"z", u"u", u"i", u"o", u"p", u"\u00FA", u")", u""],
+					[u"LAST", u"a", u"s", u"d", u"f", u"g", u"h", u"j", u"k", u"l", u"\u016F", u"\u00A7", u"", u"ENTER"],
+					[u"SHIFT", u"y", u"x", u"c", u"v", u"b", u"n", u"m", u",", ".", u"-", u"\u0148", u"", u"SHIFT"],
+					[u"EXIT", u"LOC", u"LEFT", u"RIGHT", u"LongL__SPACE__HIDE", u"LongM__SPACE__HIDE", u"LongM__SPACE__HIDE", u"LongM__SPACE__HIDE", u"LongM__SPACE__HIDE", u"LongM__SPACE__HIDE", u"LongR__SPACE__HIDE", u"ALL", u"CLR", u"DEL"]
+				], [
+					[u".", u"1", u"2", u"3", u"4", u"5", u"6", u"7", u"8", u"9", u"0", u"%", u"", u"BACKSPACE"],
+					[u"FIRST", u"Q", u"W", u"E", u"R", u"T", u"Z", u"U", u"I", u"O", u"P", u"/", u"(", u""],
+					[u"LAST", u"A", u"S", u"D", u"F", u"G", u"H", u"J", u"K", u"L", u"\"", u"!", u"'", u"ENTER"],
+					[u"SHIFT", u"Y", u"X", u"C", u"V", u"B", u"N", u"M", u"?", u":", u"_", u"\u0147", u"", u"SHIFT"],
+					[u"EXIT", u"LOC", u"LEFT", u"RIGHT", u"LongL__SPACE__HIDE", u"LongM__SPACE__HIDE", u"LongM__SPACE__HIDE", u"LongM__SPACE__HIDE", u"LongM__SPACE__HIDE", u"LongM__SPACE__HIDE", u"LongR__SPACE__HIDE", u"ALL", u"CLR", u"DEL"]
+				], [
+					[u"", u"~", u"\u011A", u"\u0160", u"\u010C", u"\u0158", u"\u017D", u"\u00DD", u"\u00C1", u"\u00CD", u"\u00C9", u"`", u"", u"BACKSPACE"],
+					[u"FIRST", u"\\", u"|", u"\u20AC", u"\u0165", u"\u0164", u"", u"", u"", u"\u00F3", u"\u00D3", u"\u00DA", u"\u00F7", u"\u00D7"],
+					[u"LAST", u"", u"\u0111", u"\u00D0", u"[", u"]", u"\u010F", u"\u010E", u"\u0142", u"\u0141", u"\u016E", u"$", u"\u00DF", u"ENTER"],
+					[u"SHIFT", u"", u"#", u"&", u"@", u"{", u"}", u"", u"<", u">", u"*", u"", u"\u00A4", u"SHIFT"],
+					[u"EXIT", u"LOC", u"LEFT", u"RIGHT", u"LongL__SPACE__HIDE", u"LongM__SPACE__HIDE", u"LongM__SPACE__HIDE", u"LongM__SPACE__HIDE", u"LongM__SPACE__HIDE", u"LongM__SPACE__HIDE", u"LongR__SPACE__HIDE", u"ALL", u"CLR", u"DEL"]
+				]
+			]],
 			"nl_NL": [_("Dutch"), _("Netherlands"), self.dutch(self.english)],
 			"en_AU": [_("English"), _("Australian"), self.english],
 			"en_GB": [_("English"), _("United Kingdom"), self.unitedKingdom(self.english)],

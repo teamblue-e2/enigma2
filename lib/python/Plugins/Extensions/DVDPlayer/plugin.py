@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 from Tools.Directories import fileExists
 from Plugins.Plugin import PluginDescriptor
@@ -66,14 +67,14 @@ def filescan(**kwargs):
 		)]
 
 def onPartitionChange(action, partition):
-	print "[@] onPartitionChange", action, partition
+	print("[@] onPartitionChange", action, partition)
 	if partition != harddiskmanager.getCD():
 		global detected_DVD
 		if action == 'remove':
-			print "[@] DVD removed"
+			print("[DVDplayer] DVD removed")
 			detected_DVD = False
 		elif action == 'add':
-			print "[@] DVD Inserted"
+			print("[DVDplayer] DVD Inserted")
 			detected_DVD = None
 
 def menu(menuid, **kwargs):

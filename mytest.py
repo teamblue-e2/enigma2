@@ -1,3 +1,4 @@
+from __future__ import print_function
 import sys
 import os
 from Tools.Profile import profile, profile_final
@@ -88,11 +89,11 @@ def setEPGCachePath(configElement):
 
 def useSyncUsingChanged(configelement):
 	if config.misc.SyncTimeUsing.value == "0":
-		print "[mytest] Time by Transponder"
+		print("[mytest] Time by Transponder")
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(True)
 		enigma.eEPGCache.getInstance().timeUpdated()
 	else:
-		print "[mytest] Time by NTP"
+		print("[mytest] Time by NTP")
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(False)
 		enigma.eEPGCache.getInstance().timeUpdated()
 config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged, immediate_feedback = True)
@@ -100,7 +101,7 @@ config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged, immediate_feedback = 
 def NTPserverChanged(configelement):
 	if config.misc.NTPserver.value == "pool.ntp.org":
 		return
-	print "[mytest] save /etc/default/ntpdate"
+	print("[mytest] save /etc/default/ntpdate")
 	f = open("/etc/default/ntpdate", "w")
 	f.write('NTPSERVERS="' + config.misc.NTPserver.value + '"')
 	f.close()
@@ -122,7 +123,7 @@ try:
 	def runReactor():
 		reactor.run(installSignalHandlers=False)
 except ImportError:
-	print "[mytest] twisted not available"
+	print("twisted not available")
 	def runReactor():
 		enigma.runMainloop()
 
@@ -158,9 +159,9 @@ def dump(dir, p = ""):
 				had[str(value)] = 1
 				dump(value, p + "/" + str(name))
 			else:
-				print p + "/" + str(name) + ":" + str(dir.__class__) + "(cycle)"
+				print(p + "/" + str(name) + ":" + str(dir.__class__) + "(cycle)")
 	else:
-		print p + ":" + str(dir)
+		print(p + ":" + str(dir))
 
 # + ":" + str(dir.__class__)
 
@@ -221,7 +222,7 @@ class Session:
 			try:
 				p(reason=0, session=self)
 			except:
-				print "[mytest] Plugin raised exception at WHERE_SESSIONSTART"
+				print("Plugin raised exception at WHERE_SESSIONSTART")
 				import traceback
 				traceback.print_exc()
 
@@ -336,7 +337,7 @@ class Session:
 
 	def close(self, screen, *retval):
 		if not self.in_exec:
-			print "[mytest] close after exec!"
+			print("close after exec!")
 			return
 
 		# be sure that the close is for the right dialog!
@@ -394,13 +395,13 @@ class PowerKey:
 				f.close()
 				wasRecTimerWakeup = int(file) and True or False
 			if self.session.nav.RecordTimer.isRecTimerWakeup() or wasRecTimerWakeup:
-				print "[mytest] PowerOff (timer wakewup) - Recording in progress or a timer about to activate, entering standby!"
+				print("[mytest] PowerOff (timer wakewup) - Recording in progress or a timer about to activate, entering standby!")
 				self.standby()
 			else:
-				print "[mytest] PowerOff - Now!"
+				print("[mytest] PowerOff - Now!")
 				self.session.open(Screens.Standby.TryQuitMainloop, 1)
 		elif not Screens.Standby.inTryQuitMainloop and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND:
-			print "[mytest] PowerOff - Now!"
+			print("[mytest] PowerOff - Now!")
 			self.session.open(Screens.Standby.TryQuitMainloop, 1)
 		else:
 			return 0
@@ -422,10 +423,10 @@ class PowerKey:
 			selected = selected.split("/")
 			if selected[0] == "Module":
 				try:
-					exec "from " + selected[1] + " import *"
-					exec "self.session.open(" + ",".join(selected[2:]) + ")"
+					exec("from " + selected[1] + " import *")
+					exec("self.session.open(" + ",".join(selected[2:]) + ")")
 				except:
-					print "[mytest] error during executing module %s, screen %s" % (selected[1], selected[2])
+					print("[mytest] error during executing module %s, screen %s" % (selected[1], selected[2]))
 			elif selected[0] == "Menu":
 				from Screens.Menu import MainMenu, mdom
 				root = mdom.getroot()
@@ -573,12 +574,12 @@ def runScreenTest():
 		else:
 			wptime = startTime[0] - 120
 		if not config.misc.useTransponderTime.value:
-			print "[mytest] dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime))
+			print("dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime)))
 			setRTCtime(nowTime)
-		print "[mytest] set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime))
+		print("set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime)))
 		setFPWakeuptime(wptime)
 		recordTimerWakeupAuto = startTime[1] == 0 and startTime[2]
-		print '[mytest] recordTimerWakeupAuto',recordTimerWakeupAuto
+		print("[mytest] recordTimerWakeupAuto',recordTimerWakeupAuto")
 		config.misc.prev_wakeup_time.value = startTime[0]
 		config.misc.prev_wakeup_time_type.value = startTime[1]
 		config.misc.prev_wakeup_time_type.save()
@@ -685,8 +686,8 @@ try:
 
 	Components.ParentalControl.parentalControl.save()
 except:
-	print '[mytest] EXCEPTION IN PYTHON STARTUP CODE:'
-	print '-'*60
+	print('EXCEPTION IN PYTHON STARTUP CODE:')
+	print('-'*60)
 	print_exc(file=stdout)
 	enigma.quitMainloop(5)
-	print '-'*60
+	print('-'*60)
