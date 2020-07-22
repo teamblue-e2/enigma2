@@ -218,7 +218,7 @@ def resolveFilename(scope, base = "", path_prefix = None):
 					if pathExists(x[0]):
 						os.rename(x[0], path + base)
 						break
-			except Exception, e:
+			except Exception as e:
 				print("[D] Failed to recover %s:" % (path+base), e)
 
 	# FIXME: we also have to handle DATADIR etc. here.
@@ -253,7 +253,7 @@ def defaultRecordingLocation(candidate=None):
 					path = candidate[1]
 					havelocal = islocal
 					biggest = size
-			except Exception, e:
+			except Exception as e:
 				print("[DRL]", e)
 	if path:
 		# If there's a movie subdir, we'd probably want to use that.
@@ -423,7 +423,7 @@ def moveFiles(fileList):
 				print("[Directories] Moving in background...")
 			else:
 				raise
-	except Exception, e:
+	except Exception as e:
 		print("[Directories] Failed move:", e)
 		for item in movedList:
 			try:

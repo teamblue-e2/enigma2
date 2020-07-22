@@ -56,7 +56,7 @@ TEXT_EXTENSIONS = frozenset((".txt", ".log", ".py", ".xml", ".html", ".meta", ".
 try:
 	from Screens import DVD
 	DVDPlayerAvailable = True
-except Exception, e:
+except Exception as e:
 	DVDPlayerAvailable = False
 
 ##################################

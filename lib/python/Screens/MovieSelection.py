@@ -1729,7 +1729,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			except OSError, e:
 				print("Error %s:" % e.errno, e)
 				msg = _("Error") + '\n' + str(e)
-			except Exception, e:
+			except Exception as e:
 				import traceback
 				print("[ML] Unexpected error:", e)
 				traceback.print_exc()

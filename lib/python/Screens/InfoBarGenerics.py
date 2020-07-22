@@ -120,7 +120,7 @@ def loadResumePoints():
 	import cPickle
 	try:
 		return cPickle.load(open('/etc/enigma2/resumepoints.pkl', 'rb'))
-	except Exception, ex:
+	except Exception as ex:
 		print("[InfoBar] Failed to load resumepoints:", ex)
 		return {}
 
@@ -3041,7 +3041,7 @@ class InfoBarRedButton:
 		try:
 			self["HbbtvApplication"].setApplicationName("")
 			self.updateAIT()
-		except Exception, ErrMsg:
+		except Exception as ErrMsg:
 			pass
 
 	def detectedHbbtvApplication(self):
@@ -3054,7 +3054,7 @@ class InfoBarRedButton:
 					self.updateAIT(x[3])
 					self["HbbtvApplication"].setApplicationName(x[1])
 					break
-		except Exception, ErrMsg:
+		except Exception as ErrMsg:
 			pass
 
 	def activateRedButton(self):
