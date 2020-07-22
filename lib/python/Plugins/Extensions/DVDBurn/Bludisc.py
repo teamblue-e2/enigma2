@@ -89,8 +89,8 @@ class BludiscTitle(object):
 
 class BludiscStream(object):
 	def __init__(self, parent, PID):
-	  	self.__parent = parent
-	  	self.__PID = PID
+		self.__parent = parent
+		self.__PID = PID
 		self.__streamtype = 0x00
 		self.__framerate = None
 		self.__audiorate = 0
