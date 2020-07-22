@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from enigma import eServiceCenter, eServiceReference, eTimer, pNavigation, getBestPlayableServiceReference, iPlayableService, setPreferredTuner, eStreamServer, iRecordableServicePtr
 from __future__ import print_function
 from Components.ImportChannels import ImportChannels
