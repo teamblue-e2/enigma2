@@ -148,20 +148,22 @@ class Screen(dict):
 	def getScreenPath(self):
 		return self.screenPath
 
-	def setTitle(self, title):
-		try:
+	def setTitle(self, title, showPath=True):
+		try:  # This protects against calls to setTitle() before being fully initialised like self.session is accessed *before* being defined.
 			if self.session and len(self.session.dialog_stack) > 2:
 				self.screenPath = " > ".join(ds[0].getTitle() for ds in self.session.dialog_stack[2:])
+			else:
+				self.screenPath = ""
 			if self.instance:
 				self.instance.setTitle(title)
 			self.summaries.setTitle(title)
 		except AttributeError:
 			pass
 		self.screenTitle = title
-		if config.usage.menu_path.value == "large":
+		if showPath and config.usage.menu_path.value == "large":
 			screenPath = ""
 			screenTitle = "%s > %s" % (self.screenPath, title) if self.screenPath else title
-		elif config.usage.menu_path.value == "small":
+		elif showPath and config.usage.menu_path.value == "small":
 			screenPath = "%s >" % self.screenPath if self.screenPath else ""
 			screenTitle = title
 		else:
@@ -271,10 +273,9 @@ class Screen(dict):
 				# w.instance.thisown = 0
 			applyAllAttributes(w.instance, desktop, w.skinAttributes, self.scale)
 		for f in self.onLayoutFinish:
-			# DEBUG: if type(f) is not type(self.close):  # Is this the best way to do this?
-			# DEBUG: Is the following an acceptable fix?
 			if not isinstance(f, type(self.close)):
-				exec f in globals(), locals()
+				exec f in globals(), locals()  # Python 2
+				# exec(f, globals(), locals())  # Python 3
 			else:
 				f()
 
