@@ -544,7 +544,7 @@ def InitUsageConfig():
 	config.crash.debug_path = ConfigSelection(default = "/home/root/logs/", choices = debugpath)
 	def updatedebug_path(configElement):
 		if not os.path.exists(config.crash.debug_path.getValue()):
-			os.mkdir(config.crash.debug_path.getValue(),0755)
+			os.mkdir(config.crash.debug_path.getValue(),755)
 	config.crash.debug_path.addNotifier(updatedebug_path, immediate_feedback = False)
 	crashlogheader = _("We are really sorry. Your receiver encountered " \
 					 "a software problem, and needs to be restarted.\n" \
