@@ -1319,7 +1319,6 @@ service_types_radio = '1:7:2:0:0:0:0:0:0:0:(type == 2) || (type == 10)'
 class ChannelSelectionBase(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.setScreenPathMode(None)
 		self["key_red"] = Button(_("All"))
 		self["key_green"] = Button(_("Reception lists"))
 		self["key_yellow"] = Button(_("Provider"))
@@ -1742,7 +1741,7 @@ class ChannelSelectionBase(Screen):
 			Screens.InfoBar.InfoBar.instance.instantRecord(serviceRef=ref)
 
 	def toggleTwoLines(self):
-		if self.servicelist.mode == self.servicelist.MODE_FAVOURITES:
+		if config.usage.setup_level.index > 1 and not self.pathChangeDisabled and self.servicelist.mode == self.servicelist.MODE_FAVOURITES:
 			config.usage.servicelist_twolines.value = not config.usage.servicelist_twolines.value
 			config.usage.servicelist_twolines.save()
 		else:

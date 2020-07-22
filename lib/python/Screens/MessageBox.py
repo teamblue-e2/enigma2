@@ -16,7 +16,6 @@ class MessageBox(Screen):
 	def __init__(self, session, text, type=TYPE_YESNO, timeout=-1, close_on_any_key=False, default=True, enable_input=True, msgBoxID=None, picon=None, simple=False, list=[], timeout_default=None, title=None):
 		self.type = type
 		Screen.__init__(self, session)
-		self.setScreenPathMode(None)
 		if simple:
 			self.skinName="MessageBoxSimple"
 
@@ -79,7 +78,7 @@ class MessageBox(Screen):
 					"leftRepeated": self.left,
 					"rightRepeated": self.right
 				}, -1)
-		self.setTitle(self.title)
+		self.setTitle(self.title, showPath=False)
 
 	def initTimeout(self, timeout):
 		self.timeout = timeout
@@ -107,7 +106,7 @@ class MessageBox(Screen):
 		if self.timerRunning:
 			del self.timer
 			self.onExecBegin.remove(self.startTimer)
-			self.setTitle(self.origTitle)
+			self.setTitle(self.origTitle, showPath=False)
 			self.timerRunning = False
 
 	def timerTick(self):
@@ -115,7 +114,7 @@ class MessageBox(Screen):
 			self.timeout -= 1
 			if self.origTitle is None:
 				self.origTitle = self.instance.getTitle()
-			self.setTitle(self.origTitle + " (" + str(self.timeout) + ")")
+			self.setTitle(self.origTitle + " (" + str(self.timeout) + ")", showPath=False)
 			if self.timeout == 0:
 				self.timer.stop()
 				self.timerRunning = False
