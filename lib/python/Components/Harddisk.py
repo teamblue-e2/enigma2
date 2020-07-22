@@ -481,7 +481,7 @@ class Harddisk:
 
 	def createExt4ConversionJob(self):
 		if not isFileSystemSupported('ext4'):
-			raise Exception, _("[Harddisk] You system does not support ext4")
+			raise Exception("[Harddisk] You system does not support ext4")
 		job = Task.Job(_("Converting ext3 to ext4..."))
 		if not os.path.exists('/sbin/tune2fs'):
 			addInstallTask(job, 'e2fsprogs-tune2fs')

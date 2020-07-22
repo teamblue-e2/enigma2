@@ -183,10 +183,10 @@ class BludiscStream(object):
 	def getAspectByte(self):
 		aspect = self.__parent.properties.aspect.value
 		if self.isVideo:
-		      if aspect == "16:9":
-			    return struct.pack('B',0x30)
-		      elif aspect == "4:3":
-			    return struct.pack('B',0x20)
+			if aspect == "16:9":
+				return struct.pack('B',0x30)
+			elif aspect == "4:3":
+				return struct.pack('B',0x20)
 
 	aspect = property(getAspectByte)
 
