@@ -1,5 +1,5 @@
 import sys
-import cPickle
+import _pickle as cPickle
 
 infilename = "iso-639-3.tab"
 outfilename = "iso-639-3.pck"
