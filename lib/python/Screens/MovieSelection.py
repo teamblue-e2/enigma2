@@ -1726,7 +1726,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 							print("[ML] rename", r[0], "to", r[1])
 							os.rename(r[0], r[1])
 				self.reloadList(sel = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + newfilename))
-			except OSError, e:
+			except OSError as e:
 				print("Error %s:" % e.errno, e)
 				msg = _("Error") + '\n' + str(e)
 			except Exception as e:
