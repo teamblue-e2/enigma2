@@ -1492,7 +1492,7 @@ class UpdatePlugin(Screen):
 			self.activityTimer.start(100, False)
 			self.opkg.startCmd(OpkgComponent.CMD_UPGRADE_LIST)
 		else:
-			print"[SOFTWAREMANAGER] Your image is to old (%s), you need to flash new !!" %getEnigmaVersionString()
+			print("[SOFTWAREMANAGER] Your image is to old (%s), you need to flash new !!" %getEnigmaVersionString())
 			self.session.openWithCallback(self.checkDateCallback, MessageBox, message, default = False)
 			return
 

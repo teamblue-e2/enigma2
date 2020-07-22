@@ -34,7 +34,7 @@ class RarMenuScreen(ArchiverMenuScreen):
 	def ok(self):
 		selectName = self['list_left'].getCurrent()[0][0]
 		self.selectId = self['list_left'].getCurrent()[0][1]
-		print()RarMenuScreen] Select:", selectName, self.selectId
+		print("[RarMenuScreen] Select:", selectName, self.selectId)
 		self.checkPW(self.defaultPW)
 
 	def checkPW(self, pwd):
