@@ -1,6 +1,5 @@
-import os
-
 from __future__ import print_function
+import os
 from Plugins.Plugin import PluginDescriptor
 from Components.ConfigList import ConfigListScreen
 from Components.config import getConfigListEntry, config, ConfigNothing
