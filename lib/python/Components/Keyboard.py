@@ -1,6 +1,5 @@
-from os import listdir
-
 from __future__ import print_function
+from os import listdir
 from Components.Console import Console
 # from Components.Language import language
 from Tools.Directories import SCOPE_KEYMAPS, pathExists, resolveFilename

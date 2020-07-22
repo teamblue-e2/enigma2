@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 import errno
 import inspect
-from __future__ import print_function
 import os
 import stat
 

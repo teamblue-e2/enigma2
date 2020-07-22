@@ -1,5 +1,5 @@
-import Project, TitleCutter, TitleProperties, ProjectSettings, MediumToolbox, Process, Bludisc
 from __future__ import print_function
+import Project, TitleCutter, TitleProperties, ProjectSettings, MediumToolbox, Process, Bludisc
 from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox

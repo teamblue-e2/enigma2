@@ -1,5 +1,5 @@
-import errno
 from __future__ import print_function
+import errno
 from Tools.Profile import profile
 profile("LOAD:ElementTree")
 import xml.etree.cElementTree
