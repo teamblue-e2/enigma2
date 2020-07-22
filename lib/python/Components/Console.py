@@ -1,5 +1,5 @@
-import enigma, ctypes, os
 from __future__ import print_function
+import enigma, ctypes, os
 
 class ConsoleItem:
 	def __init__(self, containers, cmd, callback, extra_args):

@@ -151,13 +151,13 @@ class SoftcamStartup(Screen, ConfigListScreen):
 			fd = file('/etc/init.d/softcam.None', 'w')
 			fd.write(SCNoneData)
 			fd.close()
-			os.chmod("/etc/init.d/softcam.None", 0755)
+			os.chmod("/etc/init.d/softcam.None", 0o755)
 
 		if not fileExists('/etc/init.d/cardserver.None'):
 			fd = file('/etc/init.d/cardserver.None', 'w')
 			fd.write(CSNoneData)
 			fd.close()
-			os.chmod("/etc/init.d/cardserver.None", 0755)
+			os.chmod("/etc/init.d/cardserver.None", 0o755)
 
 		if not fileExists('/etc/init.d/softcam'):
 			os.system('ln -s /etc/init.d/softcam.None /etc/init.d/softcam')

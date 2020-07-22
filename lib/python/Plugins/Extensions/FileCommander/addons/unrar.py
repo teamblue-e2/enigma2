@@ -39,7 +39,7 @@ class RarMenuScreen(ArchiverMenuScreen):
 
 	def checkPW(self, pwd):
 		self.defaultPW = pwd
-		print*([RarMenuScreen] Current pw:", self.defaultPW)
+		print("[RarMenuScreen] Current pw:", self.defaultPW)
 		cmd = (self.unrar, "t", "-p" + self.defaultPW, self.sourceDir + self.filename)
 		try:
 			p = subprocess.Popen(cmd, shell=False, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)

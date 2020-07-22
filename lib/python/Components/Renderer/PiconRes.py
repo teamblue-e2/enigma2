@@ -102,7 +102,7 @@ def resizePicon(pngname):
 		im.resize((220,132)).save("/tmp/picon.png")
 		pngname = "/tmp/picon.png"
 	except:
-		print"[PiconRes] error resizePicon"
+		print("[PiconRes] error resizePicon")
 		pass
 	return pngname
 
