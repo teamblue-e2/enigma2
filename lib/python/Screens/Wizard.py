@@ -1,5 +1,5 @@
-from boxbranding import getMachineBrand, getMachineName
 from __future__ import print_function
+from boxbranding import getMachineBrand, getMachineName
 from Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.config import config, ConfigText, ConfigPassword, KEY_LEFT, KEY_RIGHT, KEY_0, KEY_DELETE, KEY_BACKSPACE, KEY_ASCII

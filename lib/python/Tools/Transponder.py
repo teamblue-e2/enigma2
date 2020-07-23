@@ -15,7 +15,7 @@ def getTunerDescription(nim):
 			print("[Transponder] trying use fallback", config.usage.remote_fallback_dvbt_region.value)
 			return (config.usage.remote_fallback_dvbt_region.value)
 		except:
-			print("[Transponder] no description"
+			print("[Transponder] no description")
 	return ""
 
 def getMHz(frequency):

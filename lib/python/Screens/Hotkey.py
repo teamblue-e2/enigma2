@@ -229,7 +229,7 @@ def getHotkeyFunctions():
 config.misc.hotkey = ConfigSubsection()
 config.misc.hotkey.additional_keys = ConfigYesNo(default=False)
 for x in hotkey.hotkeys:
-	exec "config.misc.hotkey.%s = ConfigText(default='%s')" % x[1:]
+	exec("config.misc.hotkey.%s = ConfigText(default='%s')" % x[1:])
 
 class HotkeySetup(Screen):
 	ALLOW_SUSPEND = False
@@ -630,15 +630,15 @@ class InfoBarHotkey():
 					return 0
 			elif selected[0] == "Module":
 				try:
-					exec "from %s import %s" % (selected[1], selected[2])
-					exec "self.session.open(%s)" %  ",".join(selected[2:])
+					exec("from %s import %s" % (selected[1], selected[2]))
+					exec("self.session.open(%s)" %  ",".join(selected[2:]))
 				except Exception as e:
 					print("[Hotkey] error during executing module %s, screen %s" % (selected[1], selected[2]))
 					import traceback
 					traceback.print_exc()
 			elif selected[0] == "Setup":
 				from Screens.Setup import Setup
-				exec "self.session.open(Setup, \"%s\")" % selected[1]
+				exec("self.session.open(Setup, \"%s\")" % selected[1])
 			elif selected[0].startswith("Zap"):
 				if selected[0] == "ZapPanic":
 					self.servicelist.history = []

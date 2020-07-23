@@ -210,7 +210,7 @@ class InfoBarUnhandledKey:
 			print("KEY: %s %s %s" % (key,(key_name for key_name,value in KEYIDS.items() if value==key).next(),getKeyDescription(key)[0]))
 		except:
 			try:
-				print("KEY: %s %s" % (key,(key_name for key_name,value in KEYIDS.items() if value==key).next()) # inverse dictionary lookup in KEYIDS)
+				print("KEY: %s %s" % (key,(key_name for key_name,value in KEYIDS.items() if value==key).next())) # inverse dictionary lookup in KEYIDS
 			except:
 				print("KEY: %s" % (key))
 		self.unhandledKeyDialog.hide()
