@@ -65,7 +65,7 @@ class StartSwap:
 					for filename in glob(device[1] + '/swap*'):
 						if path.exists(filename):
 							swap_place = filename
-                                                        print("[SwapManager] Found a swapfile on ", swap_place)
+							print("[SwapManager] Found a swapfile on ", swap_place)
 
 		f = file('/proc/swaps').read()
 		if f.find(swap_place) == -1:
