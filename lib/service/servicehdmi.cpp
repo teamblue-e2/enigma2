@@ -247,6 +247,8 @@ RESULT eServiceHDMIRecord::stop()
 
 int eServiceHDMIRecord::doPrepare()
 {
+	int buffersize; /* unused here */
+
 	if (!m_simulate && m_encoder_fd < 0)
 	{
 		if (eEncoder::getInstance())
