@@ -69,7 +69,7 @@ def InitGeolocation():
 			print("[Geolocation] Note: Geolocation has already been run for this boot.")
 	else:
 		geolocation = {}
-		print("[Geolocation] Warning: Geolocation has been disabled by user configuration!"))
+		print("[Geolocation] Warning: Geolocation has been disabled by user configuration!")
 
 def RefreshGeolocation():
 	global geolocation
