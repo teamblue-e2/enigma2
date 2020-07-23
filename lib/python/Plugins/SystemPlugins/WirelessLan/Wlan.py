@@ -225,7 +225,7 @@ class wpaSupplicant:
 				fp.write('\tgroup=TKIP\n')
 			elif encryption == 'WPA2':
 				fp.write('\tproto=RSN\n')
- 				fp.write('\tpairwise=CCMP\n')
+				fp.write('\tpairwise=CCMP\n')
 				fp.write('\tgroup=CCMP\n')
 			else:
 				fp.write('\tproto=WPA RSN\n')
