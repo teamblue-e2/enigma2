@@ -34,7 +34,7 @@ def printCallSequence(deep=1):
 				print("\033[96m%s" %(frames[x].f_code.co_name))
 			else:
 				print("\033[95m%s(%s:%s) \033[94m-->" %(frames[x].f_code.co_name, frames[x].f_code.co_filename.split("/")[-1], frames[x].f_lineno))
-	print("\033[0m"
+	print("\033[0m")
 	del frames
 
 def printCallSequenceRawData(deep=1):
