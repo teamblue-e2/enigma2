@@ -550,7 +550,7 @@ def runScreenTest():
 		from Plugins.SystemPlugins.VFDControl.plugin import SetTime
 		SetTime()
 	except:
-		print"[mytest] Failed SetTime from VFDControl !!"
+		print("[mytest] Failed SetTime from VFDControl !!")
 
 	from time import time, strftime, localtime
 	from Tools.StbHardware import setFPWakeuptime, setRTCtime

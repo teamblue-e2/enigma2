@@ -13,7 +13,7 @@ def getTunerDescription(nim):
 		print("[Transponder] nimmanager.getTerrestrialDescription(nim) failed, nim:", nim)
 		try:
 			print("[Transponder] trying use fallback", config.usage.remote_fallback_dvbt_region.value)
-			return config.usage.remote_fallback_dvbt_region.value)
+			return (config.usage.remote_fallback_dvbt_region.value)
 		except:
 			print("[Transponder] no description"
 	return ""
