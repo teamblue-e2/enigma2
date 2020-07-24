@@ -1,7 +1,7 @@
 from __future__ import print_function
 # the implementation here is a bit crappy.
 import time
-from Directories import resolveFilename, SCOPE_CONFIG
+from Tools.Directories import resolveFilename, SCOPE_CONFIG
 from boxbranding import getBoxType
 
 PERCENTAGE_START = 0
