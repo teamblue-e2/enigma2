@@ -77,7 +77,7 @@ class LCDClockSelector(Screen):
 	def find(self, arg, dirname, names):
 		for x in names:
 			if x.startswith("clock_lcd") and x.endswith(".xml"):
-				if dirname <> self.root:
+				if dirname != self.root:
 					subdir = dirname[19:]
 					skinname = x
 					skinname = subdir + "/" + skinname

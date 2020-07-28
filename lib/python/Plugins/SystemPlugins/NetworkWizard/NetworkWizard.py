@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screens.WizardLanguage import WizardLanguage
 from Screens.Rc import Rc
 from Screens.MessageBox import MessageBox
@@ -158,7 +159,7 @@ class NetworkWizard(WizardLanguage, Rc):
 		self.stopScan()
 		if self.Adapterlist is None:
 			self.Adapterlist = iNetwork.getAdapterList()
-		if self.NextStep is not 'end':
+		if self.NextStep != 'end':
 			if len(self.Adapterlist) == 0:
 				#Reset Network to defaults if network broken
 				iNetwork.resetNetworkConfig('lan', self.resetNetworkConfigCB)
@@ -199,7 +200,7 @@ class NetworkWizard(WizardLanguage, Rc):
 				self.isInterfaceUp = False
 			self.resetRef.close(True)
 		else:
-			print "we should never come here!"
+			print("we should never come here!")
 
 	def AdapterSetupEnd(self, iface):
 		self.originalInterfaceStateChanged = True
@@ -317,7 +318,7 @@ class NetworkWizard(WizardLanguage, Rc):
 			self.w = iWlan.getInterface()
 			aps = iWlan.getNetworkList()
 			if aps is not None:
-				print "[NetworkWizard.py] got Accespoints!"
+				print("[NetworkWizard.py] got Accespoints!")
 				tmplist = []
 				complist = []
 				for ap in aps:

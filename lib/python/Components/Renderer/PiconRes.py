@@ -29,8 +29,8 @@ def onMountpointAdded(mountpoint):
 					#print "[Picon] adding path:", path
 					searchPaths.append(path)
 					break
-	except Exception, ex:
-		print "[Picon] Failed to investigate %s:" % mountpoint, ex
+	except Exception as ex:
+		print("[Picon] Failed to investigate %s:" % mountpoint, ex)
 
 def onMountpointRemoved(mountpoint):
 	global searchPaths
@@ -102,7 +102,7 @@ def resizePicon(pngname):
 		im.resize((220,132)).save("/tmp/picon.png")
 		pngname = "/tmp/picon.png"
 	except:
-		print"[PiconRes] error resizePicon"
+		print("[PiconRes] error resizePicon")
 		pass
 	return pngname
 

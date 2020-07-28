@@ -84,14 +84,14 @@ class TaskListScreen(Screen):
 
 	def keyOK(self):
 		current = self["tasklist"].getCurrent()
-		print current
+		print(current)
 		if current:
 			job = current[0]
 			from Screens.TaskView import JobView
 			self.session.openWithCallback(self.JobViewCB, JobView, job)
 
 	def JobViewCB(self, why):
-		print "WHY---",why
+		print("WHY---",why)
 
 	def keyCancel(self):
 		self.close()

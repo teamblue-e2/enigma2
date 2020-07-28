@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screen import Screen
 import ChannelSelection
 from ServiceReference import ServiceReference
@@ -248,7 +249,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		self[widget].l.setList(self.list)
 
 	def newConfig(self):
-		print "[TimerEdit] newConfig", self["config"].getCurrent()
+		print("[TimerEdit] newConfig", self["config"].getCurrent())
 		if self["config"].getCurrent() in (self.timerTypeEntry, self.timerJustplayEntry, self.frequencyEntry, self.entryShowEndTime, self.entryFallbackTimer):
 			self.createSetup("config")
 
@@ -541,7 +542,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		if answer:
 			self.close((False,))
 		else:
-			print "[TimerEntry] keyCancel something went wrong with fallback timer", message
+			print("[TimerEntry] keyCancel something went wrong with fallback timer", message)
 
 	def pathSelected(self, res):
 		if res is not None:

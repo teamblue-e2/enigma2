@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screens.About import CommitInfo
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
@@ -84,12 +85,12 @@ class UpdatePlugin(Screen, ProtectedScreen):
 			# run in parallel to the package update.
 			try:
 				status = urlopen(url, timeout=5).read().split('!', 1)
-				print status
+				print(status)
 			except:
 				# bypass the certificate check
 				from ssl import _create_unverified_context
 				status = urlopen(url, timeout=5, context=_create_unverified_context()).read().split('!', 1)
-				print status
+				print(status)
 			# prefer getMachineBuild
 			if getMachineBuild() in status[0].split(','):
 				message = len(status) > 1 and status[1] or _("The current software might not be stable.\nFor more information see %s.") % ("http://images.teamblue.tech")
@@ -145,7 +146,7 @@ If you discover 'bugs' please keep them reported on www.teamblue.tech.\n\nDo you
 				latestImageTimestamp = datetime.fromtimestamp(int(urlopen(url, timeout=5, context=_create_unverified_context()).read())).strftime(_("%Y-%m-%d %H:%M"))
 		except:
 			latestImageTimestamp = ""
-		print "[SoftwareUpdate] latestImageTimestamp:", latestImageTimestamp
+		print("[SoftwareUpdate] latestImageTimestamp:", latestImageTimestamp)
 		return latestImageTimestamp
 
 	def startActualUpdate(self,answer):

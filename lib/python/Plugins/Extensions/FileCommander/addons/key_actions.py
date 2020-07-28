@@ -56,7 +56,7 @@ TEXT_EXTENSIONS = frozenset((".txt", ".log", ".py", ".xml", ".html", ".meta", ".
 try:
 	from Screens import DVD
 	DVDPlayerAvailable = True
-except Exception, e:
+except Exception as e:
 	DVDPlayerAvailable = False
 
 ##################################
@@ -650,7 +650,7 @@ class key_actions(stat_info):
 		testFileName = filename.lower()
 		filetype = os.path.splitext(testFileName)[1]
 		longname = sourceDir + filename
-		print "[Filebrowser]:", filename, sourceDir, testFileName
+		print("[Filebrowser]:", filename, sourceDir, testFileName)
 		if not fileExists(longname):
 			self.session.open(MessageBox, _("File not found: %s") % longname, type=MessageBox.TYPE_ERROR)
 			return
@@ -714,7 +714,7 @@ class key_actions(stat_info):
 		else:
 			try:
 				found_viewer = openFile(self.session, guess_type(longname)[0], longname)
-			except TypeError, e:
+			except TypeError as e:
 				found_viewer = False
 			if not found_viewer:
 				self.session.open(MessageBox, _("No viewer installed for this file type: %s") % filename, type=MessageBox.TYPE_ERROR, timeout=5, close_on_any_key=True)
@@ -756,7 +756,6 @@ class key_actions(stat_info):
 			import NavigationInstance
 			if last_service and NavigationInstance.instance:
 				NavigationInstance.instance.playService(last_service)
-				global last_service
 				last_service = None
 			Notifications.AddNotification(MessageBox, _("The function has been interrupted.\nDon't press any key until the picture from mvi-file is displayed!"), type=MessageBox.TYPE_ERROR, timeout=10)
 

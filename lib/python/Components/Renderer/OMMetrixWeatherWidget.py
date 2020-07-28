@@ -91,7 +91,7 @@ class OMMetrixWeatherWidget(Renderer):
 		temp_max = ""
 		temp_min = ""
 		cityname = config.plugins.MetrixWeather.weathercity.value
-		print "[OMMetrixWeather] lookup for city " + str(cityname)
+		print("[OMMetrixWeather] lookup for city " + str(cityname))
 		language = config.osd.language.value.replace('_', '-')
 		if language == 'en-EN':
 			language = 'en-US'
@@ -101,7 +101,7 @@ class OMMetrixWeatherWidget(Renderer):
 		try:
 			msnpage = urlopen2(msnrequest)
 		except (URLError) as err:
-			print '[OMMetrixWeather] Error: Unable to retrieve page - Error code: ', str(err)
+			print('[OMMetrixWeather] Error: Unable to retrieve page - Error code: ', str(err))
 			config.plugins.MetrixWeather.lastUpdated.value = str(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 			return
 		content = msnpage.read()

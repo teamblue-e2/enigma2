@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 from enigma import eConsoleAppContainer
 from Components.Harddisk import harddiskmanager
@@ -14,7 +15,7 @@ def opkgAddDestination(mountpoint):
 	global opkgDestinations
 	if mountpoint not in opkgDestinations:
 		opkgDestinations.append(mountpoint)
-		print "[Opkg] Added to OPKG destinations:", mountpoint
+		print("[Ipkg] Added to OPKG destinations:", mountpoint)
 
 def onPartitionChange(why, part):
 	global opkgDestinations
@@ -33,7 +34,7 @@ def onPartitionChange(why, part):
 		elif why == 'remove':
 			try:
 				opkgDestinations.remove(mountpoint)
-				print "[Opkg] Removed from OPKG destinations:", mountpoint
+				print("[Ipkg] Removed from OPKG destinations:", mountpoint)
 			except:
 				pass
 
@@ -74,7 +75,7 @@ class OpkgComponent:
 		self.runCmd(opkgExtraDestinations() + ' ' + cmd)
 
 	def runCmd(self, cmd):
-		print "executing", self.opkg, cmd
+		print("executing", self.ipkg, cmd)
 		self.cmd.appClosed.append(self.cmdFinished)
 		self.cmd.dataAvail.append(self.cmdData)
 		if self.cmd.execute(self.opkg + " " + cmd):
@@ -109,7 +110,7 @@ class OpkgComponent:
 		self.cmd.dataAvail.remove(self.cmdData)
 
 	def cmdData(self, data):
-		print "data:", data
+		print("data:", data)
 		if self.cache is None:
 			self.cache = data
 		else:
@@ -157,9 +158,9 @@ class OpkgComponent:
 				# if we get multiple config file update questions, the next ones
 				# don't necessarily start at the beginning of a line
 				self.callCallbacks(self.EVENT_MODIFIED, data.split(' \'', 3)[1][:-1])
-		except Exception, ex:
-			print "[Opkg] Failed to parse: '%s'" % data
-			print "[Opkg]", ex
+		except Exception as ex:
+			print("[Ipkg] Failed to parse: '%s'" % data)
+			print("[Ipkg]", ex)
 
 	def callCallbacks(self, event, param = None):
 		for callback in self.callbackList:

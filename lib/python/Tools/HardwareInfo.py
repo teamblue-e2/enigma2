@@ -1,3 +1,4 @@
+from __future__ import print_function
 from boxbranding import *
 
 hw_info = None
@@ -15,8 +16,7 @@ class HardwareInfo:
 			return
 		hw_info = self
 
-		print "[HardwareInfo] Scanning hardware info"
-
+		print("[HardwareInfo] Scanning hardware info")
 		# Version
 		try:
 			self.device_version = open("/proc/stb/info/version").read().strip()
@@ -50,7 +50,7 @@ class HardwareInfo:
 		else:
 			self.device_hdmi = False
 
-		print "Detected: " + self.get_device_string()
+		print("Detected: " + self.get_device_string())
 
 
 	def get_device_name(self):

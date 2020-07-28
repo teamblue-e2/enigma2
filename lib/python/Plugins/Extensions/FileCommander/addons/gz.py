@@ -27,7 +27,7 @@ class GunzipMenuScreen(ArchiverMenuScreen):
 		self.pversion = pversion
 
 	def unpackModus(self, id):
-		print "[GunzipMenuScreen] unpackModus", id
+		print("[GunzipMenuScreen] unpackModus", id)
 		pathName = self.sourceDir + self.filename
 		if id == 1:
 			cmd = ("gunzip", pathName)

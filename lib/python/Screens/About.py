@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.config import config
@@ -283,7 +284,6 @@ class TranslationInfo(Screen):
 				continue
 			(type, value) = l
 			infomap[type] = value
-		#print infomap
 		self["actions"] = ActionMap(["SetupActions"],{"cancel": self.close,"ok": self.close})
 
 		translator_name = infomap.get("Language-Team", "none")
@@ -295,7 +295,7 @@ class TranslationInfo(Screen):
 		linfo += _("Translations Info")		+ ":" + "\n\n"
 		linfo += _("Project")				+ ":" + infomap.get("Project-Id-Version", "") + "\n"
 		linfo += _("Language")				+ ":" + infomap.get("Language", "") + "\n"
-		print infomap.get("Language-Team", "")
+		print(infomap.get("Language-Team", ""))
 		if infomap.get("Language-Team", "") == "" or infomap.get("Language-Team", "") == "none":
 			linfo += _("Language Team") 	+ ":" + "n/a"  + "\n"
 		else:
@@ -490,8 +490,8 @@ class MemoryInfo(Screen):
 			self["slide"].setValue(int(100.0*(mem-free)/mem+0.25))
 			self['pfree'].setText("%.1f %s" % (100.*free/mem,'%'))
 			self['pused'].setText("%.1f %s" % (100.*(mem-free)/mem,'%'))
-		except Exception, e:
-			print "[About] getMemoryInfo FAIL:", e
+		except Exception as e:
+			print("[About] getMemoryInfo FAIL:", e)
 
 	def clearMemory(self):
 		eConsoleAppContainer().execute("sync")
@@ -878,8 +878,8 @@ class Troubleshoot(Screen):
 		else:
 			try:
 				if self.container.execute(command):
-					raise Exception, "failed to execute: ", command
-			except Exception, e:
+					raise Exception("failed to execute: ", command)
+			except Exception as e:
 				self["AboutScrollLabel"].setText("%s\n%s" % (_("Some error occurred - Please try later"), e))
 
 	def cancel(self):

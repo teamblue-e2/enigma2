@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 import os
 import time
 import cPickle
@@ -84,8 +85,8 @@ def write_cache(cache_file, cache_data):
 		if not os.path.isdir(path):
 			os.mkdir(path)
 		cPickle.dump(cache_data, open(cache_file, 'w'), -1)
-	except Exception, ex:
-		print "Failed to write cache data to %s:" % cache_file, ex
+	except Exception as ex:
+		print("Failed to write cache data to %s:" % cache_file, ex)
 
 def valid_cache(cache_file, cache_ttl):
 	#See if the cache file exists and is still living
@@ -143,8 +144,6 @@ class UpdatePluginMenu(Screen):
 		self.text = ""
 		self.backupdirs = ' '.join( config.plugins.configurationbackup.backupdirs.value )
 		if self.menu == 0:
-			# print "building menu entries"
-			# self.list.append(("install-extensions", _("Manage extensions"), _("Manage extensions or plugins for your Receiver." ) + self.oktext, None))
 			if SystemInfo["FlashOnlineBackup"]:
 				self.list.append(("flash-online", _("Flash Online"), _("Flash on the fly your your Receiver software.") + self.oktext, None))
 				self.list.append(("software-restore", _("Software restore"), _("Restore your Receiver with a new firmware." ) + self.oktext, None))
@@ -249,7 +248,7 @@ class UpdatePluginMenu(Screen):
 
 	def getUpdateInfos(self):
 		if iSoftwareTools.NetworkConnectionAvailable is True:
-			if iSoftwareTools.available_updates is not 0:
+			if iSoftwareTools.available_updates !=  0:
 				self.text = _("There are at least %s updates available.") % (str(iSoftwareTools.available_updates))
 			else:
 				self.text = "" #_("There are no updates available.")
@@ -354,7 +353,7 @@ class UpdatePluginMenu(Screen):
 			self.createBackupfolders()
 
 	def createBackupfolders(self):
-		print "Creating backup folder if not already there..."
+		print("Creating backup folder if not already there...")
 		self.backuppath = getBackupPath()
 		try:
 			if (os.path.exists(self.backuppath) == False):
@@ -492,7 +491,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 
 	def confirm(self, confirmed):
 		if not confirmed:
-			print "not confirmed"
+			print("not confirmed")
 			return
 		else:
 			self.keySave()
@@ -732,7 +731,7 @@ class PluginManager(Screen, PackageInfoHandler):
 	def getUpdateInfosCB(self, retval = None):
 		if retval is not None:
 			if retval is True:
-				if iSoftwareTools.available_updates is not 0:
+				if iSoftwareTools.available_updates != 0:
 					self["status"].setText(_("There are at least ") + str(iSoftwareTools.available_updates) + _(" updates available."))
 				else:
 					self["status"].setText(_("There are no updates available."))
@@ -776,9 +775,9 @@ class PluginManager(Screen, PackageInfoHandler):
 						self["key_green"].setText("")
 				self["key_yellow"].setText(_("View details"))
 				self["key_blue"].setText("")
-				if len(self.selectedFiles) == 0 and iSoftwareTools.available_updates is not 0:
+				if len(self.selectedFiles) == 0 and iSoftwareTools.available_updates != 0:
 					self["status"].setText(_("There are at least ") + str(iSoftwareTools.available_updates) + _(" updates available."))
-				elif len(self.selectedFiles) is not 0:
+				elif len(self.selectedFiles) != 0:
 					self["status"].setText(str(len(self.selectedFiles)) + _(" packages selected."))
 				else:
 					self["status"].setText(_("There are currently no outstanding actions."))
@@ -787,10 +786,10 @@ class PluginManager(Screen, PackageInfoHandler):
 				self["key_green"].setText("")
 				self["key_yellow"].setText("")
 				self["key_blue"].setText("")
-				if len(self.selectedFiles) == 0 and iSoftwareTools.available_updates is not 0:
+				if len(self.selectedFiles) == 0 and iSoftwareTools.available_updates != 0:
 					self["status"].setText(_("There are at least ") + str(iSoftwareTools.available_updates) + _(" updates available."))
 					self["key_yellow"].setText(_("Update"))
-				elif len(self.selectedFiles) is not 0:
+				elif len(self.selectedFiles) != 0:
 					self["status"].setText(str(len(self.selectedFiles)) + _(" packages selected."))
 					self["key_yellow"].setText(_("Process"))
 				else:
@@ -810,7 +809,7 @@ class PluginManager(Screen, PackageInfoHandler):
 				selectedTag = current[2]
 				self.buildPacketList(selectedTag)
 			elif self.currList == "packages":
-				if current[7] is not '':
+				if current[7] != '':
 					idx = self["list"].getIndex()
 					detailsFile = self.list[idx][1]
 					if self.list[idx][7] == True:
@@ -852,7 +851,7 @@ class PluginManager(Screen, PackageInfoHandler):
 		current = self["list"].getCurrent()
 		if current:
 			if self.currList == "packages":
-				if current[7] is not '':
+				if current[7] != '':
 					detailsfile = iSoftwareTools.directory[0] + "/" + current[1]
 					if (os.path.exists(detailsfile) == True):
 						self.saved_currentSelectedPackage = self.currentSelectedPackage
@@ -1342,7 +1341,7 @@ class PluginDetails(Screen, PackageInfoHandler):
 
 		if thumbnailUrl is not None:
 			self.thumbnail = "/tmp/" + thumbnailUrl.split('/')[-1]
-			print "[PluginDetails] downloading screenshot " + thumbnailUrl + " to " + self.thumbnail
+			print("[PluginDetails] downloading screenshot " + thumbnailUrl + " to " + self.thumbnail)
 			if iSoftwareTools.NetworkConnectionAvailable:
 				client.downloadPage(thumbnailUrl,self.thumbnail).addCallback(self.setThumbnail).addErrback(self.fetchFailed)
 			else:
@@ -1422,7 +1421,7 @@ class PluginDetails(Screen, PackageInfoHandler):
 
 	def fetchFailed(self,string):
 		self.setThumbnail(noScreenshot = True)
-		print "[PluginDetails] fetch failed " + string.getErrorMessage()
+		print("[PluginDetails] fetch failed " + string.getErrorMessage())
 
 class UpdatePlugin(Screen):
 	skin = """
@@ -1493,12 +1492,12 @@ class UpdatePlugin(Screen):
 			self.activityTimer.start(100, False)
 			self.opkg.startCmd(OpkgComponent.CMD_UPGRADE_LIST)
 		else:
-			print"[SOFTWAREMANAGER] Your image is to old (%s), you need to flash new !!" %getEnigmaVersionString()
+			print("[SOFTWAREMANAGER] Your image is to old (%s), you need to flash new !!" %getEnigmaVersionString())
 			self.session.openWithCallback(self.checkDateCallback, MessageBox, message, default = False)
 			return
 
 	def checkDateCallback(self, ret):
-		print ret
+		print(ret)
 		if ret:
 			self.activityTimer.start(100, False)
 			self.opkg.startCmd(OpkgComponent.CMD_UPGRADE_LIST)
@@ -2144,7 +2143,7 @@ class PacketManager(Screen, NumericalTextInput):
 		self.list = []
 		self.cachelist = []
 		if self.cache_ttl > 0 and self.vc != 0:
-			print 'Loading packagelist cache from ',self.cache_file
+			print('Loading packagelist cache from ',self.cache_file)
 			try:
 				self.cachelist = load_cache(self.cache_file)
 				if len(self.cachelist) > 0:
@@ -2155,7 +2154,7 @@ class PacketManager(Screen, NumericalTextInput):
 				self.inv_cache = 1
 
 		if self.cache_ttl == 0 or self.inv_cache == 1 or self.vc == 0:
-			print 'rebuilding fresh package list'
+			print('rebuilding fresh package list')
 			for x in self.packetlist:
 				status = ""
 				if x[0] in self.installed_packetlist:

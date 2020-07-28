@@ -21,20 +21,20 @@ def printCallSequence(deep=1):
 	if deep is None or deep == 0:
 		deep=1
 	frames = getFrames(abs(deep))
-	print "\033[36m%s:%s" %(frames[0].f_code.co_filename, frames[0].f_code.co_firstlineno),
+	print("\033[36m%s:%s" %(frames[0].f_code.co_filename, frames[0].f_code.co_firstlineno))
 	if deep >= 0:
 		for x in range(0,len(frames)):
 			if not x:
-				print "\033[96m%s" %(frames[x].f_code.co_name),
+				print("\033[96m%s" %(frames[x].f_code.co_name))
 			else:
-				print "\033[94m<-- \033[95m%s(%s:%s)" %(frames[x].f_code.co_name, frames[x].f_code.co_filename.split("/")[-1], frames[x].f_lineno),
+				print("\033[94m<-- \033[95m%s(%s:%s)" %(frames[x].f_code.co_name, frames[x].f_code.co_filename.split("/")[-1], frames[x].f_lineno))
 	else:
 		for x in range(len(frames)-1,-1,-1):
 			if not x:
-				print "\033[96m%s" %(frames[x].f_code.co_name),
+				print("\033[96m%s" %(frames[x].f_code.co_name))
 			else:
-				print "\033[95m%s(%s:%s) \033[94m-->" %(frames[x].f_code.co_name, frames[x].f_code.co_filename.split("/")[-1], frames[x].f_lineno),
-	print "\033[0m"
+				print("\033[95m%s(%s:%s) \033[94m-->" %(frames[x].f_code.co_name, frames[x].f_code.co_filename.split("/")[-1], frames[x].f_lineno))
+	print("\033[0m")
 	del frames
 
 def printCallSequenceRawData(deep=1):
@@ -42,11 +42,11 @@ def printCallSequenceRawData(deep=1):
 		deep=1
 	deep = abs(deep)
 	frames = getFrames(deep)
-	print "\033[36m%s:%s" %(frames[0].f_code.co_filename, frames[0].f_code.co_firstlineno),
+	print("\033[36m%s:%s" %(frames[0].f_code.co_filename, frames[0].f_code.co_firstlineno))
 	for x in range(0,len(frames)):
 		if not x:
-			print "\033[96m%s \033[33m%s" %(frames[x].f_code.co_name, inspect.getargvalues(frames[x]))
+			print("\033[96m%s \033[33m%s" %(frames[x].f_code.co_name, inspect.getargvalues(frames[x])))
 		else:
-			print "\033[94m<-- \033[95m%s(%s:%s)\033[33m%s" %(frames[x].f_code.co_name, frames[x].f_code.co_filename.split("/")[-1], frames[x].f_lineno, inspect.getargvalues(frames[x]))
-	print "\033[0m",
+			print("\033[94m<-- \033[95m%s(%s:%s)\033[33m%s" %(frames[x].f_code.co_name, frames[x].f_code.co_filename.split("/")[-1], frames[x].f_lineno, inspect.getargvalues(frames[x])))
+	print("\033[0m",)
 	del frames

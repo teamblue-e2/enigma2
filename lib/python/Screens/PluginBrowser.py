@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screen import Screen
 from Components.Language import language
 from Screens.ParentalControlSetup import ProtectedScreen
@@ -559,8 +560,8 @@ class PluginDownloadBrowser(Screen):
 		if hasattr(self, 'postInstallCall'):
 			try:
 				self.postInstallCall()
-			except Exception, ex:
-				print "[PluginBrowser] postInstallCall failed:", ex
+			except Exception as ex:
+				print("[PluginBrowser] postInstallCall failed:", ex)
 			self.resetPostInstall()
 		try:
 			os.unlink('/tmp/opkg.conf')
