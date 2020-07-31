@@ -1,3 +1,6 @@
+from __future__ import division
+from builtins import range
+from past.utils import old_div
 from Screens.Screen import Screen
 from Components.config import config
 from Components.Sources.CanvasSource import CanvasSource
@@ -160,8 +163,8 @@ class VideoFinetune(Screen):
 		(self.testpic_brightness, self.testpic_contrast, self.testpic_colors, self.testpic_filter, self.testpic_gamma, self.testpic_overscan, self.testpic_fullhd, self.testpic_uhd, self.testpic_pixels)[key-1]()
 
 	def callNext(self):
-		if self.next:
-			self.next()
+		if self.__next__:
+			next(self)
 
 	def bbox(self, x, y, width, height, col, xx, yy):
 		c = self["Canvas"]
@@ -178,16 +181,16 @@ class VideoFinetune(Screen):
 
 		xres, yres = getDesktop(0).size().width(), getDesktop(0).size().height()
 
-		bbw, bbh = xres / 192, yres / 192
+		bbw, bbh = old_div(xres, 192), old_div(yres, 192)
 		c.fill(0, 0, xres, yres, RGB(0,0,0))
 
 		for i in range(15):
-			col = i * 116 / 14
-			height = yres / 3
-			eh = height / 8
-			offset = yres/6 + eh * i
-			x = xres * 2 / 3
-			width = yres / 6
+			col = old_div(i * 116, 14)
+			height = old_div(yres, 3)
+			eh = old_div(height, 8)
+			offset = old_div(yres,6) + eh * i
+			x = old_div(xres * 2, 3)
+			width = old_div(yres, 6)
 
 			c.fill(x, offset, width, eh, RGB(col, col, col))
 			if col == 0 or col == 16 or col == 116:
@@ -195,9 +198,9 @@ class VideoFinetune(Screen):
 			if i < 2:
 				c.writeText(x + width, offset, width, eh, RGB(255, 255, 255), RGB(0,0,0), gFont("Regular", self.fontsize), "%d." % (i+1))
 
-		c.writeText(xres / 10, yres / 6 - self.fontsize * 2, xres * 3 / 5, 40, RGB(128,255,255), RGB(0,0,0), gFont("Regular", self.fontsize * 2),
+		c.writeText(old_div(xres, 10), old_div(yres, 6) - self.fontsize * 2, old_div(xres * 3, 5), 40, RGB(128,255,255), RGB(0,0,0), gFont("Regular", self.fontsize * 2),
 			_("Brightness"))
-		c.writeText(xres / 10, yres / 6, xres / 2, yres * 4 / 6, RGB(255,255,255), RGB(0,0,0), gFont("Regular", self.fontsize),
+		c.writeText(old_div(xres, 10), old_div(yres, 6), old_div(xres, 2), old_div(yres * 4, 6), RGB(255,255,255), RGB(0,0,0), gFont("Regular", self.fontsize),
 			_("If your TV has a brightness or contrast enhancement, disable it. If there is something called \"dynamic\", "
 				"set it to standard. Adjust the backlight level to a value suiting your taste. "
 				"Turn down contrast on your TV as much as possible.\nThen turn the brightness setting as "
@@ -216,20 +219,20 @@ class VideoFinetune(Screen):
 
 		xres, yres = getDesktop(0).size().width(), getDesktop(0).size().height()
 
-		bbw, bbh = xres / 192, yres / 192
+		bbw, bbh = old_div(xres, 192), old_div(yres, 192)
 		c.fill(0, 0, xres, yres, RGB(0,0,0))
 
-		bbw = xres / 192
-		bbh = yres / 192
+		bbw = old_div(xres, 192)
+		bbh = old_div(yres, 192)
 		c.fill(0, 0, xres, yres, RGB(255,255,255))
 
 		for i in range(15):
 			col = 185 + i * 5
-			height = yres / 3
-			eh = height / 8
-			offset = yres/6 + eh * i
-			x = xres * 2 / 3
-			width = yres / 6
+			height = old_div(yres, 3)
+			eh = old_div(height, 8)
+			offset = old_div(yres,6) + eh * i
+			x = old_div(xres * 2, 3)
+			width = old_div(yres, 6)
 
 			c.fill(x, offset, width, eh, RGB(col, col, col))
 			if col == 185 or col == 235 or col == 255:
@@ -237,9 +240,9 @@ class VideoFinetune(Screen):
 			if i >= 13:
 				c.writeText(x + width, offset, width, eh, RGB(0, 0, 0), RGB(255, 255, 255), gFont("Regular", self.fontsize), "%d." % (i-13+1))
 
-		c.writeText(xres / 10, yres / 6 - self.fontsize * 2, xres * 3 / 5, 40, RGB(128,0,0), RGB(255,255,255), gFont("Regular", self.fontsize * 2),
+		c.writeText(old_div(xres, 10), old_div(yres, 6) - self.fontsize * 2, old_div(xres * 3, 5), 40, RGB(128,0,0), RGB(255,255,255), gFont("Regular", self.fontsize * 2),
 			_("Contrast"))
-		c.writeText(xres / 10, yres / 6, xres / 2, yres * 4 / 6, RGB(0,0,0), RGB(255,255,255), gFont("Regular", self.fontsize),
+		c.writeText(old_div(xres, 10), old_div(yres, 6), old_div(xres, 2), old_div(yres * 4, 6), RGB(0,0,0), RGB(255,255,255), gFont("Regular", self.fontsize),
 			_("Now, use the contrast setting to turn up the brightness of the background as much as possible, "
 				"but make sure that you can still see the difference between the two brightest levels of shades."
 				"If you have done that, press OK."),
@@ -255,24 +258,24 @@ class VideoFinetune(Screen):
 
 		xres, yres = getDesktop(0).size().width(), getDesktop(0).size().height()
 
-		bbw = xres / 192
-		bbh = yres / 192
+		bbw = old_div(xres, 192)
+		bbh = old_div(yres, 192)
 		c.fill(0, 0, xres, yres, RGB(255,255,255))
 
 		for i in range(33):
-			col = i * 255 / 32;
-			width = xres - xres/5;
-			ew = width / 33;
-			offset = xres/10 + ew * i;
-			y = yres * 2 / 3;
-			height = yres / 20;
-			o = yres / 60;
+			col = old_div(i * 255, 32);
+			width = xres - old_div(xres,5);
+			ew = old_div(width, 33);
+			offset = old_div(xres,10) + ew * i;
+			y = old_div(yres * 2, 3);
+			height = old_div(yres, 20);
+			o = old_div(yres, 60);
 
 			if i < 16:
 				c1 = 0xFF;
-				c2 = 0xFF - (0xFF * i / 16);
+				c2 = 0xFF - (old_div(0xFF * i, 16));
 			else:
-				c1 = 0xFF - (0xFF * (i - 16) / 16);
+				c1 = 0xFF - (old_div(0xFF * (i - 16), 16));
 				c2 = 0;
 
 			c.fill(offset, y, ew, height, RGB(c1, c2, c2))
@@ -286,19 +289,19 @@ class VideoFinetune(Screen):
 				self.bbox(offset, y + (height + o) * 2, ew, height, RGB(0,0,0), bbw, bbh);
 
 			for i in range(8):
-				height = yres / 3;
-				eh = height / 8;
-				offset = yres/6 + eh * i;
-				x = xres * 2 / 3;
-				width = yres / 6;
+				height = old_div(yres, 3);
+				eh = old_div(height, 8);
+				offset = old_div(yres,6) + eh * i;
+				x = old_div(xres * 2, 3);
+				width = old_div(yres, 6);
 
 				c.fill(x, offset, width, eh, self.basic_colors[i])
 				if i == 0:
 					self.bbox(x, offset, width, eh, RGB(0,0,0), bbw, bbh)
 
-		c.writeText(xres / 10, yres / 6 - self.fontsize * 2, xres * 3 / 5, 40, RGB(128,0,0), RGB(255,255,255), gFont("Regular", self.fontsize * 2),
+		c.writeText(old_div(xres, 10), old_div(yres, 6) - self.fontsize * 2, old_div(xres * 3, 5), 40, RGB(128,0,0), RGB(255,255,255), gFont("Regular", self.fontsize * 2),
 			_("Color"))
-		c.writeText(xres / 10, yres / 6, xres / 2, yres * 4 / 6, RGB(0,0,0), RGB(255,255,255), gFont("Regular", self.fontsize),
+		c.writeText(old_div(xres, 10), old_div(yres, 6), old_div(xres, 2), old_div(yres * 4, 6), RGB(0,0,0), RGB(255,255,255), gFont("Regular", self.fontsize),
 			_("Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. "
 				"If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."),
 				RT_WRAP)
@@ -315,25 +318,25 @@ class VideoFinetune(Screen):
 
 		c.fill(0, 0, xres, yres, RGB(64, 64, 64))
 
-		width = xres - xres/5
-		offset = xres/10
-		yb = yres * 2 / 3
-		height = yres / 20
-		o = yres / 60
-		border = xres / 60
+		width = xres - old_div(xres,5)
+		offset = old_div(xres,10)
+		yb = old_div(yres * 2, 3)
+		height = old_div(yres, 20)
+		o = old_div(yres, 60)
+		border = old_div(xres, 60)
 
 		g1 = 255
 		g2 = 128
 
 		c.fill(offset - border, yb - border, border * 2 + width, border * 2 + (height * 3 + o * 2), RGB(g1, g1, g1))
 
-		for x in xrange(0, width, 2):
+		for x in range(0, width, 2):
 			c.fill(offset + x, yb, 1, height, RGB(g2,g2,g2))
 
-		for x in xrange(0, width, 4):
+		for x in range(0, width, 4):
 			c.fill(offset + x, yb + (o + height), 2, height, RGB(g2,g2,g2))
 
-		for x in xrange(0, width, 8):
+		for x in range(0, width, 8):
 			c.fill(offset + x, yb + (o + height) * 2, 4, height, RGB(g2,g2,g2))
 
 		c.flush()
@@ -348,26 +351,26 @@ class VideoFinetune(Screen):
 
 		c.fill(0, 0, xres, yres, RGB(0, 0, 0))
 
-		width = xres - xres/5
-		offset_x = xres/10
+		width = xres - old_div(xres,5)
+		offset_x = old_div(xres,10)
 
-		height = yres - yres/5
-		offset_y = yres/10
+		height = yres - old_div(yres,5)
+		offset_y = old_div(yres,10)
 
-		for y in xrange(0, height, 4):
-			c.fill(offset_x, offset_y + y, width/2, 2, RGB(255,255,255))
+		for y in range(0, height, 4):
+			c.fill(offset_x, offset_y + y, old_div(width,2), 2, RGB(255,255,255))
 
 		l = 0
-		fnt = gFont("Regular", height / 14)
+		fnt = gFont("Regular", old_div(height, 14))
 		import math
-		for i in xrange(1, 15):
-			y = i * height / 14
+		for i in range(1, 15):
+			y = old_div(i * height, 14)
 			h = y - l
 			gamma = 0.6 + i * 0.2
 			col = int(math.pow(.5, 1.0/gamma) * 256.0)
-			c.fill(offset_x + width/2, offset_y + l, width/2, h, RGB(col,col,col))
+			c.fill(offset_x + old_div(width,2), offset_y + l, old_div(width,2), h, RGB(col,col,col))
 
-			c.writeText(offset_x + width/2, offset_y + l, width/2, h, RGB(0,0,0), RGB(col,col,col), fnt, "%1.2f" % gamma, RT_WRAP|RT_HALIGN_RIGHT)
+			c.writeText(offset_x + old_div(width,2), offset_y + l, old_div(width,2), h, RGB(0,0,0), RGB(col,col,col), fnt, "%1.2f" % gamma, RT_WRAP|RT_HALIGN_RIGHT)
 			l = y
 
 		c.flush()
@@ -401,7 +404,7 @@ class VideoFinetune(Screen):
 	def testpicCallback(self, key):
 		if key:
 			if key == True:
-				self.next()
+				next(self)
 			else:
 				self.keyNumber(key)
 		else:
@@ -444,9 +447,9 @@ class PixelsTestScreen(Screen):
 	def intro(self):
 		c = self["Canvas"]
 		c.fill(0, 0, self.xres, self.yres, RGB(0,0,0))
-		c.writeText(self.xres / 10, self.yres / 6 - self.fontsize * 2, self.xres * 3 / 5, 40, RGB(255,128,255), RGB(0,0,0), gFont("Regular", self.fontsize * 2),
+		c.writeText(old_div(self.xres, 10), old_div(self.yres, 6) - self.fontsize * 2, old_div(self.xres * 3, 5), 40, RGB(255,128,255), RGB(0,0,0), gFont("Regular", self.fontsize * 2),
 			_("Pixels\n"))
-		c.writeText(self.xres / 10, self.yres / 6, self.xres / 2, self.yres * 4 / 6, RGB(255,255,255), RGB(0,0,0), gFont("Regular", self.fontsize),
+		c.writeText(old_div(self.xres, 10), old_div(self.yres, 6), old_div(self.xres, 2), old_div(self.yres * 4, 6), RGB(255,255,255), RGB(0,0,0), gFont("Regular", self.fontsize),
 			_("Can be used to test defect pixels on TV screen.\n\n"
 			"Available color test screens:\n\n"
 			"red\ngreen\nblue\nwhite\nblack\ncyan\nmagenta\nyellow\n\n"

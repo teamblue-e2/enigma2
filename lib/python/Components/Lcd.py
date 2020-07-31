@@ -1,5 +1,5 @@
 from __future__ import division
-from .config import config, ConfigSubsection, ConfigSlider, ConfigYesNo, ConfigNothing, ConfigSelection
+from Components.config import config, ConfigSubsection, ConfigSlider, ConfigYesNo, ConfigNothing, ConfigSelection
 from enigma import eDBoxLCD
 from Components.SystemInfo import SystemInfo
 from Tools.Directories import fileExists

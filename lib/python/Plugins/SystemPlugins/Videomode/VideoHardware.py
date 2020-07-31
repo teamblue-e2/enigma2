@@ -1,4 +1,5 @@
 from __future__ import print_function
+from builtins import object
 from Components.config import config, ConfigSelection, ConfigSubDict, ConfigYesNo
 from Components.SystemInfo import SystemInfo
 from Tools.CList import CList
@@ -12,7 +13,7 @@ import os
 
 config.av.edid_override = ConfigYesNo(default = True)
 
-class VideoHardware:
+class VideoHardware(object):
 	rates = { } # high-level, use selectable modes.
 
 	modes = { }  # a list of (high-level) modes for a certain port.
@@ -174,7 +175,7 @@ class VideoHardware:
 	# check if a high-level mode with a given rate is available.
 	def isModeAvailable(self, port, mode, rate):
 		rate = self.rates[mode][rate]
-		for mode in rate.values():
+		for mode in list(rate.values()):
 			if port == "DVI":
 				if mode not in self.modes_preferred:
 					return False

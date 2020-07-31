@@ -1,7 +1,10 @@
+from __future__ import print_function
+from builtins import range
+from builtins import object
 import os
 import re
 
-class MountPoints():
+class MountPoints(object):
 	def __init__(self):
 		self.entries = []
 		self.uuids = []

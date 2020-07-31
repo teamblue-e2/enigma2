@@ -1,4 +1,6 @@
 from __future__ import print_function
+from builtins import str
+from builtins import object
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Plugins.Plugin import PluginDescriptor
@@ -13,7 +15,7 @@ from Components.Pixmap import Pixmap
 from Components.ServiceList import refreshServiceList
 from enigma import eCableScan, eDVBFrontendParametersCable, eTimer
 
-class CableScan:
+class CableScan(object):
 	def __init__(self, text, progressbar, scanTuner, scanNetwork, scanFrequency, scanSymbolRate, scanModulation, keepNumbers, hdList):
 		self.text = text
 		self.progressbar = progressbar

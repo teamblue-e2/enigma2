@@ -7,6 +7,8 @@ Quick'n'easy switching of aspect ratio setting via configurable remote control k
 This is free software. You are allowed to modify and use it as long as you leave the copyright.
 """
 
+from builtins import str
+from builtins import object
 from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -79,7 +81,7 @@ class GBAspectRatioSwitchSetup(ConfigListScreen, Screen):
 	def save(self):
 		global aspect_ratio_switch
 		
-		if len([modeconf for modeconf in config.plugins.GBAspectRatioSwitch.modes.values() if modeconf.value]) < 2:
+		if len([modeconf for modeconf in list(config.plugins.GBAspectRatioSwitch.modes.values()) if modeconf.value]) < 2:
 			self.session.open(MessageBox, _("You have to include at least %d aspect ratio modes!") % 2, MessageBox.TYPE_ERROR)
 			return
 
@@ -105,7 +107,7 @@ class GBAspectRatioSwitchSetup(ConfigListScreen, Screen):
 			x[1].cancel()
 		self.close()
 
-class GBAspectRatioSwitch:
+class GBAspectRatioSwitch(object):
 
 	def __init__(self):
 		self.reload_enabledaspects()
@@ -126,7 +128,7 @@ class GBAspectRatioSwitch:
 		globalActionMap.actions['switchAspectDown'] = self.switchAspectRatioDown
 
 	def unload_keymap(self):
-		for keymap in KEYMAPPINGS.values():
+		for keymap in list(KEYMAPPINGS.values()):
 			keymapparser.removeKeymap(keymap)
 		
 		global globalActionMap

@@ -1,16 +1,20 @@
 from __future__ import print_function
-import threading, urllib2, os, shutil, tempfile
+from __future__ import absolute_import
+from future import standard_library
+standard_library.install_aliases()
+from builtins import object
+import threading, urllib.request, urllib.error, urllib.parse, os, shutil, tempfile
 from json import loads
 from enigma import eDVBDB, eEPGCache
 from Screens.MessageBox import MessageBox
-from config import config, ConfigText
+from .config import config, ConfigText
 from Tools import Notifications
 from base64 import encodestring
 import xml.etree.ElementTree as et
 
 settingfiles = ('lamedb', 'bouquets.', 'userbouquet.', 'blacklist', 'whitelist', 'alternatives.')
 
-class ImportChannels():
+class ImportChannels(object):
 
 	def __init__(self):
 		if config.usage.remote_fallback_enabled.value and config.usage.remote_fallback_import.value and config.usage.remote_fallback.value and not "ChannelsImport" in [x.name for x in threading.enumerate()]:
@@ -27,10 +31,10 @@ class ImportChannels():
 			self.thread.start()
 
 	def getUrl(self, url, timeout=5):
-		request = urllib2.Request(url)
+		request = urllib.request.Request(url)
 		if self.header:
 			request.add_header("Authorization", self.header)
-		return urllib2.urlopen(request, timeout=timeout)
+		return urllib.request.urlopen(request, timeout=timeout)
 
 	def getTerrestrialUrl(self):
 		url = config.usage.remote_fallback_dvb_t.value

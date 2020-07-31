@@ -1,6 +1,11 @@
+from __future__ import division
+from __future__ import print_function
 # for localized messages
 #from . import _
 
+from builtins import str
+from past.utils import old_div
+from builtins import object
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
@@ -37,7 +42,7 @@ def SwapAutostart(reason, session=None, **kwargs):
 			startswap = StartSwap()
 			startswap.start()
 
-class StartSwap:
+class StartSwap(object):
 	def __init__(self):
 		self.Console = Console()
 
@@ -53,7 +58,7 @@ class StartSwap:
 					swap_place = parts[0]
 					file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if swap_place not in l])
 					rename('/etc/fstab.tmp','/etc/fstab')
-					print("[SwapManager] Found a swap partition:", swap_place)
+					print(("[SwapManager] Found a swap partition:", swap_place))
 		else:
 			devicelist = []
 			for p in harddiskmanager.getMountedPartitions():
@@ -65,14 +70,14 @@ class StartSwap:
 					for filename in glob(device[1] + '/swap*'):
 						if path.exists(filename):
 							swap_place = filename
-							print("[SwapManager] Found a swapfile on ", swap_place)
+							print(("[SwapManager] Found a swapfile on ", swap_place))
 
 		f = file('/proc/swaps').read()
 		if f.find(swap_place) == -1:
-			print("[SwapManager] Starting swapfile on ", swap_place)
+			print(("[SwapManager] Starting swapfile on ", swap_place))
 			system('swapon ' + swap_place)
 		else:
-			print("[SwapManager] Swapfile is already active on ", swap_place)
+			print(("[SwapManager] Swapfile is already active on ", swap_place))
 
 #######################################################################
 class SwapManager(Screen):
@@ -183,7 +188,7 @@ class SwapManager(Screen):
 						self.swap_place = filename
 						self['key_green'].setText(_("Delete"))
 						info = mystat(self.swap_place)
-						self.swapsize = info[stat.ST_SIZE]/1024
+						self.swapsize = old_div(info[stat.ST_SIZE],1024)
 						continue
 
 		if config.plugins.swapmanager.swapautostart.value and self.swap_place:

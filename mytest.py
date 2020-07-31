@@ -501,12 +501,14 @@ def runScreenTest():
 
 	screensToRun.append((100, InfoBar.InfoBar))
 
-	screensToRun.sort()
+	sorted(screensToRun, key=lambda x: str(x))
+	print(screensToRun)
 
 	enigma.ePythonConfigQuery.setQueryFunc(configfile.getResolvedKey)
 
 	def runNextScreen(session, screensToRun, *result):
 		if result:
+			print("[mytest.py] quitMainloop #3")
 			enigma.quitMainloop(*result)
 			return
 
@@ -527,10 +529,6 @@ def runScreenTest():
 	profile("Init:PowerKey")
 	power = PowerKey(session)
 	
-	if getBoxType() in ('spycat', ):
-		profile("VFDSYMBOLS")
-		import Components.VfdSymbols
-		Components.VfdSymbols.SymbolsCheck(session)
 
 	# we need session.scart to access it from within menu.xml
 	session.scart = AutoScartControl(session)

@@ -1,4 +1,6 @@
 from __future__ import print_function
+from __future__ import absolute_import
+from builtins import str
 import os
 from Plugins.Plugin import PluginDescriptor
 from Components.ConfigList import ConfigListScreen
@@ -10,7 +12,7 @@ from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-import VideoEnhancement
+from . import VideoEnhancement
 
 class VideoEnhancementSetup(Screen, ConfigListScreen):
 

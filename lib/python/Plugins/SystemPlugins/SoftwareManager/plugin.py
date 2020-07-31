@@ -1,8 +1,14 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
+from __future__ import absolute_import
+from future import standard_library
+standard_library.install_aliases()
+from builtins import chr
+from builtins import str
+from builtins import range
 import os
 import time
-import cPickle
+import pickle
 from Plugins.Plugin import PluginDescriptor
 from Screens.Console import Console
 from Screens.ChoiceBox import ChoiceBox
@@ -39,14 +45,14 @@ from Tools.NumericalTextInput import NumericalTextInput
 from enigma import eTimer, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv, iRecordableService, getEnigmaVersionString
 from twisted.web import client
 from twisted.internet import reactor
-from ImageBackup import ImageBackup
-from Flash_online import FlashOnline
-from RestoreWizard import RestoreWizard
-from Multibootmgr import MultiBootWizard
-from PluginBackup import PluginBackup
-from PluginRestore import PluginRestore
-from BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename
-from SoftwareTools import iSoftwareTools
+from .ImageBackup import ImageBackup
+from .Flash_online import FlashOnline
+from .RestoreWizard import RestoreWizard
+from .Multibootmgr import MultiBootWizard
+from .PluginBackup import PluginBackup
+from .PluginRestore import PluginRestore
+from .BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename
+from .SoftwareTools import iSoftwareTools
 
 
 config.plugins.configurationbackup = ConfigSubsection()
@@ -84,7 +90,7 @@ def write_cache(cache_file, cache_data):
 		path = os.path.dirname(cache_file)
 		if not os.path.isdir(path):
 			os.mkdir(path)
-		cPickle.dump(cache_data, open(cache_file, 'w'), -1)
+		pickle.dump(cache_data, open(cache_file, 'w'), -1)
 	except Exception as ex:
 		print("Failed to write cache data to %s:" % cache_file, ex)
 
@@ -101,7 +107,7 @@ def valid_cache(cache_file, cache_ttl):
 		return 1
 
 def load_cache(cache_file):
-	return cPickle.load(open(cache_file))
+	return pickle.load(open(cache_file))
 
 
 class UpdatePluginMenu(Screen):
@@ -1578,7 +1584,7 @@ class UpdatePlugin(Screen):
 		if event == OpkgComponent.EVENT_DOWNLOAD:
 			self.status.setText(_("Downloading"))
 		elif event == OpkgComponent.EVENT_UPGRADE:
-			if self.sliderPackages.has_key(param):
+			if param in self.sliderPackages:
 				self.slider.setValue(self.sliderPackages[param])
 			self.package.setText(param)
 			self.status.setText(_("Upgrading") + ": %s/%s" % (self.packages, self.total_packages))
@@ -1934,7 +1940,7 @@ class PacketManager(Screen, NumericalTextInput):
 				self.setNextIdx(keyvalue[0])
 
 	def keyGotAscii(self):
-		keyvalue = unichr(getPrevAsciiCode()).encode("utf-8")
+		keyvalue = chr(getPrevAsciiCode()).encode("utf-8")
 		if len(keyvalue) == 1:
 			self.setNextIdx(keyvalue[0])
 
@@ -2317,7 +2323,7 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 				self.setNextIdx(keyvalue[0])
 		
 	def keyGotAscii(self):
-		keyvalue = unichr(getPrevAsciiCode()).encode("utf-8")
+		keyvalue = chr(getPrevAsciiCode()).encode("utf-8")
 		if len(keyvalue) == 1:
 			self.setNextIdx(keyvalue[0])
 		

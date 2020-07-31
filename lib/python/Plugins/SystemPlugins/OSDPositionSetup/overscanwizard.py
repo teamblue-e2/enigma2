@@ -1,3 +1,4 @@
+from builtins import str
 from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, ConfigSlider, getConfigListEntry, ConfigYesNo

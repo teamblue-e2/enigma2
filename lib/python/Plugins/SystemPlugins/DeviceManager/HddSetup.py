@@ -1,4 +1,7 @@
+from __future__ import division
+from __future__ import absolute_import
 # for localized messages
+from past.utils import old_div
 from . import _
 
 from enigma import *
@@ -11,13 +14,13 @@ from Components.Button import Button
 from Components.Label import Label
 from Screens.MessageBox import MessageBox
 from Screens.Standby import TryQuitMainloop
-from HddPartitions import HddPartitions
-from HddInfo import HddInfo
+from .HddPartitions import HddPartitions
+from .HddInfo import HddInfo
 
-from Disks import Disks
-from ExtraMessageBox import ExtraMessageBox
-from ExtraActionBox import ExtraActionBox
-from MountPoints import MountPoints
+from .Disks import Disks
+from .ExtraMessageBox import ExtraMessageBox
+from .ExtraActionBox import ExtraActionBox
+from .MountPoints import MountPoints
 from boxbranding import getMachineBrand, getMachineName
 
 import os
@@ -64,7 +67,7 @@ class HddSetup(Screen):
 
 		self.mdisks = Disks()
 		for disk in self.mdisks.disks:
-			capacity = "%d MB" % (disk[1] / (1024 * 1024))
+			capacity = "%d MB" % (old_div(disk[1], (1024 * 1024)))
 			self.disks.append(DiskEntry(disk[3], capacity, disk[2]))
 
 		self["menu"] = List(self.disks)
@@ -98,7 +101,7 @@ class HddSetup(Screen):
 
 		self.mdisks = Disks()
 		for disk in self.mdisks.disks:
-			capacity = "%d MB" % (disk[1] / (1024 * 1024))
+			capacity = "%d MB" % (old_div(disk[1], (1024 * 1024)))
 			self.disks.append(DiskEntry(disk[3], capacity, disk[2]))
 
 		self["menu"].setList(self.disks)

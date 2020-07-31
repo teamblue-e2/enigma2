@@ -1,3 +1,4 @@
+from builtins import str
 from Screens.WizardLanguage import WizardLanguage
 from Screens.Wizard import wizardManager
 from Screens.Rc import Rc

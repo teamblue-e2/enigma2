@@ -1,3 +1,6 @@
+from __future__ import division
+from builtins import str
+from past.utils import old_div
 from enigma import eDVBResourceManager, eDVBFrontendParametersSatellite, eDVBFrontendParametersTerrestrial
 
 from Screens.ScanSetup import ScanSetup, buildTerTransponder
@@ -250,7 +253,7 @@ class Satfinder(ScanSetup, ServiceScan):
 					self.list.append(getConfigListEntry(_("Channel"), self.scan_ter.channel))
 				else:
 					prev_val = self.scan_ter.frequency.floatint
-					self.scan_ter.frequency.floatint = channel2frequency(self.scan_ter.channel.value, self.ter_tnumber)/1000
+					self.scan_ter.frequency.floatint = old_div(channel2frequency(self.scan_ter.channel.value, self.ter_tnumber),1000)
 					if self.scan_ter.frequency.floatint == 474000:
 						self.scan_ter.frequency.floatint = prev_val
 					self.list.append(getConfigListEntry(_("Frequency"), self.scan_ter.frequency))
@@ -468,7 +471,7 @@ class Satfinder(ScanSetup, ServiceScan):
 				tps = nimmanager.getTransponders(satpos)
 				if len(tps) > self.preDefTransponders.index:
 					tp = tps[self.preDefTransponders.index]
-					transponder = (tp[1] / 1000, tp[2] / 1000,
+					transponder = (old_div(tp[1], 1000), old_div(tp[2], 1000),
 						tp[3], tp[4], 2, satpos, tp[5], tp[6], tp[8], tp[9], tp[10], tp[11], tp[12], tp[13], tp[14])
 					self.tuner.tune(transponder)
 					self.transponder = transponder

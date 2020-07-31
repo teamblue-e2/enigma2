@@ -1,5 +1,5 @@
 
-from .GUIComponent import GUIComponent
+from Components.GUIComponent import GUIComponent
 from skin import parseColor, parseFont
 
 from enigma import eListboxServiceContent, eListbox, eServiceCenter, eServiceReference, gFont, eRect

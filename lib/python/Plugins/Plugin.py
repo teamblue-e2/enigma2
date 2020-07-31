@@ -1,9 +1,10 @@
+from __future__ import print_function
 from Components.config import ConfigSubsection, config
 import os
 
 config.plugins = ConfigSubsection()
 
-class PluginDescriptor:
+class PluginDescriptor(object):
 	"""An object to describe a plugin."""
 
 	# where to list the plugin. Note that there are different call arguments,
@@ -68,7 +69,9 @@ class PluginDescriptor:
 	WHERE_RECORDTIMER = 16
 
 
-	def __init__(self, name = "Plugin", where = [ ], description = "", icon = None, fnc = None, wakeupfnc = None, needsRestart = None, internal = False, weight = 0):
+
+	def __init__(self, name="Plugin", where=None, description="", icon=None, fnc=None, wakeupfnc=None, needsRestart=None, internal=False, weight=0):
+		if not where: where = []
 		self.name = name
 		self.internal = internal
 		self.needsRestart = needsRestart
@@ -90,7 +93,19 @@ class PluginDescriptor:
 
 		self.wakeupfnc = wakeupfnc
 
-		self.__call__ = fnc
+		self._fnc = fnc
+
+	def __call__(self, *args, **kwargs):
+		if callable(self._fnc):
+			return self._fnc(*args, **kwargs)
+		else:
+			print("PluginDescriptor called without a function!")
+			return []
+
+	def __getattribute__(self, name):
+		if name == '__call__':
+			return self._fnc is not None and self._fnc or {}
+		return object.__getattribute__(self, name)
 
 	def updateIcon(self, path):
 		self.path = path
@@ -107,10 +122,10 @@ class PluginDescriptor:
 			return self._icon
 
 	def __eq__(self, other):
-		return self.__call__ == other.__call__
+		return self._fnc == other._fnc
 
 	def __ne__(self, other):
-		return self.__call__ != other.__call__
+		return self._fnc != other._fnc
 
 	def __lt__(self, other):
 		if self.weight < other.weight:

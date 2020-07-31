@@ -1,4 +1,7 @@
 from __future__ import print_function
+from __future__ import absolute_import
+from builtins import str
+from builtins import object
 from Screens.Screen import Screen
 from Plugins.Plugin import PluginDescriptor
 from Components.SystemInfo import SystemInfo
@@ -7,7 +10,7 @@ from Components.config import getConfigListEntry, config, ConfigBoolean, ConfigN
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 
-from VideoHardware import video_hw
+from Plugins.SystemPlugins.Videomode.VideoHardware import video_hw
 
 config.misc.videowizardenabled = ConfigBoolean(default = True)
 class VideoSetup(Screen, ConfigListScreen):
@@ -295,7 +298,7 @@ class AudioSetup(Screen, ConfigListScreen):
 		from Screens.Setup import SetupSummary
 		return SetupSummary
 
-class VideomodeHotplug:
+class VideomodeHotplug(object):
 	def __init__(self, hw):
 		self.hw = hw
 

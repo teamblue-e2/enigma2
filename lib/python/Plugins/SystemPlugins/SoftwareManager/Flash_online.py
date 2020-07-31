@@ -1,3 +1,10 @@
+from __future__ import division
+from __future__ import print_function
+from future import standard_library
+standard_library.install_aliases()
+from builtins import str
+from builtins import range
+from past.utils import old_div
 from Components.config import config
 from Components.Label import Label
 from Components.ActionMap import ActionMap
@@ -14,7 +21,7 @@ from Components.Console import Console
 from Tools.BoundFunction import boundFunction
 from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, GetBoxName
 from enigma import eTimer, fbClass
-import os, urllib2, json, shutil, math, time, zipfile, shutil
+import os, urllib.request, urllib.error, urllib.parse, json, shutil, math, time, zipfile, shutil
 
 
 from boxbranding import getImageDistro, getMachineBrand, getMachineName, getMachineMtdRoot, getMachineMtdKernel
@@ -88,7 +95,7 @@ class FlashOnline(Screen):
 			box = GetBoxName()
 			if not self.jsonlist:
 				try:
-					self.jsonlist = dict(json.load(urllib2.urlopen('%s/%s' % (feedurl, box))))
+					self.jsonlist = dict(json.load(urllib.request.urlopen('%s/%s' % (feedurl, box))))
 				except:
 					pass
 			self.imagesList = dict(self.jsonlist)
@@ -107,10 +114,10 @@ class FlashOnline(Screen):
 		for catagorie in reversed(sorted(self.imagesList.keys())):
 			if catagorie in self.expanded:
 				list.append(ChoiceEntryComponent('expanded',((str(catagorie)), "Expander")))
-				for image in reversed(sorted(self.imagesList[catagorie].keys(), key=lambda x: x.split(os.sep)[-1])):
+				for image in reversed(sorted(list(self.imagesList[catagorie].keys()), key=lambda x: x.split(os.sep)[-1])):
 					list.append(ChoiceEntryComponent('verticalline',((str(self.imagesList[catagorie][image]['name'])), str(self.imagesList[catagorie][image]['link']))))
 			else:
-				for image in self.imagesList[catagorie].keys():
+				for image in list(self.imagesList[catagorie].keys()):
 					list.append(ChoiceEntryComponent('expandable',((str(catagorie)), "Expander")))
 					break
 		if list:
@@ -256,7 +263,7 @@ class FlashImage(Screen):
 					if not '/mmc' in path and os.path.isdir(path) and os.access(path, os.W_OK):
 						try:
 							statvfs = os.statvfs(path)
-							return (statvfs.f_bavail * statvfs.f_frsize) / (1 << 20)
+							return old_div((statvfs.f_bavail * statvfs.f_frsize), (1 << 20))
 						except:
 							pass
 
@@ -469,7 +476,7 @@ class FlashImage(Screen):
 			self.abort()
 
 	def downloadProgress(self, current, total):
-		self["progress"].setValue(int(100 * current / total))
+		self["progress"].setValue(int(old_div(100 * current, total)))
 
 	def downloadError(self, reason, status):
 		self.downloader.stop()

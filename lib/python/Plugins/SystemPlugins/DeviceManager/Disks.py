@@ -1,7 +1,12 @@
+from __future__ import division
+from __future__ import print_function
+from builtins import str
+from builtins import object
+from past.utils import old_div
 import os
 import re
 
-class Disks():
+class Disks(object):
 	ptypes = {
 	 "0": "Empty"             , "24":  "NEC DOS"        , "81":  "Minix / old Lin"     , "bf":  "Solaris",
 	 "1": "FAT12"             , "39":  "Plan 9"         , "82":  "Linux swap / Solaris", "c1":  "DRDOS/sec (FAT)",
@@ -70,7 +75,7 @@ class Disks():
 		fdisk = os.popen(cmd, "r")
 		res = fdisk.read().strip()
 		fdisk.close()
-		if res in self.ptypes.keys():
+		if res in list(self.ptypes.keys()):
 			return self.ptypes[res]
 		return res
 
@@ -171,9 +176,9 @@ class Disks():
 			ptype = "ext4"
 		elif fstype == 1:
 			ptype = "ext3"
-		print("[DeviceManager] size = ", size)
-		psize = (size / (1024*1024))
-		print("[DeviceManager] (size / (1024*1024)) = ", psize)
+		print(("[DeviceManager] size = ", size))
+		psize = (old_div(size, (1024*1024)))
+		print(("[DeviceManager] (size / (1024*1024)) = ", psize))
 		if type == 0:
 				cmd = '/usr/sbin/parted --align optimal /dev/%s --script mklabel msdos mkpart primary %s 0%% 100%%' % (device, ptype)
 		elif type == 1:
@@ -184,7 +189,7 @@ class Disks():
 				cmd = '/usr/sbin/parted --align optimal /dev/%s --script mklabel msdos mkpart primary %s 0%% 33%% mkpart primary %s 33%% 66%% mkpart primary %s 66%% 100%%' % (device, ptype, ptype, ptype)
 		elif type == 4:
 				cmd = '/usr/sbin/parted --align optimal /dev/%s --script mklabel msdos mkpart primary %s 0%% 25%% mkpart primary %s 25%% 50%% mkpart primary %s 50%% 75%% mkpart primary %s 75%% 100%%' % (device, ptype, ptype, ptype, ptype)
-		print("[DeviceManager] used cmd = ", cmd)
+		print(("[DeviceManager] used cmd = ", cmd))
 		sfdisk = os.popen(cmd, "w")
 		if sfdisk.close():
 			return -2
@@ -253,10 +258,10 @@ class Disks():
 		if fstype == 0:
 			cmd = "/sbin/mkfs.ext4 "
 			cmd += "-F -m0 -O dir_index /dev/" + dev
-			print("[DeviceManager] EXT4 command to format ", cmd)
+			print(("[DeviceManager] EXT4 command to format ", cmd))
 		elif fstype == 1:
 			cmd = "/sbin/mkfs.ext3 "
-			psize = (size / (1024))
+			psize = (old_div(size, (1024)))
 			if psize > 250000:
 				# No more than 256k i-nodes (prevent problems with fsck memory requirements)
 				cmd += "-F -T largefile -O sparse_super -N 262144 "
@@ -267,12 +272,12 @@ class Disks():
 				# Over 2GB: 32 i-nodes per megabyte
 				cmd += "-F -T largefile -N %s " % str(psize * 32)
 			cmd += "-m0 -O dir_index /dev/" + dev
-			print("[DeviceManager] EXT3 command to format ", cmd)
+			print(("[DeviceManager] EXT3 command to format ", cmd))
 		else:
 			if len(oldmp) > 0:
 				self.mount(dev, oldmp)
 			return -3
-		print("[DeviceManager] executing command to format ", cmd)
+		print(("[DeviceManager] executing command to format ", cmd))
 		ret = os.system(cmd)
 
 		if len(oldmp) > 0:
