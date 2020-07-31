@@ -1,4 +1,4 @@
-from config import config, ConfigSelection, ConfigSubsection
+from .config import config, ConfigSelection, ConfigSubsection
 from boxbranding import getBoxType, getMachineBuild
 
 

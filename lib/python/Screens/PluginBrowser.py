@@ -1,5 +1,5 @@
-from __future__ import print_function
-from Screen import Screen
+
+from .Screen import Screen
 from Components.Language import language
 from Screens.ParentalControlSetup import ProtectedScreen
 from enigma import eConsoleAppContainer, eDVBDB, eTimer
@@ -709,7 +709,7 @@ class PluginDownloadBrowser(Screen):
 					continue
 				self.plugins[split[0]].append((PluginDescriptor(name = x[3], description = x[2], icon = verticallineIcon), split[1], x[1]))
 
-		temp = self.plugins.keys()
+		temp = list(self.plugins.keys())
 		if config.usage.sort_pluginlist.getValue():
 			temp.sort()
 		for x in temp:

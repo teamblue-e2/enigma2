@@ -1,6 +1,6 @@
 from Components.VariableText import VariableText
 from enigma import eLabel, iServiceInformation
-from Renderer import Renderer
+from Components.Renderer import Renderer
 
 #
 # borrowed from vali, addapter for openpli

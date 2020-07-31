@@ -1,3 +1,4 @@
+from builtins import filter
 from keyids import KEYIDS
 from Components.config import config
 from Components.RcModel import rc_model
@@ -154,7 +155,6 @@ keyDescriptions = [{  # id=0 - dmm0 remote directory, DM8000.
 	KEYIDS["KEY_CONTEXT_MENU"]: ("CONTEXT",),
 	KEYIDS["KEY_DOWN"]: ("DOWN",),
 	KEYIDS["KEY_EJECTCD"]: ("EJECTCD",),
-	KEYIDS["KEY_END"]: ("END",),
 	KEYIDS["KEY_ENTER"]: ("ENTER", "kbd"),
 	KEYIDS["KEY_EPG"]: ("EPG",),
 	KEYIDS["KEY_EXIT"]: ("EXIT",),
@@ -166,7 +166,6 @@ keyDescriptions = [{  # id=0 - dmm0 remote directory, DM8000.
 	KEYIDS["KEY_FAVORITES"]: ("FAV",),
 	KEYIDS["KEY_GREEN"]: ("GREEN",),
 	KEYIDS["KEY_HELP"]: ("HELP",),
-	KEYIDS["KEY_HOME"]: ("HOME",),
 	KEYIDS["KEY_HOMEPAGE"]: ("HOMEPAGE",),
 	KEYIDS["KEY_INFO"]: ("INFO",),
 	KEYIDS["KEY_LAST"]: ("BACK",),
@@ -182,7 +181,6 @@ keyDescriptions = [{  # id=0 - dmm0 remote directory, DM8000.
 	KEYIDS["KEY_PAGEDOWN"]: ("PAGEDOWN",),
 	KEYIDS["KEY_PAGEUP"]: ("PAGEUP",),
 	KEYIDS["KEY_PAUSE"]: ("PAUSE",),
-	KEYIDS["KEY_PC"]: ("LAN",),
 	KEYIDS["KEY_PLAY"]: ("PLAY",),
 	KEYIDS["KEY_PLAYPAUSE"]: ("PLAYPAUSE",),
 	KEYIDS["KEY_POWER"]: ("POWER",),
@@ -213,7 +211,6 @@ keyDescriptions = [{  # id=0 - dmm0 remote directory, DM8000.
 	KEYIDS["KEY_VOLUMEDOWN"]: ("VOL-",),
 	KEYIDS["KEY_VOLUMEUP"]: ("VOL+",),
 	KEYIDS["KEY_YELLOW"]: ("YELLOW",),
-	KEYIDS["KEY_ZOOM"]: ("ZOOM",),
 	# Discrete power codes
 	KEYIDS["KEY_POWER2"]: ("POWER2",),
 	KEYIDS["KEY_SUSPEND"]: ("SUSPEND",),
@@ -341,7 +338,7 @@ def addKeyBinding(domain, key, context, action, flags):
 
 def removeKeyBinding(key, context, action, wild=True):
 	if wild and action == "*":
-		for ctx, action in keyBindings.keys():
+		for ctx, action in list(keyBindings.keys()):
 			if ctx == context:
 				removeKeyBinding(key, context, action, False)
 		return
@@ -376,10 +373,10 @@ def getKeyDescription(key):
 	return keyDescriptions[idx].get(key)
 
 def getKeyBindingKeys(filterfn=lambda key: True):
-	return filter(filterfn, keyBindings)
+	return list(filter(filterfn, keyBindings))
 
 # Remove all entries of domain "domain".
 #
 def removeKeyBindings(domain):
 	for x in keyBindings:
-		keyBindings[x] = filter(lambda e: e[1] != domain, keyBindings[x])
+		keyBindings[x] = [e for e in keyBindings[x] if e[1] != domain]

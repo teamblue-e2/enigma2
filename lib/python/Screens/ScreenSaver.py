@@ -6,7 +6,7 @@ from Components.config import config
 import Screens.Standby
 from enigma import ePoint, eTimer, iPlayableService, eActionMap
 import os, random
-from sys import maxint
+from sys import maxsize
 
 class InfoBarScreenSaver:
 	def __init__(self):

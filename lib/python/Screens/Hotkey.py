@@ -1,4 +1,4 @@
-from __future__ import print_function
+
 from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
 from Components.Sources.StaticText import StaticText
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
@@ -117,7 +117,7 @@ def getHotkeyFunctions():
 	pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO)
 	pluginlist.sort(key=lambda p: p.name)
 	for plugin in pluginlist:
-		if plugin.name not in twinPlugins and plugin.path and 'selectedevent' not in plugin.__call__.func_code.co_varnames:
+		if plugin.name not in twinPlugins and plugin.path and 'selectedevent' not in plugin.__call__.__code__.co_varnames:
 			if plugin.path[24:] in twinPaths:
 				twinPaths[plugin.path[24:]] += 1
 			else:
@@ -597,7 +597,7 @@ class InfoBarHotkey():
 				pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO)
 				pluginlist.sort(key=lambda p: p.name)
 				for plugin in pluginlist:
-					if plugin.name not in twinPlugins and plugin.path and 'selectedevent' not in plugin.__call__.func_code.co_varnames:
+					if plugin.name not in twinPlugins and plugin.path and 'selectedevent' not in plugin.__call__.__code__.co_varnames:
 						if plugin.path[24:] in twinPaths:
 							twinPaths[plugin.path[24:]] += 1
 						else:

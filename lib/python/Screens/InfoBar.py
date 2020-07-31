@@ -1,11 +1,11 @@
-from __future__ import print_function
+
 from Tools.Profile import profile
 from enigma import eServiceReference
 
 # workaround for required config entry dependencies.
 import Screens.MovieSelection
 
-from Screen import Screen
+from .Screen import Screen
 from Screens.MessageBox import MessageBox
 
 profile("LOAD:enigma")
@@ -542,7 +542,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 		self.movieselection_dlg = None
 
 	def getPlaylistServiceInfo(self, service):
-		from MovieSelection import playlist
+		from .MovieSelection import playlist
 		for i, item in enumerate(playlist):
 			if item == service:
 				if config.usage.on_movie_eof.value == "repeatcurrent":

@@ -1,5 +1,5 @@
-from GUIComponent import GUIComponent
-from VariableValue import VariableValue
+from .GUIComponent import GUIComponent
+from .VariableValue import VariableValue
 
 from enigma import eSlider
 

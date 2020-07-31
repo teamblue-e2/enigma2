@@ -1,5 +1,5 @@
-from __future__ import print_function
-from GUIComponent import GUIComponent
+
+from .GUIComponent import GUIComponent
 from Tools.FuzzyDate import FuzzyTime
 from ServiceReference import ServiceReference
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest, MultiContentEntryProgress
@@ -260,19 +260,19 @@ class MovieList(GUIComponent):
 		def fontName(value):
 			self.fontName = value
 		def fontSizesOriginal(value):
-			self.fontSizesOriginal = map(int, value.split(","))
+			self.fontSizesOriginal = list(map(int, value.split(",")))
 			if len(self.fontSizesOriginal) != 3:
 				warningWrongSkinParameter(attrib)
 		def fontSizesCompact(value):
-			self.fontSizesCompact = map(int, value.split(","))
+			self.fontSizesCompact = list(map(int, value.split(",")))
 			if len(self.fontSizesCompact) != 2:
 				warningWrongSkinParameter(attrib)
 		def fontSizesMinimal(value):
-			self.fontSizesMinimal = map(int, value.split(","))
+			self.fontSizesMinimal = list(map(int, value.split(",")))
 			if len(self.fontSizesMinimal) != 2:
 				warningWrongSkinParameter(attrib)
 		def itemHeights(value):
-			self.itemHeights = map(int, value.split(","))
+			self.itemHeights = list(map(int, value.split(",")))
 			if len(self.itemHeights) != 3:
 				warningWrongSkinParameter(attrib)
 		def pbarShift(value):
@@ -298,11 +298,11 @@ class MovieList(GUIComponent):
 		def spaceRight(value):
 			self.spaceRight = int(value)
 		def columnsOriginal(value):
-			self.columnsOriginal = map(int, value.split(","))
+			self.columnsOriginal = list(map(int, value.split(",")))
 			if len(self.columnsOriginal) != 2:
 				warningWrongSkinParameter(attrib)
 		def columnsCompactDescription(value):
-			self.columnsCompactDescription = map(int, value.split(","))
+			self.columnsCompactDescription = list(map(int, value.split(",")))
 			if len(self.columnsCompactDescription) != 3:
 				warningWrongSkinParameter(attrib)
 		def compactColumn(value):
@@ -713,14 +713,14 @@ class MovieList(GUIComponent):
 
 		# reverse the dictionary to see which unique movie each tag now references
 		rautotags = {}
-		for tag, movies in autotags.items():
+		for tag, movies in list(autotags.items()):
 			if (len(movies) > 1):
 				movies = tuple(movies) # a tuple can be hashed, but a list not
 				item = rautotags.get(movies, [])
 				if not item: rautotags[movies] = item
 				item.append(tag)
 		self.tags = {}
-		for movies, tags in rautotags.items():
+		for movies, tags in list(rautotags.items()):
 			movie = movies[0]
 			# format the tag lists so that they are in 'original' order
 			tags.sort(key = movie.find)

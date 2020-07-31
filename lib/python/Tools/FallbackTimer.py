@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
+from builtins import str
+from builtins import object
 from ServiceReference import ServiceReference
 from Components.config import config
 from Screens.MessageBox import MessageBox
 from timer import TimerEntry as TimerObject
-from urllib import quote
+from six.moves.urllib.parse import quote
 import xml
 from base64 import encodestring
 
-class FallbackTimerList():
+class FallbackTimerList(object):
 
 	def __init__(self, parent, fallbackFunction, fallbackFunctionNOK=None):
 		self.fallbackFunction = fallbackFunction

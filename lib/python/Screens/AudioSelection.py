@@ -1,4 +1,4 @@
-from Screen import Screen
+from .Screen import Screen
 from Screens.Setup import getConfigMenuItem, Setup
 from Screens.InputBox import PinInput
 from Screens.MessageBox import MessageBox
@@ -15,7 +15,7 @@ from Components.VolumeControl import VolumeControl
 
 from enigma import iPlayableService, eTimer, eSize, eDVBDB, eServiceReference, eServiceCenter, iServiceInformation
 
-FOCUS_CONFIG, FOCUS_STREAMS = range(2)
+FOCUS_CONFIG, FOCUS_STREAMS = list(range(2))
 [PAGE_AUDIO, PAGE_SUBTITLES] = ["audio", "subtitles"]
 
 class AudioSelection(Screen, ConfigListScreen):

@@ -1,5 +1,5 @@
 ﻿# -*- coding: UTF-8 -*-
-from __future__ import print_function
+
 import gettext
 import locale
 import os
@@ -8,7 +8,7 @@ from Tools.Directories import SCOPE_LANGUAGE, resolveFilename
 
 class Language:
 	def __init__(self):
-		gettext.install('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), unicode=0, codeset="utf-8")
+		gettext.install('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), codeset="utf-8")
 		gettext.bindtextdomain("enigma2", resolveFilename(SCOPE_LANGUAGE))
 		gettext.textdomain("enigma2")
 		self.activeLanguage = 0

@@ -17,7 +17,7 @@ from Tools.Directories import fileExists
 from boxbranding import getBoxType
 from enigma import eTimer, eDVBCI_UI, eDVBCIInterfaces
 
-from Screen import Screen
+from .Screen import Screen
 
 forceNotShowCiMessages = False
 
@@ -57,7 +57,7 @@ class MMIDialog(Screen):
 	def __init__(self, session, slotid, action, handler = eDVBCI_UI.getInstance(), wait_text = "wait for ci...", screen_data = None ):
 		Screen.__init__(self, session)
 
-		print("MMIDialog with action" + str(action))
+		print(("MMIDialog with action" + str(action)))
 
 		self.mmiclosed = False
 		self.tag = None

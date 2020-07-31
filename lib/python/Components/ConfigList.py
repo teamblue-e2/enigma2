@@ -1,5 +1,5 @@
-from GUIComponent import GUIComponent
-from config import KEY_LEFT, KEY_RIGHT, KEY_HOME, KEY_END, KEY_0, KEY_DELETE, KEY_BACKSPACE, KEY_OK, KEY_TOGGLEOW, KEY_ASCII, KEY_TIMEOUT, KEY_NUMBERS, ConfigElement
+from .GUIComponent import GUIComponent
+from .config import KEY_LEFT, KEY_RIGHT, KEY_HOME, KEY_END, KEY_0, KEY_DELETE, KEY_BACKSPACE, KEY_OK, KEY_TOGGLEOW, KEY_ASCII, KEY_TIMEOUT, KEY_NUMBERS, ConfigElement
 from Components.ActionMap import NumberActionMap, ActionMap
 from enigma import eListbox, eListboxPythonConfigContent, eRCInput, eTimer
 from Screens.MessageBox import MessageBox
@@ -274,7 +274,7 @@ class ConfigListScreen:
 		if selection and selection[1].enabled and hasattr(selection[1], "description"):
 			self.session.openWithCallback(
 				self.handleKeyFileCallback, ChoiceBox, selection[0],
-				list=zip(selection[1].description, selection[1].choices),
+				list=list(zip(selection[1].description, selection[1].choices)),
 				selection=selection[1].choices.index(selection[1].value),
 				keys=[]
 			)

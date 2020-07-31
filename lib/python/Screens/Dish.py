@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from __future__ import print_function
-from Screen import Screen
+
+from .Screen import Screen
 from Components.Pixmap import Pixmap
 from Components.config import config, ConfigInteger
 from Components.Sources.Boolean import Boolean
@@ -214,7 +214,7 @@ class Dish(Screen):
 					return nim.turningspeedH.float
 			elif nimConfig.configMode.value == "advanced":
 				if self.cur_orbpos != INVALID_POSITION:
-					satlist = nimConfig.advanced.sat.keys()
+					satlist = list(nimConfig.advanced.sat.keys())
 					if self.cur_orbpos in satlist:
 						currSat = nimConfig.advanced.sat[self.cur_orbpos]
 						lnbnum = int(currSat.lnb.value)

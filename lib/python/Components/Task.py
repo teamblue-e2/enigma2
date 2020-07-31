@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
-from __future__ import print_function
+
 # A Job consists of many "Tasks".
 # A task is the run of an external tool, with proper methods for failure handling
 
+from __future__ import print_function
 from Tools.CList import CList
 
 class Job(object):
-	NOT_STARTED, IN_PROGRESS, FINISHED, FAILED = range(4)
+	NOT_STARTED, IN_PROGRESS, FINISHED, FAILED = list(range(4))
 	def __init__(self, name):
 		self.tasks = [ ]
 		self.resident_tasks = [ ]
@@ -482,7 +483,7 @@ class ToolExistsPrecondition(Condition):
 			self.realpath = task.cmd
 			path = os.environ.get('PATH', '').split(os.pathsep)
 			path.append(task.cwd + '/')
-			absolutes = filter(lambda file: os.access(file, os.X_OK), map(lambda directory, file = task.cmd: os.path.join(directory, file), path))
+			absolutes = [file for file in map(lambda directory, file = task.cmd: os.path.join(directory, file), path) if os.access(file, os.X_OK)]
 			if absolutes:
 				self.realpath = absolutes[0]
 				return True

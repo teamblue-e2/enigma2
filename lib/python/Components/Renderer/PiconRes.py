@@ -1,5 +1,5 @@
 import os, re, unicodedata
-from Renderer import Renderer
+from Components.Renderer import Renderer
 from enigma import ePixmap
 from Tools.Alternatives import GetWithAlternative
 from Tools.Directories import pathExists, SCOPE_SKIN_IMAGE, SCOPE_ACTIVE_SKIN, resolveFilename

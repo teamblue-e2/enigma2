@@ -1,6 +1,6 @@
-from __future__ import print_function
+
 from boxbranding import getMachineBrand, getMachineName
-from Screen import Screen
+from .Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.config import config, ConfigText, ConfigPassword, KEY_LEFT, KEY_RIGHT, KEY_0, KEY_DELETE, KEY_BACKSPACE, KEY_ASCII
 from Components.SystemInfo import SystemInfo
@@ -308,7 +308,7 @@ class Wizard(Screen):
 	def getStepWithID(self, id):
 		print("getStepWithID:", id)
 		count = 0
-		for x in self.wizard.keys():
+		for x in list(self.wizard.keys()):
 			if self.wizard[x]["id"] == id:
 				print("result:", count)
 				return count
@@ -492,7 +492,7 @@ class Wizard(Screen):
 		self.condition = True
 		exec (self.wizard[self.currStep]["condition"])
 		if not self.condition:
-			print("keys*******************:", self.wizard[self.currStep].keys())
+			print("keys*******************:", list(self.wizard[self.currStep].keys()))
 			if "laststep" in self.wizard[self.currStep]: # exit wizard, if condition of laststep doesn't hold
 				self.markDone()
 				self.exit()

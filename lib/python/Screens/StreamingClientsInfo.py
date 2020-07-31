@@ -1,4 +1,4 @@
-from Screen import Screen
+from .Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Converter.ClientsStreaming import ClientsStreaming
 import skin

@@ -58,7 +58,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 		HelpableScreen.__init__(self)
 
 		# Set useable chars
-		self.setUseableChars(u'1234567890abcdefghijklmnopqrstuvwxyz')
+		self.setUseableChars('1234567890abcdefghijklmnopqrstuvwxyz')
 
 		# Quickselect Timer
 		self.qs_timer = eTimer()
@@ -491,7 +491,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 
 		# Get char and append to text
 		char = self.getKey(number)
-		self.quickselect = self.quickselect[:self.curr_pos] + unicode(char)
+		self.quickselect = self.quickselect[:self.curr_pos] + str(char)
 
 		# Start Timeout
 		self.qs_timer_type = 0

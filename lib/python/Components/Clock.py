@@ -1,5 +1,5 @@
-from GUIComponent import GUIComponent
-from VariableText import VariableText
+from .GUIComponent import GUIComponent
+from .VariableText import VariableText
 
 from enigma import eTimer, eLabel
 

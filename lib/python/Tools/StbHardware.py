@@ -1,4 +1,6 @@
 from __future__ import print_function
+
+from builtins import str
 from os import path
 from fcntl import ioctl
 from struct import pack, unpack
@@ -8,7 +10,7 @@ from time import time, localtime, gmtime
 def getFPVersion():
 	ret = None
 	try:
-		ret = long(open("/proc/stb/fp/version", "r").read())
+		ret = int(open("/proc/stb/fp/version", "r").read())
 	except IOError:
 		try:
 			fp = open("/dev/dbox/fp0")
@@ -54,7 +56,7 @@ def setRTCtime(wutime):
 def getFPWakeuptime():
 	ret = 0
 	try:
-		ret = long(open("/proc/stb/fp/wakeup_time", "r").read())
+		ret = int(open("/proc/stb/fp/wakeup_time", "r").read())
 	except IOError:
 		try:
 			fp = open("/dev/dbox/fp0")

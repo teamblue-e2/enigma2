@@ -1,4 +1,4 @@
-from GUIComponent import GUIComponent
+from .GUIComponent import GUIComponent
 from skin import parseFont
 
 from Tools.FuzzyDate import FuzzyTime

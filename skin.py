@@ -356,7 +356,7 @@ def collectAttributes(skinAttributes, node, context, skinPath=None, ignore=(), f
 	size = None
 	pos = None
 	font = None
-	for attrib, value in list(node.items()):  # Walk all attributes.
+	for attrib, value in node.items():  # Walk all attributes.
 		if attrib not in ignore:
 			if attrib in filenames:
 				value = resolveFilename(SCOPE_CURRENT_SKIN, value, path_prefix=skinPath)
@@ -798,7 +798,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 			try:
 				name = parameter.attrib.get("name")
 				value = parameter.attrib.get("value")
-				parameters[name] = list(map(parseParameter, [x.strip() for x in value.split(",")])) if "," in value else parseParameter(value)
+				parameters[name] = map(parseParameter, [x.strip() for x in value.split(",")]) if "," in value else parseParameter(value)
 			except Exception as err:
 				raise SkinError("Bad parameter: '%s'" % str(err))
 	for tag in domSkin.findall("menus"):
@@ -1157,10 +1157,10 @@ def readSkin(screen, skin, names, desktop):
 	def processScreen(widget, context):
 		for w in widget.getchildren():
 			conditional = w.attrib.get("conditional")
-			if conditional and not [i for i in conditional.split(",") if i in list(screen.keys())]:
+			if conditional and not [i for i in conditional.split(",") if i in screen.keys()]:
 				continue
 			objecttypes = w.attrib.get("objectTypes", "").split(",")
-			if len(objecttypes) > 1 and (objecttypes[0] not in list(screen.keys()) or not [i for i in objecttypes[1:] if i == screen[objecttypes[0]].__class__.__name__]):
+			if len(objecttypes) > 1 and (objecttypes[0] not in screen.keys() or not [i for i in objecttypes[1:] if i == screen[objecttypes[0]].__class__.__name__]):
 				continue
 			p = processors.get(w.tag, processNone)
 			try:

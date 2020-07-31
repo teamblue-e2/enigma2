@@ -24,7 +24,7 @@ from ServiceReference import ServiceReference, isPlayableForCur
 
 from time import localtime, strftime, ctime, time
 from bisect import insort
-from sys import maxint
+from sys import maxsize
 
 # ok, for descriptions etc we have:
 # service reference  (to get the service name)
@@ -388,7 +388,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			if self.always_zap:
 				if Screens.Standby.inStandby:
 					self.wasInStandby = True
-					eActionMap.getInstance().bindAction('', -maxint - 1, self.keypress)
+					eActionMap.getInstance().bindAction('', -maxsize - 1, self.keypress)
 					#set service to zap after standby
 					Screens.Standby.inStandby.prev_running_service = self.service_ref.ref
 					Screens.Standby.inStandby.paused_service = None
@@ -469,7 +469,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			if self.justplay:
 				if Screens.Standby.inStandby:
 					self.wasInStandby = True
-					eActionMap.getInstance().bindAction('', -maxint - 1, self.keypress)
+					eActionMap.getInstance().bindAction('', -maxsize - 1, self.keypress)
 					self.log(11, "wakeup and zap")
 					#set service to zap after standby
 					Screens.Standby.inStandby.prev_running_service = self.service_ref.ref

@@ -1,8 +1,8 @@
-from __future__ import print_function
-from GUIComponent import GUIComponent
-from VariableText import VariableText
+
+from .GUIComponent import GUIComponent
+from .VariableText import VariableText
 from skin import parseColor
-from ConditionalWidget import ConditionalWidget, BlinkingWidget, BlinkingWidgetConditional
+from .ConditionalWidget import ConditionalWidget, BlinkingWidget, BlinkingWidgetConditional
 
 from enigma import eLabel
 

@@ -1,9 +1,10 @@
 from __future__ import print_function
+from builtins import object
 from boxbranding import *
 
 hw_info = None
 
-class HardwareInfo:
+class HardwareInfo(object):
 	device_name = _("unavailable")
 	device_model = None
 	device_version = ""

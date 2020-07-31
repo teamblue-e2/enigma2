@@ -1,5 +1,7 @@
 from __future__ import print_function
+from __future__ import division
 # the implementation here is a bit crappy.
+from past.utils import old_div
 import time
 from Tools.Directories import resolveFilename, SCOPE_CONFIG
 from boxbranding import getBoxType
@@ -38,7 +40,7 @@ def profile(id):
 		if id in profile_data:
 			t = profile_data[id]
 			if total_time:
-				perc = t * (PERCENTAGE_END - PERCENTAGE_START) / total_time + PERCENTAGE_START
+				perc = old_div(t * (PERCENTAGE_END - PERCENTAGE_START), total_time) + PERCENTAGE_START
 			else:
 				perc = PERCENTAGE_START
 			try:

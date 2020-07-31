@@ -1,4 +1,4 @@
-from Screen import Screen
+from .Screen import Screen
 from Components.TimerList import TimerList
 from Components.ActionMap import ActionMap
 

@@ -1,4 +1,4 @@
-from Screen import Screen
+from .Screen import Screen
 from Components.ActionMap import NumberActionMap
 from Components.config import config, ConfigNothing, ConfigText, ConfigPassword
 from Components.Label import Label
@@ -15,10 +15,10 @@ import xml.etree.cElementTree
 # read the setupmenu
 try:
 	# first we search in the current path
-	setupfile = file('data/setup.xml', 'r')
+	setupfile = open('data/setup.xml', 'r')
 except:
 	# if not found in the current path, we use the global datadir-path
-	setupfile = file(eEnv.resolve('${datadir}/enigma2/setup.xml'), 'r')
+	setupfile = open(eEnv.resolve('${datadir}/enigma2/setup.xml'), 'r')
 setupdom = xml.etree.cElementTree.parse(setupfile)
 setupfile.close()
 

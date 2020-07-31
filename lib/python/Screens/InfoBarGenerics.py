@@ -1,5 +1,5 @@
-from __future__ import print_function
-from ChannelSelection import ChannelSelection, BouquetSelector, SilentBouquetSelector
+
+from .ChannelSelection import ChannelSelection, BouquetSelector, SilentBouquetSelector
 
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ActionMap import NumberActionMap
@@ -16,10 +16,10 @@ from Components.SystemInfo import SystemInfo
 from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath
 from Components.VolumeControl import VolumeControl
 from Components.Sources.StaticText import StaticText
-from EpgSelection import EPGSelection
+from .EpgSelection import EPGSelection
 from Plugins.Plugin import PluginDescriptor
 
-from Screen import Screen
+from .Screen import Screen
 from Screens.ScreenSaver import InfoBarScreenSaver
 from Screens import Standby
 from Screens.ChoiceBox import ChoiceBox
@@ -45,7 +45,7 @@ from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInform
 from time import time, localtime, strftime
 import os
 from bisect import insort
-from sys import maxint
+from sys import maxsize
 import itertools, datetime
 
 ####key debug #
@@ -54,7 +54,7 @@ from keyids import KEYIDS
 from RecordTimer import RecordTimerEntry, RecordTimer, findSafeRecordPath
 
 # hack alert!
-from Menu import MainMenu, mdom
+from .Menu import MainMenu, mdom
 
 def isStandardInfoBar(self):
 	return self.__class__.__name__ == "InfoBar"
@@ -79,7 +79,7 @@ def setResumePoint(session):
 				resumePointCache[key] = [lru, pos[1], l]
 				if len(resumePointCache) > 50:
 					candidate = key
-					for k,v in resumePointCache.items():
+					for k,v in list(resumePointCache.items()):
 						if v[0] < lru:
 							candidate = k
 					del resumePointCache[candidate]
@@ -108,18 +108,18 @@ def getResumePoint(session):
 
 def saveResumePoints():
 	global resumePointCache, resumePointCacheLast
-	import cPickle
+	import pickle
 	try:
 		f = open('/etc/enigma2/resumepoints.pkl', 'wb')
-		cPickle.dump(resumePointCache, f, cPickle.HIGHEST_PROTOCOL)
+		pickle.dump(resumePointCache, f, pickle.HIGHEST_PROTOCOL)
 	except Exception as ex:
 		print("[InfoBar] Failed to write resumepoints:", ex)
 	resumePointCacheLast = int(time())
 
 def loadResumePoints():
-	import cPickle
+	import pickle
 	try:
-		return cPickle.load(open('/etc/enigma2/resumepoints.pkl', 'rb'))
+		return pickle.load(open('/etc/enigma2/resumepoints.pkl', 'rb'))
 	except Exception as ex:
 		print("[InfoBar] Failed to load resumepoints:", ex)
 		return {}
@@ -207,10 +207,10 @@ class InfoBarUnhandledKey:
 	def actionA(self, key, flag):
 		####key debug
 		try:
-			print("KEY: %s %s %s" % (key,(key_name for key_name,value in KEYIDS.items() if value==key).next(),getKeyDescription(key)[0]))
+			print("KEY: %s %s %s" % (key,next((key_name for key_name,value in list(KEYIDS.items()) if value==key)),getKeyDescription(key)[0]))
 		except:
 			try:
-				print("KEY: %s %s" % (key,(key_name for key_name,value in KEYIDS.items() if value==key).next())) # inverse dictionary lookup in KEYIDS
+				print("KEY: %s %s" % (key,next((key_name for key_name,value in list(KEYIDS.items()) if value==key)))) # inverse dictionary lookup in KEYIDS
 			except:
 				print("KEY: %s" % (key))
 		self.unhandledKeyDialog.hide()
@@ -1130,7 +1130,7 @@ class InfoBarEPG:
 
 	def getEPGPluginList(self, getAll=False):
 		pluginlist = [(p.name, boundFunction(self.runPlugin, p), p.description or p.name) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO) \
-				if 'selectedevent' not in p.__call__.func_code.co_varnames] or []
+				if 'selectedevent' not in p.__call__.__code__.co_varnames] or []
 		from Components.ServiceEventTracker import InfoBarCount
 		if getAll or InfoBarCount == 1:
 			pluginlist.append((_("Show EPG for current channel..."), self.openSingleServiceEPG, _("Display EPG list for current channel")))
@@ -2570,7 +2570,7 @@ class InfoBarInstantRecord:
 		print("instantRecord stop and delete recording: ", entry.name)
 		import Tools.Trashcan
 		trash = Tools.Trashcan.createTrashFolder(entry.Filename)
-		from MovieSelection import moveServiceFiles
+		from .MovieSelection import moveServiceFiles
 		moveServiceFiles(entry.Filename, trash, entry.name, allowCopy=False)
 
 	def stopCurrentRecording(self, entry = -1):
@@ -2721,7 +2721,7 @@ class InfoBarInstantRecord:
 			else:
 				self.session.openWithCallback(self.setEndtime, TimerSelection, list)
 		elif answer[1] == "timer":
-			import TimerEdit
+			from . import TimerEdit
 			self.session.open(TimerEdit.TimerEditList)
 		elif answer[1] == "stop":
 			if len(self.recording) == 1:
@@ -3291,7 +3291,7 @@ class InfoBarCueSheetSupport:
 		r = seek.getPlayPosition()
 		if r[0]:
 			return None
-		return long(r[1])
+		return int(r[1])
 
 	def cueGetEndCutPosition(self):
 		ret = False

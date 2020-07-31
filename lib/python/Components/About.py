@@ -202,8 +202,8 @@ def getIfConfig(ifname):
 	infos['hwaddr']  = 0x8927 # SIOCSIFHWADDR
 	infos['netmask'] = 0x891b # SIOCGIFNETMASK
 	try:
-		for k,v in infos.items():
-			print(infos.items())
+		for k,v in list(infos.items()):
+			print((list(infos.items())))
 			ifreq[k] = _ifinfo(sock, v, ifname)
 	except:
 		pass
@@ -233,8 +233,8 @@ def getDriverInstalledDate():
 
 def getPythonVersionString():
 	try:
-		import commands
-		status, output = commands.getstatusoutput("python -V")
+		import subprocess
+		status, output = subprocess.getstatusoutput("python -V")
 		return output.split(' ')[1]
 	except:
 		return _("unknown")

@@ -1,4 +1,4 @@
-from __future__ import print_function
+
 from Screens.About import CommitInfo
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
@@ -15,7 +15,7 @@ from Tools.BoundFunction import boundFunction
 from enigma import eTimer, eDVBDB
 from boxbranding import getBoxType, getImageVersion, getMachineBuild, getImageType
 from Tools.Directories import fileExists
-from urllib2 import urlopen
+from urllib.request import urlopen
 
 class UpdatePlugin(Screen, ProtectedScreen):
 	skin = """

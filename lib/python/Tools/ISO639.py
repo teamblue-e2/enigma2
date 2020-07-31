@@ -1,9 +1,12 @@
-import cPickle
+from future import standard_library
+standard_library.install_aliases()
+from builtins import object
+import pickle
 import enigma
 with open(enigma.eEnv.resolve("${datadir}/enigma2/iso-639-3.pck"), 'rb') as f:
-	LanguageCodes = cPickle.load(f)
+	LanguageCodes = pickle.load(f)
 
-class ISO639Language:
+class ISO639Language(object):
 	[PRIMARY, SECONDARY, TERTIARY] = [1, 2, 3]
 	def __init__(self, depth=PRIMARY):
 		self.depth = depth
@@ -12,16 +15,16 @@ class ISO639Language:
 		if depth == self.PRIMARY:
 			wanted_languages = [ "Undetermined", "English", "German", "Arabic", "Catalan", "Croatian", "Czech", "Danish", "Dutch", "Estonian", "Finnish", "French", "Greek", "Hungarian", "Lithuanian", "Latvian", "Icelandic", "Italian", "Norwegian", "Polish", "Portuguese", "Russian", "Serbian", "Slovakian", "Slovenian", "Spanish", "Swedish", "Turkish", "Ukrainian" ]
 		elif depth == self.SECONDARY:
-			for key, val in LanguageCodes.iteritems():
+			for key, val in LanguageCodes.items():
 				if len(key) == 2:
 					wanted_languages.append(val[0])
 		else:
-			for key, val in LanguageCodes.iteritems():
+			for key, val in LanguageCodes.items():
 				if len(key) == 3:
 					wanted_languages.append(val[0])
 
 		self.idlist_by_name = {}
-		for key, val in LanguageCodes.iteritems():
+		for key, val in LanguageCodes.items():
 			val = val[0]
 			if val not in wanted_languages:
 				continue
@@ -32,7 +35,7 @@ class ISO639Language:
 
 		self.name_and_shortid_by_longid = {}
 		self.name_by_shortid = {}
-		for lang, id_list in self.idlist_by_name.iteritems():
+		for lang, id_list in self.idlist_by_name.items():
 			long_ids = []
 			short_id = None
 			for id in id_list:
@@ -48,7 +51,7 @@ class ISO639Language:
 		from Components.Language import language as syslanguage
 		syslang = syslanguage.getLanguage()[:2]
 		choices = []
-		for lang, id_list in self.idlist_by_name.iteritems():
+		for lang, id_list in self.idlist_by_name.items():
 			if syslang not in id_list and 'en' not in id_list:
 				choices.append((lang, lang))
 		choices.sort()
@@ -68,7 +71,7 @@ class ISO639Language:
 			language = self.name_and_shortid_by_longid[string][1]
 		elif len(string) >= 3:
 			string = string.capitalize()
-			for key in self.idlist_by_name.keys():
+			for key in list(self.idlist_by_name.keys()):
 				if key == string or _(key) == string:
 					language = key
 		return language

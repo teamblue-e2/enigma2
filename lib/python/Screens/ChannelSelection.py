@@ -1,7 +1,7 @@
-from __future__ import print_function
+
 from Tools.Profile import profile
 
-from Screen import Screen
+from .Screen import Screen
 import Screens.InfoBar
 from Screens.ScreenSaver import InfoBarScreenSaver
 import Components.ParentalControl
@@ -11,7 +11,7 @@ from Components.ActionMap import NumberActionMap, ActionMap, HelpableActionMap
 from Components.MenuList import MenuList
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 profile("ChannelSelection.py 1")
-from EpgSelection import EPGSelection
+from .EpgSelection import EPGSelection
 from enigma import eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode
 from Components.config import config, configfile, ConfigSubsection, ConfigText, ConfigYesNo
 from Tools.NumericalTextInput import NumericalTextInput
@@ -732,7 +732,7 @@ class ChannelSelectionEPG(InfoBarHotkey):
 
 	def getEPGPluginList(self, getAll=False):
 		pluginlist = [(p.name, boundFunction(self.runPlugin, p), p.description or p.name) for p in plugins.getPlugins(where = PluginDescriptor.WHERE_EVENTINFO) \
-				if 'selectedevent' not in p.__call__.func_code.co_varnames] or []
+				if 'selectedevent' not in p.__call__.__code__.co_varnames] or []
 		from Components.ServiceEventTracker import InfoBarCount
 		if getAll or InfoBarCount == 1:
 			pluginlist.append((_("Show EPG for current channel..."), self.openSingleServiceEPG, _("Display EPG list for current channel")))
@@ -1016,7 +1016,7 @@ class ChannelSelectionEdit:
 		serviceHandler = eServiceCenter.getInstance()
 		mutableBouquetList = serviceHandler.list(self.bouquet_root).startEdit()
 		if mutableBouquetList:
-			name = unicodedata.normalize('NFKD', unicode(bName, 'utf_8', errors='ignore')).encode('ASCII', 'ignore').translate(None, '<>:"/\\|?*() ')
+			name = unicodedata.normalize('NFKD', str(bName, 'utf_8', errors='ignore')).encode('ASCII', 'ignore').translate(None, '<>:"/\\|?*() ')
 			while os.path.isfile((self.mode == MODE_TV and '/etc/enigma2/userbouquet.%s.tv' or '/etc/enigma2/userbouquet.%s.radio') % name):
 				name = name.rsplit('_', 1)
 				name = ('_').join((name[0], len(name) == 2 and name[1].isdigit() and str(int(name[1]) + 1) or '1'))
@@ -1329,7 +1329,7 @@ class ChannelSelectionBase(Screen):
 		self.servicelist = self["list"]
 
 		self.numericalTextInput = NumericalTextInput(handleTimeout=False)
-		self.numericalTextInput.setUseableChars(u'1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+		self.numericalTextInput.setUseableChars('1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ')
 
 		self.servicePathTV = [ ]
 		self.servicePathRadio = [ ]
@@ -1814,7 +1814,7 @@ class ChannelSelectionBase(Screen):
 		self.selectionNumber = ""
 
 	def keyAsciiCode(self):
-		unichar = unichr(getPrevAsciiCode())
+		unichar = chr(getPrevAsciiCode())
 		charstr = unichar.encode("utf-8")
 		if len(charstr) == 1:
 			self.servicelist.moveToChar(charstr[0])

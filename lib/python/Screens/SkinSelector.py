@@ -129,7 +129,7 @@ class SkinSelector(Screen, HelpableScreen):
 							skinheight = re.search("\<?resolution.*?\syres\s*=\s*\"(\d+)\"", mm).group(1)
 							resolution = skinheight and resolutions.get(skinheight, None)
 							mm.close()
-						print("[SkinSelector] Resolution of skin '%s': '%s'." % (skinPath, "Unknown" if resolution is None else resolution))
+						print(("[SkinSelector] Resolution of skin '%s': '%s'." % (skinPath, "Unknown" if resolution is None else resolution)))
 						# Code can be added here to reject unsupported resolutions.
 					# The "piconprev.png" image should be "prevpicon.png" to keep it with its partner preview image.
 					preview = pathjoin(previewPath, "piconprev.png" if skinFile == "skin_display_picon.xml" else "prev.png")
@@ -183,19 +183,19 @@ class SkinSelector(Screen, HelpableScreen):
 		label, skin = self.currentSelectedSkin[1], self.currentSelectedSkin[4]
 		if skin == self.config.value:
 			if skin == self.current:
-				print("[SkinSelector] Selected skin: '%s' (Unchanged!)" % pathjoin(self.rootDir, skin))
+				print(("[SkinSelector] Selected skin: '%s' (Unchanged!)" % pathjoin(self.rootDir, skin)))
 				self.cancel()
 			else:
-				print("[SkinSelector] Selected skin: '%s' (Trying to restart again!)" % pathjoin(self.rootDir, skin))
+				print(("[SkinSelector] Selected skin: '%s' (Trying to restart again!)" % pathjoin(self.rootDir, skin)))
 				restartBox = self.session.openWithCallback(self.restartGUI, MessageBox, _("To apply the selected '%s' skin the GUI needs to restart. Would you like to restart the GUI now?") % label, MessageBox.TYPE_YESNO)
 				restartBox.setTitle(_("SkinSelector: Restart GUI"))
 		elif skin == self.current:
-			print("[SkinSelector] Selected skin: '%s' (Pending skin '%s' cancelled!)" % (pathjoin(self.rootDir, skin), pathjoin(self.rootDir, self.config.value)))
+			print(("[SkinSelector] Selected skin: '%s' (Pending skin '%s' cancelled!)" % (pathjoin(self.rootDir, skin), pathjoin(self.rootDir, self.config.value))))
 			self.config.value = skin
 			self.config.save()
 			self.cancel()
 		else:
-			print("[SkinSelector] Selected skin: '%s'" % pathjoin(self.rootDir, skin))
+			print(("[SkinSelector] Selected skin: '%s'" % pathjoin(self.rootDir, skin)))
 			restartBox = self.session.openWithCallback(self.restartGUI, MessageBox, _("To save and apply the selected '%s' skin the GUI needs to restart. Would you like to save the selection and restart the GUI now?") % label, MessageBox.TYPE_YESNO)
 			restartBox.setTitle(_("SkinSelector: Restart GUI"))
 

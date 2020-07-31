@@ -1,3 +1,5 @@
+from __future__ import print_function
+from builtins import object
 import glob
 import shutil
 import subprocess
@@ -18,7 +20,7 @@ def getMBbootdevice():
 		if path.exists(device):
 			Console().ePopen("mount %s %s" % (device, Imagemount))
 			if path.isfile(path.join(Imagemount, "STARTUP")):
-				print('[Multiboot] Startupdevice found:', device)
+				print(('[Multiboot] Startupdevice found:', device))
 				return device
 			Console().ePopen("umount %s" % Imagemount)
 	if not path.ismount(Imagemount):
@@ -75,7 +77,7 @@ def GetCurrentImage():
 			return int(slot[0])
 		else:
 			device = getparam(open("/sys/firmware/devicetree/base/chosen/bootargs", "r").read(), "root")
-			for slot in SystemInfo["canMultiBoot"].keys():
+			for slot in list(SystemInfo["canMultiBoot"].keys()):
 				if SystemInfo["canMultiBoot"][slot]["device"] == device:
 					return slot
 def GetCurrentKern():
@@ -129,7 +131,7 @@ def GetBoxName():
 		box = "twinboxlcd"
 	return box
 
-class GetImagelist():
+class GetImagelist(object):
 	MOUNT = 0
 	UNMOUNT = 1
 
@@ -204,7 +206,7 @@ class GetImagelist():
 			self.callback(self.imagelist)
 
 
-class boxbranding_reader:  # Many thanks to Huevos for creating this reader - well beyond my skill levels!
+class boxbranding_reader(object):  # Many thanks to Huevos for creating this reader - well beyond my skill levels!
 	def __init__(self, OsPath):
 		if pathExists("%s/usr/lib64" % OsPath):
 			self.branding_path = "%s/usr/lib64/enigma2/python/" % OsPath
@@ -250,14 +252,14 @@ class boxbranding_reader:  # Many thanks to Huevos for creating this reader - we
 	def readBrandingFile(self):  # Reads boxbranding.so and updates self.output
 		output = eval(subprocess.check_output(["python", path.join(self.tmp_path, self.helper_file)]))
 		if output:
-			for att in self.output.keys():
+			for att in list(self.output.keys()):
 				self.output[att] = output[att]
 
 	def addBrandingMethods(self):  # This creates reader.getBoxType(), reader.getImageDevBuild(), etc
 		loc = {}
-		for att in self.output.keys():
+		for att in list(self.output.keys()):
 			exec("def %s(self): return self.output[\"%s\"]" % (att, att), None, loc)
-		for name, value in loc.items():
+		for name, value in list(loc.items()):
 			setattr(boxbranding_reader, name, value)
 
 	def createHelperFile(self):
@@ -283,7 +285,7 @@ class boxbranding_reader:  # Many thanks to Huevos for creating this reader - we
 		out.append("try:")
 		out.append("\timport boxbranding")
 		out.append("\toutput = {")
-		for att in self.output.keys():
+		for att in list(self.output.keys()):
 			out.append("\t\t\"%s\": boxbranding.%s()," % (att, att))
 		out.append("\t}")
 		out.append("except Exception:")
@@ -293,7 +295,7 @@ class boxbranding_reader:  # Many thanks to Huevos for creating this reader - we
 		return "\n".join(out)
 
 
-class EmptySlot():
+class EmptySlot(object):
 	MOUNT = 0
 	UNMOUNT = 1
 

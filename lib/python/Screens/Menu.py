@@ -1,4 +1,4 @@
-from Screen import Screen
+from .Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.ParentalControlSetup import ProtectedScreen
 from Components.Sources.List import List

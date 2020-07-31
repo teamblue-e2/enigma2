@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
+from builtins import object
 import time
 import os
 import enigma
@@ -36,7 +37,7 @@ def enumTrashFolders():
 			if os.path.isdir(result):
 				yield result
 
-class Trashcan:
+class Trashcan(object):
 	def __init__(self):
 		self.isCleaning = False
 		self.session = None

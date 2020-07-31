@@ -1,10 +1,13 @@
 from __future__ import print_function
+from __future__ import division
+from builtins import str
+from past.utils import old_div
 from enigma import eDVBFrontendParametersSatellite, eDVBFrontendParametersCable, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersATSC
 from Components.NimManager import nimmanager
 from Components.config import config
 
 def orbpos(pos):
-	return pos > 3600 and "N/A" or "%d.%d\xc2\xb0%s" % (pos > 1800 and ((3600 - pos) / 10, (3600 - pos) % 10, "W") or (pos / 10, pos % 10, "E"))
+	return pos > 3600 and "N/A" or "%d.%d\xc2\xb0%s" % (pos > 1800 and (old_div((3600 - pos), 10), (3600 - pos) % 10, "W") or (old_div(pos, 10), pos % 10, "E"))
 
 def getTunerDescription(nim):
 	try:
@@ -19,7 +22,7 @@ def getTunerDescription(nim):
 	return ""
 
 def getMHz(frequency):
-	return (frequency+50000)/100000/10.
+	return old_div((frequency+50000),100000)/10.
 
 # Note: newly added region add into ImportChannels to getTerrestrialRegion()
 #	due using for fallback tuner too
@@ -35,22 +38,22 @@ def getChannelNumber(frequency, nim):
 		if "Europe" in descr:
 			if 174 < f < 230: 	# III
 				d = (f + 1) % 7
-				return str(int(f - 174)/7 + 5) + (d < 3 and "-" or d > 4 and "+" or "")
+				return str(old_div(int(f - 174),7) + 5) + (d < 3 and "-" or d > 4 and "+" or "")
 			elif 470 <= f < 863: 	# IV,V
 				d = (f + 2) % 8
-				return str(int(f - 470) / 8 + 21) + (d < 3.5 and "-" or d > 4.5 and "+" or "")
+				return str(old_div(int(f - 470), 8) + 21) + (d < 3.5 and "-" or d > 4.5 and "+" or "")
 		elif "Australia" in descr:
 			d = (f + 1) % 7
 			ds = (d < 3 and "-" or d > 4 and "+" or "")
 			if 174 < f < 202: 	# CH6-CH9
-				return str(int(f - 174)/7 + 6) + ds
+				return str(old_div(int(f - 174),7) + 6) + ds
 			elif 202 <= f < 209: 	# CH9A
 				return "9A" + ds
 			elif 209 <= f < 230: 	# CH10-CH12
-				return str(int(f - 209)/7 + 10) + ds
+				return str(old_div(int(f - 209),7) + 10) + ds
 			elif 526 < f < 820: 	# CH28-CH69
 				d = (f - 1) % 7
-				return str(int(f - 526)/7 + 28) + (d < 3 and "-" or d > 4 and "+" or "")
+				return str(old_div(int(f - 526),7) + 28) + (d < 3 and "-" or d > 4 and "+" or "")
 	return ""
 
 def supportedChannels(nim):
@@ -250,7 +253,7 @@ def ConvertToHumanReadable(tp, type = None):
 			eDVBFrontendParametersATSC.System_DVB_C_ANNEX_B : "DVB-C ANNEX B"}.get(tp.get("system"))
 	elif type != "None":
 		print("ConvertToHumanReadable: no or unknown type in tpdata dict for type:", type)
-	for k,v in tp.items():
+	for k,v in list(tp.items()):
 		if k not in ret:
 			ret[k] = v
 	return ret

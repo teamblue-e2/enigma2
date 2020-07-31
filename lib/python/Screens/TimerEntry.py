@@ -1,6 +1,6 @@
-from __future__ import print_function
-from Screen import Screen
-import ChannelSelection
+
+from .Screen import Screen
+from . import ChannelSelection
 from ServiceReference import ServiceReference
 from Components.config import config, ConfigSelection, ConfigText, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, getConfigListEntry
 from Components.ActionMap import NumberActionMap
@@ -24,7 +24,7 @@ from RecordTimer import AFTEREVENT
 from enigma import eEPGCache, iRecordableServicePtr
 from time import localtime, mktime, time, strftime
 from datetime import datetime
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 class TimerEntry(Screen, ConfigListScreen):
 	def __init__(self, session, timer, edit=False):

@@ -1,5 +1,5 @@
-from __future__ import print_function
-from GUIComponent import GUIComponent
+
+from .GUIComponent import GUIComponent
 
 from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER
 
@@ -417,7 +417,7 @@ class EPGList(GUIComponent):
 		def setTimeWidth(value):
 			self.tw = int(value)
 		def setColWidths(value):
-			self.col = map(int, value.split(','))
+			self.col = list(map(int, value.split(',')))
 			if len(self.col) == 2:
 				self.skinColumns = True
 			else:

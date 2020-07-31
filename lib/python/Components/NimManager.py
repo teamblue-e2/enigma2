@@ -1,11 +1,11 @@
-from __future__ import print_function
+
 import os
 
-from SystemInfo import SystemInfo
+from .SystemInfo import SystemInfo
 from Tools.HardwareInfo import HardwareInfo
 from Tools.BoundFunction import boundFunction
 
-from config import config, ConfigSubsection, ConfigSelection, ConfigFloat, ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, ConfigSubDict, ConfigOnOff, ConfigDateTime, ConfigText
+from .config import config, ConfigSubsection, ConfigSelection, ConfigFloat, ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, ConfigSubDict, ConfigOnOff, ConfigDateTime, ConfigText
 
 from enigma import eDVBFrontendParametersSatellite, eDVBSatelliteEquipmentControl as secClass, eDVBSatelliteDiseqcParameters as diseqcParam, eDVBSatelliteSwitchParameters as switchParam, eDVBSatelliteRotorParameters as rotorParam, eDVBResourceManager, eDVBDB, eEnv
 
@@ -380,7 +380,7 @@ class SecConfigure:
 					if cdc in c:
 						sec.setCommittedCommand(c[cdc])
 					else:
-						sec.setCommittedCommand(long(cdc))
+						sec.setCommittedCommand(int(cdc))
 
 					sec.setFastDiSEqC(currLnb.fastDiseqc.value)
 
@@ -532,7 +532,7 @@ class NIM(object):
 	def getTunerTypesEnabled(self):
 		try:
 			if self.combined:
-				return [x for x in self.multi_type.values() if
+				return [x for x in list(self.multi_type.values()) if
 					self.config.configModeDVBS.value and x.startswith("DVB-S") or
 					self.config.configModeDVBC.value and x.startswith("DVB-C") or
 					self.config.configModeDVBT.value and x.startswith("DVB-T") or
@@ -545,12 +545,12 @@ class NIM(object):
 		return self.isSupported() and bool([x for x in self.getTunerTypesEnabled() if what in self.compatible[x]])
 
 	def canBeCompatible(self, what):
-		return self.isSupported() and bool([x for x in self.multi_type.values() if what in self.compatible[x]] if self.multi_type else self.isCompatible(what))
+		return self.isSupported() and bool([x for x in list(self.multi_type.values()) if what in self.compatible[x]] if self.multi_type else self.isCompatible(what))
 
 	def getType(self):
 		try:
 			if self.isCombined():
-				return [x for x in self.multi_type.values() if x.startswith("DVB-S")][0]
+				return [x for x in list(self.multi_type.values()) if x.startswith("DVB-S")][0]
 			if self.isMultiType():
 				return self.multi_type[self.config.multiType.value]
 		except:
@@ -644,8 +644,8 @@ class NIM(object):
 		return self.isFBCTuner() and self.slot % 8 and True
 
 	def getFriendlyType(self):
-		if self.multi_type.values():
-			returnValue = "/".join([x[1].replace("DVB-", "") for x in sorted([({ "DVB-S" :1, "DVB-C": 2, "DVB-T": 3, "ATSC": 4}[x[:5]], x) for x in self.multi_type.values()])])
+		if list(self.multi_type.values()):
+			returnValue = "/".join([x[1].replace("DVB-", "") for x in sorted([({ "DVB-S" :1, "DVB-C": 2, "DVB-T": 3, "ATSC": 4}[x[:5]], x) for x in list(self.multi_type.values())])])
 			return "%s %s" % (_("Combined") if self.combined else _("MultiType"), returnValue if returnValue == 'ATSC' else "DVB-%s" % returnValue)
 		return self.getType() or _("empty")
 
@@ -860,8 +860,8 @@ class NimManager:
 				entries[current_slot]["name"] = _("N/A")
 				entries[current_slot]["isempty"] = True
 		nimfile.close()
-		self.number_of_slots = len(entries.keys())
-		for id, entry in entries.items():
+		self.number_of_slots = len(list(entries.keys()))
+		for id, entry in list(entries.items()):
 			if not ("name" in entry and "type" in entry):
 				entry["name"] =  _("N/A")
 				entry["type"] = None
@@ -878,7 +878,7 @@ class NimManager:
 				entry["frontend_device"] = entry["internally_connectable"] = None
 			if "multi_type" not in entry:
 				entry["multi_type"] = {}
-			if not (entry.has_key("input_name")):
+			if not ("input_name" in entry):
 				entry["input_name"] = chr(ord('A') + id)
 			if "supports_blind_scan" not in entry:
 				entry["supports_blind_scan"] = False
@@ -990,7 +990,7 @@ class NimManager:
 						nimHaveRotor = True
 						break
 				if not nimHaveRotor:
-					for sat in mode.advanced.sat.values():
+					for sat in list(mode.advanced.sat.values()):
 						lnb_num = int(sat.lnb.value)
 						diseqcmode = lnb_num and mode.advanced.lnb[lnb_num].diseqcMode.value or ""
 						if diseqcmode == "1_2":
@@ -1209,7 +1209,7 @@ def InitNimManager(nimmgr, update_slots=None):
 	lnb_choices_default = "universal_lnb"
 
 	prio_list = [ ("-1", _("Auto")) ]
-	for prio in range(65)+range(14000,14065)+range(19000,19065):
+	for prio in list(range(65))+list(range(14000,14065))+list(range(19000,19065)):
 		description = ""
 		if prio == 0:
 			description = _(" (disabled)")
@@ -1658,7 +1658,7 @@ def InitNimManager(nimmgr, update_slots=None):
 			createATSCConfig(nim, slot_id)
 
 		if slot.isMultiType() and not hasattr(nim, "multiType"):
-			nim.multiType = ConfigSelection([(id, slot.getMultiTypeList()[id]) for id in slot.getMultiTypeList().keys()] + [("nothing", _("disabled"))], "0")
+			nim.multiType = ConfigSelection([(id, slot.getMultiTypeList()[id]) for id in list(slot.getMultiTypeList().keys())] + [("nothing", _("disabled"))], "0")
 			nim.multiType.fe_id = slot_id
 			nim.multiType.addNotifier(boundFunction(tunerTypeChanged, nimmgr))
 			if nim.multiType.value == "nothing":

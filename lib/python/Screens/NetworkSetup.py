@@ -1,6 +1,6 @@
-from __future__ import print_function
+
 import os
-import commands
+import subprocess
 import string
 from random import Random
 from Screens.Screen import Screen
@@ -332,7 +332,7 @@ class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 
 	def getmac(self, iface):
 		mac = (0,0,0,0,0,0)
-		ifconfig = commands.getoutput("ifconfig " + iface + "| grep HWaddr | awk '{ print $5 }'").strip()
+		ifconfig = subprocess.getoutput("ifconfig " + iface + "| grep HWaddr | awk '{ print $5 }'").strip()
 		if len(ifconfig) == 0:
 			mac = "00:00:00:00:00:00"
 		else:
@@ -350,7 +350,7 @@ class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 		f = open('/etc/enigma2/hwmac', 'w')
 		f.write(MAC)
 		f.close()
-		route = commands.getoutput("route -n |grep UG | awk '{print $2}'")
+		route = subprocess.getoutput("route -n |grep UG | awk '{print $2}'")
 		os.system('ifconfig eth0 down')
 		os.system('ifconfig eth0 hw ether %s up' % MAC)
 		os.system('route add default gw %s eth0' % route)

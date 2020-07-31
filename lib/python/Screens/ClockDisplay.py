@@ -1,4 +1,4 @@
-from Screen import Screen
+from .Screen import Screen
 
 # a clock display dialog
 class ClockDisplay(Screen):

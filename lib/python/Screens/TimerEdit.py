@@ -1,4 +1,4 @@
-from __future__ import print_function
+
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Label import Label
@@ -9,12 +9,12 @@ from Components.TimerList import TimerList
 from Components.TimerSanityCheck import TimerSanityCheck
 from Components.UsageConfig import preferredTimerPath
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT, createRecordTimerEntry
-from Screen import Screen
+from .Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.InputBox import PinInput
 from ServiceReference import ServiceReference
-from TimerEntry import TimerEntry, TimerLog
+from .TimerEntry import TimerEntry, TimerLog
 from Tools.BoundFunction import boundFunction
 from Tools.FallbackTimer import FallbackTimerList
 from time import time
