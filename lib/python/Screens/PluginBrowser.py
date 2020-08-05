@@ -1,5 +1,5 @@
 
-from .Screen import Screen
+from Screens.Screen import Screen
 from Components.Language import language
 from Screens.ParentalControlSetup import ProtectedScreen
 from enigma import eConsoleAppContainer, eDVBDB, eTimer

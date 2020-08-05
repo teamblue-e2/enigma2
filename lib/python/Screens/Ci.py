@@ -17,7 +17,7 @@ from Tools.Directories import fileExists
 from boxbranding import getBoxType
 from enigma import eTimer, eDVBCI_UI, eDVBCIInterfaces
 
-from .Screen import Screen
+from Screens.Screen import Screen
 from six.moves import range
 
 forceNotShowCiMessages = False

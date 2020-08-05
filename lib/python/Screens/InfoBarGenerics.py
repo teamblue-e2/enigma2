@@ -1,5 +1,5 @@
 
-from .ChannelSelection import ChannelSelection, BouquetSelector, SilentBouquetSelector
+from Screens.ChannelSelection import ChannelSelection, BouquetSelector, SilentBouquetSelector
 
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ActionMap import NumberActionMap
@@ -16,10 +16,10 @@ from Components.SystemInfo import SystemInfo
 from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath
 from Components.VolumeControl import VolumeControl
 from Components.Sources.StaticText import StaticText
-from .EpgSelection import EPGSelection
+from Screens.EpgSelection import EPGSelection
 from Plugins.Plugin import PluginDescriptor
 
-from .Screen import Screen
+from Screens.Screen import Screen
 from Screens.ScreenSaver import InfoBarScreenSaver
 from Screens import Standby
 from Screens.ChoiceBox import ChoiceBox
@@ -54,7 +54,7 @@ from keyids import KEYIDS
 from RecordTimer import RecordTimerEntry, RecordTimer, findSafeRecordPath
 
 # hack alert!
-from .Menu import MainMenu, mdom
+from Screens.Menu import MainMenu, mdom
 from six.moves import range
 
 def isStandardInfoBar(self):
@@ -2573,7 +2573,7 @@ class InfoBarInstantRecord:
 		print("instantRecord stop and delete recording: ", entry.name)
 		import Tools.Trashcan
 		trash = Tools.Trashcan.createTrashFolder(entry.Filename)
-		from .MovieSelection import moveServiceFiles
+		from Screens.MovieSelection import moveServiceFiles
 		moveServiceFiles(entry.Filename, trash, entry.name, allowCopy=False)
 
 	def stopCurrentRecording(self, entry = -1):
@@ -2724,7 +2724,7 @@ class InfoBarInstantRecord:
 			else:
 				self.session.openWithCallback(self.setEndtime, TimerSelection, list)
 		elif answer[1] == "timer":
-			from . import TimerEdit
+			from Screens import TimerEdit
 			self.session.open(TimerEdit.TimerEditList)
 		elif answer[1] == "stop":
 			if len(self.recording) == 1:

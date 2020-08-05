@@ -1,5 +1,5 @@
 
-from .Screen import Screen
+from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.config import config
 from Components.ActionMap import ActionMap

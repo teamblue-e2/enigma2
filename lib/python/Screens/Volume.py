@@ -1,5 +1,5 @@
 
-from .Screen import Screen
+from Screens.Screen import Screen
 from Components.Label import Label
 from Components.VolumeBar import VolumeBar
 from Screens.Screen import Screen

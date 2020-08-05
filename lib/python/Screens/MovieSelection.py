@@ -1,5 +1,5 @@
 
-from .Screen import Screen
+from Screens.Screen import Screen
 from Components.Button import Button
 from Components.ActionMap import HelpableActionMap, ActionMap, NumberActionMap
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
@@ -180,7 +180,7 @@ def moveServiceFiles(serviceref, dest, name=None, allowCopy=True):
 		except OSError as e:
 			if e.errno == 18 and allowCopy:
 				print("[MovieSelection] cannot rename across devices, trying slow move")
-				from . import CopyFiles
+				from Screens import CopyFiles
 				# start with the smaller files, do the big one later.
 				moveList.reverse()
 				if name is None:
@@ -218,7 +218,7 @@ def copyServiceFiles(serviceref, dest, name=None):
 			except:
 				print(("[MovieSelection] Failed to undo copy:", item))
 	#Link failed, really copy.
-	from . import CopyFiles
+	from Screens import CopyFiles
 	# start with the smaller files, do the big one later.
 	moveList.reverse()
 	if name is None:
@@ -2041,7 +2041,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		Tools.Trashcan.cleanAll(cur_path)
 
 	def showNetworkSetup(self):
-		from . import NetworkSetup
+		from Screens import NetworkSetup
 		self.session.open(NetworkSetup.NetworkAdapterSelection)
 
 	def showActionFeedback(self, text):

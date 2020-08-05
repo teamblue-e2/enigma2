@@ -118,7 +118,7 @@ class InstallWizard(Screen, ConfigListScreen):
 #		elif self.index == self.STATE_CHOICE_SOFTCAM and self.enabled.value:
 #			self.session.open(InstallWizardOpkgUpdater, self.index, _('Please wait (downloading softcam support)'), OpkgComponent.CMD_INSTALL, {'package': 'om-softcam-support'})
 		elif self.index == self.INSTALL_PLUGINS and self.enabled.value:
-			from .PluginBrowser import PluginDownloadBrowser
+			from Screens.PluginBrowser import PluginDownloadBrowser
 			self.session.open(PluginDownloadBrowser, 0)
 		return
 
