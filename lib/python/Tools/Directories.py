@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
-from builtins import str
-from builtins import range
 import errno
 import inspect
 import os
@@ -10,7 +8,6 @@ import stat
 from enigma import eEnv, getDesktop
 from re import compile
 from stat import S_IMODE
-from six.moves import range
 
 pathExists = os.path.exists
 isMount = os.path.ismount  # Only used in OpenATV /lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py.
@@ -322,7 +319,7 @@ def getRecordingFilename(basename, dirname=None):
 	# but must not truncate in the middle of a multi-byte utf8 character!
 	# So convert the truncation to unicode and back, ignoring errors, the
 	# result will be valid utf8 and so xml parsing will be OK.
-	filename = str(filename[:247], "utf8", "ignore").encode("utf8", "ignore")
+	filename = unicode(filename[:247], "utf8", "ignore").encode("utf8", "ignore")
 	if dirname is not None:
 		if not dirname.startswith("/"):
 			dirname = os.path.join(defaultRecordingLocation(), dirname)

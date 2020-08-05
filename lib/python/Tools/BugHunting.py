@@ -1,8 +1,5 @@
-from __future__ import print_function
-from builtins import range
 import sys
 import inspect
-from six.moves import range
 
 #WARNING! Dont use inspect.stack()! its very very very slow.
 def getFrames(deep=2):
@@ -51,5 +48,5 @@ def printCallSequenceRawData(deep=1):
 			print("\033[96m%s \033[33m%s" %(frames[x].f_code.co_name, inspect.getargvalues(frames[x])))
 		else:
 			print("\033[94m<-- \033[95m%s(%s:%s)\033[33m%s" %(frames[x].f_code.co_name, frames[x].f_code.co_filename.split("/")[-1], frames[x].f_lineno, inspect.getargvalues(frames[x])))
-	print(("\033[0m",))
+	print("\033[0m",)
 	del frames

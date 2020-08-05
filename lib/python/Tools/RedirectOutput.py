@@ -1,16 +1,15 @@
-from builtins import object
 import sys
 
 from enigma import ePythonOutput
 
 
-class EnigmaLog(object):
+class EnigmaLog:
 	def __init__(self, level):
 		self.level = level
 		self.line = ""
 
 	def write(self, data):
-		if isinstance(data, str):
+		if isinstance(data, unicode):
 			data = data.encode(encoding="UTF-8", errors="ignore")
 		self.line += data
 		if "\n" in data:

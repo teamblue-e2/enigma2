@@ -1,10 +1,6 @@
-from builtins import str
-from builtins import range
-from builtins import object
 from enigma import eTimer
 
 from Components.Language import language
-from six.moves import range
 
 MAP_SEARCH_UPCASE = "SearchUpper"  # NOTE: Legacy interface for previous and deprecated versions of NumericalTextInput.
 MAP_SEARCH = "SearchLower"
@@ -206,7 +202,7 @@ LOCALES = {
 
 # For more information about using NumericalTextInput see /doc/NUMERICALTEXTINPUT
 #
-class NumericalTextInput(object):
+class NumericalTextInput:
 	def __init__(self, nextFunc=None, handleTimeout=True, search=False, mapping=None, mode=None):
 		self.nextFunction = nextFunc
 		if handleTimeout:
@@ -278,4 +274,4 @@ class NumericalTextInput(object):
 		return self.mapping[num][self.pos]
 
 	def setUseableChars(self, useable):
-		self.useableChars = str(useable)
+		self.useableChars = unicode(useable)

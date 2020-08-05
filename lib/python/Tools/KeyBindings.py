@@ -1,4 +1,3 @@
-from builtins import filter
 from keyids import KEYIDS
 from Components.config import config
 from Components.RcModel import rc_model
@@ -164,7 +163,6 @@ keyDescriptions = [{  # id=0 - dmm0 remote directory, DM8000.
 	KEYIDS["KEY_F6"]: ("PIP",),
 	KEYIDS["KEY_FASTFORWARD"]: ("FASTFORWARD",),
 	KEYIDS["KEY_FAVORITES"]: ("FAV",),
-	KEYIDS["KEY_FILE"]: ("LIST",),
 	KEYIDS["KEY_GREEN"]: ("GREEN",),
 	KEYIDS["KEY_HELP"]: ("HELP",),
 	KEYIDS["KEY_HOMEPAGE"]: ("HOMEPAGE",),
@@ -174,7 +172,6 @@ keyDescriptions = [{  # id=0 - dmm0 remote directory, DM8000.
 	KEYIDS["KEY_LIST"]: ("PLAYLIST",),
 	KEYIDS["KEY_MEDIA"]: ("MEDIA",),
 	KEYIDS["KEY_MENU"]: ("MENU",),
-	KEYIDS["KEY_MODE"]: ("VKEY",),
 	KEYIDS["KEY_MUTE"]: ("MUTE",),
 	KEYIDS["KEY_NEXT"]: ("ARROWRIGHT",),
 	KEYIDS["KEY_NEXTSONG"]: ("NEXTSONG",),
@@ -206,7 +203,6 @@ keyDescriptions = [{  # id=0 - dmm0 remote directory, DM8000.
 	KEYIDS["KEY_SUBTITLE"]: ("SUBTITLE",),
 	KEYIDS["KEY_SWITCHVIDEOMODE"]: ("VMODE",),
 	KEYIDS["KEY_TEXT"]: ("TEXT",),
-	KEYIDS["KEY_TIME"]: ("TIMESHIFT",),
 	KEYIDS["KEY_TV"]: ("TV",),
 	KEYIDS["KEY_UP"]: ("UP",),
 	KEYIDS["KEY_VIDEO"]: ("VIDEO",),
@@ -341,7 +337,7 @@ def addKeyBinding(domain, key, context, action, flags):
 
 def removeKeyBinding(key, context, action, wild=True):
 	if wild and action == "*":
-		for ctx, action in list(keyBindings.keys()):
+		for ctx, action in keyBindings.keys():
 			if ctx == context:
 				removeKeyBinding(key, context, action, False)
 		return
@@ -376,10 +372,10 @@ def getKeyDescription(key):
 	return keyDescriptions[idx].get(key)
 
 def getKeyBindingKeys(filterfn=lambda key: True):
-	return list(filter(filterfn, keyBindings))
+	return filter(filterfn, keyBindings)
 
 # Remove all entries of domain "domain".
 #
 def removeKeyBindings(domain):
 	for x in keyBindings:
-		keyBindings[x] = [e for e in keyBindings[x] if e[1] != domain]
+		keyBindings[x] = filter(lambda e: e[1] != domain, keyBindings[x])

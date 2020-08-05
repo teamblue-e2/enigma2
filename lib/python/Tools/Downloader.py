@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from builtins import object
 from twisted.web import client
 from twisted.internet import reactor, defer, ssl
 # from urlparse import urlparse
@@ -40,7 +39,7 @@ class HTTPProgressDownloader(client.HTTPDownloader):
 			self.end_callback()
 		return ret
 
-class downloadWithProgress(object):
+class downloadWithProgress:
 	def __init__(self, url, outputfile, contextFactory=None, *args, **kwargs):
 		if hasattr(client, '_parse'):
 			scheme, host, port, path = client._parse(url)
