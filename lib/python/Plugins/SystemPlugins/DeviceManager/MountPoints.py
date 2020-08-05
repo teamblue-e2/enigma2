@@ -3,6 +3,7 @@ from builtins import range
 from builtins import object
 import os
 import re
+from six.moves import range
 
 class MountPoints(object):
 	def __init__(self):

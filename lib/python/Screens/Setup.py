@@ -10,6 +10,7 @@ from Components.Sources.Boolean import Boolean
 from enigma import eEnv
 
 import xml.etree.cElementTree
+from six.moves import range
 
 # FIXME: use resolveFile!
 # read the setupmenu

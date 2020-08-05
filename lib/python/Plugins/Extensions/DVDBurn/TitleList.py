@@ -14,8 +14,9 @@ from Components.MultiContent import MultiContentEntryText
 from Components.Label import MultiColorLabel
 from enigma import gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
+from six.moves import range
 
-MODE_DVD, MODE_BLUDISC = range(2)
+MODE_DVD, MODE_BLUDISC = list(range(2))
 
 class TitleList(Screen, HelpableScreen):
 	skin = """

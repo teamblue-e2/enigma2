@@ -8,6 +8,7 @@ from Components.Sources.StaticText import StaticText
 from Components.config import config, getConfigListEntry
 from enigma import eEPGCache
 from time import time, localtime, mktime
+from six.moves import range
 
 class SleepTimerEdit(ConfigListScreen, Screen):
 	def __init__(self, session):

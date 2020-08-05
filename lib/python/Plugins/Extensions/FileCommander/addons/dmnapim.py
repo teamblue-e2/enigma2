@@ -7,9 +7,10 @@ import os
 import re
 import sys
 import time
-import urllib2
+import six.moves.urllib.request, six.moves.urllib.error, six.moves.urllib.parse
 from hashlib import md5
 import struct
+from six.moves import range
 
 class GetFPS(object):
     def __init__(self, filename):
@@ -87,7 +88,7 @@ def f(z):
     add = [0, 0xd, 0x10, 0xb, 0x5]
 
     b = []
-    for i in xrange(len(idx)):
+    for i in range(len(idx)):
         a = add[i]
         m = mul[i]
         i = idx[i]
@@ -108,7 +109,7 @@ def get_subtitle(digest, lang="PL"):
     while repeat > 0:
         repeat = repeat - 1
         try:
-            sub = urllib2.urlopen(url)
+            sub = six.moves.urllib.request.urlopen(url)
             if hasattr(sub, 'getcode'):
                 http_code = sub.getcode()
             sub = sub.read()
@@ -274,7 +275,7 @@ def read_tmp(list):
             else:
                 subs[time] = m.group(4).strip().split("|")
 
-    times = subs.keys()
+    times = list(subs.keys())
     times.sort()
     for i in range(0, len(times)):
         next_time = 1
@@ -374,11 +375,11 @@ def read_subs(file, fmt, fps):
         sys.exit(1)
 
 def napiprojekt_fps(digest):
-    url = "http://napiprojekt.pl/api/api.php?mode=file_info&client=dreambox&id=%s" % (urllib2.quote(digest))
+    url = "http://napiprojekt.pl/api/api.php?mode=file_info&client=dreambox&id=%s" % (six.moves.urllib.parse.quote(digest))
 #    element = ET.parse(urllib2.urlopen(url))
 #    fps = element.find("video_info/fps").text
     try:
-        fps = float([re.match(r".*<fps>(.*)</fps>.*", x).groups(0)[0] for x in urllib2.urlopen(url) if x.find('<fps>') > 0][0])
+        fps = float([re.match(r".*<fps>(.*)</fps>.*", x).groups(0)[0] for x in six.moves.urllib.request.urlopen(url) if x.find('<fps>') > 0][0])
     except:
         fps = 23.976
     return floatfps

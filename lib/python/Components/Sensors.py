@@ -1,4 +1,5 @@
 from Components.FanControl import fancontrol
+from six.moves import range
 
 class Sensors:
 	# (type, name, unit, directory)

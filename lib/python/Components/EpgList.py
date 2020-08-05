@@ -11,6 +11,7 @@ from Components.config import config
 from ServiceReference import ServiceReference
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from skin import parseFont
+from six.moves import range
 
 EPG_TYPE_SINGLE = 0
 EPG_TYPE_MULTI = 1

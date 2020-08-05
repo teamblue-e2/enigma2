@@ -13,6 +13,7 @@ from time import localtime, mktime
 from datetime import datetime
 
 import xml.etree.cElementTree
+from six.moves import range
 
 config.unicable = ConfigSubsection()
 

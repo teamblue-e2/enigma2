@@ -27,6 +27,7 @@ from Tools.CIHelper import cihelper
 from Tools.XMLTools import stringToXML
 
 import os
+from six.moves import range
 
 class CIselectMainMenu(Screen):
 	skin = """

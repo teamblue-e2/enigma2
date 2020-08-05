@@ -7,6 +7,7 @@ from enigma import eDVBCIInterfaces, eDVBCI_UI, eEnv, eServiceCenter, eServiceRe
 from Components.SystemInfo import SystemInfo
 import NavigationInstance
 import os
+from six.moves import range
 
 class CIHelper(object):
 

@@ -20,6 +20,7 @@ from os import popen
 from Tools.StbHardware import getFPVersion
 
 from boxbranding import getBoxType, getMachineBuild
+from six.moves import range
 boxtype = getBoxType()
 
 from enigma import eTimer, eLabel, eConsoleAppContainer, getDesktop

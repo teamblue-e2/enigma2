@@ -14,6 +14,7 @@ from Screens.HelpMenu import HelpableScreen
 from Components.Sources.List import List
 
 import bisect
+from six.moves import range
 
 def CutListEntry(where, what):
 	w = where / 90

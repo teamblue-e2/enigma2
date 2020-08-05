@@ -2,6 +2,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
 from future import standard_library
+from six.moves import range
 standard_library.install_aliases()
 from builtins import chr
 from builtins import str

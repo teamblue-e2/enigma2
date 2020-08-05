@@ -1,6 +1,7 @@
 from __future__ import print_function
 from builtins import range
 from time import localtime, time
+from six.moves import range
 
 
 def FuzzyTime(t, inPast = False):

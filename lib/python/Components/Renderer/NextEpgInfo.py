@@ -4,6 +4,7 @@ from enigma import eLabel, eEPGCache, eServiceReference
 from time import time, localtime, strftime
 from skin import parseColor
 from Tools.Hex2strColor import Hex2strColor
+from six.moves import range
 
 class NextEpgInfo(Renderer, VariableText):
 	def __init__(self):

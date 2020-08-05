@@ -7,6 +7,7 @@ from Project import iso639language
 import struct
 import os
 import re
+from six.moves import range
 
 zeros = bytearray(128)
 VIDEO_TYPES	= { 'video/mpeg, mpegversion=(int)1': 0x01, 'video/mpeg, mpegversion=(int)2': 0x02, 'VC1': 0xEA, 'video/x-h264': 0x1B }
@@ -213,7 +214,7 @@ class RemuxTask(Task):
 				if audiotrack.format.value == "AC3": #! only consider ac3 streams at the moment
 					dvbpids.append(int(audiotrack.pid.getValue()))
 		sourcepids = "--source-pids=" + ",".join(["0x%04x" % pid for pid in dvbpids])
-		self.bdmvpids = [0x1011]+range(0x1100,0x1107)[:len(dvbpids)-1]
+		self.bdmvpids = [0x1011]+list(range(0x1100,0x1107))[:len(dvbpids)-1]
 		resultpids = "--result-pids=" + ",".join(["0x%04x" % pid for pid in self.bdmvpids])
 		return [sourcepids, resultpids]
 

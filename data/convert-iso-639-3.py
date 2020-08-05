@@ -1,5 +1,6 @@
 import sys
 import pickle as cPickle
+from six.moves import range
 
 infilename = "iso-639-3.tab"
 outfilename = "iso-639-3.pck"

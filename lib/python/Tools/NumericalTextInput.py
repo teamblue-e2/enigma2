@@ -4,6 +4,7 @@ from builtins import object
 from enigma import eTimer
 
 from Components.Language import language
+from six.moves import range
 
 MAP_SEARCH_UPCASE = "SearchUpper"  # NOTE: Legacy interface for previous and deprecated versions of NumericalTextInput.
 MAP_SEARCH = "SearchLower"

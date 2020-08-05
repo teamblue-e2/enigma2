@@ -1,6 +1,7 @@
 from .Screen import Screen
 from Components.Label import Label
 import enigma
+from six.moves import range
 
 class NumericalTextInputHelpDialog(Screen):
 	def __init__(self, session, textinput):

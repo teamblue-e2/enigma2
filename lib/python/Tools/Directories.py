@@ -10,6 +10,7 @@ import stat
 from enigma import eEnv, getDesktop
 from re import compile
 from stat import S_IMODE
+from six.moves import range
 
 pathExists = os.path.exists
 isMount = os.path.ismount  # Only used in OpenATV /lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py.

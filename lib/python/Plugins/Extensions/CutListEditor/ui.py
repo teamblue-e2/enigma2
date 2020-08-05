@@ -19,6 +19,7 @@ from Screens.ChoiceBox import ChoiceBox
 from time import gmtime, strftime
 
 import bisect
+from six.moves import range
 
 try:
 	from Plugins.Extensions.MovieCut.plugin import main as MovieCut

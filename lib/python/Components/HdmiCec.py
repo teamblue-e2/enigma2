@@ -5,6 +5,7 @@ from enigma import eTimer, eHdmiCEC, eActionMap
 from Tools.StbHardware import getFPWasTimerWakeup
 import NavigationInstance
 from sys import maxsize
+from six.moves import range
 
 LOGPATH="/hdd/"
 LOGFILE="hdmicec.log"

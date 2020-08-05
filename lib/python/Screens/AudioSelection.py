@@ -14,6 +14,7 @@ from Components.SystemInfo import SystemInfo
 from Components.VolumeControl import VolumeControl
 
 from enigma import iPlayableService, eTimer, eSize, eDVBDB, eServiceReference, eServiceCenter, iServiceInformation
+from six.moves import range
 
 FOCUS_CONFIG, FOCUS_STREAMS = list(range(2))
 [PAGE_AUDIO, PAGE_SUBTITLES] = ["audio", "subtitles"]

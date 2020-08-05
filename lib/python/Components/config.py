@@ -9,6 +9,7 @@ import copy
 import os
 from time import localtime, strftime
 import six
+from six.moves import range
 
 # ConfigElement, the base class of all ConfigElements.
 

@@ -2,6 +2,7 @@ from Components.Renderer import Renderer
 from enigma import eDVBCI_UI, eLabel, iPlayableService
 from Components.SystemInfo import SystemInfo
 from Components.VariableText import VariableText
+from six.moves import range
 
 class CiModuleControl(Renderer, VariableText):
 	def __init__(self):

@@ -55,6 +55,7 @@ from RecordTimer import RecordTimerEntry, RecordTimer, findSafeRecordPath
 
 # hack alert!
 from .Menu import MainMenu, mdom
+from six.moves import range
 
 def isStandardInfoBar(self):
 	return self.__class__.__name__ == "InfoBar"

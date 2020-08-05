@@ -8,6 +8,7 @@ from Components.SystemInfo import SystemInfo
 
 import os
 import time
+from six.moves import range
 
 def InitUsageConfig():
 	try:

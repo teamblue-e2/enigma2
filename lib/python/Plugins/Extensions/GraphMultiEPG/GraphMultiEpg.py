@@ -36,6 +36,7 @@ from time import localtime, time, strftime, mktime
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
 from Tools.BoundFunction import boundFunction
+from six.moves import range
 
 MAX_TIMELINES = 6
 

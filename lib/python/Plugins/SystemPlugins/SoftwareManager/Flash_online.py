@@ -1,6 +1,7 @@
 from __future__ import division
 from __future__ import print_function
 from future import standard_library
+from six.moves import range
 standard_library.install_aliases()
 from builtins import str
 from builtins import range

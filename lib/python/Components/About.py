@@ -4,6 +4,7 @@ from sys import modules
 from Tools.HardwareInfo import HardwareInfo
 
 from boxbranding import getBoxType, getMachineBuild
+from six.moves import range
 
 def getVersionString():
 	return getImageVersionString()

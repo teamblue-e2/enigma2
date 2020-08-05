@@ -25,6 +25,7 @@ from enigma import eEPGCache, iRecordableServicePtr
 from time import localtime, mktime, time, strftime
 from datetime import datetime
 import urllib.request, urllib.parse, urllib.error
+from six.moves import range
 
 class TimerEntry(Screen, ConfigListScreen):
 	def __init__(self, session, timer, edit=False):

@@ -6,6 +6,7 @@ from socket import *
 from Components.Console import Console
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
+from six.moves import range
 
 class Network:
 	def __init__(self):

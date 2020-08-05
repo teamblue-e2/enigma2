@@ -26,6 +26,7 @@ from Tools.Directories import fileExists, resolveFilename, SCOPE_CONFIG, SCOPE_P
 from Tools.BoundFunction import boundFunction
 from settings import MediaPlayerSettings
 import random
+from six.moves import range
 
 class MyPlayList(PlayList):
 	def __init__(self):

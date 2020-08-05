@@ -9,6 +9,7 @@ from Components.config import config
 
 from Tools.CIHelper import cihelper
 from Components.config import config
+from six.moves import range
 
 class TimerSanityCheck:
 	def __init__(self, timerlist, newtimer=None):

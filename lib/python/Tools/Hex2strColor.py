@@ -8,6 +8,7 @@
 
 from builtins import chr
 from builtins import range
+from six.moves import range
 def Hex2strColor(rgb):
 	out = ""
 	for i in range(28, -1, -4):

@@ -7,6 +7,7 @@ from Screens.MessageBox import MessageBox
 from Tools.Directories import resolveFilename, SCOPE_CONFIG, copyfile
 from os import unlink
 from enigma import eTimer, eDVBDB
+from six.moves import range
 
 class DefaultServiceScan(ServiceScan):
 	skin = """
