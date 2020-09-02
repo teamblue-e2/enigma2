@@ -541,7 +541,7 @@ int eDVBRecordFileThread::AsyncIO::poll()
 	else if (res > 0)
 	{
 		aio.aio_buf = NULL;
-		eWarngin("[eDVBRecordFileThread] wait: aio_error returned failure: %m");
+		eWarning("[eDVBRecordFileThread] wait: aio_error returned failure: %m");
 		return -1;
 	}
 	else if (res == 0 || res == ECANCELED)
