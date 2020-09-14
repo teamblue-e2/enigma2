@@ -513,7 +513,11 @@ void eFilePushThreadRecorder::thread()
 		struct pollfd pfd = { m_fd_source, POLLIN, 0 };
 		poll(&pfd, 1, 100);
 
-		ssize_t bytes = ::read(m_fd_source, m_buffer, m_buffersize);
+		ssize_t bytes;
+		if(m_protocol == _PROTO_RTSP_TCP)
+			bytes = read_dmx(m_fd_source, m_buffer, m_buffersize);
+		else
+			bytes = ::read(m_fd_source, m_buffer, m_buffersize);
 		if (bytes < 0)
 		{
 			bytes = 0;

@@ -95,7 +95,7 @@ keyDescriptions = [{  # id=0 - dmm0 remote directory, DM8000.
 	KEYIDS["KEY_EDIT"]: ("EPGSETUP",),
 	KEYIDS["KEY_EPG"]: ("EPG",),
 	KEYIDS["KEY_EXIT"]: ("EXIT",),
-	KEYIDS["KEY_FASTFORWARD"]: ("FORWARD",),
+	KEYIDS["KEY_FASTFORWARD"]: ("BLUE", "SHIFT"),
 	KEYIDS["KEY_FAVORITES"]: ("FAV",),
 	KEYIDS["KEY_GREEN"]: ("GREEN",),
 	KEYIDS["KEY_HELP"]: ("HELP",),
@@ -106,23 +106,21 @@ keyDescriptions = [{  # id=0 - dmm0 remote directory, DM8000.
 	KEYIDS["KEY_MENU"]: ("MENU",),
 	KEYIDS["KEY_MUTE"]: ("MUTE",),
 	KEYIDS["KEY_NEXT"]: ("ARROWRIGHT",),
-	KEYIDS["KEY_NEXTSONG"]: ("NEXTSONG",),
 	KEYIDS["KEY_OK"]: ("OK",),
-	KEYIDS["KEY_PLAY"]: ("PLAY",),
-	KEYIDS["KEY_PLAYPAUSE"]: ("PLAYPAUSE",),
+	KEYIDS["KEY_PLAY"]: ("GREEN", "SHIFT"),
+	KEYIDS["KEY_PAUSE"]: ("YELLOW", "SHIFT"),
 	KEYIDS["KEY_POWER"]: ("POWER",),
 	KEYIDS["KEY_PREVIOUS"]: ("ARROWLEFT",),
-	KEYIDS["KEY_PREVIOUSSONG"]: ("PREVIOUSSONG",),
 	KEYIDS["KEY_PROGRAM"]: ("TIMER",),
 	KEYIDS["KEY_RADIO"]: ("RADIO",),
-	KEYIDS["KEY_RECORD"]: ("RECORD",),
+	KEYIDS["KEY_RECORD"]: ("RADIO", "SHIFT"),
 	KEYIDS["KEY_RED"]: ("RED",),
-	KEYIDS["KEY_REWIND"]: ("REWIND",),
+	KEYIDS["KEY_REWIND"]: ("RED", "SHIFT"),
 	KEYIDS["KEY_RIGHT"]: ("RIGHT",),
 	KEYIDS["KEY_SCREEN"]: ("SCREEN",),
 	KEYIDS["KEY_SEARCH"]: ("WWW",),
 	KEYIDS["KEY_SLEEP"]: ("SLEEP",),
-	KEYIDS["KEY_STOP"]: ("STOP",),
+	KEYIDS["KEY_STOP"]: ("TV", "SHIFT"),
 	KEYIDS["KEY_SUBTITLE"]: ("SUBTITLE",),
 	KEYIDS["KEY_TEXT"]: ("TEXT",),
 	KEYIDS["KEY_TV"]: ("TV",),
@@ -193,12 +191,14 @@ keyDescriptions = [{  # id=0 - dmm0 remote directory, DM8000.
 	KEYIDS["KEY_PREVIOUS"]: ("ARROWLEFT",),
 	KEYIDS["KEY_PREVIOUSSONG"]: ("PREVIOUSSONG",),
 	KEYIDS["KEY_PROGRAM"]: ("TIMER",),
+	KEYIDS["KEY_PVR"]: ("PVR",),
 	KEYIDS["KEY_QUESTION"]: ("ABOUT",),
 	KEYIDS["KEY_RADIO"]: ("RADIO",),
 	KEYIDS["KEY_RECORD"]: ("RECORD",),
 	KEYIDS["KEY_RED"]: ("RED",),
 	KEYIDS["KEY_REWIND"]: ("REWIND",),
 	KEYIDS["KEY_RIGHT"]: ("RIGHT",),
+	KEYIDS["KEY_SAT"]: ("SAT",),
 	KEYIDS["KEY_SCREEN"]: ("SCREEN",),
 	KEYIDS["KEY_SEARCH"]: ("WWW",),
 	KEYIDS["KEY_SETUP"]: ("SETUP",),
@@ -378,7 +378,7 @@ def getKeyDescription(key):
 			idx = 2
 	return keyDescriptions[idx].get(key)
 
-def getKeyBindingKeys(filterfn=lambda(key): True):
+def getKeyBindingKeys(filterfn=lambda key: True):
 	return filter(filterfn, keyBindings)
 
 # Remove all entries of domain "domain".
