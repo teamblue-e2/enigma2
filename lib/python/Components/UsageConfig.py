@@ -629,6 +629,7 @@ def InitUsageConfig():
 	if SystemInfo["HasBypassEdidChecking"]:
 		def setHasBypassEdidChecking(configElement):
 			open(SystemInfo["HasBypassEdidChecking"], "w").write("00000001" if configElement.value else "00000000")
+		config.av.osd_alpha = NoSave(ConfigNumber(default = 255))
 		config.av.bypassEdidChecking = ConfigYesNo(default=False)
 		config.av.bypassEdidChecking.addNotifier(setHasBypassEdidChecking)
 
