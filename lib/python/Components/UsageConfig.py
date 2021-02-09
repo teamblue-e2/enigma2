@@ -631,6 +631,7 @@ def InitUsageConfig():
 			open(SystemInfo["HasBypassEdidChecking"], "w").write("00000001" if configElement.value else "00000000")
 		config.av.bypassEdidChecking = ConfigYesNo(default=False)
 		config.av.bypassEdidChecking.addNotifier(setHasBypassEdidChecking)
+		config.av.osd_alpha = NoSave(ConfigNumber(default = 255))
 
 	if SystemInfo["HasColorspace"]:
 		def setHaveColorspace(configElement):
