@@ -1,5 +1,5 @@
 import time
-from os import chmod, access, remove, X_OK,system, popen,listdir
+from os import remove, rename, popen, listdir
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Standby import TryQuitMainloop
@@ -18,9 +18,6 @@ from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.FileList import MultiFileSelectList
 from Tools.Directories import fileExists
 from boxbranding import getMachineBrand, getMachineName, getBoxType
-from subprocess import call
-import commands
-import os
 import glob
 import sys
 
@@ -155,7 +152,7 @@ class NetworkNfs(Screen):
 			netz = popen('ip route show |grep "/" |cut -d " " -f 0').read().strip()
 			opt = "(sync,no_subtree_check,rw)"
 			i=0
-			z = os.listdir("/media")
+			z = listdir("/media")
 			h = open("/etc/exports","w")
 			while i < len(z):
 				if z[i] !="autofs" and z[i] !="net":
@@ -1832,10 +1829,13 @@ class uShareSelection(Screen):
 
 	def selectionChanged(self):
 		current = self["checkList"].getCurrent()[0]
-		if current[2] == True:
-			self["key_yellow"].setText(_("Deselect"))
-		else:
-			self["key_yellow"].setText(_("Select"))
+		try:
+			if current[2] == True:
+				self["key_yellow"].setText(_("Deselect"))
+			else:
+				self["key_yellow"].setText(_("Select"))
+		except:
+			pass
 
 	def up(self):
 		self["checkList"].up()
@@ -2303,10 +2303,13 @@ class MiniDLNASelection(Screen):
 
 	def selectionChanged(self):
 		current = self["checkList"].getCurrent()[0]
-		if current[2] == True:
-			self["key_yellow"].setText(_("Deselect"))
-		else:
-			self["key_yellow"].setText(_("Select"))
+		try:
+			if current[2] == True:
+				self["key_yellow"].setText(_("Deselect"))
+			else:
+				self["key_yellow"].setText(_("Select"))
+		except:
+			pass
 
 	def up(self):
 		self["checkList"].up()

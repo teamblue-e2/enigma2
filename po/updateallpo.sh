@@ -1,6 +1,6 @@
 #!/bin/bash
 # Script to generate po files outside of the normal build process
-#  
+#
 # Pre-requisite:
 # The following tools must be installed on your system and accessible from path
 # gawk, find, xgettext, sed, python, msguniq, msgmerge, msgattrib, msgfmt, msginit
@@ -39,14 +39,14 @@ if [[ "$OSTYPE" == "darwin"* ]]
 fi
 
 printf "Po files update/creation from script starting.\n"
-languages=($(gawk ' BEGIN { FS=" " } 
+languages=($(gawk ' BEGIN { FS=" " }
 		/^LANGS/ {
 			for (i=3; i<=NF; i++)
 				printf "%s ", $i
 		} ' Makefile.am ))
 
 # If you want to define the language locally in this script uncomment and defined languages
-#languages=("ar" "bg" "ca" "cs" "da" "de" "el" "en" "es" "et" "fa" "fi" "fr" "fy" "he" "hk" "hr" "hu" "id" "is" "it" "ku" "lt" "lv" "nl" "nb" "nn" "pl" "pt" "pt_BR" "ro" "ru" "sk" "sl" "sr" "sv" "th" "tr" "uk" "zh")
+languages=("ar" "bg" "ca" "cs" "da" "de" "el" "en" "es" "et" "fa" "fi" "fr" "fy" "gl" "he" "hk" "hr" "hu" "id" "is" "it" "ku" "lt" "lv" "nl" "nb" "nn" "pl" "pt" "pt_BR" "ro" "ru" "sk" "sl" "sr" "sv" "th" "tr" "uk" "zh")
 
 #
 # Arguments to generate the pot and po files are not retrieved from the Makefile.

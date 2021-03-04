@@ -378,7 +378,7 @@ void eHdmiCEC::hdmiEvent(int what)
 			{
 				eDebugNoNewLine(" %02X", rxmessage.data[i]);
 			}
-			eDebugEOL();
+			eDebugNoNewLine("\n");
 			bool hdmicec_report_active_menu = eConfigManager::getConfigBoolValue("config.hdmicec.report_active_menu", false);
 			if (hdmicec_report_active_menu)
 			{
@@ -387,6 +387,7 @@ void eHdmiCEC::hdmiEvent(int what)
 					case 0x44: /* key pressed */
 						keypressed = true;
 						pressedkey = rxmessage.data[1];
+						break;
 					case 0x45: /* key released */
 					{
 						long code = translateKey(pressedkey);
@@ -531,7 +532,7 @@ void eHdmiCEC::sendMessage(struct cec_message &message)
 		{
 			eDebugNoNewLine(" %02X", message.data[i]);
 		}
-		eDebugEOL();
+		eDebugNoNewLine("\n");
 		if (linuxCEC)
 		{
 			struct cec_msg msg;
@@ -546,7 +547,8 @@ void eHdmiCEC::sendMessage(struct cec_message &message)
 			message.flag = 1;
 			::ioctl(hdmiFd, 3, &message);
 #else
-			::write(hdmiFd, &message, 2 + message.length);
+			ssize_t ret = ::write(hdmiFd, &message, 2 + message.length);
+			if (ret < 0) eDebug("[eHdmiCEC] write failed: %m");
 #endif
 		}
 	}

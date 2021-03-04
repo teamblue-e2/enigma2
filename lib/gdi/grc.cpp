@@ -433,6 +433,8 @@ void gPainter::setPalette(gRGB *colors, int start, int len)
 {
 	if ( m_dc->islocked() )
 		return;
+	if (len <= 0)
+		return;
 	ASSERT(colors);
 	gOpcode o;
 	o.opcode=gOpcode::setPalette;
@@ -440,7 +442,7 @@ void gPainter::setPalette(gRGB *colors, int start, int len)
 	gPalette *p=new gPalette;
 
 	o.parm.setPalette = new gOpcode::para::psetPalette;
-	p->data=new gRGB[len];
+	p->data=new gRGB[static_cast<size_t>(len)];
 
 	memcpy(static_cast<void*>(p->data), colors, len*sizeof(gRGB));
 	p->start=start;
@@ -621,7 +623,7 @@ void gPainter::sendShow(ePoint point, eSize size) {
 	o.parm.setShowHideInfo = new gOpcode::para::psetShowHideInfo;
 	o.parm.setShowHideInfo->point = point;
 	o.parm.setShowHideInfo->size = size;
-	m_rc->submit(o); 
+	m_rc->submit(o);
 }
 
 void gPainter::sendHide(ePoint point, eSize size) {
@@ -633,7 +635,7 @@ void gPainter::sendHide(ePoint point, eSize size) {
 	o.parm.setShowHideInfo = new gOpcode::para::psetShowHideInfo;
 	o.parm.setShowHideInfo->point = point;
 	o.parm.setShowHideInfo->size = size;
-	m_rc->submit(o); 
+	m_rc->submit(o);
 }
 #endif
 

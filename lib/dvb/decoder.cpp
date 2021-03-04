@@ -21,6 +21,12 @@
 #ifndef AUDIO_SOURCE_HDMI
 #define AUDIO_SOURCE_HDMI 2
 #endif
+#ifndef AUDIO_GET_PTS
+#define AUDIO_GET_PTS _IOR('o', 19, __u64)
+#endif
+#ifndef VIDEO_GET_FRAME_RATE
+#define VIDEO_GET_FRAME_RATE _IOR('o', 56, unsigned int)
+#endif
 
 DEFINE_REF(eDVBAudio);
 
@@ -31,25 +37,23 @@ eDVBAudio::eDVBAudio(eDVBDemux *demux, int dev)
 	sprintf(filename, "/dev/dvb/adapter%d/audio%d", demux ? demux->adapter : 0, dev);
 	m_fd = ::open(filename, O_RDWR | O_CLOEXEC);
 	if (m_fd < 0)
-		eWarning("%s: %m", filename);
+		eWarning("[eDVBAudio] %s: %m", filename);
 	if (demux)
 	{
 		sprintf(filename, "/dev/dvb/adapter%d/demux%d", demux->adapter, demux->demux);
 		m_fd_demux = ::open(filename, O_RDWR | O_CLOEXEC);
 		if (m_fd_demux < 0)
-			eWarning("%s: %m", filename);
+			eWarning("[eDVBAudio] %s: %m", filename);
 	}
 	else
 	{
 		m_fd_demux = -1;
 	}
 
-#ifndef DREAMBOX
 	if (m_fd >= 0)
 	{
 		::ioctl(m_fd, AUDIO_SELECT_SOURCE, demux ? AUDIO_SOURCE_DEMUX : AUDIO_SOURCE_HDMI);
 	}
-#endif
 }
 
 int eDVBAudio::startPid(int pid, int type)
@@ -78,20 +82,20 @@ int eDVBAudio::startPid(int pid, int type)
 			break;
 		}
 		pes.flags    = 0;
-		eDebugNoNewLineStart("DMX_SET_PES_FILTER(0x%02x) - audio - ", pid);
+		eDebugNoNewLineStart("[eDVBAudio] DMX_SET_PES_FILTER(0x%02x) - audio - ", pid);
 		if (::ioctl(m_fd_demux, DMX_SET_PES_FILTER, &pes) < 0)
 		{
-			eDebugNoNewLineEnd("failed (%m)");
+			eDebugNoNewLine("failed (%m)");
 			return -errno;
 		}
-		eDebugNoNewLineEnd("ok");
-		eDebugNoNewLineStart("DEMUX_START - audio - ");
+		eDebugNoNewLine("ok");
+		eDebugNoNewLineStart("[eDVBAudio] DEMUX_START - audio - ");
 		if (::ioctl(m_fd_demux, DMX_START) < 0)
 		{
-			eDebugNoNewLineEnd("failed (%m)");
+			eDebugNoNewLine("failed (%m)");
 			return -errno;
 		}
-		eDebugNoNewLineEnd("ok");
+		eDebugNoNewLine("ok");
 	}
 
 	if (m_fd >= 0)
@@ -134,17 +138,17 @@ int eDVBAudio::startPid(int pid, int type)
 			break;
 		}
 
-		eDebugNoNewLineStart("AUDIO_SET_BYPASS(%d) - ", bypass);
+		eDebugNoNewLineStart("[eDVBAudio] AUDIO_SET_BYPASS(%d) - ", bypass);
 		if (::ioctl(m_fd, AUDIO_SET_BYPASS_MODE, bypass) < 0)
-			eDebugNoNewLineEnd("failed (%m)");
+			eDebugNoNewLine("failed (%m)");
 		else
-			eDebugNoNewLineEnd("ok");
+			eDebugNoNewLine("ok");
 		freeze();  // why freeze here?!? this is a problem when only a pid change is requested... because of the unfreeze logic in Decoder::setState
-		eDebugNoNewLineStart("AUDIO_PLAY - ");
+		eDebugNoNewLineStart("[eDVBAudio] AUDIO_PLAY - ");
 		if (::ioctl(m_fd, AUDIO_PLAY) < 0)
-			eDebugNoNewLineEnd("failed (%m)");
+			eDebugNoNewLine("failed (%m)");
 		else
-			eDebugNoNewLineEnd("ok");
+			eDebugNoNewLine("ok");
 	}
 	return 0;
 }
@@ -153,19 +157,19 @@ void eDVBAudio::stop()
 {
 	if (m_fd >= 0)
 	{
-		eDebugNoNewLineStart("AUDIO_STOP - ");
+		eDebugNoNewLineStart("[eDVBAudio] AUDIO_STOP - ");
 		if (::ioctl(m_fd, AUDIO_STOP) < 0)
-			eDebugNoNewLineEnd("failed (%m)");
+			eDebugNoNewLine("failed (%m)");
 		else
-			eDebugNoNewLineEnd("ok");
+			eDebugNoNewLine("ok");
 	}
 	if (m_fd_demux >= 0)
 	{
-		eDebugNoNewLineStart("DEMUX_STOP - audio - ");
+		eDebugNoNewLineStart("[eDVBAudio] DEMUX_STOP - audio - ");
 		if (::ioctl(m_fd_demux, DMX_STOP) < 0)
-			eDebugNoNewLineEnd("failed (%m)");
+			eDebugNoNewLine("failed (%m)");
 		else
-			eDebugNoNewLineEnd("ok");
+			eDebugNoNewLine("ok");
 	}
 }
 
@@ -173,11 +177,11 @@ void eDVBAudio::flush()
 {
 	if (m_fd >= 0)
 	{
-		eDebugNoNewLineStart("AUDIO_CLEAR_BUFFER - ");
+		eDebugNoNewLineStart("[eDVBAudio] AUDIO_CLEAR_BUFFER - ");
 		if (::ioctl(m_fd, AUDIO_CLEAR_BUFFER) < 0)
-			eDebugNoNewLineEnd("failed (%m)");
+			eDebugNoNewLine("failed (%m)");
 		else
-			eDebugNoNewLineEnd("ok");
+			eDebugNoNewLine("ok");
 	}
 }
 
@@ -185,11 +189,11 @@ void eDVBAudio::freeze()
 {
 	if (m_fd >= 0)
 	{
-		eDebugNoNewLineStart("AUDIO_PAUSE - ");
+		eDebugNoNewLineStart("[eDVBAudio] AUDIO_PAUSE - ");
 		if (::ioctl(m_fd, AUDIO_PAUSE) < 0)
-			eDebugNoNewLineEnd("failed (%m)");
+			eDebugNoNewLine("failed (%m)");
 		else
-			eDebugNoNewLineEnd("ok");
+			eDebugNoNewLine("ok");
 	}
 }
 
@@ -197,11 +201,11 @@ void eDVBAudio::unfreeze()
 {
 	if (m_fd >= 0)
 	{
-		eDebugNoNewLineStart("AUDIO_CONTINUE - ");
+		eDebugNoNewLineStart("[eDVBAudio] AUDIO_CONTINUE - ");
 		if (::ioctl(m_fd, AUDIO_CONTINUE) < 0)
-			eDebugNoNewLineEnd("failed (%m)");
+			eDebugNoNewLine("failed (%m)");
 		else
-			eDebugNoNewLineEnd("ok");
+			eDebugNoNewLine("ok");
 	}
 }
 
@@ -216,11 +220,11 @@ void eDVBAudio::setChannel(int channel)
 		case aMonoRight: val = AUDIO_MONO_RIGHT; break;
 		default: break;
 		}
-		eDebugNoNewLineStart("AUDIO_CHANNEL_SELECT(%d) - ", val);
+		eDebugNoNewLineStart("[eDVBAudio] AUDIO_CHANNEL_SELECT(%d) - ", val);
 		if (::ioctl(m_fd, AUDIO_CHANNEL_SELECT, val) < 0)
-			eDebugNoNewLineEnd("failed (%m)");
+			eDebugNoNewLine("failed (%m)");
 		else
-			eDebugNoNewLineEnd("ok");
+			eDebugNoNewLine("ok");
 	}
 }
 
@@ -229,7 +233,7 @@ int eDVBAudio::getPTS(pts_t &now)
 	if (m_fd >= 0)
 	{
 		if (::ioctl(m_fd, AUDIO_GET_PTS, &now) < 0)
-			eDebug("AUDIO_GET_PTS failed (%m)");
+			eDebug("[eDVBAudio] AUDIO_GET_PTS failed (%m)");
 	}
 	return 0;
 }
@@ -255,32 +259,31 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev)
 	sprintf(filename, "/dev/dvb/adapter%d/video%d", demux ? demux->adapter : 0, dev);
 	m_fd = ::open(filename, O_RDWR | O_CLOEXEC);
 	if (m_fd < 0)
-		eWarning("%s: %m", filename);
+		eWarning("[eDVBVideo] %s: %m", filename);
 	else
 	{
 		m_sn = eSocketNotifier::create(eApp, m_fd, eSocketNotifier::Priority);
 		CONNECT(m_sn->activated, eDVBVideo::video_event);
 	}
-	eDebug("Video Device: %s", filename);
+	eDebug("[eDVBAudio] Video Device: %s", filename);
 	if (demux)
 	{
 		sprintf(filename, "/dev/dvb/adapter%d/demux%d", demux->adapter, demux->demux);
 		m_fd_demux = ::open(filename, O_RDWR | O_CLOEXEC);
 		if (m_fd_demux < 0)
 			eWarning("%s: %m", filename);
-		eDebug("demux device: %s", filename);
+		eDebug("[eDVBVideo] demux device: %s", filename);
 	}
 	else
 	{
 		m_fd_demux = -1;
 	}
 
-#ifndef DREAMBOX
 	if (m_fd >= 0)
 	{
 		::ioctl(m_fd, VIDEO_SELECT_SOURCE, demux ? VIDEO_SOURCE_DEMUX : VIDEO_SOURCE_HDMI);
 	}
-#endif
+
 	if (m_close_invalidates_attributes < 0)
 	{
 		/*
@@ -345,11 +348,11 @@ int eDVBVideo::startPid(int pid, int type)
 			break;
 		}
 
-		eDebugNoNewLineStart("VIDEO_SET_STREAMTYPE %d - ", streamtype);
+		eDebugNoNewLineStart("[eDVBVideo] VIDEO_SET_STREAMTYPE %d - ", streamtype);
 		if (::ioctl(m_fd, VIDEO_SET_STREAMTYPE, streamtype) < 0)
-			eDebugNoNewLineEnd("failed (%m)");
+			eDebugNoNewLine("failed (%m)");
 		else
-			eDebugNoNewLineEnd("ok");
+			eDebugNoNewLine("ok");
 	}
 
 	if (m_fd_demux >= 0)
@@ -376,30 +379,30 @@ int eDVBVideo::startPid(int pid, int type)
 			break;
 		}
 		pes.flags    = 0;
-		eDebugNoNewLineStart("DMX_SET_PES_FILTER(0x%02x) - video - ", pid);
+		eDebugNoNewLineStart("[eDVBVideo] DMX_SET_PES_FILTER(0x%02x) - video - ", pid);
 		if (::ioctl(m_fd_demux, DMX_SET_PES_FILTER, &pes) < 0)
 		{
-			eDebugNoNewLineEnd("failed (%m)");
+			eDebugNoNewLine("failed (%m)");
 			return -errno;
 		}
-		eDebugNoNewLineEnd("ok");
-		eDebugNoNewLineStart("DEMUX_START - video - ");
+		eDebugNoNewLine("ok");
+		eDebugNoNewLineStart("[eDVBVideo] DEMUX_START - video - ");
 		if (::ioctl(m_fd_demux, DMX_START) < 0)
 		{
-			eDebugNoNewLineEnd("failed (%m)");
+			eDebugNoNewLine("failed (%m)");
 			return -errno;
 		}
-		eDebugNoNewLineEnd("ok");
+		eDebugNoNewLine("ok");
 	}
 
 	if (m_fd >= 0)
 	{
 		freeze();  // why freeze here?!? this is a problem when only a pid change is requested... because of the unfreeze logic in Decoder::setState
-		eDebugNoNewLineStart("VIDEO_PLAY - ");
+		eDebugNoNewLineStart("[eDVBVideo] VIDEO_PLAY - ");
 		if (::ioctl(m_fd, VIDEO_PLAY) < 0)
-			eDebugNoNewLineEnd("failed (%m)");
+			eDebugNoNewLine("failed (%m)");
 		else
-			eDebugNoNewLineEnd("ok");
+			eDebugNoNewLine("ok");
 	}
 	return 0;
 }
@@ -408,20 +411,20 @@ void eDVBVideo::stop()
 {
 	if (m_fd_demux >= 0)
 	{
-		eDebugNoNewLineStart("DEMUX_STOP - video - ");
+		eDebugNoNewLineStart("[eDVBVideo] DEMUX_STOP - video - ");
 		if (::ioctl(m_fd_demux, DMX_STOP) < 0)
-			eDebugNoNewLineEnd("failed (%m)");
+			eDebugNoNewLine("failed (%m)");
 		else
-			eDebugNoNewLineEnd("ok");
+			eDebugNoNewLine("ok");
 	}
 
 	if (m_fd >= 0)
 	{
-		eDebugNoNewLineStart("VIDEO_STOP - ");
+		eDebugNoNewLineStart("[eDVBVideo] VIDEO_STOP - ");
 		if (::ioctl(m_fd, VIDEO_STOP, 1) < 0)
-			eDebugNoNewLineEnd("failed (%m)");
+			eDebugNoNewLine("failed (%m)");
 		else
-			eDebugNoNewLineEnd("ok");
+			eDebugNoNewLine("ok");
 	}
 }
 
@@ -429,11 +432,11 @@ void eDVBVideo::flush()
 {
 	if (m_fd >= 0)
 	{
-		eDebugNoNewLineStart("VIDEO_CLEAR_BUFFER - ");
+		eDebugNoNewLineStart("[eDVBVideo] VIDEO_CLEAR_BUFFER - ");
 		if (::ioctl(m_fd, VIDEO_CLEAR_BUFFER) < 0)
-			eDebugNoNewLineEnd("failed (%m)");
+			eDebugNoNewLine("failed (%m)");
 		else
-			eDebugNoNewLineEnd("ok");
+			eDebugNoNewLine("ok");
 	}
 }
 
@@ -441,11 +444,11 @@ void eDVBVideo::freeze()
 {
 	if (m_fd >= 0)
 	{
-		eDebugNoNewLineStart("VIDEO_FREEZE - ");
+		eDebugNoNewLineStart("[eDVBVideo] VIDEO_FREEZE - ");
 		if (::ioctl(m_fd, VIDEO_FREEZE) < 0)
-			eDebugNoNewLineEnd("failed (%m)");
+			eDebugNoNewLine("failed (%m)");
 		else
-			eDebugNoNewLineEnd("ok");
+			eDebugNoNewLine("ok");
 	}
 }
 
@@ -453,11 +456,11 @@ void eDVBVideo::unfreeze()
 {
 	if (m_fd >= 0)
 	{
-		eDebugNoNewLineStart("VIDEO_CONTINUE - ");
+		eDebugNoNewLineStart("[eDVBVideo] VIDEO_CONTINUE - ");
 		if (::ioctl(m_fd, VIDEO_CONTINUE) < 0)
-			eDebugNoNewLineEnd("failed (%m)");
+			eDebugNoNewLine("failed (%m)");
 		else
-			eDebugNoNewLineEnd("ok");
+			eDebugNoNewLine("ok");
 	}
 }
 
@@ -465,12 +468,12 @@ int eDVBVideo::setSlowMotion(int repeat)
 {
 	if (m_fd >= 0)
 	{
-		eDebugNoNewLineStart("VIDEO_SLOWMOTION(%d) - ", repeat);
+		eDebugNoNewLineStart("[eDVBVideo] VIDEO_SLOWMOTION(%d) - ", repeat);
 		int ret = ::ioctl(m_fd, VIDEO_SLOWMOTION, repeat);
 		if (ret < 0)
-			eDebugNoNewLineEnd("failed(%m)");
+			eDebugNoNewLine("failed(%m)");
 		else
-			eDebugNoNewLineEnd("ok");
+			eDebugNoNewLine("ok");
 		return ret;
 	}
 	return 0;
@@ -480,12 +483,12 @@ int eDVBVideo::setFastForward(int skip)
 {
 	if (m_fd >= 0)
 	{
-		eDebugNoNewLineStart("VIDEO_FAST_FORWARD(%d) - ", skip);
+		eDebugNoNewLineStart("[eDVBVideo] VIDEO_FAST_FORWARD(%d) - ", skip);
 		int ret = ::ioctl(m_fd, VIDEO_FAST_FORWARD, skip);
 		if (ret < 0)
-			eDebugNoNewLineEnd("failed(%m)");
+			eDebugNoNewLine("failed(%m)");
 		else
-			eDebugNoNewLineEnd("ok");
+			eDebugNoNewLine("ok");
 		return ret;
 	}
 	return 0;
@@ -497,7 +500,7 @@ int eDVBVideo::getPTS(pts_t &now)
 	{
 		int ret = ::ioctl(m_fd, VIDEO_GET_PTS, &now);
 		if (ret < 0)
-			eDebug("VIDEO_GET_PTS failed(%m)");
+			eDebug("[eDVBVideo] VIDEO_GET_PTS failed(%m)");
 		return ret;
 	}
 	return 0;
@@ -523,15 +526,15 @@ void eDVBVideo::video_event(int)
 		if (retval < 0 && errno == EINTR) continue;
 		if (retval <= 0) break;
 		struct video_event evt;
-		eDebugNoNewLineStart("VIDEO_GET_EVENT - ");
+		eDebugNoNewLineStart("[eDVBVideo] VIDEO_GET_EVENT - ");
 		if (::ioctl(m_fd, VIDEO_GET_EVENT, &evt) < 0)
 		{
-			eDebugNoNewLineEnd("failed (%m)");
+			eDebugNoNewLine("failed (%m)");
 			break;
 		}
 		else
 		{
-			eDebugNoNewLineEnd("ok");
+			eDebugNoNewLine("ok");
 			if (evt.type == VIDEO_EVENT_SIZE_CHANGED)
 			{
 				struct iTSMPEGDecoder::videoEvent event;
@@ -571,7 +574,7 @@ void eDVBVideo::video_event(int)
 				/* emit */ m_event(event);
 			}
 			else
-				eDebugNoNewLineEnd("unhandled DVBAPI Video Event %d", evt.type);
+				eDebugNoNewLine("unhandled DVBAPI Video Event %d", evt.type);
 		}
 	}
 }
@@ -682,7 +685,7 @@ eDVBPCR::eDVBPCR(eDVBDemux *demux, int dev): m_demux(demux), m_dev(dev)
 	sprintf(filename, "/dev/dvb/adapter%d/demux%d", demux->adapter, demux->demux);
 	m_fd_demux = ::open(filename, O_RDWR | O_CLOEXEC);
 	if (m_fd_demux < 0)
-		eWarning("%s: %m", filename);
+		eWarning("[eDVBPCR] %s: %m", filename);
 }
 
 int eDVBPCR::startPid(int pid)
@@ -714,27 +717,27 @@ int eDVBPCR::startPid(int pid)
 	eDebugNoNewLineStart("DMX_SET_PES_FILTER(0x%02x) - pcr - ", pid);
 	if (::ioctl(m_fd_demux, DMX_SET_PES_FILTER, &pes) < 0)
 	{
-		eDebugNoNewLineEnd("failed (%m)");
+		eDebugNoNewLine("failed (%m)");
 		return -errno;
 	}
-	eDebugNoNewLineEnd("ok");
-	eDebugNoNewLineStart("DEMUX_START - pcr - ");
+	eDebugNoNewLine("ok");
+	eDebugNoNewLineStart("[eDVBPCR] DEMUX_START - pcr - ");
 	if (::ioctl(m_fd_demux, DMX_START) < 0)
 	{
-		eDebugNoNewLineEnd("failed (%m)");
+		eDebugNoNewLine("failed (%m)");
 		return -errno;
 	}
-	eDebugNoNewLineEnd("ok");
+	eDebugNoNewLine("ok");
 	return 0;
 }
 
 void eDVBPCR::stop()
 {
-	eDebugNoNewLineStart("DEMUX_STOP - pcr - ");
+	eDebugNoNewLineStart("[eDVBPCR] DEMUX_STOP - pcr - ");
 	if (::ioctl(m_fd_demux, DMX_STOP) < 0)
-		eDebugNoNewLineEnd("failed(%m)");
+		eDebugNoNewLine("failed(%m)");
 	else
-		eDebugNoNewLineEnd("ok");
+		eDebugNoNewLine("ok");
 }
 
 eDVBPCR::~eDVBPCR()
@@ -782,30 +785,30 @@ int eDVBTText::startPid(int pid)
 	}
 	pes.flags    = 0;
 
-	eDebugNoNewLineStart("DMX_SET_PES_FILTER(0x%02x) - ttx - ", pid);
+	eDebugNoNewLineStart("[eDVBText] DMX_SET_PES_FILTER(0x%02x) - ttx - ", pid);
 	if (::ioctl(m_fd_demux, DMX_SET_PES_FILTER, &pes) < 0)
 	{
-		eDebugNoNewLineEnd("failed(%m)");
+		eDebugNoNewLine("failed(%m)");
 		return -errno;
 	}
-	eDebugNoNewLineEnd("ok");
-	eDebugNoNewLineStart("DEMUX_START - ttx - ");
+	eDebugNoNewLine("ok");
+	eDebugNoNewLineStart("[eDVBText] DEMUX_START - ttx - ");
 	if (::ioctl(m_fd_demux, DMX_START) < 0)
 	{
-		eDebugNoNewLineEnd("failed(%m)");
+		eDebugNoNewLine("failed(%m)");
 		return -errno;
 	}
-	eDebugNoNewLineEnd("ok");
+	eDebugNoNewLine("ok");
 	return 0;
 }
 
 void eDVBTText::stop()
 {
-	eDebugNoNewLineStart("DEMUX_STOP - ttx - ");
+	eDebugNoNewLineStart("[eDVBText] DEMUX_STOP - ttx - ");
 	if (::ioctl(m_fd_demux, DMX_STOP) < 0)
-		eDebugNoNewLineEnd("failed(%m)");
+		eDebugNoNewLine("failed(%m)");
 	else
-		eDebugNoNewLineEnd("ok");
+		eDebugNoNewLine("ok");
 }
 
 eDVBTText::~eDVBTText()
@@ -1231,7 +1234,7 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 {
 	if (m_decoder == 0)
 	{
-		eDebug("showSinglePic %s", filename);
+		eDebug("[eTSMPEGDecoder] showSinglePic %s", filename);
 		int f = open(filename, O_RDONLY);
 		if (f >= 0)
 		{
@@ -1253,7 +1256,8 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 				unsigned char stuffing[8192];
 				int streamtype;
 				memset(stuffing, 0, sizeof(stuffing));
-				read(f, iframe, s.st_size);
+				ssize_t ret = read(f, iframe, s.st_size);
+				if (ret < 0) eDebug("[eTSMPEGDecoder] read failed: %m");
 				if (iframe[0] == 0x00 && iframe[1] == 0x00 && iframe[2] == 0x00 && iframe[3] == 0x01 && (iframe[4] & 0x0f) == 0x07)
 					streamtype = VIDEO_STREAMTYPE_MPEG4_H264;
 				else
@@ -1263,17 +1267,17 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 					eDebug("[eTSMPEGDecoder] VIDEO_SELECT_SOURCE MEMORY failed: %m");
 #else
 				if (ioctl(m_video_clip_fd, VIDEO_SELECT_SOURCE, VIDEO_SOURCE_MEMORY) < 0)
-					eDebug("VIDEO_SELECT_SOURCE MEMORY failed (%m)");
+					eDebug("[eTSMPEGDecoder] VIDEO_SELECT_SOURCE MEMORY failed (%m)");
 #endif
 				if (ioctl(m_video_clip_fd, VIDEO_SET_STREAMTYPE, streamtype) < 0)
-					eDebug("VIDEO_SET_STREAMTYPE failed(%m)");
+					eDebug("[eTSMPEGDecoder] VIDEO_SET_STREAMTYPE failed(%m)");
 				if (ioctl(m_video_clip_fd, VIDEO_PLAY) < 0)
-					eDebug("VIDEO_PLAY failed (%m)");
+					eDebug("[eTSMPEGDecoder] VIDEO_PLAY failed (%m)");
 				if (ioctl(m_video_clip_fd, VIDEO_CONTINUE) < 0)
-					eDebug("video: VIDEO_CONTINUE: %m");
+					eDebug("[eTSMPEGDecoder] VIDEO_CONTINUE: %m");
 				if (ioctl(m_video_clip_fd, VIDEO_CLEAR_BUFFER) < 0)
-					eDebug("video: VIDEO_CLEAR_BUFFER: %m");
-				while(pos <= (s.st_size-4) && !(seq_end_avail = (!iframe[pos] && !iframe[pos+1] && iframe[pos+2] == 1 && iframe[pos+3] == 0xB7)))
+					eDebug("[eTSMPEGDecoder] VIDEO_CLEAR_BUFFER: %m");
+				while(pos <= static_cast<size_t>(s.st_size-4) && !(seq_end_avail = (!iframe[pos] && !iframe[pos+1] && iframe[pos+2] == 1 && iframe[pos+3] == 0xB7)))
 					++pos;
 				if ((iframe[3] >> 4) != 0xE) // no pes header
 					writeAll(m_video_clip_fd, pes_header, sizeof(pes_header));
@@ -1281,7 +1285,10 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 					iframe[4] = iframe[5] = 0x00;
 				writeAll(m_video_clip_fd, iframe, s.st_size);
 				if (!seq_end_avail)
-					write(m_video_clip_fd, seq_end, sizeof(seq_end));
+				{
+					ret = write(m_video_clip_fd, seq_end, sizeof(seq_end));
+					if (ret < 0) eDebug("[eTSMPEGDecoder] write failed: %m");
+				}
 				writeAll(m_video_clip_fd, stuffing, 8192);
 #if HAVE_HISILICON
 				;
@@ -1293,13 +1300,13 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 		}
 		else
 		{
-			eDebug("couldnt open %s", filename);
+			eDebug("[eTSMPEGDecoder] couldnt open %s", filename);
 			return -1;
 		}
 	}
 	else
 	{
-		eDebug("only show single pics on first decoder");
+		eDebug("[eTSMPEGDecoder] only show single pics on first decoder");
 		return -1;
 	}
 	return 0;
@@ -1310,9 +1317,9 @@ void eTSMPEGDecoder::finishShowSinglePic()
 	if (m_video_clip_fd >= 0)
 	{
 		if (ioctl(m_video_clip_fd, VIDEO_STOP, 0) < 0)
-			eDebug("VIDEO_STOP failed (%m)");
+			eDebug("[eTSMPEGDecoder] VIDEO_STOP failed (%m)");
 		if (ioctl(m_video_clip_fd, VIDEO_SELECT_SOURCE, VIDEO_SOURCE_DEMUX) < 0)
-			eDebug("VIDEO_SELECT_SOURCE DEMUX failed (%m)");
+			eDebug("[eTSMPEGDecoder]VIDEO_SELECT_SOURCE DEMUX failed (%m)");
 		close(m_video_clip_fd);
 		m_video_clip_fd = -1;
 	}

@@ -43,6 +43,7 @@ protected:
 private:
 	iFilePushScatterGather *m_sg;
 	int m_stop;
+	bool m_stopped;
 	int m_fd_dest;
 	int m_send_pvr_commit;
 	int m_stream_mode;
@@ -77,7 +78,7 @@ public:
         void setProtocol(int i){ m_protocol = i;}
         void setSession(int se, int st) { m_session_id = se; m_stream_id = st;}
 	int read_dmx(int fd, void *m_buffer, int size);
-	int pushReply(void *buf, int len);	
+	int pushReply(void *buf, int len);
 	void sendEvent(int evt);
 	static int64_t getTick();
 	static int read_ts(int fd, unsigned char *buf, int size);
@@ -96,6 +97,7 @@ protected:
 	unsigned int m_overflow_count;
 private:
 	int m_stop;
+	bool m_stopped;
 	eFixedMessagePump<int> m_messagepump;
 	void recvEvent(const int &evt);
 	int m_protocol, m_session_id, m_stream_id, m_packet_no;

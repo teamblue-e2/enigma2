@@ -75,9 +75,9 @@ class FlashOnline(Screen):
 			for file in [x for x in files if os.path.splitext(x)[1] == ".zip" and box in x]:
 				try:
 					if checkimagefiles([x.split(os.sep)[-1] for x in zipfile.ZipFile(file).namelist()]):
-						imagetyp = _("Downloaded Images")
+						imagetyp = _("Downloaded images")
 						if 'backup' in file.split(os.sep)[-1]:
-							imagetyp = _("Fullbackup Images")
+							imagetyp = _("Fullbackup images")
 						if imagetyp not in self.imagesList:
 							self.imagesList[imagetyp] = {}
 						self.imagesList[imagetyp][file] = {'link': file, 'name': file.split(os.sep)[-1]}
@@ -183,7 +183,7 @@ class FlashOnline(Screen):
 	def keyDown(self):
 		self["list"].instance.moveSelection(self["list"].instance.moveDown)
 		self.selectionChanged()
-		
+
 class FlashImage(Screen):
 	skin = """<screen position="center,center" size="640,150" flags="wfNoBorder" backgroundColor="#54242424">
 		<widget name="header" position="5,10" size="e-10,50" font="Regular;40" backgroundColor="#54242424"/>
@@ -193,13 +193,14 @@ class FlashImage(Screen):
 
 	def __init__(self, session,  imagename, source):
 		Screen.__init__(self, session)
+		self.containerbackup = None
 		self.containerofgwrite = None
 		self.getImageList = None
 		self.downloader = None
 		self.source = source
 		self.imagename = imagename
 
-		self["header"] = Label(_("Backup settings"))
+		self["header"] = Label(_("Backup Settings"))
 		self["info"] = Label(_("Save settings and EPG data"))
 		self["summary_header"] = StaticText(self["header"].getText())
 		self["progress"] = ProgressBar()
@@ -315,17 +316,13 @@ class FlashImage(Screen):
 	def flashPostAction(self, retval = True):
 		if retval:
 			self.recordcheck = False
-#			title =_("Please select what to do after flashing the image:\n(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)")
-			title =_("Please select what to do.")
-# Will test that later
-#			choices = ((_("Upgrade (Backup, Flash & Restore All)"), "restoresettingsandallplugins"),
-#			(_("Clean (Just flash and start clean)"), "wizard"),
-#			(_("Backup, flash and restore settings and no plugins"), "restoresettingsnoplugin"),
-#			(_("Backup, flash and restore settings and selected plugins (ask user)"), "restoresettings"),
-#			(_("Do not flash image"), "abort"))
-			choices = ((_("Clean (Just flash and start clean)"), "wizard"),
-                        (_("Do not flash image"), "abort"))
-			self.session.openWithCallback(self.postFlashActionCallback, ChoiceBox,title=title,list=choices,selection=self.SelectPrevPostFlashAction())
+			title =_("Please select what to do after flashing the image:\n(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)")
+			choices = ((_("Upgrade (Backup, Flash & Restore All)"), "restoresettingsandallplugins"),
+			(_("Clean image"), "wizard"),
+			(_("Flash and restore settings"), "restoresettingsnoplugin"),
+			(_("Flash, restore settings and user selected plugins"), "restoresettings"),
+			(_("Abort"), "abort"))
+			self.session.openWithCallback(self.postFlashActionCallback, ChoiceBox, title=title, list=choices, selection=self.SelectPrevPostFlashAction())
 		else:
 			self.abort()
 
@@ -506,8 +503,8 @@ class FlashImage(Screen):
 		if imagefiles:
 			self.ROOTFSSUBDIR = "none"
 			if SystemInfo["canMultiBoot"]:
-				self.MTDKERNEL  = SystemInfo["canMultiBoot"][self.multibootslot]["kernel"].split('/')[2] 
-				self.MTDROOTFS  = SystemInfo["canMultiBoot"][self.multibootslot]["device"].split('/')[2] 
+				self.MTDKERNEL  = SystemInfo["canMultiBoot"][self.multibootslot]["kernel"].split('/')[2]
+				self.MTDROOTFS  = SystemInfo["canMultiBoot"][self.multibootslot]["device"].split('/')[2]
 				if SystemInfo["HasRootSubdir"]:
 					self.ROOTFSSUBDIR = SystemInfo["canMultiBoot"][self.multibootslot]['rootsubdir']
 			else:
@@ -536,7 +533,7 @@ class FlashImage(Screen):
 			self.session.openWithCallback(self.abort, MessageBox, _("Flashing image was not successful\n%s") % self.imagename, type=MessageBox.TYPE_ERROR, simple=True)
 
 	def abort(self, reply=None):
-		if self.getImageList:
+		if self.getImageList or self.containerofgwrite:
 			return 0
 		if self.downloader:
 			self.downloader.stop()
@@ -547,7 +544,7 @@ class FlashImage(Screen):
 		if self["header"].text == _("Flashing image successful"):
 			if SystemInfo["canMultiBoot"]:
 				self.session.openWithCallback(self.abort, MultiBootSelector)
-			else:		
+			else:
 				self.close()
 		else:
 			return 0

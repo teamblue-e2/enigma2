@@ -1,6 +1,3 @@
-import os
-import time
-
 import Screens.Standby
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.ConfigList import ConfigList, ConfigListScreen
@@ -436,7 +433,7 @@ class CiSelection(Screen):
 		if SystemInfo["CI%dSupportsHighBitrates" % slot]:
 			self.list.append(getConfigListEntry(_("High bitrate support"), config.ci[slot].canHandleHighBitrates, 3, slot))
 		if SystemInfo["CI%dRelevantPidsRoutingSupport" % slot]:
-			self.list.append(getConfigListEntry(_("Relevant PIDs routing"), config.ci[slot].relevantPidsRouting, 3, slot))
+			self.list.append(getConfigListEntry(_("PID Filtering"), config.ci[slot].relevantPidsRouting, 3, slot))
 		if SystemInfo["CommonInterfaceCIDelay"]:
 			self.list.append(getConfigListEntry(_("DVB CI Delay"), config.cimisc.dvbCiDelay, 3, slot))
 
@@ -524,7 +521,7 @@ class PermanentPinEntry(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Enter PIN"), NoSave(self.pin1)))
 		self.list.append(getConfigListEntry(_("Reenter PIN"), NoSave(self.pin2)))
 		ConfigListScreen.__init__(self, self.list)
-		
+
 		self["actions"] = NumberActionMap(["DirectionActions", "ColorActions", "OkCancelActions"],
 		{
 			"cancel": self.cancel,

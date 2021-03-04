@@ -5,7 +5,7 @@ from enigma import ePicLoad, getDesktop
 from os import listdir
 from os.path import dirname, exists, isdir, join as pathjoin
 
-from skin import DEFAULT_SKIN, DEFAULT_DISPLAY_SKIN, EMERGENCY_NAME, EMERGENCY_SKIN, currentDisplaySkin, currentPrimarySkin, domScreens
+from skin import DEFAULT_SKIN, DEFAULT_DISPLAY_SKIN, EMERGENCY_NAME, EMERGENCY_SKIN, currentDisplaySkin, currentPrimarySkin, currentClockSkin, domScreens, DISPLAY_SKIN_ID, loadSkin
 from Components.ActionMap import HelpableNumberActionMap
 from Components.config import config
 from Components.Pixmap import Pixmap
@@ -15,11 +15,11 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop, QUIT_RESTART
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_LCDSKIN, SCOPE_SKIN
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_LCDSKIN, SCOPE_SKIN, SCOPE_CURRENT_LCDSKIN
 
 
 class SkinSelector(Screen, HelpableScreen):
-	skinTemplate = """
+	skin = ["""
 	<screen name="SkinSelector" position="center,center" size="%d,%d">
 		<widget name="preview" position="center,%d" size="%d,%d" alphatest="blend" />
 		<widget source="skins" render="Listbox" position="center,%d" size="%d,%d" enableWrapAround="1" scrollbarMode="showOnDemand">
@@ -37,8 +37,7 @@ class SkinSelector(Screen, HelpableScreen):
 		<widget source="description" render="Label" position="center,e-%d" size="%d,%d" font="Regular;%d" valign="center" />
 		<widget source="key_red" render="Label" position="%d,e-%d" size="%d,%d" backgroundColor="key_red" font="Regular;%d" foregroundColor="key_text" halign="center" valign="center" />
 		<widget source="key_green" render="Label" position="%d,e-%d" size="%d,%d" backgroundColor="key_green" font="Regular;%d" foregroundColor="key_text" halign="center" valign="center" />
-	</screen>"""
-	scaleData = [
+	</screen>""",
 		670, 570,
 		10, 356, 200,
 		230, 650, 240,
@@ -50,19 +49,12 @@ class SkinSelector(Screen, HelpableScreen):
 		10, 50, 140, 40, 20,
 		160, 50, 140, 40, 20
 	]
-	skin = None
 
 	def __init__(self, session, screenTitle=_("GUI Skin")):
-		Screen.__init__(self, session)
+		Screen.__init__(self, session, mandatoryWidgets=["description", "skins"])
 		HelpableScreen.__init__(self)
 
 		element = domScreens.get("SkinSelector", (None, None))[0]
-		if element and 'introduction' in [widget.get('source', None) for widget in element.findall("widget")]:
-			#screen from loaded skin is  not compatible so remove the screen
-			del domScreens["SkinSelector"]
-		if SkinSelector.skin is None or "SkinSelector" not in domScreens:
-			# The skin template is designed for a HD screen so the scaling factor is 720.
-			SkinSelector.skin = SkinSelector.skinTemplate % tuple([x * getDesktop(0).size().height() / 720 for x in SkinSelector.scaleData])
 		Screen.setTitle(self, screenTitle)
 		self.rootDir = resolveFilename(SCOPE_SKIN)
 		self.config = config.skin.primary_skin
@@ -115,20 +107,23 @@ class SkinSelector(Screen, HelpableScreen):
 				if exists(skinPath):
 					resolution = None
 					if skinFile == "skin.xml":
-						with open(skinPath, "r") as fd:
-							resolutions = {
-								"480": _("NTSC"),
-								"576": _("PAL"),
-								"720": _("HD"),
-								"1080": _("FHD"),
-								"2160": _("4K"),
-								"4320": _("8K"),
-								"8640": _("16K")
-							}
-							mm = mmap.mmap(fd.fileno(), 0, prot=mmap.PROT_READ)
-							skinheight = re.search("\<?resolution.*?\syres\s*=\s*\"(\d+)\"", mm).group(1)
-							resolution = skinheight and resolutions.get(skinheight, None)
-							mm.close()
+						try:
+							with open(skinPath, "r") as fd:
+								resolutions = {
+									"480": _("NTSC"),
+									"576": _("PAL"),
+									"720": _("HD"),
+									"1080": _("FHD"),
+									"2160": _("4K"),
+									"4320": _("8K"),
+									"8640": _("16K")
+								}
+								mm = mmap.mmap(fd.fileno(), 0, prot=mmap.PROT_READ)
+								skinheight = re.search("\<?resolution.*?\syres\s*=\s*\"(\d+)\"", mm).group(1)
+								resolution = skinheight and resolutions.get(skinheight, None)
+								mm.close()
+						except:
+							pass
 						print("[SkinSelector] Resolution of skin '%s': '%s'." % (skinPath, "Unknown" if resolution is None else resolution))
 						# Code can be added here to reject unsupported resolutions.
 					# The "piconprev.png" image should be "prevpicon.png" to keep it with its partner preview image.
@@ -240,10 +235,127 @@ class LcdSkinSelector(SkinSelector):
 	def __init__(self, session, screenTitle=_("Display Skin")):
 		SkinSelector.__init__(self, session, screenTitle=screenTitle)
 		self.skinName = ["LcdSkinSelector", "SkinSelector"]
-		self.rootDir = resolveFilename(SCOPE_LCDSKIN)
+		self.rootDir = resolveFilename(SCOPE_LCDSKIN, "lcd_skin/")
 		self.config = config.skin.display_skin
 		self.current = currentDisplaySkin
-		self.xmlList = ["skin_display.xml", "skin_display_picon.xml"]
+		self.xmlList = []
+		from os.path import walk
+		walk(self.rootDir, self.find, "")
+
+	def find(self, arg, dirname, names):
+		for x in names:
+			if x.startswith("skin_lcd") and x.endswith(".xml"):
+				if dirname <> self.rootDir:
+					subdir = dirname[19:]
+					skinname = x
+					#skinname = skinname
+					self.xmlList.append(skinname)
+				else:
+					skinname = x
+					self.xmlList.append(skinname)
+
+	def refreshList(self):
+		default = _("Default")
+		current = _("Current")
+		pending = _("Pending restart")
+		skinList = []
+		# Find and list the available skins...
+		previewPath = self.rootDir
+		dir = "lcd_skin/"
+		for skinFile in self.xmlList:
+			skin = "lcd_skin/" + skinFile
+			skinPath = pathjoin(self.rootDir, skinFile)
+			if exists(skinPath):
+				resolution = skinFile.replace(".xml", "").replace("skin_lcd_", "").replace("_"," ").capitalize()
+				preview = pathjoin(previewPath, skinFile.replace(".xml", "_prev.png") or "prev.png")
+				if skin == DEFAULT_DISPLAY_SKIN:
+					list = [default, default, dir, skin, resolution, preview]
+				else:
+					list = [skinFile.replace(".xml", "").replace("skin_lcd_", ""), "", dir, skin, resolution, preview]
+				if skin == self.current:
+					list[1] = current
+				elif skin == self.config.value:
+					list[1] = pending
+				list.append("%s (%s)" % (list[0], list[1]) if list[1] else list[0])
+				if list[1]:
+					list[1] = "<%s>" % list[1]
+				#0=SortKey, 1=Label, 2=Flag, 3=Directory, 4=Skin, 5=Resolution, 6=Preview, 7=Label + Flag
+				skinList.append(tuple([list[0].replace("_"," ").capitalize()] + list))
+		skinList.sort()
+		self["skins"].setList(skinList)
+		# Set the list pointer to the current skin...
+		for index in range(len(skinList)):
+			if skinList[index][4] == self.config.value:
+				self["skins"].setIndex(index)
+				break
+		self.loadPreview()
+
+class ClockSkinSelector(SkinSelector):
+	def __init__(self, session, screenTitle=_("Clock Skin")):
+		SkinSelector.__init__(self, session, screenTitle=screenTitle)
+		self.skinName = ["ClockSkinSelector", "SkinSelector"]
+		self.rootDir = resolveFilename(SCOPE_LCDSKIN, "lcd_skin/")
+		self.config = config.skin.clock_skin
+		self.current = currentClockSkin
+		self.xmlList = []
+		from os.path import walk
+		walk(self.rootDir, self.find, "")
+
+	def find(self, arg, dirname, names):
+		for x in names:
+			if x.startswith("clock_lcd") and x.endswith(".xml"):
+				if dirname <> self.rootDir:
+					subdir = dirname[19:]
+					skinname = x
+					#skinname = skinname
+					self.xmlList.append(skinname)
+				else:
+					skinname = x
+					self.xmlList.append(skinname)
+
+	def refreshList(self):
+		default = _("Default")
+		current = _("Current")
+		pending = _("Pending restart")
+		skinList = []
+		# Find and list the available skins...
+		previewPath = self.rootDir
+		dir = "lcd_skin/"
+		for skinFile in self.xmlList:
+			skin = dir + skinFile
+			skinPath = pathjoin(self.rootDir, skinFile)
+			if exists(skinPath):
+				resolution = skinFile.replace(".xml", "").replace("clock_lcd_", "").replace("_"," ").capitalize()
+				preview = pathjoin(previewPath, skinFile.replace(".xml", "_prev.png") or "prev.png")
+				if skin == DEFAULT_DISPLAY_SKIN:
+					list = [default, default, dir, skin, resolution, preview]
+				else:
+					list = [skinFile.replace(".xml", "").replace("clock_lcd_", ""), "", dir, skin, resolution, preview]
+				if skin == self.current:
+					list[1] = current
+				elif skin == self.config.value:
+					list[1] = pending
+				list.append("%s (%s)" % (list[0], list[1]) if list[1] else list[0])
+				if list[1]:
+					list[1] = "<%s>" % list[1]
+				#0=SortKey, 1=Label, 2=Flag, 3=Directory, 4=Skin, 5=Resolution, 6=Preview, 7=Label + Flag
+				skinList.append(tuple([list[0].replace("_"," ").capitalize()] + list))
+		skinList.sort()
+		self["skins"].setList(skinList)
+		# Set the list pointer to the current skin...
+		for index in range(len(skinList)):
+			if skinList[index][4] == self.config.value:
+				self["skins"].setIndex(index)
+				break
+		self.loadPreview()
+
+	def save(self):
+		label, skin = self.currentSelectedSkin[1], self.currentSelectedSkin[4]
+		print("[SkinSelector] Selected skin: '%s' (Pending skin '%s' cancelled!)" % (pathjoin(self.rootDir, skin), pathjoin(self.rootDir, self.config.value)))
+		self.config.value = skin
+		self.config.save()
+		loadSkin(skin, scope=SCOPE_CURRENT_LCDSKIN, desktop=getDesktop(DISPLAY_SKIN_ID), screenID=DISPLAY_SKIN_ID)
+		self.cancel()
 
 class SkinSelectorSummary(Screen):
 	def __init__(self, session, parent):

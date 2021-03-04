@@ -1,5 +1,5 @@
 from Components.Harddisk import harddiskmanager
-from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, ConfigSelectionNumber, ConfigClock, ConfigSlider, ConfigEnableDisable, ConfigSubDict, ConfigDictionarySet, ConfigInteger, ConfigPassword
+from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, ConfigSelectionNumber, ConfigClock, ConfigSlider, ConfigEnableDisable, ConfigSubDict, ConfigDictionarySet, ConfigInteger, ConfigPassword, ConfigBoolean
 from Tools.Directories import defaultRecordingLocation
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, eEnv, eDVBDB, Misc_Options, eBackgroundFileEraser, eServiceEvent
 from Components.NimManager import nimmanager
@@ -26,6 +26,8 @@ def InitUsageConfig():
 
 	config.usage = ConfigSubsection()
 	config.usage.showdish = ConfigYesNo(default = False)
+	config.usage.shutdownOK = ConfigBoolean(default = True)
+	config.usage.shutdownNOK_action = ConfigSelection(default = "normal", choices = [("normal", _("just boot")), ("standby", _("goto standby")), ("deepstandby", _("goto deep-standby"))])
 	config.usage.subnetwork = ConfigYesNo(default = True)
 	config.usage.subnetwork_cable = ConfigYesNo(default = True)
 	config.usage.subnetwork_terrestrial = ConfigYesNo(default = True)
@@ -38,7 +40,7 @@ def InitUsageConfig():
 		refreshServiceList()
 	config.usage.alternative_number_mode.addNotifier(alternativeNumberModeChange)
 
-	config.usage.servicelist_twolines = ConfigYesNo(default = False)
+	config.usage.servicelist_twolines = ConfigSelection(default = "0", choices = [("0", _("Single line mode")), ("1", _("Two lines")), ("2", _("Two lines and next event"))])
 	config.usage.servicelist_twolines.addNotifier(refreshServiceList)
 
 	config.usage.hide_number_markers = ConfigYesNo(default = True)
@@ -75,6 +77,7 @@ def InitUsageConfig():
 
 	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
 	config.usage.e1like_radio_mode = ConfigYesNo(default = True)
+	config.usage.e1like_radio_mode_last_play = ConfigYesNo(default = True)
 	choicelist = [("0", _("No timeout"))]
 	for i in range(1, 12):
 		choicelist.append((str(i), ngettext("%d second", "%d seconds", i) % i))
@@ -97,10 +100,7 @@ def InitUsageConfig():
 	config.usage.menu_sort_weight = ConfigDictionarySet(default = { "mainmenu" : {"submenu" : {} }})
 	config.usage.menu_sort_mode = ConfigSelection(default = "default", choices = [("a_z", _("alphabetical")), ("default", _("Default")), ("user", _("user defined")), ("user_hidden", _("user defined hidden"))])
 	config.usage.menu_show_numbers = ConfigSelection(default = "no", choices = [("no", _("no")), ("menu&plugins", _("in menu and plugins")), ("menu", _("in menu only")), ("plugins", _("in plugins only"))])
-	config.usage.menu_path = ConfigSelection(default = "off", choices = [
-		("off", _("Disabled")),
-		("small", _("Small")),
-		("large", _("Large")),])
+	config.usage.showScreenPath = ConfigSelection(default="small", choices=[("off", _("Disabled")), ("small", _("Small")), ("large", _("Large"))])
 	config.usage.sort_settings = ConfigYesNo(default = False)
 	config.usage.sort_pluginlist = ConfigYesNo(default = True)
 	config.usage.enable_tt_caching = ConfigYesNo(default = True)
@@ -306,10 +306,10 @@ def InitUsageConfig():
 	atsc_nims.insert(1,("-1", _("auto")))
 	config.usage.recording_frontend_priority_atsc = ConfigSelection(default = "-2", choices = atsc_nims)
 
-	SystemInfo["DVB-S_priority_tuner_available"] = len(dvbs_nims) > 1
-	SystemInfo["DVB-T_priority_tuner_available"] = len(dvbt_nims) > 1
-	SystemInfo["DVB-C_priority_tuner_available"] = len(dvbc_nims) > 1
-	SystemInfo["ATSC_priority_tuner_available"] = len(atsc_nims) > 1
+	SystemInfo["DVB-S_priority_tuner_available"] = len(dvbs_nims) > 3 and any(len(i) > 2 for i in (dvbt_nims, dvbc_nims, atsc_nims))
+	SystemInfo["DVB-T_priority_tuner_available"] = len(dvbt_nims) > 3 and any(len(i) > 2 for i in (dvbs_nims, dvbc_nims, atsc_nims))
+	SystemInfo["DVB-C_priority_tuner_available"] = len(dvbc_nims) > 3 and any(len(i) > 2 for i in (dvbs_nims, dvbt_nims, atsc_nims))
+	SystemInfo["ATSC_priority_tuner_available"] = len(atsc_nims) > 3 and any(len(i) > 2 for i in (dvbs_nims, dvbc_nims, dvbt_nims))
 
 	config.misc.disable_background_scan = ConfigYesNo(default = False)
 	config.misc.use_ci_assignment = ConfigYesNo(default = False)
@@ -772,7 +772,7 @@ def InitUsageConfig():
 		("nor", _("Norwegian")),
 		("fas per fa pes", _("Persian")),
 		("pol", _("Polish")),
-		("por dub Dub DUB ud1", _("Portuguese")),		
+		("por dub Dub DUB ud1", _("Portuguese")),
 		("ron rum", _("Romanian")),
 		("rus", _("Russian")),
 		("srp", _("Serbian")),

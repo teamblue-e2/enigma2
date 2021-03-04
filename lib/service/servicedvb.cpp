@@ -369,7 +369,7 @@ RESULT eStaticServiceDVBPVRInformation::getName(const eServiceReference &ref, st
 			std::size_t dash2 = name.find(" - ", 16, 3);
 			if (dash2 != std::string::npos)
 			{
-				struct tm stm = {0};
+				struct tm stm{};
 				if (strptime(name.c_str(), "%Y%m%d %H%M", &stm) != NULL)
 				{
 					m_parser.m_time_create = mktime(&stm);
@@ -1008,7 +1008,7 @@ RESULT eServiceFactoryDVB::lookupService(ePtr<eDVBService> &service, const eServ
 		int err;
 		if ((err = eDVBDB::getInstance()->getService((eServiceReferenceDVB&)ref, service)) != 0)
 		{
-//			eDebug("[eServiceFactoryDVB] lookupService getService failed!");
+			eTrace("[eServiceFactoryDVB] lookupService getService failed!");
 			return err;
 		}
 	}
@@ -3574,7 +3574,7 @@ void eDVBServicePlay::newDVBSubtitlePage(const eDVBSubtitlePage &p)
 
 		// Where subtitles are delivered out of sync with video, only treat subtitles in the past as having bad timing.
 		// Those that are delivered too early are cached for displaying at the appropriate later time
-		// Note that this can be due to buggy drivers, as well as problems with the broadcast 
+		// Note that this can be due to buggy drivers, as well as problems with the broadcast
 		if (pos-p.m_show_time > 1800000 && (m_is_pvr || m_timeshift_enabled))
 		{
 			// Subtitles delivered over 20 seconds too late

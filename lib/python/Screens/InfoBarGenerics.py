@@ -111,6 +111,7 @@ def saveResumePoints():
 	try:
 		f = open('/etc/enigma2/resumepoints.pkl', 'wb')
 		cPickle.dump(resumePointCache, f, cPickle.HIGHEST_PROTOCOL)
+		f.close()
 	except Exception, ex:
 		print "[InfoBar] Failed to write resumepoints:", ex
 	resumePointCacheLast = int(time())
@@ -764,7 +765,7 @@ class InfoBarChannelSelection:
 		else:
 			self.session.open(MessageBox, _("The Zap-History Browser plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
-			
+
 	def openDeviceManager(self):
 		if fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/DeviceManager/plugin.pyo"):
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
@@ -773,7 +774,7 @@ class InfoBarChannelSelection:
 					break
 		else:
 			self.session.open(MessageBox, _("The Device Manager plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
-			
+
 	def openAroraPlugins(self):
 		if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WebBrowser/plugin.pyo"):
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EVENTINFO]):
@@ -801,6 +802,7 @@ class InfoBarChannelSelection:
 			self.servicelist.zap()
 
 	def firstRun(self):
+		self.servicelist.setMode()
 		self.onShown.remove(self.firstRun)
 		config.misc.initialchannelselection.value = False
 		config.misc.initialchannelselection.save()
@@ -822,7 +824,7 @@ class InfoBarChannelSelection:
 
 	def openBouquetList(self):
 		self.servicelist.showFavourites()
-		self.session.execDialog(self.servicelist)	
+		self.session.execDialog(self.servicelist)
 
 	def keyUpCheck(self):
 		if config.usage.oldstyle_zap_controls.value:
@@ -980,6 +982,10 @@ class InfoBarChannelSelection:
 
 	def openFavouritesList(self):
 		self.servicelist.showFavourites()
+		self.openServiceList()
+
+	def openSatellitesList(self):
+		self.servicelist.showSatellites()
 		self.openServiceList()
 
 	def openServiceList(self):
@@ -1583,8 +1589,9 @@ class InfoBarSeek:
 
 		if pauseable is not None:
 			if self.seekstate[0]:
-				print "resolved to PAUSE"
-				pauseable.pause()
+				if self.seekstate[3] == "||":
+					print "resolved to PAUSE"
+					pauseable.pause()
 			elif self.seekstate[1]:
 				if not pauseable.setFastForward(self.seekstate[1]):
 					print "resolved to FAST FORWARD"
@@ -3161,7 +3168,7 @@ class InfoBarNotifications:
 					reload_whitelist_vbi()
 				if "epg" in config.usage.remote_fallback_import.value:
 					eEPGCache.getInstance().load()
-				if not(n[4].endswith("NOK") and config.usage.remote_fallback_nok.value or config.usage.remote_fallback_ok.value):
+				if config.misc.initialchannelselection.value or not(config.usage.remote_fallback_import.value and (n[4].endswith("NOK") and config.usage.remote_fallback_nok.value or config.usage.remote_fallback_ok.value)):
 					return
 
 			if cb:
@@ -3755,6 +3762,6 @@ class InfoBarHDMI:
 				elif isStandardInfoBar(self):
 					self.session.nav.playService(slist.servicelist.getCurrent())
 				else:
-					self.session.nav.playService(self.cur_service)  
+					self.session.nav.playService(self.cur_service)
 		else:
 			pass

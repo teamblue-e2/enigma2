@@ -25,7 +25,7 @@ def getMBbootdevice():
 		rmdir(Imagemount)
 
 def getparam(line, param):
-	return line.rsplit("%s=" % param, 1)[1].split(" ", 1)[0]
+	return line.replace("userdataroot", "rootuserdata").rsplit('%s=' % param, 1)[1].split(' ', 1)[0]
 
 def getMultibootslots():
 	bootslots = {}
@@ -184,7 +184,11 @@ class GetImagelist():
 						date = max(date, datetime.fromtimestamp(stat(path.join(imagedir, "usr/bin/enigma2")).st_mtime).strftime("%Y-%m-%d"))
 					except Exception:
 						date = _("Unknown")
-					BuildVersion = "%s (%s)" % (open(path.join(imagedir, "etc/issue")).readlines()[-2].capitalize().strip()[:-6], date)
+					try:
+						reader = boxbranding_reader(imagedir)
+						BuildVersion = "%s - %s (%s)" % (open(path.join(imagedir, "etc/issue")).readlines()[-2].capitalize().strip()[:-6], reader.getImageType(), date)
+					except Exception:
+						BuildVersion = "%s (%s)" % (open(path.join(imagedir, "etc/issue")).readlines()[-2].capitalize().strip()[:-6], date)
 				self.imagelist[self.slot] = {"imagename": "%s" % BuildVersion}
 			else:
 				self.imagelist[self.slot] = {"imagename": _("Empty slot")}

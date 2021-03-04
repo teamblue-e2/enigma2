@@ -236,6 +236,7 @@ static inline unsigned int doVideoTexSuppl(int c1, int c2)
 				case 0x45: return 274;				case 0x65: return 275;
 				case 0x49: return 298;				case 0x69: return 299;
 				case 0x4f: return 332;				case 0x6f: return 333;
+				default: return 0;
 			}
 		case 0xC6: // breve
 			switch (c2)
@@ -444,9 +445,9 @@ std::string GEOSTD8ToUTF8(const char *szIn, int len, int *pconvertedLen)
 		if ((unsigned char)szIn[i] == 0x10)
 			continue;
 		// no GEOSTD8 chars. drop it
-		if ((unsigned char)szIn[i] >= 0x80 && (unsigned char)szIn[i] < 0xA0 ||
+		if (((unsigned char)szIn[i] >= 0x80 && (unsigned char)szIn[i] < 0xA0) ||
 			(unsigned char)szIn[i] == 0xC6 ||
-			(unsigned char)szIn[i] >= 0xC8 && (unsigned char)szIn[i] <= 0xCC ||
+			((unsigned char)szIn[i] >= 0xC8 && (unsigned char)szIn[i] <= 0xCC) ||
 			(unsigned char)szIn[i] == 0xCE || (unsigned char)szIn[i] == 0xCF)
 			continue;
 
@@ -455,7 +456,7 @@ std::string GEOSTD8ToUTF8(const char *szIn, int len, int *pconvertedLen)
 			szOut += prefix1; j=j+2;
 			szOut += szIn[i]; j++;
 		}
-		else if ((unsigned char)szIn[i] >= 0xC0 && (unsigned char)szIn[i] <= 0xFF)
+		else if ((unsigned char)szIn[i] >= 0xC0)
 		{
 			szOut += prefix2; j=j+2;
 			szOut += (unsigned char)(int(szIn[i])-0x40);j++;
@@ -515,13 +516,13 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 			if (table != 11)
 				table = data[i] + 4;
 			++i;
-			// eDebug("[convertDVBUTF8] (1..11)text encoded in ISO-8859-%d", table);
+			eTrace("[convertDVBUTF8] (1..11)text encoded in ISO-8859-%d", table);
 			break;
 		case ISO8859_xx:
 		{
 			int n = data[++i] << 8;
 			n |= (data[++i]);
-			// eDebug("[convertDVBUTF8] (0x10)text encoded in ISO-8859-%d", n);
+			eTrace("[convertDVBUTF8] (0x10)text encoded in ISO-8859-%d", n);
 			++i;
 			switch(n)
 			{
@@ -595,7 +596,7 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 	bool useTwoCharMapping = !table || (tsidonid && encodingHandler.getTransponderUseTwoCharMapping(tsidonid));
 
 	if (useTwoCharMapping && table == 5) { // i hope this dont break other transponders which realy use ISO8859-5 and two char byte mapping...
-//		eDebug("[convertDVBUTF8] Cyfra / Cyfrowy Polsat HACK... override given ISO8859-5 with ISO6937");
+		eTrace("[convertDVBUTF8] Cyfra / Cyfrowy Polsat HACK... override given ISO8859-5 with ISO6937");
 		table = 0;
 	}
 	else if ( table == -1 )
@@ -693,13 +694,17 @@ std::string convertDVBUTF8(const unsigned char *data, int len, int table, int ts
 	if (pconvertedLen)
 		*pconvertedLen = convertedLen;
 
-	//if (convertedLen < len)
-	//	eDebug("[convertDVBUTF8] %d chars converted, and %d chars left..", convertedLen, len-convertedLen);
+	if (convertedLen < len)
+		eTrace("[convertDVBUTF8] %d chars converted, and %d chars left..", convertedLen, len-convertedLen);
+	eTrace("[convertDVBUTF8] table=0x%02X twochar=%d output:%s\n", table, useTwoCharMapping, output.c_str());
 
-	//eDebug("[convertDVBUTF8] table=0x%02X twochar=%d output:%s\n", table, useTwoCharMapping, output.c_str());
-
-// Remove any Start/End of Selected Area markers *now*...
-	return buildShortName(output);
+	eTrace("[convertDVBUTF8] table=0x%02X tsid:onid=0x%X:0x%X data[0..14]=%s   output:%s\n",
+		table, (unsigned int)tsidonid >> 16, tsidonid & 0xFFFFU,
+		string_to_hex(std::string((char*)data, len < 15 ? len : 15)).c_str(),
+		output.c_str());
+	// replace EIT CR/LF with standard newline:
+	output = replace_all(replace_all(output, "\xC2\x8A", "\n"), "\xEE\x82\x8A", "\n");
+	return output;
 }
 
 std::string convertUTF8DVB(const std::string &string, int table)
@@ -827,8 +832,8 @@ unsigned int truncateUTF8(std::string &s, unsigned int newsize)
 
 	if (len > idx){
 		while (idx > 0) {
-			if (!s.at(idx) & 0x80 || (s.at(idx) & 0xc0) == 0xc0){
-				if (!s.at(idx) & 0x80)
+			if (!(s.at(idx) & 0x80) || (s.at(idx) & 0xc0) == 0xc0){
+				if (!(s.at(idx) & 0x80))
 					idx++;
 				else if ((s.at(idx) & 0xF8) == 0xf0 && n == 3)
 					idx += n + 1;
@@ -900,13 +905,14 @@ std::string replace_all(const std::string &in, const std::string &entity, const 
 				loc += symbol.length();
 				continue;
 			}
-			if (out.at(loc) < 0x80)
+			unsigned char c = static_cast<unsigned char>(out.at(loc));
+			if (c < 0x80)
 				++loc;
-			else if ((out.at(loc) & 0xE0) == 0xC0)
+			else if ((c & 0xE0) == 0xC0)
 				loc += 2;
-			else if ((out.at(loc) & 0xF0) == 0xE0)
+			else if ((c & 0xF0) == 0xE0)
 				loc += 3;
-			else if ((out.at(loc) & 0xF8) == 0xF0)
+			else if ((c & 0xF8) == 0xF0)
 				loc += 4;
 		}
 		break;

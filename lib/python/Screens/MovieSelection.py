@@ -901,7 +901,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			NavigationInstance.instance.RecordTimer.on_state_change.remove(self.list.updateRecordings)
 		except Exception, e:
 			print "[ML] failed to unsubscribe:", e
-			pass
 
 	def createSummary(self):
 		return MovieSelectionSummary
@@ -1664,11 +1663,19 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		serviceref = ServiceReference(None, reftype = eServiceReference.idDVB, path = filepath)
 		name = info.getName(item[0]) + ' - decoded'
 		description = info.getInfoString(item[0], iServiceInformation.sDescription)
-		recording = RecordTimer.RecordTimerEntry(serviceref, int(time.time()), int(time.time()) + 3600, name, description, 0, dirname = preferredTimerPath())
+		begin = int(time.time())
+		recording = RecordTimer.RecordTimerEntry(serviceref, begin, begin + 3600, name, description, 0, dirname = preferredTimerPath())
 		recording.dontSave = True
 		recording.autoincrease = True
 		recording.setAutoincreaseEnd()
+		new_eit_name = recording.calculateFilename(name)
 		self.session.nav.RecordTimer.record(recording, ignoreTSC = True)
+		self.copy_eit_file(filepath[:-3] + ".eit", new_eit_name + ".eit")
+
+	def copy_eit_file(self, original_eit, new_eit):
+		if os.path.isfile(original_eit):
+			from shutil import copy2
+			copy2(original_eit, new_eit)
 
 	def renameCallback(self, newname):
 		if not newname:

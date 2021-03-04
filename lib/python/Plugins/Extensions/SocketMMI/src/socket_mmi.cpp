@@ -239,7 +239,7 @@ void eSocketMMIHandler::connDataAvail(int what)
 			eDebugNoNewLineStart("Put to buffer:");
 			for (int i=0; i < len; ++i)
 				eDebugNoNewLine("%02x ", data[i]);
-			eDebugEOL();
+			eDebugNoNewLine("\n--------\n");
 #endif
 			buffer.write( data, len );
 
@@ -272,7 +272,7 @@ void eSocketMMIHandler::connDataAvail(int what)
 					eDebugNoNewLineStart("dump mmi:");
 					for (int i=0; i < messageLength; ++i)
 						eDebugNoNewLine("%02x ", dest[i]);
-					eDebugEOL();
+					eDebugNoNewLine("\n--------\n");
 #endif
 					/*emit*/ mmi_progress(0, dest, (const void*)(dest+3+LengthBytes), messageLength-3-LengthBytes);
 				}
@@ -428,7 +428,7 @@ socketmmi_get_name(PyObject *self, PyObject *args)
 }
 
 static PyMethodDef module_methods[] = {
-	{"getSocketStateChangedCallbackList", (PyCFunction)socketmmi_get_socket_state_changed_cb_list, METH_NOARGS,
+	{"getSocketStateChangedCallbackList", (PyCFunction)(void *)socketmmi_get_socket_state_changed_cb_list, METH_NOARGS,
 	 "get socket state change callback list"
 	},
 	{"setInit", (PyCFunction)socketmmi_set_init, METH_VARARGS,

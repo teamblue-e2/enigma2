@@ -2,14 +2,14 @@
 # Script to generate po files outside of the normal build process
 # Author: Pr2 for OpenPLi Team
 # Version: 1.3
-# 
+#
 # This script is derivated from updateallpo.sh it is intended to all you
 # create the updated version of the po files on different environment:
 # For Windows, please download and install the following program:
 # Python:
 # https://www.python.org/
 # GitForWindows:
-# https://gitforwindows.org/ 
+# https://gitforwindows.org/
 #
 # Pre-requisite for Windows:
 # -> install python on your PC
@@ -46,7 +46,7 @@ delete=1
 
 function this_help () {
 	printf "Possible options are:\n"
-	printf " -r | --remote to specify the remote git to use,   default[origin]\n" 
+	printf " -r | --remote to specify the remote git to use,   default[origin]\n"
 	printf " -b | --branch to specify the branch to translate, default[develop]\n"
 	printf " -p | --python to specify the python runtime name, default[python]\n"
 	printf " -n | --nodelete to keep the .pot files, useful to find where a message came from\n"
@@ -164,14 +164,14 @@ git checkout -B MyTranslation
 # Retrieve languages from Makefile.am LANGS variable for backward compatibility
 #
 printf "Po files update/creation from script starting.\n"
-languages=($(gawk ' BEGIN { FS=" " } 
+languages=($(gawk ' BEGIN { FS=" " }
 		/^LANGS/ {
 			for (i=3; i<=NF; i++)
 				printf "%s ", $i
 		} ' Makefile.am ))
 
 # If you want to define the language locally in this script uncomment and defined languages
-#languages=("ar" "bg" "ca" "cs" "da" "de" "el" "en" "es" "et" "fa" "fi" "fr" "fy" "he" "hk" "hr" "hu" "id" "is" "it" "ku" "lt" "lv" "nl" "nb" "nn" "pl" "pt" "pt_BR" "ro" "ru" "sk" "sl" "sr" "sv" "th" "tr" "uk" "zh")
+#languages=("ar" "bg" "ca" "cs" "da" "de" "el" "en" "es" "et" "fa" "fi" "fr" "fy" "gl" "he" "hk" "hr" "hu" "id" "is" "it" "ku" "lt" "lv" "nl" "nb" "nn" "pl" "pt" "pt_BR" "ro" "ru" "sk" "sl" "sr" "sv" "th" "tr" "uk" "zh")
 
 #
 # Arguments to generate the pot and po files are not retrieved from the Makefile.
