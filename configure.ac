@@ -403,6 +403,7 @@ CXXFLAGS="$CXXFLAGS -Wall -Wextra -Werror \
 	-Wstringop-overflow=3 -Woverlength-strings \
 	-Wunsafe-loop-optimizations -Wpointer-arith \
 	-Wfloat-equal -Wlogical-op \
+	-Wcast-align=strict -Wcast-function-type -Wstringop-truncation \
 	-Wno-error=cast-align=strict -Wno-error=ignored-qualifiers \
 	-Wno-error=cast-function-type \
 	-Wno-error=stringop-truncation -Wno-error=shadow -Wno-error=cast-qual \
