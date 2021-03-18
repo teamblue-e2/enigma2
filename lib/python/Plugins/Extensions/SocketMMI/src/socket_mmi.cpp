@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
+#include <Python.h>
 
 #include <lib/base/ebase.h>
 #include <lib/base/init.h>
@@ -215,7 +216,7 @@ void eSocketMMIHandler::connDataAvail(int what)
 			name = new char[length + 1];
 			memcpy(name, &msgbuffer[4], length);
 			name[length] = '\0';
-			eDebug("MMI NAME %s", name);
+			eDebug("[eSocketMMIHandler] MMI NAME %s", name);
 		} else {
 			int len = length;
 			unsigned char *data = (unsigned char*)msgbuffer;
@@ -232,7 +233,7 @@ void eSocketMMIHandler::connDataAvail(int what)
 			{
 				buffer.clear();
 #ifdef MMIDEBUG
-				eDebug("clear buffer");
+				eDebug("[eSocketMMIHandler] clear buffer");
 #endif
 			}
 #ifdef MMIDEBUG
@@ -251,7 +252,7 @@ void eSocketMMIHandler::connDataAvail(int what)
 				{
 					buffer.skip(1);
 #ifdef MMIDEBUG
-					eDebug("skip %02x", tmp[0]);
+					eDebug("[eSocketMMIHandler] skip %02x", tmp[0]);
 #endif
 					continue;
 				}
@@ -269,7 +270,7 @@ void eSocketMMIHandler::connDataAvail(int what)
 					unsigned char dest[messageLength];
 					buffer.read(dest, messageLength);
 #ifdef MMIDEBUG
-					eDebugNoNewLineStart("dump mmi:");
+					eDebugNoNewLineStart("[eSocketMMIHandler] dump mmi:");
 					for (int i=0; i < messageLength; ++i)
 						eDebugNoNewLine("%02x ", dest[i]);
 					eDebugNoNewLine("\n--------\n");
@@ -281,7 +282,7 @@ void eSocketMMIHandler::connDataAvail(int what)
 	}
 
 	if (what & (POLLERR | POLLHUP)) {
-		eDebug("pollhup/pollerr");
+		eDebug("[eSocketMMIHandler] pollhup/pollerr");
 		closeConn();
 		/*emit*/ mmi_progress(0, (const unsigned char*)"\x9f\x88\x00", "\x00", 1);
 	}
@@ -482,17 +483,18 @@ static PyMethodDef module_methods[] = {
 		NULL,													/* m_clear */
 		NULL,													/* m_free */
 	};
-#endif
 
+PyMODINIT_FUNC PyInit_socketmmi(void)
+{
+    return PyModule_Create(&moduledef);
+}
 
+#else
 PyMODINIT_FUNC
 initsocketmmi(void)
 {
-#if PY_MAJOR_VERSION >= 3
-	PyModule_Create(&moduledef);
-#else
 	Py_InitModule3("socketmmi", module_methods,
 		"Module that implements mmi via unix domain socket.");
-#endif
 }
+#endif
 };
