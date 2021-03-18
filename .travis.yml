@@ -1,32 +1,41 @@
 language: cpp
 
+sudo: required
 dist: bionic
 os: linux
 
-addons:
-  apt:
-    packages:
-    - linux-libc-dev
-    - git
-    - build-essential
-    - automake
-    - libtool
-    - python-dev
-    - zlib1g-dev
-    - gettext
-    - swig
-    - libgstreamer1.0-dev
-    - libgstreamer-plugins-base1.0-dev
-    - libfreetype6-dev
-    - libsigc++-2.0-dev
-    - libfribidi-dev
-    - libssl-dev
-    - libavahi-client-dev
-    - libjpeg-turbo8-dev
-    - libgif-dev
-
-jobs:
+matrix:
   include:
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-8
+            - linux-libc-dev
+            - git
+            - build-essential
+            - automake
+            - libtool
+            - python3.8-dev
+            - zlib1g-dev
+            - gettext
+            - swig
+            - libgstreamer1.0-dev
+            - libgstreamer-plugins-base1.0-dev
+            - libfreetype6-dev
+            - libsigc++-2.0-dev
+            - libfribidi-dev
+            - libssl-dev
+            - libavahi-client-dev
+            - libjpeg-turbo8-dev
+            - libgif-dev
+      env:
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8 && PYTHON=3.8"
+      before_install:
+        - pyenv global 3.8
+        - pip3 install --upgrade pip tox six
     - os: linux
       addons:
         apt:
@@ -54,6 +63,36 @@ jobs:
             - libgif-dev
       env:
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-10
+            - linux-libc-dev
+            - git
+            - build-essential
+            - automake
+            - libtool
+            - python3.8-dev
+            - zlib1g-dev
+            - gettext
+            - swig
+            - libgstreamer1.0-dev
+            - libgstreamer-plugins-base1.0-dev
+            - libfreetype6-dev
+            - libsigc++-2.0-dev
+            - libfribidi-dev
+            - libssl-dev
+            - libavahi-client-dev
+            - libjpeg-turbo8-dev
+            - libgif-dev
+      env:
+        - MATRIX_EVAL="CC=gcc-10 && CXX=g++-10 && PYTHON=3.8"
+      before_install:
+        - pyenv global 3.8
+        - pip3 install --upgrade pip tox six
     - os: linux
       addons:
         apt:
