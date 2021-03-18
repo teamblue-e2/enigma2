@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import absolute_import
 import os
 import time
 from enigma import iPlayableService, eTimer, eServiceCenter, iServiceInformation, ePicLoad
@@ -26,7 +27,6 @@ from Tools.Directories import fileExists, resolveFilename, SCOPE_CONFIG, SCOPE_P
 from Tools.BoundFunction import boundFunction
 from settings import MediaPlayerSettings
 import random
-from six.moves import range
 
 class MyPlayList(PlayList):
 	def __init__(self):
@@ -300,7 +300,10 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		if self.mediaPlayerInfoBar.shown:
 			self.timerHideMediaPlayerInfoBar()
 		else:
-			self.session.openWithCallback(self.exitCallback, MessageBox, _("Exit media player?"), simple = not self.shown)
+			if (config.mediaplayer.confirmClose.value):
+				self.session.openWithCallback(self.exitCallback, MessageBox, _("Exit media player?"), simple = not self.shown)
+			else:
+				self.exitCallback(True)
 
 	def exitCallback(self, answer):
 		if answer:
@@ -780,7 +783,9 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 				if recursive:
 					if x[0][0] != directory:
 						self.copyDirectory(x[0][0])
-			elif filelist.getServiceRef() and filelist.getServiceRef().type == 4097:
+			elif filelist.getServiceRef() and filelist.getServiceRef().type in (1, 4097):
+				self.playlist.addFile(x[0][0])
+			elif x[0][0] and x[0][0].type == 1:
 				self.playlist.addFile(x[0][0])
 		self.playlist.updateList()
 
@@ -897,7 +902,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 
 	def playServiceRefEntry(self, serviceref):
 		serviceRefList = self.playlist.getServiceRefList()
-		for count in range(len(serviceRefList)):
+		for count in list(range(len(serviceRefList))):
 			if serviceRefList[count] == serviceref:
 				self.changeEntry(count)
 				break

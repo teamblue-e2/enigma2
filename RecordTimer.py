@@ -885,9 +885,10 @@ class RecordTimer(timer.Timer):
 				# If we want to keep done timers, re-insert in the active list
 				if config.recording.keep_timers.value > 0 and w not in self.processed_timers:
 					insort(self.processed_timers, w)
+					self.saveTimer()
 
 		self.stateChanged(w)
-	
+
 	def isRecTimerWakeup(self):
 		return wasRecTimerWakeup
 

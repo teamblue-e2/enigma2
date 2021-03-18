@@ -1,3 +1,4 @@
+from __future__ import print_function
 
 from boxbranding import getMachineBrand, getMachineName
 from Screens.Screen import Screen
@@ -242,19 +243,15 @@ class Wizard(Screen):
 		self["VirtualKB"].setEnabled(False)
 
 	def red(self):
-		print("red")
 		pass
 
 	def green(self):
-		print("green")
 		pass
 
 	def yellow(self):
-		print("yellow")
 		pass
 
 	def blue(self):
-		print("blue")
 		pass
 
 	def deleteForward(self):

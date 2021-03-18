@@ -414,13 +414,11 @@ class eDVBFrontendParametersATSC;
 
 class iDVBFrontendParameters: public iObject
 {
-#ifdef SWIG
 public:
+#ifdef SWIG
 	iDVBFrontendParameters();
 	~iDVBFrontendParameters();
-private:
 #endif
-public:
 	enum { flagOnlyFree = 1 };
 	virtual SWIG_VOID(RESULT) getSystem(int &SWIG_OUTPUT) const = 0;
 	virtual SWIG_VOID(RESULT) getDVBS(eDVBFrontendParametersSatellite &SWIG_OUTPUT) const = 0;
@@ -465,7 +463,7 @@ public:
 	enum { feSatellite, feCable, feTerrestrial, feATSC };
 	enum { stateIdle, stateTuning, stateFailed, stateLock, stateLostLock, stateClosed };
 	enum { toneOff, toneOn };
-	enum { voltageOff, voltage13, voltage18, voltage13_5, voltage18_5 };
+	enum { voltageOff, voltage13, voltage18, voltage13_5, voltage18_5, voltage5_terrestrial };
 };
 
 class iDVBFrontendStatus:  public iDVBFrontend_ENUMS, public iObject
@@ -543,7 +541,7 @@ public:
 	virtual RESULT getData(int num, long &data)=0;
 	virtual RESULT setData(int num, long val)=0;
 		/* 0 means: not compatible. other values are a priority. */
-	virtual int isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm)=0;
+	virtual int isCompatibleWith(ePtr<iDVBFrontendParameters> &feparm, bool is_configured_sat = false)=0;
 #endif
 	virtual bool setDeliverySystem(const char *type)=0;
 };
@@ -557,6 +555,8 @@ public:
 	virtual void prepareTurnOffSatCR(iDVBFrontend &frontend)=0;
 	virtual int canTune(const eDVBFrontendParametersSatellite &feparm, iDVBFrontend *fe, int frontend_id, int *highest_score_lnb=0)=0;
 	virtual void setRotorMoving(int slotid, bool)=0;
+	virtual RESULT resetAdvancedsatposdependsRoot(int link)=0;
+	virtual bool isOrbitalPositionConfigured(int orbital_position)=0;
 };
 
 struct eDVBCIRouting

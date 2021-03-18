@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from Screens.Screen import Screen
 from Screens.Setup import getConfigMenuItem, Setup
 from Screens.InputBox import PinInput
@@ -14,7 +15,6 @@ from Components.SystemInfo import SystemInfo
 from Components.VolumeControl import VolumeControl
 
 from enigma import iPlayableService, eTimer, eSize, eDVBDB, eServiceReference, eServiceCenter, iServiceInformation
-from six.moves import range
 
 FOCUS_CONFIG, FOCUS_STREAMS = list(range(2))
 [PAGE_AUDIO, PAGE_SUBTITLES] = ["audio", "subtitles"]
@@ -107,7 +107,7 @@ class AudioSelection(Screen, ConfigListScreen):
 					conflist.append(('',))
 					self["key_green"].setBoolean(False)
 				selectedAudio = self.audioTracks.getCurrentTrack()
-				for x in range(n):
+				for x in list(range(n)):
 					number = str(x + 1)
 					i = audio.getTrackInfo(x)
 					languages = i.getLanguage().split('/')
@@ -251,11 +251,11 @@ class AudioSelection(Screen, ConfigListScreen):
 		if SystemInfo["CanDownmixAAC"]:
 			config.av.downmix_aac.value = config.av.downmix_ac3.value
 			config.av.downmix_aac.save()
-			
+
 	def setAC3plusTranscode(self, transcode):
 		config.av.transcode_ac3plus.setValue(transcode)
 		config.av.transcode_ac3plus.save()
-		
+
 	def setAACTranscode(self, transcode):
 		config.av.transcode_aac.setValue(transcode)
 		config.av.transcode_aac.save()

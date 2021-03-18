@@ -1,4 +1,5 @@
-
+from __future__ import print_function
+from __future__ import absolute_import
 import NavigationInstance
 from time import localtime, mktime, gmtime, time
 from enigma import iServiceInformation, eServiceCenter, eServiceReference, getBestPlayableServiceReference
@@ -9,7 +10,6 @@ from Components.config import config
 
 from Tools.CIHelper import cihelper
 from Components.config import config
-from six.moves import range
 
 class TimerSanityCheck:
 	def __init__(self, timerlist, newtimer=None):
@@ -137,7 +137,7 @@ class TimerSanityCheck:
 			weeks = (interval_end - offset_0) / 604800
 			if (interval_end - offset_0) % 604800:
 				weeks += 1
-			for cnt in range(int(weeks)):
+			for cnt in list(range(int(weeks))):
 				for event in self.rep_eventlist:
 					if event[1] == -1: # -1 is the identifier of the changed timer
 						event_begin = self.newtimer.begin

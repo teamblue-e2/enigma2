@@ -18,7 +18,7 @@
 		<!-- pick a funky name for the font, so we don't conflict  -->
 		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
 		<font filename="/usr/share/fonts/lcd.ttf" name="LCD" scale="100"/>
-		<font filename="/usr/share/enigma2/GigabluePax/fonts/OpenSans-Regular.ttf" name="RegularLCD" scale="95"/>
+		<font filename="/usr/share/enigma2/GigabluePaxV2/fonts/OpenSans-Regular.ttf" name="RegularLCD" scale="95"/>
 	</fonts>
 
 <!-- template -->
@@ -39,7 +39,7 @@
 		<widget source="session.Event_Now" render="Label" position="0,145" size="110,25" font="RegularLCD; 25" foregroundColor="#F78181" >
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">FOLLOW</convert>
-		</widget>		
+		</widget>
 		<widget source="session.Event_Now" render="Progress" position="115,150" size="105,24" borderWidth="2" >
 			<convert type="EventTime">Progress</convert>
 		</widget>

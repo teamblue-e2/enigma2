@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Plugins.Plugin import PluginDescriptor
 
 from Screens.Screen import Screen
@@ -14,7 +15,6 @@ from Screens.HelpMenu import HelpableScreen
 from Components.Sources.List import List
 
 import bisect
-from six.moves import range
 
 def CutListEntry(where, what):
 	w = where / 90
@@ -269,7 +269,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 
 		l1 = len(new_list)
 		l2 = len(self.last_cuts)
-		for i in range(min(l1, l2)):
+		for i in list(range(min(l1, l2))):
 			if new_list[l1-i-1] != self.last_cuts[l2-i-1]:
 				self["cutlist"].setIndex(l1-i-1)
 				break

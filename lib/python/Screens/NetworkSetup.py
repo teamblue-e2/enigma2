@@ -1,12 +1,12 @@
+from __future__ import print_function
 
-import os
 import subprocess
+from os import path, unlink, system
 import string
 from random import Random
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.HelpMenu import HelpableScreen
-from Components.About import about
 from Components.Network import iNetwork
 from Components.Sources.StaticText import StaticText
 from Components.Sources.Boolean import Boolean
@@ -36,6 +36,7 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 		self.edittext = _("Press OK to edit the settings.")
 		self.defaulttext = _("Press yellow to set this interface as default interface.")
 		self.restartLanRef = None
+
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Select"))
 		self["key_yellow"] = StaticText("")
@@ -127,10 +128,10 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 			self["introduction"].setText(self.edittext)
 			self["DefaultInterfaceAction"].setEnabled(False)
 
-		if num_configured_if < 2 and os.path.exists("/etc/default_gw"):
-			os.unlink("/etc/default_gw")
+		if num_configured_if < 2 and path.exists("/etc/default_gw"):
+			unlink("/etc/default_gw")
 
-		if os.path.exists("/etc/default_gw"):
+		if path.exists("/etc/default_gw"):
 			fp = file('/etc/default_gw', 'r')
 			result = fp.read()
 			fp.close()
@@ -147,7 +148,7 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 				active_int = False
 			self.list.append(self.buildInterfaceList(x[1],_(x[0]),default_int,active_int ))
 
-		if os.path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
+		if path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			self["key_blue"].setText(_("Network wizard"))
 		self["list"].setList(self.list)
 
@@ -156,7 +157,7 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 		num_if = len(self.list)
 		old_default_gw = None
 		num_configured_if = len(iNetwork.getConfiguredAdapters())
-		if os.path.exists("/etc/default_gw"):
+		if path.exists("/etc/default_gw"):
 			fp = open('/etc/default_gw', 'r')
 			old_default_gw = fp.read()
 			fp.close()
@@ -166,7 +167,7 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 			fp.close()
 			self.restartLan()
 		elif old_default_gw and num_configured_if < 2:
-			os.unlink("/etc/default_gw")
+			unlink("/etc/default_gw")
 			self.restartLan()
 
 	def okbuttonClick(self):
@@ -203,7 +204,7 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 			self.session.open(MessageBox, _("Finished configuring your network"), type = MessageBox.TYPE_INFO, timeout = 10, default = False)
 
 	def openNetworkWizard(self):
-		if os.path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
+		if path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			try:
 				from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
 			except ImportError:
@@ -351,9 +352,9 @@ class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 		f.write(MAC)
 		f.close()
 		route = subprocess.getoutput("route -n |grep UG | awk '{print $2}'")
-		os.system('ifconfig eth0 down')
-		os.system('ifconfig eth0 hw ether %s up' % MAC)
-		os.system('route add default gw %s eth0' % route)
+		system('ifconfig eth0 down')
+		system('ifconfig eth0 hw ether %s up' % MAC)
+		system('route add default gw %s eth0' % route)
 		self.close()
 
 	def run(self):
@@ -361,7 +362,7 @@ class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 
 	def cancel(self):
 		self.close()
-		
+
 class IPv6Setup(Screen, ConfigListScreen, HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -394,7 +395,7 @@ class IPv6Setup(Screen, ConfigListScreen, HelpableScreen):
 
 		self.list = []
 		ConfigListScreen.__init__(self, self.list)
-		
+
 		fp = open('/proc/sys/net/ipv6/conf/all/disable_ipv6', 'r')
 		old_ipv6 = fp.read()
 		fp.close()
@@ -481,7 +482,7 @@ class IPv6Setup(Screen, ConfigListScreen, HelpableScreen):
 			f.close()
 		else:
 			fp.write("0")
-			os.system("rm -R "+ipv6)
+			system("rm -R "+ipv6)
 		fp.close()
 		self.restoreinetdData()
 		self.close()
@@ -589,7 +590,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		else:
 			self["Gateway"].setText("")
 			self["Gatewaytext"].setText("")
-		self["Adapter"].setText( "/dev/" + self.iface + ": " + iNetwork.getFriendlyAdapterDescription(self.iface))
+		self["Adapter"].setText(iNetwork.getFriendlyAdapterName(self.iface))
 
 	def createConfig(self):
 		self.InterfaceEntry = None
@@ -612,7 +613,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.encryptionlist.append(("Unencrypted", _("Unencrypted")))
 			self.encryptionlist.append(("WEP", _("WEP")))
 			self.encryptionlist.append(("WPA", _("WPA")))
-			if not os.path.exists("/tmp/bcm/" + self.iface):
+			if not path.exists("/tmp/bcm/" + self.iface):
 				self.encryptionlist.append(("WPA/WPA2", _("WPA or WPA2")))
 			self.encryptionlist.append(("WPA2", _("WPA2")))
 			self.weplist = []
@@ -676,7 +677,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 						self.extended = callFnc
 						if "configStrings" in p.__call__:
 							self.configStrings = p.__call__["configStrings"]
-						isExistBcmWifi = os.path.exists("/tmp/bcm/" + self.iface)
+						isExistBcmWifi = path.exists("/tmp/bcm/" + self.iface)
 						if not isExistBcmWifi:
 							self.hiddenSSID = getConfigListEntry(_("Hidden network"), config.plugins.wlan.hiddenessid)
 							self.list.append(self.hiddenSSID)
@@ -744,7 +745,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			gwinfo = _("Gateway") + ":\t" + _("enabled") + " ("  + _("automatic from DHCP") +")"
 		if self.hasGatewayConfigEntry.value == True:
 			if self.dhcpConfigEntry.value == False:
-				gwinfo = _("Gateway") + ":\t" + '%s.%s.%s.%s'% tuple(self.gatewayConfigEntry.value)	
+				gwinfo = _("Gateway") + ":\t" + '%s.%s.%s.%s'% tuple(self.gatewayConfigEntry.value)
 		if self.hasGatewayConfigEntry.value == False:
 			if self.dhcpConfigEntry.value == False:
 				gwinfo = _("Gateway") + ":\t" + _("disabled")
@@ -752,8 +753,8 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			gwinfo = ""
 
 		netinfo =  _("Device")  + ":\t" + str(self.iface) + "\n"
-		netinfo += _("Adapter") + ":\t" + self.longdesc  + "\n" + _("Network") + ": \t" + cardonoff 
-		netinfo += "\n" + dhcpinfo 
+		netinfo += _("Adapter") + ":\t" + self.longdesc  + "\n" + _("Network") + ": \t" + cardonoff
+		netinfo += "\n" + dhcpinfo
 		netinfo += "\n" + gwinfo
 		keySavego = self.session.openWithCallback(self.keySavego, MessageBox, ( _("Are you sure you want to activate this network configuration?\n\n")  + netinfo))
 		keySavego.setTitle(self.longdesc)
@@ -858,7 +859,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		if not result:
 			return
 		if SystemInfo["WakeOnLAN"]:
-			config.network.wol.setValue(self.wolstartvalue)	
+			config.network.wol.setValue(self.wolstartvalue)
 		if self.oldInterfaceState is False:
 			iNetwork.deactivateInterface(self.iface,self.keyCancelCB)
 		else:
@@ -1079,7 +1080,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self.mainmenu = self.genMainMenu()
 		self["menulist"].l.setList(self.mainmenu)
 		self["IFtext"].setText(_("Network:"))
-		self["IF"].setText("/dev/" + self.iface + ": " + iNetwork.getFriendlyAdapterDescription(self.iface))
+		self["IF"].setText(iNetwork.getFriendlyAdapterName(self.iface))
 		self["Statustext"].setText(_("Link:"))
 
 		if iNetwork.isWirelessInterface(self.iface):
@@ -1125,13 +1126,12 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 					self.extendedSetup = ('extendedSetup',menuEntryDescription, self.extended)
 					menu.append((menuEntryName,self.extendedSetup))
 
-		if os.path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
+		if path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			menu.append((_("Network wizard"), "openwizard"))
-		kernel_ver = about.getKernelVersionString()
 		# CHECK WHICH BOXES NOW SUPPORT MAC-CHANGE VIA GUI
-		if getBoxType() not in ('DUMMY', ) and self.iface == 'eth0':
+		if getBoxType() not in ('DUMMY') and self.iface == 'eth0':
 			menu.append((_("Network MAC settings"), "mac"))
-			# DISABLE IPv6 SUPPORT 
+			# DISABLE IPv6 SUPPORT
 			menu.append((_("Enable/Disable IPv6"), "ipv6"))
 
 		return menu
@@ -1399,7 +1399,7 @@ class NetworkAdapterTest(Screen):
 		self["key_yellow"].setText(_("Stop test"))
 
 	def doStep2(self):
-		self["Adapter"].setText("/dev/" + self.iface + ": " + iNetwork.getFriendlyAdapterDescription(self.iface))
+		self["Adapter"].setText(iNetwork.getFriendlyAdapterName(self.iface))
 		self["Adapter"].setForegroundColorNum(2)
 		self["Adaptertext"].setForegroundColorNum(1)
 		self["AdapterInfo_Text"].setForegroundColorNum(1)
@@ -1708,7 +1708,7 @@ class NetworkPassword(ConfigListScreen, Screen):
 	def newRandom(self):
 		self.password.value = self.GeneratePassword()
 		self["config"].invalidateCurrent()
-	
+
 	def updateList(self):
 		self.password = NoSave(ConfigPassword(default=""))
 		instructions = _("You must set a root password in order to be able to use network services,"
@@ -1717,10 +1717,10 @@ class NetworkPassword(ConfigListScreen, Screen):
 		self['config'].list = self.list
 		self['config'].l.setList(self.list)
 
-	def GeneratePassword(self): 
+	def GeneratePassword(self):
 		passwdChars = string.letters + string.digits
 		passwdLength = 10
-		return ''.join(Random().sample(passwdChars, passwdLength)) 
+		return ''.join(Random().sample(passwdChars, passwdLength))
 
 	def SetPasswd(self):
 		self.hideHelpWindow()
@@ -1728,7 +1728,7 @@ class NetworkPassword(ConfigListScreen, Screen):
 		if not password:
 			self.session.openWithCallback(self.showHelpWindow, MessageBox, _("The password can not be blank.") , MessageBox.TYPE_ERROR)
 			return
-		#print "[NetworkPassword] Changing the password for %s to %s" % (self.user,self.password) 
+		#print("[NetworkPassword] Changing the password for %s to %s" % (self.user,self.password))
 		self.container = eConsoleAppContainer()
 		self.container.appClosed.append(self.runFinished)
 		self.container.dataAvail.append(self.dataAvail)

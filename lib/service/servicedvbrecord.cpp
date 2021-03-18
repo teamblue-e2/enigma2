@@ -3,7 +3,7 @@
 #include <lib/dvb/db.h>
 #include <lib/dvb/epgcache.h>
 #include <lib/dvb/metaparser.h>
-#include <lib/base/nconfig.h> 
+#include <lib/base/nconfig.h>
 #include <lib/base/httpstream.h>
 #include <fcntl.h>
 
@@ -437,7 +437,7 @@ int eDVBServiceRecord::doRecord()
 			eDebugNoNewLine(", and the pcr pid is %04x", program.pcrPid);
 			if (program.pcrPid >= 0 && program.pcrPid < 0x1fff)
 				pids_to_record.insert(program.pcrPid);
-			eDebugNoNewLineEnd(", and the text pid is %04x\n", program.textPid);
+			eDebugNoNewLine(", and the text pid is %04x\n", program.textPid);
 			if (program.textPid != -1)
 				pids_to_record.insert(program.textPid); // Videotext
 

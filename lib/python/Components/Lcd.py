@@ -71,7 +71,7 @@ def InitLcd():
 		f.close()
 	else:
 		can_lcdmodechecking = False
-	
+
 	SystemInfo["LCDMiniTV"] = can_lcdmodechecking
 
 	if detected:
@@ -113,7 +113,7 @@ def InitLcd():
 					("0", _("normal")),
 					("1", _("MiniTV - video0")),
 					("2", _("OSD - fb")),
-					("3", _("MiniTV with OSD - video0+fb"))]) 
+					("3", _("MiniTV with OSD - video0+fb"))])
 			config.lcd.fpsminitv = ConfigSlider(default=30, limits=(0, 30))
 			config.lcd.modeminitv.addNotifier(setLCDModeMinitTV)
 			config.lcd.fpsminitv.addNotifier(setMiniTVFPS)
@@ -122,7 +122,7 @@ def InitLcd():
 			config.lcd.modepip = ConfigNothing()
 			config.lcd.screenshot = ConfigNothing()
 			config.lcd.fpsminitv = ConfigNothing()
-			
+
 		def setLCDbright(configElement):
 			ilcd.setBright(configElement.value);
 

@@ -59,7 +59,7 @@ class Console(Screen):
 		else:
 				self.show()
 				self.Shown = True
-				
+
 	def updateTitle(self):
 		self.setTitle(self.newtitle)
 

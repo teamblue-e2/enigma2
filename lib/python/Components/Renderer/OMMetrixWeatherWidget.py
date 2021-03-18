@@ -24,7 +24,7 @@ from Renderer import Renderer
 from Components.VariableText import VariableText
 from six.moves.urllib.request import Request, urlopen as urlopen2
 from six.moves.urllib.error import URLError, HTTPError
-from six.moves.urllib.parse import quote as urllib2_quote, unquote as urllib2_unquote
+from six.moves.urllib.parse import quote as urllib2_quote
 from enigma import ePixmap
 from datetime import datetime
 from Components.Element import cached
@@ -66,7 +66,7 @@ def initWeatherConfig():
 	configfile.save()
 
 initWeatherConfig()
-	
+
 class OMMetrixWeatherWidget(Renderer):
 
 	def __init__(self):

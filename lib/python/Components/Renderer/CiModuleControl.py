@@ -1,8 +1,8 @@
-from Components.Renderer import Renderer
+from __future__ import absolute_import
+from Components.Renderer.Renderer import Renderer
 from enigma import eDVBCI_UI, eLabel, iPlayableService
 from Components.SystemInfo import SystemInfo
 from Components.VariableText import VariableText
-from six.moves import range
 
 class CiModuleControl(Renderer, VariableText):
 	def __init__(self):
@@ -34,7 +34,7 @@ class CiModuleControl(Renderer, VariableText):
 			NUM_CI = SystemInfo["CommonInterface"]
 			if NUM_CI and NUM_CI > 0:
 				if self.eDVBCIUIInstance:
-					for slot in range(NUM_CI):
+					for slot in list(range(self.NUM_CI)):
 						add_num = True
 						if string:
 							string += " "

@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigPIN, ConfigYesNo, ConfigSubList, ConfigInteger
 from Components.ServiceList import refreshServiceList
 from Screens.InputBox import PinInput
@@ -9,7 +10,6 @@ from Tools.Directories import resolveFilename, SCOPE_CONFIG
 from Tools.Notifications import AddPopup
 from enigma import eTimer, eServiceCenter, iServiceInformation, eServiceReference, eDVBDB
 import time
-from six.moves import range
 
 TYPE_SERVICE = "SERVICE"
 TYPE_BOUQUETSERVICE = "BOUQUETSERVICE"
@@ -29,7 +29,7 @@ def InitParentalControl():
 	config.ParentalControl.retries.servicepin.time = ConfigInteger(default = 3)
 	config.ParentalControl.servicepin = ConfigSubList()
 	config.ParentalControl.servicepin.append(ConfigPIN(default = 0))
-	config.ParentalControl.age = ConfigSelection(default = "0", choices = [("0", _("No age block"))] + list((str(x), "%d+" % x) for x in range(3,19)))
+	config.ParentalControl.age = ConfigSelection(default = "0", choices = [("0", _("No age block"))] + list((str(x), "%d+" % x) for x in list(range(3,19))))
 	config.ParentalControl.hideBlacklist = ConfigYesNo(default = False)
 	config.ParentalControl.config_sections = ConfigSubsection()
 	config.ParentalControl.config_sections.main_menu = ConfigYesNo(default = False)
@@ -106,9 +106,9 @@ class ParentalControl:
 				Notifications.RemovePopup("Parental control")
 				if self.PinDlg:
 					self.PinDlg.close()
-				self.PinDlg = session.openWithCallback(boundFunction(self.servicePinEntered, ref), PinInput, triesEntry=config.ParentalControl.retries.servicepin, pinList=self.getPinList(), service=ServiceReference(ref).getServiceName(), title=title, windowTitle=_("Parental control"), simple=False)
+				self.PinDlg = session.openWithCallback(boundFunction(self.servicePinEntered, ref), PinInput, triesEntry=config.ParentalControl.retries.servicepin, pinList=self.getPinList(), service=ServiceReference(ref).getServiceName(), title=title, windowTitle=_("Parental control"), simple=False, zap=True)
 			else:
-				Notifications.AddNotificationParentalControl(boundFunction(self.servicePinEntered, ref), PinInput, triesEntry=config.ParentalControl.retries.servicepin, pinList=self.getPinList(), service=ServiceReference(ref).getServiceName(), title=title, windowTitle=_("Parental control"))
+				Notifications.AddNotificationParentalControl(boundFunction(self.servicePinEntered, ref), PinInput, triesEntry=config.ParentalControl.retries.servicepin, pinList=self.getPinList(), service=ServiceReference(ref).getServiceName(), title=title, windowTitle=_("Parental control"), zap=True)
 			return False
 		else:
 			return True
@@ -170,7 +170,18 @@ class ParentalControl:
 			self.sessionPinTimer.startLongTimer(self.pinIntervalSeconds)
 
 	def servicePinEntered(self, service, result=None):
-		if result:
+		if result in ("zapup", "zapdown"):
+			from Screens.InfoBar import InfoBar
+			InfoBarInstance = InfoBar.instance
+			if InfoBarInstance and hasattr(InfoBarInstance, "servicelist"):
+				InfoBarInstance.servicelist.servicelist.setCurrent(service)
+				if result == "zapdown":
+					InfoBarInstance.servicelist.servicelist.moveDown()
+
+				else:
+					InfoBarInstance.servicelist.servicelist.moveUp()
+				InfoBarInstance.servicelist.zap()
+		elif result:
 			self.setSessionPinCached()
 			self.hideBlacklist()
 			self.callback(ref = service)

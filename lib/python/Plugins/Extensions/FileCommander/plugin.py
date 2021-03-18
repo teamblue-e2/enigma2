@@ -94,7 +94,7 @@ config.plugins.filecommander.path_default = ConfigDirectory(default="")
 config.plugins.filecommander.path_left = ConfigText(default="")
 config.plugins.filecommander.path_right = ConfigText(default="")
 config.plugins.filecommander.my_extension = ConfigText(default="", visible_width=15, fixed_size=False)
-config.plugins.filecommander.extension = ConfigSelection(default="^.*", choices=[("^.*", _("without")), ("myfilter", _("My Extension")), (records, _("Records")), (movie, _("Movie")), (music, _("Music")), (pictures, _("Pictures"))])
+config.plugins.filecommander.extension = ConfigSelection(default="^.*", choices=[("^.*", _("without")), ("myfilter", _("My extension")), (records, _("Records")), (movie, _("Movie")), (music, _("Music")), (pictures, _("Pictures"))])
 config.plugins.filecommander.change_navbutton = ConfigSelection(default="no", choices=[("no", _("No")), ("always", _("Channel button always changes sides")), ("yes", _("Yes"))])
 #config.plugins.filecommander.input_length = ConfigInteger(default=40, limits=(1, 100))
 config.plugins.filecommander.diashow = ConfigInteger(default=5000, limits=(1000, 10000))
@@ -112,7 +112,7 @@ choicelist = [
 				("0.1", _("Name reverse")),
 				("1.0", _("Date")),
 				("1.1", _("Date reverse")),
-				("2.0", _("Size")), 
+				("2.0", _("Size")),
 				("2.1", _("Size reverse"))]
 config.plugins.filecommander.sortFiles_left = ConfigSelection(default = "1.1", choices = choicelist)
 config.plugins.filecommander.sortFiles_right = ConfigSelection(default = "1.1", choices = choicelist)
@@ -180,7 +180,7 @@ class FileCommanderSetup(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("I/O priority for script execution"), config.plugins.filecommander.script_priority_ionice))
 		self.list.append(getConfigListEntry(_("File checksums/hashes"), config.plugins.filecommander.hashes))
 		self.list.append(getConfigListEntry(_("Time for Slideshow"), config.plugins.filecommander.diashow))
-		
+
 		ConfigListScreen.__init__(self, self.list, session = session)
 		self["help"] = Label(_("Select your personal settings:"))
 		self["key_red"] = Label(_("Cancel"))
@@ -201,12 +201,12 @@ class FileCommanderSetup(ConfigListScreen, Screen):
 
 	def ok(self):
 		if self["config"].getCurrent()[1] is config.plugins.filecommander.path_default:
-			self.session.openWithCallback(self.pathSelected, LocationBox, text=_("Default Folder"), currDir=config.plugins.filecommander.path_default.getValue(), minFree=100)
+			self.session.openWithCallback(self.pathSelected, LocationBox, text=_("Default folder"), currDir=config.plugins.filecommander.path_default.getValue(), minFree=100)
 
 	def pathSelected(self, res):
 		if res is not None:
 			config.plugins.filecommander.path_default.value = res
-		
+
 	def save(self):
 		print("[FileCommander]: Settings saved")
 		for x in self["config"].list:
@@ -356,10 +356,10 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 
 		# set filter
 		filter = self.fileFilter()
-		
+
 		# disable actions
 		self.disableActions_Timer = eTimer()
-		
+
 		self.jobs = 0
 		self.jobs_old = 0
 
@@ -400,7 +400,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			"prevMarker": (self.listLeft, _("Activate left-hand file list as source")),
 			"nextBouquet": (self.listRightB, _("Activate right-hand file list as source")),
 			"prevBouquet": (self.listLeftB, _("Activate left-hand file list as source")),
-			"1": (self.gomakeDir, _("Create directory/folder")),
+			"1": (self.gomakeDir, _("Create directory")),
 			"2": (self.gomakeSym, _("Create user-named symbolic link")),
 			"3": (self.gofileStatInfo, _("File/Directory Status Information")),
 			"4": (self.call_change_mode, _("Change execute permissions (755/644)")),
@@ -441,7 +441,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			self.onLayoutFinish.append(self.listLeft)
 		else:
 			self.onLayoutFinish.append(self.listRight)
-		
+
 		self.checkJobs_Timer = eTimer()
 		self.checkJobs_Timer.callback.append(self.checkJobs_TimerCB)
 		#self.onLayoutFinish.append(self.onLayout)
@@ -465,7 +465,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 	def checkJobs_TimerCB(self):
 		self.jobs_old = 0
 		for job in job_manager.getPendingJobs():
-			if (job.name.startswith(_('copy file')) or job.name.startswith(_('copy folder')) or job.name.startswith(_('move file')) or job.name.startswith(_('move folder'))or job.name.startswith(_('Run script'))):
+			if (job.name.startswith(_('Copy file')) or job.name.startswith(_('Copy folder')) or job.name.startswith(_('move file')) or job.name.startswith(_('move folder'))or job.name.startswith(_('Run script'))):
 				self.jobs_old += 1
 		self.jobs_old -= self.jobs
 		self.onLayout()
@@ -761,7 +761,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				del self.containers[:]
 		if not glob_running and config.plugins.filecommander.showTaskCompleted_message.value:
 			for job in job_manager.getPendingJobs():
-				if (job.name.startswith(_('copy file')) or job.name.startswith(_('copy folder')) or job.name.startswith(_('move file')) or job.name.startswith(_('move folder'))or job.name.startswith(_('Run script'))):
+				if (job.name.startswith(_('Copy file')) or job.name.startswith(_('Copy folder')) or job.name.startswith(_('move file')) or job.name.startswith(_('move folder'))or job.name.startswith(_('Run script'))):
 					return
 			# commented out
 			# from Screens.Standby import inStandby
@@ -859,9 +859,9 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				if dst_file.endswith("/") and dst_file != "/":
 					targetDir = dst_file[:-1]
 				if sourceDir not in filename:
-					self.addJob(FileTransferJob(sourceDir + filename, targetDir, False, True, "%s : %s" % (_("copy file"), sourceDir + filename)), updateDirs)
+					self.addJob(FileTransferJob(sourceDir + filename, targetDir, False, True, "%s : %s" % (_("Copy file"), sourceDir + filename)), updateDirs)
 				else:
-					self.addJob(FileTransferJob(filename, targetDir, True, True, "%s : %s" % (_("copy folder"), filename)), updateDirs)
+					self.addJob(FileTransferJob(filename, targetDir, True, True, "%s : %s" % (_("Copy folder"), filename)), updateDirs)
 
 # ## delete ###
 	def goRed(self):
@@ -1539,9 +1539,9 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 			if dst_file.endswith("/") and dst_file != "/":
 				targetDir = dst_file[:-1]
 			if file.endswith("/"):
-				self.copy_jobs.append(FileTransferJob(file, targetDir, True, True, "%s : %s" % (_("copy folder"), file)))
+				self.copy_jobs.append(FileTransferJob(file, targetDir, True, True, "%s : %s" % (_("Copy folder"), file)))
 			else:
-				self.copy_jobs.append(FileTransferJob(file, targetDir, False, True, "%s : %s" % (_("copy file"), file)))
+				self.copy_jobs.append(FileTransferJob(file, targetDir, False, True, "%s : %s" % (_("Copy file"), file)))
 		if cnt > 1:
 			copytext = (_("Copy %d elements") %len(self.selectedFiles)) + warntxt
 		else:

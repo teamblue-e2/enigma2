@@ -2,7 +2,6 @@ from __future__ import print_function
 from os import system, path as os_path
 import sys, re
 import six
-from six.moves import range
 
 if sys.version_info[0] < 3:
 	from string import maketrans, strip
@@ -86,7 +85,7 @@ class Wlan:
 		scanresults = list(Cell.all(self.iface, 5))
 		aps = {}
 		if scanresults is not None:
-			for i in range(len(scanresults)):
+			for i in list(range(len(scanresults))):
 				bssid = scanresults[i].ssid
 				aps[bssid] = {
 					'active': True,
@@ -132,9 +131,9 @@ class brcmWLConfig:
 		encryption = config.plugins.wlan.encryption.value
 		wepkeytype = config.plugins.wlan.wepkeytype.value
 		psk = config.plugins.wlan.psk.value
-		
+
 		fp = open(getWlanConfigName(iface), 'w')
-		
+
 		fp.write('ssid='+essid+'\n')
 		if encryption in ('WPA', 'WPA2', 'WPA/WPA2', 'WEP'):
 			if encryption == "WPA/WPA2":
@@ -152,7 +151,7 @@ class brcmWLConfig:
 		config.plugins.wlan.encryption.value = "WPA2"
 		config.plugins.wlan.psk.value = ""
 		configfile = getWlanConfigName(iface)
-		
+
 		if os_path.exists(configfile):
 			print("[Wlan.py] parsing configfile: ", configfile)
 			fd = open(configfile, "r")
@@ -435,7 +434,7 @@ class Status:
 			scanresults = list(Cell.all(iface, 5))
 			aps = {}
 			if scanresults is not None:
-				for i in range(len(scanresults)):
+				for i in list(range(len(scanresults))):
 					bssid = scanresults[i].ssid
 					aps[bssid] = {
 						'active': True,

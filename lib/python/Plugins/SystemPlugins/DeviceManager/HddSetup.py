@@ -1,7 +1,6 @@
 from __future__ import division
 from __future__ import absolute_import
 # for localized messages
-from past.utils import old_div
 from . import _
 
 from enigma import *
@@ -67,7 +66,7 @@ class HddSetup(Screen):
 
 		self.mdisks = Disks()
 		for disk in self.mdisks.disks:
-			capacity = "%d MB" % (old_div(disk[1], (1024 * 1024)))
+			capacity = "%d MB" % (disk[1] // (1024 * 1024))
 			self.disks.append(DiskEntry(disk[3], capacity, disk[2]))
 
 		self["menu"] = List(self.disks)
@@ -101,7 +100,7 @@ class HddSetup(Screen):
 
 		self.mdisks = Disks()
 		for disk in self.mdisks.disks:
-			capacity = "%d MB" % (old_div(disk[1], (1024 * 1024)))
+			capacity = "%d MB" % (disk[1] // (1024 * 1024))
 			self.disks.append(DiskEntry(disk[3], capacity, disk[2]))
 
 		self["menu"].setList(self.disks)

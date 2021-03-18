@@ -7,7 +7,7 @@ import threading, urllib.request, urllib.error, urllib.parse, os, shutil, tempfi
 from json import loads
 from enigma import eDVBDB, eEPGCache
 from Screens.MessageBox import MessageBox
-from .config import config, ConfigText
+from Components.config import config
 from Tools import Notifications
 from base64 import encodestring
 import xml.etree.ElementTree as et
@@ -27,6 +27,7 @@ class ImportChannels(object):
 				self.url = "%s:%s" % (self.url, config.usage.remote_fallback_openwebif_port.value)
 				if config.usage.remote_fallback_openwebif_userid.value and config.usage.remote_fallback_openwebif_password.value:
 					self.header = "Basic %s" % encodestring("%s:%s" % (config.usage.remote_fallback_openwebif_userid.value, config.usage.remote_fallback_openwebif_password.value)).strip()
+			self.remote_fallback_import = config.usage.remote_fallback_import.value
 			self.thread = threading.Thread(target=self.threaded_function, name="ChannelsImport")
 			self.thread.start()
 
@@ -63,7 +64,7 @@ class ImportChannels(object):
 		settings = self.getFallbackSettings()
 		self.getTerrestrialRegion(settings)
 		self.tmp_dir = tempfile.mkdtemp(prefix="ImportChannels")
-		if "epg" in config.usage.remote_fallback_import.value:
+		if "epg" in self.remote_fallback_import:
 			print("Writing epg.dat file on sever box")
 			try:
 				self.getUrl("%s/web/saveepg" % self.url, timeout=30).read()
@@ -91,11 +92,7 @@ class ImportChannels(object):
 					return
 			else:
 				self.ImportChannelsDone(False, _("No epg.dat file found server"))
-		if "channels" in config.usage.remote_fallback_import.value:
-			try:
-				os.mkdir("/tmp/tmp")
-			except:
-				pass
+		if "channels" in self.remote_fallback_import:
 			print("[Import Channels] reading dir")
 			try:
 				files = [file for file in loads(self.getUrl("%s/file?dir=/etc/enigma2" % self.url).read())["files"] if os.path.basename(file).startswith(settingfiles)]
@@ -119,7 +116,7 @@ class ImportChannels(object):
 			files = [x for x in os.listdir("/tmp/tmp") if x.startswith(settingfiles)]
 			for file in files:
 				shutil.move(os.path.join(self.tmp_dir, file), os.path.join("/etc/enigma2", file))
-		self.ImportChannelsDone(True, {"channels": _("Channels"), "epg": _("EPG"), "channels_epg": _("Channels and EPG")}[config.usage.remote_fallback_import.value])
+		self.ImportChannelsDone(True, {"channels": _("Channels"), "epg": _("EPG"), "channels_epg": _("Channels and EPG")}[self.remote_fallback_import])
 
 	def ImportChannelsDone(self, flag, message=None):
 		shutil.rmtree(self.tmp_dir, True)

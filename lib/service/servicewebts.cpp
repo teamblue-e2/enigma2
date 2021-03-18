@@ -256,9 +256,13 @@ int eServiceWebTS::openHttpConnection(std::string url)
 	request.append("Connection: close\r\n");
 	request.append("\r\n");
 	//eDebug(request.c_str());
-	write(fd, request.c_str(), request.length());
 
 	int rc;
+	rc = ::write(fd, request.c_str(), request.length());
+	if (rc < 0) {
+		eDebug("eServiceWebTS::openHttpConnection: error in write (%d)", errno);
+	}
+
 	size_t buflen = 1000;
 	char* linebuf = (char*)malloc(1000);
 
@@ -379,7 +383,7 @@ void eServiceWebTS::recv_event(int evt)
 			m_decoder->pause();
 			m_event(this, evStart);
 			m_decoder->play();
-			
+
 		}
 		bool wasnull = !m_audioInfo;
 		m_streamthread->getAudioInfo(m_audioInfo);

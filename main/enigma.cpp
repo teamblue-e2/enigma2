@@ -39,9 +39,6 @@
 
 #include <gst/gst.h>
 
-#include <lib/base/eerroroutput.h>
-ePtr<eErrorOutput> m_erroroutput;
-
 #ifdef OBJECT_DEBUG
 int object_total_remaining;
 
@@ -102,7 +99,10 @@ void keyEvent(const eRCKey &key)
 #include <lib/dvb/db.h>
 #include <lib/dvb/dvbtime.h>
 #include <lib/dvb/epgcache.h>
+#include <lib/dvb/epgtransponderdatareader.h>
 
+/* Defined in eerror.cpp */
+void setDebugTime(bool enable);
 class eMain: public eApplication, public sigc::trackable
 {
 	eInit init;
@@ -112,6 +112,7 @@ class eMain: public eApplication, public sigc::trackable
 	ePtr<eDVBResourceManager> m_mgr;
 	ePtr<eDVBLocalTimeHandler> m_locale_time_handler;
 	ePtr<eEPGCache> m_epgcache;
+	ePtr<eEPGTransponderDataReader> m_epgtransponderdatareader;
 
 public:
 	eMain()
@@ -124,6 +125,7 @@ public:
 		m_mgr = new eDVBResourceManager();
 		m_locale_time_handler = new eDVBLocalTimeHandler();
 		m_epgcache = new eEPGCache();
+		m_epgtransponderdatareader = new eEPGTransponderDataReader();
 		m_mgr->setChannelList(m_dvbdb);
 	}
 
@@ -163,7 +165,7 @@ static const std::string getConfigCurrentSpinner(const std::string &key)
 	}
 	// no config.skin.primary_skin found -> Use default one
 	if (value.empty())
-		value = "GigabluePax/";
+		value = "GigabluePaxV2/";
 
 	// return SCOPE_CURRENT_SKIN ( /usr/share/enigma2/MYSKIN/skin_default/spinner ) BUT check if /usr/share/enigma2/MYSKIN/skin_default/spinner/wait1.png exist
 	std::string png_location = "/usr/share/enigma2/" + value + "skin_default/spinner/wait1.png";
@@ -245,22 +247,18 @@ int main(int argc, char **argv)
 
 	gst_init(&argc, &argv);
 
-	for (int i = 0; i < argc; i++)
-	{
-		if (!(strcmp(argv[i], "--debug-no-color")) or !(strcmp(argv[i], "--nc")))
-		{
-			logOutputColors = 0;
-		}
-	}
-
-	m_erroroutput = new eErrorOutput();
-	m_erroroutput->run();
-
 	// set pythonpath if unset
 	setenv("PYTHONPATH", eEnv::resolve("${libdir}/enigma2/python").c_str(), 0);
 	printf("[enigma2] PYTHONPATH: %s\n", getenv("PYTHONPATH"));
 	printf("[enigma2] DVB_API_VERSION %d DVB_API_VERSION_MINOR %d\n", DVB_API_VERSION, DVB_API_VERSION_MINOR);
 
+	// get enigma2 debug level settings
+	debugLvl = getenv("ENIGMA_DEBUG_LVL") ? atoi(getenv("ENIGMA_DEBUG_LVL")) : DEFAULT_DEBUG_LVL;
+	if (debugLvl < 0)
+		debugLvl = 0;
+	printf("ENIGMA_DEBUG_LVL=%d\n", debugLvl);
+	if (getenv("ENIGMA_DEBUG_TIME"))
+		setDebugTime(atoi(getenv("ENIGMA_DEBUG_TIME")) != 0);
 	ePython python;
 	eMain main;
 
@@ -333,9 +331,9 @@ int main(int argc, char **argv)
 		}
 		eDebug("[MAIN] found %d spinner!", i);
 		if (i)
-			my_dc->setSpinner(eRect(ePoint(100, 100), wait[0]->size()), wait, i);
+			my_dc->setSpinner(eRect(ePoint(25, 25), wait[0]->size()), wait, i);
 		else
-			my_dc->setSpinner(eRect(100, 100, 0, 0), wait, 1);
+			my_dc->setSpinner(eRect(25, 25, 0, 0), wait, 1);
 	}
 
 	gRC::getInstance()->setSpinnerDC(my_dc);
@@ -373,7 +371,6 @@ int main(int argc, char **argv)
 		p.clear();
 		p.flush();
 	}
-	m_erroroutput = NULL;
 	return exit_code;
 }
 

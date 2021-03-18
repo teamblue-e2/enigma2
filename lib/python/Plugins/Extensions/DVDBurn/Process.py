@@ -1,10 +1,10 @@
 from __future__ import print_function
+from __future__ import absolute_import
 from Components.Task import Task, Job, DiskspacePrecondition, Condition, ToolExistsPrecondition
 from Components.Harddisk import harddiskmanager
 from Screens.MessageBox import MessageBox
-from Project import iso639language
-from Tools import Notifications
-from six.moves import range
+from .Project import iso639language
+from Tools.Notifications import Notifications
 
 class png2yuvTask(Task):
 	def __init__(self, job, inputfile, outputfile):
@@ -29,7 +29,7 @@ class mpeg2encTask(Task):
 		self.args += ["-f8", "-np", "-a2", "-o", outputfile]
 		self.inputFile = inputfile
 		self.weighting = 25
-		
+
 	def run(self, callback):
 		Task.run(self, callback)
 		self.container.readFromFile(self.inputFile)
@@ -276,7 +276,7 @@ class DVDAuthorFinalTask(Task):
 class WaitForResidentTasks(Task):
 	def __init__(self, job):
 		Task.__init__(self, job, "waiting for dvdauthor to finalize")
-		
+
 	def run(self, callback):
 		print("waiting for %d resident task(s) %s to finish..." % (len(self.job.resident_tasks),str(self.job.resident_tasks)))
 		self.callback = callback
@@ -314,7 +314,7 @@ class BurnTask(Task):
 		self.postconditions.append(BurnTaskPostcondition())
 		self.setTool(tool)
 		self.args += extra_args
-	
+
 	def prepare(self):
 		self.error = None
 
@@ -365,7 +365,7 @@ class BurnTask(Task):
 			self.error = self.ERROR_FILETOOLARGE
 		elif line.startswith("genisoimage: File too large."):
 			self.error = self.ERROR_ISOTOOLARGE
-	
+
 	def setTool(self, tool):
 		self.cmd = tool
 		self.args = [tool]
@@ -425,7 +425,7 @@ class PreviewTask(Task):
 
 	def abort(self):
 		self.finish(aborted = True)
-	
+
 	def previewCB(self, answer):
 		if answer == True:
 			self.previewProject()
@@ -469,7 +469,7 @@ class ImagePrepareTask(Task):
 		self.weighting = 20
 		self.job = job
 		self.Menus = job.Menus
-		
+
 	def run(self, callback):
 		self.callback = callback
 		# we are doing it this weird way so that the TaskView Screen actually pops up before the spinner comes
@@ -535,7 +535,7 @@ class MenuImageTask(Task):
 		spuxml = """<?xml version="1.0" encoding="utf-8"?>
 	<subpictures>
 	<stream>
-	<spu 
+	<spu
 	highlight="%s"
 	transparent="%02x%02x%02x"
 	start="00:00:00.00"
@@ -548,7 +548,7 @@ class MenuImageTask(Task):
 			menu_end_title = nr_titles+1
 		col = 1
 		row = 1
-		for title_no in range( menu_start_title , menu_end_title ):
+		for title_no in list(range( menu_start_title, menu_end_title )):
 			title = self.job.project.titles[title_no-1]
 			col_width  = ( s_width  - s_left - s_right  ) / nr_cols
 			row_height = ( s_height - s_top  - s_bottom ) / nr_rows
@@ -586,7 +586,7 @@ class MenuImageTask(Task):
 
 			draw_cell_bg.text(titlePos, titleText, fill=self.Menus.color_button, font=fonts[1])
 			draw_cell_high.text(titlePos, titleText, fill=1, font=self.Menus.fonts[1])
-			
+
 			subtitleText = title.formatDVDmenuText(s.subtitleformat.getValue(), title_no).decode("utf-8")
 			subtitlePos = self.getPosition(s.offset_subtitle.getValue(), 0, 0, width, height, draw_cell_bg.textsize(subtitleText, font=fonts[2]))
 			draw_cell_bg.text(subtitlePos, subtitleText, fill=self.Menus.color_button, font=fonts[2])
@@ -640,7 +640,7 @@ class MenuImageTask(Task):
 		Task.processFinished(self, 0)
 		#except:
 			#Task.processFinished(self, 1)
-			
+
 	def getPosition(self, offset, left, top, right, bottom, size):
 		pos = [left, top]
 		if offset[0] != -1:
@@ -667,13 +667,13 @@ class Menus:
 
 		ImagePrepareTask(job)
 		nr_titles = len(job.project.titles)
-		
+
 		job.titles_per_menu = s.cols.getValue()*s.rows.getValue()
 
 		job.nr_menus = ((nr_titles+job.titles_per_menu-1)/job.titles_per_menu)
 
 		#a new menu_count every 4 titles (1,2,3,4->1 ; 5,6,7,8->2 etc.)
-		for menu_count in range(1 , job.nr_menus+1):
+		for menu_count in list(range(1, job.nr_menus+1)):
 			num = str(menu_count)
 			spuxmlfilename = job.workspace+"/spumux"+num+".xml"
 			menubgpngfilename = job.workspace+"/dvd_menubg"+num+".png"
@@ -687,7 +687,7 @@ class Menus:
 			MplexTask(job, outputfile=menubgmpgfilename, inputfiles = [menubgm2vfilename, menuaudiofilename], weighting = 20)
 			menuoutputfilename = job.workspace+"/dvdmenu"+num+".mpg"
 			spumuxTask(job, spuxmlfilename, menubgmpgfilename, menuoutputfilename)
-		
+
 def CreateAuthoringXML_singleset(job):
 	nr_titles = len(job.project.titles)
 	mode = job.project.settings.authormode.getValue()
@@ -709,7 +709,7 @@ def CreateAuthoringXML_singleset(job):
 	if mode.startswith("menu"):
 		authorxml.append('   <menus lang="' + iso639language.get_dvd_id(job.project.menutemplate.settings.menulang.getValue()) + '">\n')
 		authorxml.append('    <video aspect="4:3"/>\n')
-		for menu_count in range(1 , job.nr_menus+1):
+		for menu_count in list(range(1, job.nr_menus+1)):
 			if menu_count == 1:
 				authorxml.append('    <pgc entry="root">\n')
 			else:
@@ -718,7 +718,7 @@ def CreateAuthoringXML_singleset(job):
 			menu_end_title = (menu_count)*job.titles_per_menu + 1
 			if menu_end_title > nr_titles:
 				menu_end_title = nr_titles+1
-			for i in range( menu_start_title , menu_end_title ):
+			for i in list(range( menu_start_title, menu_end_title )):
 				authorxml.append('     <button name="button' + (str(i).zfill(2)) + '"> jump title ' + str(i) +'; </button>\n')
 			if menu_count > 1:
 				authorxml.append('     <button name="button_prev"> jump menu ' + str(menu_count-1) + '; </button>\n')
@@ -729,7 +729,7 @@ def CreateAuthoringXML_singleset(job):
 			authorxml.append('    </pgc>\n')
 		authorxml.append('   </menus>\n')
 	authorxml.append('   <titles>\n')
-	for i in range( nr_titles ):
+	for i in list(range( nr_titles )):
 		chapters = ','.join(job.project.titles[i].getChapterMarks())
 		title_no = i+1
 		title_filename = job.workspace + "/dvd_title_%d.mpg" % (title_no)
@@ -766,7 +766,7 @@ def CreateAuthoringXML_multiset(job):
 	authorxml.append('   <menus lang="' + iso639language.get_dvd_id(job.project.menutemplate.settings.menulang.getValue()) + '">\n')
 	authorxml.append('    <video aspect="4:3"/>\n')
 	if mode.startswith("menu"):
-		for menu_count in range(1 , job.nr_menus+1):
+		for menu_count in list(range(1, job.nr_menus+1)):
 			if menu_count == 1:
 				authorxml.append('    <pgc>\n')
 			else:
@@ -775,7 +775,7 @@ def CreateAuthoringXML_multiset(job):
 			menu_end_title = (menu_count)*job.titles_per_menu + 1
 			if menu_end_title > nr_titles:
 				menu_end_title = nr_titles+1
-			for i in range( menu_start_title , menu_end_title ):
+			for i in list(range( menu_start_title, menu_end_title )):
 				authorxml.append('     <button name="button' + (str(i).zfill(2)) + '"> jump titleset ' + str(i) +' title 1; </button>\n')
 			if menu_count > 1:
 				authorxml.append('     <button name="button_prev"> jump menu ' + str(menu_count-1) + '; </button>\n')
@@ -792,7 +792,7 @@ def CreateAuthoringXML_multiset(job):
 	authorxml.append('   </menus>\n')
 	authorxml.append('  </vmgm>\n')
 
-	for i in range( nr_titles ):
+	for i in list(range( nr_titles )):
 		title = job.project.titles[i]
 		authorxml.append('  <titleset>\n')
 		authorxml.append('   <menus lang="' + iso639language.get_dvd_id(job.project.menutemplate.settings.menulang.getValue()) + '">\n')
@@ -876,13 +876,13 @@ class DVDJob(Job):
 			CreateAuthoringXML_singleset(self)
 
 		DVDAuthorTask(self)
-		
+
 		nr_titles = len(self.project.titles)
 
 		if self.menupreview:
 			PreviewTask(self, self.workspace + "/dvd/VIDEO_TS/")
 		else:
-			for self.i in range(nr_titles):
+			for self.i in list(range(nr_titles)):
 				self.title = self.project.titles[self.i]
 				link_name =  self.workspace + "/source_title_%d.ts" % (self.i+1)
 				title_filename = self.workspace + "/dvd_title_%d.mpg" % (self.i+1)
@@ -926,7 +926,7 @@ class DVDdataJob(Job):
 		if self.project.settings.output.getValue() == "iso":
 			CheckDiskspaceTask(self)
 		nr_titles = len(self.project.titles)
-		for self.i in range(nr_titles):
+		for self.i in list(range(nr_titles)):
 			title = self.project.titles[self.i]
 			filename = title.inputfile.rstrip("/").rsplit("/",1)[1]
 			link_name =  self.workspace + filename

@@ -5,7 +5,7 @@
 
 from __future__ import print_function
 from Tools.CList import CList
-from six.moves import range
+import six
 
 class Job(object):
 	NOT_STARTED, IN_PROGRESS, FINISHED, FAILED = list(range(4))
@@ -209,6 +209,7 @@ class Task(object):
 		self.processOutput(data)
 
 	def processOutput(self, data):
+		data = six.ensure_str(data)
 		self.output_line += data
 		while True:
 			i = self.output_line.find('\n')
@@ -219,7 +220,6 @@ class Task(object):
 
 	def processOutputLine(self, line):
 		print("[Task %s]" % self.name, line[:-1])
-		pass
 
 	def processFinished(self, returncode):
 		self.returncode = returncode
@@ -484,7 +484,8 @@ class ToolExistsPrecondition(Condition):
 			self.realpath = task.cmd
 			path = os.environ.get('PATH', '').split(os.pathsep)
 			path.append(task.cwd + '/')
-			absolutes = [file for file in map(lambda directory, file = task.cmd: os.path.join(directory, file), path) if os.access(file, os.X_OK)]
+			# FIXME PY3 map,filter
+			absolutes = list(filter(lambda _file: os.access(_file, os.X_OK), map(lambda directory, _file = task.cmd: os.path.join(directory, _file), path)))
 			if absolutes:
 				self.realpath = absolutes[0]
 				return True

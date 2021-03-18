@@ -1,15 +1,16 @@
+from __future__ import absolute_import
 from Screens.Screen import Screen
 from Components.Label import Label
 import enigma
-from six.moves import range
+import six
 
 class NumericalTextInputHelpDialog(Screen):
 	def __init__(self, session, textinput):
 		Screen.__init__(self, session)
 		self["help1"] = Label(text="<")
 		self["help2"] = Label(text=">")
-		for x in range(0, 10):
-			self["key%d" % x] = Label(text=textinput.mapping[x].encode("utf-8"))
+		for x in list(range(0, 10)):
+			self["key%d" % x] = Label(text=six.ensure_str(textinput.mapping[x]))
 		self.last_marked = 0
 		self.onLayoutFinish.append(self.resizeFont)
 

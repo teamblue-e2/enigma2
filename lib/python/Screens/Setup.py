@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screens.Screen import Screen
 from Components.ActionMap import NumberActionMap
 from Components.config import config, ConfigNothing, ConfigText, ConfigPassword
@@ -10,7 +11,6 @@ from Components.Sources.Boolean import Boolean
 from enigma import eEnv
 
 import xml.etree.cElementTree
-from six.moves import range
 
 # FIXME: use resolveFile!
 # read the setupmenu
@@ -127,7 +127,7 @@ class Setup(ConfigListScreen, Screen):
 
 	def getIndexFromItem(self, item):
 		if item is not None:
-			for x in range(len(self["config"].list)):
+			for x in list(range(len(self["config"].list))):
 				if self["config"].list[x][0] == item[0]:
 					return x
 		return None

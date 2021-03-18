@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 
 from Components.GUIComponent import GUIComponent
 
@@ -11,7 +12,6 @@ from Components.config import config
 from ServiceReference import ServiceReference
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from skin import parseFont
-from six.moves import range
 
 EPG_TYPE_SINGLE = 0
 EPG_TYPE_MULTI = 1
@@ -149,7 +149,7 @@ class EPGList(GUIComponent):
 #				try:
 #					x()
 #				except: # FIXME!!!
-#					print "FIXME in EPGList.selectionChanged"
+#					print("FIXME in EPGList.selectionChanged")
 #					pass
 
 	GUI_WIDGET = eListbox
@@ -246,7 +246,7 @@ class EPGList(GUIComponent):
 			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, "%02d.%02d, %02d:%02d"%(t[2],t[1],t[3],t[4]))
 		]
 		if clock_types:
-			for i in range(len(clock_types)):
+			for i in list(range(len(clock_types))):
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x + i * self.space, r3.y + self.dy, self.iconSize, self.iconSize, self.clocks[clock_types[i]]))
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x + (i + 1) * self.space, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
 		else:
@@ -265,7 +265,7 @@ class EPGList(GUIComponent):
 			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, "%2d.%02d, %02d:%02d"%(t[2],t[1],t[3],t[4]))
 		]
 		if clock_types:
-			for i in range(len(clock_types)):
+			for i in list(range(len(clock_types))):
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x + i * self.space, r3.y + self.dy, self.iconSize, self.iconSize, self.clocks[clock_types[i]]))
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x + (i + 1) * self.space, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name))
 		else:
@@ -281,7 +281,7 @@ class EPGList(GUIComponent):
 		res = [ None ] # no private data needed
 		if clock_types:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w - self.space * len(clock_types), r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name))
-			for i in range(len(clock_types)):
+			for i in list(range(len(clock_types))):
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r1.x + r1.w - self.space * (i + 1), r1.y + self.dy, self.iconSize, self.iconSize, self.clocks[clock_types[len(clock_types) - 1 - i]]))
 		else:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name))
@@ -321,7 +321,7 @@ class EPGList(GUIComponent):
 		test.insert(0, 'X0RIBDTCn')
 		self.list = self.queryEPG(test)
 		self.l.setList(self.list)
-		#print time() - t
+		#print(time() - t)
 		self.selectionChanged()
 
 	def updateMultiEPG(self, direction):
@@ -337,7 +337,7 @@ class EPGList(GUIComponent):
 					self.list[cnt]=(changecount, x[0], x[1], x[2], x[3], x[4], x[5], x[6])
 			cnt+=1
 		self.l.setList(self.list)
-		#print time() - t
+		#print(time() - t)
 		self.selectionChanged()
 
 	def fillSingleEPG(self, service):

@@ -36,7 +36,6 @@ from time import localtime, time, strftime, mktime
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
 from Tools.BoundFunction import boundFunction
-from six.moves import range
 
 MAX_TIMELINES = 6
 
@@ -291,7 +290,7 @@ class EPGList(GUIComponent):
 
 	def getIndexFromService(self, serviceref):
 		if serviceref is not None:
-			for x in range(len(self.list)):
+			for x in list(range(len(self.list))):
 				if CompareWithAlternatives(self.list[x][0], serviceref.toString()):
 					return x
 		return None
@@ -603,7 +602,7 @@ class EPGList(GUIComponent):
 						backcolor = backColor if bgpng is None else None, backcolor_sel = backColorSel if bgpng is None else None))
 				# recording icons
 				if config.misc.graph_mepg.show_record_clocks.value and rec is not None:
-					for i in range(len(rec[1])):
+					for i in list(range(len(rec[1]))):
 						if ewidth < (i + 1) * (self.recIconSize + self.iconXPadding):
 							break
 						res.append(MultiContentEntryPixmapAlphaBlend(
@@ -809,7 +808,7 @@ class TimelineText(GUIComponent):
 					backcolor = self.backColor, backcolor_sel = self.backColor) )
 
 			xpos = 0 # eventLeft
-			for x in range(0, num_lines):
+			for x in list(range(0, num_lines)):
 				res.append( MultiContentEntryText(
 					pos = (service_rect.width() + xpos-tlMove, 0),
 					size = (incWidth, itemHeight),
@@ -822,7 +821,7 @@ class TimelineText(GUIComponent):
 				line.setPosition(xpos + eventLeft, old_pos[1])
 				line.visible = config.misc.graph_mepg.show_timelines.value == "all"
 				xpos += incWidth
-			for x in range(num_lines, MAX_TIMELINES):
+			for x in list(range(num_lines, MAX_TIMELINES)):
 				time_lines[x].visible = False
 			self.l.setList([res])
 			self.time_base = time_base
@@ -875,7 +874,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self["Service"] = ServiceEvent()
 		self["Event"] = Event()
 		self.time_lines = [ ]
-		for x in range(0, MAX_TIMELINES):
+		for x in list(range(0, MAX_TIMELINES)):
 			pm = Pixmap()
 			self.time_lines.append(pm)
 			self["timeline%d"%(x)] = pm

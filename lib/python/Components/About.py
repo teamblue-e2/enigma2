@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 import struct, socket, fcntl, re, sys, os, time
-from sys import modules
 from Tools.HardwareInfo import HardwareInfo
 
-from boxbranding import getBoxType, getMachineBuild
-from six.moves import range
+from boxbranding import getBoxType, getMachineBuild, getImageType, getImageVersion
 
 def getVersionString():
 	return getImageVersionString()
@@ -111,11 +109,12 @@ def getHardwareTypeString():
 	return HardwareInfo().get_device_string()
 
 def getImageTypeString():
-	try:
-		image_type = open("/etc/issue").readlines()[-2].strip()[:-6]
-		return image_type.capitalize()
-	except:
-		return _("undefined")
+	#try:
+	#       image_type = open("/etc/issue").readlines()[-2].strip()[:-6]
+	#       return image_type.capitalize()
+	#except:
+	#       return _("undefined")
+	return "%s %s" % (getImageVersion(),getImageType())
 
 def getCPUInfoString():
 	if getMachineBuild() in ('gbmv200', ):
@@ -234,8 +233,12 @@ def getDriverInstalledDate():
 
 def getPythonVersionString():
 	try:
-		import subprocess
-		status, output = subprocess.getstatusoutput("python -V")
+		if sys.version_info[0] >= 3:
+			import subprocess
+			status, output = subprocess.getstatusoutput("python3 -V")
+		else:
+			import commands
+			status, output = commands.getstatusoutput("python -V")
 		return output.split(' ')[1]
 	except:
 		return _("unknown")
@@ -249,7 +252,7 @@ def GetIPsFromNetworkInterfaces():
 	while True:
 		_bytes = max_possible * struct_size
 		names = array.array('B')
-		for i in range(0, _bytes):
+		for i in list(range(0, _bytes)):
 			names.append(0)
 		outbytes = struct.unpack('iL', fcntl.ioctl(
 			s.fileno(),
@@ -262,7 +265,7 @@ def GetIPsFromNetworkInterfaces():
 			break
 	namestr = names.tostring()
 	ifaces = []
-	for i in range(0, outbytes, struct_size):
+	for i in list(range(0, outbytes, struct_size)):
 		iface_name = bytes.decode(namestr[i:i+16]).split('\0', 1)[0].encode('ascii')
 		if iface_name != 'lo':
 			iface_addr = socket.inet_ntoa(namestr[i+20:i+24])

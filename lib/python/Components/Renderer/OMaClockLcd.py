@@ -1,12 +1,12 @@
+from __future__ import absolute_import
 import math
-from Components.Renderer import Renderer
+from Components.Renderer.Renderer import Renderer
 from skin import parseColor
 from enigma import eCanvas, eSize, gRGB, eRect
 from Components.VariableText import VariableText
 from Components.config import config
 
 from boxbranding import getBoxType
-from six.moves import range
 
 LCDSIZE400 = []
 
@@ -98,7 +98,7 @@ class OMaClockLcd(Renderer):
 		deltay = abs((y1 - y0))
 		error = (-deltax / 2)
 		y = y0
-		for x in range(x0, (x1 + 1)):
+		for x in list(range(x0, (x1 + 1))):
 			if steep:
 				self.instance.fillRect(eRect(y, x, self.linewidth, self.linewidth), self.fColor)
 			else:

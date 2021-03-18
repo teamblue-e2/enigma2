@@ -8,7 +8,7 @@ from Components.ScrollLabel import ScrollLabel
 from Components.Harddisk import harddiskmanager
 from Components.Console import Console
 from Plugins.SystemPlugins.Hotplug.plugin import hotplugNotifier
-from six.moves import range
+import six
 
 class MediumToolbox(Screen):
 	skin = """
@@ -27,14 +27,14 @@ class MediumToolbox(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		
+
 		self["key_red"] = StaticText(_("Exit"))
 		self["key_green"] = StaticText(_("Update"))
 		self["key_yellow"] = StaticText()
-		
+
 		self["space_label"] = StaticText()
 		self["space_bar"] = Progress()
-		
+
 		self.mediuminfo = [ ]
 		self.formattable = False
 		self["details"] = ScrollLabel()
@@ -76,11 +76,12 @@ class MediumToolbox(Screen):
 			job_manager.AddJob(job)
 			from Screens.TaskView import JobView
 			self.session.openWithCallback(self.formatCB, JobView, job)
-	
+
 	def formatCB(self, in_background):
 		self.update()
 
 	def mediainfoCB(self, mediuminfo, retval, extra_args):
+		mediuminfo = six.ensure_str(mediuminfo)
 		formatted_capacity = 0
 		read_capacity = 0
 		capacity = 0
@@ -166,7 +167,7 @@ class DVDformatJob(Job):
 		Job.__init__(self, _("Recordable media toolbox"))
 		self.toolbox = toolbox
 		DVDformatTask(self)
-		
+
 	def retry(self):
 		self.tasks[0].args += self.tasks[0].retryargs
 		Job.retry(self)
@@ -201,13 +202,13 @@ class DVDformatTask(Task):
 		if line.startswith("- media is already formatted"):
 			self.error = self.ERROR_ALREADYFORMATTED
 			self.retryargs = [ "-force" ]
-		#if line.startswith("- media is not blank") or 
+		#if line.startswith("- media is not blank") or
 		if line.startswith("  -format=full  to perform full (lengthy) reformat;"):
 			self.error = self.ERROR_ALREADYFORMATTED
 			self.retryargs = [ "-blank" ]
 		elif line.startswith("                to eliminate or adjust Spare Area."):
 			self.error = self.ERROR_ALREADYFORMATTED
-			self.retryargs = [ "-ssa=default" ]	
+			self.retryargs = [ "-ssa=default" ]
 		if line.startswith(":-( mounted media doesn't appear to be"):
 			self.error = self.ERROR_NOTWRITEABLE
 

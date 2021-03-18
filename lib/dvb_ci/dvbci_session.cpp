@@ -166,7 +166,10 @@ void eDVBCISession::createSession(eDVBCISlot *slot, const unsigned char *resourc
 	case 0x00100041:
 //		session=new eDVBCIAuthSession;
 		eDebug("[CI SESS] AuthSession");
-//		break;
+		[[fallthrough]];
+	case 0x008C1001:
+	case 0x008D1001:
+	case 0x008E1001:
 	case 0x00200041:
 	default:
 		eDebug("[CI SESS] unknown resource type %02x %02x %02x %02x", resource_identifier[0], resource_identifier[1], resource_identifier[2],resource_identifier[3]);

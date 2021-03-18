@@ -1,8 +1,6 @@
 from __future__ import print_function
 from __future__ import division
 import errno
-from Tools.Profile import profile
-profile("LOAD:ElementTree")
 import xml.etree.cElementTree
 
 import six
@@ -17,11 +15,12 @@ from Tools.Directories import SCOPE_CONFIG, SCOPE_CURRENT_LCDSKIN, SCOPE_CURRENT
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 
-DEFAULT_SKIN = "GigabluePax/skin.xml"
+DEFAULT_SKIN = "GigabluePaxV2/skin.xml"
 # DEFAULT_SKIN = SystemInfo["HasFullHDSkinSupport"] and "PLi-FullNightHD/skin.xml" or "PLi-HD/skin.xml"  # SD hardware is no longer supported by the default skin.
 EMERGENCY_SKIN = "skin_default/skin.xml"
 EMERGENCY_NAME = "Stone II"
 DEFAULT_DISPLAY_SKIN = "lcd_skin/skin_lcd_default.xml"
+DEFAULT_CLOCK_SKIN = "lcd_skin/clock_lcd_analog.xml"
 USER_SKIN = "skin_user.xml"
 USER_SKIN_TEMPLATE = "skin_user_%s.xml"
 SUBTITLE_SKIN = "skin_subtitles.xml"
@@ -55,9 +54,11 @@ if not isfile(skin):
 	DEFAULT_SKIN = EMERGENCY_SKIN
 config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
 config.skin.display_skin = ConfigText(default=DEFAULT_DISPLAY_SKIN)
+config.skin.clock_skin = ConfigText(default=DEFAULT_CLOCK_SKIN)
 
 currentPrimarySkin = None
 currentDisplaySkin = None
+currentClockSkin = None
 callbacks = []
 runCallbacks = False
 
@@ -74,24 +75,35 @@ runCallbacks = False
 # E.g. "MySkin/skin_display.xml"
 #
 def InitSkins():
-	global currentPrimarySkin, currentDisplaySkin
+	global currentPrimarySkin, currentDisplaySkin, currentClockSkin
 	runCallbacks = False
 	# Add the emergency skin.  This skin should provide enough functionality
 	# to enable basic GUI functions to work.
 	loadSkin(EMERGENCY_SKIN, scope=SCOPE_CURRENT_SKIN, desktop=getDesktop(GUI_SKIN_ID), screenID=GUI_SKIN_ID)
 	# Add the subtitle skin.
 	loadSkin(SUBTITLE_SKIN, scope=SCOPE_CURRENT_SKIN, desktop=getDesktop(GUI_SKIN_ID), screenID=GUI_SKIN_ID)
-	# Add the front panel / display / lcd skin.
-	result = []
-	for skin, name in [(config.skin.display_skin.value, "current"), (DEFAULT_DISPLAY_SKIN, "default")]:
-		if skin in result:  # Don't try to add a skin that has already failed.
-			continue
-		config.skin.display_skin.value = skin
-		if loadSkin(config.skin.display_skin.value, scope=SCOPE_CURRENT_LCDSKIN, desktop=getDesktop(DISPLAY_SKIN_ID), screenID=DISPLAY_SKIN_ID):
-			currentDisplaySkin = config.skin.display_skin.value
-			break
-		print("[Skin] Error: Adding %s display skin '%s' has failed!" % (name, config.skin.display_skin.value))
-		result.append(skin)
+	if SystemInfo["OledDisplay"]:
+		# Add the front panel / display / lcd skin.
+		result = []
+		for skin, name in [(config.skin.display_skin.value, "current"), (DEFAULT_DISPLAY_SKIN, "default")]:
+			if skin in result:  # Don't try to add a skin that has already failed.
+				continue
+			config.skin.display_skin.value = skin
+			if loadSkin(config.skin.display_skin.value, scope=SCOPE_CURRENT_LCDSKIN, desktop=getDesktop(DISPLAY_SKIN_ID), screenID=DISPLAY_SKIN_ID):
+				currentDisplaySkin = config.skin.display_skin.value
+				break
+			print("[Skin] Error: Adding %s display skin '%s' has failed!" % (name, config.skin.display_skin.value))
+			result.append(skin)
+		result = []
+		for skin, name in [(config.skin.clock_skin.value, "current"), (DEFAULT_CLOCK_SKIN, "default")]:
+			if skin in result:  # Don't try to add a skin that has already failed.
+				continue
+			config.skin.clock_skin.value = skin
+			if loadSkin(config.skin.clock_skin.value, scope=SCOPE_CURRENT_LCDSKIN, desktop=getDesktop(DISPLAY_SKIN_ID), screenID=DISPLAY_SKIN_ID):
+				currentClockSkin = config.skin.clock_skin.value
+				break
+			print("[Skin] Error: Adding %s display skin '%s' has failed!" % (name, config.skin.clock_skin.value))
+			result.append(skin)
 	# Add the main GUI skin.
 	result = []
 	for skin, name in [(config.skin.primary_skin.value, "current"), (DEFAULT_SKIN, "default")]:
@@ -232,11 +244,12 @@ class SkinError(Exception):
 #         e      : Take the parent size/width.
 #         c      : Take the center point of parent size/width.
 #         %      : Take given percentage of parent size/width.
-#         w      : Multiply by current font width.
-#         h      : Multiply by current font height.
+#         w      : Multiply by current font width. (Only to be used in elements where the font attribute is available, i.e. not "None")
+#         h      : Multiply by current font height. (Only to be used in elements where the font attribute is available, i.e. not "None")
+#         f      : Replace with getSkinFactor().
 #
 def parseCoordinate(s, e, size=0, font=None):
-	s = s.strip()
+	orig = s = s.strip()
 	if s == "center":  # For speed as this can be common case.
 		val = 0 if not size else (e - size) // 2
 	elif s == "*":
@@ -245,7 +258,10 @@ def parseCoordinate(s, e, size=0, font=None):
 		try:
 			val = int(s)  # For speed try a simple number first.
 		except ValueError:
-			if "t" in s:
+			if font is None and ("w" in s or "h" in s):
+				print("[Skin] Error: 'w' or 'h' is being used in a field where neither is valid. Input string: '%s'" % orig)
+				return 0
+			if "center" in s:
 				s = s.replace("center", str((e - size) / 2.0))
 			if "e" in s:
 				s = s.replace("e", str(e))
@@ -257,13 +273,17 @@ def parseCoordinate(s, e, size=0, font=None):
 				s = s.replace("h", "*%s" % str(fonts[font][2]))
 			if "%" in s:
 				s = s.replace("%", "*%s" % str(e / 100.0))
+			if "f" in s:
+				s = s.replace("f", str(getSkinFactor()))
 			try:
 				val = int(s)  # For speed try a simple number first.
 			except ValueError:
-				val = int(eval(s))
+				try:
+					val = int(eval(s))
+				except Exception as err:
+					print("[Skin] %s '%s': Coordinate '%s', processed to '%s', cannot be evaluated!" % (type(err).__name__, err, orig, s))
+					val = 0
 	# print("[Skin] DEBUG: parseCoordinate s='%s', e='%s', size=%s, font='%s', val='%s'." % (s, e, size, font, val))
-	if val < 0:
-		val = 0
 	return val
 
 def getParentSize(object, desktop):
@@ -297,11 +317,21 @@ def parsePosition(s, scale, object=None, desktop=None, size=None):
 	return ePoint(*parseValuePair(s, scale, object, desktop, size))
 
 def parseSize(s, scale, object=None, desktop=None):
-	return eSize(*parseValuePair(s, scale, object, desktop))
+	return eSize(*[max(0,x) for x in parseValuePair(s, scale, object, desktop)])
 
 def parseFont(s, scale=((1, 1), (1, 1))):
 	if ";" in s:
 		name, size = s.split(";")
+		orig = size
+		try:
+			size = int(size)
+		except ValueError:
+			try:
+				size = size.replace("f", str(getSkinFactor()))
+				size = int(eval(size))
+			except Exception as err:
+				print("[Skin] %s '%s': font size formula '%s', processed to '%s', cannot be evaluated!" % (type(err).__name__, err, orig, s))
+				size = None
 	else:
 		name = s
 		size = None
@@ -343,13 +373,13 @@ def parseParameter(s):
 	else:  # Integer.
 		return int(s)
 
-def loadPixmap(path, desktop):
+def loadPixmap(path, desktop, size=None):
 	option = path.find("#")
 	if option != -1:
 		path = path[:option]
 	if rc_model.rcIsDefault() is False and basename(path) in ("rc.png", "rc0.png", "rc1.png", "rc2.png", "oldrc.png"):
 		path = rc_model.getRcImg()
-	pixmap = LoadPixmap(path, desktop)
+	pixmap = LoadPixmap(path, desktop, None, size)
 	if pixmap is None:
 		raise SkinError("Pixmap file '%s' not found" % path)
 	return pixmap
@@ -401,8 +431,15 @@ class AttributeParser:
 			print("[Skin] Attribute '%s' with wrong (or unknown) value '%s' in object of type '%s'!" % (attrib, value, self.guiObject.__class__.__name__))
 
 	def applyAll(self, attrs):
+		pixmap_value = None
 		for attrib, value in attrs:
-			self.applyOne(attrib, value)
+			# For pixmap scale required the size of the widget, so apply pixmap last
+			if attrib == 'pixmap':
+				pixmap_value = value
+			else:
+				self.applyOne(attrib, value)
+		if pixmap_value:
+			self.applyOne('pixmap', pixmap_value)
 
 	def conditional(self, value):
 		pass
@@ -455,7 +492,7 @@ class AttributeParser:
 		self.guiObject.setItemHeight(int(value))
 
 	def pixmap(self, value):
-		self.guiObject.setPixmap(loadPixmap(value, self.desktop))
+		self.guiObject.setPixmap(loadPixmap(value, self.desktop, self.guiObject.size()))
 
 	def backgroundPixmap(self, value):
 		self.guiObject.setBackgroundPicture(loadPixmap(value, self.desktop))
@@ -629,6 +666,16 @@ class AttributeParser:
 	def noWrap(self, value):
 		value = 1 if value.lower() in ("1", "enabled", "nowrap", "on", "true", "yes") else 0
 		self.guiObject.setNoWrap(value)
+
+	def split(self, value):
+		pass
+
+	def colposition(self, value):
+		pass
+
+	def dividechar(self, value):
+		pass
+
 
 def applySingleAttribute(guiObject, desktop, attrib, value, scale=((1, 1), (1, 1))):
 	# Is anyone still using applySingleAttribute?
@@ -992,14 +1039,26 @@ def readSkin(screen, skin, names, desktop):
 	for n in names:  # Try all skins, first existing one has priority.
 		myScreen, path = domScreens.get(n, (None, None))
 		if myScreen is not None:
-			name = n  # Use this name for debug output.
-			break
+			if screen.mandatoryWidgets is None:
+				screen.mandatoryWidgets = []
+			else:
+				widgets = findWidgets(n)
+			if screen.mandatoryWidgets == [] or all(item in widgets for item in screen.mandatoryWidgets):
+				name = n  # Use this name for debug output.
+				break
+			else:
+				print("[Skin] Warning: Skin screen '%s' rejected as it does not offer all the mandatory widgets '%s'!" % (n, ", ".join(screen.mandatoryWidgets)))
+				myScreen = None
 	else:
 		name = "<embedded-in-%s>" % screen.__class__.__name__
 	if myScreen is None:  # Otherwise try embedded skin.
 		myScreen = getattr(screen, "parsedSkin", None)
 	if myScreen is None and getattr(screen, "skin", None):  # Try uncompiled embedded skin.
-		skin = screen.skin
+		if isinstance(screen.skin, list):
+			print("[Skin] Resizable embedded skin template found in '%s'." % name)
+			skin = screen.skin[0] % tuple([int(x * getSkinFactor()) for x in screen.skin[1:]])
+		else:
+			skin = screen.skin
 		print("[Skin] Parsing embedded skin '%s'." % name)
 		if isinstance(skin, tuple):
 			for s in skin:
@@ -1202,6 +1261,31 @@ def readSkin(screen, skin, names, desktop):
 	# things around.
 	screen = None
 	usedComponents = None
+
+# Return a set of all the widgets found in a screen. Panels will be expanded
+# recursively until all referenced widgets are captured. This code only performs
+# a simple scan of the XML and no skin processing is performed.
+#
+def findWidgets(name):
+	widgetSet = set()
+	element, path = domScreens.get(name, (None, None))
+	if element is not None:
+		widgets = element.findall("widget")
+		if widgets is not None:
+			for widget in widgets:
+				name = widget.get("name", None)
+				if name is not None:
+					widgetSet.add(name)
+				source = widget.get("source", None)
+				if source is not None:
+					widgetSet.add(source)
+		panels = element.findall("panel")
+		if panels is not None:
+			for panel in panels:
+				name = panel.get("name", None)
+				if name:
+					widgetSet.update(findWidgets(name))
+	return widgetSet
 
 # Return a scaling factor (float) that can be used to rescale screen displays
 # to suit the current resolution of the screen.  The scales are based on a

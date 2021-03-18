@@ -19,7 +19,6 @@ from Screens.ChoiceBox import ChoiceBox
 from time import gmtime, strftime
 
 import bisect
-from six.moves import range
 
 try:
 	from Plugins.Extensions.MovieCut.plugin import main as MovieCut
@@ -227,7 +226,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.onClose.append(self.__onClose)
 
 	def __onClose(self):
-		need_restart = self.old_service and self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.old_service != self.session.nav.getCurrentlyPlayingServiceOrGroup() 
+		need_restart = self.old_service and self.session.nav.getCurrentlyPlayingServiceOrGroup() and self.old_service != self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.session.nav.playService(self.old_service, forceRestart=need_restart, adjust=False)
 
 	def updateStateLabel(self, state):
@@ -302,7 +301,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 
 		l1 = len(new_list)
 		l2 = len(self.last_cuts)
-		for i in range(min(l1, l2)):
+		for i in list(range(min(l1, l2))):
 			if new_list[l1-i-1] != self.last_cuts[l2-i-1]:
 				self["cutlist"].setIndex(l1-i-1)
 				break

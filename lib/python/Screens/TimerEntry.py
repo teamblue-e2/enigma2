@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+from __future__ import absolute_import
 
 from Screens.Screen import Screen
 from Screens import ChannelSelection
@@ -25,7 +27,6 @@ from enigma import eEPGCache, iRecordableServicePtr
 from time import localtime, mktime, time, strftime
 from datetime import datetime
 import urllib.request, urllib.parse, urllib.error
-from six.moves import range
 
 class TimerEntry(Screen, ConfigListScreen):
 	def __init__(self, session, timer, edit=False):
@@ -482,7 +483,7 @@ class TimerEntry(Screen, ConfigListScreen):
 						ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 						parent = self.timer.service_ref.ref
 						selection = 0
-						for x in range(n):
+						for x in list(range(n)):
 							i = event.getLinkageService(parent, x)
 							if i.toString() == ref.toString():
 								selection = x

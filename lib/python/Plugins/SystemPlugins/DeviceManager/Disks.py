@@ -2,7 +2,6 @@ from __future__ import division
 from __future__ import print_function
 from builtins import str
 from builtins import object
-from past.utils import old_div
 import os
 import re
 
@@ -177,7 +176,7 @@ class Disks(object):
 		elif fstype == 1:
 			ptype = "ext3"
 		print(("[DeviceManager] size = ", size))
-		psize = (old_div(size, (1024*1024)))
+		psize = (size // (1024*1024))
 		print(("[DeviceManager] (size / (1024*1024)) = ", psize))
 		if type == 0:
 				cmd = '/usr/sbin/parted --align optimal /dev/%s --script mklabel msdos mkpart primary %s 0%% 100%%' % (device, ptype)
@@ -261,8 +260,8 @@ class Disks(object):
 			print(("[DeviceManager] EXT4 command to format ", cmd))
 		elif fstype == 1:
 			cmd = "/sbin/mkfs.ext3 "
-			psize = (old_div(size, (1024)))
-			if psize > 250000:
+			psize = (size // (1024))
+                        if psize > 250000:
 				# No more than 256k i-nodes (prevent problems with fsck memory requirements)
 				cmd += "-F -T largefile -O sparse_super -N 262144 "
 			elif psize > 16384:

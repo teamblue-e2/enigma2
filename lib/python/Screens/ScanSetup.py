@@ -1,3 +1,6 @@
+from __future__ import print_function
+from __future__ import division
+from __future__ import absolute_import
 
 from Screens.Screen import Screen
 from Screens.ServiceScan import ServiceScan
@@ -13,7 +16,7 @@ from Tools.Transponder import getChannelNumber, supportedChannels, channel2frequ
 from Screens.InfoBar import InfoBar
 from Screens.MessageBox import MessageBox
 from enigma import eTimer, eDVBFrontendParametersSatellite, eComponentScan, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersCable, eConsoleAppContainer, eDVBResourceManager, eDVBFrontendParametersATSC
-from six.moves import range
+import six
 
 def buildTerTransponder(frequency,
 		inversion=2, bandwidth = 7000000, fechigh = 6, feclow = 6,
@@ -119,26 +122,33 @@ cable_autoscan_nimtype = {
 'SSH108' : 'ssh108',
 'TT3L10' : 'tt3l10',
 'TURBO' : 'vuplus_turbo_c',
+'TURBO2' : 'vuplus_turbo2_c',
 'TT2L08' : 'tt2l08',
-'BCM3148' : 'bcm3148'
+'BCM3148' : 'bcm3148', #BCM3158/BCM3148 use the same bcm3148 utility
+'BCM3158': 'bcm3148'
 }
 
 terrestrial_autoscan_nimtype = {
 'SSH108' : 'ssh108_t2_scan',
 'TT3L10' : 'tt3l10_t2_scan',
 'TURBO' : 'vuplus_turbo_t',
+'TURBO2' : 'vuplus_turbo2_t',
 'TT2L08' : 'tt2l08_t2_scan',
 'BCM3466' : 'bcm3466'
 }
 
+dual_tuner_list = ('TT3L10', 'BCM3466')
+vtuner_need_idx_list = ('TURBO2',)
+
 def GetDeviceId(filter, nim_idx):
-	tuners={}
 	device_id = 0
 	socket_id = 0
 	for nim in nimmanager.nim_slots:
-		name_token = nim.description.split(' ')
-		name = name_token[-1][4:-1]
-		if name == filter:
+		try:
+			name_token = nim.description.split(' ')[-1][4:-1]
+		except:
+			name_token = ""
+		if name_token == filter:
 			if socket_id == nim_idx:
 				break
 			if device_id:
@@ -151,6 +161,16 @@ def GetDeviceId(filter, nim_idx):
 def GetTerrestrial5VEnable(nim_idx):
 	nim = nimmanager.nim_slots[nim_idx]
 	return int(nim.config.terrestrial_5V.value)
+
+def getVtunerId(filter, nim_idx):
+	idx_count = 1
+	for slot in nimmanager.nim_slots:
+		if filter in slot.description:
+			if slot.slot == nim_idx:
+				return "--idx " + str(idx_count)
+			else:
+				idx_count += 1
+	return ""
 
 class CableTransponderSearchSupport:
 
@@ -190,6 +210,7 @@ class CableTransponderSearchSupport:
 		self.cable_search_session.close(True)
 
 	def getCableTransponderData(self, str):
+		str = six.ensure_str(str)
 		#prepend any remaining data from the previous call
 		str = self.remainingdata + str
 		#split in lines
@@ -221,9 +242,9 @@ class CableTransponderSearchSupport:
 						"FEC_2_3" : parm.FEC_2_3,
 						"FEC_3_4" : parm.FEC_3_4,
 						"FEC_3_5" : parm.FEC_3_5,
-						"FEC_4_5" : parm.FEC_4_5,						
+						"FEC_4_5" : parm.FEC_4_5,
 						"FEC_5_6" : parm.FEC_5_6,
-						"FEC_6_7" : parm.FEC_6_7,						
+						"FEC_6_7" : parm.FEC_6_7,
 						"FEC_7_8" : parm.FEC_7_8,
 						"FEC_8_9" : parm.FEC_8_9,
 						"FEC_9_10" : parm.FEC_9_10,
@@ -244,19 +265,17 @@ class CableTransponderSearchSupport:
 		def GetCommand(nim_idx):
 			global cable_autoscan_nimtype
 			try:
-				nim_name = nimmanager.getNimName(nim_idx)
-				if nim_name is not None and nim_name != "":
-					device_id = ""
-					nim_name = nim_name.split(' ')[-1][4:-1]
-					if nim_name in ("TT3L10", "BCM3466"):
-						try:
-							device_id = GetDeviceId(nim_name, nim_idx)
-							device_id = "--device=%s" % (device_id)
-						except Exception as err:
-							print("GetCommand ->", err)
-							device_id = "--device=0"
-					command = "%s %s" % (cable_autoscan_nimtype[nim_name], device_id)
-					return command
+				device_id = ""
+				nim_name = nimmanager.getNimName(nim_idx).strip(':VTUNER').split(' ')[-1][4:-1]
+				if nim_name == "TT3L10":
+					try:
+						device_id = "--device=%s" % GetDeviceId(nim_name, nim_idx)
+					except Exception as err:
+						device_id = "--device=0"
+						print("[startCableTransponderSearch] GetCommand ->", err)
+				elif nim_name in vtuner_need_idx_list:
+					device_id = getVtunerId(nim_name, nim_idx)
+				return "%s %s" % (cable_autoscan_nimtype[nim_name], device_id)
 			except Exception as err:
 				print("GetCommand ->", err)
 			return "tda1002x"
@@ -399,6 +418,7 @@ class TerrestrialTransponderSearchSupport:
 				self.terrestrialTransponderSearch(freq, bandWidth)
 
 	def getTerrestrialTransponderData(self, str):
+		str = six.ensure_str(str)
 		print(str)
 		if self.terrestrial_tunerName.startswith("Sundtek"):
 			str = self.remaining_data + str
@@ -425,14 +445,14 @@ class TerrestrialTransponderSearchSupport:
 						parm.system = 'DVB-T2' in data[1] and parm.System_DVB_T_T2 or parm.System_DVB_T
 						parm.plp_id = 0
 						self.__tlist.append(parm)
-					tmpstr = _("Try to find used transponders in terrestrial network... please wait...")
-					tmpstr += "\n\n"
+					tmpstr = _("Try to find used transponders in terrestrial network... please wait...") + "\n\n"
 					if 'MODE' in line:
-						tmpstr += data[3]
-						tmpstr += " kHz "
+						tmpstr += data[3] + " kHz"
 					else:
-						tmpstr += _(line)
-			self.terrestrial_search_session["text"].setText(tmpstr)
+						title = _("Sundtek - hardware blind scan in progress.\nPlease wait(3-20 min) for the scan to finish.")
+						if "Succeeded this device supports Hardware Blindscan" in line:
+							tmpstr += title
+					self.terrestrial_search_session["text"].setText(tmpstr)
 		else:
 			self.terrestrial_search_data += str
 
@@ -525,18 +545,17 @@ class TerrestrialTransponderSearchSupport:
 	def terrestrialTransponderGetCmd(self, nim_idx):
 		global terrestrial_autoscan_nimtype
 		try:
-			if self.terrestrial_tunerName is not None and self.terrestrial_tunerName != "":
-				device_id = ""
-				tunerName = self.terrestrial_tunerName.split(' ')[-1][4:-1]
-				if tunerName == 'TT3L10':
-					try:
-						device_id = GetDeviceId('TT3L10', nim_idx)
-						device_id = "--device %s" % (device_id)
-					except Exception as err:
-						print("terrestrialTransponderGetCmd ->", err)
-						device_id = "--device 0"
-				command = "%s %s" % (terrestrial_autoscan_nimtype[tunerName], device_id)
-				return command
+			device_id = ""
+			nim_name = nimmanager.getNimName(nim_idx).strip(':VTUNER').split(' ')[-1][4:-1]
+			if nim_name in dual_tuner_list:
+				try:
+					device_id = "--device %s" % GetDeviceId(nim_name, nim_idx)
+				except Exception as err:
+					device_id = "--device 0"
+					print("terrestrialTransponderGetCmd set device 0 ->", err)
+			elif nim_name in vtuner_need_idx_list:
+				device_id = getVtunerId(nim_name, nim_idx)
+			return "%s %s" % (terrestrial_autoscan_nimtype[nim_name], device_id)
 		except Exception as err:
 			print("terrestrialTransponderGetCmd ->", err)
 		return ""
@@ -1081,7 +1100,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 		self.scan_sat.t2mi_plp_id = ConfigInteger(default = defaultSat["t2mi_plp_id"], limits = (eDVBFrontendParametersSatellite.No_T2MI_PLP_Id, 255))
 		self.scan_sat.t2mi_pid = ConfigInteger(default = defaultSat["t2mi_pid"] if self.scan_sat.t2mi_plp_id.value != eDVBFrontendParametersSatellite.No_T2MI_PLP_Id else eDVBFrontendParametersSatellite.T2MI_Default_Pid, limits = (0, 8191))
 		self.scan_sat.t2mi_plp_id_bool  = ConfigSelection(default = defaultSat["t2mi_plp_id"] != eDVBFrontendParametersSatellite.No_T2MI_PLP_Id, choices = [(True, _("Enabled")),(False, _("Disabled"))])
-		
+
 		self.is_id_memory = self.scan_sat.is_id.value # used to prevent is_id value being lost when self.scan_sat.is_id_bool state changes
 		self.pls_mode_memory = self.scan_sat.pls_mode.value
 		self.pls_code_memory = self.scan_sat.pls_code.value
@@ -1565,7 +1584,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 		return default
 
 	def humanReadableTransponder(self, tp):
-		if tp[3] in range (4) and tp[4] in range (11):
+		if tp[3] in list(range(4)) and tp[4] in list(range(11)):
 			pol_list = ['H','V','L','R']
 			fec_list = ['Auto','1/2','2/3','3/4','5/6','7/8','8/9','3/5','4/5','9/10','None']
 			tp_text = str(tp[1] / 1000) + " " + pol_list[tp[3]] + " " + str(tp[2] / 1000) + " " + fec_list[tp[4]]
@@ -1641,7 +1660,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 		return default
 
 	def humanReadableCabTransponder(self, tp):
-		if tp[3] in range (6) and (tp[4] in range (10) or tp[4] == 15):
+		if tp[3] in list(range(6)) and (tp[4] in list(range(10)) or tp[4] == 15):
 			mod_list = ['Auto', '16-QAM','32-QAM','64-QAM','128-QAM', '256-QAM']
 			fec_list = {0:"Auto", 1:'1/2', 2:'2/3', 3:'3/4', 4:'5/6', 5:'7/8', 6:'8/9', 7:'3/5', 8:'4/5', 9:'9/10', 15:'None'}
 			print(str(tp[1]/1000.) + " MHz " + fec_list[tp[4]] + " " + str(tp[2]/1000) + " " + mod_list[tp[3]])

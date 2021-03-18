@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # taken from mytube plugin
+from __future__ import print_function
 
 from enigma import eTimer
 from Screens.Screen import Screen
@@ -98,4 +99,4 @@ class TaskListScreen(Screen):
 
 	def keySave(self):
 		self.close()
- 
+

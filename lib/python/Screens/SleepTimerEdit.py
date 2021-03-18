@@ -8,7 +8,6 @@ from Components.Sources.StaticText import StaticText
 from Components.config import config, getConfigListEntry
 from enigma import eEPGCache
 from time import time, localtime, mktime
-from six.moves import range
 
 class SleepTimerEdit(ConfigListScreen, Screen):
 	def __init__(self, session):
@@ -57,7 +56,7 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 					config.usage.inactivity_timer_blocktime_by_weekdays,
 					_("Specify if you want to set the blocktimes separately by weekday")))
 				if config.usage.inactivity_timer_blocktime_by_weekdays.value:
-					for i in range(7):
+					for i in list(range(7)):
 						self.list.append(getConfigListEntry(sub3 + [_("Monday"), _("Tuesday"), _("Wednesday"), _("Thursday"), _("Friday"), _("Saturday"), _("Sunday")][i],
 							config.usage.inactivity_timer_blocktime_day[i]))
 						if config.usage.inactivity_timer_blocktime_day[i].value:
@@ -112,7 +111,7 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 			config.usage.wakeup_enabled,
 			_("Note: when enabled, and you do want standby mode after wake up, set option 'Startup to Standby' as 'No, except Wakeup timer'.")))
 		if config.usage.wakeup_enabled.value != "no":
-			for i in range(7):
+			for i in list(range(7)):
 				self.list.append(getConfigListEntry([_("Monday"), _("Tuesday"), _("Wednesday"), _("Thursday"), _("Friday"), _("Saturday"), _("Sunday")][i],
 					config.usage.wakeup_day[i]))
 				if config.usage.wakeup_day[i].value:
@@ -208,7 +207,7 @@ def WakeupDayTimeOfWeek():
 			wakeup_time = int(mktime((now.tm_year, now.tm_mon, now.tm_mday, config.usage.wakeup_time[current_day].value[0], config.usage.wakeup_time[current_day].value[1], 0, now.tm_wday, now.tm_yday, now.tm_isdst)))
 			if wakeup_time > time():
 				return 0, wakeup_time
-		for i in range(1,8):
+		for i in list(range(1,8)):
 			if config.usage.wakeup_day[(current_day+i)%7].value:
 				return i, int(mktime((now.tm_year, now.tm_mon, now.tm_mday, config.usage.wakeup_time[(current_day+i)%7].value[0], config.usage.wakeup_time[(current_day+i)%7].value[1], 0, now.tm_wday, now.tm_yday, now.tm_isdst)))
 	return -1, None

@@ -8,7 +8,7 @@ from Tools.HardwareInfo import HardwareInfo
 from boxbranding import getMachineBuild
 import Components.Task
 import re
-from six.moves import range
+import six
 
 def readFile(filename):
 	file = open(filename)
@@ -346,18 +346,18 @@ class Harddisk:
 		return 1
 
 	def killPartitionTable(self):
-		zero = 512 * '\0'
+		zero = 512 * b'\0'
 		h = open(self.dev_path, 'wb')
 		# delete first 9 sectors, which will likely kill the first partition too
-		for i in range(9):
+		for i in list(range(9)):
 			h.write(zero)
 		h.close()
 
 	def killPartition(self, n):
-		zero = 512 * '\0'
+		zero = 512 * b'\0'
 		part = self.partitionPath(n)
 		h = open(part, 'wb')
-		for i in range(3):
+		for i in list(range(3)):
 			h.write(zero)
 		h.close()
 
@@ -716,7 +716,7 @@ class HarddiskManager:
 				dev = None
 				subdev = None
 			# blacklist ram, loop, mtdblock, romblock, ramzswap
-			blacklisted = dev in [1, 7, 31, 253, 254] 
+			blacklisted = dev in [1, 7, 31, 253, 254]
 			# blacklist non-root eMMC devices
 			if not blacklisted and dev == 179:
 				if  subdev != 0:
@@ -952,6 +952,7 @@ class UnmountTask(Components.Task.LoggingTask):
 	def prepare(self):
 		try:
 			dev = self.hdd.disk_path.split('/')[-1]
+			dev = six.ensure_binary(dev)
 			open('/dev/nomount.%s' % dev, "wb").close()
 		except Exception as e:
 			print("[Harddisk] ERROR: Failed to create /dev/nomount file:", e)
@@ -1010,6 +1011,7 @@ class MkfsTask(Components.Task.LoggingTask):
 	def prepare(self):
 		self.fsck_state = None
 	def processOutput(self, data):
+		data = six.ensure_str(data)
 		print("[Mkfs]", data)
 		if 'Writing inode tables:' in data:
 			self.fsck_state = 'inode'
@@ -1024,7 +1026,7 @@ class MkfsTask(Components.Task.LoggingTask):
 					d = data.strip(' \x08\r\n').split('/',1)
 					if '\x08' in d[1]:
 						d[1] = d[1].split('\x08',1)[0]
-					self.setProgress(80*int(d[0])/int(d[1]))
+					self.setProgress(80*int(d[0])//int(d[1]))
 				except Exception as e:
 					print("[Mkfs] E:", e)
 				return # don't log the progess

@@ -1,3 +1,6 @@
+from __future__ import division
+from __future__ import print_function
+from __future__ import absolute_import
 
 from Components.GUIComponent import GUIComponent
 from Tools.FuzzyDate import FuzzyTime
@@ -14,7 +17,6 @@ import NavigationInstance
 import skin
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, eServiceReference, eServiceCenter, eTimer, RT_VALIGN_CENTER
-from six.moves import range
 
 AUDIO_EXTENSIONS = frozenset((".dts", ".mp3", ".wav", ".wave", ".wv", ".oga", ".ogg", ".flac", ".m4a", ".mp2", ".m2a", ".wma", ".ac3", ".mka", ".aac", ".ape", ".alac", ".amr", ".au", ".mid"))
 DVD_EXTENSIONS = frozenset((".iso", ".img", ".nrg"))
@@ -181,11 +183,9 @@ class MovieList(GUIComponent):
 		if root is not None:
 			self.reload(root)
 
-		self.l.setBuildFunc(self.buildMovieListEntry)
-
 		self.onSelectionChanged = [ ]
 		self.iconPart = []
-		for part in range(5):
+		for part in list(range(5)):
 			self.iconPart.append(LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/part_%d_4.png" % part)))
 		self.iconMovieRec = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/part_new.png"))
 		self.iconMoviePlay = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/movie_play.png"))
@@ -321,15 +321,15 @@ class MovieList(GUIComponent):
 
 	def redrawList(self):
 		if self.list_type == MovieList.LISTTYPE_ORIGINAL:
-			for i in range(3):
+			for i in list(range(3)):
 				self.l.setFont(i, gFont(self.fontName, self.fontSizesOriginal[i]))
 			self.itemHeight = self.itemHeights[0]
 		elif self.list_type == MovieList.LISTTYPE_COMPACT_DESCRIPTION or self.list_type == MovieList.LISTTYPE_COMPACT:
-			for i in range(2):
+			for i in list(range(2)):
 				self.l.setFont(i, gFont(self.fontName, self.fontSizesCompact[i]))
 			self.itemHeight = self.itemHeights[1]
 		else:
-			for i in range(2):
+			for i in list(range(2)):
 				self.l.setFont(i, gFont(self.fontName, self.fontSizesMinimal[i]))
 			self.itemHeight = self.itemHeights[2]
 		self.l.setItemHeight(self.itemHeight)
@@ -575,6 +575,7 @@ class MovieList(GUIComponent):
 			self.load(root, filter_tags)
 		else:
 			self.load(self.root, filter_tags)
+		self.l.setBuildFunc(self.buildMovieListEntry)  # don't move that to __init__ as this will create memory leak when calling MovieList from WebIf
 		self.l.setList(self.list)
 
 	def removeService(self, service):

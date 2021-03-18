@@ -1,8 +1,4 @@
 from __future__ import print_function
-from __future__ import division
-from builtins import str
-from builtins import range
-from past.utils import old_div
 from enigma import ePicLoad, eTimer, getDesktop, gMainDC, eSize
 
 from Screens.Screen import Screen
@@ -18,7 +14,6 @@ from Components.ConfigList import ConfigList, ConfigListScreen
 
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigText, ConfigYesNo, KEY_LEFT, KEY_RIGHT, getConfigListEntry
 import skin
-from six.moves import range
 
 def getScale():
 	return AVSwitch().getFramebufferScale()
@@ -71,7 +66,7 @@ class picshow(Screen):
 		if not pathExists(currDir):
 			currDir = "/"
 
-		self.filelist = FileList(currDir, matchingPattern = "(?i)^.*\.(jpeg|jpg|jpe|png|bmp|gif)")
+		self.filelist = FileList(currDir, matchingPattern = "(?i)^.*\.(jpeg|jpg|jpe|png|bmp|gif|svg)")
 		self["filelist"] = self.filelist
 		self["filelist"].onSelectionChanged.append(self.selectionChanged)
 
@@ -239,7 +234,7 @@ class Pic_Exif(Screen):
 		exifdesc = [_("filename")+':', "EXIF-Version:", "Make:", "Camera:", "Date/Time:", "Width / Height:", "Flash used:", "Orientation:", "User Comments:", "Metering Mode:", "Exposure Program:", "Light Source:", "CompressedBitsPerPixel:", "ISO Speed Rating:", "X-Resolution:", "Y-Resolution:", "Resolution Unit:", "Brightness:", "Exposure Time:", "Exposure Bias:", "Distance:", "CCD-Width:", "ApertureFNumber:"]
 		list = []
 
-		for x in range(len(exiflist)):
+		for x in list(range(len(exiflist))):
 			if x>0:
 				list.append((exifdesc[x], exiflist[x]))
 			else:
@@ -270,16 +265,16 @@ class Pic_Thumb(Screen):
 
 		size_w = getDesktop(0).size().width()
 		size_h = getDesktop(0).size().height()
-		self.thumbsX = old_div(size_w, (self.spaceX + self.picX)) # thumbnails in X
-		self.thumbsY = old_div(size_h, (self.spaceY + self.picY)) # thumbnails in Y
+		self.thumbsX = size_w // (self.spaceX + self.picX) # thumbnails in X
+		self.thumbsY = size_h // (self.spaceY + self.picY) # thumbnails in Y
 		self.thumbsC = self.thumbsX * self.thumbsY # all thumbnails
 
 		self.positionlist = []
 		skincontent = ""
 
 		posX = -1
-		for x in range(self.thumbsC):
-			posY = old_div(x, self.thumbsX)
+		for x in list(range(self.thumbsC)):
+			posY = x // self.thumbsX
 			posX += 1
 			if posX >= self.thumbsX:
 				posX = 0
@@ -311,7 +306,7 @@ class Pic_Thumb(Screen):
 		}, -1)
 
 		self["frame"] = MovingPixmap()
-		for x in range(self.thumbsC):
+		for x in list(range(self.thumbsC)):
 			self["label"+str(x)] = StaticText()
 			self["thumb"+str(x)] = Pixmap()
 
@@ -369,7 +364,7 @@ class Pic_Thumb(Screen):
 	def newPage(self):
 		self.Thumbnaillist = []
 		#clear Labels and Thumbnail
-		for x in range(self.thumbsC):
+		for x in list(range(self.thumbsC)):
 			self["label"+str(x)].setText("")
 			self["thumb"+str(x)].hide()
 		#paint Labels and fill Thumbnail-List

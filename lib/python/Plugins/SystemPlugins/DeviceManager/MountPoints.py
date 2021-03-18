@@ -1,9 +1,7 @@
 from __future__ import print_function
-from builtins import range
 from builtins import object
 import os
 import re
-from six.moves import range
 
 class MountPoints(object):
 	def __init__(self):
@@ -55,7 +53,7 @@ class MountPoints(object):
 				if res[0] == "/dev/%s%i" % (device, partition):
 					mounts.close()
 					return res[1]
-					
+
 		mounts.close()
 		return ""
 
@@ -79,7 +77,7 @@ class MountPoints(object):
 					self.entries.remove(entry)
 
 	def deleteDisk(self, device):
-		for i in range(1,4):
+		for i in list(range(1,4)):
 			res = self.get(device, i)
 			if len(res) > 0:
 				self.delete(res)

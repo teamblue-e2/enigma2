@@ -6,14 +6,13 @@ profile("PYTHON_START")
 
 # Don't remove this line. It may seem to do nothing, but if removed,
 # it will break output redirection for crash logs.
-#import Tools.RedirectOutput
+import Tools.RedirectOutput
 import enigma
 import eConsoleImpl
 import eBaseImpl
 enigma.eTimer = eBaseImpl.eTimer
 enigma.eSocketNotifier = eBaseImpl.eSocketNotifier
 enigma.eConsoleAppContainer = eConsoleImpl.eConsoleAppContainer
-from boxbranding import getBoxType
 
 from traceback import print_exc
 
@@ -77,10 +76,10 @@ def setEPGCachePath(configElement):
 
 #demo code for use of standby enter leave callbacks
 #def leaveStandby():
-#	print "!!!!!!!!!!!!!!!!!leave standby"
+#	print("!!!!!!!!!!!!!!!!!leave standby")
 
 #def standbyCountChanged(configElement):
-#	print "!!!!!!!!!!!!!!!!!enter standby num", configElement.value
+#	print("!!!!!!!!!!!!!!!!!enter standby num", configElement.value)
 #	from Screens.Standby import inStandby
 #	inStandby.onClose.append(leaveStandby)
 
@@ -123,14 +122,11 @@ try:
 	def runReactor():
 		reactor.run(installSignalHandlers=False)
 except ImportError:
-	print("twisted not available")
+	print("[mytest] twisted not available")
 	def runReactor():
 		enigma.runMainloop()
 
-#profile("LOAD:Plugin")
-
-# initialize autorun plugins and plugin menu entries
-#from Components.PluginComponent import plugins
+profile("LOAD:Plugin")
 
 from twisted.python import log
 config.misc.enabletwistedlog = ConfigYesNo(default = False)
@@ -139,8 +135,10 @@ if config.misc.enabletwistedlog.value == True:
 else:
 	log.startLogging(sys.stdout)
 
+# initialize autorun plugins and plugin menu entries
+from Components.PluginComponent import plugins
+
 profile("LOAD:Wizard")
-from Screens.Wizard import wizardManager
 from Screens.StartWizard import *
 import Screens.Rc
 from Tools.BoundFunction import boundFunction
@@ -222,7 +220,7 @@ class Session:
 			try:
 				p(reason=0, session=self)
 			except:
-				print("Plugin raised exception at WHERE_SESSIONSTART")
+				print("[mytest] Plugin raised exception at WHERE_SESSIONSTART")
 				import traceback
 				traceback.print_exc()
 
@@ -356,8 +354,8 @@ class Session:
 	def pushSummary(self):
 		if self.summary:
 			self.summary.hide()
-			self.summary_stack.append(self.summary)
-			self.summary = None
+		self.summary_stack.append(self.summary)
+		self.summary = None
 
 	def popSummary(self):
 		if self.summary:
@@ -461,7 +459,7 @@ class AutoScartControl:
 		self.VCRSbChanged(self.current_vcr_sb)
 
 	def VCRSbChanged(self, value):
-		#print "[mytest] vcr sb changed to", value
+		#print("[mytest] vcr sb changed to", value)
 		self.current_vcr_sb = value
 		if config.av.vcrswitch.value or value > 2:
 			if value:
@@ -475,13 +473,30 @@ from Screens.Ci import CiHandler
 profile("Load:VolumeControl")
 from Components.VolumeControl import VolumeControl
 
-profile("LOAD:Plugin")
-# initialize autorun plugins and plugin menu entries
-from Components.PluginComponent import plugins
+
+from time import time, localtime, strftime
+from Tools.StbHardware import setFPWakeuptime, setRTCtime
+
+def autorestoreLoop():
+	# Check if auto restore settings fails, just start the wizard (avoid a endless loop)
+	count = 0
+	if os.path.exists("/media/hdd/images/config/autorestore"):
+		f = open("/media/hdd/images/config/autorestore", "r")
+		try:
+			count = int(f.read())
+		except:
+			count = 0;
+		f.close()
+		if count >= 3:
+			return False
+	count += 1
+	f = open("/media/hdd/images/config/autorestore", "w")
+	f.write(str(count))
+	f.close()
+	return True
 
 def runScreenTest():
 	config.misc.startCounter.value += 1
-	config.misc.startCounter.save()
 
 	profile("readPluginList")
 	enigma.pauseInit()
@@ -494,21 +509,31 @@ def runScreenTest():
 
 	CiHandler.setSession(session)
 
-	screensToRun = [ p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD) ]
-
 	profile("wizards")
-	screensToRun += wizardManager.getWizards()
+	screensToRun = []
+	RestoreSettings = None
+	if os.path.exists("/media/hdd/images/config/settings") and config.misc.firstrun.value:
+		if autorestoreLoop():
+			RestoreSettings = True
+			from Plugins.SystemPlugins.SoftwareManager.BackupRestore import RestoreScreen
+			session.open(RestoreScreen, runRestore = True)
+		else:
+			screensToRun = [ p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD) ]
+			screensToRun += wizardManager.getWizards()
+	else:
+		if os.path.exists("/media/hdd/images/config/autorestore"):
+			os.system('rm -f /media/hdd/images/config/autorestore')
+		screensToRun = [ p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD) ]
+		screensToRun += wizardManager.getWizards()
 
 	screensToRun.append((100, InfoBar.InfoBar))
 
 	sorted(screensToRun, key=lambda x: str(x))
-	print(screensToRun)
 
 	enigma.ePythonConfigQuery.setQueryFunc(configfile.getResolvedKey)
 
 	def runNextScreen(session, screensToRun, *result):
 		if result:
-			print("[mytest.py] quitMainloop #3")
 			enigma.quitMainloop(*result)
 			return
 
@@ -522,13 +547,13 @@ def runScreenTest():
 
 	config.misc.epgcache_filename.addNotifier(setEPGCachePath)
 
-	runNextScreen(session, screensToRun)
+	if not RestoreSettings:
+		runNextScreen(session, screensToRun)
 
 	profile("Init:VolumeControl")
 	vol = VolumeControl(session)
 	profile("Init:PowerKey")
 	power = PowerKey(session)
-	
 
 	# we need session.scart to access it from within menu.xml
 	session.scart = AutoScartControl(session)
@@ -540,7 +565,18 @@ def runScreenTest():
 	profile("RunReactor")
 	profile_final()
 
+	if not config.usage.shutdownOK.value and not config.usage.shutdownNOK_action.value == 'normal':
+		print("last shutdown = %s" % config.usage.shutdownOK.value)
+	if not RestoreSettings:
+		config.usage.shutdownOK.setValue(False)
+		config.usage.shutdownOK.save()
+		configfile.save()
+
 	runReactor()
+
+	config.misc.startCounter.save()
+	config.usage.shutdownOK.setValue(True)
+	config.usage.shutdownOK.save()
 
 	profile("wakeup")
 
@@ -574,7 +610,7 @@ def runScreenTest():
 		if not config.misc.useTransponderTime.value:
 			print("dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime)))
 			setRTCtime(nowTime)
-		print("set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime)))
+		print("[mytest] set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime)))
 		setFPWakeuptime(wptime)
 		recordTimerWakeupAuto = startTime[1] == 0 and startTime[2]
 		print("[mytest] recordTimerWakeupAuto',recordTimerWakeupAuto")
@@ -612,7 +648,7 @@ profile("AVSwitch")
 import Components.AVSwitch
 Components.AVSwitch.InitAVSwitch()
 
- 
+
 profile("HdmiRecord")
 import Components.HdmiRecord
 Components.HdmiRecord.InitHdmiRecord()
@@ -684,7 +720,7 @@ try:
 
 	Components.ParentalControl.parentalControl.save()
 except:
-	print('EXCEPTION IN PYTHON STARTUP CODE:')
+	print('[mytest] EXCEPTION IN PYTHON STARTUP CODE:')
 	print('-'*60)
 	print_exc(file=stdout)
 	enigma.quitMainloop(5)

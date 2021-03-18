@@ -1,11 +1,11 @@
 from __future__ import print_function
+from __future__ import absolute_import
 from Tools.Directories import fileExists
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigText, ConfigSelection, ConfigSequence, ConfigSubList
-import Title
+from . import Title
 import xml.dom.minidom
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS
 import six
-from six.moves import range
 
 class ConfigColor(ConfigSequence):
 	def __init__(self, default = [128,128,128]):
@@ -25,7 +25,7 @@ class ConfigFilename(ConfigText):
 		else:
 			mark = [filename]
 		return ("mtext"[1-selected:], filename, mark)
-	
+
 class Project:
 	MAX_SL = 4480
 	MAX_DL = 8150
@@ -95,7 +95,7 @@ class Project:
 		while fileExists(filename):
 			i = i+1
 			filename = path + name + str(i).zfill(3) + ".ddvdp.xml"
-		try:	
+		try:
 			file = open(filename, "w")
 			for x in list:
 				file.write(x)

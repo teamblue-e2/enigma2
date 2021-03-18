@@ -1,4 +1,5 @@
 
+from __future__ import print_function
 from Components.GUIComponent import GUIComponent
 from Screens.Screen import Screen
 from Screens.AudioSelection import AudioSelection
@@ -8,7 +9,7 @@ from ServiceReference import ServiceReference
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eServiceCenter, eDVBFrontendParametersSatellite, RT_HALIGN_LEFT, RT_VALIGN_CENTER
 from Tools.Transponder import ConvertToHumanReadable, getChannelNumber
 import skin
-from six.moves import range
+import six
 
 TYPE_TEXT = 0
 TYPE_VALUE_HEX = 1
@@ -217,7 +218,7 @@ class ServiceInfo(Screen):
 		trackList = []
 		if self.numberofTracks:
 			currentTrack = self.audio.getCurrentTrack()
-			for i in range(0, self.numberofTracks):
+			for i in list(range(0, self.numberofTracks)):
 				audioDesc = self.audio.getTrackInfo(i).getDescription()
 				audioPID = self.audio.getTrackInfo(i).getPID()
 				audioLang = self.audio.getTrackInfo(i).getLanguage()
@@ -369,7 +370,7 @@ class ServiceInfo(Screen):
 						break
 				if caid[2]:
 					if CaIdDescription == "Seca":
-						provid = ",".join([caid[2][i:i+4] for i in range(0, len(caid[2]), 30)])
+						provid = ",".join([caid[2][i:i+4] for i in list(range(0, len(caid[2]), 30))])
 					if CaIdDescription == "Nagra":
 						provid = caid[2][-4:]
 					if CaIdDescription == "Via":

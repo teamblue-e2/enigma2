@@ -1,11 +1,13 @@
+from __future__ import print_function
+from __future__ import absolute_import
 
-import struct, os, time
-from Components.config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText, ConfigCECAddress, ConfigLocations, ConfigDirectory
+import struct
+import os
+from Components.config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText, ConfigLocations, ConfigDirectory
 from enigma import eTimer, eHdmiCEC, eActionMap
 from Tools.StbHardware import getFPWasTimerWakeup
 import NavigationInstance
 from sys import maxsize
-from six.moves import range
 
 LOGPATH="/hdd/"
 LOGFILE="hdmicec.log"
@@ -67,6 +69,12 @@ config.hdmicec.tv_wakeup_detection = ConfigSelection(
 	"activity": _("Any activity"),
 	},
 	default = "streamrequest")
+config.hdmicec.tv_wakeup_command = ConfigSelection(
+	choices = {
+	"imageview": _("Image View On"),
+	"textview": _("Text View On"),
+	},
+	default = "imageview")
 config.hdmicec.fixed_physical_address = ConfigText(default = "0.0.0.0")
 config.hdmicec.volume_forwarding = ConfigYesNo(default = False)
 config.hdmicec.control_receiver_wakeup = ConfigYesNo(default = False)
@@ -91,6 +99,35 @@ class HdmiCec:
 	instance = None
 
 	def __init__(self):
+		assert not HdmiCec.instance, "only one HdmiCec instance is allowed!"
+		HdmiCec.instance = self
+
+		self.wait = eTimer()
+		self.wait.timeout.get().append(self.sendCmd)
+		self.waitKeyEvent = eTimer()
+		self.waitKeyEvent.timeout.get().append(self.sendKeyEvent)
+		self.queueKeyEvent = []
+		self.repeat = eTimer()
+		self.repeat.timeout.get().append(self.wakeupMessages)
+		self.queue = []
+
+		self.delay = eTimer()
+		self.delay.timeout.get().append(self.sendStandbyMessages)
+		self.useStandby = True
+
+		self.handlingStandbyFromTV = False
+
+		eHdmiCEC.getInstance().messageReceived.get().append(self.messageReceived)
+		config.misc.standbyCounter.addNotifier(self.onEnterStandby, initial_call = False)
+		config.misc.DeepStandby.addNotifier(self.onEnterDeepStandby, initial_call = False)
+		self.setFixedPhysicalAddress(config.hdmicec.fixed_physical_address.value)
+
+		self.volumeForwardingEnabled = False
+		self.volumeForwardingDestination = 0
+		self.wakeup_from_tv = False
+		eActionMap.getInstance().bindAction('', -maxint - 1, self.keyEvent)
+		config.hdmicec.volume_forwarding.addNotifier(self.configVolumeForwarding)
+		config.hdmicec.enabled.addNotifier(self.configVolumeForwarding)
 		if config.hdmicec.enabled.value:
 			assert not HdmiCec.instance, "only one HdmiCec instance is allowed!"
 			HdmiCec.instance = self
@@ -140,76 +177,78 @@ class HdmiCec:
 		eHdmiCEC.getInstance().setFixedPhysicalAddress(int(float.fromhex(hexstring)))
 
 	def sendMessage(self, address, message):
-		if config.hdmicec.enabled.value:
-			cmd = 0
-			data = ''
-			if message == "wakeup":
+		cmd = 0
+		data = ''
+		if message == "wakeup":
+			if config.hdmicec.tv_wakeup_command.value == 'textview':
+				cmd = 0x0d
+			else:
 				cmd = 0x04
-			elif message == "sourceactive":
-				address = 0x0f # use broadcast for active source command
-				cmd = 0x82
-				data = self.setData()
-			elif message == "standby":
-				cmd = 0x36
-			elif message == "sourceinactive":
-				cmd = 0x9d
-				data = self.setData()
-			elif message == "menuactive":
-				cmd = 0x8e
-				data = str(struct.pack('B', 0x00))
-			elif message == "menuinactive":
-				cmd = 0x8e
-				data = str(struct.pack('B', 0x01))
-			elif message == "givesystemaudiostatus":
-				cmd = 0x7d
-				address = 0x05
-			elif message == "setsystemaudiomode":
-				cmd = 0x70
-				address = 0x05
-				data = self.setData()
-			elif message == "osdname":
-				cmd = 0x47
-				data = os.uname()[1]
-				data = data[:14]
-			elif message == "poweractive":
-				cmd = 0x90
-				data = str(struct.pack('B', 0x00))
-			elif message == "powerinactive":
-				cmd = 0x90
-				data = str(struct.pack('B', 0x01))
-			elif message == "reportaddress":
-				address = 0x0f # use broadcast address
-				cmd = 0x84
-				data = self.setData(True)
-			elif message == "vendorid":
-				cmd = 0x87
-				data = '\x00\x00\x00'
-			elif message == "keypoweron":
-				cmd = 0x44
-				data = str(struct.pack('B', 0x6d))
-			elif message == "keypoweroff":
-				cmd = 0x44
-				data = str(struct.pack('B', 0x6c))
-			elif message == "sendcecversion":
-				cmd = 0x9E
-				data = str(struct.pack('B', 0x04)) # v1.3a
-			elif message == "requestactivesource":
-				address = 0x0f # use broadcast address
-				cmd = 0x85
-			elif message == "getpowerstatus":
-				self.useStandby = True;
-				address = 0x0f # use broadcast address => boxes will send info
-				cmd = 0x8f
-    	
-			if cmd:
-				if config.hdmicec.minimum_send_interval.value != "0":
-					self.queue.append((address, cmd, data))
-					if not self.wait.isActive():
-						self.wait.start(int(config.hdmicec.minimum_send_interval.value), True)
-				else:
-					eHdmiCEC.getInstance().sendMessage(address, cmd, data, len(data))
-				if config.hdmicec.debug.value in["1","3"]:
-					self.debugTx(address, cmd, data)
+		elif message == "sourceactive":
+			address = 0x0f # use broadcast for active source command
+			cmd = 0x82
+			data = self.setData()
+		elif message == "standby":
+			cmd = 0x36
+		elif message == "sourceinactive":
+			cmd = 0x9d
+			data = self.setData()
+		elif message == "menuactive":
+			cmd = 0x8e
+			data = str(struct.pack('B', 0x00))
+		elif message == "menuinactive":
+			cmd = 0x8e
+			data = str(struct.pack('B', 0x01))
+		elif message == "givesystemaudiostatus":
+			cmd = 0x7d
+			address = 0x05
+		elif message == "setsystemaudiomode":
+			cmd = 0x70
+			address = 0x05
+			data = self.setData()
+		elif message == "osdname":
+			cmd = 0x47
+			data = os.uname()[1]
+			data = data[:14]
+		elif message == "poweractive":
+			cmd = 0x90
+			data = str(struct.pack('B', 0x00))
+		elif message == "powerinactive":
+			cmd = 0x90
+			data = str(struct.pack('B', 0x01))
+		elif message == "reportaddress":
+			address = 0x0f # use broadcast address
+			cmd = 0x84
+			data = self.setData(True)
+		elif message == "vendorid":
+			cmd = 0x87
+			data = '\x00\x00\x00'
+		elif message == "keypoweron":
+			cmd = 0x44
+			data = str(struct.pack('B', 0x6d))
+		elif message == "keypoweroff":
+			cmd = 0x44
+			data = str(struct.pack('B', 0x6c))
+		elif message == "sendcecversion":
+			cmd = 0x9E
+			data = str(struct.pack('B', 0x04)) # v1.3a
+		elif message == "requestactivesource":
+			address = 0x0f # use broadcast address
+			cmd = 0x85
+		elif message == "getpowerstatus":
+			self.useStandby = True;
+			address = 0x0f # use broadcast address => boxes will send info
+			cmd = 0x8f
+
+		if cmd:
+			if config.hdmicec.minimum_send_interval.value != "0":
+				self.queue.append((address, cmd, data))
+				if not self.wait.isActive():
+					self.wait.start(int(config.hdmicec.minimum_send_interval.value), True)
+			else:
+				eHdmiCEC.getInstance().sendMessage(address, cmd, data, len(data))
+			if config.hdmicec.debug.value in["1","3"]:
+				self.debugTx(address, cmd, data)
 
 	def sendCmd(self):
 		if len(self.queue):
@@ -257,7 +296,7 @@ class HdmiCec:
 	def sendStandbyMessages(self):
 			messages = []
 			if config.hdmicec.control_tv_standby.value:
-				if self.useStandby:
+				if self.useStandby and not self.handlingStandbyFromTV:
 					messages.append("standby")
 				else:
 					messages.append("sourceinactive")
@@ -371,7 +410,12 @@ class HdmiCec:
 
 			# handle standby request from the tv
 			if cmd == 0x36 and config.hdmicec.handle_tv_standby.value:
+				# avoid echoing the 'System Standby' command back to the tv
+				self.handlingStandbyFromTV = True
+				# handle standby
 				self.standby()
+				# after handling the standby command, we are free to send 'standby' ourselves again
+				self.handlingStandbyFromTV = False
 
 			# handle wakeup requests from the tv
 			if inStandby and config.hdmicec.handle_tv_wakeup.value:
@@ -454,10 +498,10 @@ class HdmiCec:
 		tmp = ""
 		if len(data):
 			if cmd in[0x32, 0x47]:
-				for i in range(len(data)):
+				for i in list(range(len(data))):
 					tmp += "%s" % data[i]
 			else:
-				for i in range(len(data)):
+				for i in list(range(len(data))):
 					tmp += "%02X" % ord(data[i]) + " "
 		tmp += 48 * " "
 		self.fdebug(txt + tmp[:48] + "[0x%02X]" % (address) + "\n")
@@ -471,7 +515,7 @@ class HdmiCec:
 				txt += "<Feature Abort>" + 13*" " + "<  " + "%02X" % (cmd) + " "
 			else:
 				txt += self.opCode(cmd) + " " + "%02X" % (cmd) + " "
-			for i in range(length-1):
+			for i in list(range(length-1)):
 				if cmd in[0x32, 0x47]:
 					txt += "%s" % data[i]
 				elif cmd == 0x9e:

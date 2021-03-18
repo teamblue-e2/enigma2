@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <lib/base/cfile.h>
 #include <lib/gdi/epng.h>
+#include <lib/gdi/pixmapcache.h>
 #include <unistd.h>
 
 #include <map>
@@ -14,9 +15,15 @@ extern "C" {
 #include <jpeglib.h>
 }
 
+#include <nanosvg.h>
+#include <nanosvgrast.h>
+
 /* TODO: I wonder why this function ALWAYS returns 0 */
-int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
+int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel, int cached)
 {
+	if (cached && (result = PixmapCache::Get(filename)))
+		return 0;
+
 	CFile fp(filename, "rb");
 
 	if (!fp)
@@ -117,7 +124,7 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 	png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, 0, 0, 0);
 	channels = png_get_channels(png_ptr, info_ptr);
 
-	result = new gPixmap(eSize(width, height), bit_depth * channels, accel);
+	result = new gPixmap(width, height, bit_depth * channels, cached ? PixmapCache::PixmapDisposed : NULL, accel);
 	gUnmanagedSurface *surface = result->surface;
 
 	png_bytep *rowptr = new png_bytep[height];
@@ -159,6 +166,10 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel)
 		}
 		surface->clut.start = 0;
 	}
+
+	if (cached)
+		PixmapCache::Set(filename, result);
+
 	//eDebug("[ePNG] %s: after  %dx%dx%dbpcx%dchan coltyp=%d cols=%d trans=%d", filename, (int)width, (int)height, bit_depth, channels, color_type, num_palette, num_trans);
 
 	png_read_end(png_ptr, end_info);
@@ -181,8 +192,16 @@ my_error_exit (j_common_ptr cinfo)
 	longjmp(myerr->setjmp_buffer, 1);
 }
 
-int loadJPG(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha)
+int loadJPG(ePtr<gPixmap> &result, const char *filename, int cached)
 {
+	return loadJPG(result, filename, ePtr<gPixmap>(), cached);
+}
+
+int loadJPG(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha, int cached)
+{
+	if (cached && (result = PixmapCache::Get(filename)))
+		return 0;
+
 	struct jpeg_decompress_struct cinfo;
 	struct my_error_mgr jerr;
 	JSAMPARRAY buffer;
@@ -232,7 +251,7 @@ int loadJPG(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha)
 		}
 	}
 
-	result = new gPixmap(eSize(cinfo.output_width, cinfo.output_height), grayscale ? 8 : 32);
+	result = new gPixmap(cinfo.output_width, cinfo.output_height, grayscale ? 8 : 32, cached ? PixmapCache::PixmapDisposed : NULL);
 
 	row_stride = cinfo.output_width * cinfo.output_components;
 	buffer = (*cinfo.mem->alloc_sarray)((j_common_ptr) &cinfo, JPOOL_IMAGE, row_stride, 1);
@@ -270,6 +289,10 @@ int loadJPG(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha)
 			}
 		}
 	}
+
+	if (cached)
+		PixmapCache::Set(filename, result);
+
 	(void) jpeg_finish_decompress(&cinfo);
 	jpeg_destroy_decompress(&cinfo);
 	return 0;
@@ -340,6 +363,64 @@ static int savePNGto(FILE *fp, gPixmap *pixmap)
 
 	png_write_end(png_ptr, info_ptr);
 	png_destroy_write_struct(&png_ptr, &info_ptr);
+	return 0;
+}
+
+int loadSVG(ePtr<gPixmap> &result, const char *filename, int cached, int height, int width)
+{
+	result = nullptr;
+
+	if (cached && (result = PixmapCache::Get(filename)))
+		return 0;
+
+	// load svg
+	NSVGimage *image = nullptr;
+	NSVGrasterizer *rast = nullptr;
+	double xscale = 1.0;
+	double yscale = 1.0;
+
+	image = nsvgParseFromFile(filename, "px", 96.0);
+	if (image == nullptr)
+	{
+		return 0;
+	}
+
+	rast = nsvgCreateRasterizer();
+	if (rast == nullptr)
+	{
+		nsvgDelete(image);
+		return 0;
+	}
+
+	if (height > 0 && width > 0)
+	{
+		xscale = ((double) width) / image->width;
+		yscale = ((double) height) / image->height;
+	}
+	else
+	{
+		width = (int)image->width;
+		height = (int)image->height;
+	}
+
+	result = new gPixmap(width, height, 32, cached ? PixmapCache::PixmapDisposed : NULL, -1);
+	if (result == nullptr)
+	{
+		nsvgDeleteRasterizer(rast);
+		nsvgDelete(image);
+		return 0;
+	}
+
+	eDebug("[ePNG] loadSVG %s %dx%d from %dx%d", filename, width, height, (int)image->width, (int)image->height);
+	// Rasterizes SVG image, returns RGBA image (non-premultiplied alpha)
+	nsvgRasterizeFull(rast, image, 0, 0, xscale, yscale, (unsigned char*)result->surface->data, width, height, width * 4, 1);
+
+	if (cached)
+		PixmapCache::Set(filename, result);
+
+	nsvgDeleteRasterizer(rast);
+	nsvgDelete(image);
+
 	return 0;
 }
 

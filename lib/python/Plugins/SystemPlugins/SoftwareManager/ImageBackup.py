@@ -9,7 +9,6 @@ from __future__ import print_function
 from future import standard_library
 standard_library.install_aliases()
 from builtins import str
-from past.utils import old_div
 from enigma import getEnigmaVersionString
 from Screens.Screen import Screen
 from Components.Sources.StaticText import StaticText
@@ -111,7 +110,7 @@ class ImageBackup(Screen):
 			for media in ['/media/%s' % x for x in os.listdir('/media')] + (['/media/net/%s' % x for x in os.listdir('/media/net')] if os.path.isdir('/media/net') else []):
 				if Harddisk.Freespace(media) > 300000:
 					choices.append((_("Backup to destination: %s") % (media),self.currentSelected[0][1], media, self.currentSelected[0][2]))
-			choices.append((_("No, do not backup a image"), False))
+			choices.append((_("No, do not backup an image"), False))
 			self.session.openWithCallback(self.doFullBackup, ChoiceBox,title=title,list=choices)
 
 	def selectionChanged(self):
@@ -139,7 +138,7 @@ class ImageBackup(Screen):
 				self.RECOVERY = answer[3]
 				self.DIRECTORY = "%s/images" %answer[2]
 				if not os.path.exists(self.DIRECTORY):
-					try:   
+					try:
 						os.makedirs(self.DIRECTORY)
 					except:
 						self.session.open(MessageBox, _("Cannot create backup directory"), MessageBox.TYPE_ERROR, timeout=10)
@@ -169,8 +168,8 @@ class ImageBackup(Screen):
 
 				self.getImageList = self.saveImageList
 				if SystemInfo["canMultiBoot"]:
-					self.MTDKERNEL  = SystemInfo["canMultiBoot"][self.SLOT]["kernel"].split('/')[2] 
-					self.MTDROOTFS  = SystemInfo["canMultiBoot"][self.SLOT]["device"].split('/')[2] 
+					self.MTDKERNEL  = SystemInfo["canMultiBoot"][self.SLOT]["kernel"].split('/')[2]
+					self.MTDROOTFS  = SystemInfo["canMultiBoot"][self.SLOT]["device"].split('/')[2]
 					if SystemInfo["HasRootSubdir"]:
 						self.ROOTFSSUBDIR = SystemInfo["canMultiBoot"][self.SLOT]['rootsubdir']
 				else:
@@ -200,7 +199,7 @@ class ImageBackup(Screen):
 				print("[Image Backup] DESTINATION = >%s< " %self.DIRECTORY)
 				print("[Image Backup] SLOT = >%s< " %self.SLOT)
 
-				self.TITLE = _("Full back-up on %s") % (self.DIRECTORY)
+				self.TITLE = _("Fullbackup on %s") % (self.DIRECTORY)
 				self.START = time()
 				self.DATE = strftime("%Y%m%d_%H%M", localtime(self.START))
 				self.IMAGEVERSION = self.imageInfo()
@@ -309,7 +308,7 @@ class ImageBackup(Screen):
 					cmdlist.append("dd if=/dev/mtd4 of=%s/logo.bin" % self.WORKDIR)
 
 				if self.EMMCIMG == "usb_update.bin" and self.RECOVERY:
-					SEEK_CONT = (old_div(Harddisk.getFolderSize(self.backuproot), 1024)) + 100000
+					SEEK_CONT = (Harddisk.getFolderSize(self.backuproot) // 1024) + 100000
 
 					cmdlist.append('echo "' + _("Create:") + " fastboot dump" + '"')
 					cmdlist.append('cp -f /usr/share/fastboot.bin %s/fastboot.bin' %(self.WORKDIR))
@@ -390,7 +389,7 @@ class ImageBackup(Screen):
 					PARTED_END_KERNEL4 = int(FOURTH_KERNEL_PARTITION_OFFSET) + int(KERNEL_PARTITION_SIZE)
 					cmdlist.append('parted -s %s unit KiB mkpart linuxkernel4 %s %s' % (EMMC_IMAGE, FOURTH_KERNEL_PARTITION_OFFSET, PARTED_END_KERNEL4 ))
 					rd = open("/proc/swaps", "r").read()
-					if "mmcblk0p7" in rd: 
+					if "mmcblk0p7" in rd:
 						SWAP_PARTITION_OFFSET = int(FOURTH_KERNEL_PARTITION_OFFSET) + int(KERNEL_PARTITION_SIZE)
 						SWAP_PARTITION_SIZE = int(262144)
 						MULTI_ROOTFS_PARTITION_OFFSET = int(SWAP_PARTITION_OFFSET) + int(SWAP_PARTITION_SIZE)
@@ -638,8 +637,8 @@ class ImageBackup(Screen):
 
 	def imageInfo(self):
 		AboutText = _("Full Image Backup ")
-		AboutText += _("By openATV Image Team") + "\n"
-		AboutText += _("Support at") + " www.opena.tv\n\n"
+		AboutText += _("By teamblue Image Team") + "\n"
+		AboutText += _("Support at") + " www.gigablue-support.org\n\n"
 		AboutText += _("[Image Info]\n")
 		AboutText += _("Model: %s %s\n") % (getMachineBrand(), getMachineName())
 		AboutText += _("Backup Date: %s\n") % strftime("%Y-%m-%d", localtime(self.START))
@@ -681,7 +680,7 @@ class ImageBackup(Screen):
 						f.close()
 		except:
 			AboutText += _("Error reading bouquets.tv")
-			
+
 		AboutText += _("\n[User - bouquets (RADIO)]\n")
 		try:
 			f = open("/etc/enigma2/bouquets.radio","r")

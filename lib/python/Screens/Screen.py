@@ -1,3 +1,4 @@
+from __future__ import print_function
 from enigma import eRCInput, eTimer, eWindow  # , getDesktop
 
 from skin import GUI_SKIN_ID, applyAllAttributes
@@ -6,7 +7,6 @@ from Components.GUIComponent import GUIComponent
 from Components.Sources.Source import Source
 from Components.Sources.StaticText import StaticText
 from Tools.CList import CList
-from six.moves import range
 
 # The lines marked DEBUG: are proposals for further fixes or improvements.
 # Other commented out code is historic and should probably be deleted if it is not going to be used.
@@ -17,11 +17,12 @@ class Screen(dict):
 	ALLOW_SUSPEND = NO_SUSPEND
 	globalScreen = None
 
-	def __init__(self, session, parent=None):
+	def __init__(self, session, parent=None, mandatoryWidgets=None):
 		dict.__init__(self)
 		self.skinName = self.__class__.__name__
 		self.session = session
 		self.parent = parent
+		self.mandatoryWidgets = mandatoryWidgets
 		self.onClose = []
 		self.onFirstExecBegin = []
 		self.onExecBegin = []
@@ -46,9 +47,7 @@ class Screen(dict):
 		self.instance = None
 		self.summaries = CList()
 		self["Title"] = StaticText()
-		self["SummaryTitle"] = StaticText()
 		self["ScreenPath"] = StaticText()
-		self["screen_path"] = StaticText()  # Support legacy screen history skins.
 		self.screenPath = ""  # This is the current screen path without the title.
 		self.screenTitle = ""  # This is the current screen title without the path.
 
@@ -118,7 +117,7 @@ class Screen(dict):
 			self.session.close(self, *retval)
 
 	def show(self):
-		print(("[Screen] Showing screen '%s'." % self.skinName))  # To ease identification of screens.
+		print("[Screen] Showing screen '%s'." % self.skinName)  # To ease identification of screens.
 		# DEBUG: if (self.shown and self.alreadyShown) or not self.instance:
 		if (self.shown and self.already_shown) or not self.instance:
 			return
@@ -152,29 +151,30 @@ class Screen(dict):
 
 	def setTitle(self, title, showPath=True):
 		try:  # This protects against calls to setTitle() before being fully initialised like self.session is accessed *before* being defined.
-			if self.session and len(self.session.dialog_stack) > 2:
-				self.screenPath = " > ".join(ds[0].getTitle() for ds in self.session.dialog_stack[2:])
-			else:
-				self.screenPath = ""
+			self.screenPath = ""
+			if self.session.dialog_stack:
+				screenclasses = [ds[0].__class__.__name__ for ds in self.session.dialog_stack]
+				if "MainMenu" in screenclasses:
+					index = screenclasses.index("MainMenu")
+					if self.session and len(screenclasses) > index:
+						self.screenPath = " > ".join(ds[0].getTitle() for ds in self.session.dialog_stack[index:])
 			if self.instance:
 				self.instance.setTitle(title)
 			self.summaries.setTitle(title)
 		except AttributeError:
 			pass
 		self.screenTitle = title
-		if showPath and config.usage.menu_path.value == "large":
+		if showPath and config.usage.showScreenPath.value == "large" and title:
 			screenPath = ""
 			screenTitle = "%s > %s" % (self.screenPath, title) if self.screenPath else title
-		elif showPath and config.usage.menu_path.value == "small":
+		elif showPath and config.usage.showScreenPath.value == "small":
 			screenPath = "%s >" % self.screenPath if self.screenPath else ""
 			screenTitle = title
 		else:
 			screenPath = ""
 			screenTitle = title
 		self["ScreenPath"].text = screenPath
-		self["screen_path"].text = screenPath  # Support legacy screen history skins.
 		self["Title"].text = screenTitle
-		self["SummaryTitle"].text = self.screenTitle
 
 	def getTitle(self):
 		return self.screenTitle
@@ -250,7 +250,7 @@ class Screen(dict):
 				if not updateonly:
 					val.GUIcreate(parent)
 				if not val.applySkin(desktop, self):
-					print(("[Screen] Warning: Skin is missing renderer '%s' in %s." % (val, str(self))))
+					print("[Screen] Warning: Skin is missing renderer '%s' in %s." % (val, str(self)))
 		for key in self:
 			val = self[key]
 			if isinstance(val, GUIComponent):
@@ -259,10 +259,10 @@ class Screen(dict):
 				depr = val.deprecationInfo
 				if val.applySkin(desktop, self):
 					if depr:
-						print(("[Screen] WARNING: OBSOLETE COMPONENT '%s' USED IN SKIN. USE '%s' INSTEAD!" % (key, depr[0])))
-						print(("[Screen] OBSOLETE COMPONENT WILL BE REMOVED %s, PLEASE UPDATE!" % depr[1]))
+						print("[Screen] WARNING: OBSOLETE COMPONENT '%s' USED IN SKIN. USE '%s' INSTEAD!" % (key, depr[0]))
+						print("[Screen] OBSOLETE COMPONENT WILL BE REMOVED %s, PLEASE UPDATE!" % depr[1])
 				elif not depr:
-					print(("[Screen] Warning: Skin is missing element '%s' in %s." % (key, str(self))))
+					print("[Screen] Warning: Skin is missing element '%s' in %s." % (key, str(self)))
 		for w in self.additionalWidgets:
 			if not updateonly:
 				w.instance = w.widget(parent)
@@ -270,7 +270,10 @@ class Screen(dict):
 			applyAllAttributes(w.instance, desktop, w.skinAttributes, self.scale)
 		for f in self.onLayoutFinish:
 			if not isinstance(f, type(self.close)):
-				exec(f, globals(), locals())  # Python 3
+				if sys.version_info[0] >= 3:
+					exec(f, globals(), locals())
+				else:
+					exec f in globals(), locals()
 			else:
 				f()
 
@@ -289,3 +292,23 @@ class Screen(dict):
 	def removeSummary(self, summary):
 		if summary is not None:
 			self.summaries.remove(summary)
+
+
+class ScreenSummary(Screen):
+	skin = """
+	<screen position="fill" flags="wfNoBorder">
+		<widget source="global.CurrentTime" render="Label" position="0,0" size="e,20" font="Regular;16" halign="center" valign="center">
+			<convert type="ClockToText">WithSeconds</convert>
+		</widget>
+		<widget source="Title" render="Label" position="0,25" size="e,45" font="Regular;18" halign="center" valign="center" />
+	</screen>"""
+
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent=parent)
+		self["Title"] = StaticText(parent.getTitle())
+		names = parent.skinName
+		if not isinstance(names, list):
+			names = [names]
+		self.skinName = ["%sSummary" % x for x in names]
+		self.skinName.append("ScreenSummary")
+		self.skin = parent.__dict__.get("skinSummary", self.skin)  # If parent has a "skinSummary" defined, use that as default.

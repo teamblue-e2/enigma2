@@ -1,13 +1,14 @@
+from __future__ import print_function
+from __future__ import absolute_import
 from Components.Task import Task, Job, DiskspacePrecondition, Condition
 from Components.Harddisk import harddiskmanager
 from Tools.Directories import SCOPE_HDD, resolveFilename, createDir
 from time import strftime
-from Process import CheckDiskspaceTask, getISOfilename, BurnTask, RemoveWorkspaceFolder
-from Project import iso639language
+from .Process import CheckDiskspaceTask, getISOfilename, BurnTask, RemoveWorkspaceFolder
+from .Project import iso639language
 import struct
 import os
 import re
-from six.moves import range
 
 zeros = bytearray(128)
 VIDEO_TYPES	= { 'video/mpeg, mpegversion=(int)1': 0x01, 'video/mpeg, mpegversion=(int)2': 0x02, 'VC1': 0xEA, 'video/x-h264': 0x1B }
@@ -41,16 +42,16 @@ class BludiscTitle(object):
 
 	def getVideoStreams(self):
 		streams = []
-		for stream in self.__streams.values():
+		for stream in list(self.__streams.values()):
 			if stream.isVideo:
 				streams.append(stream)
 		return streams
-	
+
 	VideoStreams = property(getVideoStreams)
-	
+
 	def getAudioStreams(self):
 		streams = []
-		for stream in self.__streams.values():
+		for stream in list(self.__streams.values()):
 			if stream.isAudio:
 				streams.append(stream)
 		return streams
@@ -62,21 +63,21 @@ class BludiscTitle(object):
 		return struct.pack('>L',in_time/2)	# start time (in 45khz ticks)
 
 	def getOutTimeBytes(self):
-	      out_time = self.entrypoints[-1][1]	# last keyframe (in 90khz pts)
-	      return struct.pack('>L',out_time/2)	# end time (in 45khz ticks)
+		out_time = self.entrypoints[-1][1]	# last keyframe (in 90khz pts)
+		return struct.pack('>L',out_time/2)	# end time (in 45khz ticks)
 
 	InTime = property(getInTimeBytes)
 	OutTime = property(getOutTimeBytes)
 
 	def getNumSourcePackets(self):
 		num_source_packets = self.muxed_size / 192
-		return struct.pack('>L',num_source_packets) 
+		return struct.pack('>L',num_source_packets)
 
 	def getTsRecordingRate(self):
 		clip_len_seconds = (self.entrypoints[-1][1] - self.entrypoints[0][1]) / 90000
 		if self.length > clip_len_seconds:
 			clip_len_seconds = self.length
-		ts_recording_rate = self.muxed_size / clip_len_seconds	#! possible lack in accuracy 
+		ts_recording_rate = self.muxed_size / clip_len_seconds	#! possible lack in accuracy
 		return struct.pack('>L',ts_recording_rate)
 
 	def getEPforOffsetPTS(self, requested_pts):
@@ -132,10 +133,10 @@ class BludiscStream(object):
 		return struct.pack('B',self.__streamtype)
 
 	streamType = property(getStreamtypeByte, setStreamtype)
-	
+
 	def getPIDBytes(self):
 		return struct.pack('>H',self.__PID)
-	
+
 	pid = property(getPIDBytes)
 
 	def getFormatByte(self):
@@ -149,7 +150,7 @@ class BludiscStream(object):
 				videoformatstring = "p"+str(yres)
 			else:
 				videoformatstring = "i"+str(yres)
-				
+
 			if videoformatstring in VIDEO_FORMATS:
 				videoformat = VIDEO_FORMATS[videoformatstring]
 			else:
@@ -162,11 +163,11 @@ class BludiscStream(object):
 
 			byteval = (videoformat << 4) + frame_rate
 
-		if self.isAudio: 
+		if self.isAudio:
 			byteval = (self.__audiopresentation << 4) + self.__audiorate
 
 		return struct.pack('B',byteval)
-	
+
 	formatByte = property(getFormatByte)
 
 	def setAudioPresentation(self, channels):
@@ -226,7 +227,7 @@ class RemuxTask(Task):
 				self.title.entrypoints.append((spn, pts))
 				print("[bdremux] added new entrypoint", self.title.entrypoints[-1])
 			self.progress = spn
-		elif line.startswith("linked:"):	
+		elif line.startswith("linked:"):
 			words = line[:-1].split(' ')
 			pid = int(words[5].split('_')[1])
 			self.title.addStream(pid)
@@ -341,11 +342,11 @@ class CreateIndexTask(Task):
 		INDEXES += '\x40'
 		INDEXES += zeros[0:3]			# top menu:
 		INDEXES += '\x40\x00'			# playback_type (Interactive = 0x40)
-		INDEXES += '\xFF\xFF'			# id_ref 
+		INDEXES += '\xFF\xFF'			# id_ref
 		INDEXES += zeros[0:4]
 
 		INDEXES += struct.pack('>H',num_titles)
-		for i in range(num_titles):
+		for i in list(range(num_titles)):
 			HDMV_OBJ = bytearray('\x40')	# object_type & access_type
 			HDMV_OBJ += zeros[0:3]		# skip 3 bytes
 			HDMV_OBJ += zeros[0:2]
@@ -386,7 +387,7 @@ class CreateMobjTask(Task):
 
 		instructions = []
 
-		for i in range(len(self.job.titles)):
+		for i in list(range(len(self.job.titles))):
 			instructions.append(	# load title number into register0 \
 				 [['\x50\x40\x00\x01','\x00\x00\x00\x00',struct.pack('>L',i)],\
 						# PLAY_PL
@@ -400,12 +401,12 @@ class CreateMobjTask(Task):
 		OBJECTS = bytearray(4) #length of objects
 		OBJECTS += zeros[0:4] #reserved
 		OBJECTS += struct.pack('>H',num_objects)
-		for i in range(num_objects):
+		for i in list(range(num_objects)):
 			MOBJ = bytearray()
 			MOBJ += '\x80\x00' # resume_intention_flag, menu_call_mask, title_search_maskplayback_type, 13 reserved
 			num_commands = len(instructions[i])
 			MOBJ += struct.pack('>H',num_commands)
-			for c in range(num_commands):
+			for c in list(range(num_commands)):
 				CMD = bytearray()
 				CMD += instructions[i][c][0] #options
 				CMD += instructions[i][c][1] #destination
@@ -472,7 +473,7 @@ class CreateMplsTask(Task):
 		PlayList += struct.pack('>H',num_of_subpaths)
 
 		num_primary_video = len(self.title.VideoStreams)
-		
+
 		if num_primary_video == 0:
 			self.error_text = "Title %05d has no valid video streams!" % self.mpls_num
 			raise Exception(self.error_text)
@@ -485,7 +486,7 @@ class CreateMplsTask(Task):
 		num_secondary_video = 0
 		num_PIP_PG = 0
 
-		for item_i in range(num_of_playitems):
+		for item_i in list(range(num_of_playitems)):
 			PlayItem = bytearray()
 			clip_no = "%05d" % self.mpls_num
 			PlayItem += bytearray(clip_no)
@@ -523,7 +524,7 @@ class CreateMplsTask(Task):
 				VideoAttr += vid.formatByte	# Format & Framerate
 				VideoAttr += zeros[0:3]		# reserved
 				VideoAttr[0] = struct.pack('B',len(VideoAttr)-1)
-				
+
 				StnTable += VideoEntry
 				StnTable += VideoAttr
 
@@ -545,7 +546,7 @@ class CreateMplsTask(Task):
 
 			PlayItem += struct.pack('>H',len(StnTable))
 			PlayItem += StnTable
-			
+
 			PlayList += struct.pack('>H',len(PlayItem))
 			PlayList += PlayItem
 
@@ -554,7 +555,7 @@ class CreateMplsTask(Task):
 
 		PlayListMarkStartAdress = bytearray(struct.pack('>L',len(mplsbuffer)))
 		mplsbuffer[0x0C:0x10] = PlayListMarkStartAdress
-		
+
 		if len(self.title.entrypoints) == 0:
 			print("no entry points found for this title!")
 			self.title.entrypoints.append(0)
@@ -651,7 +652,7 @@ class CreateClpiTask(Task):
 		SequenceInfo += struct.pack('B',num_stc_sequences)
 		SequenceInfo += '\x00'				# offset_stc_id
 		num_of_playitems = 1
-		for pi in range(num_of_playitems):
+		for pi in list(range(num_of_playitems)):
 			STCEntry = bytearray()
 			STCEntry += '\x10\x01'			# pcr_pid #!
 			STCEntry += '\x00\x00\x00\x00'		# spn_stc_start
@@ -666,7 +667,7 @@ class CreateClpiTask(Task):
 		ProgramInfo = bytearray(4)			# len 4 bytes
 		ProgramInfo += '\x00'				# reserved align
 		ProgramInfo += struct.pack('B',num_program_sequences)
-		for psi in range(num_program_sequences):
+		for psi in list(range(num_program_sequences)):
 			ProgramEntry = bytearray()
 			ProgramEntry += '\x00\x00\x00\x00'	# spn_program_sequence_start
 			ProgramEntry += '\x01\x00'		# program_map_pid
@@ -684,7 +685,7 @@ class CreateClpiTask(Task):
 				elif stream.isAudio:
 					StreamCodingInfo += stream.formatByte	# audio_presentation_type & samplerate
 					StreamCodingInfo += stream.languageCode	# audio language code
-				for i in range(12):
+				for i in list(range(12)):
 					StreamCodingInfo += '\x30'	# 12 byte padding with ascii char '0'
 				StreamCodingInfo += zeros[0:4]		# 4 byte reserved
 				StreamEntry += StreamCodingInfo
@@ -827,7 +828,7 @@ class CreateMetaTask(Task):
 		for title_no, title in enumerate(self.job.titles):
 			dl.append('\t\t\t\t<di:titleName titleNumber="%d">%s</di:titleName>' % (title_no, stringToXML(title.properties.menutitle.value)))
 		dl.append('\t\t\t</di:tableOfContents>')
-		for title_no in range(len(self.job.titles)):
+		for title_no in list(range(len(self.job.titles))):
 			dl.append('\t\t\t<di:thumbnail href="thumb_%05d.png" />' % title_no)
 		dl.append('\t\t</di:description>')
 		dl.append('\t\t<di:language>'+stringToXML(self.languageCode)+'</di:language>')
@@ -835,7 +836,7 @@ class CreateMetaTask(Task):
 		dl.append('</disclib>')
 
 		filename = self.job.workspace+'BDMV/META/DL/bdmt_%s.xml' % self.languageCode
-		try:	
+		try:
 			file = open(filename, "w")
 			for line in dl:
 				file.write(line+'\n')

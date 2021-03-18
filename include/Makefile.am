@@ -1,4 +1,5 @@
 pkginclude_HEADERS = \
 	connection.h \
 	libsig_comp.h \
-	ansidebug.h
+	nanosvg.h \
+	nanosvgrast.h
