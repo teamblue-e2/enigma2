@@ -64,7 +64,6 @@ class Navigation:
 				self.timesynctimer.callback.append(self.TimeSynctimer)
 				self.timesynctimer.start(5000, True)
 				print("[NAVIGATION] wait for time sync")
-				print"[NAVIGATION] wait for time sync"
 
 			elif abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360: # if there is a recording sheduled in the next 5 mins, set the wasTimerWakeup flag
 				wasTimerWakeup = True
