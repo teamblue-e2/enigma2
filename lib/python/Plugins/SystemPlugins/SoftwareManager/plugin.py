@@ -1577,7 +1577,7 @@ class UpdatePlugin(Screen):
 				#	self.checkTraficLight()
 				#	return
 				if self.total_packages and self.TraficCheck and self.TraficResult:
-					message = _("Do you want to update your Receiver?") + "                 \n(%s " % self.total_packages + _("Packages") + ")"
+					message = _("Do you want to update your Receiver?") + "		 \n(%s " % self.total_packages + _("Packages") + ")"
 					if config.plugins.softwaremanager.updatetype.getValue() == "cold":
 						choices = [(_("Show new Packages"), "show"), (_("Unattended upgrade without GUI and reboot system"), "cold"), (_("Cancel"), "")]
 					else:
@@ -1622,8 +1622,8 @@ class UpdatePlugin(Screen):
 	def exit(self):
 		if not self.opkg.isRunning():
 			if self.packages != 0 and self.error == 0:
-                                if config.misc.do_deletelanguage.value:
-                                        language.delLanguage()
+				if config.misc.do_deletelanguage.value:
+					language.delLanguage()
 				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") +" "+_("Do you want to reboot your Receiver?"))
 			else:
 				self.close()

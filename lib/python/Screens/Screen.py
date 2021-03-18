@@ -270,10 +270,7 @@ class Screen(dict):
 			applyAllAttributes(w.instance, desktop, w.skinAttributes, self.scale)
 		for f in self.onLayoutFinish:
 			if not isinstance(f, type(self.close)):
-				if sys.version_info[0] >= 3:
-					exec(f, globals(), locals())
-				else:
-					exec f in globals(), locals()
+				exec(f, globals(), locals())
 			else:
 				f()
 

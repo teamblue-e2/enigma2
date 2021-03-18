@@ -447,7 +447,7 @@ def InitUsageConfig():
 	if SystemInfo["LcdLiveDecoder"]:
 		def setLcdLiveDecoder(configElement):
 			open(SystemInfo["LcdLiveDecoder"], "w").write(configElement.value)
-		config.usage.LcdLiveDecoder = ConfigSelection(default = "0", choices=[str(x) for x in list(range(0,4)]))
+		config.usage.LcdLiveDecoder = ConfigSelection(default = "0", choices=[str(x) for x in list(range(0,4))])
 		config.usage.LcdLiveDecoder.addNotifier(setLcdLiveDecoder)
 
 	config.usage.boolean_graphic = ConfigSelection(default="true", choices={"false": _("no"), "true": _("yes"), "only_bool": _("yes, but not in multi selections")})

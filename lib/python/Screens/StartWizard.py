@@ -68,15 +68,15 @@ class DevelopWizard(MessageBox):
 
 class LanguageDeleteWizard(MessageBox):
 	def __init__(self, session):
-            MessageBox.__init__(self, session, _("Do you want to remove all unused translations?"), type=MessageBox.TYPE_YESNO, timeout=20, default=False, simple=True)
+	    MessageBox.__init__(self, session, _("Do you want to remove all unused translations?"), type=MessageBox.TYPE_YESNO, timeout=20, default=False, simple=True)
 
 	def close(self, value):
 		if value:
 			language.delLanguage()
 			config.misc.do_deletelanguage.value = True
 			config.misc.do_deletelanguage.save()
-                config.misc.ask_languagedeletion.value = False
-                config.misc.ask_languagedeletion.save()
+		config.misc.ask_languagedeletion.value = False
+		config.misc.ask_languagedeletion.save()
 		configfile.save()
 		MessageBox.close(self)
 

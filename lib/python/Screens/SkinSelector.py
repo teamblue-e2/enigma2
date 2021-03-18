@@ -247,7 +247,7 @@ class LcdSkinSelector(SkinSelector):
 	def find(self, arg, dirname, names):
 		for x in names:
 			if x.startswith("skin_lcd") and x.endswith(".xml"):
-				if dirname <> self.rootDir:
+				if dirname is not self.rootDir:
 					subdir = dirname[19:]
 					skinname = x
 					#skinname = skinname
@@ -306,7 +306,7 @@ class ClockSkinSelector(SkinSelector):
 	def find(self, arg, dirname, names):
 		for x in names:
 			if x.startswith("clock_lcd") and x.endswith(".xml"):
-				if dirname <> self.rootDir:
+				if dirname is not self.rootDir:
 					subdir = dirname[19:]
 					skinname = x
 					#skinname = skinname

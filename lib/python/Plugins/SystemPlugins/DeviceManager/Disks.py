@@ -261,7 +261,7 @@ class Disks(object):
 		elif fstype == 1:
 			cmd = "/sbin/mkfs.ext3 "
 			psize = (size // (1024))
-                        if psize > 250000:
+			if psize > 250000:
 				# No more than 256k i-nodes (prevent problems with fsck memory requirements)
 				cmd += "-F -T largefile -O sparse_super -N 262144 "
 			elif psize > 16384:
