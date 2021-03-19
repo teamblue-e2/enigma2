@@ -393,25 +393,33 @@ AX_CXX_COMPILE_STDCXX_11([ext],[mandatory])
 AX_CHECK_COMPILE_FLAG([-Wattribute-alias], [CXXFLAGS="$CXXFLAGS -Wattribute-alias"])
 AX_CHECK_COMPILE_FLAG([-Wattribute-alias=1], [CXXFLAGS="$CXXFLAGS -Wattribute-alias=1"])
 
+if test "$PYTHON_VERSION"; then
+    case $PYTHON_VERSION in
+        2.*)
+          PY_VERSION_CFLAGS="-Wno-error=cast-align=strict -Wno-error=cast-function-type -Wno-error=cast-function-type"
+        ;;
+        3.*)
+          PY_VERSION_CFLAGS="-Wno-error=unsafe-loop-optimizations"
+        ;;
+    esac
+fi
+
 CPPFLAGS="$CPPFLAGS $PYTHON_CPPFLAGS"
 CFLAGS="$CFLAGS -Wall"
 CXXFLAGS="$CXXFLAGS -Wall -Wextra -Werror \
-	-Wformat=2 -Wformat-overflow=2 -Wformat-nonliteral -Wformat-security \
-	-Wimplicit-fallthrough=5 -Wduplicated-branches -Wtrampolines \
-	-Wdangling-else -Wshift-overflow=2 -Wswitch \
-	-Wunused-but-set-parameter -Wunused-const-variable=1 -Wuninitialized \
-	-Wstringop-overflow=3 -Woverlength-strings \
-	-Wunsafe-loop-optimizations -Wpointer-arith \
-	-Wfloat-equal -Wlogical-op \
-	-Wno-error=ignored-qualifiers \
-	-Wno-error=shadow -Wno-error=cast-qual \
-	-Wno-error=aggregate-return -Wno-error=missing-field-initializers \
-	-Wno-error=packed -Wno-error=vla -Wno-error=clobbered -Wno-error=unused-parameter \
-	-Wno-error=unsafe-loop-optimizations \
-	$BASE_CFLAGS $ENIGMA2_CFLAGS $PTHREAD_CFLAGS $OPENMP_CFLAGS $ALSA_CFLAGS"
-
-# -Wno-error=cast-align=strict -Wno-error=cast-function-type -Wno-error=stringop-truncation 
-
+        -Wformat=2 -Wformat-overflow=2 -Wformat-nonliteral -Wformat-security \
+        -Wimplicit-fallthrough=5 -Wduplicated-branches -Wtrampolines \
+        -Wdangling-else -Wshift-overflow=2 -Wswitch \
+        -Wunused-but-set-parameter -Wunused-const-variable=1 -Wuninitialized \
+        -Wstringop-overflow=3 -Woverlength-strings \
+        -Wunsafe-loop-optimizations -Wpointer-arith \
+        -Wfloat-equal -Wlogical-op \
+        $PY_VERSION_CFLAGS \
+        -Wno-error=ignored-qualifiers \
+        -Wno-error=shadow -Wno-error=cast-qual \
+        -Wno-error=aggregate-return -Wno-error=missing-field-initializers \
+        -Wno-error=packed -Wno-error=vla -Wno-error=clobbered -Wno-error=unused-parameter \
+        $BASE_CFLAGS $ENIGMA2_CFLAGS $PTHREAD_CFLAGS $OPENMP_CFLAGS $ALSA_CFLAGS"
 
 AX_SWIG_PYTHON_OPT="$AX_SWIG_PYTHON_OPT -DSWIG_PYTHON_LEGACY_BOOL"
 
