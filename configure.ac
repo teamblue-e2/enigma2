@@ -403,14 +403,13 @@ CXXFLAGS="$CXXFLAGS -Wall -Wextra -Werror \
 	-Wstringop-overflow=3 -Woverlength-strings \
 	-Wunsafe-loop-optimizations -Wpointer-arith \
 	-Wfloat-equal -Wlogical-op \
-	-Wcast-align \
-	-Wno-error=cast-align=strict -Wno-error=ignored-qualifiers \
-	-Wno-error=cast-function-type \
-	-Wno-error=stringop-truncation -Wno-error=shadow -Wno-error=cast-qual \
+	-Wno-error=ignored-qualifiers \
+	-Wno-error=shadow -Wno-error=cast-qual \
 	-Wno-error=aggregate-return -Wno-error=missing-field-initializers \
 	-Wno-error=packed -Wno-error=vla -Wno-error=clobbered -Wno-error=unused-parameter \
 	$BASE_CFLAGS $ENIGMA2_CFLAGS $PTHREAD_CFLAGS $OPENMP_CFLAGS $ALSA_CFLAGS"
 
+# -Wno-error=cast-align=strict -Wno-error=cast-function-type -Wno-error=stringop-truncation 
 
 
 AX_SWIG_PYTHON_OPT="$AX_SWIG_PYTHON_OPT -DSWIG_PYTHON_LEGACY_BOOL"
