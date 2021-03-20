@@ -396,7 +396,7 @@ AX_CHECK_COMPILE_FLAG([-Wattribute-alias=1], [CXXFLAGS="$CXXFLAGS -Wattribute-al
 if test "$PYTHON_VERSION"; then
     case $PYTHON_VERSION in
         2.*)
-          PY_VERSION_CFLAGS="-Wno-error=cast-align=strict -Wno-error=cast-function-type -Wno-error=cast-function-type -Wno-error=stringop-truncation"
+          PY_VERSION_CFLAGS="-Werror -Wno-error=cast-align=strict -Wno-error=cast-function-type -Wno-error=cast-function-type -Wno-error=stringop-truncation"
         ;;
         3.*)
           PY_VERSION_CFLAGS="-Wno-error=unsafe-loop-optimizations"
@@ -406,7 +406,7 @@ fi
 
 CPPFLAGS="$CPPFLAGS $PYTHON_CPPFLAGS"
 CFLAGS="$CFLAGS -Wall"
-CXXFLAGS="$CXXFLAGS -Wall -Wextra -Werror \
+CXXFLAGS="$CXXFLAGS -Wall -Wextra \
         -Wformat=2 -Wformat-overflow=2 -Wformat-nonliteral -Wformat-security \
         -Wimplicit-fallthrough=5 -Wduplicated-branches -Wtrampolines \
         -Wdangling-else -Wshift-overflow=2 -Wswitch \
