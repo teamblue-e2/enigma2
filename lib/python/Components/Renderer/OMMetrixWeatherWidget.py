@@ -19,7 +19,7 @@
 #
 #
 #######################################################################
-
+from __future__ import print_function
 from Renderer import Renderer
 from Components.VariableText import VariableText
 from six.moves.urllib.request import Request, urlopen as urlopen2

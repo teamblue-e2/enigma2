@@ -1,4 +1,6 @@
-
+from __future__ import print_function
+from __future__ import absolute_import
+import six
 from Screens.Screen import Screen
 from Components.Language import language
 from Screens.ParentalControlSetup import ProtectedScreen
@@ -605,6 +607,7 @@ class PluginDownloadBrowser(Screen):
 					self["text"].setText(_("Sorry feeds are down for maintenance"))
 
 	def dataAvail(self, str):
+		str = six.ensure_str(str)
 		if self.type == self.DOWNLOAD and str.find('404 Not Found') >= 0:
 			self["text"].setText(_("Sorry feeds are down for maintenance"))
 			self.run = 3

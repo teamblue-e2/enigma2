@@ -1,5 +1,5 @@
 from __future__ import print_function
-from builtins import str
+from __future__ import absolute_import
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Console import Console
@@ -14,7 +14,7 @@ from Components.Sources.List import List
 from Components.Button import Button
 from Components.config import NoSave, getConfigListEntry, configfile, ConfigSelection, ConfigSubsection, ConfigText, ConfigLocations
 from Components.config import config
-from Components.ConfigList import ConfigList,ConfigListScreen
+from Components.ConfigList import ConfigList, ConfigListScreen
 from Components.FileList import MultiFileSelectList
 from Components.Network import iNetwork
 from Plugins.Plugin import PluginDescriptor
@@ -24,7 +24,8 @@ from os import system, popen, path, makedirs, listdir, access, stat, rename, rem
 from time import gmtime, strftime, localtime, sleep
 from datetime import date
 from boxbranding import getBoxType, getImageDistro, getMachineBrand, getMachineName
-import ShellCompatibleFunctions
+from . import ShellCompatibleFunctions
+import six
 
 def eEnv_resolve_multi(path):
 	resolve = eEnv.resolve(path)
@@ -576,7 +577,7 @@ class installedPlugins(Screen):
 		self.container.execute("opkg list-installed | egrep 'enigma2-plugin-|task-base|packagegroup-base'")
 
 	def dataAvail(self, strData):
-		strData = strData.encode("UTF-8")
+		strData = six.ensure_str(strData)
 		if self.type == self.LIST:
 			strData = self.remainingdata + strData
 			lines = strData.split('\n')

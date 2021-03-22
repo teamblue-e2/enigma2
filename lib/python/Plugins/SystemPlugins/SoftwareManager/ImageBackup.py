@@ -6,9 +6,6 @@ from __future__ import print_function
 #					MAKES A FULLBACK-UP READY FOR FLASHING.						#
 #																				#
 #################################################################################
-from future import standard_library
-standard_library.install_aliases()
-from builtins import str
 from enigma import getEnigmaVersionString
 from Screens.Screen import Screen
 from Components.Sources.StaticText import StaticText
@@ -24,8 +21,12 @@ from Screens.MessageBox import MessageBox
 from time import time, strftime, localtime
 from Tools.BoundFunction import boundFunction
 from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, GetCurrentKern, GetCurrentRoot, GetBoxName
-import os, subprocess, datetime
+import os, sys, datetime
 from boxbranding import getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getMachineBuild, getImageFolder, getMachineUBINIZE, getMachineMKUBIFS, getMachineMtdKernel, getMachineMtdRoot, getMachineKernelFile, getMachineRootFile, getImageFileSystem, getImageDistro, getImageVersion
+if sys.version_info[0] >= 3:
+	import subprocess
+else:
+	import commands
 
 VERSION = _("Version %s %s") %(getImageDistro(), getImageVersion())
 
@@ -663,7 +664,10 @@ class ImageBackup(Screen):
 		AboutText += _("Last update:\t%s") % getEnigmaVersionString() + "\n\n"
 
 		AboutText += _("[Enigma2 Settings]\n")
-		AboutText += subprocess.getoutput("cat /etc/enigma2/settings")
+		if sys.version_info[0] >= 3:
+			AboutText += subprocess.getoutput("cat /etc/enigma2/settings")
+		else:
+			AboutText += commands.getoutput("cat /etc/enigma2/settings")
 		AboutText += _("\n\n[User - bouquets (TV)]\n")
 		try:
 			f = open("/etc/enigma2/bouquets.tv","r")
@@ -699,6 +703,10 @@ class ImageBackup(Screen):
 			AboutText += _("Error reading bouquets.radio")
 
 		AboutText += _("\n[Installed Plugins]\n")
-		AboutText += subprocess.getoutput("opkg list_installed | grep enigma2-plugin-")
+		if sys.version_info[0] >= 3:
+			AboutText += subprocess.getoutput("opkg list_installed | grep enigma2-plugin-")
+		else:
+			AboutText += commands.getoutput("opkg list_installed | grep enigma2-plugin-")
+
 
 		return AboutText

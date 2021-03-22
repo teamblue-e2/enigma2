@@ -5,11 +5,9 @@
 # print>>log, "Some text"
 # because the log unit looks enough like a file!
 
-from future import standard_library
-standard_library.install_aliases()
 import sys
-from io import StringIO
 import threading
+from six.moves import cStringIO as StringIO
 
 logfile = None
 # Need to make our operations thread-safe.
@@ -30,7 +28,7 @@ def write(data):
 	try:
 		if logfile.tell() > size:
 			# Do a sort of 16k round robin
-			logfile.reset()
+			logfile.seek(0)
 		logfile.write(data)
 	finally:
 		mutex.release()
@@ -42,7 +40,7 @@ def getvalue():
 	try:
 		pos = logfile.tell()
 		head = logfile.read()
-		logfile.reset()
+		logfile.seek(0)
 		tail = logfile.read(pos)
 	finally:
 		mutex.release()

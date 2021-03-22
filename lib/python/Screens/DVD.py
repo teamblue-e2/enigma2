@@ -1,4 +1,4 @@
-
+from __future__ import print_function
 import os
 from enigma import eTimer, iPlayableService, iServiceInformation, eServiceReference, iServiceKeys, getDesktop
 from Screens.Screen import Screen
@@ -56,7 +56,7 @@ class ChapterZap(Screen):
 
 	def keyOK(self):
 		self.Timer.stop()
-		self.close(self.field and int(self.field))
+		self.close(int(self["number"].getText()))
 
 	def keyNumberGlobal(self, number):
 		self.Timer.start(3000, True)
@@ -535,7 +535,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			self.session.openWithCallback(self.playPhysicalCB, MessageBox, text=_("Do you want to play DVD in drive?"), timeout=5 )
 
 	def playPhysicalCB(self, answer):
-		if answer:
+		if answer == True:
 			harddiskmanager.setDVDSpeed(harddiskmanager.getCD(), 1)
 			self.FileBrowserClosed(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD()))
 
@@ -642,7 +642,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 	def playLastCB(self, answer): # overwrite infobar cuesheet function
 		print("[DVD] playLastCB", answer, self.resume_point)
 		if self.service:
-			if answer:
+			if answer == True:
 				self.resumeDvd()
 				seekable = self.getSeek()
 				if seekable:

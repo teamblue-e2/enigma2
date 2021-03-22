@@ -1,4 +1,4 @@
-
+from __future__ import print_function
 import os
 from bisect import insort
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
@@ -46,6 +46,8 @@ class PluginComponent:
 			if not os.path.isdir(directory_category):
 				continue
 			for pluginname in os.listdir(directory_category):
+				if pluginname == "__pycache__":
+					continue
 				path = os.path.join(directory_category, pluginname)
 				if os.path.isdir(path):
 						profile('plugin '+pluginname)
@@ -55,7 +57,7 @@ class PluginComponent:
 						except Exception as exc:
 							print("Plugin ", c + "/" + pluginname, "failed to load:", exc)
 							# supress errors due to missing plugin.py* files (badly removed plugin)
-							for fn in ('plugin.py', 'plugin.pyo'):
+							for fn in ('plugin.py', 'plugin.pyc', 'plugin.pyo'):
 								if os.path.exists(os.path.join(path, fn)):
 									self.warnings.append( (c + "/" + pluginname, str(exc)) )
 									from traceback import print_exc

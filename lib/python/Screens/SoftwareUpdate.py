@@ -1,3 +1,4 @@
+from __future__ import print_function
 
 from Screens.About import CommitInfo
 from Screens.ChoiceBox import ChoiceBox

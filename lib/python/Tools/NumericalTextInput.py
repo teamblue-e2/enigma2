@@ -1,6 +1,7 @@
 from enigma import eTimer
 
 from Components.Language import language
+import six
 
 MAP_SEARCH_UPCASE = "SearchUpper"  # NOTE: Legacy interface for previous and deprecated versions of NumericalTextInput.
 MAP_SEARCH = "SearchLower"
@@ -220,12 +221,12 @@ class NumericalTextInput:
 					mode = mapping
 			index = MODES.get(str(mode).upper(), 0)
 			self.mapping = []
-			for num in range(0, 10):
+			for num in list(range(0, 10)):
 				self.mapping.append((MAPPINGS[num][index]))
 			locale = LOCALES.get(language.getLanguage(), None)
-			if locale is not None and index in range(0, 6):
+			if locale is not None and index in list(range(0, 6)):
 				index = index % 3
-				for num in range(0, 10):
+				for num in list(range(0, 10)):
 					if locale[num][index] is not None:
 						self.mapping[num] = locale[num][index]
 			self.mapping = tuple(self.mapping)
@@ -273,4 +274,4 @@ class NumericalTextInput:
 		return self.mapping[num][self.pos]
 
 	def setUseableChars(self, useable):
-		self.useableChars = unicode(useable)
+		self.useableChars = six.text_type(useable)

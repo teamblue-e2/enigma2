@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-
+from __future__ import print_function
+from __future__ import absolute_import
 from  Components import Netlink
 import enigma
 import os
@@ -7,7 +8,7 @@ import os
 class NetlinkReader():
 	def __init__(self):
 		from twisted.internet import reactor
-		self.nls = Netlink.NetlinkSocket()
+		self.nls = Components.Netlink.NetlinkSocket()
 		reactor.addReader(self)
 	def fileno(self):
 		return self.nls.fileno()

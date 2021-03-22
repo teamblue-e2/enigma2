@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os, re, unicodedata
 from Renderer import Renderer
 from enigma import ePixmap, ePicLoad

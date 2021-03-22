@@ -1,10 +1,11 @@
-
+from __future__ import print_function
 from enigma import eConsoleAppContainer
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
+import six
 
 class Console(Screen):
 	#TODO move this to skin.xml
@@ -127,4 +128,5 @@ class Console(Screen):
 			self.show()
 
 	def dataAvail(self, str):
+		str = six.ensure_str(str)
 		self["text"].appendText(str)

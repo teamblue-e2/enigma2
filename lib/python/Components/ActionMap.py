@@ -1,4 +1,4 @@
-
+from __future__ import print_function
 from enigma import eActionMap
 
 from Tools.KeyBindings import queryKeyBinding
@@ -14,7 +14,7 @@ class ActionMap:
 		self.exec_active = False
 		self.enabled = True
 		unknown = list(self.actions.keys())
-		for action in unknown[:]:
+		for action in unknown:
 			for context in self.contexts:
 				if queryKeyBinding(context, action):
 					unknown.remove(action)
@@ -98,8 +98,7 @@ class HelpableActionMap(ActionMap):
 					print("[HelpActionMap] removed duplicity: %s %s" % (context[1], record))
 					return True
 			return False
-
-		if not hasattr(contexts, '__iter__'):
+		if not type(contexts) is list:
 			contexts = [contexts]
 		actions = actions or {}
 		self.description = description

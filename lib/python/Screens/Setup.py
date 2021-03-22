@@ -11,6 +11,7 @@ from Components.Sources.Boolean import Boolean
 from enigma import eEnv
 
 import xml.etree.cElementTree
+import six
 
 # FIXME: use resolveFile!
 # read the setupmenu
@@ -82,7 +83,7 @@ class Setup(ConfigListScreen, Screen):
 			if x.get("key") != self.setup:
 				continue
 			self.addItems(list, x)
-			self.setup_title = x.get("title", "").encode("UTF-8")
+			self.setup_title = six.ensure_str(x.get("title", ""))
 			self.seperation = int(x.get('separation', '0'))
 
 	def __init__(self, session, setup):
@@ -172,8 +173,8 @@ class Setup(ConfigListScreen, Screen):
 				if conditional and not eval(conditional):
 					continue
 
-				item_text = _(x.get("text", "??").encode("UTF-8"))
-				item_description = _(x.get("description", " ").encode("UTF-8")) # don't change
+				item_text = _(six.ensure_str(x.get("text", "??")))
+				item_description = _(six.ensure_str(x.get("description", " ")))
 				b = eval(x.text or "")
 				if b == "":
 					continue

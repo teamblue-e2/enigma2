@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
+from __future__ import print_function
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Screens.Screen import Screen
@@ -11,6 +12,7 @@ from Components.MultiContent import MultiContentEntryText, MultiContentEntryProg
 from enigma import eConsoleAppContainer, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_VALIGN_CENTER
 import subprocess
 import skin
+import six
 
 pname = _("File Commander - generalised archive handler")
 pdesc = _("unpack archives")
@@ -138,7 +140,7 @@ class ArchiverMenuScreen(Screen):
 			print("[ArchiverMenuScreen]", msg)
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 			return
-		output = map(str.splitlines, p.communicate())
+		output = list(map(str.splitlines, p.communicate()))
 		if output[0] and output[1]:
 			output[1].append("----------")
 		self.extractlist = [(l,) for l in output[1] + output[0]]
@@ -195,6 +197,7 @@ class ArchiverMenuScreen(Screen):
 		self.session.open(MessageBox, message, type, timeout=timeout)
 
 	def logerrs(self, data):
+		data = six.ensure_str(data)
 		self.errlog += data
 
 	def cancel(self):
@@ -251,7 +254,7 @@ class ArchiverInfoScreen(Screen):
 	def onLayout(self):
 		self.setTitle(self.pname)
 		if len(self.list) != 0:
-			self.chooseMenuList.setList(map(self.ListEntry, self.list))
+			self.chooseMenuList.setList(list(map(self.ListEntry, self.list)))
 
 	def ListEntry(self, entry):
 		x, y, w, h = skin.parameters.get("FileListName",(10, 0, 1180, 25))

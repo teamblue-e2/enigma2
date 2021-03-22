@@ -1,3 +1,4 @@
+from __future__ import print_function
 from enigma import getDesktop
 from os import mkdir, path
 

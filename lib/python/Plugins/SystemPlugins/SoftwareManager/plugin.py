@@ -41,11 +41,10 @@ from twisted.web import client
 from twisted.internet import reactor
 from .ImageBackup import ImageBackup
 from .Flash_online import FlashOnline
-from .RestoreWizard import RestoreWizard
+from .ImageWizard import ImageWizard
 from .Multibootmgr import MultiBootWizard
-from .PluginBackup import PluginBackup
-from .PluginRestore import PluginRestore
-from .BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename
+from .BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename, RestoreMyMetrixHD
+from .BackupRestore import InitConfig as BackupRestore_InitConfig
 from .SoftwareTools import iSoftwareTools
 
 import six

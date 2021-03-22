@@ -1,5 +1,7 @@
+from __future__ import print_function
 import enigma
 import os
+import six
 
 class ConsoleItem:
 	def __init__(self, containers, cmd, callback, extra_args):
@@ -39,7 +41,7 @@ class ConsoleItem:
 		del self.container
 		callback = self.callback
 		if callback is not None:
-			data = ''.join(self.appResults)
+			data = b''.join(self.appResults)
 			callback(data, retval, self.extra_args)
 
 class Console(object):
@@ -49,11 +51,13 @@ class Console(object):
 		self.appContainers = {}
 		self.appResults = {}
 
-	def ePopen(self, cmd, callback=None, extra_args=[]):
+	def ePopen(self, cmd, callback=None, extra_args=None):
+		extra_args = [] if extra_args is None else extra_args
 		print("[Console] command:", cmd)
 		return ConsoleItem(self.appContainers, cmd, callback, extra_args)
 
-	def eBatch(self, cmds, callback, extra_args=[], debug=False):
+	def eBatch(self, cmds, callback, extra_args=None, debug=False):
+		if not extra_args: extra_args = []
 		self.debug = debug
 		cmd = cmds.pop(0)
 		self.ePopen(cmd, self.eBatchCB, [cmds, callback, extra_args])
@@ -61,6 +65,7 @@ class Console(object):
 	def eBatchCB(self, data, retval, _extra_args):
 		(cmds, callback, extra_args) = _extra_args
 		if self.debug:
+			data = six.ensure_str(data)
 			print('[eBatch] retval=%s, cmds left=%d, data:\n%s' % (retval, len(cmds), data))
 		if cmds:
 			cmd = cmds.pop(0)

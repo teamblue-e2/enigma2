@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
-import struct, socket, fcntl, re, sys, os, time
+from __future__ import print_function
+import struct, socket, fcntl, re, os, time
 from Tools.HardwareInfo import HardwareInfo
+from sys import modules, version_info
 
 from boxbranding import getBoxType, getMachineBuild, getImageType, getImageVersion
 
@@ -203,7 +205,7 @@ def getIfConfig(ifname):
 	infos['netmask'] = 0x891b # SIOCGIFNETMASK
 	try:
 		for k,v in list(infos.items()):
-			print((list(infos.items())))
+			print(list(infos.items()))
 			ifreq[k] = _ifinfo(sock, v, ifname)
 	except:
 		pass
@@ -233,7 +235,7 @@ def getDriverInstalledDate():
 
 def getPythonVersionString():
 	try:
-		if sys.version_info[0] >= 3:
+		if version_info[0] >= 3:
 			import subprocess
 			status, output = subprocess.getstatusoutput("python3 -V")
 		else:
@@ -291,4 +293,4 @@ def getBoxUptime():
 		return '-'
 
 # For modules that do "from About import about"
-about = sys.modules[__name__]
+about = modules[__name__]
