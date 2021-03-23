@@ -1,8 +1,5 @@
 from __future__ import print_function
 from __future__ import absolute_import
-from future import standard_library
-standard_library.install_aliases()
-from builtins import object
 import threading, urllib.request, urllib.error, urllib.parse, os, shutil, tempfile
 from json import loads
 from enigma import eDVBDB, eEPGCache
@@ -14,7 +11,7 @@ import xml.etree.ElementTree as et
 
 settingfiles = ('lamedb', 'bouquets.', 'userbouquet.', 'blacklist', 'whitelist', 'alternatives.')
 
-class ImportChannels(object):
+class ImportChannels():
 
 	def __init__(self):
 		if config.usage.remote_fallback_enabled.value and config.usage.remote_fallback_import.value and config.usage.remote_fallback.value and not "ChannelsImport" in [x.name for x in threading.enumerate()]:

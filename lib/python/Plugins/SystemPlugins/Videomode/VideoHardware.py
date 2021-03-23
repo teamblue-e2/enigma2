@@ -1,5 +1,4 @@
 from __future__ import print_function
-from builtins import object
 from Components.config import config, ConfigSelection, ConfigSubDict, ConfigYesNo
 from Components.SystemInfo import SystemInfo
 from Tools.CList import CList
@@ -13,7 +12,7 @@ import os
 
 config.av.edid_override = ConfigYesNo(default = True)
 
-class VideoHardware(object):
+class VideoHardware():
 	rates = { } # high-level, use selectable modes.
 
 	modes = { }  # a list of (high-level) modes for a certain port.

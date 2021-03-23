@@ -1,12 +1,10 @@
 from __future__ import print_function
-from builtins import str
-from builtins import object
 import os
 from Components.config import config, ConfigSubsection, ConfigSlider, ConfigSelection, ConfigBoolean, ConfigNothing, NoSave
 
 # The "VideoEnhancement" is the interface to /proc/stb/vmpeg/0.
 
-class VideoEnhancement(object):
+class VideoEnhancement:
 	firstRun = True
 
 	def __init__(self):

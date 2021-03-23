@@ -8,8 +8,6 @@ Quick'n'easy switching of aspect ratio setting via configurable remote control k
 This is free software. You are allowed to modify and use it as long as you leave the copyright.
 """
 
-from builtins import str
-from builtins import object
 from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -108,7 +106,7 @@ class GBAspectRatioSwitchSetup(ConfigListScreen, Screen):
 			x[1].cancel()
 		self.close()
 
-class GBAspectRatioSwitch(object):
+class GBAspectRatioSwitch():
 
 	def __init__(self):
 		self.reload_enabledaspects()

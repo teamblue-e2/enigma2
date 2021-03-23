@@ -1,5 +1,4 @@
 from __future__ import print_function
-from builtins import str
 from enigma import eDVBResourceManager, eDVBFrontendParametersSatellite, eDVBFrontendParametersTerrestrial, eTimer
 
 from Screens.ScanSetup import ScanSetup, buildTerTransponder

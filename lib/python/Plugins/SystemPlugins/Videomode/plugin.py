@@ -1,7 +1,5 @@
 from __future__ import print_function
 from __future__ import absolute_import
-from builtins import str
-from builtins import object
 from Screens.Screen import Screen
 from Plugins.Plugin import PluginDescriptor
 from Components.SystemInfo import SystemInfo
@@ -298,7 +296,7 @@ class AudioSetup(Screen, ConfigListScreen):
 		from Screens.Setup import SetupSummary
 		return SetupSummary
 
-class VideomodeHotplug(object):
+class VideomodeHotplug():
 	def __init__(self, hw):
 		self.hw = hw
 

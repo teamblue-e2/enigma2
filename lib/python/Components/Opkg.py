@@ -1,5 +1,7 @@
 from __future__ import print_function
+from __future__ import absolute_import
 import os
+import six
 from enigma import eConsoleAppContainer
 from Components.Harddisk import harddiskmanager
 from Tools.Directories import resolveFilename, SCOPE_LIBDIR
@@ -110,7 +112,8 @@ class OpkgComponent:
 		self.cmd.dataAvail.remove(self.cmdData)
 
 	def cmdData(self, data):
-		print("data:", data)
+		data = six.ensure_str(data)
+# 		print "data:", data
 		if self.cache is None:
 			self.cache = data
 		else:

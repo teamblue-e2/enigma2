@@ -1,11 +1,9 @@
 from __future__ import division
 from __future__ import print_function
-from builtins import str
-from builtins import object
 import os
 import re
 
-class Disks(object):
+class Disks():
 	ptypes = {
 	 "0": "Empty"             , "24":  "NEC DOS"        , "81":  "Minix / old Lin"     , "bf":  "Solaris",
 	 "1": "FAT12"             , "39":  "Plan 9"         , "82":  "Linux swap / Solaris", "c1":  "DRDOS/sec (FAT)",

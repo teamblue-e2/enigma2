@@ -69,7 +69,7 @@ class NetworkWizard(WizardLanguage, Rc):
 		self.isWlanPluginInstalled()
 
 	def exitWizardQuestion(self, ret = False):
-		if (ret):
+		if ret:
 			self.markDone()
 			self.close()
 

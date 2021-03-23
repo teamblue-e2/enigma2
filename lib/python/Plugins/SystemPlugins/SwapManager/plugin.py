@@ -3,8 +3,6 @@ from __future__ import print_function
 # for localized messages
 #from . import _
 
-from builtins import str
-from builtins import object
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
@@ -41,7 +39,7 @@ def SwapAutostart(reason, session=None, **kwargs):
 			startswap = StartSwap()
 			startswap.start()
 
-class StartSwap(object):
+class StartSwap():
 	def __init__(self):
 		self.Console = Console()
 

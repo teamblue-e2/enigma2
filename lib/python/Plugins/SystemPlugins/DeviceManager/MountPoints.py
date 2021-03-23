@@ -1,9 +1,8 @@
 from __future__ import print_function
-from builtins import object
 import os
 import re
 
-class MountPoints(object):
+class MountPoints():
 	def __init__(self):
 		self.entries = []
 		self.uuids = []
