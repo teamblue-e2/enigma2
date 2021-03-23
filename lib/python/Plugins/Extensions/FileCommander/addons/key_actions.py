@@ -19,7 +19,7 @@ from Screens.MessageBox import MessageBox
 
 # Tools
 from Tools.Directories import fileExists
-from Tools import Notifications
+import Tools.Notifications
 # commented out
 #from Tools.UnitConversions import UnitScaler, UnitMultipliers
 # added
@@ -180,7 +180,7 @@ class task_postconditions(Condition):
 		#if InfoBar.instance and not inStandby:
 		#	InfoBar.instance.openInfoBarMessage(message, messageboxtyp, timeout)
 		#else:
-		Notifications.AddNotification(MessageBox, message, type=messageboxtyp, timeout=timeout)
+		Tools.Notifications.AddNotification(MessageBox, message, type=messageboxtyp, timeout=timeout)
 
 def task_processStdout(data):
 	global task_Stout

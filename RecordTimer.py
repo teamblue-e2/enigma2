@@ -917,7 +917,6 @@ class RecordTimer(timer.Timer):
 
 			print("timers.xml failed to load!")
 			try:
-				import os
 				os.rename(self.Filename, self.Filename + "_old")
 			except (IOError, OSError):
 				print("renaming broken timer failed")
@@ -1032,7 +1031,10 @@ class RecordTimer(timer.Timer):
 					list.append(' code="' + str(code) + '"')
 					list.append(' time="' + str(time) + '"')
 					list.append('>')
-					list.append(str(stringToXML(msg)))
+					if isinstance(msg, int):
+						list.append(str(msg))
+					else:
+						list.append(str(stringToXML(msg)))
 					list.append('</log>\n')
 
 			list.append('</timer>\n')
@@ -1044,7 +1046,6 @@ class RecordTimer(timer.Timer):
 			file.write(x)
 		file.flush()
 
-		import os
 		os.fsync(file.fileno())
 		file.close()
 		os.rename(self.Filename + ".writing", self.Filename)

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # shamelessly copied from pliExpertInfo (Vali, Mirakels, Littlesat)
+from __future__ import absolute_import
 
 from enigma import iServiceInformation, iPlayableService
 from Components.Converter.Converter import Converter
@@ -10,6 +11,9 @@ from Tools.GetEcmInfo import GetEcmInfo
 from Tools.Hex2strColor import Hex2strColor
 from Poll import Poll
 from skin import parameters
+import six
+
+SIGN = '°' if six.PY3 else str('\xc2\xb0')
 
 caid_data = (
 	("0x0100", "0x01ff", "Seca",       "S",  True),
@@ -259,9 +263,9 @@ class PliExtraInfo(Poll, Converter):
 	def createOrbPos(self, feraw):
 		orbpos = feraw.get("orbital_position")
 		if orbpos > 1800:
-			return _("%.1f° W") % ((3600 - orbpos) / 10.0)
+			return str((float(3600 - orbpos)) / 10.0) + SIGN + "W"
 		elif orbpos > 0:
-			return _("%.1f° E") % (orbpos / 10.0)
+			return str((float(orbpos)) / 10.0) + SIGN + "E"
 		return ""
 
 	def createOrbPosOrTunerSystem(self, fedata, feraw):

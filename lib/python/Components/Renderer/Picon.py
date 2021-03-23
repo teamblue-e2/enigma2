@@ -8,6 +8,7 @@ from Tools.Directories import pathExists, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, 
 from Components.Harddisk import harddiskmanager
 from ServiceReference import ServiceReference
 from Components.config import config
+import six, sys
 
 searchPaths = []
 lastPiconPath = None
@@ -86,8 +87,11 @@ def getPiconName(serviceName):
 	if not pngname: # picon by channel name
 		try:
 			name = ServiceReference(serviceName).getServiceName()
+			if sys.version_info[0] >= 3:
+				name = six.ensure_str(unicodedata.normalize('NFKD', name).encode('ASCII', 'ignore'))
+			else:
+				name = unicodedata.normalize('NFKD', unicode(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
 			#print "[Picon] unicodedata.normalize: ", name
-			name = unicodedata.normalize('NFKD', unicode(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
 			name = re.sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
 			#print "[Picon] picon by channel name: ", name
 			if name:

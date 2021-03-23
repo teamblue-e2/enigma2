@@ -73,16 +73,16 @@ class Setup(ConfigListScreen, Screen):
 		self.onNotifiers.remove(self.levelChanged)
 
 	def levelChanged(self, configElement):
-		list = []
-		self.refill(list)
-		self["config"].setList(list)
+		listItems = []
+		self.refill(listItems)
+		self["config"].setList(listItems)
 
-	def refill(self, list):
+	def refill(self, listItems):
 		xmldata = setupdom.getroot()
 		for x in xmldata.findall("setup"):
 			if x.get("key") != self.setup:
 				continue
-			self.addItems(list, x)
+			self.addItems(listItems, x)
 			self.setup_title = six.ensure_str(x.get("title", ""))
 			self.seperation = int(x.get('separation', '0'))
 
@@ -94,13 +94,13 @@ class Setup(ConfigListScreen, Screen):
 		self.onChangedEntry = [ ]
 		self.setup = setup
 		self.setup_title= ''
-		list = []
+		listItems = []
 		self.onNotifiers = [ ]
-		self.refill(list)
-		ConfigListScreen.__init__(self, list, session = session, on_change = self.changedEntry)
+		self.refill(listItems)
+		ConfigListScreen.__init__(self, listItems, session = session, on_change = self.changedEntry)
 		self.createSetup()
 
-		#check for list.entries > 0 else self.close
+		#check for listItems.entries > 0 else self.close
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 		self["description"] = Label("")
@@ -119,9 +119,9 @@ class Setup(ConfigListScreen, Screen):
 		self.setTitle(_(self.setup_title))
 
 	def createSetup(self):
-		list = []
-		self.refill(list)
-		self["config"].setList(list)
+		listItems = []
+		self.refill(listItems)
+		self["config"].setList(listItems)
 		if config.usage.sort_settings.value:
 			self["config"].list.sort()
 		self.moveToItem(self.item)
@@ -148,7 +148,7 @@ class Setup(ConfigListScreen, Screen):
 		except:
 			pass
 
-	def addItems(self, list, parentNode):
+	def addItems(self, listItems, parentNode):
 		for x in parentNode:
 			if not x.tag:
 				continue
@@ -183,7 +183,7 @@ class Setup(ConfigListScreen, Screen):
 				# the first b is the item itself, ignored by the configList.
 				# the second one is converted to string.
 				if not isinstance(item, ConfigNothing):
-					list.append((item_text, item, item_description))
+					listItems.append((item_text, item, item_description))
 
 	def run(self):
 		self.keySave()

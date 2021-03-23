@@ -1,7 +1,9 @@
+from __future__ import absolute_import
 from Components.GUIComponent import GUIComponent
 from Components.VariableText import VariableText
 
 from enigma import eLabel
+import six
 
 from Tools.NumericalTextInput import NumericalTextInput
 
@@ -47,28 +49,28 @@ class Input(VariableText, GUIComponent, NumericalTextInput):
 				for x in self.Text[self.offset:self.offset+self.visible_width]:
 					self.text += (x==" " and " " or "*")
 			else:
-				self.text = self.Text[self.offset:self.offset+self.visible_width].encode("utf-8") + " "
+				self.text = six.ensure_str(self.Text[self.offset:self.offset+self.visible_width]) + " "
 		else:
 			if self.type == self.PIN:
 				self.text = ""
 				for x in self.Text:
 					self.text += (x==" " and " " or "*")
 			else:
-				self.text = self.Text.encode("utf-8") + " "
+				self.text = six.ensure_str(self.Text) + " "
 
 	def setText(self, text):
 		if not len(text):
 			self.currPos = 0
-			self.Text = ""
+			self.Text = u""
 		else:
 			if isinstance(text, str):
-				self.Text = text.decode("utf-8", "ignore")
+				self.Text = six.ensure_text(text, errors='ignore')
 			else:
 				self.Text = text
 		self.update()
 
 	def getText(self):
-		return self.Text.encode('utf-8')
+		return six.ensure_str(self.Text)
 
 	def createWidget(self, parent):
 		if self.allmarked:
@@ -154,8 +156,8 @@ class Input(VariableText, GUIComponent, NumericalTextInput):
 		self.update()
 
 	def insertChar(self, ch, pos=False, owr=False, ins=False):
-		if isinstance(ch, str):
-			ch = ch.decode("utf-8","ignore")
+		if isinstance(ch, bytes):
+			ch = six.ensure_text(ch, errors='ignore')
 		if not pos:
 			pos = self.currPos
 		if ins and not self.maxSize:
@@ -171,15 +173,15 @@ class Input(VariableText, GUIComponent, NumericalTextInput):
 		if not self.maxSize:
 			self.Text = self.Text[0:pos] + self.Text[pos + 1:]
 		elif self.overwrite:
-			self.Text = self.Text[0:pos] + " " + self.Text[pos + 1:]
+			self.Text = self.Text[0:pos] + u" " + self.Text[pos + 1:]
 		else:
-			self.Text = self.Text[0:pos] + self.Text[pos + 1:] + " "
+			self.Text = self.Text[0:pos] + self.Text[pos + 1:] + u" "
 
 	def deleteAllChars(self):
 		if self.maxSize:
-			self.Text = " " * len(self.Text)
+			self.Text = u" " * len(self.Text)
 		else:
-			self.Text = ""
+			self.Text = u""
 		self.currPos = 0
 
 	def tab(self):
@@ -189,7 +191,7 @@ class Input(VariableText, GUIComponent, NumericalTextInput):
 			self.deleteAllChars()
 			self.allmarked = False
 		else:
-			self.insertChar(" ", self.currPos, False, True)
+			self.insertChar(u" ", self.currPos, False, True)
 			self.innerright()
 		self.update()
 
@@ -241,7 +243,7 @@ class Input(VariableText, GUIComponent, NumericalTextInput):
 		if self.allmarked:
 			self.deleteAllChars()
 			self.allmarked = False
-		self.insertChar(chr(code), self.currPos, False, False)
+		self.insertChar(six.unichr(code), self.currPos, False, False)
 		self.innerright()
 		self.update()
 

@@ -43,7 +43,7 @@ from .ImageBackup import ImageBackup
 from .Flash_online import FlashOnline
 from .ImageWizard import ImageWizard
 from .Multibootmgr import MultiBootWizard
-from .BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename, RestoreMyMetrixHD
+from .BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename
 from .BackupRestore import InitConfig as BackupRestore_InitConfig
 from .SoftwareTools import iSoftwareTools
 

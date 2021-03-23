@@ -1,5 +1,4 @@
 from __future__ import print_function
-from builtins import str
 from Screens.WizardLanguage import WizardLanguage
 from Screens.Rc import Rc
 from Screens.MessageBox import MessageBox
@@ -95,11 +94,11 @@ class NetworkWizard(WizardLanguage, Rc):
 
 	def getInstalledInterfaceCount(self):
 		self.originalInterfaceState = {}
-		self.Adapterlist = iNetwork.getAdapterList()
+		self.Adapterlist = list(iNetwork.getAdapterList())
 		self.InstalledInterfaceCount = len(self.Adapterlist)
 		if self.Adapterlist is not None:
 			if self.InstalledInterfaceCount == 1 and self.selectedInterface is None:
-					self.selectedInterface = self.Adapterlist[0]
+				self.selectedInterface = self.Adapterlist[0]
 		for interface in iNetwork.getAdapterList():
 			self.originalInterfaceState[interface] = {}
 			self.originalInterfaceState[interface]["up"] = iNetwork.getAdapterAttribute(interface, 'up')

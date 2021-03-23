@@ -16,7 +16,7 @@ with open(infilename, 'r') as f:
 	for line in f:
 		item = line.split('\t')
 		name = (item[6],)
-		for i in range(4):
+		for i in list(range(4)):
 			if item[i]:
 				l[item[i]] = name
 

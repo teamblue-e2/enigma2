@@ -1,3 +1,4 @@
+from __future__ import division
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.ActionMap import NumberActionMap
@@ -133,7 +134,7 @@ class ChoiceBox(Screen):
 		self["list"].instance.resize(enigma.eSize(*(wsizex, offset)))
 		# center window
 		width,height = enigma.getDesktop(0).size().width(), enigma.getDesktop(0).size().height()
-		self.instance.move(enigma.ePoint((width - wsizex)/2,(height - wsizey)/2))
+		self.instance.move(enigma.ePoint((width - wsizex)//2,(height - wsizey)//2))
 
 	def keyLeft(self):
 		pass

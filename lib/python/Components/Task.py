@@ -366,13 +366,13 @@ class JobManager:
 				self.active_job.start(self.jobDone)
 
 	def notifyFailed(self, job, task, problems):
-		from Tools import Notifications
+		import Tools.Notifications
 		from Screens.MessageBox import MessageBox
 		if problems[0].RECOVERABLE:
-			Notifications.AddNotificationWithCallback(self.errorCB, MessageBox, _("Error: %s\nRetry?") % (problems[0].getErrorMessage(task)))
+			Tools.Notifications.AddNotificationWithCallback(self.errorCB, MessageBox, _("Error: %s\nRetry?") % (problems[0].getErrorMessage(task)))
 			return True
 		else:
-			Notifications.AddNotification(MessageBox, job.name + "\n" + _("Error") + (': %s') % (problems[0].getErrorMessage(task)), type = MessageBox.TYPE_ERROR )
+			Tools.Notifications.AddNotification(MessageBox, job.name + "\n" + _("Error") + ': %s' % (problems[0].getErrorMessage(task)), type = MessageBox.TYPE_ERROR )
 			return False
 
 	def jobDone(self, job, task, problems):
@@ -389,10 +389,10 @@ class JobManager:
 	# Set job.onSuccess to this function if you want to pop up the jobview when the job is done/
 	def popupTaskView(self, job):
 		if not self.visible:
-			from Tools import Notifications
+			import Tools.Notifications
 			from Screens.TaskView import JobView
 			self.visible = True
-			Notifications.AddNotification(JobView, job)
+			Tools.Notifications.AddNotification(JobView, job)
 
 	def errorCB(self, answer):
 		if answer:
@@ -447,12 +447,18 @@ class JobManager:
 #		self.args.append(device + "part%d" % partition)
 
 class Condition:
+	def __init__(self):
+		pass
+
 	RECOVERABLE = False
 
 	def getErrorMessage(self, task):
 		return _("An unknown error occurred!") + " (%s @ task %s)" % (self.__class__.__name__, task.__class__.__name__)
 
 class WorkspaceExistsPrecondition(Condition):
+	def __init__(self):
+		pass
+
 	def check(self, task):
 		return os.access(task.job.workspace, os.W_OK)
 
@@ -495,10 +501,16 @@ class ToolExistsPrecondition(Condition):
 		return _("A required tool (%s) was not found.") % (self.realpath)
 
 class AbortedPostcondition(Condition):
+	def __init__(self):
+		pass
+
 	def getErrorMessage(self, task):
 		return _("Cancelled upon user request")
 
 class ReturncodePostcondition(Condition):
+	def __init__(self):
+		pass
+
 	def check(self, task):
 		return task.returncode == 0
 	def getErrorMessage(self, task):

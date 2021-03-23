@@ -7,6 +7,7 @@ import os
 from enigma import eEnv, getDesktop
 from re import compile
 from stat import S_IMODE
+import six
 
 pathExists = os.path.exists
 isMount = os.path.ismount  # Only used in OpenATV /lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py.
@@ -221,7 +222,7 @@ def comparePath(leftPath, rightPath):
 		rightPath = rightPath[:-1]
 	left = leftPath.split(os.sep)
 	right = rightPath.split(os.sep)
-	for segment in range(len(left)):
+	for segment in list(range(len(left))):
 		if left[segment] != right[segment]:
 			return False
 	return True
@@ -311,7 +312,10 @@ def fileHas(f, content, mode="r"):
 def getRecordingFilename(basename, dirname=None):
 	# Filter out non-allowed characters.
 	non_allowed_characters = "/.\\:*?<>|\""
-	basename = basename.replace("\xc2\x86", "").replace("\xc2\x87", "")
+	if six.PY2:
+		basename = basename.replace("\xc2\x86", "").replace("\xc2\x87", "")
+	else:
+		basename = basename.replace("\x86", "").replace("\x87", "")
 	filename = ""
 	for c in basename:
 		if c in non_allowed_characters or ord(c) < 32:
@@ -321,7 +325,10 @@ def getRecordingFilename(basename, dirname=None):
 	# but must not truncate in the middle of a multi-byte utf8 character!
 	# So convert the truncation to unicode and back, ignoring errors, the
 	# result will be valid utf8 and so xml parsing will be OK.
-	filename = unicode(filename[:247], "utf8", "ignore").encode("utf8", "ignore")
+	if six.PY2:
+		filename = six.ensure_str(six.text_type(filename[:247], "utf8", "ignore"), "utf8", "ignore")
+	else:
+		filename = filename[:247]
 	if dirname is not None:
 		if not dirname.startswith("/"):
 			dirname = os.path.join(defaultRecordingLocation(), dirname)

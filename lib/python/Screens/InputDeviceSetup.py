@@ -110,7 +110,7 @@ class InputDeviceSelection(Screen,HelpableScreen):
 				devicepng = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/input_mouse.png"))
 		elif isinputdevice:
 			devicepng = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/input_rcnew.png"))
-		return ((device, description, devicepng, divpng))
+		return (device, description, devicepng, divpng)
 
 	def updateList(self):
 		self.list = []

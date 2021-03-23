@@ -10,7 +10,7 @@ class HTTPProgressDownloader(client.HTTPDownloader):
 		self.deferred = defer.Deferred()
 
 	def noPage(self, reason):
-		if self.status == "304":
+		if self.status == b"304":
 			client.HTTPDownloader.page(self, "")
 		else:
 			client.HTTPDownloader.noPage(self, reason)
@@ -18,16 +18,16 @@ class HTTPProgressDownloader(client.HTTPDownloader):
 			self.error_callback(reason.getErrorMessage(), self.status)
 
 	def gotHeaders(self, headers):
-		if self.status == "200":
-			if "content-length" in headers:
-				self.totalbytes = int(headers["content-length"][0])
+		if self.status == b"200":
+			if b"content-length" in headers:
+				self.totalbytes = int(headers[b"content-length"][0])
 			else:
 				self.totalbytes = 0
 			self.currentbytes = 0.0
 		return client.HTTPDownloader.gotHeaders(self, headers)
 
 	def pagePart(self, packet):
-		if self.status == "200":
+		if self.status == b"200":
 			self.currentbytes += len(packet)
 		if self.totalbytes and self.progress_callback:
 			self.progress_callback(self.currentbytes, self.totalbytes)

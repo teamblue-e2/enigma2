@@ -152,7 +152,7 @@ class SkinSelector(Screen, HelpableScreen):
 		skinList.sort()
 		self["skins"].setList(skinList)
 		# Set the list pointer to the current skin...
-		for index in range(len(skinList)):
+		for index in list(range(len(skinList))):
 			if skinList[index][4] == self.config.value:
 				self["skins"].setIndex(index)
 				break
@@ -286,7 +286,7 @@ class LcdSkinSelector(SkinSelector):
 		skinList.sort()
 		self["skins"].setList(skinList)
 		# Set the list pointer to the current skin...
-		for index in range(len(skinList)):
+		for index in list(range(len(skinList))):
 			if skinList[index][4] == self.config.value:
 				self["skins"].setIndex(index)
 				break
@@ -345,7 +345,7 @@ class ClockSkinSelector(SkinSelector):
 		skinList.sort()
 		self["skins"].setList(skinList)
 		# Set the list pointer to the current skin...
-		for index in range(len(skinList)):
+		for index in list(range(len(skinList))):
 			if skinList[index][4] == self.config.value:
 				self["skins"].setIndex(index)
 				break

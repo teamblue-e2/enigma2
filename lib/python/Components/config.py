@@ -44,7 +44,7 @@ class ConfigElement(object):
 		self.callNotifiersOnSaveAndCancel = False
 
 	def getNotifiers(self):
-		return [func for (func, val, call_on_save_and_cancel) in self.__notifiers.values()]
+		return [func for (func, val, call_on_save_and_cancel) in six.itervalues(self.__notifiers)]
 
 	def setNotifiers(self, val):
 		print("just readonly access to notifiers is allowed! append/remove doesnt work anymore! please use addNotifier, removeNotifier, clearNotifiers")
@@ -52,7 +52,7 @@ class ConfigElement(object):
 	notifiers = property(getNotifiers, setNotifiers)
 
 	def getNotifiersFinal(self):
-		return [func for (func, val, call_on_save_and_cancel) in self.__notifiers_final.values()]
+		return [func for (func, val, call_on_save_and_cancel) in six.itervalues(self.__notifiers_final)]
 
 	def setNotifiersFinal(self, val):
 		print("just readonly access to notifiers_final is allowed! append/remove doesnt work anymore! please use addNotifier, removeNotifier, clearNotifiers")
@@ -1359,7 +1359,7 @@ class ConfigNumber(ConfigText):
 					return
 			else:
 				ascii = getKeyNumber(key) + 48
-			newChar = chr(ascii)
+			newChar = six.unichr(ascii)
 			if self.allmarked:
 				self.deleteAllChars()
 				self.allmarked = False
@@ -1819,7 +1819,7 @@ class ConfigSubList(list, object):
 
 	def setSavedValue(self, values):
 		self.stored_values = dict(values)
-		for (key, val) in list(self.stored_values.items()):
+		for (key, val) in self.stored_values.items():
 			if int(key) < len(self):
 				self[int(key)].saved_value = val
 
@@ -1913,7 +1913,7 @@ class ConfigSubsection(object):
 
 	def getSavedValue(self):
 		res = self.content.stored_values
-		for (key, val) in list(self.content.items.items()):
+		for (key, val) in self.content.items.items():
 			sv = val.saved_value
 			if sv is not None:
 				res[key] = sv
@@ -1924,7 +1924,7 @@ class ConfigSubsection(object):
 	def setSavedValue(self, values):
 		values = dict(values)
 		self.content.stored_values = values
-		for (key, val) in list(self.content.items.items()):
+		for (key, val) in self.content.items.items():
 			value = values.get(key, None)
 			if value is not None:
 				val.saved_value = value
@@ -1954,7 +1954,7 @@ class Config(ConfigSubsection):
 		ConfigSubsection.__init__(self)
 
 	def pickle_this(self, prefix, topickle, result):
-		for (key, val) in sorted(list(topickle.items()), key=lambda x: int(x[0]) if x[0].isdigit() else x[0].lower()):
+		for (key, val) in sorted(topickle.items(), key=lambda x: str(x[0]) if x[0].isdigit() else x[0].lower()):
 			name = '.'.join((prefix, key))
 			if isinstance(val, dict):
 				self.pickle_this(name, val, result)

@@ -14,7 +14,7 @@ from time import time
 import RecordTimer
 import Screens.Standby
 import NavigationInstance
-from ServiceReference import ServiceReference, isPlayableForCur
+import ServiceReference
 from Screens.InfoBar import InfoBar
 from Components.Sources.StreamService import StreamServiceList
 
@@ -174,7 +174,7 @@ class Navigation:
 			if ref.flags & eServiceReference.isGroup:
 				oldref = self.currentlyPlayingServiceReference or eServiceReference()
 				playref = getBestPlayableServiceReference(ref, oldref)
-				if playref and config.misc.use_ci_assignment.value and not isPlayableForCur(playref):
+				if playref and config.misc.use_ci_assignment.value and not ServiceReference.isPlayableForCur(playref):
 					alternative_ci_ref = ResolveCiAlternative(ref, playref)
 					if alternative_ci_ref:
 						playref = alternative_ci_ref
@@ -253,7 +253,7 @@ class Navigation:
 	def recordService(self, ref, simulate=False):
 		service = None
 		if not simulate: print("[Navigation] recording service: %s" % (str(ref)))
-		if isinstance(ref, ServiceReference):
+		if isinstance(ref, ServiceReference.ServiceReference):
 			ref = ref.ref
 		if ref:
 			if ref.flags & eServiceReference.isGroup:

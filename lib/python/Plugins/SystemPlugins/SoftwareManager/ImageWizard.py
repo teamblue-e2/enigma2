@@ -1,4 +1,4 @@
-from builtins import str
+from __future__ import absolute_import
 from Screens.WizardLanguage import WizardLanguage
 from Screens.Wizard import wizardManager
 from Screens.Rc import Rc
@@ -12,7 +12,7 @@ from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
 from os import popen, path, makedirs, listdir, access, stat, rename, remove, W_OK, R_OK
 from enigma import eEnv
 from boxbranding import getBoxType, getImageDistro
-from BackupRestore import InitConfig as BackupRestore_InitConfig
+from .BackupRestore import InitConfig as BackupRestore_InitConfig
 
 from Components.config import config
 from Components.Harddisk import harddiskmanager
