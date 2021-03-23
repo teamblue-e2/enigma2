@@ -34,7 +34,7 @@ class CiModuleControl(Renderer, VariableText):
 			NUM_CI = SystemInfo["CommonInterface"]
 			if NUM_CI and NUM_CI > 0:
 				if self.eDVBCIUIInstance:
-					for slot in list(range(self.NUM_CI)):
+					for slot in list(range(NUM_CI)):
 						add_num = True
 						if string:
 							string += " "
