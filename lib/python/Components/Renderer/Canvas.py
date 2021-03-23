@@ -1,5 +1,6 @@
 from __future__ import print_function
-from Components.Renderer import Renderer
+from __future__ import absolute_import
+from Components.Renderer.Renderer import Renderer
 
 from enigma import eCanvas, eRect, gRGB
 

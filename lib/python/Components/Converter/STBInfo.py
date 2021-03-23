@@ -12,10 +12,10 @@
 #       <convert type="STBInfo">UsbInfo,Short</convert>
 #     </widget>
 
-
+from __future__ import absolute_import
 from Components.Converter.Converter import Converter
 from Components.Element import cached
-from Poll import Poll
+from Components.Comverter.Poll import Poll
 from os import popen, statvfs
 
 SIZE_UNITS = ['B',

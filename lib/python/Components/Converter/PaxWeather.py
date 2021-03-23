@@ -14,7 +14,7 @@
 #
 #  If you think this license infringes any rights,
 #  please contact me at ochzoetna@gmail.com
-
+from __future__ import absolute_import
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 

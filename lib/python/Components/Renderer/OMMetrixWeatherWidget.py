@@ -19,8 +19,9 @@
 #
 #
 #######################################################################
+from __future__ import absolute_import
 from __future__ import print_function
-from Renderer import Renderer
+from Components.Renderer.Renderer import Renderer
 from Components.VariableText import VariableText
 from six.moves.urllib.request import Request, urlopen as urlopen2
 from six.moves.urllib.error import URLError, HTTPError

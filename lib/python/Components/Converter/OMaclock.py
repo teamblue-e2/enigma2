@@ -1,4 +1,5 @@
-from Converter import Converter
+from __future__ import absolute_import
+from Components.Converter.Converter import Converter
 from time import localtime
 from Components.Element import cached
 
