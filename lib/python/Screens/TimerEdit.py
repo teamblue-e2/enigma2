@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import absolute_import
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Label import Label
@@ -33,8 +34,8 @@ class TimerEditList(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
-		list = [ ]
-		self.list = list
+		_list = [ ]
+		self.list = _list
 		self.url = None
 		self["timerlist"] = TimerList(list)
 		self["Service"] = ServiceEvent()
@@ -127,12 +128,12 @@ class TimerEditList(Screen):
 				else:
 					if stateRunning:
 						if t.isRunning() and t.repeated:
-							list = (
+							_list = (
 								(_("Stop current event but not coming events"), "stoponlycurrent"),
 								(_("Stop current event and disable coming events"), "stopall"),
 								(_("Don't stop current event but disable coming events"), "stoponlycoming")
 							)
-							self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("Repeating event currently recording... What do you want to do?"), list = list)
+							self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("Repeating event currently recording... What do you want to do?"), list = _list)
 							timer_changed = False
 					else:
 						t.disable()
@@ -481,8 +482,8 @@ class TimerSanityConflict(Screen):
 			selected_timer = self["timerlist"].getCurrent()
 			if selected_timer and selected_timer.conflict_detection:
 				if config.usage.show_timer_conflict_warning.value:
-					list = [(_("yes"), True), (_("no"), False), (_("yes") + " " + _("and never ask this again"), "never")]
-					self.session.openWithCallback(self.ignoreConflictConfirm, MessageBox, _("Warning!\nThis is an option for advanced users.\nReally disable timer conflict detection?"), list=list)
+					_list = [(_("yes"), True), (_("no"), False), (_("yes") + " " + _("and never ask this again"), "never")]
+					self.session.openWithCallback(self.ignoreConflictConfirm, MessageBox, _("Warning!\nThis is an option for advanced users.\nReally disable timer conflict detection?"), list=_list)
 				else:
 					self.ignoreConflictConfirm(True)
 

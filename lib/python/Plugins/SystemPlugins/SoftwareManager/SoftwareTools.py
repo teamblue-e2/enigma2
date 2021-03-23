@@ -1,4 +1,5 @@
 # -*- coding: iso-8859-1 -*-
+from __future__ import absolute_import
 from Components.Console import Console
 from Components.About import about
 from Components.PackageInfo import PackageInfoHandler
@@ -9,6 +10,7 @@ from Components.Network import iNetwork
 from Tools.Directories import resolveFilename, SCOPE_METADIR
 from Tools.HardwareInfo import HardwareInfo
 from time import time
+import six
 
 class SoftwareTools(PackageInfoHandler):
 	lastDownloadDate = None
@@ -119,6 +121,7 @@ class SoftwareTools(PackageInfoHandler):
 	def OpkgListAvailableCB(self, result, retval, extra_args = None):
 		(callback) = extra_args
 		if result:
+			result = six.ensure_str(result)
 			if self.list_updating:
 				self.available_packetlist = []
 				for x in result.splitlines():
@@ -157,6 +160,7 @@ class SoftwareTools(PackageInfoHandler):
 	def InstallMetaPackageCB(self, result, retval = None, extra_args = None):
 		(callback) = extra_args
 		if result:
+			result = six.ensure_str(result)
 			self.fillPackagesIndexList()
 			if callback is None:
 				self.startOpkgListInstalled()
@@ -183,6 +187,7 @@ class SoftwareTools(PackageInfoHandler):
 	def OpkgListInstalledCB(self, result, retval, extra_args = None):
 		(callback) = extra_args
 		if result:
+			result = six.ensure_str(result)
 			self.installed_packetlist = {}
 			for x in result.splitlines():
 				tokens = x.split(' - ')

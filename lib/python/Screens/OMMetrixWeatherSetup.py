@@ -19,6 +19,7 @@
 #
 #
 #######################################################################
+from __future__ import absolute_import
 from Screens.Screen import Screen
 from Components.Renderer import OMMetrixWeatherWidget
 from Components.Label import Label

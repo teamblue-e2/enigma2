@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import absolute_import
 from Components.NimManager import nimmanager
 from Plugins.Plugin import PluginDescriptor
 from Screens.ScanSetup import ScanSetup
@@ -36,7 +37,7 @@ class DefaultServiceScan(ServiceScan):
 
 	def __init__(self, session, scanList):
 		try:
-			unlink(resolveFilename(SCOPE_CONFIG) + "/lamedb");
+			unlink(resolveFilename(SCOPE_CONFIG) + "/lamedb")
 		except OSError:
 			pass
 		db = eDVBDB.getInstance()

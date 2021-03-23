@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 from __future__ import print_function
+from __future__ import absolute_import
 
 """
 Quick'n'easy switching of aspect ratio setting via configurable remote control keys (Enigma2)

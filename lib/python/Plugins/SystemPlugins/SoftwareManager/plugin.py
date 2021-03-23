@@ -1369,7 +1369,7 @@ class PluginDetails(Screen, PackageInfoHandler):
 
 	def paintScreenshotPixmapCB(self, picInfo=None):
 		ptr = self.picload.getData()
-		if ptr !=t  None:
+		if ptr !=  None:
 			self["screenshot"].instance.setPixmap(ptr.__deref__())
 			self["screenshot"].show()
 		else:

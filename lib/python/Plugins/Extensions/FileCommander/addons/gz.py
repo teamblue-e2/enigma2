@@ -2,6 +2,7 @@
 # -*- coding: iso-8859-1 -*-
 
 from __future__ import print_function
+from __future__ import absolute_import
 from Components.config import config
 # commented out
 #from Tools.Directories import shellquote

@@ -361,7 +361,7 @@ def startSetup(menuid):
 	return [ ]
 
 def VideoWizard(*args, **kwargs):
-	from VideoWizard import VideoWizard
+	from .VideoWizard import VideoWizard
 	return VideoWizard(*args, **kwargs)
 
 def Plugins(**kwargs):

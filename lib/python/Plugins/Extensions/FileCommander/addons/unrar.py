@@ -2,6 +2,7 @@
 # -*- coding: iso-8859-1 -*-
 
 from __future__ import print_function
+from __future__ import absolute_import
 from Screens.MessageBox import MessageBox
 from Components.config import config
 from Plugins.Extensions.FileCommander.addons.unarchiver import ArchiverMenuScreen, ArchiverInfoScreen

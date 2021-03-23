@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
@@ -72,15 +73,15 @@ class MultiBootWizard(Screen):
 		self.getImageList = GetImagelist(self.ImageList)
 
 	def ImageList(self, imagedict):
-		list = []
+		_list = []
 		mode = GetCurrentImageMode() or 0
 		currentimageslot = GetCurrentImage()
 		if SystemInfo["HasSDmmc"]:
 			currentimageslot += 1
 		for x in sorted(imagedict.keys()):
 			if imagedict[x]["imagename"] != _("Empty slot") and x != currentimageslot:
-				list.append(ChoiceEntryComponent('',((_("slot%s - %s ")) % (x, imagedict[x]['imagename']), x)))
-		self["config"].setList(list)
+				_list.append(ChoiceEntryComponent('',((_("slot%s - %s ")) % (x, imagedict[x]['imagename']), x)))
+		self["config"].setList(_list)
 
 	def erase(self):
 		self.currentSelected = self["config"].l.getCurrentSelection()

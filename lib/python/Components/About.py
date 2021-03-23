@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
+from __future__ import absolute_import
 import struct, socket, fcntl, re, os, time
 from Tools.HardwareInfo import HardwareInfo
 from sys import modules, version_info

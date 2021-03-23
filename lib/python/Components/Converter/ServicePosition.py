@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+from __future__ import absolute_import, division
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
 from enigma import iPlayableService
@@ -160,7 +160,7 @@ class ServicePosition(Poll, Converter, object):
 		len = self.length
 		if pos is None or len is None or len <= 0:
 			return None
-		return pos * 10000 / len
+		return pos * 10000 // len
 
 	position = property(getPosition)
 	length = property(getLength)

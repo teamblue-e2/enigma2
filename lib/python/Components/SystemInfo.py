@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from enigma import Misc_Options, eDVBCIInterfaces, eDVBResourceManager
 from Tools.Directories import SCOPE_PLUGINS, SCOPE_SKIN, fileCheck, fileExists, fileHas, pathExists, resolveFilename
 from Tools.HardwareInfo import HardwareInfo

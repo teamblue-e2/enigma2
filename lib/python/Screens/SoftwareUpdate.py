@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import absolute_import
 
 from Screens.About import CommitInfo
 from Screens.ChoiceBox import ChoiceBox
@@ -117,7 +118,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 			message = _("With this disclaimer the teamBlue team is informing you that we are working with nightly builds and it might be that after the upgrades your set top box \
 is not anymore working as expected. Therefore it is recommended to create backups. If something went wrong you can easily and quickly restore. \
 If you discover 'bugs' please keep them reported on www.teamblue.tech.\n\nDo you understand this?")
-			list = not justShow and [(_("no"), False), (_("yes"), True), (_("yes") + " " + _("and never show this message again"), "never")] or []
+			_list = not justShow and [(_("no"), False), (_("yes"), True), (_("yes") + " " + _("and never show this message again"), "never")] or []
 			self.session.openWithCallback(boundFunction(self.disclaimerCallback, justShow), MessageBox, message, list=list,  title=_("Disclaimer"))
 		else:
 			self.startActualUpdate(True)

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 from Components.Task import Task, Job, job_manager, AbortedPostcondition, ReturncodePostcondition
 # commented out
 # from Tools.Directories import fileExists, shellquote
