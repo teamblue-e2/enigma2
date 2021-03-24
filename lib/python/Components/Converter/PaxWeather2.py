@@ -26,6 +26,7 @@ from Components.Converter.Poll import Poll
 from Plugins.Extensions.PaxWeather import ping
 from lxml import etree
 from xml.etree.cElementTree import fromstring
+import six
 
 WEATHER_DATA = None
 WEATHER_LOAD = True
@@ -105,7 +106,7 @@ class PaxWeather2(Poll, Converter, object):
 			for childs in self.data:
 				for items in childs:
 					if items.tag == 'current':
-						value = items.attrib.get("temperature").encode("utf-8", 'ignore')
+						value = six.ensure_str(items.attrib.get("temperature", errors='ignore'))
 						return str(value) + "°C"
 		except:
 			return ''
@@ -113,7 +114,7 @@ class PaxWeather2(Poll, Converter, object):
 	def getTemperature_HighNext(self):
 		try:
 			for items in self.data.findall(".//forecast[3]"):
-				value = items.get("high").encode("utf-8", 'ignore')
+				value = six.ensure_str(items.get("high", errors='ignore'))
 				return str(value) + "°C"
 		except:
 			return ''
@@ -121,7 +122,7 @@ class PaxWeather2(Poll, Converter, object):
 	def getTemperature_LowNext(self):
 		try:
 			for items in self.data.findall(".//forecast[3]"):
-				value = items.get("low").encode("utf-8", 'ignore')
+				value = six.ensure_str(items.get("low", errors='ignore'))
 				return str(value) + "°C"
 		except:
 			return ''
@@ -133,10 +134,10 @@ class PaxWeather2(Poll, Converter, object):
 					for childs in self.data:
 						for items in childs:
 							if items.tag == "current":
-								value = items.attrib.get("skycode").encode("utf-8", 'ignore')
+								value = six.ensure_str(items.attrib.get("skycode", errors='ignore'))
 				if self.type == self.MeteoNext:
 					for items in self.data.findall(".//forecast[3]"):
-						value = items.get("skycodeday").encode("utf-8", 'ignore')
+						value = six.ensure_str(items.get("skycodeday", errors='ignore'))
 			except:
 				return ''
 

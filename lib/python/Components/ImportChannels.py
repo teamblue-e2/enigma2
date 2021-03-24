@@ -8,6 +8,7 @@ from Components.config import config
 from Tools import Notifications
 from base64 import encodestring
 import xml.etree.ElementTree as et
+import six
 
 settingfiles = ('lamedb', 'bouquets.', 'userbouquet.', 'blacklist', 'whitelist', 'alternatives.')
 
@@ -94,7 +95,7 @@ class ImportChannels():
 			try:
 				files = [file for file in loads(self.getUrl("%s/file?dir=/etc/enigma2" % self.url).read())["files"] if os.path.basename(file).startswith(settingfiles)]
 				for file in files:
-					file = file.encode("UTF-8")
+					file = six.ensure_str(file)
 					print("[Import Channels] Downloading %s" % file)
 					try:
 						open(os.path.join(self.tmp_dir, os.path.basename(file)), "wb").write(self.getUrl("%s/file?file=%s" % (self.url, file)).read())

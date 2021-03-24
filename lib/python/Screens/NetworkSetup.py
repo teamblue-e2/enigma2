@@ -134,7 +134,7 @@ class NetworkAdapterSelection(Screen,HelpableScreen):
 			unlink("/etc/default_gw")
 
 		if path.exists("/etc/default_gw"):
-			fp = file('/etc/default_gw', 'r')
+			fp = open('/etc/default_gw', 'r')
 			result = fp.read()
 			fp.close()
 			default_gw = result
@@ -469,7 +469,7 @@ class IPv6Setup(Screen, ConfigListScreen, HelpableScreen):
 			inetdData += "8002	stream	tcp	nowait	root	/usr/bin/transtreamproxy	transtreamproxy\n"
 		else:
 			pass
-		fd = file("/etc/inetd.conf", 'w')
+		fd = open("/etc/inetd.conf", 'w')
 		fd.write(inetdData)
 		fd.close()
 		self.session.open(MessageBox, _("Successfully restored /etc/inetd.conf!"), type = MessageBox.TYPE_INFO,timeout = 10 )

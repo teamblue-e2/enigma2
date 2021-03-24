@@ -1148,7 +1148,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 			self.overwrite = not self.overwrite
 		elif key == KEY_ASCII:
 			self.timeout()
-			newChar = chr(getPrevAsciiCode())
+			newChar = six.unichr(getPrevAsciiCode())
 			if not self.useableChars or newChar in self.useableChars:
 				if self.allmarked:
 					self.deleteAllChars()

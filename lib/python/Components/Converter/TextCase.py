@@ -1,6 +1,7 @@
 from __future__ import absolute_import
 from Components.Converter.Converter import Converter
 from Components.Element import cached
+import six
 
 class TextCase(Converter):
 	"""Converts a StaticText into upper/lower case."""
@@ -19,9 +20,9 @@ class TextCase(Converter):
 	def getText(self):
 		originaltext = self.source.getText()
 		if self.type == self.UPPER:
-			return originaltext.decode('utf-8').upper().encode('utf-8')
+			return six.ensure_str(six.ensure_text(originaltext).upper())
 		elif self.type == self.LOWER:
-			return originaltext.decode('utf-8').lower().encode('utf-8')
+			return six.ensure_str(six.ensure_text(originaltext).lower())
 		else:
 			return originaltext
 

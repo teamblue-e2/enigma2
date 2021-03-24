@@ -20,6 +20,7 @@ from Components.Network import iNetwork
 from Components.Label import Label
 from Components.ProgressBar import ProgressBar
 from os import popen
+from sys import version_info
 from Tools.StbHardware import getFPVersion
 
 from boxbranding import getBoxType, getMachineBuild, getImageVersion, getImageType
@@ -184,7 +185,10 @@ class About(Screen):
 		self["GStreamerVersion"] = StaticText(GStreamerVersion)
 		AboutText += GStreamerVersion + "\n"
 
-		twisted = popen('opkg list-installed  |grep -i python-twisted-core').read().strip().split(' - ')[1]
+		if version_info[0] >= 3:
+			twisted = popen('opkg list-installed  |grep -i python3-twisted-core').read().strip().split(' - ')[1]
+		else:
+			twisted = popen('opkg list-installed  |grep -i python-twisted-core').read().strip().split(' - ')[1]
 		AboutText += "Python-Twisted: " + str(twisted) + "\n"
 
 		AboutText += "\n"
@@ -385,7 +389,7 @@ class CommitInfo(Screen):
 						pass
 					else:
 						commitlog += date + ' ' + creator + '\n' + title + 2 * '\n'
-				commitlog = commitlog.encode('utf-8')
+				commitlog = six.ensure_str(commitlog)
 				self.cachedProjects[self.projects[self.project][2]] = commitlog
 			except:
 				commitlog += _("Currently the commit log cannot be retrieved - please try later again")
@@ -403,7 +407,7 @@ class CommitInfo(Screen):
 						pass
 					else:
 						commitlog += date + ' ' + creator + '\n' + title + '\n'
-				commitlog = commitlog.encode('utf-8')
+				commitlog = six.ensure_str(commitlog)
 				self.cachedProjects[self.projects[self.project][2]] = commitlog
 			except:
 				commitlog += _("Currently the commit log cannot be retrieved - please try later again")
@@ -713,7 +717,7 @@ class SystemNetworkInfo(Screen):
 		#self.AboutText += "\n" + _("Bytes received:") + "\t" + rx_bytes + '  (~'  + str(int(rx_bytes)/1024/1024)  + ' MB)'  + "\n"
 		#self.AboutText += _("Bytes sent:") + "\t" + tx_bytes + '  (~'  + str(int(tx_bytes)/1024/1024)+ ' MB)'  + "\n"
 
-		hostname = file('/proc/sys/kernel/hostname').read()
+		hostname = open('/proc/sys/kernel/hostname').read()
 		self.AboutText += _("Hostname:") + hostname + "\n"
 		self["AboutScrollLabel"] = ScrollLabel(self.AboutText)
 
@@ -726,6 +730,7 @@ class SystemNetworkInfo(Screen):
 			self.iStatus.getDataForInterface(self.iface, self.getInfoCB)
 
 	def getInfoCB(self, data, status):
+		data = six.ensure_str(data)
 		self.LinkState = None
 		if data is not None:
 			if data is True:
@@ -792,6 +797,7 @@ class SystemNetworkInfo(Screen):
 			iNetwork.getLinkState(self.iface, self.dataAvail)
 
 	def dataAvail(self, data):
+		data = six.ensure_str(data)
 		self.LinkState = None
 		for line in data.splitlines():
 			line = line.strip()
@@ -869,6 +875,7 @@ class Troubleshoot(Screen):
 			self["AboutScrollLabel"].setText(_("Some error occurred - Please try later"))
 
 	def dataAvail(self, data):
+		data = six.ensure_str(data)
 		self["AboutScrollLabel"].appendText(data)
 
 	def run_console(self):

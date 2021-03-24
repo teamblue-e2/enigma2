@@ -193,7 +193,7 @@ def getSetupTitle(id):
 	xmldata = setupdom.getroot()
 	for x in xmldata.findall("setup"):
 		if x.get("key") == id:
-			return x.get("title", "").encode("UTF-8")
+			return six.ensure_str(x.get("title", ""))
 	raise SetupError("unknown setup id '%s'!" % repr(id))
 
 def getSetupTitleLevel(id):
