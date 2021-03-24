@@ -150,7 +150,7 @@ class SkinSelector(Screen, HelpableScreen):
 						list[1] = "<%s>" % list[1]
 					#0=SortKey, 1=Label, 2=Flag, 3=Directory, 4=Skin, 5=Resolution, 6=Preview, 7=Label + Flag
 					skinList.append(tuple([list[0].upper()] + list))
-		skinList.sort()
+		sorted(skinList)
 		self["skins"].setList(skinList)
 		# Set the list pointer to the current skin...
 		for index in list(range(len(skinList))):
@@ -284,7 +284,7 @@ class LcdSkinSelector(SkinSelector):
 					list[1] = "<%s>" % list[1]
 				#0=SortKey, 1=Label, 2=Flag, 3=Directory, 4=Skin, 5=Resolution, 6=Preview, 7=Label + Flag
 				skinList.append(tuple([list[0].replace("_"," ").capitalize()] + list))
-		skinList.sort()
+		sorted(skinList)
 		self["skins"].setList(skinList)
 		# Set the list pointer to the current skin...
 		for index in list(range(len(skinList))):
@@ -343,7 +343,7 @@ class ClockSkinSelector(SkinSelector):
 					list[1] = "<%s>" % list[1]
 				#0=SortKey, 1=Label, 2=Flag, 3=Directory, 4=Skin, 5=Resolution, 6=Preview, 7=Label + Flag
 				skinList.append(tuple([list[0].replace("_"," ").capitalize()] + list))
-		skinList.sort()
+		sorted(skinList)
 		self["skins"].setList(skinList)
 		# Set the list pointer to the current skin...
 		for index in list(range(len(skinList))):

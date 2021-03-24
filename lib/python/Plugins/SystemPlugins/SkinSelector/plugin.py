@@ -45,7 +45,7 @@ class SkinSelector(Screen):
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Select"))
 		self["introduction"] = StaticText(_("Press OK to activate the selected skin."))
-		self.skinlist.sort()
+		sorted(self.skinlist)
 		self["SkinList"] = MenuList(self.skinlist)
 		self["Preview"] = Pixmap()
 

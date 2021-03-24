@@ -225,7 +225,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 				if self.bookmarks != self.realBookmarks.value:
 					self.realBookmarks.value = self.bookmarks
 					self.realBookmarks.save()
-				self.bookmarks.sort()
+				sorted(self.bookmarks)
 				self["booklist"].setList(self.bookmarks)
 		else:
 			# remove bookmark
@@ -358,7 +358,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 				if self.autoAdd and not ret in self.bookmarks:
 					if self.getPreferredFolder() not in self.bookmarks:
 						self.bookmarks.append(self.getPreferredFolder())
-						self.bookmarks.sort()
+						sorted(self.bookmarks)
 
 				if self.bookmarks != self.realBookmarks.value:
 					self.realBookmarks.value = self.bookmarks

@@ -50,13 +50,13 @@ class lamedb(datasource):
 					tsid = str(int(data[1], 16))
 					onid = str(int(data[2], 16))
 		satlist = list(sats.keys())
-		satlist.sort()
+		sorted(satlist)
 
 		for sat in satlist:
 			print(sat)
 			self.addSat(sat, sat)
 			transponders = sats[sat]
-			transponders.sort(key = lambda a: a[0])
+			sorted(transponders, key = lambda a: a[0])
 			for transpondertuple in transponders:
 				transponder = transpondertuple[0]
 				tsid = transpondertuple[1]

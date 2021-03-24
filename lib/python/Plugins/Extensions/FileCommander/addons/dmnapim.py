@@ -277,7 +277,7 @@ def read_tmp(_list):
                 subs[time] = m.group(4).strip().split("|")
 
     times = list(subs.keys())
-    times.sort()
+    sorted(times)
     for i in list(range(0, len(times))):
         next_time = 1
         while (times[i] + next_time) not in subs and next_time < 4:

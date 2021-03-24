@@ -116,7 +116,7 @@ class FileList(MenuList):
 
 	def refreshMountpoints(self):
 		self.mountpoints = [os.path.join(p.mountpoint, "") for p in harddiskmanager.getMountedPartitions()]
-		self.mountpoints.sort(reverse = True)
+		sorted(self.mountpoints, reverse = True)
 
 	def getMountpoint(self, file):
 		file = os.path.join(os.path.realpath(file), "")
@@ -201,15 +201,15 @@ class FileList(MenuList):
 					directories.append(s.getPath())
 				else:
 					files.append(s)
-			directories.sort()
-			files.sort()
+			sorted(directories)
+			sorted(files)
 		else:
 			if fileExists(directory):
 				try:
 					files = os.listdir(directory)
 				except:
 					files = []
-				files.sort()
+				sorted(files)
 				tmpfiles = files[:]
 				for x in tmpfiles:
 					if os.path.isdir(directory + x):
@@ -412,15 +412,15 @@ class MultiFileSelectList(FileList):
 					directories.append(s.getPath())
 				else:
 					files.append(s)
-			directories.sort()
-			files.sort()
+			sorted(directories)
+			sorted(files)
 		else:
 			if fileExists(directory):
 				try:
 					files = os.listdir(directory)
 				except:
 					files = []
-				files.sort()
+				sorted(files)
 				tmpfiles = files[:]
 				for x in tmpfiles:
 					if os.path.isdir(directory + x):

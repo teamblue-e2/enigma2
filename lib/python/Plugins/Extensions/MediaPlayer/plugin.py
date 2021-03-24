@@ -723,7 +723,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		except IOError as e:
 			print("Error while scanning subdirs ",e)
 		if config.mediaplayer.sortPlaylists.value:
-			listpath.sort()
+			sorted(listpath)
 		return listpath
 
 	def load_playlist(self):

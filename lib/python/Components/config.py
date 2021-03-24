@@ -1470,14 +1470,14 @@ class ConfigSet(ConfigElement):
 		if not default: default = []
 		ConfigElement.__init__(self)
 		if isinstance(choices, list):
-			choices.sort()
+			sorted(choices)
 			self.choices = choicesList(choices, choicesList.LIST_TYPE_LIST)
 		else:
 			assert False, "ConfigSet choices must be a list!"
 		if default is None:
 			default = []
 		self.pos = -1
-		default.sort()
+		sorted(default)
 		self.last_value = self.default = default
 		self.value = default[:]
 
@@ -1487,7 +1487,7 @@ class ConfigSet(ConfigElement):
 			value.remove(choice)
 		else:
 			value.append(choice)
-			value.sort()
+			sorted(value)
 		self.changed()
 
 	def handleKey(self, key):
@@ -1525,7 +1525,7 @@ class ConfigSet(ConfigElement):
 			mem = ch in self.value
 			if not mem:
 				tmp.append(ch)
-				tmp.sort()
+				sorted(tmp)
 			ind = tmp.index(ch)
 			val1 = self.genString(tmp[:ind])
 			val2 = " " + self.genString(tmp[ind + 1:])
@@ -1637,7 +1637,7 @@ class ConfigLocations(ConfigElement):
 		add = [x for x in value if x not in loc]
 		diff = add + [x for x in loc if x not in value]
 		locations = [x for x in locations if x[0] not in diff] + [[x, self.getMountpoint(x), True, True] for x in add]
-		locations.sort(key=lambda x: x[0])
+		sorted(locations, key=lambda x: x[0])
 		self.locations = locations
 		self.changed()
 
@@ -1699,7 +1699,7 @@ class ConfigLocations(ConfigElement):
 
 	def refreshMountpoints(self):
 		self.mountpoints = [p.mountpoint for p in harddiskmanager.getMountedPartitions() if p.mountpoint != "/"]
-		self.mountpoints.sort(key=lambda x: -len(x))
+		sorted(self.mountpoints, key=lambda x: -len(x))
 
 	def checkChangedMountpoints(self):
 		oldmounts = self.mountpoints

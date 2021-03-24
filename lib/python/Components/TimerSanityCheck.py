@@ -172,7 +172,7 @@ class TimerSanityCheck:
 
 ################################################################################
 # order list chronological
-		self.nrep_eventlist.sort()
+		sorted(self.nrep_eventlist)
 
 ##################################################################################
 # detect overlapping timers and overlapping times

@@ -128,7 +128,7 @@ def purge(cleanset, ctimeLimit, reserveBytes):
 					os.rmdir(os.path.join(root, name))
 				except:
 					pass
-		candidates.sort()
+		sorted(candidates)
 		# Now we have a list of ctime, candidates, size. Sorted by ctime (=deletion time)
 		print("[Trashcan] Bytes to remove remaining:", bytesToRemove, trash)
 		for st_ctime, fn, st_size in candidates:

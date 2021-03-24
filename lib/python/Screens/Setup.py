@@ -124,7 +124,7 @@ class Setup(ConfigListScreen, Screen):
 		self.refill(listItems)
 		self["config"].setList(listItems)
 		if config.usage.sort_settings.value:
-			self["config"].list.sort()
+			sorted(self["config"].list)
 		self.moveToItem(self.item)
 
 	def getIndexFromItem(self, item):

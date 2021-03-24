@@ -821,7 +821,7 @@ class HarddiskManager:
 			l = len(device)
 			if l and (not device[l-1].isdigit() or (device.startswith('mmcblk') and not re.search(r"mmcblk\dp\d+", device))):
 				self.hdd.append(Harddisk(device, removable))
-				self.hdd.sort()
+				sorted(self.hdd)
 				SystemInfo["Harddisk"] = True
 		return error, blacklisted, removable, is_cdrom, partitions, medium_found
 

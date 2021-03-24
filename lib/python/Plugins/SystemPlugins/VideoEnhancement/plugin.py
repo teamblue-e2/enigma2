@@ -122,7 +122,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 		if config.usage.sort_settings.value:
-			self["config"].list.sort()
+			sorted(self["config"].list)
 
 	def SelectionChanged(self):
 		self["description"].setText(self["config"].getCurrent()[2])

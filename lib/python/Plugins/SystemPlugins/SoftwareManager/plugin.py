@@ -929,7 +929,7 @@ class PluginManager(Screen, PackageInfoHandler):
 						status = "installable"
 					self.list.append(self.buildEntryComponent(name, _(details), _(description), packagename, status, selected = selectState))
 			if len(self.list):
-				self.list.sort(key=lambda x: x[0])
+				sorted(self.list, key=lambda x: x[0])
 			self["list"].style = "default"
 			self['list'].setList(self.list)
 			self["list"].updateList(self.list)
@@ -947,7 +947,7 @@ class PluginManager(Screen, PackageInfoHandler):
 					if foundtag not in self.categories:
 						self.categories.append(foundtag)
 						self.categoryList.append(self.buildCategoryComponent(foundtag))
-		self.categoryList.sort(key=lambda x: x[0])
+		sorted(self.categoryList, key=lambda x: x[0])
 		self["list"].style = "category"
 		self['list'].setList(self.categoryList)
 		self["list"].updateList(self.categoryList)
@@ -2163,7 +2163,7 @@ class OpkgInstaller(Screen):
 
 		for listindex in list(range(len(list))):
 			self.list.addSelection(list[listindex][p+1:], list[listindex], listindex, False)
-		self.list.sort()
+		sorted(self.list)
 
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Install"))

@@ -100,7 +100,7 @@ class PluginBrowser(Screen, ProtectedScreen):
 		self.list = []
 		self["list"] = PluginList(self.list)
 		if config.usage.sort_pluginlist.getValue():
-			self["list"].list.sort()
+			sorted(self["list"].list)
 
 		self["actions"] = ActionMap(["SetupActions","WizardActions","EPGSelectActions"],
 		{
@@ -713,7 +713,7 @@ class PluginDownloadBrowser(Screen):
 
 		temp = list(self.plugins.keys())
 		if config.usage.sort_pluginlist.getValue():
-			temp.sort()
+			sorted(temp)
 		for x in temp:
 			if x in self.expanded:
 				list.append(PluginCategoryComponent(x, expandedIcon, self.listWidth))
@@ -782,7 +782,7 @@ class PluginFilter(ConfigListScreen, Screen):
 		self["config"].list = self.list
 		self["config"].setList(self.list)
 		if config.usage.sort_settings.getValue():
-			self["config"].list.sort()
+			sorted(self["config"].list)
 
 	def selectionChanged(self):
 		self["status"].setText(self["config"].getCurrent()[2])

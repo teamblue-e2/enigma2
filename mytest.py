@@ -599,7 +599,7 @@ def runScreenTest():
 					(isNextWakeupTime(), 3))
 		if x[0] != -1
 	]
-	wakeupList.sort()
+	sorted(wakeupList)
 	recordTimerWakeupAuto = False
 	if wakeupList:
 		from time import strftime, altzone, timezone

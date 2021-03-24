@@ -112,7 +112,7 @@ class ResultParser:
 				orderedResults[orbpos] = orderedResults.get(orbpos, [])
 				orderedResults[orbpos].append(index)
 			ordered_orbpos = list(orderedResults.keys())
-			ordered_orbpos.sort()
+			sorted(ordered_orbpos)
 			for orbpos in ordered_orbpos:
 				text += "\n*****************************************\n"
 				text += "Orbital position %s:" % str(orbpos)
@@ -293,7 +293,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		if self.test_type == self.TEST_TYPE_QUICK:
 			self.myindex = 0
 			keys = list(self.indexlist.keys())
-			keys.sort(key = lambda a: a[2]) # sort by orbpos
+			sorted(keys, key = lambda a: a[2]) # sort by orbpos
 			self["overall_progress"].setRange(len(keys))
 			self["overall_progress"].setValue(self.myindex)
 			return keys[0]
@@ -342,7 +342,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		if self.test_type == self.TEST_TYPE_QUICK:
 			self.myindex += 1
 			keys = list(self.indexlist.keys())
-			keys.sort(key = lambda a: a[2]) # sort by orbpos
+			sorted(keys, key = lambda a: a[2]) # sort by orbpos
 
 			self["overall_progress"].setValue(self.myindex)
 			if self.myindex < len(keys):
