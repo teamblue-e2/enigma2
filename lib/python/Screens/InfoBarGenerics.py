@@ -3350,14 +3350,14 @@ class InfoBarCueSheetSupport:
 		bestdiff = -1
 		instate = True
 		if start:
-			bestdiff = cmp(0 - pts)
+			bestdiff = (0 > pts) - (0 < pts)
 			if bestdiff >= 0:
 				nearest = [0, False]
 		for cp in self.cut_list:
 			if beforecut and cp[1] in (self.CUT_TYPE_IN, self.CUT_TYPE_OUT):
 				beforecut = False
 				if cp[1] == self.CUT_TYPE_IN:  # Start is here, disregard previous marks
-					diff = cmp(cp[0] - pts)
+					diff = (cp[0] > pts) - (cp[0] < pts)
 					if start and diff >= 0:
 						nearest = cp
 						bestdiff = diff
@@ -3369,7 +3369,7 @@ class InfoBarCueSheetSupport:
 			elif cp[1] == self.CUT_TYPE_OUT:
 				instate = False
 			elif cp[1] in (self.CUT_TYPE_MARK, self.CUT_TYPE_LAST):
-				diff = cmp(cp[0] - pts)
+				diff = (cp[0] > pts) - (cp[0] < pts)
 				if instate and diff >= 0 and (nearest is None or bestdiff > diff):
 					nearest = cp
 					bestdiff = diff
