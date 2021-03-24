@@ -932,7 +932,7 @@ class ChannelSelectionEdit:
 			root=self.getRoot()
 		_list = root and serviceHandler.list(root)
 		if _list is not None:
-			return list.startEdit()
+			return _list.startEdit()
 		return None
 
 	def renameEntry(self):
