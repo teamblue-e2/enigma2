@@ -791,13 +791,13 @@ def createTimer(xml):
 	serviceref = ServiceReference(six.ensure_str(xml.get("serviceref")))
 	description = six.ensure_str(xml.get("description"))
 	repeated = six.ensure_str(xml.get("repeated"))
-	rename_repeat = long(xml.get("rename_repeat") or "1")
-	disabled = long(xml.get("disabled") or "0")
-	justplay = long(xml.get("justplay") or "0")
-	always_zap = long(xml.get("always_zap") or "0")
+	rename_repeat = int(xml.get("rename_repeat") or "1")
+	disabled = int(xml.get("disabled") or "0")
+	justplay = int(xml.get("justplay") or "0")
+	always_zap = int(xml.get("always_zap") or "0")
 	zap_wakeup = str(xml.get("zap_wakeup") or "always")
-	pipzap = long(xml.get("pipzap") or "0")
-	conflict_detection = long(xml.get("conflict_detection") or "1")
+	pipzap = int(xml.get("pipzap") or "0")
+	conflict_detection = int(xml.get("conflict_detection") or "1")
 	afterevent = str(xml.get("afterevent") or "nothing")
 	afterevent = {
 		"nothing": AFTEREVENT.NONE,
@@ -807,7 +807,7 @@ def createTimer(xml):
 		}[afterevent]
 	eit = xml.get("eit")
 	if eit and eit != "None":
-		eit = long(eit);
+		eit = int(eit)
 	else:
 		eit = None
 	location = xml.get("location")
