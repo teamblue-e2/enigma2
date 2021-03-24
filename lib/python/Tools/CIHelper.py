@@ -42,7 +42,7 @@ class CIHelper:
 
 						for caid in slot.findall("caid"):
 							read_caid = six.ensure_str(caid.get("id"))
-							usingcaid.append(long(read_caid, 16))
+							usingcaid.append(int(read_caid, 16))
 
 						for service in slot.findall("service"):
 							read_service_ref = six.ensure_str(service.get("ref"))
@@ -53,7 +53,7 @@ class CIHelper:
 						for provider in slot.findall("provider"):
 							read_provider_name = six.ensure_str(provider.get("name"))
 							read_provider_dvbname = six.ensure_str(provider.get("dvbnamespace"))
-							read_providers.append((read_provider_name, long(read_provider_dvbname, 16)))
+							read_providers.append((read_provider_name, int(read_provider_dvbname, 16)))
 							if read_slot is not False:
 								provider_services_refs = self.getProivderServices([read_provider_name])
 								if provider_services_refs:
