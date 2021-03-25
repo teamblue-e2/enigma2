@@ -2,6 +2,7 @@ from __future__ import print_function
 from __future__ import absolute_import
 from Components.config import ConfigSubsection, config
 import os
+import collections
 
 config.plugins = ConfigSubsection()
 
@@ -97,7 +98,7 @@ class PluginDescriptor(object):
 		self._fnc = fnc
 
 	def __call__(self, *args, **kwargs):
-		if callable(self._fnc):
+		if isinstance(self._fnc, collections.Callable):
 			return self._fnc(*args, **kwargs)
 		else:
 			print("PluginDescriptor called without a function!")

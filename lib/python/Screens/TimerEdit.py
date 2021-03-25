@@ -257,9 +257,9 @@ class TimerEditList(Screen):
 		self.list.extend([(timer, True) for timer in self.session.nav.RecordTimer.processed_timers])
 
 		if config.usage.timerlist_finished_timer_position.index: #end of list
-			self.list.sort(cmp = eol_compare)
+			sorted(self.list, key = eol_compare)
 		else:
-			self.list.sort(key = lambda x: x[0].begin)
+			sorted(self.list, key = lambda x: x[0].begin)
 		self["timerlist"].l.setList(self.list)
 		self.updateState()
 

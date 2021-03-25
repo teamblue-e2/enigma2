@@ -17,6 +17,7 @@ from enigma import eTimer, eEnv
 
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
+import collections
 
 class WizardSummary(Screen):
 	def __init__(self, session, parent):
@@ -368,7 +369,7 @@ class Wizard(Screen):
 				# there was a try/except here, but i can't see a reason
 				# for this. If there is one, please do a more specific check
 				# and/or a comment in which situation there is no run()
-				elif callable(getattr(self.configInstance, "runAsync", None)):
+				elif isinstance(getattr(self.configInstance, "runAsync", None), collections.Callable):
 					if self.updateValues in self.onShown:
 						self.onShown.remove(self.updateValues)
 					self.configInstance.runAsync(self.finished)

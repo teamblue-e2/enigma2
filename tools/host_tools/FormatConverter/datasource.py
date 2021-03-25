@@ -19,7 +19,7 @@ class datasource:
 		return text
 
 	def printAll(self):
-		for sat in self.transponderlist.keys():
+		for sat in list(self.transponderlist.keys()):
 			print("***********")
 			print("sat:", sat, self.satnames[sat])
 			for transponder in self.transponderlist[sat]:
@@ -89,7 +89,7 @@ class genericdatasource(datasource):
 			counttransponder = 0
 			if action == "copy":
 				self.destination.clear()
-			for satpos in self.source.transponderlist.keys():
+			for satpos in list(self.source.transponderlist.keys()):
 				countsat += 1
 				self.destination.addSat(self.source.satnames[satpos], satpos)
 				for transponder in self.source.transponderlist[satpos]:
@@ -98,13 +98,13 @@ class genericdatasource(datasource):
 			print("copied %d sats with %d transponders" % (countsat, counttransponder))
 
 	def selectDatasource(self):
-		list = []
+		_list = []
 		sources = []
 		for source in self.datasources:
 			if source != self:
-				list.append(source.getName() + (" (%d sats)" % len(list(source.transponderlist.keys()))))
+				_list.append(source.getName() + (" (%d sats)" % len(list(source.transponderlist.keys()))))
 				sources.append(source)
-		choice = inputChoices(list)
+		choice = inputChoices(_list)
 		if choice is None:
 			return None
 		return sources[choice]

@@ -80,7 +80,7 @@ class PollReactor(posixbase.PosixReactorBase):
 		except:
 			# the hard way: necessary because fileno() may disappear at any
 			# moment, thanks to python's underlying sockets impl
-			for fd, fdes in selectables.items():
+			for fd, fdes in list(selectables.items()):
 				if selectable is fdes:
 					break
 			else:
@@ -123,8 +123,8 @@ class PollReactor(posixbase.PosixReactorBase):
 		"""Remove all selectables, and return a list of them."""
 		if self.waker is not None:
 			self.removeReader(self.waker)
-		result = selectables.values()
-		fds = selectables.keys()
+		result = list(selectables.values())
+		fds = list(selectables.keys())
 		reads.clear()
 		writes.clear()
 		selectables.clear()
