@@ -21,7 +21,7 @@ def filter(g):
 			yield t[1]
 
 def do_file(f, mode):
-	tokens = list(filter(tokenize.generate_tokens(open(f, 'r').readline)))
+	tokens = filter(tokenize.generate_tokens(open(f, 'r').readline))
 
 	sys.stderr.write("parsing %s\n" % f)
 
