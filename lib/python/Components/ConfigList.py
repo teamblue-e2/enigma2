@@ -9,7 +9,7 @@ from Screens.ChoiceBox import ChoiceBox
 import skin
 
 class ConfigList(GUIComponent, object):
-	def __init__(self, _list, session=None):
+	def __init__(self, list, session=None):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonConfigContent()
 		seperation = skin.parameters.get("ConfigListSeperator", 200)
@@ -17,7 +17,7 @@ class ConfigList(GUIComponent, object):
 		height, space = skin.parameters.get("ConfigListSlider", (17, 0))
 		self.l.setSlider(height, space)
 		self.timer = eTimer()
-		self.list = _list
+		self.list = list
 		self.onSelectionChanged = []
 		self.current = None
 		self.session = session
@@ -138,7 +138,7 @@ class ConfigList(GUIComponent, object):
 				x()
 
 class ConfigListScreen:
-	def __init__(self, _list, session=None, on_change=None):
+	def __init__(self, list, session=None, on_change=None):
 		self["config_actions"] = NumberActionMap(["SetupActions", "InputAsciiActions", "KeyboardInputActions"], {
 			"gotAsciiCode": self.keyGotAscii,
 			"ok": self.keyOK,
@@ -171,7 +171,7 @@ class ConfigListScreen:
 		}, -2)
 		self["VirtualKB"].setEnabled(False)
 
-		self["config"] = ConfigList(_list, session=session)
+		self["config"] = ConfigList(list, session=session)
 
 		if on_change is not None:
 			self.__changed = on_change
@@ -291,7 +291,7 @@ class ConfigListScreen:
 		if selection and selection[1].enabled and hasattr(selection[1], "description"):
 			self.session.openWithCallback(
 				self.handleKeyFileCallback, ChoiceBox, selection[0],
-				_list=list(zip(selection[1].description, selection[1].choices)),
+				list=list(zip(selection[1].description, selection[1].choices)),
 				selection=selection[1].choices.index(selection[1].value),
 				keys=[]
 			)

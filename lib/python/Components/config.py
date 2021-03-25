@@ -214,9 +214,9 @@ class choicesList(object):  # XXX: we might want a better name for this
 	LIST_TYPE_LIST = 1
 	LIST_TYPE_DICT = 2
 
-	def __init__(self, choices, _type=None):
+	def __init__(self, choices, type=None):
 		self.choices = choices
-		if _type is None:
+		if type is None:
 			if isinstance(choices, list):
 				self.type = choicesList.LIST_TYPE_LIST
 			elif isinstance(choices, dict):
@@ -224,7 +224,7 @@ class choicesList(object):  # XXX: we might want a better name for this
 			else:
 				assert False, "choices must be dict or list!"
 		else:
-			self.type = _type
+			self.type = type
 
 	def __list__(self):
 		if self.type == choicesList.LIST_TYPE_LIST:
