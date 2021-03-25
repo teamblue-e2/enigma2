@@ -74,15 +74,15 @@ class FlashOnline(Screen):
 	def getImagesList(self):
 
 		def getImages(path, files):
-			for file in [x for x in files if os.path.splitext(x)[1] == ".zip" and box in x]:
+			for _file in [x for x in files if os.path.splitext(x)[1] == ".zip" and box in x]:
 				try:
-					if checkimagefiles([x.split(os.sep)[-1] for x in zipfile.ZipFile(file).namelist()]):
+					if checkimagefiles([x.split(os.sep)[-1] for x in zipfile.ZipFile(_file).namelist()]):
 						imagetyp = _("Downloaded images")
-						if 'backup' in file.split(os.sep)[-1]:
+						if 'backup' in _file.split(os.sep)[-1]:
 							imagetyp = _("Fullbackup images")
 						if imagetyp not in self.imagesList:
 							self.imagesList[imagetyp] = {}
-						self.imagesList[imagetyp][file] = {'link': file, 'name': file.split(os.sep)[-1]}
+						self.imagesList[imagetyp][_file] = {'link': _file, 'name': _file.split(os.sep)[-1]}
 				except:
 					pass
 
@@ -102,8 +102,8 @@ class FlashOnline(Screen):
 						media = os.path.join(media, "images")
 						if os.path.isdir(media) and not os.path.islink(media) and not os.path.ismount(media):
 							getImages(media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and box in x])
-							for dir in [dir for dir in [os.path.join(media, dir) for dir in os.listdir(media)] if os.path.isdir(dir) and os.path.splitext(dir)[1] == ".unzipped"]:
-								shutil.rmtree(dir)
+							for _dir in [_dir for _dir in [os.path.join(media, _dir) for _dir in os.listdir(media)] if os.path.isdir(_dir) and os.path.splitext(_dir)[1] == ".unzipped"]:
+								shutil.rmtree(_dir)
 
 		_list = []
 		for catagorie in reversed(sorted(self.imagesList.keys())):

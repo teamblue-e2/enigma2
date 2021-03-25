@@ -37,8 +37,8 @@ class SkinSelector(Screen):
 			self.skinlist.append(DEFAULTSKIN)
 		for root, dirs, files in os.walk(self.root, followlinks=True):
 			for subdir in dirs:
-				file = os.path.join(os.path.join(root, subdir), SKINXML)
-				if os.path.exists(file) and (SystemInfo["HasFullHDSkinSupport"] or not all(x in open(file, "r").read() for x in ('yres="1080"', 'xres="1920"'))):
+				_file = os.path.join(os.path.join(root, subdir), SKINXML)
+				if os.path.exists(_file) and (SystemInfo["HasFullHDSkinSupport"] or not all(x in open(_file, "r").read() for x in ('yres="1080"', 'xres="1920"'))):
 					self.skinlist.append(subdir)
 			dirs = []
 

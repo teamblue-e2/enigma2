@@ -365,10 +365,10 @@ def VideoWizard(*args, **kwargs):
 	return VideoWizard(*args, **kwargs)
 
 def Plugins(**kwargs):
-	list = [
+	_list = [
 #		PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc = autostart),
 		PluginDescriptor(name=_("Video setup"), description=_("Advanced video setup"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=startSetup)
 	]
 	if config.misc.videowizardenabled.value:
-		list.append(PluginDescriptor(name=_("Video wizard"), where = PluginDescriptor.WHERE_WIZARD, needsRestart = False, fnc=(15, VideoWizard)))
-	return list
+		_list.append(PluginDescriptor(name=_("Video wizard"), where = PluginDescriptor.WHERE_WIZARD, needsRestart = False, fnc=(15, VideoWizard)))
+	return _list

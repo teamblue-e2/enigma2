@@ -274,9 +274,9 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 			if self.dynamic_contrastEntry is not None:
 				config.pep.dynamic_contrast.setValue(0)
 			if self.color_spaceEntry is not None:
-				file = open("/proc/stb/video/hdmi_colorspace_choices", "r")
-				modes = file.readline().split()
-				file.close()
+				_file = open("/proc/stb/video/hdmi_colorspace_choices", "r")
+				modes = _file.readline().split()
+				_file.close()
 				config.pep.color_space.setValue(modes[0])
 			self.keySave()
 
@@ -424,7 +424,7 @@ def startSetup(menuid):
 	return [(_("Extended settings") , videoEnhancementSetupMain, "videoenhancement_setup", 41)]
 
 def Plugins(**kwargs):
-	list = []
+	_list = []
 	if config.usage.setup_level.index >= 2 and os.path.exists("/proc/stb/vmpeg/0/pep_apply"):
-		list.append(PluginDescriptor(name=_("Video enhancement setup"), description=_("Advanced video enhancement setup"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=startSetup))
-	return list
+		_list.append(PluginDescriptor(name=_("Video enhancement setup"), description=_("Advanced video enhancement setup"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=startSetup))
+	return _list

@@ -193,11 +193,11 @@ class ParentalControl:
 				AddPopup(messageText, MessageBox.TYPE_ERROR, timeout=5)
 
 	def saveListToFile(self, sWhichList, vList):
-		file = open(resolveFilename(SCOPE_CONFIG, sWhichList), 'w')
-		for sService,sType in vList.items():
+		_file = open(resolveFilename(SCOPE_CONFIG, sWhichList), 'w')
+		for sService,sType in list(vList.items()):
 			if (TYPE_SERVICE in sType or TYPE_BOUQUET in sType) and not sService.startswith("-"):
-				file.write(str(sService) + "\n")
-		file.close()
+				_file.write(str(sService) + "\n")
+		_file.close()
 
 	def openListFromFile(self, sWhichList):
 		result = {}
@@ -227,9 +227,9 @@ class ParentalControl:
 		serviceHandler = eServiceCenter.getInstance()
 		refstr = sBouquetSelection
 		root = eServiceReference(refstr)
-		list = serviceHandler and serviceHandler.list(root)
-		if list:
-			services = list.getContent("CN", True)
+		_list = serviceHandler and serviceHandler.list(root)
+		if _list:
+			services = _list.getContent("CN", True)
 			return services
 		return []
 
@@ -268,9 +268,9 @@ class ParentalControl:
 			ref_add = eServiceReference(":".join(ref))
 			if flag:
 				ref_remove, ref_add = ref_add, ref_remove
-			list = eServiceCenter.getInstance().list(eServiceReference('1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.%s" ORDER BY bouquet' % ('tv' if ref[2] == '1' else 'radio')))
-			if list:
-				mutableList = list.startEdit()
+			_list = eServiceCenter.getInstance().list(eServiceReference('1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.%s" ORDER BY bouquet' % ('tv' if ref[2] == '1' else 'radio')))
+			if _list:
+				mutableList = _list.startEdit()
 				if not mutableList.addService(ref_add, ref_remove):
 					mutableList.removeService(ref_remove, False)
 		else:

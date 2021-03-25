@@ -14,10 +14,10 @@ from Screens.Standby import TryQuitMainloop
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from Tools.LoadPixmap import LoadPixmap
 
-def LanguageEntryComponent(file, name, index):
+def LanguageEntryComponent(_file, name, index):
 	png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/" + index + ".png"))
 	if png is None:
-		png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/" + file + ".png"))
+		png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/" + _file + ".png"))
 		if png is None:
 			png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/missing.png"))
 	res = (index, name, png)
@@ -85,11 +85,11 @@ class LanguageSelection(Screen):
 	def updateList(self):
 		languageList = language.getLanguageList()
 		if not languageList: # no language available => display only english
-			list = [ LanguageEntryComponent("en", "English", "en_EN") ]
+			_list = [ LanguageEntryComponent("en", "English", "en_EN") ]
 		else:
-			list = [ LanguageEntryComponent(file = x[1][2].lower(), name = x[1][0], index = x[0]) for x in languageList]
-		self.list = list
-		self["languages"].list = list
+			_list = [ LanguageEntryComponent(_file = x[1][2].lower(), name = x[1][0], index = x[0]) for x in languageList]
+		self.list = _list
+		self["languages"].list = _list
 
 class LanguageWizard(LanguageSelection, Rc):
 	def __init__(self, session):

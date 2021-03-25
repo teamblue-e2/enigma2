@@ -403,7 +403,7 @@ class VideoFinetune(Screen):
 	def testpicCallback(self, key):
 		if key:
 			if key == True:
-				self.next()
+				next(self)
 			else:
 				self.keyNumber(key)
 		else:

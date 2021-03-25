@@ -124,9 +124,9 @@ def saveResumePoints():
 
 def loadResumePoints():
 	try:
-		file = open('/etc/enigma2/resumepoints.pkl', 'rb')
-		PickleFile = pickle.load(file)
-		file.close()
+		_file = open('/etc/enigma2/resumepoints.pkl', 'rb')
+		PickleFile = pickle.load(_file)
+		_file.close()
 		return PickleFile
 	except Exception as ex:
 		print("[InfoBar] Failed to load resumepoints:", ex)
@@ -2328,20 +2328,20 @@ class InfoBarExtensions:
 		self.updateExtensions()
 		extensionsList = self.extensionsList[:]
 		keys = []
-		list = []
+		_list = []
 		for x in self.availableKeys:
 			if x in self.extensionKeys:
 				entry = self.extensionKeys[x]
 				extension = self.extensionsList[entry]
 				if extension[2]():
 					name = str(extension[0]())
-					list.append((extension[0](), extension))
+					_list.append((extension[0](), extension))
 					keys.append(x)
 					extensionsList.remove(extension)
 				else:
 					extensionsList.remove(extension)
-		list.extend([(x[0](), x) for x in extensionsList])
-		self.session.openWithCallback(self.extensionCallback, ChoiceBox, title=_("Please choose an extension..."), list=list, keys=keys, skin_name="ExtensionsList", reorderConfig="extension_order", windowTitle=_("Extensions menu"))
+		_list.extend([(x[0](), x) for x in extensionsList])
+		self.session.openWithCallback(self.extensionCallback, ChoiceBox, title=_("Please choose an extension..."), list=_list, keys=keys, skin_name="ExtensionsList", reorderConfig="extension_order", windowTitle=_("Extensions menu"))
 
 	def extensionCallback(self, answer):
 		if answer is not None:
@@ -2712,30 +2712,30 @@ class InfoBarInstantRecord:
 
 		if answer is None or answer[1] == "no":
 			return
-		list = []
+		_list = []
 		recording = self.recording[:]
 		for x in recording:
 			if not x in self.session.nav.RecordTimer.timer_list:
 				self.recording.remove(x)
 			elif x.dontSave and x.isRunning():
-				list.append((x, False))
+				_list.append((x, False))
 
 		self.deleteRecording = False
 		if answer[1] == "changeduration":
 			if len(self.recording) == 1:
 				self.changeDuration(0)
 			else:
-				self.session.openWithCallback(self.changeDuration, TimerSelection, list)
+				self.session.openWithCallback(self.changeDuration, TimerSelection, _list)
 		elif answer[1] == "addrecordingtime":
 			if len(self.recording) == 1:
 				self.addRecordingTime(0)
 			else:
-				self.session.openWithCallback(self.addRecordingTime, TimerSelection, list)
+				self.session.openWithCallback(self.addRecordingTime, TimerSelection, _list)
 		elif answer[1] == "changeendtime":
 			if len(self.recording) == 1:
 				self.setEndtime(0)
 			else:
-				self.session.openWithCallback(self.setEndtime, TimerSelection, list)
+				self.session.openWithCallback(self.setEndtime, TimerSelection, _list)
 		elif answer[1] == "timer":
 			from Screens import TimerEdit
 			self.session.open(TimerEdit.TimerEditList)
@@ -2743,18 +2743,18 @@ class InfoBarInstantRecord:
 			if len(self.recording) == 1:
 				self.stopCurrentRecording(0)
 			else:
-				self.session.openWithCallback(self.stopCurrentRecording, TimerSelection, list)
+				self.session.openWithCallback(self.stopCurrentRecording, TimerSelection, _list)
 		elif answer[1] == "stopdelete":
 			self.deleteRecording = True
 			if len(self.recording) == 1:
 				self.stopCurrentRecording(0)
 			else:
-				self.session.openWithCallback(self.stopCurrentRecording, TimerSelection, list)
+				self.session.openWithCallback(self.stopCurrentRecording, TimerSelection, _list)
 		elif answer[1] == "stopall":
-			self.stopAllCurrentRecordings(list)
+			self.stopAllCurrentRecordings(_list)
 		elif answer[1] == "stopdeleteall":
 			self.deleteRecording = True
-			self.stopAllCurrentRecordings(list)
+			self.stopAllCurrentRecordings(_list)
 		elif answer[1] in ( "indefinitely" , "manualduration", "manualendtime", "event"):
 			self.startInstantRecording(limitEvent = answer[1] in ("event", "manualendtime") or False)
 			if answer[1] == "manualduration":
@@ -2851,37 +2851,37 @@ class InfoBarInstantRecord:
 		if self.isInstantRecordRunning():
 			title =_("A recording is currently running.\nWhat do you want to do?")
 			if not SystemInfo["hasGBIpboxClient"]:
-				list = common + \
+				_list = common + \
 					((_("Change recording (duration)"), "changeduration"),
 					(_("Change recording (add time)"), "addrecordingtime"),
 					(_("Change recording (endtime)"), "changeendtime"),)
 			else:
-				list = common
+				_list = common
 
-			list += ((_("Stop recording"), "stop"),)
+			_list += ((_("Stop recording"), "stop"),)
 			if config.usage.movielist_trashcan.value:
-				list += ((_("Stop and delete recording"), "stopdelete"),)
+				_list += ((_("Stop and delete recording"), "stopdelete"),)
 			if len(self.recording) > 1:
-				list += ((_("Stop all current recordings"), "stopall"),)
+				_list += ((_("Stop all current recordings"), "stopall"),)
 				if config.usage.movielist_trashcan.value:
-					list += ((_("Stop and delete all current recordings"), "stopdeleteall"),)
+					_list += ((_("Stop and delete all current recordings"), "stopdeleteall"),)
 			if self.isTimerRecordRunning():
-				list += ((_("Stop timer recording"), "timer"),)
-			list += ((_("Do nothing"), "no"),)
+				_list += ((_("Stop timer recording"), "timer"),)
+			_list += ((_("Do nothing"), "no"),)
 		else:
 			title=_("Start recording?")
-			list = common
+			_list = common
 			if self.isTimerRecordRunning():
-				list += ((_("Stop timer recording"), "timer"),)
+				_list += ((_("Stop timer recording"), "timer"),)
 			if isStandardInfoBar(self):
-				list += ((_("Do not record"), "no"),)
+				_list += ((_("Do not record"), "no"),)
 		if isStandardInfoBar(self) and self.timeshiftEnabled():
-			list = list + ((_("Save timeshift file"), "timeshift"),
+			_list = _list + ((_("Save timeshift file"), "timeshift"),
 				(_("Save timeshift file in movie directory"), "timeshift_movie"))
 			if self.currentEventTime() > 0:
-				list += ((_("Save timeshift only for current event"), "timeshift_event"),)
-		if list:
-			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=title, list=list)
+				_list += ((_("Save timeshift only for current event"), "timeshift_event"),)
+		if _list:
+			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=title, list=_list)
 		else:
 			return 0
 
@@ -3321,11 +3321,11 @@ class InfoBarCueSheetSupport:
 				isin = True
 		return ret
 
-	def jumpPreviousNextMark(self, cmp, start=False):
+	def jumpPreviousNextMark(self, _cmp, start=False):
 		current_pos = self.cueGetCurrentPosition()
 		if current_pos is None:
 			return False
-		mark = self.getNearestCutPoint(current_pos, cmp=cmp, start=start)
+		mark = self.getNearestCutPoint(current_pos, _cmp=_cmp, start=start)
 		if mark is not None:
 			pts = mark[0]
 		else:
@@ -3343,7 +3343,7 @@ class InfoBarCueSheetSupport:
 		if not self.jumpPreviousNextMark(lambda x: x-90000):
 			self.doSeek(-1)
 
-	def getNearestCutPoint(self, pts, cmp=abs, start=False):
+	def getNearestCutPoint(self, pts, _cmp=abs, start=False):
 		# can be optimized
 		beforecut = True
 		nearest = None
@@ -3728,10 +3728,10 @@ class InfoBarPowersaver:
 
 	def sleepTimerTimeout(self):
 		if not Screens.Standby.inStandby:
-			list = [ (_("No"), False), (_("Extend sleeptimer 15 minutes"), "extend"), (_("Yes"), True) ]
+			_list = [ (_("No"), False), (_("Extend sleeptimer 15 minutes"), "extend"), (_("Yes"), True) ]
 			message = _("Your receiver will got to stand by due to the sleeptimer.")
 			message += "\n" + _("Do you want this?")
-			self.session.openWithCallback(self.sleepTimerTimeoutCallback, MessageBox, message, timeout=60, simple=True, list=list, timeout_default=True)
+			self.session.openWithCallback(self.sleepTimerTimeoutCallback, MessageBox, message, timeout=60, simple=True, list=_list, timeout_default=True)
 
 	def sleepTimerTimeoutCallback(self, answer):
 		if answer == "extend":

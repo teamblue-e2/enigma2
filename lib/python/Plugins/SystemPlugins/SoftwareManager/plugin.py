@@ -1686,10 +1686,10 @@ class OPKGMenu(Screen):
 		if (os.path.exists(self.path) == False):
 			self.entry = False
 			return
-		for file in os.listdir(self.path):
-			if file.endswith(".conf"):
-				if file not in ('arch.conf', 'opkg.conf'):
-					flist.append((file))
+		for _file in os.listdir(self.path):
+			if _file.endswith(".conf"):
+				if _file not in ('arch.conf', 'opkg.conf'):
+					flist.append((_file))
 					self.entry = True
 		self["filelist"].l.setList(flist)
 
@@ -2377,12 +2377,12 @@ def startSetup(menuid):
 def Plugins(path, **kwargs):
 	global plugin_path
 	plugin_path = path
-	list = [
+	_list = [
 		PluginDescriptor(name=_("Software management"), description=_("Manage your receiver's software"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=startSetup),
 		PluginDescriptor(name=_("Opkg"), where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan)
 	]
 	if not config.plugins.softwaremanager.onSetupMenu.value and not config.plugins.softwaremanager.onBlueButton.value:
-		list.append(PluginDescriptor(name=_("Software management"), description=_("Manage your receiver's software"), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc=UpgradeMain))
+		_list.append(PluginDescriptor(name=_("Software management"), description=_("Manage your receiver's software"), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc=UpgradeMain))
 	if config.plugins.softwaremanager.onBlueButton.value:
-		list.append(PluginDescriptor(name=_("Software management"), description=_("Manage your receiver's software"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart = False, fnc=UpgradeMain))
-	return list
+		_list.append(PluginDescriptor(name=_("Software management"), description=_("Manage your receiver's software"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart = False, fnc=UpgradeMain))
+	return _list

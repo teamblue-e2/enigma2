@@ -73,9 +73,9 @@ class ImportChannels():
 			try:
 				epgdatfile = self.getFallbackSettingsValue(settings, "config.misc.epgcache_filename") or "/hdd/epg.dat"
 				try:
-					files = [file for file in loads(self.getUrl("%s/file?dir=%s" % (self.url, os.path.dirname(epgdatfile))).read())["files"] if os.path.basename(file).startswith(os.path.basename(epgdatfile))]
+					files = [_file for _file in loads(self.getUrl("%s/file?dir=%s" % (self.url, os.path.dirname(epgdatfile))).read())["files"] if os.path.basename(_file).startswith(os.path.basename(epgdatfile))]
 				except:
-					files = [file for file in loads(self.getUrl("%s/file?dir=/" % self.url).read())["files"] if os.path.basename(file).startswith("epg.dat")]
+					files = [_file for _file in loads(self.getUrl("%s/file?dir=/" % self.url).read())["files"] if os.path.basename(_file).startswith("epg.dat")]
 				epg_location = files[0] if files else None
 			except:
 				self.ImportChannelsDone(False, _("Error while retreiving location of epg.dat on server"))
@@ -93,27 +93,27 @@ class ImportChannels():
 		if "channels" in self.remote_fallback_import:
 			print("[Import Channels] reading dir")
 			try:
-				files = [file for file in loads(self.getUrl("%s/file?dir=/etc/enigma2" % self.url).read())["files"] if os.path.basename(file).startswith(settingfiles)]
-				for file in files:
-					file = six.ensure_str(file)
-					print("[Import Channels] Downloading %s" % file)
+				files = [_file for _file in loads(self.getUrl("%s/file?dir=/etc/enigma2" % self.url).read())["files"] if os.path.basename(_file).startswith(settingfiles)]
+				for _file in files:
+					_file = six.ensure_str(_file)
+					print("[Import Channels] Downloading %s" % _file)
 					try:
-						open(os.path.join(self.tmp_dir, os.path.basename(file)), "wb").write(self.getUrl("%s/file?file=%s" % (self.url, file)).read())
+						open(os.path.join(self.tmp_dir, os.path.basename(_file)), "wb").write(self.getUrl("%s/file?file=%s" % (self.url, _file)).read())
 					except:
-						self.ImportChannelsDone(False, _("ERROR downloading file %s") % file)
+						self.ImportChannelsDone(False, _("ERROR downloading file %s") % _file)
 						return
 			except:
 				self.ImportChannelsDone(False, _("Error %s") % self.url)
 				return
 
 			print("[Import Channels] Removing files...")
-			files = [file for file in os.listdir("/etc/enigma2") if file.startswith(settingfiles)]
-			for file in files:
-				os.remove("/etc/enigma2/%s" % file)
+			files = [_file for _file in os.listdir("/etc/enigma2") if _file.startswith(settingfiles)]
+			for _file in files:
+				os.remove("/etc/enigma2/%s" % _file)
 			print("[Import Channels] copying files...")
 			files = [x for x in os.listdir("/tmp/tmp") if x.startswith(settingfiles)]
-			for file in files:
-				shutil.move(os.path.join(self.tmp_dir, file), os.path.join("/etc/enigma2", file))
+			for _file in files:
+				shutil.move(os.path.join(self.tmp_dir, _file), os.path.join("/etc/enigma2", _file))
 		self.ImportChannelsDone(True, {"channels": _("Channels"), "epg": _("EPG"), "channels_epg": _("Channels and EPG")}[self.remote_fallback_import])
 
 	def ImportChannelsDone(self, flag, message=None):

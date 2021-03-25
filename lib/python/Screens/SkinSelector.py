@@ -102,10 +102,10 @@ class SkinSelector(Screen, HelpableScreen):
 		displayPicon = pathjoin(dirname(DEFAULT_DISPLAY_SKIN), "skin_display_picon.xml")
 		skinList = []
 		# Find and list the available skins...
-		for dir in [dir for dir in listdir(self.rootDir) if isdir(pathjoin(self.rootDir, dir))]:
-			previewPath = pathjoin(self.rootDir, dir)
+		for _dir in [_dir for _dir in listdir(self.rootDir) if isdir(pathjoin(self.rootDir, _dir))]:
+			previewPath = pathjoin(self.rootDir, _dir)
 			for skinFile in self.xmlList:
-				skin = pathjoin(dir, skinFile)
+				skin = pathjoin(_dir, skinFile)
 				skinPath = pathjoin(self.rootDir, skin)
 				if exists(skinPath):
 					resolution = None
@@ -132,24 +132,24 @@ class SkinSelector(Screen, HelpableScreen):
 					# The "piconprev.png" image should be "prevpicon.png" to keep it with its partner preview image.
 					preview = pathjoin(previewPath, "piconprev.png" if skinFile == "skin_display_picon.xml" else "prev.png")
 					if skin == EMERGENCY_SKIN:
-						list = [EMERGENCY_NAME, emergency, dir, skin, resolution, preview]
+						_list = [EMERGENCY_NAME, emergency, _dir, skin, resolution, preview]
 					elif skin == DEFAULT_SKIN:
-						list = [dir, default, dir, skin, resolution, preview]
+						_list = [_dir, default, _dir, skin, resolution, preview]
 					elif skin == DEFAULT_DISPLAY_SKIN:
-						list = [default, default, dir, skin, resolution, preview]
+						_list = [default, default, _dir, skin, resolution, preview]
 					elif skin == displayPicon:
-						list = [dir, defaultPicon, dir, skin, resolution, preview]
+						_list = [_dir, defaultPicon, _dir, skin, resolution, preview]
 					else:
-						list = [dir, "", dir, skin, resolution, preview]
+						_list = [_dir, "", _dir, skin, resolution, preview]
 					if skin == self.current:
-						list[1] = current
+						_list[1] = current
 					elif skin == self.config.value:
-						list[1] = pending
-					list.append("%s (%s)" % (list[0], list[1]) if list[1] else list[0])
-					if list[1]:
-						list[1] = "<%s>" % list[1]
+						_list[1] = pending
+					_list.append("%s (%s)" % (_list[0], _list[1]) if _list[1] else _list[0])
+					if _list[1]:
+						_list[1] = "<%s>" % _list[1]
 					#0=SortKey, 1=Label, 2=Flag, 3=Directory, 4=Skin, 5=Resolution, 6=Preview, 7=Label + Flag
-					skinList.append(tuple([list[0].upper()] + list))
+					skinList.append(tuple([_list[0].upper()] + _list))
 		sorted(skinList)
 		self["skins"].setList(skinList)
 		# Set the list pointer to the current skin...
@@ -264,7 +264,7 @@ class LcdSkinSelector(SkinSelector):
 		skinList = []
 		# Find and list the available skins...
 		previewPath = self.rootDir
-		dir = "lcd_skin/"
+		_dir = "lcd_skin/"
 		for skinFile in self.xmlList:
 			skin = "lcd_skin/" + skinFile
 			skinPath = pathjoin(self.rootDir, skinFile)
@@ -272,18 +272,18 @@ class LcdSkinSelector(SkinSelector):
 				resolution = skinFile.replace(".xml", "").replace("skin_lcd_", "").replace("_"," ").capitalize()
 				preview = pathjoin(previewPath, skinFile.replace(".xml", "_prev.png") or "prev.png")
 				if skin == DEFAULT_DISPLAY_SKIN:
-					list = [default, default, dir, skin, resolution, preview]
+					_list = [default, default, _dir, skin, resolution, preview]
 				else:
-					list = [skinFile.replace(".xml", "").replace("skin_lcd_", ""), "", dir, skin, resolution, preview]
+					_list = [skinFile.replace(".xml", "").replace("skin_lcd_", ""), "", _dir, skin, resolution, preview]
 				if skin == self.current:
-					list[1] = current
+					_list[1] = current
 				elif skin == self.config.value:
-					list[1] = pending
-				list.append("%s (%s)" % (list[0], list[1]) if list[1] else list[0])
-				if list[1]:
-					list[1] = "<%s>" % list[1]
+					_list[1] = pending
+				_list.append("%s (%s)" % (_list[0], _list[1]) if _list[1] else _list[0])
+				if _list[1]:
+					_list[1] = "<%s>" % _list[1]
 				#0=SortKey, 1=Label, 2=Flag, 3=Directory, 4=Skin, 5=Resolution, 6=Preview, 7=Label + Flag
-				skinList.append(tuple([list[0].replace("_"," ").capitalize()] + list))
+				skinList.append(tuple([_list[0].replace("_"," ").capitalize()] + _list))
 		sorted(skinList)
 		self["skins"].setList(skinList)
 		# Set the list pointer to the current skin...
@@ -323,26 +323,26 @@ class ClockSkinSelector(SkinSelector):
 		skinList = []
 		# Find and list the available skins...
 		previewPath = self.rootDir
-		dir = "lcd_skin/"
+		_dir = "lcd_skin/"
 		for skinFile in self.xmlList:
-			skin = dir + skinFile
+			skin = _dir + skinFile
 			skinPath = pathjoin(self.rootDir, skinFile)
 			if exists(skinPath):
 				resolution = skinFile.replace(".xml", "").replace("clock_lcd_", "").replace("_"," ").capitalize()
 				preview = pathjoin(previewPath, skinFile.replace(".xml", "_prev.png") or "prev.png")
 				if skin == DEFAULT_DISPLAY_SKIN:
-					list = [default, default, dir, skin, resolution, preview]
+					_list = [default, default, _dir, skin, resolution, preview]
 				else:
-					list = [skinFile.replace(".xml", "").replace("clock_lcd_", ""), "", dir, skin, resolution, preview]
+					_list = [skinFile.replace(".xml", "").replace("clock_lcd_", ""), "", _dir, skin, resolution, preview]
 				if skin == self.current:
-					list[1] = current
+					_list[1] = current
 				elif skin == self.config.value:
-					list[1] = pending
-				list.append("%s (%s)" % (list[0], list[1]) if list[1] else list[0])
-				if list[1]:
-					list[1] = "<%s>" % list[1]
+					_list[1] = pending
+				_list.append("%s (%s)" % (_list[0], _list[1]) if _list[1] else _list[0])
+				if _list[1]:
+					_list[1] = "<%s>" % _list[1]
 				#0=SortKey, 1=Label, 2=Flag, 3=Directory, 4=Skin, 5=Resolution, 6=Preview, 7=Label + Flag
-				skinList.append(tuple([list[0].replace("_"," ").capitalize()] + list))
+				skinList.append(tuple([_list[0].replace("_"," ").capitalize()] + _list))
 		sorted(skinList)
 		self["skins"].setList(skinList)
 		# Set the list pointer to the current skin...

@@ -135,9 +135,9 @@ class NetworkWizard(WizardLanguage, Rc):
 
 	def listInterfaces(self):
 		self.checkOldInterfaceState()
-		list = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getAdapterList()]
-		list.append((_("Exit network wizard"), "end"))
-		return list
+		_list = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getAdapterList()]
+		_list.append((_("Exit network wizard"), "end"))
+		return _list
 
 	def InterfaceSelectionMade(self, index):
 		self.selectedInterface = index
@@ -360,12 +360,12 @@ class NetworkWizard(WizardLanguage, Rc):
 
 	def listChoices(self):
 		self.stopScan()
-		list = []
+		_list = []
 		if self.WlanPluginInstalled == True:
-			list.append((_("Configure your wireless LAN again"), "scanwlan"))
-		list.append((_("Configure your internal LAN"), "nwconfig"))
-		list.append((_("Exit network wizard"), "end"))
-		return list
+			_list.append((_("Configure your wireless LAN again"), "scanwlan"))
+		_list.append((_("Configure your internal LAN"), "nwconfig"))
+		_list.append((_("Exit network wizard"), "end"))
+		return _list
 
 	def ChoicesSelectionMade(self, index):
 		self.ChoicesSelect(index)

@@ -244,9 +244,9 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		self.onShown.append(self.applySettings)
 
 		self.playlistIOInternal = PlaylistIOInternal()
-		list = self.playlistIOInternal.open(resolveFilename(SCOPE_CONFIG, "playlist.e2pls"))
-		if list:
-			for x in list:
+		_list = self.playlistIOInternal.open(resolveFilename(SCOPE_CONFIG, "playlist.e2pls"))
+		if _list:
+			for x in _list:
 				self.playlist.addFile(x.ref)
 			self.playlist.updateList()
 
@@ -740,8 +740,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 			extension = path[0].rsplit('.',1)[-1]
 			if extension in self.playlistparsers:
 				playlist = self.playlistparsers[extension]()
-				list = playlist.open(path[1])
-				for x in list:
+				_list = playlist.open(path[1])
+				for x in _list:
 					self.playlist.addFile(x.ref)
 			self.playlist.updateList()
 
@@ -853,8 +853,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 			extension = ServiceRef.getPath()[ServiceRef.getPath().rfind('.') + 1:]
 			if extension in self.playlistparsers:
 				playlist = self.playlistparsers[extension]()
-				list = playlist.open(ServiceRef.getPath())
-				for x in list:
+				_list = playlist.open(ServiceRef.getPath())
+				for x in _list:
 					self.playlist.addFile(x.ref)
 			self.playlist.updateList()
 		else:
@@ -867,9 +867,9 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		self.playlistparsers[extension] = parser
 
 	def nextEntry(self):
-		next = self.playlist.getCurrentIndex() + 1
-		if next < len(self.playlist):
-			self.changeEntry(next)
+		_next = self.playlist.getCurrentIndex() + 1
+		if _next < len(self.playlist):
+			self.changeEntry(_next)
 		elif ( len(self.playlist) > 0 ) and ( config.mediaplayer.repeat.getValue() == True ):
 			self.stopEntry()
 			self.changeEntry(0)
@@ -878,17 +878,17 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 
 	def nextMarkOrEntry(self):
 		if not self.jumpPreviousNextMark(lambda x: x):
-			next = self.playlist.getCurrentIndex() + 1
-			if next < len(self.playlist):
-				self.changeEntry(next)
+			_next = self.playlist.getCurrentIndex() + 1
+			if _next < len(self.playlist):
+				self.changeEntry(_next)
 			else:
 				self.doSeek(-1)
 
 	def previousMarkOrEntry(self):
 		if not self.jumpPreviousNextMark(lambda x: -x-5*90000, start=True):
-			next = self.playlist.getCurrentIndex() - 1
-			if next >= 0:
-				self.changeEntry(next)
+			_next = self.playlist.getCurrentIndex() - 1
+			if _next >= 0:
+				self.changeEntry(_next)
 
 	def deleteEntry(self):
 		self.playlist.deleteFile(self.playlist.getSelectionIndex())
@@ -1023,10 +1023,10 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		if media_state == "audiocd" or media_state == "audiocdadd":
 			self.cdAudioTrackFiles = []
 			if os.path.isfile('/media/audiocd/cdplaylist.cdpls'):
-				list = open("/media/audiocd/cdplaylist.cdpls")
-				if list:
+				_list = open("/media/audiocd/cdplaylist.cdpls")
+				if _list:
 					self.isAudioCD = True
-					for x in list:
+					for x in _list:
 						xnon = x.replace("\n", "")
 						self.cdAudioTrackFiles.append(xnon)
 					self.playAudioCD()
@@ -1186,19 +1186,19 @@ def menu(menuid, **kwargs):
 		return [(_("Media player"), main, "media_player", 45)]
 	return []
 
-def filescan_open(list, session, **kwargs):
+def filescan_open(_list, session, **kwargs):
 	from enigma import eServiceReference
 
 	mp = session.open(MediaPlayer)
 	mp.playlist.clear()
 	mp.savePlaylistOnExit = False
 
-	for file in list:
-		if file.mimetype == "video/mp2t":
+	for _file in _list:
+		if _file.mimetype == "video/mp2t":
 			stype = 1
 		else:
 			stype = 4097
-		ref = eServiceReference(stype, 0, file.path)
+		ref = eServiceReference(stype, 0, _file.path)
 		mp.playlist.addFile(ref)
 
 	mp.changeEntry(0)
@@ -1207,14 +1207,14 @@ def filescan_open(list, session, **kwargs):
 def audioCD_open(list, session, **kwargs):
 	from enigma import eServiceReference
 	if os.path.isfile('/media/audiocd/cdplaylist.cdpls'):
-		list = open("/media/audiocd/cdplaylist.cdpls")
+		_list = open("/media/audiocd/cdplaylist.cdpls")
 	else:
 		# to do : adding msgbox to inform user about failure of opening audiocd.
 		return False
 	mp = session.open(MediaPlayer)
-	if list:
+	if _list:
 		mp.isAudioCD = True
-		for x in list:
+		for x in _list:
 			xnon = x.replace("\n", "")
 			mp.cdAudioTrackFiles.append(xnon)
 		mp.playAudioCD()
@@ -1225,14 +1225,14 @@ def audioCD_open(list, session, **kwargs):
 def audioCD_open_mn(session, **kwargs):
 	from enigma import eServiceReference
 	if os.path.isfile('/media/audiocd/cdplaylist.cdpls'):
-		list = open("/media/audiocd/cdplaylist.cdpls")
+		_list = open("/media/audiocd/cdplaylist.cdpls")
 	else:
 		# to do : adding msgbox to inform user about failure of opening audiocd.
 		return False
 	mp = session.open(MediaPlayer)
-	if list:
+	if _list:
 		mp.isAudioCD = True
-		for x in list:
+		for x in _list:
 			xnon = x.replace("\n", "")
 			mp.cdAudioTrackFiles.append(xnon)
 		mp.playAudioCD()
@@ -1240,13 +1240,13 @@ def audioCD_open_mn(session, **kwargs):
 		# to do : adding msgbox to inform user about failure of opening audiocd.
 		return False
 
-def movielist_open(list, session, **kwargs):
-	if not list:
+def movielist_open(_list, session, **kwargs):
+	if not _list:
 		# sanity
 		return
 	from enigma import eServiceReference
 	from Screens.InfoBar import InfoBar
-	f = list[0]
+	f = _list[0]
 	if f.mimetype == "video/mp2t":
 		stype = 1
 	else:

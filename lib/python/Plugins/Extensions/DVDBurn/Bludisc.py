@@ -837,10 +837,10 @@ class CreateMetaTask(Task):
 
 		filename = self.job.workspace+'BDMV/META/DL/bdmt_%s.xml' % self.languageCode
 		try:
-			file = open(filename, "w")
+			_file = open(filename, "w")
 			for line in dl:
-				file.write(line+'\n')
-			file.close()
+				_file.write(line+'\n')
+			_file.close()
 		except:
 			Task.processFinished(self, 1)
 		Task.processFinished(self, 0)

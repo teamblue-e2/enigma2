@@ -223,8 +223,8 @@ class key_actions(stat_info):
 		path = os.environ.get('PATH')
 		if '/' in prog or not path:
 			return os.access(prog, os.X_OK)
-		for dir in path.split(':'):
-			if os.access(os.path.join(dir, prog), os.X_OK):
+		for _dir in path.split(':'):
+			if os.access(os.path.join(d_ir, prog), os.X_OK):
 				return True
 		return False
 
@@ -352,11 +352,11 @@ class key_actions(stat_info):
 		self.parameter = ''
 		targetdir = dirtarget.getCurrentDirectory()
 		if targetdir is not None:
-			file = dirtarget.getFilename() or ''
-			if file.startswith(targetdir):
-				self.parameter = file
-			elif not targetdir.startswith(file):
-				self.parameter = targetdir + file
+			_file = dirtarget.getFilename() or ''
+			if _file.startswith(targetdir):
+				self.parameter = _file
+			elif not targetdir.startswith(_file):
+				self.parameter = targetdir + _file
 			else:
 				self.parameter = targetdir
 		stxt = _('python')

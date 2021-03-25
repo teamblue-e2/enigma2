@@ -56,20 +56,20 @@ class Project:
 
 	def saveProject(self, path):
 		from Tools.XMLTools import stringToXML
-		list = []
-		list.append('<?xml version="1.0" encoding="utf-8" ?>\n')
-		list.append('<DreamDVDBurnerProject>\n')
-		list.append('\t<settings ')
+		_list = []
+		_list.append('<?xml version="1.0" encoding="utf-8" ?>\n')
+		_list.append('<DreamDVDBurnerProject>\n')
+		_list.append('\t<settings ')
 		for key, val in six.iteritems(self.settings.dict()):
-			list.append( key + '="' + str(val.getValue()) + '" ' )
-		list.append('/>\n')
-		list.append('\t<titles>\n')
+			_list.append( key + '="' + str(val.getValue()) + '" ' )
+		_list.append('/>\n')
+		_list.append('\t<titles>\n')
 		for title in self.titles:
-			list.append('\t\t<title>\n')
-			list.append('\t\t\t<path>')
-			list.append(stringToXML(title.source.getPath()))
-			list.append('</path>\n')
-			list.append('\t\t\t<properties ')
+			_list.append('\t\t<title>\n')
+			_list.append('\t\t\t<path>')
+			_list.append(stringToXML(title.source.getPath()))
+			_list.append('</path>\n')
+			_list.append('\t\t\t<properties ')
 			audiotracks = []
 			for key, val in six.iteritems(title.properties.dict()):
 				if isinstance(val, ConfigSubList):
@@ -81,13 +81,13 @@ class Project:
 						audiotracks.append(' />\n')
 					audiotracks.append('\t\t\t</audiotracks>\n')
 				else:
-					list.append( key + '="' + str(val.getValue()) + '" ' )
-			list.append('/>\n')
+					_list.append( key + '="' + str(val.getValue()) + '" ' )
+			_list.append('/>\n')
 			for line in audiotracks:
-				list.append(line)
-			list.append('\t\t</title>\n')
-		list.append('\t</titles>\n')
-		list.append('</DreamDVDBurnerProject>\n')
+				_list.append(line)
+			_list.append('\t\t</title>\n')
+		_list.append('\t</titles>\n')
+		_list.append('</DreamDVDBurnerProject>\n')
 
 		name = self.settings.name.getValue()
 		i = 0
@@ -96,10 +96,10 @@ class Project:
 			i = i+1
 			filename = path + name + str(i).zfill(3) + ".ddvdp.xml"
 		try:
-			file = open(filename, "w")
-			for x in list:
-				file.write(x)
-			file.close()
+			_file = open(filename, "w")
+			for x in _list:
+				_file.write(x)
+			_file.close()
 		except:
 			return False
 		return filename
@@ -116,9 +116,9 @@ class Project:
 			if not fileExists(filename):
 				self.error = "xml file not found!"
 				#raise AttributeError
-			file = open(filename, "r")
-			data = file.read().decode("utf-8").replace('&',"&amp;").encode("ascii",'xmlcharrefreplace')
-			file.close()
+			_file = open(filename, "r")
+			data = _file.read().decode("utf-8").replace('&',"&amp;").encode("ascii",'xmlcharrefreplace')
+			_file.close()
 			projectfiledom = xml.dom.minidom.parseString(data)
 			for node in projectfiledom.childNodes[0].childNodes:
 				print("node:", node)

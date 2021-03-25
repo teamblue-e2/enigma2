@@ -265,11 +265,11 @@ class ServiceList(GUIComponent):
 
 	def getRootServices(self):
 		serviceHandler = eServiceCenter.getInstance()
-		list = serviceHandler.list(self.root)
+		_list = serviceHandler.list(self.root)
 		dest = [ ]
-		if list is not None:
-			while 1:
-				s = list.getNext()
+		if _list is not None:
+			while True:
+				s = _list.getNext()
 				if s.valid():
 					dest.append(s.toString())
 				else:
@@ -283,7 +283,10 @@ class ServiceList(GUIComponent):
 		self.root = root
 		self.l.setRoot(root, justSet)
 		if not justSet:
-			sorted(self.l)
+			try:
+				sorted(self.l)
+			except:
+				pass
 		self.selectionChanged()
 
 	def resetRoot(self):

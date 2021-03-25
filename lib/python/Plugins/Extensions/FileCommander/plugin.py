@@ -50,18 +50,19 @@ import string
 import re
 
 # System mods
-from InputBox import InputBox
-from FileList import FileList, MultiFileSelectList, EXTENSIONS
+from .InputBox import InputBox
+from .FileList import FileList, MultiFileSelectList, EXTENSIONS
 # added
-from Console import Console
-from UnitConversions import UnitScaler, UnitMultipliers
-from TaskList import TaskListScreen
-from FileTransfer import FileTransferJob, ALL_MOVIE_EXTENSIONS
+from .Console import Console
+from .UnitConversions import UnitScaler, UnitMultipliers
+from .TaskList import TaskListScreen
+from .FileTransfer import FileTransferJob, ALL_MOVIE_EXTENSIONS
 
 # Addons
-from addons.key_actions import key_actions, stat_info
-from addons.type_utils import vEditor
+from .addons.key_actions import key_actions, stat_info
+from .addons.type_utils import vEditor
 import six
+import collections
 
 MOVIEEXTENSIONS = {"cuts": "movieparts", "meta": "movieparts", "ap": "movieparts", "sc": "movieparts", "eit": "movieparts"}
 
@@ -357,7 +358,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		HelpableScreen.__init__(self)
 
 		# set filter
-		filter = self.fileFilter()
+		_filter = self.fileFilter()
 
 		# disable actions
 		self.disableActions_Timer = eTimer()
@@ -380,8 +381,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		sortFilesRight = config.plugins.filecommander.sortFiles_right.value
 		firstDirs = config.plugins.filecommander.firstDirs.value
 
-		self["list_left"] = FileList(path_left, matchingPattern=filter, sortDirs=sortDirs, sortFiles=sortFilesLeft, firstDirs=firstDirs)
-		self["list_right"] = FileList(path_right, matchingPattern=filter, sortDirs=sortDirs, sortFiles=sortFilesRight, firstDirs=firstDirs)
+		self["list_left"] = FileList(path_left, matchingPattern=_filter, sortDirs=sortDirs, sortFiles=sortFilesLeft, firstDirs=firstDirs)
+		self["list_right"] = FileList(path_right, matchingPattern=_filter, sortDirs=sortDirs, sortFiles=sortFilesRight, firstDirs=firstDirs)
 
 		sortLeft = formatSortingTyp(sortDirs,sortFilesLeft)
 		sortRight = formatSortingTyp(sortDirs,sortFilesRight)
@@ -641,9 +642,9 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 	def goRestart(self, *answer):
 		if hasattr(self, "oldFilterSettings"):
 			if self.oldFilterSettings != self.filterSettings():
-				filter = self.fileFilter()
-				self["list_left"].matchingPattern = re.compile(filter)
-				self["list_right"].matchingPattern = re.compile(filter)
+				_filter = self.fileFilter()
+				self["list_left"].matchingPattern = re.compile(_filter)
+				self["list_right"].matchingPattern = re.compile(_filter)
 				self.onLayout()
 			del self.oldFilterSettings
 
@@ -1105,15 +1106,15 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 # ## basic functions ###
 	def updateHead(self):
 		for side in ("list_left", "list_right"):
-			dir = self[side].getCurrentDirectory()
-			if dir is not None:
-				file = self[side].getFilename() or ''
-				if file.startswith(dir):
-					pathname = file # subfolder
-				elif not dir.startswith(file):
-					pathname = dir + file # filepath
+			_dir = self[side].getCurrentDirectory()
+			if _dir is not None:
+				_file = self[side].getFilename() or ''
+				if _file.startswith(_dir):
+					pathname = _file # subfolder
+				elif not _dir.startswith(_file):
+					pathname = _dir + _file # filepath
 				else:
-					pathname = dir # parent folder
+					pathname = _dir # parent folder
 				self[side + "_head1"].text = pathname
 				self[side + "_head2"].updateList(self.statInfo(self[side]))
 			else:
@@ -1221,7 +1222,7 @@ class FileCommanderContextMenu(Screen):
 		for item in list:
 			button = item[0]
 			text = item[1]
-			if callable(text):
+			if isinstance(text, collections.Callable):
 				text = text()
 			if text:
 				action = item[2] if len(item) > 2 else button
@@ -1307,7 +1308,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self["sort_right"] = Label(sortRight)
 
 		# set filter
-		filter = self.fileFilter()
+		_filter = self.fileFilter()
 
 		# set current folder
 		self["list_left_head1"] = Label(path_left)
@@ -1316,14 +1317,14 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self["list_right_head2"] = List()
 
 		if leftactive:
-			self["list_left"] = MultiFileSelectList(self.selectedFiles, path_left, matchingPattern=filter, sortDirs=sortDirsLeft, sortFiles=sortFilesLeft, firstDirs=firstDirs)
-			self["list_right"] = FileList(path_right, matchingPattern=filter, sortDirs=sortDirsRight, sortFiles=sortFilesRight, firstDirs=firstDirs)
+			self["list_left"] = MultiFileSelectList(self.selectedFiles, path_left, matchingPattern=_filter, sortDirs=sortDirsLeft, sortFiles=sortFilesLeft, firstDirs=firstDirs)
+			self["list_right"] = FileList(path_right, matchingPattern=_filter, sortDirs=sortDirsRight, sortFiles=sortFilesRight, firstDirs=firstDirs)
 			self.SOURCELIST = self["list_left"]
 			self.TARGETLIST = self["list_right"]
 			self.onLayoutFinish.append(self.listLeft)
 		else:
-			self["list_left"] = FileList(path_left, matchingPattern=filter, sortDirs=sortDirsLeft, sortFiles=sortFilesLeft, firstDirs=firstDirs)
-			self["list_right"] = MultiFileSelectList(self.selectedFiles, path_right, matchingPattern=filter, sortDirs=sortDirsRight, sortFiles=sortFilesRight, firstDirs=firstDirs)
+			self["list_left"] = FileList(path_left, matchingPattern=_filter, sortDirs=sortDirsLeft, sortFiles=sortFilesLeft, firstDirs=firstDirs)
+			self["list_right"] = MultiFileSelectList(self.selectedFiles, path_right, matchingPattern=_filter, sortDirs=sortDirsRight, sortFiles=sortFilesRight, firstDirs=firstDirs)
 			self.SOURCELIST = self["list_right"]
 			self.TARGETLIST = self["list_left"]
 			self.onLayoutFinish.append(self.listRight)
@@ -1439,7 +1440,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self.delete_dirs = []
 		self.delete_files = []
 		self.delete_updateDirs = [self.SOURCELIST.getCurrentDirectory()]
-		for file in self.selectedFiles:
+		for _file in self.selectedFiles:
 			print('delete: %s' %file)
 			if not cnt:
 				filename += '%s' %file
@@ -1448,10 +1449,10 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 			elif cnt < 6:
 				filename += ', ...'
 			cnt += 1
-			if os.path.isdir(file):
-				self.delete_dirs.append(file)
+			if os.path.isdir(_file):
+				self.delete_dirs.append(_file)
 			else:
-				self.delete_files.append(file)
+				self.delete_files.append(_file)
 		if cnt > 1:
 			deltext = _("Delete %d elements") %len(self.selectedFiles)
 		else:
@@ -1461,9 +1462,9 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 	def doDelete(self, result):
 		if result is not None:
 			if result[1]:
-				for file in self.delete_files:
-					print('delete:', file)
-					os.remove(file)
+				for _file in self.delete_files:
+					print('delete:', _file)
+					os.remove(_file)
 				self.exit([self.delete_dirs], self.delete_updateDirs)
 
 # ## move select ###
@@ -1480,15 +1481,15 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self.cleanList()
 		self.move_updateDirs = [targetDir, self.SOURCELIST.getCurrentDirectory()]
 		self.move_jobs = []
-		for file in self.selectedFiles:
+		for _file in self.selectedFiles:
 			if not cnt:
-				filename += '%s' %file
+				filename += '%s' %_file
 			elif cnt < 3:
-				filename += ', %s' %file
+				filename += ', %s' %_file
 			elif cnt < 4:
 				filename += ', ...'
 			cnt += 1
-			if os.path.exists(targetDir + '/' + file.rstrip('/').split('/')[-1]):
+			if os.path.exists(targetDir + '/' + _file.rstrip('/').split('/')[-1]):
 				warncnt += 1
 				if warncnt > 1:
 					warntxt = _(" - %d elements exist! Overwrite") %warncnt
@@ -1497,7 +1498,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 			dst_file = targetDir
 			if dst_file.endswith("/") and dst_file != "/":
 				targetDir = dst_file[:-1]
-			self.move_jobs.append(FileTransferJob(file, targetDir, False, False, "%s : %s" % (_("move file"), file)))
+			self.move_jobs.append(FileTransferJob(_file, targetDir, False, False, "%s : %s" % (_("move file"), _file)))
 		if cnt > 1:
 			movetext = (_("Move %d elements") %len(self.selectedFiles)) + warntxt
 		else:
@@ -1523,15 +1524,15 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self.cleanList()
 		self.copy_updateDirs = [targetDir]
 		self.copy_jobs = []
-		for file in self.selectedFiles:
+		for _file in self.selectedFiles:
 			if not cnt:
-				filename += '%s' %file
+				filename += '%s' %_file
 			elif cnt < 3:
-				filename += ', %s' %file
+				filename += ', %s' %_file
 			elif cnt < 4:
 				filename += ', ...'
 			cnt += 1
-			if os.path.exists(targetDir + '/' + file.rstrip('/').split('/')[-1]):
+			if os.path.exists(targetDir + '/' + _file.rstrip('/').split('/')[-1]):
 				warncnt += 1
 				if warncnt > 1:
 					warntxt = _(" - %d elements exist! Overwrite") %warncnt
@@ -1540,10 +1541,10 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 			dst_file = targetDir
 			if dst_file.endswith("/") and dst_file != "/":
 				targetDir = dst_file[:-1]
-			if file.endswith("/"):
-				self.copy_jobs.append(FileTransferJob(file, targetDir, True, True, "%s : %s" % (_("Copy folder"), file)))
+			if _file.endswith("/"):
+				self.copy_jobs.append(FileTransferJob(_file, targetDir, True, True, "%s : %s" % (_("Copy folder"), _file)))
 			else:
-				self.copy_jobs.append(FileTransferJob(file, targetDir, False, True, "%s : %s" % (_("Copy file"), file)))
+				self.copy_jobs.append(FileTransferJob(_file, targetDir, False, True, "%s : %s" % (_("Copy file"), _file)))
 		if cnt > 1:
 			copytext = (_("Copy %d elements") %len(self.selectedFiles)) + warntxt
 		else:
@@ -1561,15 +1562,15 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 # ## basic functions ###
 	def updateHead(self):
 		for side in ("list_left", "list_right"):
-			dir = self[side].getCurrentDirectory()
-			if dir is not None:
-				file = self[side].getFilename() or ''
-				if file.startswith(dir):
-					pathname = file # subfolder
-				elif not dir.startswith(file):
-					pathname = dir + file # filepath
+			_dir = self[side].getCurrentDirectory()
+			if _dir is not None:
+				_file = self[side].getFilename() or ''
+				if _file.startswith(_dir):
+					pathname = _file # subfolder
+				elif not _dir.startswith(_file):
+					pathname = _dir + _file # filepath
 				else:
-					pathname = dir # parent folder
+					pathname = _dir # parent folder
 				self[side + "_head1"].text = pathname
 				self[side + "_head2"].updateList(self.statInfo(self[side]))
 			else:
@@ -1612,8 +1613,8 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 
 	# remove movieparts if the movie is present
 	def cleanList(self):
-		for file in self.selectedFiles[:]:
-			movie, extension = os.path.splitext(file)
+		for _file in self.selectedFiles[:]:
+			movie, extension = os.path.splitext(_file)
 			if extension[1:] in MOVIEEXTENSIONS:
 				if extension == ".eit":
 					extension = ".ts"
@@ -1621,7 +1622,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 				else:
 					extension = os.path.splitext(movie)[1]
 				if extension in ALL_MOVIE_EXTENSIONS and movie in self.selectedFiles:
-					self.selectedFiles.remove(file)
+					self.selectedFiles.remove(_file)
 
 class FileCommanderFileStatInfo(Screen, stat_info):
 	skin = """
@@ -1779,14 +1780,14 @@ def Plugins(path, **kwargs):
 	desc_pluginmenu = PluginDescriptor(name=pname, description=pdesc,  where=PluginDescriptor.WHERE_PLUGINMENU, icon="FileCommander.png", fnc=start_from_pluginmenu)
 	desc_extensionmenu = PluginDescriptor(name=pname, description=pdesc, where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=start_from_pluginmenu)
 	desc_filescan = PluginDescriptor(name=pname, where=PluginDescriptor.WHERE_FILESCAN, fnc=start_from_filescan)
-	list = []
-	list.append(desc_pluginmenu)
+	_list = []
+	_list.append(desc_pluginmenu)
 ####
 # 	buggy
 # 	list.append(desc_filescan)
 ####
 	if config.plugins.filecommander.add_extensionmenu_entry.value:
-		list.append(desc_extensionmenu)
+		_list.append(desc_extensionmenu)
 	if config.plugins.filecommander.add_mainmenu_entry.value:
-		list.append(desc_mainmenu)
-	return list
+		_list.append(desc_mainmenu)
+	return _list

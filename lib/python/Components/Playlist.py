@@ -47,23 +47,23 @@ class PlaylistIOInternal(PlaylistIO):
 	def open(self, filename):
 		self.clear()
 		try:
-			file = open(filename, "r")
+			_file = open(filename, "r")
 		except IOError:
 			return None
 		while True:
-			entry = file.readline().strip()
+			entry = _file.readline().strip()
 			if entry == "":
 				break
 			self.addService(ServiceReference(entry))
-		file.close()
+		_file.close()
 		return self.list
 
 	def save(self, filename = None):
 		print("Writing playlist into file", filename)
-		file = open(filename, "w")
+		_file = open(filename, "w")
 		for x in self.list:
-			file.write(str(x) + "\n")
-		file.close()
+			_file.write(str(x) + "\n")
+		_file.close()
 
 		return self.OK
 
@@ -75,11 +75,11 @@ class PlaylistIOM3U(PlaylistIO):
 		self.clear()
 		self.displayname = None
 		try:
-			file = open(filename, "r")
+			_file = open(filename, "r")
 		except IOError:
 			return None
 		while True:
-			entry = file.readline().strip()
+			entry = _file.readline().strip()
 			if entry == "":
 				break
 			if entry.startswith("#EXTINF:"):
@@ -93,7 +93,7 @@ class PlaylistIOM3U(PlaylistIO):
 					sref.ref.setName(self.displayname)
 					self.displayname = None
 				self.addService(sref)
-		file.close()
+		_file.close()
 		return self.list
 
 	def save(self, filename = None):
@@ -106,13 +106,13 @@ class PlaylistIOPLS(PlaylistIO):
 	def open(self, filename):
 		self.clear()
 		try:
-			file = open(filename, "r")
+			_file = open(filename, "r")
 		except IOError:
 			return None
-		entry = file.readline().strip()
+		entry = _file.readline().strip()
 		if entry == "[playlist]": # extended pls
 			while True:
-				entry = file.readline().strip()
+				entry = _file.readline().strip()
 				if entry == "":
 					break
 				if entry[0:4] == "File":
@@ -123,7 +123,7 @@ class PlaylistIOPLS(PlaylistIO):
 		else:
 			playlist = PlaylistIOM3U()
 			return playlist.open(filename)
-		file.close()
+		_file.close()
 		return self.list
 
 	def save(self, filename = None):

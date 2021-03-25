@@ -390,9 +390,9 @@ class PowerKey:
 		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
 			if os.path.exists("/tmp/was_rectimer_wakeup") and not self.session.nav.RecordTimer.isRecTimerWakeup():
 				f = open("/tmp/was_rectimer_wakeup", "r")
-				file = f.read()
+				_file = f.read()
 				f.close()
-				wasRecTimerWakeup = int(file) and True or False
+				wasRecTimerWakeup = int(_file) and True or False
 			if self.session.nav.RecordTimer.isRecTimerWakeup() or wasRecTimerWakeup:
 				print("[mytest] PowerOff (timer wakewup) - Recording in progress or a timer about to activate, entering standby!")
 				self.standby()
@@ -475,7 +475,6 @@ profile("Load:VolumeControl")
 from Components.VolumeControl import VolumeControl
 
 
-from time import time, localtime, strftime
 from Tools.StbHardware import setFPWakeuptime, setRTCtime
 
 def autorestoreLoop():
@@ -602,7 +601,7 @@ def runScreenTest():
 	sorted(wakeupList)
 	recordTimerWakeupAuto = False
 	if wakeupList:
-		from time import strftime, altzone, timezone
+		from time import strftime
 		startTime = wakeupList[0]
 		if (startTime[0] - nowTime) < 270: # no time to switch box back on
 			wptime = nowTime + 30  # so switch back on in 30 seconds

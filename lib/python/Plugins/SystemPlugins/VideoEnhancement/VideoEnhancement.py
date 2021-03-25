@@ -274,9 +274,9 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			file = open("/proc/stb/video/hdmi_colorspace_choices", "r")
-			modes = file.readline().split()
-			file.close()
+			_file = open("/proc/stb/video/hdmi_colorspace_choices", "r")
+			modes = _file.readline().split()
+			_file.close()
 			config.pep.color_space = ConfigSelection(modes, modes[0])
 			config.pep.color_space.addNotifier(setColour_space)
 		else:

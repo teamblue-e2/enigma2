@@ -346,14 +346,14 @@ def InitFallbackFiles():
 # returns a list of tuples containing pathname and filename matching the given pattern
 # example-pattern: match all txt-files: ".*\.txt$"
 def crawlDirectory(directory, pattern):
-	list = []
+	_list = []
 	if directory:
 		expression = compile(pattern)
 		for root, dirs, files in os.walk(directory):
-			for file in files:
-				if expression.match(file) is not None:
-					list.append((root, file))
-	return list
+			for _file in files:
+				if expression.match(_file) is not None:
+					_list.append((root, _file))
+	return _list
 
 def copyfile(src, dst):
 	try:
@@ -438,8 +438,8 @@ def getSize(path, pattern=".*"):
 	path_size = 0
 	if os.path.isdir(path):
 		files = crawlDirectory(path, pattern)
-		for file in files:
-			filepath = os.path.join(file[0], file[1])
+		for _file in files:
+			filepath = os.path.join(_file[0], _file[1])
 			path_size += os.path.getsize(filepath)
 	elif os.path.isfile(path):
 		path_size = os.path.getsize(path)

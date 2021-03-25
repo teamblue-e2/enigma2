@@ -37,8 +37,8 @@ def buildTerTransponder(frequency,
 	return parm
 
 def getInitialTransponderList(tlist, pos, feid = None):
-	list = nimmanager.getTransponders(pos, feid)
-	for x in list:
+	_list = nimmanager.getTransponders(pos, feid)
+	for x in _list:
 		if x[0] == 0:		#SAT
 			parm = eDVBFrontendParametersSatellite()
 			parm.frequency = x[1]
@@ -59,8 +59,8 @@ def getInitialTransponderList(tlist, pos, feid = None):
 			tlist.append(parm)
 
 def getInitialCableTransponderList(tlist, nim):
-	list = nimmanager.getTranspondersCable(nim)
-	for x in list:
+	_list = nimmanager.getTranspondersCable(nim)
+	for x in _list:
 		if x[0] == 1: #CABLE
 			parm = eDVBFrontendParametersCable()
 			parm.frequency = x[1]
@@ -72,14 +72,14 @@ def getInitialCableTransponderList(tlist, nim):
 			tlist.append(parm)
 
 def getInitialTerrestrialTransponderList(tlist, region, tsystem = eDVBFrontendParametersTerrestrial.System_DVB_T_T2, skip_t2 = False):
-	list = nimmanager.getTranspondersTerrestrial(region)
+	_list = nimmanager.getTranspondersTerrestrial(region)
 
 	#self.transponders[self.parsedTer].append((2,freq,bw,const,crh,crl,guard,transm,hierarchy,inv))
 
 	#def buildTerTransponder(frequency, inversion = 2, bandwidth = 3, fechigh = 6, feclow = 6,
 				#modulation = 2, transmission = 2, guard = 4, hierarchy = 4):
 
-	for x in list:
+	for x in _list:
 		if x[0] == 2: #TERRESTRIAL
 			if skip_t2 and x[10] == eDVBFrontendParametersTerrestrial.System_DVB_T2:
 				# Should be searching on TerrestrialTransponderSearchSupport.
@@ -93,8 +93,8 @@ def getInitialTerrestrialTransponderList(tlist, region, tsystem = eDVBFrontendPa
 			tlist.append(parm)
 
 def getInitialATSCTransponderList(tlist, nim):
-	list = nimmanager.getTranspondersATSC(nim)
-	for x in list:
+	_list = nimmanager.getTranspondersATSC(nim)
+	for x in _list:
 		if x[0] == 3: #ATSC
 			parm = eDVBFrontendParametersATSC()
 			parm.frequency = x[1]
@@ -1548,7 +1548,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 	def predefinedTranspondersList(self, orbpos):
 		default = None
 		if orbpos is not None:
-			list = []
+			_list = []
 			if self.scan_sat.system.value == eDVBFrontendParametersSatellite.System_DVB_S2:
 				fec = self.scan_sat.fec_s2.value
 			else:
@@ -1578,9 +1578,9 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 				if tp[0] == 0:
 					if default is None and self.compareTransponders(tp, compare):
 						default = str(i)
-					list.append((str(i), self.humanReadableTransponder(tp)))
+					_list.append((str(i), self.humanReadableTransponder(tp)))
 					i += 1
-			self.preDefTransponders = ConfigSelection(choices = list, default = default)
+			self.preDefTransponders = ConfigSelection(choices = _list, default = default)
 		return default
 
 	def humanReadableTransponder(self, tp):
@@ -1605,7 +1605,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 
 	def predefinedTerrTranspondersList(self):
 		default = None
-		list = []
+		_list = []
 		compare = [2, self.scan_ter.frequency.floatint*1000]
 		i = 0
 		index_to_scan = int(self.scan_nims.value)
@@ -1620,10 +1620,10 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 					channel = _(' (Channel %s)') % (getChannelNumber(tp[1], index_to_scan))
 				if default is None and self.compareTerrTransponders(tp, compare):
 					default = str(i)
-				list.append((str(i), '%s MHz %s' % (str(tp[1] / 1000000), channel)))
+				_list.append((str(i), '%s MHz %s' % (str(tp[1] / 1000000), channel)))
 				i += 1
 				print("channel", channel)
-		self.TerrestrialTransponders = ConfigSelection(choices = list, default = default)
+		self.TerrestrialTransponders = ConfigSelection(choices = _list, default = default)
 		return default
 
 	def compareTerrTransponders(self, tp, compare):
@@ -1632,19 +1632,19 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 
 	def getTerrestrialRegionsList(self, index_to_scan = None):
 		default = None
-		list = []
+		_list = []
 		if index_to_scan is None:
 			index_to_scan = int(self.scan_nims.value)
 		defaultRegionForNIM = nimmanager.getTerrestrialDescription(index_to_scan)
 		for r in nimmanager.terrestrialsList:
 			if default is None and r[0] == defaultRegionForNIM:
 				default = r[0]
-			list.append((r[0], r[0][:46]))
-		return ConfigSelection(choices = list, default = default)
+			_list.append((r[0], r[0][:46]))
+		return ConfigSelection(choices = _list, default = default)
 
 	def predefinedCabTranspondersList(self):
 		default = None
-		list = []
+		_list = []
 		# 0 transponder type, 1 freq, 2 sym, 3 mod, 4 fec, 5 inv, 6 sys
 		compare = [1, self.scan_cab.frequency.floatint, self.scan_cab.symbolrate.value*1000, self.scan_cab.modulation.value, self.scan_cab.fec.value, self.scan_cab.inversion.value, self.scan_cab.system.value]
 		i = 0
@@ -1654,9 +1654,9 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 			if tp[0] == 1: #CABLE
 				if default is None and self.compareCabTransponders(tp, compare):
 					default = str(i)
-				list.append((str(i), self.humanReadableCabTransponder(tp)))
+				_list.append((str(i), self.humanReadableCabTransponder(tp)))
 				i += 1
-		self.CableTransponders = ConfigSelection(choices = list, default = default)
+		self.CableTransponders = ConfigSelection(choices = _list, default = default)
 		return default
 
 	def humanReadableCabTransponder(self, tp):
@@ -1674,13 +1674,13 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 
 	def predefinedATSCTranspondersList(self):
 		default = None
-		list = []
+		_list = []
 		index_to_scan = int(self.scan_nims.value)
 		tps = nimmanager.getTranspondersATSC(index_to_scan)
 		for i, tp in enumerate(tps):
 			if tp[0] == 3: #ATSC
-				list.append((str(i), '%s MHz' % (str(tp[1] / 1000000))))
-		self.ATSCTransponders = ConfigSelection(choices = list, default = default)
+				_list.append((str(i), '%s MHz' % (str(tp[1] / 1000000))))
+		self.ATSCTransponders = ConfigSelection(choices = _list, default = default)
 		return default
 
 	def startScan(self, tlist, flags, feid, networkid = 0):

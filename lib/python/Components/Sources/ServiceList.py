@@ -21,7 +21,7 @@ class ServiceList(Source):
 	def validateReference(self, ref):
 		return ref in self.getServicesAsList("S")
 
-	list = property(getServicesAsList)
+	_list = property(getServicesAsList)
 	lut = {"Reference": 0, "Name": 1}
 
 	def getRoot(self):

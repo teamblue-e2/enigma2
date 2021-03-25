@@ -65,23 +65,23 @@ add_type("video/webm", ".webm")
 add_type("video/mpeg", ".pva")
 add_type("video/mpeg", ".wtv")
 
-def getType(file):
-	(type, _) = guess_type(file)
-	if type is None:
+def getType(_file):
+	(_type, _) = guess_type(_file)
+	if _type is None:
 		# Detect some unknown types
-		if file[-12:].lower() == "video_ts.ifo":
+		if _file[-12:].lower() == "video_ts.ifo":
 			return "video/x-dvd"
-		if file == "/media/audiocd/cdplaylist.cdpls":
+		if _file == "/media/audiocd/cdplaylist.cdpls":
 			return "audio/x-cda"
 
-		p = file.rfind('.')
+		p = _file.rfind('.')
 		if p == -1:
 			return None
-		ext = file[p+1:].lower()
+		ext = _file[p+1:].lower()
 
-		if ext == "dat" and file[-11:-6].lower() == "avseq":
+		if ext == "dat" and _file[-11:-6].lower() == "avseq":
 			return "video/x-vcd"
-	return type
+	return _type
 
 class Scanner:
 	def __init__(self, name, mimetypes= [], paths_to_scan = [], description = "", openfnc = None):
@@ -91,12 +91,12 @@ class Scanner:
 		self.description = description
 		self.openfnc = openfnc
 
-	def checkFile(self, file):
+	def checkFile(self, _file):
 		return True
 
-	def handleFile(self, res, file):
-		if (self.mimetypes is None or file.mimetype in self.mimetypes) and self.checkFile(file):
-			res.setdefault(self, []).append(file)
+	def handleFile(self, res, _file):
+		if (self.mimetypes is None or _file.mimetype in self.mimetypes) and self.checkFile(_file):
+			res.setdefault(self, []).append(_file)
 
 	def __repr__(self):
 		return "<Scanner " + self.name + ">"
@@ -215,9 +215,9 @@ def openList(session, files):
 
 	res = { }
 
-	for file in files:
+	for _file in files:
 		for s in scanner:
-			s.handleFile(res, file)
+			s.handleFile(res, _file)
 
 	choices = [ (r.description, r, res[r], session) for r in res ]
 	Len = len(choices)
@@ -237,5 +237,5 @@ def openList(session, files):
 
 	return False
 
-def openFile(session, mimetype, file):
-	return openList(session, [ScanFile(file, mimetype)])
+def openFile(session, mimetype, _file):
+	return openList(session, [ScanFile(_file, mimetype)])

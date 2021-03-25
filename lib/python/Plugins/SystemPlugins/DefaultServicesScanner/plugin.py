@@ -93,7 +93,7 @@ class DefaultServicesScannerPlugin(ScanSetup):
 			satint = self.multiscanlist[self.scanIndex][0]
 			print("scanned sat:", satint)
 			db.saveServicelist("/tmp/lamedb." + str(satint))
-			file = open("/tmp/sat" + str(satint) + ".info", "w")
+			_file = open("/tmp/sat" + str(satint) + ".info", "w")
 			xml = """<default>
 	<prerequisites>
 		<tag type="services" />
@@ -111,8 +111,8 @@ class DefaultServicesScannerPlugin(ScanSetup):
 		</file>
 	</files>
 </default>""" % (satint, "OpenPli", nimmanager.getSatDescription(satint), satint)
-			file.write(xml)
-			file.close()
+			_file.write(xml)
+			_file.close()
 
 		self.scanIndex += 1
 		if self.scanIndex + 1 >= len(self.multiscanlist):

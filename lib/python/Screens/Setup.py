@@ -189,20 +189,22 @@ class Setup(ConfigListScreen, Screen):
 	def run(self):
 		self.keySave()
 
-def getSetupTitle(id):
+def getSetupTitle(_id):
 	xmldata = setupdom.getroot()
 	for x in xmldata.findall("setup"):
-		if x.get("key") == id:
+		if x.get("key") == _id:
 			return six.ensure_str(x.get("title", ""))
-	raise SetupError("unknown setup id '%s'!" % repr(id))
+	raise SetupError("unknown setup id '%s'!" % repr(_id))
 
-def getSetupTitleLevel(id):
+def getSetupTitleLevel(_id):
 	try:
-		xmldata = setupdom().getroot()
+		xmldata = setupdom.getroot()
+		print(_id)
 		for x in xmldata.findall("setup"):
-			if x.get("key") == id:
+			print(x)
+			if x.get("key") == _id:
 				return int(x.get("level", 0))
-		raise SetupError("unknown setup level id '%s'!" % repr(id))
+		raise SetupError("unknown setup level id '%s'!" % repr(_id))
 		return 0
 	except:
 		pass

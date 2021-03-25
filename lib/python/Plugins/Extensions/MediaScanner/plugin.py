@@ -23,9 +23,9 @@ def mountpoint_choosen(option):
 	(description, mountpoint, session) = option
 	res = scanDevice(mountpoint)
 
-	list = [ (r.description, r, res[r], session) for r in res ]
+	_list = [ (r.description, r, res[r], session) for r in res ]
 
-	if not list:
+	if not _list:
 		from Screens.MessageBox import MessageBox
 		if os.access(mountpoint, os.F_OK|os.R_OK):
 			session.open(MessageBox, _("No displayable files on this medium found!"), MessageBox.TYPE_INFO, simple = True, timeout = 5)
@@ -35,7 +35,7 @@ def mountpoint_choosen(option):
 
 	session.openWithCallback(execute, ChoiceBox,
 		title = _("The following files were found..."),
-		list = list)
+		list = _list)
 
 def scan(session):
 	from Screens.ChoiceBox import ChoiceBox

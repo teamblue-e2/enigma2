@@ -515,8 +515,8 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			lookfor = self["filelist"].getCurrentDirectory() + self.quickselect
 
 			# Select file starting with generated text
-			for file in files:
-				if file[0][0] and file[0][0].lower().startswith(lookfor):
+			for _file in files:
+				if f_ile[0][0] and f_ile[0][0].lower().startswith(lookfor):
 					self["filelist"].instance.moveSelectionTo(idx)
 					break
 				idx += 1
@@ -548,8 +548,8 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 	def __repr__(self):
 		return str(type(self)) + "(" + self.text + ")"
 
-def MovieLocationBox(session, text, dir, filename = "", minFree = None):
-	return LocationBox(session, text = text,  filename = filename, currDir = dir, bookmarks = config.movielist.videodirs, autoAdd = config.movielist.add_bookmark.value , editDir = True, inhibitDirs = defaultInhibitDirs, minFree = minFree)
+def MovieLocationBox(session, text, _dir, filename = "", minFree = None):
+	return LocationBox(session, text = text,  filename = filename, currDir = _dir, bookmarks = config.movielist.videodirs, autoAdd = config.movielist.add_bookmark.value , editDir = True, inhibitDirs = defaultInhibitDirs, minFree = minFree)
 
 class TimeshiftLocationBox(LocationBox):
 	def __init__(self, session):

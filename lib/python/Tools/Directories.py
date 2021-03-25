@@ -136,9 +136,9 @@ def resolveFilename(scope, base="", path_prefix=None):
 			defaultPaths[SCOPE_SKIN][0]
 		]
 		for item in resolveList:
-			file = os.path.join(item, base)
-			if pathExists(file):
-				path = file
+			_file = os.path.join(item, base)
+			if pathExists(_file):
+				path = _file
 				break
 	elif scope == SCOPE_CURRENT_LCDSKIN:
 		# This import must be here as this module finds the config file as part of the config initialisation.
@@ -157,9 +157,9 @@ def resolveFilename(scope, base="", path_prefix=None):
 			defaultPaths[SCOPE_LCDSKIN][0]
 		]
 		for item in resolveList:
-			file = os.path.join(item, base)
-			if pathExists(file):
-				path = file
+			_file = os.path.join(item, base)
+			if pathExists(_file):
+				path = _file
 				break
 	elif scope == SCOPE_FONTS:
 		# This import must be here as this module finds the config file as part of the config initialisation.
@@ -184,14 +184,14 @@ def resolveFilename(scope, base="", path_prefix=None):
 		resolveList.append(os.path.join(defaultPaths[SCOPE_LCDSKIN][0], "skin_default"))
 		resolveList.append(defaultPaths[SCOPE_FONTS][0])
 		for item in resolveList:
-			file = os.path.join(item, base)
-			if pathExists(file):
-				path = file
+			_file = os.path.join(item, base)
+			if pathExists(_file):
+				path = _file
 				break
 	elif scope == SCOPE_CURRENT_PLUGIN:
-		file = os.path.join(defaultPaths[SCOPE_PLUGINS][0], base)
-		if pathExists(file):
-			path = file
+		_file = os.path.join(defaultPaths[SCOPE_PLUGINS][0], base)
+		if pathExists(_file):
+			path = _file
 	elif scope in (SCOPE_CURRENT_PLUGIN_ABSOLUTE, SCOPE_CURRENT_PLUGIN_RELATIVE):
 		callingCode = os.path.normpath(inspect.stack()[1][1])
 		plugins = os.path.normpath(defaultPaths[SCOPE_PLUGINS][0])
@@ -302,9 +302,9 @@ def fileCheck(f, mode="r"):
 def fileHas(f, content, mode="r"):
 	result = False
 	if fileExists(f, mode):
-		file = open(f, mode)
-		text = file.read()
-		file.close()
+		_file = open(f, mode)
+		text = _file.read()
+		_file.close()
 		if content in text:
 			result = True
 	return result
@@ -355,14 +355,14 @@ def InitFallbackFiles():
 # Example-pattern: match all txt-files: ".*\.txt$"
 #
 def crawlDirectory(directory, pattern):
-	list = []
+	_list = []
 	if directory:
 		expression = compile(pattern)
 		for root, dirs, files in os.walk(directory):
-			for file in files:
-				if expression.match(file) is not None:
-					list.append((root, file))
-	return list
+			for _file in files:
+				if expression.match(_file) is not None:
+					_list.append((root, _file))
+	return _list
 
 def copyfile(src, dst):
 	f1 = None
@@ -465,8 +465,8 @@ def getSize(path, pattern=".*"):
 	path_size = 0
 	if os.path.isdir(path):
 		files = crawlDirectory(path, pattern)
-		for file in files:
-			filepath = os.path.join(file[0], file[1])
+		for _file in files:
+			filepath = os.path.join(_file[0], _file[1])
 			path_size += os.path.getsize(filepath)
 	elif os.path.isfile(path):
 		path_size = os.path.getsize(path)
@@ -481,15 +481,15 @@ def lsof():
 		if pid.isdigit():
 			try:
 				prog = os.readlink(os.path.join("/proc", pid, "exe"))
-				dir = os.path.join("/proc", pid, "fd")
-				for file in [os.path.join(dir, file) for file in os.listdir(dir)]:
-					lsof.append((pid, prog, os.readlink(file)))
+				_dir = os.path.join("/proc", pid, "fd")
+				for _file in [os.path.join(_dir, _file) for _file in os.listdir(_dir)]:
+					lsof.append((pid, prog, os.readlink(_file)))
 			except OSError:
 				pass
 	return lsof
 
-def getExtension(file):
-	filename, extension = os.path.splitext(file)
+def getExtension(_file):
+	filename, extension = os.path.splitext(_file)
 	return extension
 
 def mediafilesInUse(session):
@@ -502,7 +502,7 @@ def mediafilesInUse(session):
 			filename = None
 		else:
 			filename = os.path.basename(filename)
-	return set([file for file in files if not(filename and file == filename and files.count(filename) < 2)])
+	return set([_file for _file in files if not(filename and _file == filename and files.count(filename) < 2)])
 
 # Prepare filenames for use in external shell processing. Filenames may
 # contain spaces or other special characters.  This method adjusts the

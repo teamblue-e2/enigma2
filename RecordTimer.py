@@ -984,72 +984,72 @@ class RecordTimer(timer.Timer):
 		#doc = xml.etree.cElementTree.ElementTree(root_element)
 		#doc.write(self.Filename)
 
-		list = []
+		_list = []
 
-		list.append('<?xml version="1.0" ?>\n')
-		list.append('<timers>\n')
+		_list.append('<?xml version="1.0" ?>\n')
+		_list.append('<timers>\n')
 
 		for timer in self.timer_list + self.processed_timers:
 			if timer.dontSave:
 				continue
 
-			list.append('<timer')
-			list.append(' begin="' + str(int(timer.begin)) + '"')
-			list.append(' end="' + str(int(timer.end)) + '"')
-			list.append(' serviceref="' + stringToXML(str(timer.service_ref)) + '"')
-			list.append(' repeated="' + str(int(timer.repeated)) + '"')
-			list.append(' name="' + str(stringToXML(timer.name)) + '"')
-			list.append(' description="' + str(stringToXML(timer.description)) + '"')
-			list.append(' afterevent="' + str(stringToXML({
+			_list.append('<timer')
+			_list.append(' begin="' + str(int(timer.begin)) + '"')
+			_list.append(' end="' + str(int(timer.end)) + '"')
+			_list.append(' serviceref="' + stringToXML(str(timer.service_ref)) + '"')
+			_list.append(' repeated="' + str(int(timer.repeated)) + '"')
+			_list.append(' name="' + str(stringToXML(timer.name)) + '"')
+			_list.append(' description="' + str(stringToXML(timer.description)) + '"')
+			_list.append(' afterevent="' + str(stringToXML({
 				AFTEREVENT.NONE: "nothing",
 				AFTEREVENT.STANDBY: "standby",
 				AFTEREVENT.DEEPSTANDBY: "deepstandby",
 				AFTEREVENT.AUTO: "auto"
 				}[timer.afterEvent])) + '"')
 			if timer.eit is not None:
-				list.append(' eit="' + str(timer.eit) + '"')
+				_list.append(' eit="' + str(timer.eit) + '"')
 			if timer.dirname:
-				list.append(' location="' + str(stringToXML(timer.dirname)) + '"')
+				_list.append(' location="' + str(stringToXML(timer.dirname)) + '"')
 			if timer.tags:
-				list.append(' tags="' + str(stringToXML(' '.join(timer.tags))) + '"')
+				_list.append(' tags="' + str(stringToXML(' '.join(timer.tags))) + '"')
 			if timer.disabled:
-				list.append(' disabled="' + str(int(timer.disabled)) + '"')
-			list.append(' justplay="' + str(int(timer.justplay)) + '"')
-			list.append(' always_zap="' + str(int(timer.always_zap)) + '"')
-			list.append(' pipzap="' + str(int(timer.pipzap)) + '"')
-			list.append(' zap_wakeup="' + str(timer.zap_wakeup) + '"')
-			list.append(' rename_repeat="' + str(int(timer.rename_repeat)) + '"')
-			list.append(' conflict_detection="' + str(int(timer.conflict_detection)) + '"')
-			list.append(' descramble="' + str(int(timer.descramble)) + '"')
-			list.append(' record_ecm="' + str(int(timer.record_ecm)) + '"')
-			list.append(' isAutoTimer="' + str(int(timer.isAutoTimer)) + '"')
+				_list.append(' disabled="' + str(int(timer.disabled)) + '"')
+			_list.append(' justplay="' + str(int(timer.justplay)) + '"')
+			_list.append(' always_zap="' + str(int(timer.always_zap)) + '"')
+			_list.append(' pipzap="' + str(int(timer.pipzap)) + '"')
+			_list.append(' zap_wakeup="' + str(timer.zap_wakeup) + '"')
+			_list.append(' rename_repeat="' + str(int(timer.rename_repeat)) + '"')
+			_list.append(' conflict_detection="' + str(int(timer.conflict_detection)) + '"')
+			_list.append(' descramble="' + str(int(timer.descramble)) + '"')
+			_list.append(' record_ecm="' + str(int(timer.record_ecm)) + '"')
+			_list.append(' isAutoTimer="' + str(int(timer.isAutoTimer)) + '"')
 			if timer.flags:
-				list.append(' flags="' + ' '.join([stringToXML(x) for x in timer.flags]) + '"')
-			list.append('>\n')
+				_list.append(' flags="' + ' '.join([stringToXML(x) for x in timer.flags]) + '"')
+			_list.append('>\n')
 
 			if config.recording.debug.value:
 				for time, code, msg in timer.log_entries:
-					list.append('<log')
-					list.append(' code="' + str(code) + '"')
-					list.append(' time="' + str(time) + '"')
-					list.append('>')
+					_list.append('<log')
+					_list.append(' code="' + str(code) + '"')
+					_list.append(' time="' + str(time) + '"')
+					_list.append('>')
 					if isinstance(msg, int):
-						list.append(str(msg))
+						_list.append(str(msg))
 					else:
-						list.append(str(stringToXML(msg)))
-					list.append('</log>\n')
+						_list.append(str(stringToXML(msg)))
+					_list.append('</log>\n')
 
-			list.append('</timer>\n')
+			_list.append('</timer>\n')
 
-		list.append('</timers>\n')
+		_list.append('</timers>\n')
 
-		file = open(self.Filename + ".writing", "w")
-		for x in list:
-			file.write(x)
-		file.flush()
+		_file = open(self.Filename + ".writing", "w")
+		for x in _list:
+			_file.write(x)
+		_file.flush()
 
-		os.fsync(file.fileno())
-		file.close()
+		os.fsync(_file.fileno())
+		_file.close()
 		os.rename(self.Filename + ".writing", self.Filename)
 
 	def getNextZapTime(self, isWakeup=False):
@@ -1230,8 +1230,8 @@ class RecordTimer(timer.Timer):
 					is_editable = True
 		return time_match and is_editable
 
-	def setFallbackTimerList(self, list):
-		self.fallback_timer_list = [timer for timer in list if timer.state != 3]
+	def setFallbackTimerList(self, _list):
+		self.fallback_timer_list = [timer for timer in _list if timer.state != 3]
 
 	def getAllTimersList(self):
 		return self.timer_list + self.fallback_timer_list

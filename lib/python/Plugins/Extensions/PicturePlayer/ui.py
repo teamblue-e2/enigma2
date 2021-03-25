@@ -232,15 +232,15 @@ class Pic_Exif(Screen):
 		self["key_red"] = StaticText(_("Close"))
 
 		exifdesc = [_("filename")+':', "EXIF-Version:", "Make:", "Camera:", "Date/Time:", "Width / Height:", "Flash used:", "Orientation:", "User Comments:", "Metering Mode:", "Exposure Program:", "Light Source:", "CompressedBitsPerPixel:", "ISO Speed Rating:", "X-Resolution:", "Y-Resolution:", "Resolution Unit:", "Brightness:", "Exposure Time:", "Exposure Bias:", "Distance:", "CCD-Width:", "ApertureFNumber:"]
-		list = []
+		_list = []
 
 		for x in list(range(len(exiflist))):
 			if x>0:
-				list.append((exifdesc[x], exiflist[x]))
+				_list.append((exifdesc[x], exiflist[x]))
 			else:
 				name = exiflist[x].split('/')[-1]
-				list.append((exifdesc[x], name))
-		self["menu"] = List(list)
+				_list.append((exifdesc[x], name))
+		self["menu"] = List(_list)
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):

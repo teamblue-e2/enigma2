@@ -664,7 +664,7 @@ class PluginDownloadBrowser(Screen):
 									self.pluginlist.append(plugin)
 
 	def updateList(self):
-		list = []
+		_list = []
 		expandableIcon = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/expandable-plugins.png"))
 		expandedIcon = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/expanded-plugins.png"))
 		verticallineIcon = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/verticalline-plugins.png"))
@@ -672,8 +672,8 @@ class PluginDownloadBrowser(Screen):
 		self.plugins = {}
 
 		if self.type == self.UPDATE:
-			self.list = list
-			self["list"].l.setList(list)
+			self.list = _list
+			self["list"].l.setList(_list)
 			return
 
 		for x in self.pluginlist:
@@ -716,20 +716,20 @@ class PluginDownloadBrowser(Screen):
 			sorted(temp)
 		for x in temp:
 			if x in self.expanded:
-				list.append(PluginCategoryComponent(x, expandedIcon, self.listWidth))
+				_list.append(PluginCategoryComponent(x, expandedIcon, self.listWidth))
 				for plugin in self.plugins[x]:
 					if self.type == self.TOOGLE or self.type == self.REMOVE:
 						if "hold" in os.popen("opkg status " + self.PLUGIN_PREFIX + "*" + plugin[1]).read():
-							list.extend([PluginDownloadComponent(plugin[0], plugin[1] + ' holded', plugin[2], self.listWidth)])
+							_list.extend([PluginDownloadComponent(plugin[0], plugin[1] + ' holded', plugin[2], self.listWidth)])
 						else:
-							list.extend([PluginDownloadComponent(plugin[0], plugin[1], plugin[2], self.listWidth)])
+							_list.extend([PluginDownloadComponent(plugin[0], plugin[1], plugin[2], self.listWidth)])
 					else:
-						list.extend([PluginDownloadComponent(plugin[0], plugin[1], plugin[2], self.listWidth)])
+						_list.extend([PluginDownloadComponent(plugin[0], plugin[1], plugin[2], self.listWidth)])
 
 			else:
-				list.append(PluginCategoryComponent(x, expandableIcon, self.listWidth))
-		self.list = list
-		self["list"].l.setList(list)
+				_list.append(PluginCategoryComponent(x, expandableIcon, self.listWidth))
+		self.list = _list
+		self["list"].l.setList(_list)
 
 class PluginFilter(ConfigListScreen, Screen):
 	def __init__(self, session):

@@ -77,21 +77,21 @@ def FileEntryComponent(name, absolute=None, isDir=False, isLink=False):
 
 	return res
 
-def getSortedList(list, sortBy, dir=''):
+def getSortedList(_list, sortBy, _dir=''):
 	sort, reverse = [int(x) for x in sortBy.split('.')]
 	tmplist = []
-	for x in list:
-		dx = dir + x
+	for x in _list:
+		dx = _dir + x
 		date = size = 0
 		if os.access(dx, os.R_OK):
 			stat = os.lstat(dx)
 			date, size = stat.st_ctime, stat.st_size
 		tmplist.append((x, date, size))
 	tmplist = sorted(tmplist, key=lambda x: x[sort], reverse=reverse)
-	list = []
+	_list = []
 	for x in tmplist:
-		list.append(x[0])
-	return list
+		_list.append(x[0])
+	return _list
 
 class FileList(FileListBase):
 	def __init__(self, directory, showDirectories=True, showFiles=True, showMountpoints=True, matchingPattern=None, useServiceRef=False, inhibitDirs=False, inhibitMounts=False, isTop=False, enableWrapAround=True, additionalExtensions=None, sortDirs='0.0', sortFiles='0.0', firstDirs=True):
@@ -151,11 +151,11 @@ class FileList(FileListBase):
 			if self.additional_extensions:
 				root.setName(self.additional_extensions)
 			serviceHandler = eServiceCenter.getInstance()
-			list = serviceHandler.list(root)
+			_list = serviceHandler.list(root)
 			while 1:
-				s = list.getNext()
+				s = _list.getNext()
 				if not s.valid():
-					del list
+					del _list
 					break
 				if s.flags & s.mustDescent:
 					directories.append(s.getPath())
@@ -366,12 +366,12 @@ class MultiFileSelectList(FileList):
 			if self.additional_extensions:
 				root.setName(self.additional_extensions)
 			serviceHandler = eServiceCenter.getInstance()
-			list = serviceHandler.list(root)
+			_list = serviceHandler.list(root)
 
 			while 1:
-				s = list.getNext()
+				s = _list.getNext()
 				if not s.valid():
-					del list
+					del _list
 					break
 				if s.flags & s.mustDescent:
 					directories.append(s.getPath())

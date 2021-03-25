@@ -86,7 +86,7 @@ def FileEntryComponent(name, absolute = None, isDir = False):
 
 class FileList(MenuList):
 	def __init__(self, directory, showDirectories = True, showFiles = True, showMountpoints = True, matchingPattern = None, useServiceRef = False, inhibitDirs = False, inhibitMounts = False, isTop = False, enableWrapAround = False, additionalExtensions = None):
-		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
+		MenuList.__init__(self, _list, enableWrapAround, eListboxPythonMultiContent)
 		self.additional_extensions = additionalExtensions
 		self.mountpoints = []
 		self.current_directory = None
@@ -118,25 +118,25 @@ class FileList(MenuList):
 		self.mountpoints = [os.path.join(p.mountpoint, "") for p in harddiskmanager.getMountedPartitions()]
 		sorted(self.mountpoints, reverse = True)
 
-	def getMountpoint(self, file):
-		file = os.path.join(os.path.realpath(file), "")
+	def getMountpoint(self, _file):
+		_file = os.path.join(os.path.realpath(_file), "")
 		for m in self.mountpoints:
-			if file.startswith(m):
+			if _file.startswith(m):
 				return m
 		return False
 
-	def getMountpointLink(self, file):
-		if os.path.realpath(file) == file:
-			return self.getMountpoint(file)
+	def getMountpointLink(self, _file):
+		if os.path.realpath(_file) == _file:
+			return self.getMountpoint(_file)
 		else:
-			if file[-1] == "/":
-				file = file[:-1]
-			mp = self.getMountpoint(file)
-			last = file
-			file = os.path.dirname(file)
-			while last != "/" and mp == self.getMountpoint(file):
-				last = file
-				file = os.path.dirname(file)
+			if _file[-1] == "/":
+				_file = _file[:-1]
+			mp = self.getMountpoint(_file)
+			last = _file
+			_file = os.path.dirname(_file)
+			while last != "/" and mp == self.getMountpoint(_file):
+				last = _file
+				_file = os.path.dirname(_file)
 			return os.path.join(last, "")
 
 	def getSelection(self):
@@ -190,12 +190,12 @@ class FileList(MenuList):
 			if self.additional_extensions:
 				root.setName(self.additional_extensions)
 			serviceHandler = eServiceCenter.getInstance()
-			list = serviceHandler.list(root)
+			_list = serviceHandler.list(root)
 
 			while 1:
-				s = list.getNext()
+				s = _list.getNext()
 				if not s.valid():
-					del list
+					del _list
 					break
 				if s.flags & s.mustDescent:
 					directories.append(s.getPath())
@@ -401,12 +401,12 @@ class MultiFileSelectList(FileList):
 			if self.additional_extensions:
 				root.setName(self.additional_extensions)
 			serviceHandler = eServiceCenter.getInstance()
-			list = serviceHandler.list(root)
+			_list = serviceHandler.list(root)
 
 			while 1:
-				s = list.getNext()
+				s = _list.getNext()
 				if not s.valid():
-					del list
+					del _list
 					break
 				if s.flags & s.mustDescent:
 					directories.append(s.getPath())

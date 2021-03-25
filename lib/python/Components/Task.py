@@ -406,11 +406,11 @@ class JobManager:
 			self.kick()
 
 	def getPendingJobs(self):
-		list = [ ]
+		_list = [ ]
 		if self.active_job:
-			list.append(self.active_job)
-		list += self.active_jobs
-		return list
+			_list.append(self.active_job)
+		_list += self.active_jobs
+		return _list
 
 # some examples:
 #class PartitionExistsPostcondition:
@@ -492,7 +492,8 @@ class ToolExistsPrecondition(Condition):
 			path = os.environ.get('PATH', '').split(os.pathsep)
 			path.append(task.cwd + '/')
 			# FIXME PY3 map,filter
-			absolutes = list(filter(lambda _file: os.access(_file, os.X_OK), map(lambda directory, _file = task.cmd: os.path.join(directory, _file), path)))
+			#absolutes = list(filter(lambda _file: os.access(_file, os.X_OK), map(lambda directory, _file = task.cmd: os.path.join(directory, _file), path)))
+			absolutes = list([_file for _file in map(lambda directory, _file = task.cmd: os.path.join(directory, _file), path) if os.access(_file, os.X_OK)])
 			if absolutes:
 				self.realpath = absolutes[0]
 				return True

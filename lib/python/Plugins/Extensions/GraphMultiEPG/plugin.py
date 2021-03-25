@@ -135,7 +135,7 @@ def reopen(answer):
 def Plugins(**kwargs):
 	name = _("Graphical Multi EPG")
 	descr = _("A graphical EPG for all services of a specific bouquet")
-	list = [(PluginDescriptor(name=name, description=descr, where = PluginDescriptor.WHERE_EVENTINFO, needsRestart = False, fnc=main))]
+	_list = [(PluginDescriptor(name=name, description=descr, where = PluginDescriptor.WHERE_EVENTINFO, needsRestart = False, fnc=main))]
 	if config.misc.graph_mepg.extension_menu.value:
-		list.append(PluginDescriptor(name=name, description=descr, where = PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart = False, fnc=main))
-	return list
+		_list.append(PluginDescriptor(name=name, description=descr, where = PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart = False, fnc=main))
+	return _list

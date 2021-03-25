@@ -165,7 +165,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 						advanced_setchoices = True
 					if advanced_setchoices:
 						default_orbpos = None
-						for x in self.nimConfig.advanced.sat.keys():
+						for x in list(self.nimConfig.advanced.sat.keys()):
 							if x == 192:
 								default_orbpos = str(x)
 								break

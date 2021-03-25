@@ -10,6 +10,7 @@ import copy
 import os
 from time import localtime, strftime
 import six
+import collections
 
 # ConfigElement, the base class of all ConfigElements.
 
@@ -131,7 +132,7 @@ class ConfigElement(object):
 	# call_on_save_or_cancel = True means call notifier always on save/cancel.. even when value have not changed
 	def addNotifier(self, notifier, initial_call=True, immediate_feedback=True, call_on_save_or_cancel=False, extra_args=None):
 		if not extra_args: extra_args = []
-		assert callable(notifier), "notifiers must be callable"
+		assert isinstance(notifier, collections.Callable), "notifiers must be callable"
 		try:
 			self.extra_args[notifier] = extra_args
 		except: pass
@@ -213,9 +214,9 @@ class choicesList(object):  # XXX: we might want a better name for this
 	LIST_TYPE_LIST = 1
 	LIST_TYPE_DICT = 2
 
-	def __init__(self, choices, type=None):
+	def __init__(self, choices, _type=None):
 		self.choices = choices
-		if type is None:
+		if _type is None:
 			if isinstance(choices, list):
 				self.type = choicesList.LIST_TYPE_LIST
 			elif isinstance(choices, dict):
@@ -223,7 +224,7 @@ class choicesList(object):  # XXX: we might want a better name for this
 			else:
 				assert False, "choices must be dict or list!"
 		else:
-			self.type = type
+			self.type = _type
 
 	def __list__(self):
 		if self.type == choicesList.LIST_TYPE_LIST:
@@ -372,7 +373,7 @@ class ConfigSelection(ConfigElement):
 			self.value = default
 
 	def setValue(self, value):
-		if str(value) in map(str, self.choices):
+		if str(value) in list(map(str, self.choices)):
 			self._value = self.choices[self.choices.index(value)]
 		else:
 			self._value = self.default
@@ -1714,10 +1715,10 @@ class ConfigLocations(ConfigElement):
 			if x not in oldmounts:
 				self.addedMount(x)
 
-	def getMountpoint(self, file):
-		file = os.path.realpath(file) + "/"
+	def getMountpoint(self, _file):
+		_file = os.path.realpath(_file) + "/"
 		for m in self.mountpoints:
-			if file.startswith(m):
+			if _file.startswith(m):
 				return m
 		return None
 
@@ -1819,7 +1820,7 @@ class ConfigSubList(list, object):
 
 	def setSavedValue(self, values):
 		self.stored_values = dict(values)
-		for (key, val) in self.stored_values.items():
+		for (key, val) in list(self.stored_values.items()):
 			if int(key) < len(self):
 				self[int(key)].saved_value = val
 
@@ -1913,7 +1914,7 @@ class ConfigSubsection(object):
 
 	def getSavedValue(self):
 		res = self.content.stored_values
-		for (key, val) in self.content.items.items():
+		for (key, val) in list(self.content.items.items()):
 			sv = val.saved_value
 			if sv is not None:
 				res[key] = sv
@@ -1924,7 +1925,7 @@ class ConfigSubsection(object):
 	def setSavedValue(self, values):
 		values = dict(values)
 		self.content.stored_values = values
-		for (key, val) in self.content.items.items():
+		for (key, val) in list(self.content.items.items()):
 			value = values.get(key, None)
 			if value is not None:
 				val.saved_value = value
@@ -1954,7 +1955,7 @@ class Config(ConfigSubsection):
 		ConfigSubsection.__init__(self)
 
 	def pickle_this(self, prefix, topickle, result):
-		for (key, val) in sorted(topickle.items(), key=lambda x: str(x[0]) if x[0].isdigit() else x[0].lower()):
+		for (key, val) in sorted(list(topickle.items()), key=lambda x: str(x[0]) if x[0].isdigit() else x[0].lower()):
 			name = '.'.join((prefix, key))
 			if isinstance(val, dict):
 				self.pickle_this(name, val, result)

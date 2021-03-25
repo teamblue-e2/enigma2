@@ -296,12 +296,12 @@ class TitleList(Screen, HelpableScreen):
 		job_manager.AddJob(job)
 
 	def updateTitleList(self):
-		list = [ ]
+		_list = [ ]
 		for title in self.project.titles:
-			list.append((title, title.properties.menutitle.getValue(), title.properties.menusubtitle.getValue(), title.DVBchannel, title.formatDVDmenuText("$D.$M.$Y, $T", 0), title.formatDVDmenuText("$l", 0)))
-		self["titles"].list = list
+			_list.append((title, title.properties.menutitle.getValue(), title.properties.menusubtitle.getValue(), title.DVBchannel, title.formatDVDmenuText("$D.$M.$Y, $T", 0), title.formatDVDmenuText("$l", 0)))
+		self["titles"].list = _list
 		self.updateSize()
-		if len(list):
+		if len(_list):
 			self["key_red"].text = _("Remove title")
 			self["key_yellow"].text = _("Title properties")
 			self["title_label"].text = _("Table of content for collection") + " \"" + self.project.settings.name.getValue() + "\":"

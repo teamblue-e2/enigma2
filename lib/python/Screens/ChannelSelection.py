@@ -118,8 +118,8 @@ def append_when_current_valid(current, menu, args, level=0, key="dummy"):
 		menu.append(ChoiceEntryComponent(key, args))
 
 def removed_userbouquets_available():
-	for file in os.listdir("/etc/enigma2/"):
-		if file.startswith("userbouquet") and file.endswith(".del"):
+	for _file in os.listdir("/etc/enigma2/"):
+		if _file.startswith("userbouquet") and file.endswith(".del"):
 			return True
 	return False
 
@@ -402,19 +402,19 @@ class ChannelContextMenu(Screen):
 
 	def purgeDeletedBouquetsCallback(self, answer):
 		if answer:
-			for file in os.listdir("/etc/enigma2/"):
-				if file.startswith("userbouquet") and file.endswith(".del"):
-					file = "/etc/enigma2/" + file
-					print("permantly remove file ", file)
-					os.remove(file)
+			for _file in os.listdir("/etc/enigma2/"):
+				if _file.startswith("userbouquet") and _file.endswith(".del"):
+					_file = "/etc/enigma2/" + _file
+					print("permantly remove file ", _file)
+					os.remove(_file)
 			self.close()
 
 	def restoreDeletedBouquets(self):
-		for file in os.listdir("/etc/enigma2/"):
-			if file.startswith("userbouquet") and file.endswith(".del"):
-				file = "/etc/enigma2/" + file
-				print("restore file ", file[:-4])
-				os.rename(file, file[:-4])
+		for _file in os.listdir("/etc/enigma2/"):
+			if _file.startswith("userbouquet") and _file.endswith(".del"):
+				_file = "/etc/enigma2/" + _file
+				print("restore file ", _file[:-4])
+				os.rename(_file, _file[:-4])
 		eDVBDBInstance = eDVBDB.getInstance()
 		eDVBDBInstance.setLoadUnlinkedUserbouquets(True)
 		eDVBDBInstance.reloadBouquets()
@@ -1849,10 +1849,10 @@ class ChannelSelectionBase(Screen):
 		bouquets = [ ]
 		serviceHandler = eServiceCenter.getInstance()
 		if config.usage.multibouquet.value:
-			list = serviceHandler.list(self.bouquet_root)
-			if list:
+			_list = serviceHandler.list(self.bouquet_root)
+			if _list:
 				while True:
-					s = list.getNext()
+					s = _list.getNext()
 					if not s.valid():
 						break
 					if s.flags & eServiceReference.isDirectory and not s.flags & eServiceReference.isInvisible:

@@ -33,25 +33,25 @@ try:
 	except:
 		fps = 0
 	if opt == "get":
-		file = os.path.abspath(sys.argv[3])
-		dmnapim.get_sub_from_napi(file, fps=fps)
+		_file = os.path.abspath(sys.argv[3])
+		dmnapim.get_sub_from_napi(_file, fps=fps)
 	elif opt == "all" or opt == 'allnew':
-		file = os.path.abspath(sys.argv[3])
-		get_all(file, opt == "allnew")
+		_file = os.path.abspath(sys.argv[3])
+		get_all(_file, opt == "allnew")
 	elif opt == "convert":
-		file = os.path.abspath(sys.argv[3])
-		dmnapim.convert(file, sys.argv[4], fps=fps)
+		_file = os.path.abspath(sys.argv[3])
+		dmnapim.convert(_file, sys.argv[4], fps=fps)
 	elif opt == "upgrade":
-		file = sys.argv[2]
-		x, ipk = os.path.split(file)
+		_file = sys.argv[2]
+		x, ipk = os.path.split(_file)
 		if os.path.exists("/usr/bin/opkg"):
 			do = "opkg install " + ipk
 		else:
 			do = "ipkg install " + ipk
-		print("Upgrade to:\n", file, "\n")
-		os.system("cd /tmp ; rm -f enigma2-plugin-extensions-dmnapi*.ipk ; opkg update && wget -c %s && ls -al enigma2-plugin-extensions-dmnapi*.ipk && %s" % (file, do))
+		print("Upgrade to:\n", _file, "\n")
+		os.system("cd /tmp ; rm -f enigma2-plugin-extensions-dmnapi*.ipk ; opkg update && wget -c %s && ls -al enigma2-plugin-extensions-dmnapi*.ipk && %s" % (_file, do))
 	elif opt == "n24":
-		file = os.path.abspath(sys.argv[3])
-		dmnapim.get_sub_from_n24(file, sys.argv[4], fps=fps)
+		_file = os.path.abspath(sys.argv[3])
+		dmnapim.get_sub_from_n24(_file, sys.argv[4], fps=fps)
 except:
 	print("  Error: %s" % (sys.exc_info()[1]))

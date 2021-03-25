@@ -39,16 +39,16 @@ def processHotplugData(self, v):
 		print("[Hotplug.plugin.py] AUDIO CD ADD")
 	elif action == "audiocdremove":
 		audiocd = False
-		file = []
+		_file = []
 		# Removing the invalid playlist.e2pls If its still the audio cd's list
 		# Default setting is to save last playlist on closing Mediaplayer.
 		# If audio cd is removed after Mediaplayer was closed,
 	# the playlist remains in if no other media was played.
 		if os.path.isfile('/etc/enigma2/playlist.e2pls'):
 			with open('/etc/enigma2/playlist.e2pls', 'r') as f:
-				file = f.readline().strip()
-		if file:
-			if '.cda' in file:
+				_file = f.readline().strip()
+		if _file:
+			if '.cda' in _file:
 				try:
 					os.remove('/etc/enigma2/playlist.e2pls')
 				except OSError:

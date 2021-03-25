@@ -99,18 +99,18 @@ def setPosition(clip_left, clip_width, clip_top, clip_height):
 	if clip_top + clip_height > 576:
 		clip_height = 576 - clip_top
 	try:
-		file = open("/proc/stb/vmpeg/0/clip_left", "w")
-		file.write('%X' % clip_left)
-		file.close()
-		file = open("/proc/stb/vmpeg/0/clip_width", "w")
-		file.write('%X' % clip_width)
-		file.close()
-		file = open("/proc/stb/vmpeg/0/clip_top", "w")
-		file.write('%X' % clip_top)
-		file.close()
-		file = open("/proc/stb/vmpeg/0/clip_height", "w")
-		file.write('%X' % clip_height)
-		file.close()
+		_file = open("/proc/stb/vmpeg/0/clip_left", "w")
+		_file.write('%X' % clip_left)
+		_file.close()
+		_file = open("/proc/stb/vmpeg/0/clip_width", "w")
+		_file.write('%X' % clip_width)
+		_file.close()
+		_file = open("/proc/stb/vmpeg/0/clip_top", "w")
+		_file.write('%X' % clip_top)
+		_file.close()
+		_file = open("/proc/stb/vmpeg/0/clip_height", "w")
+		_file.write('%X' % clip_height)
+		_file.close()
 	except:
 		return
 

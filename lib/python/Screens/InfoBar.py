@@ -234,12 +234,12 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 		self.is_closing = True
 		if how == "ask":
 			if config.usage.setup_level.index < 2: # -expert
-				list = (
+				_list = (
 					(_("Yes"), "quit"),
 					(_("No"), "continue")
 				)
 			else:
-				list = (
+				_list = (
 					(_("Yes"), "quit"),
 					(_("Yes, returning to movie list"), "movielist"),
 					(_("Yes, and delete this movie"), "quitanddelete"),
@@ -249,7 +249,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 				)
 
 			from Screens.ChoiceBox import ChoiceBox
-			self.session.openWithCallback(self.leavePlayerConfirmed, ChoiceBox, title=_("Stop playing this movie?"), list = list)
+			self.session.openWithCallback(self.leavePlayerConfirmed, ChoiceBox, title=_("Stop playing this movie?"), list = _list)
 		else:
 			self.leavePlayerConfirmed([True, how])
 

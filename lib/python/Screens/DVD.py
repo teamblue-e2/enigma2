@@ -14,6 +14,7 @@ from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.config import config
 from Tools.Directories import pathExists, fileExists
 from Components.Harddisk import harddiskmanager
+import collections
 
 lastpath = ""
 
@@ -311,7 +312,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		service = self.service
 		if service:
 			attr = getattr(service, iface, None)
-			if callable(attr):
+			if isinstance(attr, collections.Callable):
 				return attr()
 		return None
 
@@ -679,11 +680,11 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		if pathExists(devicepath):
 			from Components.Scanner import scanDevice
 			res = scanDevice(devicepath)
-			list = [ (r.description, r, res[r], self.session) for r in res ]
-			if list:
+			_list = [ (r.description, r, res[r], self.session) for r in res ]
+			if _list:
 				(desc, scanner, files, session) = list[0]
-				for file in files:
-					if file.mimetype == "video/x-dvd":
+				for _file in files:
+					if _file.mimetype == "video/x-dvd":
 						print("[DVD] physical dvd found:", devicepath)
 						self.physicalDVD = True
 						return

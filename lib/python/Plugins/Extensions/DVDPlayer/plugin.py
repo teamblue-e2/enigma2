@@ -29,9 +29,9 @@ def DVDOverlay(*args, **kwargs):
 	from Screens import DVD
 	return DVD.DVDOverlay(*args, **kwargs)
 
-def filescan_open(list, session, **kwargs):
+def filescan_open(_list, session, **kwargs):
 	from Screens import DVD
-	if len(list) == 1 and list[0].mimetype == "video/x-dvd":
+	if len(_list) == 1 and _list[0].mimetype == "video/x-dvd":
 		cd = harddiskmanager.getCD()
 		if cd and (os.path.exists(os.path.join(harddiskmanager.getAutofsMountpoint(cd), "VIDEO_TS"))
 				or os.path.exists(os.path.join(harddiskmanager.getAutofsMountpoint(cd), "video_ts"))):
@@ -40,7 +40,7 @@ def filescan_open(list, session, **kwargs):
 			return
 	else:
 		dvd_filelist = []
-		for x in list:
+		for x in _list:
 			if x.mimetype == "video/x-dvd-iso":
 				dvd_filelist.append(x.path)
 			if x.mimetype == "video/x-dvd":
@@ -52,8 +52,8 @@ def filescan(**kwargs):
 
 	# Overwrite checkFile to only detect local
 	class LocalScanner(Scanner):
-		def checkFile(self, file):
-			return fileExists(file.path)
+		def checkFile(self, _file):
+			return fileExists(_file.path)
 
 	return [
 		LocalScanner(mimetypes = ["video/x-dvd","video/x-dvd-iso"],

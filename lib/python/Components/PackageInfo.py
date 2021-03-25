@@ -65,11 +65,11 @@ class InfoHandler(xml.sax.ContentHandler):
 				else:
 					if "directory" not in attrs:
 						directory = self.directory
-					type = attrs["type"]
-					if not type in self.validFileTypes:
+					_type = attrs["type"]
+					if not _type in self.validFileTypes:
 						self.printError("file tag with invalid type attribute")
 					else:
-						self.filetype = type
+						self.filetype = _type
 						self.fileattrs = attrs
 
 		if name == "package":
@@ -154,31 +154,31 @@ class PackageInfoHandler:
 		self.packagesIndexlist = []
 		self.packageDetails = []
 
-	def readInfo(self, directory, file):
+	def readInfo(self, directory, _file):
 		handler = InfoHandler(self.prerequisiteMet, directory)
 		try:
-			xml.sax.parse(file, handler)
+			xml.sax.parse(_file, handler)
 			for entry in handler.list:
-				self.packageslist.append((entry,file))
+				self.packageslist.append((entry,_file))
 		except InfoHandlerParseError:
 			pass
 
-	def readIndex(self, directory, file):
+	def readIndex(self, directory, _file):
 		handler = InfoHandler(self.prerequisiteMet, directory)
 		try:
-			xml.sax.parse(file, handler)
+			xml.sax.parse(_file, handler)
 			for entry in handler.list:
-				self.packagesIndexlist.append((entry,file))
+				self.packagesIndexlist.append((entry,_file))
 		except InfoHandlerParseError:
 			pass
 
-	def readDetails(self, directory, file):
+	def readDetails(self, directory, _file):
 		self.packageDetails = []
 		handler = InfoHandler(self.prerequisiteMet, directory)
 		try:
-			xml.sax.parse(file, handler)
+			xml.sax.parse(_file, handler)
 			for entry in handler.list:
-				self.packageDetails.append((entry,file))
+				self.packageDetails.append((entry,_file))
 		except InfoHandlerParseError:
 			pass
 
@@ -214,8 +214,8 @@ class PackageInfoHandler:
 						continue
 					indexfileList.append(indexfile)
 		if len(indexfileList):
-			for file in indexfileList:
-				neededFile = self.directory[0] + "/" + file
+			for _file in indexfileList:
+				neededFile = self.directory[0] + "/" + _file
 				if os.path.isfile(neededFile):
 					self.readIndex(self.directory[0] + "/" , neededFile)
 

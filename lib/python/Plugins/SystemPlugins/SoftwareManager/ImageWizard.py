@@ -120,15 +120,15 @@ class ImageWizard(WizardLanguage, Rc):
 		pass
 
 	def listDevices(self):
-		list = [ (r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False)]
-		for x in list:
+		_list = [ (r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False)]
+		for x in _list:
 			result = access(x[1], W_OK) and access(x[1], R_OK)
 			if result is False or x[1] == '/':
-				list.remove(x)
-		for x in list:
+				_list.remove(x)
+		for x in _list:
 			if x[1].startswith('/autofs/'):
-				list.remove(x)
-		return list
+				_list.remove(x)
+		return _list
 
 	def deviceSelectionMade(self, index):
 		self.deviceSelect(index)

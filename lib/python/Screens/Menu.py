@@ -27,19 +27,19 @@ class MenuUpdater:
 	def __init__(self):
 		self.updatedMenuItems = {}
 
-	def addMenuItem(self, id, pos, text, module, screen, weight):
-		if not self.updatedMenuAvailable(id):
-			self.updatedMenuItems[id] = []
-		self.updatedMenuItems[id].append([text, pos, module, screen, weight])
+	def addMenuItem(self, _id, pos, text, module, screen, weight):
+		if not self.updatedMenuAvailable(_id):
+			self.updatedMenuItems[_id] = []
+		self.updatedMenuItems[_id].append([text, pos, module, screen, weight])
 
-	def delMenuItem(self, id, pos, text, module, screen, weight):
-		self.updatedMenuItems[id].remove([text, pos, module, screen, weight])
+	def delMenuItem(self, _id, pos, text, module, screen, weight):
+		self.updatedMenuItems[_id].remove([text, pos, module, screen, weight])
 
-	def updatedMenuAvailable(self, id):
-		return id in self.updatedMenuItems
+	def updatedMenuAvailable(self, _id):
+		return _id in self.updatedMenuItems
 
-	def getUpdatedMenu(self, id):
-		return self.updatedMenuItems[id]
+	def getUpdatedMenu(self, _id):
+		return self.updatedMenuItems[_id]
 
 menuupdater = MenuUpdater()
 
@@ -153,14 +153,14 @@ class Menu(Screen, ProtectedScreen):
 				destList.append((_(item_text or "??"), boundFunction(self.execText, x.text), entryID, weight))
 				return
 			elif x.tag == 'setup':
-				id = x.get("id")
+				_id = x.get("id")
 				if item_text == "":
-					if getSetupTitleLevel(id) > config.usage.setup_level.index:
+					if getSetupTitleLevel(_id) > config.usage.setup_level.index:
 						return
-					item_text = _(getSetupTitle(id))
+					item_text = _(getSetupTitle(_id))
 				else:
 					item_text = _(item_text)
-				destList.append((item_text, boundFunction(self.openSetup, id), entryID, weight))
+				destList.append((item_text, boundFunction(self.openSetup, _id), entryID, weight))
 				return
 		destList.append((item_text, self.nothing, entryID, weight))
 

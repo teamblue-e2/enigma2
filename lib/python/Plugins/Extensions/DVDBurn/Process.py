@@ -77,9 +77,9 @@ class CopyMeta(Task):
 		from os import listdir
 		path, filename = sourcefile.rstrip("/").rsplit("/",1)
 		tsfiles = listdir(path)
-		for file in tsfiles:
-			if file.startswith(filename+"."):
-				self.args += [path+'/'+file]
+		for _file in tsfiles:
+			if _file.startswith(filename+"."):
+				self.args += [path+'/'+_file]
 		self.args += [self.job.workspace]
 		self.weighting = 15
 
@@ -122,10 +122,10 @@ class DemuxTask(Task):
 		MSG_NEW_AC3 = "++> AC3/DTS Audio: PID 0x"
 
 		if line.startswith(MSG_NEW_FILE):
-			file = line[len(MSG_NEW_FILE):]
-			if file[0] == "'":
-				file = file[1:-1]
-			self.haveNewFile(file)
+			_file = line[len(MSG_NEW_FILE):]
+			if _file[0] == "'":
+				_file = _file[1:-1]
+			self.haveNewFile(_file)
 		elif line.startswith(MSG_PROGRESS):
 			progress = line[len(MSG_PROGRESS):]
 			self.haveProgress(progress)
@@ -135,13 +135,13 @@ class DemuxTask(Task):
 			except ValueError:
 				print("[DemuxTask] ERROR: couldn't detect Audio PID (projectx too old?)")
 
-	def haveNewFile(self, file):
-		print("[DemuxTask] produced file:", file, self.currentPID)
-		self.generated_files.append(file)
+	def haveNewFile(self, _file):
+		print("[DemuxTask] produced file:", _file, self.currentPID)
+		self.generated_files.append(_file)
 		if self.currentPID in self.relevantAudioPIDs:
-			self.mplex_audiofiles[self.currentPID] = file
-		elif file.endswith("m2v"):
-			self.mplex_videofile = file
+			self.mplex_audiofiles[self.currentPID] = _file
+		elif _file.endswith("m2v"):
+			self.mplex_videofile = _file
 
 	def haveProgress(self, progress):
 		#print "PROGRESS [%s]" % progress
@@ -184,9 +184,9 @@ class DemuxTask(Task):
 
 		if failed:
 			import os
-			for file in self.generated_files:
+			for _file in self.generated_files:
 				try:
-					os.remove(file)
+					os.remove(_file)
 				except OSError:
 					pass
 

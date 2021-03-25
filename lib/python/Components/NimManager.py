@@ -534,7 +534,7 @@ class NIM(object):
 		# get multi type using delsys information
 		self.combined = False
 		if self.frontend_id is not None:
-			types = [type for type in nim_types if eDVBResourceManager.getInstance().frontendIsCompatible(self.frontend_id, type)]
+			types = [_type for _type in nim_types if eDVBResourceManager.getInstance().frontendIsCompatible(self.frontend_id, _type)]
 			if "DVB-T2" in types:
 				# DVB-T2 implies DVB-T support
 				types.remove("DVB-T")
@@ -544,8 +544,8 @@ class NIM(object):
 			if len(types) > 1:
 				self.multi_type = {}
 				self.combined = not(os.path.exists("/proc/stb/frontend/%d/mode" % self.frontend_id) or self.isFBCTuner())
-				for type in types:
-					self.multi_type[str(types.index(type))] = type
+				for _type in types:
+					self.multi_type[str(types.index(_type))] = _type
 
 	def getTunerTypesEnabled(self):
 		try:
@@ -977,8 +977,8 @@ class NimManager:
 		slots = []
 		if self.nim_slots[slotid].internallyConnectableTo() is not None:
 			slots.append(self.nim_slots[slotid].internallyConnectableTo())
-		for type in self.nim_slots[slotid].connectableTo():
-			for slot in self.getNimListOfType(type, exception = slotid):
+		for _type in self.nim_slots[slotid].connectableTo():
+			for slot in self.getNimListOfType(_type, exception = slotid):
 				if slot not in slots and (self.hasOutputs(slot) or self.nim_slots[slotid].isFBCRoot()):
 					slots.append(slot)
 		# remove nims, that have a conntectedTo reference on
@@ -991,9 +991,9 @@ class NimManager:
 		return slots
 
 	def canEqualTo(self, slotid):
-		type = self.getNimType(slotid)
-		type = type[:5] # DVB-S2X --> DVB-S, DVB-S2 --> DVB-S, DVB-T2 --> DVB-T, DVB-C2 --> DVB-C
-		nimList = self.getNimListOfType(type, slotid)
+		_type = self.getNimType(slotid)
+		_type = _type[:5] # DVB-S2X --> DVB-S, DVB-S2 --> DVB-S, DVB-T2 --> DVB-T, DVB-C2 --> DVB-C
+		nimList = self.getNimListOfType(_type, slotid)
 		for nim in nimList[:]:
 			mode = self.getNimConfig(nim)
 			if self.nim_slots[nim].isFBCLink() or mode.configMode.value == "loopthrough" or mode.configMode.value == "satposdepends":
@@ -1001,9 +1001,9 @@ class NimManager:
 		return nimList
 
 	def canDependOn(self, slotid, advanced_satposdepends=""):
-		type = self.getNimType(slotid)
-		type = type[:5] # DVB-S2X --> DVB-S, DVB-S2 --> DVB-S, DVB-T2 --> DVB-T, DVB-C2 --> DVB-C
-		nimList = self.getNimListOfType(type, slotid)
+		_type = self.getNimType(slotid)
+		_type = _type[:5] # DVB-S2X --> DVB-S, DVB-S2 --> DVB-S, DVB-T2 --> DVB-T, DVB-C2 --> DVB-C
+		nimList = self.getNimListOfType(_type, slotid)
 		positionerList = []
 		for nim in nimList[:]:
 			mode = self.getNimConfig(nim)
@@ -1064,7 +1064,7 @@ class NimManager:
 				return not (configMode == "nothing")
 
 	def getSatListForNim(self, slotid):
-		list = []
+		_list = []
 		if self.nim_slots[slotid].isCompatible("DVB-S"):
 			nim = config.Nims[slotid]
 			#print("[NimManager] slotid:", slotid)
@@ -1086,43 +1086,43 @@ class NimManager:
 				dm = nim.diseqcMode.value
 				if dm in ("single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
 					if nim.diseqcA.orbital_position < 3600:
-						list.append(self.satList[nim.diseqcA.index - 2])
+						_list.append(self.satList[nim.diseqcA.index - 2])
 				if dm in ("toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
 					if nim.diseqcB.orbital_position < 3600:
-						list.append(self.satList[nim.diseqcB.index - 2])
+						_list.append(self.satList[nim.diseqcB.index - 2])
 				if dm == "diseqc_a_b_c_d":
 					if nim.diseqcC.orbital_position < 3600:
-						list.append(self.satList[nim.diseqcC.index - 2])
+						_list.append(self.satList[nim.diseqcC.index - 2])
 					if nim.diseqcD.orbital_position < 3600:
-						list.append(self.satList[nim.diseqcD.index - 2])
+						_list.append(self.satList[nim.diseqcD.index - 2])
 				if dm == "positioner":
 					for x in self.satList:
-						list.append(x)
+						_list.append(x)
 				if dm == "positioner_select":
 					userSatlist = nim.userSatellitesList.value
 					userSatlist = userSatlist.replace("]", "").replace("[", "")
 					for x in self.satList:
 						sat_str = str(x[0])
 						if userSatlist and ("," not in userSatlist and sat_str == userSatlist) or ((', ' + sat_str + ',' in userSatlist) or (userSatlist.startswith(sat_str + ',')) or (userSatlist.endswith(', ' + sat_str))):
-							list.append(x)
+							_list.append(x)
 			elif configMode == "advanced":
 				for x in list(range(3601, 3605)):
 					if int(nim.advanced.sat[x].lnb.value) != 0:
 						for x in self.satList:
-							list.append(x)
+							_list.append(x)
 				if not list:
 					for x in self.satList:
 						if int(nim.advanced.sat[x[0]].lnb.value) != 0:
-							list.append(x)
+							_list.append(x)
 				for x in list(range(3605, 3607)):
 					if int(nim.advanced.sat[x].lnb.value) != 0:
 						userSatlist = nim.advanced.sat[x].userSatellitesList.value
 						userSatlist = userSatlist.replace("]", "").replace("[", "")
 						for user_sat in self.satList:
 							sat_str = str(user_sat[0])
-							if userSatlist and ("," not in userSatlist and sat_str == userSatlist) or ((', ' + sat_str + ',' in userSatlist) or (userSatlist.startswith(sat_str + ',')) or (userSatlist.endswith(', ' + sat_str))) and user_sat not in list:
-								list.append(user_sat)
-		return list
+							if userSatlist and ("," not in userSatlist and sat_str == userSatlist) or ((', ' + sat_str + ',' in userSatlist) or (userSatlist.startswith(sat_str + ',')) or (userSatlist.endswith(', ' + sat_str))) and user_sat not in _list:
+								_list.append(user_sat)
+		return _list
 
 	def getNimListForSat(self, orb_pos):
 		return [nim.slot for nim in self.nim_slots if nim.isCompatible("DVB-S") and not nim.isFBCLink() and orb_pos in [sat[0] for sat in self.getSatListForNim(nim.slot)]]
@@ -1161,7 +1161,7 @@ class NimManager:
 						userSatlist = userSatlist.replace("]", "").replace("[", "")
 						for user_sat in self.satList:
 							sat_str = str(user_sat[0])
-							if userSatlist and ("," not in userSatlist and sat_str == userSatlist) or ((', ' + sat_str + ',' in userSatlist) or (userSatlist.startswith(sat_str + ',')) or (userSatlist.endswith(', ' + sat_str))) and user_sat not in list:
+							if userSatlist and ("," not in userSatlist and sat_str == userSatlist) or ((', ' + sat_str + ',' in userSatlist) or (userSatlist.startswith(sat_str + ',')) or (userSatlist.endswith(', ' + sat_str))) and user_sat not in _list:
 								result.append(user_sat)
 		return result
 
@@ -1530,13 +1530,13 @@ def InitNimManager(nimmgr, update_slots=None):
 			nim.advanced.sat[x] = tmp
 
 	def createCableConfig(nim, x):
-		list = [(x[0], x[0]) for x in nimmgr.cablesList]
+		_list = [(x[0], x[0]) for x in nimmgr.cablesList]
 		nim.cable = ConfigSubsection()
 		nim.cable.scan_networkid = ConfigInteger(default = 0, limits = (0, 99999))
 		possible_scan_types = [("bands", _("Frequency bands")), ("steps", _("Frequency steps"))]
-		if list:
+		if _list:
 			possible_scan_types.append(("provider", _("Provider")))
-			nim.cable.scan_provider = ConfigSelection(default = "0", choices = list)
+			nim.cable.scan_provider = ConfigSelection(default = "0", choices = _list)
 		nim.cable.config_scan_details = ConfigYesNo(default = False)
 		nim.cable.scan_type = ConfigSelection(default = "bands", choices = possible_scan_types)
 		nim.cable.scan_band_EU_VHF_I = ConfigYesNo(default = True)
@@ -1563,13 +1563,13 @@ def InitNimManager(nimmgr, update_slots=None):
 		nim.cable.scan_sr_ext2 = ConfigInteger(default = 0, limits = (0, 7230))
 
 	def createTerrestrialConfig(nim, x):
-		list = [(x[0], x[0]) for x in nimmgr.terrestrialsList]
-		nim.terrestrial = ConfigSelection(choices = list)
+		_list = [(x[0], x[0]) for x in nimmgr.terrestrialsList]
+		nim.terrestrial = ConfigSelection(choices = _list)
 		nim.terrestrial_5V = ConfigOnOff()
 
 	def createATSCConfig(nim, x):
-		list = [(x[0], x[0]) for x in nimmgr.atscList]
-		nim.atsc = ConfigSelection(choices = list)
+		_list = [(x[0], x[0]) for x in nimmgr.atscList]
+		nim.atsc = ConfigSelection(choices = _list)
 
 	def tunerTypeChanged(nimmgr, configElement, initial=False):
 		fe_id = configElement.fe_id

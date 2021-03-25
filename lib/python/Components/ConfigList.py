@@ -8,7 +8,7 @@ from Screens.ChoiceBox import ChoiceBox
 import skin
 
 class ConfigList(GUIComponent, object):
-	def __init__(self, list, session=None):
+	def __init__(self, _list, session=None):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonConfigContent()
 		seperation = skin.parameters.get("ConfigListSeperator", 200)
@@ -16,7 +16,7 @@ class ConfigList(GUIComponent, object):
 		height, space = skin.parameters.get("ConfigListSlider", (17, 0))
 		self.l.setSlider(height, space)
 		self.timer = eTimer()
-		self.list = list
+		self.list = _list
 		self.onSelectionChanged = []
 		self.current = None
 		self.session = session
@@ -107,7 +107,7 @@ class ConfigList(GUIComponent, object):
 	def getList(self):
 		return self.__list
 
-	list = property(getList, setList)
+	_list = property(getList, setList)
 
 	def timeout(self):
 		self.handleKey(KEY_TIMEOUT)
@@ -137,7 +137,7 @@ class ConfigList(GUIComponent, object):
 				x()
 
 class ConfigListScreen:
-	def __init__(self, list, session=None, on_change=None):
+	def __init__(self, _list, session=None, on_change=None):
 		self["config_actions"] = NumberActionMap(["SetupActions", "InputAsciiActions", "KeyboardInputActions"], {
 			"gotAsciiCode": self.keyGotAscii,
 			"ok": self.keyOK,
@@ -170,7 +170,7 @@ class ConfigListScreen:
 		}, -2)
 		self["VirtualKB"].setEnabled(False)
 
-		self["config"] = ConfigList(list, session=session)
+		self["config"] = ConfigList(_list, session=session)
 
 		if on_change is not None:
 			self.__changed = on_change
@@ -199,17 +199,32 @@ class ConfigListScreen:
 			x()
 
 	def handleInputHelpers(self):
-		if self["config"].getCurrent() is not None and self["config"].getCurrent()[1].__class__.__name__ in ('ConfigText', 'ConfigPassword'):
+		if self["config"].getCurrent() is not None:
+			try:
+				if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+					print("Help Window is Instance")
+					print("self: ", self)
+					if "VKeyIcon" in self:
+						self["VirtualKB"].setEnabled(True)
+						self["VKeyIcon"].boolean = True
+					if "HelpWindow" in self:
+						if self["config"].getCurrent()[1].help_window.instance is not None:
+							print("Help Window in self, getting Position")
+							helpwindowpos = self["HelpWindow"].getPosition()
+							from enigma import ePoint
+							self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0], helpwindowpos[1]))
+				else:
+					if "VKeyIcon" in self:
+						self["VirtualKB"].setEnabled(False)
+						self["VKeyIcon"].boolean = False
+			except:
+				if "VKeyIcon" in self:
+					self["VirtualKB"].setEnabled(False)
+					self["VKeyIcon"].boolean = False
+		else:
 			if "VKeyIcon" in self:
-				self["VirtualKB"].setEnabled(True)
-				self["VKeyIcon"].boolean = True
-			if "HelpWindow" in self and self["config"].getCurrent()[1].help_window and self["config"].getCurrent()[1].help_window.instance is not None:
-				helpwindowpos = self["HelpWindow"].getPosition()
-				from enigma import ePoint
-				self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0], helpwindowpos[1]))
-		elif "VKeyIcon" in self:
-			self["VirtualKB"].setEnabled(False)
-			self["VKeyIcon"].boolean = False
+				self["VirtualKB"].setEnabled(False)
+				self["VKeyIcon"].boolean = False
 
 	def KeyText(self):
 		self["config"].hideHelp()
@@ -275,7 +290,7 @@ class ConfigListScreen:
 		if selection and selection[1].enabled and hasattr(selection[1], "description"):
 			self.session.openWithCallback(
 				self.handleKeyFileCallback, ChoiceBox, selection[0],
-				list=list(zip(selection[1].description, selection[1].choices)),
+				_list=list(zip(selection[1].description, selection[1].choices)),
 				selection=selection[1].choices.index(selection[1].value),
 				keys=[]
 			)

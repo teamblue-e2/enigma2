@@ -16,9 +16,9 @@ from Tools.HardwareInfo import HardwareInfo
 config.misc.showtestcard = ConfigBoolean(default = False)
 
 try:
-	file = open("/proc/stb/info/chipset", "r")
-	chipset = file.readline().strip()
-	file.close()
+	_file = open("/proc/stb/info/chipset", "r")
+	chipset = _file.readline().strip()
+	_file.close()
 except:
 	chipset = "unknown"
 
@@ -33,8 +33,8 @@ class VideoWizardSummary(WizardSummary):
 	def setLCDPicCallback(self):
 		self.parent.setLCDTextCallback(self.setText)
 
-	def setLCDPic(self, file):
-		self["pic"].instance.setPixmapFromFile(file)
+	def setLCDPic(self, _file):
+		self["pic"].instance.setPixmapFromFile(_file)
 
 class VideoWizard(WizardLanguage, Rc):
 	skin = """

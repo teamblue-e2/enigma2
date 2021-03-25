@@ -13,9 +13,9 @@ import re
 import six
 
 def readFile(filename):
-	file = open(filename)
-	data = file.read().strip()
-	file.close()
+	_file = open(filename)
+	data = _file.read().strip()
+	_file.close()
 	return data
 
 def getextdevices(ext):
@@ -50,12 +50,12 @@ def getNonNetworkMediaMounts():
 
 def isFileSystemSupported(filesystem):
 	try:
-		file = open('/proc/filesystems', 'r')
-		for fs in file:
+		_file = open('/proc/filesystems', 'r')
+		for fs in _file:
 			if fs.strip().endswith(filesystem):
-				file.close()
+				_file.close()
 				return True
-		file.close()
+		_file.close()
 		return False
 	except Exception as ex:
 		print("[Harddisk] Failed to read /proc/filesystems:", ex)
@@ -863,14 +863,14 @@ class HarddiskManager:
 		return len(self.hdd)
 
 	def HDDList(self):
-		list = [ ]
+		_list = [ ]
 		for hd in self.hdd:
 			hdd = hd.model() + " - " + hd.bus()
 			cap = hd.capacity()
 			if cap != "":
 				hdd += " (" + cap + ")"
-			list.append((hdd, hd))
-		return list
+			_list.append((hdd, hd))
+		return _list
 
 	def getCD(self):
 		return self.cd

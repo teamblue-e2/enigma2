@@ -13,9 +13,9 @@ import time
 
 def InitUsageConfig():
 	try:
-		file = open('/etc/image-version', 'r')
-		lines = file.readlines()
-		file.close()
+		_file = open('/etc/image-version', 'r')
+		lines = _file.readlines()
+		_file.close()
 		for x in lines:
 			splitted = x.split('=')
 			if splitted[0] == "box_type":

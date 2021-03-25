@@ -69,7 +69,7 @@ class Navigation:
 			elif abs(self.RecordTimer.getNextRecordingTime() - time()) <= 360: # if there is a recording sheduled in the next 5 mins, set the wasTimerWakeup flag
 				wasTimerWakeup = True
 				f = open("/tmp/was_timer_wakeup_workaround.txt", "w")
-				file = f.write(str(wasTimerWakeup))
+				_file = f.write(str(wasTimerWakeup))
 				f.close()
 
 		print("[NAVIGATION] wasTimerWakeup = %s" % wasTimerWakeup)
