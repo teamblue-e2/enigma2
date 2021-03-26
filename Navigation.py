@@ -202,7 +202,7 @@ class Navigation:
 							self.currentlyPlayingServiceReference = None
 							self.currentlyPlayingServiceOrGroup = None
 						else:
-							print "[Navigation] alternative ref as simulate: ", alternativeref.toString()
+							print("[Navigation] alternative ref as simulate: ", alternativeref.toString())
 					return 0
 				elif checkParentalControl and not parentalControl.isServicePlayable(playref, boundFunction(self.playService, checkParentalControl=False, forceRestart=forceRestart, adjust=(count > 1 and [0, session, ref] or adjust)), session=session):
 					if self.currentlyPlayingServiceOrGroup and InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(self.currentlyPlayingServiceOrGroup, adjust):
