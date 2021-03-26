@@ -5,7 +5,7 @@ import mmap
 import re
 
 from enigma import ePicLoad, getDesktop
-from os import listdir
+from os import listdir, walk
 from os.path import dirname, exists, isdir, join as pathjoin
 
 from skin import DEFAULT_SKIN, DEFAULT_DISPLAY_SKIN, EMERGENCY_NAME, EMERGENCY_SKIN, currentDisplaySkin, currentPrimarySkin, currentClockSkin, domScreens, DISPLAY_SKIN_ID, loadSkin
@@ -150,7 +150,7 @@ class SkinSelector(Screen, HelpableScreen):
 						_list[1] = "<%s>" % _list[1]
 					#0=SortKey, 1=Label, 2=Flag, 3=Directory, 4=Skin, 5=Resolution, 6=Preview, 7=Label + Flag
 					skinList.append(tuple([_list[0].upper()] + _list))
-		sorted(skinList)
+		skinList = sorted(skinList)
 		self["skins"].setList(skinList)
 		# Set the list pointer to the current skin...
 		for index in list(range(len(skinList))):
@@ -242,20 +242,16 @@ class LcdSkinSelector(SkinSelector):
 		self.config = config.skin.display_skin
 		self.current = currentDisplaySkin
 		self.xmlList = []
-		from os.path import walk
-		walk(self.rootDir, self.find, "")
-
-	def find(self, arg, dirname, names):
-		for x in names:
-			if x.startswith("skin_lcd") and x.endswith(".xml"):
-				if dirname is not self.rootDir:
-					subdir = dirname[19:]
-					skinname = x
-					#skinname = skinname
-					self.xmlList.append(skinname)
-				else:
-					skinname = x
-					self.xmlList.append(skinname)
+		for root, dirs, files in walk(self.rootDir, followlinks=True):
+			for x in files:
+				if x.startswith("skin_lcd") and x.endswith(".xml"):
+					if root is not self.rootDir:
+						subdir = root[19:]
+						skinname = x
+						self.xmlList.append(skinname)
+					else:
+						skinname = x
+						self.xmlList.append(skinname)
 
 	def refreshList(self):
 		default = _("Default")
@@ -266,7 +262,7 @@ class LcdSkinSelector(SkinSelector):
 		previewPath = self.rootDir
 		_dir = "lcd_skin/"
 		for skinFile in self.xmlList:
-			skin = "lcd_skin/" + skinFile
+			skin = _dir + skinFile
 			skinPath = pathjoin(self.rootDir, skinFile)
 			if exists(skinPath):
 				resolution = skinFile.replace(".xml", "").replace("skin_lcd_", "").replace("_"," ").capitalize()
@@ -284,7 +280,7 @@ class LcdSkinSelector(SkinSelector):
 					_list[1] = "<%s>" % _list[1]
 				#0=SortKey, 1=Label, 2=Flag, 3=Directory, 4=Skin, 5=Resolution, 6=Preview, 7=Label + Flag
 				skinList.append(tuple([_list[0].replace("_"," ").capitalize()] + _list))
-		sorted(skinList)
+		skinList = sorted(skinList)
 		self["skins"].setList(skinList)
 		# Set the list pointer to the current skin...
 		for index in list(range(len(skinList))):
@@ -301,20 +297,16 @@ class ClockSkinSelector(SkinSelector):
 		self.config = config.skin.clock_skin
 		self.current = currentClockSkin
 		self.xmlList = []
-		from os.path import walk
-		walk(self.rootDir, self.find, "")
-
-	def find(self, arg, dirname, names):
-		for x in names:
-			if x.startswith("clock_lcd") and x.endswith(".xml"):
-				if dirname is not self.rootDir:
-					subdir = dirname[19:]
-					skinname = x
-					#skinname = skinname
-					self.xmlList.append(skinname)
-				else:
-					skinname = x
-					self.xmlList.append(skinname)
+		for root, dirs, files in walk(self.rootDir, followlinks=True):
+			for x in files:
+				if x.startswith("clock_lcd") and x.endswith(".xml"):
+					if root is not self.rootDir:
+						subdir = root[19:]
+						skinname = x
+						self.xmlList.append(skinname)
+					else:
+						skinname = x
+						self.xmlList.append(skinname)
 
 	def refreshList(self):
 		default = _("Default")
@@ -343,7 +335,7 @@ class ClockSkinSelector(SkinSelector):
 					_list[1] = "<%s>" % _list[1]
 				#0=SortKey, 1=Label, 2=Flag, 3=Directory, 4=Skin, 5=Resolution, 6=Preview, 7=Label + Flag
 				skinList.append(tuple([_list[0].replace("_"," ").capitalize()] + _list))
-		sorted(skinList)
+		skinList = sorted(skinList)
 		self["skins"].setList(skinList)
 		# Set the list pointer to the current skin...
 		for index in list(range(len(skinList))):
