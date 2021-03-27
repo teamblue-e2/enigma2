@@ -1721,7 +1721,7 @@ class NetworkPassword(ConfigListScreen, Screen):
 		self['config'].l.setList(self.list)
 
 	def GeneratePassword(self):
-		passwdChars = string.letters + string.digits
+		passwdChars = string.ascii_letters + string.digits
 		passwdLength = 10
 		return ''.join(Random().sample(passwdChars, passwdLength))
 
@@ -1769,6 +1769,7 @@ class NetworkPassword(ConfigListScreen, Screen):
 
 
 	def dataAvail(self,data):
+		data = six.ensure_str(data)
 		self.output_line += data
 		while True:
 			i = self.output_line.find('\n')
