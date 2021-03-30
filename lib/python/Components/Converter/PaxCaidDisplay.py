@@ -23,6 +23,7 @@ from enigma import iServiceInformation, iPlayableService
 from Components.Element import cached
 from Components.Converter.Poll import Poll
 import datetime
+import six
 
 def cardnames(caid,prov):
 		if caid   == '098C' and prov =='000000':cn = 'SKY NDS V14'		#19E
@@ -289,6 +290,7 @@ class PaxCaidDisplay(Poll, Converter, object):
 					except: pass
 			if ecm:
 				for line in ecm:
+					line = six.ensure_str(line)
 					x = line.lower().find("msec")
 					if x != -1:
 						info["ecm time"] = line[0:x+4]
