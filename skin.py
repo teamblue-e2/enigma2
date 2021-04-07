@@ -370,13 +370,13 @@ def parseParameter(s):
 	else:  # Integer.
 		return int(s)
 
-def loadPixmap(path, desktop):
+def loadPixmap(path, desktop, width=0, height=0):
 	option = path.find("#")
 	if option != -1:
 		path = path[:option]
 	if rc_model.rcIsDefault() is False and basename(path) in ("rc.png", "rc0.png", "rc1.png", "rc2.png", "oldrc.png"):
 		path = rc_model.getRcImg()
-	pixmap = LoadPixmap(path, desktop)
+	pixmap = LoadPixmap(path, desktop, None, width, height)
 	if pixmap is None:
 		raise SkinError("Pixmap file '%s' not found" % path)
 	return pixmap
@@ -428,6 +428,7 @@ class AttributeParser:
 			print("[Skin] Attribute '%s' with wrong (or unknown) value '%s' in object of type '%s'!" % (attrib, value, self.guiObject.__class__.__name__))
 
 	def applyAll(self, attrs):
+		attrs.sort(key=lambda a: {"pixmap": 1}.get(a[0], 0))  # For svg pixmap scale required the size, so sort pixmap last
 		for attrib, value in attrs:
 			self.applyOne(attrib, value)
 
@@ -482,7 +483,7 @@ class AttributeParser:
 		self.guiObject.setItemHeight(int(value))
 
 	def pixmap(self, value):
-		self.guiObject.setPixmap(loadPixmap(value, self.desktop))
+		self.guiObject.setPixmap(loadPixmap(value, self.desktop, self.guiObject.size().width(), self.guiObject.size().height()))
 
 	def backgroundPixmap(self, value):
 		self.guiObject.setBackgroundPicture(loadPixmap(value, self.desktop))
