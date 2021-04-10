@@ -1,7 +1,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
 from Components.GUIComponent import GUIComponent
-from skin import parseColor, parseFont
+from skin import parseColor, parseFont, parseScale
 
 from enigma import eListboxServiceContent, eListbox, eServiceCenter, eServiceReference, gFont, eRect
 from Tools.LoadPixmap import LoadPixmap
@@ -114,7 +114,7 @@ class ServiceList(GUIComponent):
 			pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, value))
 			pic and self.l.setPixmap(self.l.picServiceEventProgressbar, pic)
 		def serviceItemHeight(value):
-			self.ItemHeight = int(value)
+			self.ItemHeight = parseScale(value)
 		def serviceNameFont(value):
 			self.ServiceNameFont = parseFont(value, ((1,1),(1,1)))
 		def serviceInfoFont(value):
@@ -125,19 +125,19 @@ class ServiceList(GUIComponent):
 		def serviceNumberFont(value):
 			self.ServiceNumberFont = parseFont(value, ((1,1),(1,1)))
 		def progressbarHeight(value):
-			self.l.setProgressbarHeight(int(value))
+			self.l.setProgressbarHeight(parseScale(value))
 		def progressbarBorderWidth(value):
-			self.l.setProgressbarBorderWidth(int(value))
+			self.l.setProgressbarBorderWidth(parseScale(value))
 		def progressBarWidth(value):
-			self.progressBarWidth = int(value)
+			self.progressBarWidth = parseScale(value)
 		def progressPercentWidth(value):
-			self.progressPercentWidth = int(value)
+			self.progressPercentWidth = parseScale(value)
 		def fieldMargins(value):
-			self.fieldMargins = int(value)
+			self.fieldMargins = parseScale(value)
 		def nonplayableMargins(value):
-			self.l.setNonplayableMargins(int(value))
+			self.l.setNonplayableMargins(parseScale(value))
 		def itemsDistances(value):
-			self.l.setItemsDistances(int(value))
+			self.l.setItemsDistances(parseScale(value))
 		for (attrib, value) in list(self.skinAttributes):
 			try:
 				locals().get(attrib)(value)
