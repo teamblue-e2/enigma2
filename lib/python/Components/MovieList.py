@@ -299,19 +299,11 @@ class MovieList(GUIComponent):
 		def spaceRight(value):
 			self.spaceRight = parseScale(value)
 		def columnsOriginal(value):
-<<<<<<< HEAD
 			self.columnsOriginal = list(map(int, value.split(",")))
 			if len(self.columnsOriginal) != 2:
 				warningWrongSkinParameter(attrib)
 		def columnsCompactDescription(value):
 			self.columnsCompactDescription = list(map(int, value.split(",")))
-=======
-			self.columnsOriginal = map(parseScale, value.split(","))
-			if len(self.columnsOriginal) != 2:
-				warningWrongSkinParameter(attrib)
-		def columnsCompactDescription(value):
-			self.columnsCompactDescription = map(parseScale, value.split(","))
->>>>>>> origin/mytest_cleanup
 			if len(self.columnsCompactDescription) != 3:
 				warningWrongSkinParameter(attrib)
 		def compactColumn(value):
