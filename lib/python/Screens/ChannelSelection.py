@@ -119,7 +119,7 @@ def append_when_current_valid(current, menu, args, level=0, key="dummy"):
 
 def removed_userbouquets_available():
 	for _file in os.listdir("/etc/enigma2/"):
-		if _file.startswith("userbouquet") and file.endswith(".del"):
+		if _file.startswith("userbouquet") and _file.endswith(".del"):
 			return True
 	return False
 
