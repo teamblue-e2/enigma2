@@ -155,7 +155,7 @@ class PollReactor(posixbase.PosixReactorBase):
 					self.stop()
 				l = [ ]
 		except select.error as e:
-			if e[0] == errno.EINTR:
+			if e[0] is errno.EINTR:
 				return
 			else:
 				raise
