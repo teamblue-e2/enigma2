@@ -44,7 +44,14 @@ class downloadWithProgress:
 		if hasattr(client, '_parse'):
 			scheme, host, port, path = client._parse(url)
 		else:
-			from twisted.web.client import URI
+			# _URI class renamed to URI in 15.0.0
+			try:
+				from twisted.web.client import _URI as URI
+			except ImportError:
+				from twisted.web.client import URI
+			# twisted wants bytes
+			if isinstance(url, str):
+				url = url.encode("UTF-8")
 			uri = URI.fromBytes(url)
 			scheme = uri.scheme
 			host = uri.host
@@ -57,7 +64,7 @@ class downloadWithProgress:
 #		port = parsed.port or (443 if scheme == 'https' else 80)
 
 		self.factory = HTTPProgressDownloader(url, outputfile, *args, **kwargs)
-		if scheme == "https":
+		if scheme == b'https':
 			self.connection = reactor.connectSSL(host, port, self.factory, ssl.ClientContextFactory())
 		else:
 			self.connection = reactor.connectTCP(host, port, self.factory)
