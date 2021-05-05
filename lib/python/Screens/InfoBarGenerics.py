@@ -1865,16 +1865,14 @@ class InfoBarSeek:
 			self.jumpNextMark()
 
 
-from Screens.PVRState import PVRState, TimeshiftState
-
 
 class InfoBarPVRState:
-	def __init__(self, screen=PVRState, force_show=False, show_external_dialog=False):
+	def __init__(self):
+		self["statespeedtext"] = Label(text="")
 		self["statetext"] = Label(text="")
-		self["statetexticon"] = Label(text="")
 		self["stateicon"] = Pixmap()
-		self.show_external_dialog = show_external_dialog
-		self.currentSeekState = self.SEEK_STATE_PLAY
+
+		self.seekstate = self.SEEK_STATE_PLAY
 
 		self.picFF = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/pvr/ff.svg"))
 		if self.picFF is None:
@@ -1890,50 +1888,33 @@ class InfoBarPVRState:
 			self.picPause = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/pvr/pause.png"))
 
 		self.onPlayStateChanged.append(self.__playStateChanged)
-		if show_external_dialog:
-			self.pvrStateDialog = self.session.instantiateDialog(screen)
-			if SystemInfo["hasOSDAnimation"]:
-				self.pvrStateDialog.setAnimationMode(0)
-			self.onHide.append(self.pvrStateDialog.hide)
 		self.onShow.append(self._mayShow)
-		self.force_show = force_show
 
 	def _mayShow(self):
-		if self.shown and self.currentSeekState != self.SEEK_STATE_PLAY and show_external_dialog:
-			self.pvrStateDialog.show()
 		if self.shown:
-			self.__playStateChanged(self.currentSeekState)
+			self.__playStateChanged(self.seekstate)
 
 	def __playStateChanged(self, state):
 		playstateString = state[3]
-		if self.show_external_dialog:
-			self.pvrStateDialog["state"].setText(playstateString)
 
-		self.currentSeekState = state
-		self["statetexticon"].setText(playstateString)
+		self["statetext"].setText(playstateString)
 		if state[1] > 1:
-			self["statetext"].setText("x%d" % state[1])
+			self["statespeedtext"].setText("x%d" % state[1])
 		elif state[1] < 0:
-			self["statetext"].setText("x%d" % -state[1])
+			self["statespeedtext"].setText("x%d" % -state[1])
 		elif state[1] == 0 and state[2] > 1:
-			self["statetext"].setText("x%d" % state[2])
+			self["statespeedtext"].setText("x%d" % state[2])
 		else:
-			self["statetext"].setText("")
+			self["statespeedtext"].setText("")
 			
 		if state[1] > 1 and self.picFF is not None:
-			self["stateicon"].setPixmap(self.picFF)
+			self["stateicon"].instance.setPixmap(self.picFF)
 		elif state[1] < 0 and self.picRew is not None:
-			self["stateicon"].setPixmap(self.picRew)
+			self["stateicon"].instance.setPixmap(self.picRew)
 		elif state == self.SEEK_STATE_PLAY and self.picPlay is not None:
-			self["stateicon"].setPixmap(self.picPlay)
+			self["stateicon"].instance.setPixmap(self.picPlay)
 		elif state == self.SEEK_STATE_PAUSE and self.picPause is not None:
-			self["stateicon"].setPixmap(self.picPause)
-
-		# if we return into "PLAY" state, ensure that the dialog gets hidden if there will be no infobar displayed
-		if not config.usage.show_infobar_on_skip.value and state == self.SEEK_STATE_PLAY and not self.force_show and self.show_external_dialog:
-			self.pvrStateDialog.hide()
-		elif self.show_external_dialog:
-			self._mayShow()
+			self["stateicon"].instance.setPixmap(self.picPause)
 
 
 class TimeshiftLive(Screen):
@@ -1943,16 +1924,7 @@ class TimeshiftLive(Screen):
 
 class InfoBarTimeshiftState(InfoBarPVRState):
 	def __init__(self):
-		InfoBarPVRState.__init__(self, screen=TimeshiftState, force_show=True, show_external_dialog=True)
-		self.timeshiftLiveScreen = self.session.instantiateDialog(TimeshiftLive)
-		self.onHide.append(self.timeshiftLiveScreen.hide)
-		if isStandardInfoBar(self):
-			self.secondInfoBarScreen and self.secondInfoBarScreen.onShow.append(self.timeshiftLiveScreen.hide)
-			self.secondInfoBarScreenSimple and self.secondInfoBarScreenSimple.onShow.append(self.timeshiftLiveScreen.hide)
-		self.timeshiftLiveScreen.hide()
-		self.__hideTimer = eTimer()
-		self.__hideTimer.callback.append(self.__hideTimeshiftState)
-		self.onFirstExecBegin.append(self.pvrStateDialog.show)
+		InfoBarPVRState.__init__(self)
 
 	def _mayShow(self):
 		if self.timeshiftEnabled():
@@ -1961,21 +1933,6 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 					self.secondInfoBarScreen.hide()
 				if self.secondInfoBarScreenSimple and self.secondInfoBarScreenSimple.shown:
 					self.secondInfoBarScreenSimple.hide()
-			if self.timeshiftActivated():
-				self.pvrStateDialog.show()
-				self.timeshiftLiveScreen.hide()
-			elif self.showTimeshiftState:
-				self.pvrStateDialog.hide()
-				self.timeshiftLiveScreen.show()
-				self.showTimeshiftState = False
-			if self.seekstate == self.SEEK_STATE_PLAY and config.usage.infobar_timeout.index and (self.pvrStateDialog.shown or self.timeshiftLiveScreen.shown):
-				self.__hideTimer.startLongTimer(config.usage.infobar_timeout.index)
-		else:
-			self.__hideTimeshiftState()
-
-	def __hideTimeshiftState(self):
-		self.pvrStateDialog.hide()
-		self.timeshiftLiveScreen.hide()
 
 
 class InfoBarShowMovies:
@@ -2068,7 +2025,6 @@ class InfoBarTimeshift():
 			-config.seek.selfdefined_46.value, False, config.seek.selfdefined_46.value,
 			-config.seek.selfdefined_79.value, False, config.seek.selfdefined_79.value)[key - 1]
 		self.doSeekRelative(time * 90000)
-		self.pvrStateDialog.show()
 		return 1
 
 	def getTimeshift(self):
@@ -2095,11 +2051,9 @@ class InfoBarTimeshift():
 			if pauseable:
 				if self.seekstate == self.SEEK_STATE_PLAY:
 					pauseable.pause()
-					self.pvrStateDialog.show()
 					self.seekstate = self.SEEK_STATE_PAUSE
 				else:
 					pauseable.unpause()
-					self.pvrStateDialog.hide()
 					self.seekstate = self.SEEK_STATE_PLAY
 				return
 		return 0
@@ -2162,7 +2116,6 @@ class InfoBarTimeshift():
 		ts = self.getTimeshift()
 		if answer and ts:
 			ts.stopTimeshift()
-			self.pvrStateDialog.hide()
 			self.setCurrentEventTimer()
 			self.setLCDsymbolTimeshift()
 			# disable actions
@@ -2248,7 +2201,6 @@ class InfoBarTimeshift():
 			open(SystemInfo["LCDsymbol_timeshift"], "w").write(self.timeshiftEnabled() and "1" or "0")
 
 	def __serviceStarted(self):
-		self.pvrStateDialog.hide()
 		self.__seekableStatusChanged()
 		if self.ts_start_delay_timer.isActive():
 			self.ts_start_delay_timer.stop()
