@@ -143,4 +143,8 @@ dist_install_DATA = \
 	input_info.svg \
 	input_message.svg \
 	input_question.svg \
-	input_warning.svg
+	input_warning.svg \
+	ff.svg \
+	rew.svg \
+	play.svg \
+	pause.svg
