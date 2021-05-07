@@ -164,9 +164,9 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, InfoBarVmodeButton,
-		InfoBarAudioSelection, HelpableScreen, InfoBarNotifications, InfoBarServiceNotifications,
+		InfoBarAudioSelection, HelpableScreen, InfoBarNotifications, InfoBarServiceNotifications, InfoBarPVRState,
 		InfoBarCueSheetSupport, InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarTeletextPlugin,
-		InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarPlugins, InfoBarPiP, InfoBarHDMI, InfoBarSimpleEventView, InfoBarHotkey, InfoBarPVRState):
+		InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarPlugins, InfoBarPiP, InfoBarHDMI, InfoBarHotkey):
 
 	ENABLE_RESUME_SUPPORT = True
 	ALLOW_SUSPEND = True
@@ -194,7 +194,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 		for x in HelpableScreen, InfoBarShowHide, InfoBarMenu, \
 				InfoBarBase, InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, InfoBarVmodeButton,\
 				InfoBarAudioSelection, InfoBarNotifications, \
-				InfoBarServiceNotifications, InfoBarCueSheetSupport, \
+				InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, \
 				InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, \
 				InfoBarTeletextPlugin, InfoBarServiceErrorPopupSupport, InfoBarExtensions, \
 				InfoBarPlugins, InfoBarPiP, InfoBarHotkey:
@@ -204,7 +204,6 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 		self.infobar = infobar
 		self.lastservice = lastservice or session.nav.getCurrentlyPlayingServiceOrGroup()
 		session.nav.playService(service)
-		InfoBarPVRState.__init__(self)
 		self.cur_service = service
 		self.returning = False
 		self.onClose.append(self.__onClose)
