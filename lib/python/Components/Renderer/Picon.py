@@ -101,7 +101,7 @@ def getPiconName(serviceName):
 			if sys.version_info[0] >= 3:
 				name = six.ensure_str(unicodedata.normalize('NFKD', name).encode('ASCII', 'ignore'))
 			else:
-				# FIXME 
+				# FIXME
 				name = unicodedata.normalize('NFKD', unicode(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
 			#print "[Picon] unicodedata.normalize: ", name
 			name = re.sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
