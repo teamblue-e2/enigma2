@@ -38,7 +38,7 @@ class RotorPosition(Converter, object):
 					saved_text = frontendRotorPosition(int(value))
 					if saved_text:
 						nim_text = saved_textt
-				return "%s:%s" % ("\c0000?0?0" + chr(ord("A")+ int(value)), "\c00?0?0?0" + nim_text)
+				return "%s:%s" % ("\c0000?0?0" + chr(ord("A") + int(value)), "\c00?0?0?0" + nim_text)
 			elif value == "all":
 				all_text = ""
 				for x in nimmanager.nim_slots:
@@ -49,7 +49,7 @@ class RotorPosition(Converter, object):
 							rotorposition = x.config.lastsatrotorposition.value
 							if rotorposition.isdigit():
 								nim_text = orbpos(int(rotorposition))
-						all_text += "%s:%s " % ("\c0000?0?0" + chr(ord("A")+ x.slot), "\c00?0?0?0" + nim_text) 
+						all_text += "%s:%s " % ("\c0000?0?0" + chr(ord("A") + x.slot), "\c00?0?0?0" + nim_text) 
 				return all_text
 			self.LastRotorPos = config.misc.lastrotorposition.value
 			(rotor, tuner) = self.isMotorizedTuner()
