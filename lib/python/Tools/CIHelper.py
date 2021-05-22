@@ -76,7 +76,7 @@ class CIHelper:
 					try:
 						eDVBCIInterfaces.getInstance().setDescrambleRules(item[0], item[1])
 						print("[CI_ASSIGNMENT %d] activate with following settings" % item[0])
-					xcept:
+					except:
 						print("[CI_ASSIGNMENT %d] ERROR setting DescrambleRules" % item[0])
 
 	def ciRecordEvent(self, service, event):
