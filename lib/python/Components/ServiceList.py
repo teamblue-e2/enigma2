@@ -20,6 +20,7 @@ def refreshServiceList(configElement=None):
 		if servicelist:
 			servicelist.setMode()
 
+
 class ServiceList(GUIComponent):
 	MODE_NORMAL = 0
 	MODE_FAVOURITES = 1
@@ -32,9 +33,9 @@ class ServiceList(GUIComponent):
 		pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/folder.png"))
 		pic and self.l.setPixmap(self.l.picFolder, pic)
 		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/marker.png"))
-		pic and	self.l.setPixmap(self.l.picMarker, pic)
+		pic and self.l.setPixmap(self.l.picMarker, pic)
 		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/ico_dvb_s.png"))
-		pic and	self.l.setPixmap(self.l.picDVB_S, pic)
+		pic and self.l.setPixmap(self.l.picDVB_S, pic)
 		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/ico_dvb_c.png"))
 		pic and self.l.setPixmap(self.l.picDVB_C, pic)
 		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/ico_dvb_t.png"))
@@ -64,57 +65,83 @@ class ServiceList(GUIComponent):
 	def applySkin(self, desktop, parent):
 		def foregroundColorMarked(value):
 			self.l.setColor(eListboxServiceContent.markedForeground, parseColor(value))
+
 		def foregroundColorMarkedSelected(value):
 			self.l.setColor(eListboxServiceContent.markedForegroundSelected, parseColor(value))
+
 		def backgroundColorMarked(value):
 			self.l.setColor(eListboxServiceContent.markedBackground, parseColor(value))
+
 		def backgroundColorMarkedSelected(value):
 			self.l.setColor(eListboxServiceContent.markedBackgroundSelected, parseColor(value))
+
 		def foregroundColorServiceNotAvail(value):
 			self.l.setColor(eListboxServiceContent.serviceNotAvail, parseColor(value))
+
 		def foregroundColorEvent(value):
 			self.l.setColor(eListboxServiceContent.eventForeground, parseColor(value))
+
 		def foregroundColorNextEvent(value):
 			self.l.setColor(eListboxServiceContent.eventNextForeground, parseColor(value))
+
 		def colorServiceDescription(value):
 			self.l.setColor(eListboxServiceContent.eventForeground, parseColor(value))
+
 		def foregroundColorEventSelected(value):
 			self.l.setColor(eListboxServiceContent.eventForegroundSelected, parseColor(value))
+
 		def foregroundColorEventNextSelected(value):
 			self.l.setColor(eListboxServiceContent.eventForegroundNextSelected, parseColor(value))
+
 		def colorServiceDescriptionSelected(value):
 			self.l.setColor(eListboxServiceContent.eventForegroundSelected, parseColor(value))
+
 		def foregroundColorEventborder(value):
 			self.l.setColor(eListboxServiceContent.eventborderForeground, parseColor(value))
+
 		def foregroundColorEventborderSelected(value):
 			self.l.setColor(eListboxServiceContent.eventborderForegroundSelected, parseColor(value))
+
 		def colorEventProgressbar(value):
 			self.l.setColor(eListboxServiceContent.serviceEventProgressbarColor, parseColor(value))
+
 		def colorEventProgressbarSelected(value):
 			self.l.setColor(eListboxServiceContent.serviceEventProgressbarColorSelected, parseColor(value))
+
 		def colorEventProgressbarBorder(value):
 			self.l.setColor(eListboxServiceContent.serviceEventProgressbarBorderColor, parseColor(value))
+
 		def colorEventProgressbarBorderSelected(value):
 			self.l.setColor(eListboxServiceContent.serviceEventProgressbarBorderColorSelected, parseColor(value))
+
 		def colorServiceRecorded(value):
 			self.l.setColor(eListboxServiceContent.serviceRecorded, parseColor(value))
+
 		def colorFallbackItem(value):
 			self.l.setColor(eListboxServiceContent.serviceItemFallback, parseColor(value))
+
 		def colorServiceSelectedFallback(value):
 			self.l.setColor(eListboxServiceContent.serviceSelectedFallback, parseColor(value))
+
 		def colorServiceDescriptionFallback(value):
 			self.l.setColor(eListboxServiceContent.eventForegroundFallback, parseColor(value))
+
 		def colorServiceDescriptionSelectedFallback(value):
 			self.l.setColor(eListboxServiceContent.eventForegroundSelectedFallback, parseColor(value))
+
 		def colorServiceNextDescriptionFallback(value):
 			self.l.setColor(eListboxServiceContent.eventNextForegroundFallback, parseColor(value))
+
 		def colorServiceNextDescriptionSelectedFallback(value):
 			self.l.setColor(eListboxServiceContent.eventNextForegroundSelectedFallback, parseColor(value))
+
 		def picServiceEventProgressbar(value):
 			pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, value))
 			pic and self.l.setPixmap(self.l.picServiceEventProgressbar, pic)
+
 		def serviceItemHeight(value):
 			self.ItemHeight = parseScale(value)
+
 		def serviceNameFont(value):
 			self.ServiceNameFont = parseFont(value, ((1, 1), (1, 1)))
 		def serviceInfoFont(value):
@@ -122,20 +149,27 @@ class ServiceList(GUIComponent):
 			self.ServiceNextInfoFont = parseFont(value, ((5, 6), (1, 1)))
 		#def serviceNextInfoFont(value):
 		#	self.ServiceNextInfoFont = parseFont(value, ((1,1),(1,1)))
+
 		def serviceNumberFont(value):
 			self.ServiceNumberFont = parseFont(value, ((1, 1), (1, 1)))
 		def progressbarHeight(value):
 			self.l.setProgressbarHeight(parseScale(value))
+
 		def progressbarBorderWidth(value):
 			self.l.setProgressbarBorderWidth(parseScale(value))
+
 		def progressBarWidth(value):
 			self.progressBarWidth = parseScale(value)
+
 		def progressPercentWidth(value):
 			self.progressPercentWidth = parseScale(value)
+
 		def fieldMargins(value):
 			self.fieldMargins = parseScale(value)
+
 		def nonplayableMargins(value):
 			self.l.setNonplayableMargins(parseScale(value))
+
 		def itemsDistances(value):
 			self.l.setItemsDistances(parseScale(value))
 		for (attrib, value) in list(self.skinAttributes):

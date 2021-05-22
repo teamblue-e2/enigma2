@@ -6,6 +6,7 @@ from Components.Element import cached
 
 WIDESCREEN = [3, 4, 7, 8, 0xB, 0xC, 0xF, 0x10]
 
+
 class ServiceInfo(Converter):
 	HAS_TELETEXT = 0
 	IS_MULTICHANNEL = 1
@@ -174,9 +175,9 @@ class ServiceInfo(Converter):
 					if self.type == self.IS_SD:
 						return self.videoHeight and self.videoHeight < 720
 					elif self.type == self.IS_HD:
-						return self.videoHeight >= 720 and self.videoHeight < 2100
+						return self.videoHeight >= 720 and self.videoHeight < 1500
 					elif self.type == self.IS_4K:
-						return self.videoHeight >= 2100
+						return self.videoHeight >= 1500
 					elif self.type == self.IS_1080:
 						return self.videoHeight > 1000 and self.videoHeight <= 1080
 					elif self.type == self.IS_720:

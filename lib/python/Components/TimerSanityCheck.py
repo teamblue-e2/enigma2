@@ -11,6 +11,7 @@ from Components.config import config
 from Tools.CIHelper import cihelper
 from Components.config import config
 
+
 class TimerSanityCheck:
 	def __init__(self, timerlist, newtimer=None):
 		self.localtimediff = 25 * 3600 - mktime(gmtime(25 * 3600))
@@ -343,4 +344,3 @@ class TimerSanityCheck:
 
 		print("[TimerSanityCheck] conflict detected!")
 		return False
-

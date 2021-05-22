@@ -37,6 +37,7 @@ std_headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_3) App
  'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
  'Accept-Language': 'ru,en-us;q=0.7,en;q=0.3'}
 
+
 def initWeatherConfig():
 	config.plugins.MetrixWeather = ConfigSubsection()
 	#MetrixWeather
@@ -66,7 +67,9 @@ def initWeatherConfig():
 	config.plugins.MetrixWeather.save()
 	configfile.save()
 
+
 initWeatherConfig()
+
 
 class OMMetrixWeatherWidget(Renderer):
 
@@ -165,7 +168,7 @@ class OMMetrixWeatherWidget(Renderer):
 			condition = "S"
 		elif c == 3 or c == 4:
 			condition = "Z"
-		elif c == 5  or c == 6 or c == 7 or c == 18:
+		elif c == 5 or c == 6 or c == 7 or c == 18:
 			condition = "U"
 		elif c == 8 or c == 10 or c == 25:
 			condition = "G"

@@ -11,6 +11,7 @@ from Components.config import config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 import six
 
+
 class FileBrowser(Screen, HelpableScreen):
 
 	def __init__(self, session, scope, configRef):

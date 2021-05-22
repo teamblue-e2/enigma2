@@ -64,7 +64,7 @@ config.hdmicec.tv_wakeup_detection = ConfigSelection(
 	"tvreportphysicaladdress": _("TV physical address report"),
 	"sourcerequest": _("Source request"),
 	"streamrequest": _("Stream request"),
-	"requestvendor":  _("Request for vendor report"),
+	"requestvendor": _("Request for vendor report"),
 	"osdnamerequest": _("OSD name request"),
 	"activity": _("Any activity"),
 	},

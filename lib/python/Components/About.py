@@ -13,8 +13,10 @@ from builtins import round
 
 from boxbranding import getBoxType, getMachineBuild, getImageType, getImageVersion
 
+
 def getVersionString():
 	return getImageVersionString()
+
 
 def getImageVersionString():
 	try:
@@ -27,12 +29,14 @@ def getImageVersionString():
 		pass
 	return _("unavailable")
 
+
 def getFlashDateString():
 	try:
 		# return time.strftime(_("%Y-%m-%d %H:%M:%S"), time.localtime(os.stat("/etc/version").st_ctime))
 		return time.strftime(_("%Y-%m-%d %H:%M:%S"), time.localtime(os.path.getatime("/bin")))
 	except:
 		return _("unknown")
+
 
 def getEnigmaVersionString():
 	# import enigma
@@ -45,6 +49,7 @@ def getEnigmaVersionString():
 		enigma_version = enigma_version[:-12]
 	return enigma_version
 
+
 def getGStreamerVersionString(cpu):
 	try:
 		from glob import glob
@@ -53,11 +58,13 @@ def getGStreamerVersionString(cpu):
 	except:
 		return _("Not Required") if cpu.upper().startswith('HI') else _("Not Installed")
 
+
 def getKernelVersionString():
 	try:
 		return open("/proc/version", "r").read().split(' ', 4)[2].split('-', 2)[0]
 	except:
 		return _("unknown")
+
 
 def getChipSetString():
 	if getMachineBuild() in ('gb73625', ):
@@ -70,6 +77,7 @@ def getChipSetString():
 			return str(chipset.lower().replace('\n', '').replace('bcm', 'BCM').replace('brcm', 'BRCM').replace('sti', ''))
 		except IOError:
 			return "unavailable"
+
 
 def getCPUString():
 	if getMachineBuild() in ('xc7362', ):
@@ -96,6 +104,7 @@ def getCPUString():
 		except IOError:
 			return "unavailable"
 
+
 def getCpuCoresString():
 	try:
 		_file = open('/proc/cpuinfo', 'r')
@@ -114,8 +123,10 @@ def getCpuCoresString():
 	except IOError:
 		return "unavailable"
 
+
 def getHardwareTypeString():
 	return HardwareInfo().get_device_string()
+
 
 def getImageTypeString():
 	#try:
@@ -171,6 +182,7 @@ def getCPUInfoString():
 	except:
 		return _("undefined")
 
+
 def getCPUSpeedString():
 	if getMachineBuild() in ('gbmv200', ):
 		return "1,6 GHz"
@@ -193,6 +205,7 @@ def getCPUSpeedString():
 	except IOError:
 		return "unavailable"
 
+
 def _ifinfo(sock, addr, ifname):
 	iface = struct.pack('256s', ifname[:15])
 	info = fcntl.ioctl(sock.fileno(), addr, iface)
@@ -200,6 +213,7 @@ def _ifinfo(sock, addr, ifname):
 		return ''.join(['%02x:' % ord(char) for char in info[18:24]])[:-1].upper()
 	else:
 		return socket.inet_ntoa(info[20:24])
+
 
 def getIfConfig(ifname):
 	ifreq = {'ifname': ifname}
@@ -219,6 +233,7 @@ def getIfConfig(ifname):
 	sock.close()
 	return ifreq
 
+
 def getIfTransferredData(ifname):
 	f = open('/proc/net/dev', 'r')
 	for line in f:
@@ -228,17 +243,19 @@ def getIfTransferredData(ifname):
 			f.close()
 			return rx_bytes, tx_bytes
 
+
 def getDriverInstalledDate():
 	try:
 		from glob import glob
 		try:
 			driver = [x.split("-")[-2:-1][0][-8:] for x in open(glob("/var/lib/opkg/info/*-dvb-modules-*.control")[0], "r") if x.startswith("Version:")][0]
-			return  "%s-%s-%s" % (driver[:4], driver[4:6], driver[6:])
+			return "%s-%s-%s" % (driver[:4], driver[4:6], driver[6:])
 		except:
 			driver = [x.split("Version:") for x in open(glob("/var/lib/opkg/info/*-dvb-proxy-*.control")[0], "r") if x.startswith("Version:")][0]
 			return  "%s" % driver[1].replace("\n", "")
 	except:
 		return _("unknown")
+
 
 def getPythonVersionString():
 	try:
@@ -251,6 +268,7 @@ def getPythonVersionString():
 		return output.split(' ')[1]
 	except:
 		return _("unknown")
+
 
 def GetIPsFromNetworkInterfaces():
 	import socket
@@ -285,6 +303,7 @@ def GetIPsFromNetworkInterfaces():
 			ifaces.append((iface_name, iface_addr))
 	return ifaces
 
+
 def getBoxUptime():
 	try:
 		time = ''
@@ -299,9 +318,10 @@ def getBoxUptime():
 		m = (secs % 3600) / 60
 		time += ngettext("%d hour", "%d hours", h) % h + " "
 		time += ngettext("%d minute", "%d minutes", m) % m
-		return  "%s" % time
+		return "%s" % time
 	except:
 		return '-'
+
 
 # For modules that do "from About import about"
 about = modules[__name__]

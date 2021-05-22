@@ -90,6 +90,7 @@ class BludiscTitle(object):
 				break
 		return best_pts / 2
 
+
 class BludiscStream(object):
 	def __init__(self, parent, PID):
 		self.__parent = parent
@@ -193,6 +194,7 @@ class BludiscStream(object):
 
 	aspect = property(getAspectByte)
 
+
 class RemuxTask(Task):
 	def __init__(self, job, title, title_no):
 		Task.__init__(self, job, "Remultiplex Movie")
@@ -274,6 +276,7 @@ class RemuxTask(Task):
 		if not failed:
 			self.title.muxed_size = os.path.getsize(self.outputfile)
 
+
 class GenericPostcondition(Condition):
 	def check(self, task):
 		return task.returncode == 0
@@ -284,6 +287,7 @@ class GenericPostcondition(Condition):
 		else:
 			error_text = _("An unknown error occured!")
 		return '%s (%s)' % (task.name, error_text)
+
 
 class CreateStructureTask(Task):
 	def __init__(self, job):
@@ -301,6 +305,7 @@ class CreateStructureTask(Task):
 		for directory in ['BDMV', 'BDMV/AUXDATA', 'BDMV/BACKUP', 'BDMV/BACKUP/BDJO', 'BDMV/BACKUP/CLIPINF', 'BDMV/BACKUP/JAR', 'BDMV/BACKUP/PLAYLIST', 'BDMV/BDJO', 'BDMV/CLIPINF', 'BDMV/JAR', 'BDMV/META', 'BDMV/META/DL', 'BDMV/PLAYLIST', 'BDMV/STREAM']:
 			if not createDir(self.job.workspace + directory):
 				Task.processFinished(self, 1)
+
 
 class CreateIndexTask(Task):
 	def __init__(self, job):
@@ -364,6 +369,7 @@ class CreateIndexTask(Task):
 		f.write(buffer(indexbuffer))
 		f.close()
 
+
 class CreateMobjTask(Task):
 	def __init__(self, job):
 		Task.__init__(self, job, "Create BDMV Movie Objects File")
@@ -424,6 +430,7 @@ class CreateMobjTask(Task):
 		f = open(self.job.workspace + "BDMV/BACKUP/MovieObject.bdmv", 'w')
 		f.write(buffer(mob))
 		f.close()
+
 
 class CreateMplsTask(Task):
 	def __init__(self, job, title, mpls_num):
@@ -598,6 +605,7 @@ class CreateMplsTask(Task):
 		f = open(self.job.workspace + "BDMV/BACKUP/PLAYLIST/%05d.mpls" % self.mpls_num, 'w')
 		f.write(buffer(mplsbuffer))
 		f.close()
+
 
 class CreateClpiTask(Task):
 	def __init__(self, job, title, clip_num):
@@ -790,6 +798,7 @@ class CreateClpiTask(Task):
 		f.write(buffer(clpibuffer))
 		f.close()
 
+
 class CopyThumbTask(Task):
 	def __init__(self, job, sourcefile, title_no):
 		Task.__init__(self, job, "Copy thumbnail")
@@ -798,6 +807,7 @@ class CopyThumbTask(Task):
 		dest = self.job.workspace + 'BDMV/META/DL/thumb_%05d.png' % title_no
 		self.args += [source, dest]
 		self.weighting = 10
+
 
 class CreateMetaTask(Task):
 	def __init__(self, job, project):
@@ -846,6 +856,7 @@ class CreateMetaTask(Task):
 			Task.processFinished(self, 1)
 		Task.processFinished(self, 0)
 		self.project.finished_burning = True
+
 
 class BDMVJob(Job):
 	def __init__(self, project):

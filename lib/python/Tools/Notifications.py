@@ -19,21 +19,26 @@ def __AddNotification(fnc, screen, id, *args, **kwargs):
 	for x in notificationAdded:
 		x()
 
+
 def AddNotification(screen, *args, **kwargs):
 	AddNotificationWithCallback(None, screen, *args, **kwargs)
+
 
 def AddNotificationWithCallback(fnc, screen, *args, **kwargs):
 	__AddNotification(fnc, screen, None, *args, **kwargs)
 
+
 def AddNotificationParentalControl(fnc, screen, *args, **kwargs):
 	RemovePopup("Parental control")
 	__AddNotification(fnc, screen, "Parental control", *args, **kwargs)
+
 
 def AddNotificationWithID(id, screen, *args, **kwargs):
 	__AddNotification(None, screen, id, *args, **kwargs)
 
 # we don't support notifications with callback and ID as this
 # would require manually calling the callback on cancelled popups.
+
 
 def RemovePopup(id):
 	# remove similiar notifications
@@ -49,6 +54,7 @@ def RemovePopup(id):
 		if x[0] == id:
 			print("(found in current notifications)")
 			x[1].close()
+
 
 from Screens.MessageBox import MessageBox
 

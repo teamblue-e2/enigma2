@@ -382,5 +382,6 @@ class VideoHardware():
 		except IOError:
 			pass
 
+
 video_hw = VideoHardware()
 video_hw.setConfiguredMode()

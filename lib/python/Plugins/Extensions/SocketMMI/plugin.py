@@ -4,8 +4,10 @@ from .SocketMMI import SocketMMIMessageHandler
 
 socketHandler = None
 
+
 def main(session, **kwargs):
 	socketHandler.startMMI()
+
 
 def menu(menuid, **kwargs):
 	if menuid == "setup" and socketHandler and socketHandler.connected():
@@ -18,10 +20,12 @@ def sessionstart(reason, session):
 		socketHandler = SocketMMIMessageHandler()
 	socketHandler.setSession(session)
 
+
 def autostart(reason, **kwargs):
 	global socketHandler
 	if reason == 1:
 		socketHandler = None
+
 
 def Plugins(**kwargs):
 	return [PluginDescriptor(name=_("SocketMMI"), description=_("Python frontend for /tmp/mmi.socket"), where=PluginDescriptor.WHERE_MENU, needsRestart=True, fnc=menu),

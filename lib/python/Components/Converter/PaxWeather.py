@@ -18,6 +18,7 @@ from __future__ import absolute_import
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 
+
 class PaxWeather(Converter, object):
 	TempNow = 1
 	MeteoNow = 2

@@ -19,6 +19,7 @@ from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 import collections
 
+
 class WizardSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent)
@@ -30,6 +31,7 @@ class WizardSummary(Screen):
 
 	def setText(self, text):
 		self["text"].setText(text)
+
 
 class Wizard(Screen):
 	instance = None
@@ -408,7 +410,7 @@ class Wizard(Screen):
 
 	def up(self):
 		self.resetCounter()
-		if self.showConfig and self.wizard[self.currStep]["config"]["screen"] is not None  or self.wizard[self.currStep]["config"]["type"] == "dynamic":
+		if self.showConfig and self.wizard[self.currStep]["config"]["screen"] is not None or self.wizard[self.currStep]["config"]["type"] == "dynamic":
 			self["config"].instance.moveSelection(self["config"].instance.moveUp)
 			self.handleInputHelpers()
 		elif self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0:
@@ -422,7 +424,7 @@ class Wizard(Screen):
 
 	def down(self):
 		self.resetCounter()
-		if self.showConfig and self.wizard[self.currStep]["config"]["screen"] is not None  or self.wizard[self.currStep]["config"]["type"] == "dynamic":
+		if self.showConfig and self.wizard[self.currStep]["config"]["screen"] is not None or self.wizard[self.currStep]["config"]["type"] == "dynamic":
 			self["config"].instance.moveSelection(self["config"].instance.moveDown)
 			self.handleInputHelpers()
 		elif self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0:
@@ -489,7 +491,7 @@ class Wizard(Screen):
 			self.configInstance = None
 
 		self.condition = True
-		exec (self.wizard[self.currStep]["condition"])
+		exec(self.wizard[self.currStep]["condition"])
 		if not self.condition:
 			print("keys*******************:", list(self.wizard[self.currStep].keys()))
 			if "laststep" in self.wizard[self.currStep]: # exit wizard, if condition of laststep doesn't hold
@@ -689,5 +691,6 @@ class WizardManager:
 		if len(self.wizards) > 0:
 			self.wizards[-1][0].isLastWizard = True
 		return [(x[2], x[0]) for x in self.wizards if x[1] == 1]
+
 
 wizardManager = WizardManager()

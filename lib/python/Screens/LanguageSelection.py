@@ -23,6 +23,7 @@ def LanguageEntryComponent(_file, name, index):
 	res = (index, name, png)
 	return res
 
+
 class LanguageSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -90,6 +91,7 @@ class LanguageSelection(Screen):
 			_list = [LanguageEntryComponent(_file=x[1][2].lower(), name=x[1][0], index=x[0]) for x in languageList]
 		self.list = _list
 		self["languages"].list = _list
+
 
 class LanguageWizard(LanguageSelection, Rc):
 	def __init__(self, session):

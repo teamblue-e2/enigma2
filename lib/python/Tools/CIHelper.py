@@ -7,6 +7,7 @@ import NavigationInstance
 import os
 import six
 
+
 class CIHelper:
 
 	CI_ASSIGNMENT_LIST = None
@@ -20,6 +21,7 @@ class CIHelper:
 		NUM_CI = SystemInfo["CommonInterface"]
 		if NUM_CI and NUM_CI > 0:
 			self.CI_ASSIGNMENT_LIST = []
+
 			def getValue(definitions, default):
 				Len = len(definitions)
 				return Len > 0 and definitions[Len - 1].text or default
@@ -74,7 +76,7 @@ class CIHelper:
 					try:
 						eDVBCIInterfaces.getInstance().setDescrambleRules(item[0], item[1])
 						print("[CI_ASSIGNMENT %d] activate with following settings" % item[0])
-					except:
+					xcept:
 						print("[CI_ASSIGNMENT %d] ERROR setting DescrambleRules" % item[0])
 
 	def ciRecordEvent(self, service, event):
@@ -187,7 +189,9 @@ class CIHelper:
 				return 0
 		return 1
 
+
 cihelper = CIHelper()
+
 
 def isPlayable(service):
 	ret = cihelper.isPlayable(service)

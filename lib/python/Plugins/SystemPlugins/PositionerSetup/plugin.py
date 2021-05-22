@@ -33,6 +33,7 @@ from threading import Event as Event
 from . import log
 from . import rotor_calc
 
+
 class PositionerSetup(Screen):
 
 	@staticmethod
@@ -781,6 +782,7 @@ class PositionerSetup(Screen):
 		text = _("Select action")
 		description = _("Open setup tuner ") + "%s" % chr(0x41 + self.feid)
 		menu.append((description, self.openTunerSetup))
+
 		def openAction(choice):
 			if choice:
 				choice[1]()
@@ -893,7 +895,6 @@ class PositionerSetup(Screen):
 				fec_text = str(fec_inner)
 		self["fec_value"].setText(fec_text)
 
-
 	@staticmethod
 	def rotorCmd2Step(rotorCmd, stepsize):
 		return round(float(rotorCmd & 0xFFF) / 0x10 // stepsize) * (1 - ((rotorCmd & 0x1000) >> 11))
@@ -964,6 +965,7 @@ class PositionerSetup(Screen):
 		return True
 
 	randomGenerator = None
+
 	def randomBool(self):
 		if self.randomGenerator is None:
 			self.randomGenerator = SystemRandom()
@@ -1238,6 +1240,7 @@ class Diseqc(object):
 				sleep(0.050)
 				self.frontend.sendDiseqc(cmd) # send 2nd time
 
+
 class PositionerSetupLog(Screen):
 	skin = """
 		<screen position="center,center" size="560,400" title="Positioner setup log" >
@@ -1297,6 +1300,7 @@ class PositionerSetupLog(Screen):
 		log.logfile.reset()
 		log.logfile.truncate()
 		self.close(False)
+
 
 class TunerScreen(ConfigListScreen, Screen):
 	skin = """
@@ -1555,6 +1559,7 @@ class TunerScreen(ConfigListScreen, Screen):
 	def keyCancel(self):
 		self.close(None)
 
+
 class RotorNimSelection(Screen):
 	skin = """
 		<screen position="center,center" size="400,130" title="Select slot">
@@ -1582,6 +1587,7 @@ class RotorNimSelection(Screen):
 		selection = self["nimlist"].getCurrent()
 		self.session.open(PositionerSetup, selection[1])
 
+
 def PositionerMain(session, **kwargs):
 	nimList = nimmanager.getNimListOfType("DVB-S")
 	if len(nimList) == 0:
@@ -1599,11 +1605,13 @@ def PositionerMain(session, **kwargs):
 		else:
 			session.open(MessageBox, _("No tuner is configured for use with a diseqc positioner!"), MessageBox.TYPE_ERROR)
 
+
 def PositionerSetupStart(menuid, **kwargs):
 	if menuid == "scan" and nimmanager.somethingConnected():
 		return [(_("Positioner"), PositionerMain, "positioner_setup", None)]
 	else:
 		return []
+
 
 def Plugins(**kwargs):
 	if nimmanager.hasNimType("DVB-S"):

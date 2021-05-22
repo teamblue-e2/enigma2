@@ -11,6 +11,7 @@ from Components.SystemInfo import SystemInfo
 import os
 import time
 
+
 def InitUsageConfig():
 	try:
 		_file = open('/etc/image-version', 'r')
@@ -385,6 +386,7 @@ def InitUsageConfig():
 		if os.path.exists("/proc/stb/fp/fan_choices"):
 			choicelist = [x for x in choicelist if x[0] in open("/proc/stb/fp/fan_choices", "r").read().strip().split(" ")]
 		config.usage.fan = ConfigSelection(choicelist)
+
 		def fanChanged(configElement):
 			open(SystemInfo["Fan"], "w").write(configElement.value)
 		config.usage.fan.addNotifier(fanChanged)
@@ -499,6 +501,7 @@ def InitUsageConfig():
 	def EpgCacheLoadSchedChanged(configElement):
 		from  Components import EpgLoadSave
 		EpgLoadSave.EpgCacheLoadCheck()
+
 	def EpgCacheSaveSchedChanged(configElement):
 		from  Components import EpgLoadSave
 		EpgLoadSave.EpgCacheSaveCheck()
@@ -574,6 +577,7 @@ def InitUsageConfig():
 
 	def updateEraseSpeed(el):
 		eBackgroundFileEraser.getInstance().setEraseSpeed(int(el.value))
+
 	def updateEraseFlags(el):
 		eBackgroundFileEraser.getInstance().setEraseFlags(int(el.value))
 	config.misc.erase_speed = ConfigSelection(default="20", choices=[
@@ -793,8 +797,10 @@ def InitUsageConfig():
 	epg_language_choices = audio_language_choices[:1] + audio_language_choices[2:]
 	def setEpgLanguage(configElement):
 		eServiceEvent.setEPGLanguage(configElement.value)
+
 	def setEpgLanguageAlternative(configElement):
 		eServiceEvent.setEPGLanguageAlternative(configElement.value)
+
 	def epglanguage(configElement):
 		config.autolanguage.audio_epglanguage.setChoices([x for x in epg_language_choices if x[0] and x[0] != config.autolanguage.audio_epglanguage_alternative.value or not x[0] and not config.autolanguage.audio_epglanguage_alternative.value])
 		config.autolanguage.audio_epglanguage_alternative.setChoices([x for x in epg_language_choices if x[0] and x[0] != config.autolanguage.audio_epglanguage.value or not x[0]])
@@ -807,6 +813,7 @@ def InitUsageConfig():
 
 	def getselectedlanguages(range):
 		return [eval("config.autolanguage.audio_autoselect%x.value" % x) for x in range]
+
 	def autolanguage(configElement):
 		config.autolanguage.audio_autoselect1.setChoices([x for x in audio_language_choices if x[0] and x[0] not in getselectedlanguages((2, 3, 4)) or not x[0] and not config.autolanguage.audio_autoselect2.value])
 		config.autolanguage.audio_autoselect2.setChoices([x for x in audio_language_choices if x[0] and x[0] not in getselectedlanguages((1, 3, 4)) or not x[0] and not config.autolanguage.audio_autoselect3.value])
@@ -827,6 +834,7 @@ def InitUsageConfig():
 	subtitle_language_choices = audio_language_choices[:1] + audio_language_choices[2:]
 	def getselectedsublanguages(range):
 		return [eval("config.autolanguage.subtitle_autoselect%x.value" % x) for x in range]
+
 	def autolanguagesub(configElement):
 		config.autolanguage.subtitle_autoselect1.setChoices([x for x in subtitle_language_choices if x[0] and x[0] not in getselectedsublanguages((2, 3, 4)) or not x[0] and not config.autolanguage.subtitle_autoselect2.value])
 		config.autolanguage.subtitle_autoselect2.setChoices([x for x in subtitle_language_choices if x[0] and x[0] not in getselectedsublanguages((1, 3, 4)) or not x[0] and not config.autolanguage.subtitle_autoselect3.value])
@@ -864,6 +872,7 @@ def InitUsageConfig():
 	config.mediaplayer.useAlternateUserAgent = ConfigYesNo(default=False)
 	config.mediaplayer.alternateUserAgent = ConfigText(default="")
 
+
 def updateChoices(sel, choices):
 	if choices:
 		defval = None
@@ -877,6 +886,7 @@ def updateChoices(sel, choices):
 					break
 		sel.setChoices(list(map(str, choices)), defval)
 
+
 def preferredPath(path):
 	if config.usage.setup_level.index < 2 or path == "<default>" or not path:
 		return None  # config.usage.default_path.value, but delay lookup until usage
@@ -887,11 +897,31 @@ def preferredPath(path):
 	else:
 		return path
 
+
 def preferredTimerPath():
 	return preferredPath(config.usage.timer_path.value)
+
 
 def preferredInstantRecordPath():
 	return preferredPath(config.usage.instantrec_path.value)
 
+
 def defaultMoviePath():
 	return defaultRecordingLocation(config.usage.default_path.value)
+
+
+def showrotorpositionChoicesUpdate(update=False):
+	choiceslist = [("no", _("no")), ("yes", _("yes")), ("withtext", _("with text")), ("tunername", _("with tuner name"))]
+	count = 0
+	for x in nimmanager.nim_slots:
+		if nimmanager.getRotorSatListForNim(x.slot, only_first=True):
+			choiceslist.append((str(x.slot), x.getSlotName() + _(" (auto detection)")))
+			count += 1
+	if count > 1:
+		choiceslist.append(("all", _("all tuners") + _(" (auto detection)")))
+		choiceslist.remove(("tunername", _("with tuner name")))
+	if not update:
+		config.misc.showrotorposition = ConfigSelection(default="no", choices=choiceslist)
+	else:
+		config.misc.showrotorposition.setChoices(choiceslist, "no")
+	SystemInfo["isRotorTuner"] = count > 0

@@ -18,6 +18,7 @@ config.plugins.OSD3DSetup.znorm = ConfigInteger(default=0)
 PROC_GB_3DMODE = "/proc/stb/fb/primary/3d"
 PROC_GB_ZNORM = "/proc/stb/fb/primary/zoffset"
 
+
 class OSD3DSetupScreen(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -74,8 +75,10 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 		applySettings()
 		self.close()
 
+
 previous = None
 isDedicated3D = False
+
 
 def applySettings(mode=config.plugins.OSD3DSetup.mode.value, znorm=int(config.plugins.OSD3DSetup.znorm.value)):
 	global previous, isDedicated3D
@@ -94,6 +97,7 @@ def applySettings(mode=config.plugins.OSD3DSetup.mode.value, znorm=int(config.pl
 			previous = (mode, znorm)
 		except:
 			return
+
 
 class auto3D(Screen):
 	def __init__(self, session):
@@ -127,8 +131,10 @@ class auto3D(Screen):
 			else:
 				applySettings()
 
+
 def main(session, **kwargs):
 	session.open(OSD3DSetupScreen)
+
 
 def startSetup(menuid):
 	if menuid == "ui_menu":
@@ -136,9 +142,11 @@ def startSetup(menuid):
 	else:
 		return []
 
+
 def autostart(reason, **kwargs):
 	"session" in kwargs and kwargs["session"].open(auto3D)
 	print("[OSD3D] session autostart")
+
 
 def Plugins(**kwargs):
 	if SystemInfo["3DMode"]:

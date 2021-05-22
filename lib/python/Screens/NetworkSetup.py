@@ -299,6 +299,7 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.createConfig()
 			self.createSetup()
 
+
 class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -364,6 +365,7 @@ class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 
 	def cancel(self):
 		self.close()
+
 
 class IPv6Setup(Screen, ConfigListScreen, HelpableScreen):
 	def __init__(self, session):
@@ -494,6 +496,7 @@ class IPv6Setup(Screen, ConfigListScreen, HelpableScreen):
 
 	def cancel(self):
 		self.close()
+
 
 class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 	def __init__(self, session, networkinfo, essid=None):
@@ -1666,6 +1669,7 @@ class NetworkAdapterTest(Screen):
 			pass
 		else:
 			iStatus.stopWlanConsole()
+
 
 class NetworkPassword(ConfigListScreen, Screen):
 	def __init__(self, session):

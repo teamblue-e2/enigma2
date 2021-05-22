@@ -7,7 +7,8 @@ from os import path
 from enigma import eListboxPythonMultiContent, RT_VALIGN_CENTER, gFont, eServiceCenter
 
 from Tools.LoadPixmap import LoadPixmap
-import skin
+from skin import applySkinFactor, fonts, parameters
+
 
 STATE_PLAY = 0
 STATE_PAUSE = 1
@@ -16,10 +17,11 @@ STATE_REWIND = 3
 STATE_FORWARD = 4
 STATE_NONE = 5
 
+
 class PlayList(MenuList):
 	def __init__(self, enableWrapAround=False):
 		MenuList.__init__(self, [], enableWrapAround, eListboxPythonMultiContent)
-		font = skin.fonts.get("PlayList", ("Regular", 18, 23))
+		font = fonts.get("PlayList", applySkinFactor("Regular", 18, 23))
 		self.l.setFont(0, gFont(font[0], font[1]))
 		self.l.setItemHeight(font[2])
 		self.currPlaying = -1

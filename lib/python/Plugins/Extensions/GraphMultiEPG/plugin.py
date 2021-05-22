@@ -37,6 +37,7 @@ def zapToService(service, preview=False, zapback=False):
 		Servicelist.startServiceRef = None
 		Servicelist.startRoot = None
 
+
 def getBouquetServices(bouquet):
 	services = []
 	Servicelist = eServiceCenter.getInstance().list(bouquet)
@@ -50,6 +51,7 @@ def getBouquetServices(bouquet):
 			services.append(ServiceReference(service))
 	return services
 
+
 def selectBouquet(bouquet, epg):
 	services = getBouquetServices(bouquet)
 	if services:
@@ -57,6 +59,7 @@ def selectBouquet(bouquet, epg):
 		epg_bouquet = bouquet
 		epg.setServices(services)
 		epg.parent.setServices(services)
+
 
 def cleanup():
 	global Session
@@ -70,8 +73,10 @@ def cleanup():
 	global epg
 	epg = None
 
+
 def closed(ret=False):
 	cleanup()
+
 
 def onSelectBouquetClose(*args):
 	if args and len(args) == 2:
@@ -83,6 +88,7 @@ def onSelectBouquetClose(*args):
 		epg.setTitle(ServiceReference(epg_bouquet).getServiceName())
 		if serviceref:
 			epg["list"].moveToService(serviceref)
+
 
 def changeBouquetCB(direction, epgcall):
 	global epg
@@ -111,6 +117,7 @@ def main(session, servicelist=None, **kwargs):
 	ref = Servicelist.getCurrentSelection()
 	runGraphMultiEpg()
 
+
 def runGraphMultiEpg():
 	global bouquets
 	global epg_bouquet
@@ -122,6 +129,7 @@ def runGraphMultiEpg():
 		services = getBouquetServices(epg_bouquet)
 		Session.openWithCallback(reopen, GraphMultiEPG, services, zapToService, cb, ServiceReference(epg_bouquet).getServiceName(), selectBouquet, epg_bouquet)
 
+
 def reopen(answer):
 	if answer is None:
 		runGraphMultiEpg()
@@ -131,6 +139,7 @@ def reopen(answer):
 			global Servicelist
 			Servicelist.setCurrentSelection(ref)
 		closed(answer)
+
 
 def Plugins(**kwargs):
 	name = _("Graphical Multi EPG")

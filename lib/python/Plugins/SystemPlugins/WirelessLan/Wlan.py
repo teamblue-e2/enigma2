@@ -27,11 +27,13 @@ config.plugins.wlan.encryption = NoSave(ConfigSelection(liste, default="WPA/WPA2
 config.plugins.wlan.wepkeytype = NoSave(ConfigSelection(weplist, default="ASCII"))
 config.plugins.wlan.psk = NoSave(ConfigPassword(default="", fixed_size=False))
 
+
 def getWlanConfigName(iface):
 	driver = iNetwork.detectWlanModule(iface)
 	if driver in ('brcm-wl', ):
 		return '/etc/wl.conf.' + iface
 	return '/etc/wpa_supplicant.' + iface + '.conf'
+
 
 class Wlan:
 	def __init__(self, iface=None):
@@ -121,6 +123,7 @@ class Wlan:
 					system("wl down")
 				self.oldInterfaceState = None
 				self.iface = None
+
 
 iWlan = Wlan()
 
@@ -375,6 +378,7 @@ class wpaSupplicant:
 		#print "[Wlan.py] WS-CONFIG-->",wsconfig
 		return wsconfig
 
+
 class Status:
 	def __init__(self):
 		self.wlaniface = {}
@@ -483,5 +487,6 @@ class Status:
 			if attribute in self.wlaniface[self.iface]:
 				return self.wlaniface[self.iface][attribute]
 		return None
+
 
 iStatus = Status()
