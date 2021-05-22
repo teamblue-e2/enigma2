@@ -593,7 +593,7 @@ class Network:
 		from socket import inet_ntoa
 		mask = 1<<31
 		xnet = (1<<32)-1
-		cidr_range = range(0, 32)
+		cidr_range = list(range(0, 32))
 		cidr = int(nmask)
 		if cidr not in list(cidr_range):
 			print('cidr invalid: %d' % cidr)

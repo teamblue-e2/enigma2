@@ -4,6 +4,7 @@ from __future__ import absolute_import
 import struct, socket, fcntl, re, os, time
 from Tools.HardwareInfo import HardwareInfo
 from sys import modules, version_info
+from builtins import round
 
 from boxbranding import getBoxType, getMachineBuild, getImageType, getImageVersion
 

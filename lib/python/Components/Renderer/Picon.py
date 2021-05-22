@@ -9,6 +9,8 @@ from Components.Harddisk import harddiskmanager
 from ServiceReference import ServiceReference
 from Components.config import config
 import six, sys
+if sys.version_info.major == 3:
+    unicode = str
 
 searchPaths = []
 lastPiconPath = None
@@ -90,6 +92,7 @@ def getPiconName(serviceName):
 			if sys.version_info[0] >= 3:
 				name = six.ensure_str(unicodedata.normalize('NFKD', name).encode('ASCII', 'ignore'))
 			else:
+				# FIXME 
 				name = unicodedata.normalize('NFKD', unicode(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
 			#print "[Picon] unicodedata.normalize: ", name
 			name = re.sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())

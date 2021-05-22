@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from builtins import round
 from Tools.Profile import profile
 
 from Screens.Screen import Screen
@@ -1023,7 +1024,12 @@ class ChannelSelectionEdit:
 		serviceHandler = eServiceCenter.getInstance()
 		mutableBouquetList = serviceHandler.list(self.bouquet_root).startEdit()
 		if mutableBouquetList:
-			name = unicodedata.normalize('NFKD', str(bName, 'utf_8', errors='ignore')).encode('ASCII', 'ignore').translate(None, '<>:"/\\|?*() ')
+			from string import maketrans
+			intab = "None"
+			outtab = '<>:"/\\|?*() '
+			trantab = maketrans(intab, outtab)
+			# FIXME
+			name = unicodedata.normalize('NFKD', str(bName, 'utf_8', errors='ignore')).encode('ASCII', 'ignore').translate(trantab)
 			while os.path.isfile((self.mode == MODE_TV and '/etc/enigma2/userbouquet.%s.tv' or '/etc/enigma2/userbouquet.%s.radio') % name):
 				name = name.rsplit('_', 1)
 				name = ('_').join((name[0], len(name) == 2 and name[1].isdigit() and str(int(name[1]) + 1) or '1'))

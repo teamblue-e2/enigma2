@@ -1,6 +1,9 @@
 import sys
 
 from enigma import ePythonOutput
+
+if sys.version_info.major == 3:
+    unicode = str
 import six
 
 
@@ -10,12 +13,8 @@ class EnigmaLog:
 		self.line = ""
 
 	def write(self, data):
-		if sys.version_info[0] >= 3:
-			if isinstance(data, bytes):
-				data = six.ensure_str(data, errors="ignore")
-		else:
-			if isinstance(data, unicode):
-				data = six.ensure_str(data, errors="ignore")
+		if isinstance(data, unicode):
+			data = six.ensure_str(data, errors="ignore")
 		self.line += data
 		if "\n" in data:
 			ePythonOutput(self.line, self.level)

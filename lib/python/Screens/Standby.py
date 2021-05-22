@@ -364,7 +364,7 @@ class TryQuitMainloop(MessageBox):
 			MessageBox.close(self, True)
 
 	def quitMainloop(self):
-		if self.retval == QUIT_RESTART:
+		if self.retval is QUIT_RESTART:
 			config.misc.RestartUI.value = True
 		config.misc.RestartUI.save()
 		self.session.nav.stopService()

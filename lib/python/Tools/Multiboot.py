@@ -42,7 +42,7 @@ def getMultibootslots():
 			if slotnumber.isdigit() and slotnumber not in bootslots:
 				slot = {}
 				for line in open(_file).readlines():
-					# print "Multiboot getMultibootslots readlines = %s " %line
+					print("Multiboot getMultibootslots readlines = %s " %line)
 					if "root=" in line:
 						line = line.rstrip("\n")
 						device = getparam(line, "root")
@@ -136,7 +136,7 @@ class GetImagelist():
 
 	def __init__(self, callback):
 		if SystemInfo["canMultiBoot"]:
-			self.slots = sorted(SystemInfo["canMultiBoot"].keys())
+			self.slots = sorted(list(SystemInfo["canMultiBoot"].keys()))
 			self.callback = callback
 			self.imagelist = {}
 			if not path.isdir(Imagemount):
