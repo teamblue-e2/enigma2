@@ -25,7 +25,6 @@ from Components.Harddisk import harddiskmanager
 from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigText, ConfigLocations, ConfigYesNo, ConfigSelection
 from Components.ConfigList import ConfigListScreen
 from Components.Console import Console
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.SelectionList import SelectionList
 from Components.PluginComponent import plugins
 #from Components.About import about
@@ -79,6 +78,7 @@ config.plugins.softwaremanager.restoremode = ConfigSelection(
 				], "turbo")
 config.plugins.softwaremanager.epgcache = ConfigYesNo(default=False)
 
+
 def write_cache(cache_file, cache_data):
 	#Does a cPickle dump
 	if not os.path.isdir(os.path.dirname(cache_file)):
@@ -89,6 +89,7 @@ def write_cache(cache_file, cache_data):
 	fd = open(cache_file, 'wb')
 	dump(cache_data, fd, -1)
 	fd.close()
+
 
 def valid_cache(cache_file, cache_ttl):
 	#See if the cache file exists and is still living
@@ -101,6 +102,7 @@ def valid_cache(cache_file, cache_ttl):
 		return 0
 	else:
 		return 1
+
 
 def load_cache(cache_file):
 	#Does a cPickle load
@@ -614,13 +616,13 @@ class PluginManager(Screen, PackageInfoHandler):
 					{"default": (51,[
 							MultiContentEntryText(pos = (0, 1), size = (470, 24), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
 							MultiContentEntryText(pos = (0, 25), size = (470, 24), font=1, flags = RT_HALIGN_LEFT, text = 2), # index 2 is the description
-							MultiContentEntryPixmapAlphaTest(pos = (475, 0), size = (48, 48), png = 5), # index 5 is the status pixmap
-							MultiContentEntryPixmapAlphaTest(pos = (0, 49), size = (550, 2), png = 6), # index 6 is the div pixmap
+							MultiContentEntryPixmapAlphaBlend(pos = (475, 0), size = (48, 48), png = 5), # index 5 is the status pixmap
+							MultiContentEntryPixmapAlphaBlend(pos = (0, 49), size = (550, 2), png = 6), # index 6 is the div pixmap
 						]),
 					"category": (40,[
 							MultiContentEntryText(pos = (30, 0), size = (500, 22), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
 							MultiContentEntryText(pos = (30, 22), size = (500, 16), font=2, flags = RT_HALIGN_LEFT, text = 1), # index 1 is the description
-							MultiContentEntryPixmapAlphaTest(pos = (0, 38), size = (550, 2), png = 3), # index 3 is the div pixmap
+							MultiContentEntryPixmapAlphaBlend(pos = (0, 38), size = (550, 2), png = 3), # index 3 is the div pixmap
 						])
 					},
 					"fonts": [gFont("Regular", 22),gFont("Regular", 20),gFont("Regular", 16)],
@@ -720,7 +722,6 @@ class PluginManager(Screen, PackageInfoHandler):
 				self.statuslist.append((_("Error"), '', _("An error occurred while downloading the packetlist. Please try again."), '', '', statuspng, divpng, None, ''))
 			self["list"].style = "default"
 			self['list'].setList(self.statuslist)
-
 
 	def getUpdateInfos(self):
 		if (iSoftwareTools.lastDownloadDate is not None and iSoftwareTools.NetworkConnectionAvailable is False):
@@ -1060,8 +1061,8 @@ class PluginManagerInfo(Screen):
 					{"template": [
 							MultiContentEntryText(pos = (50, 0), size = (150, 26), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
 							MultiContentEntryText(pos = (50, 27), size = (540, 23), font=1, flags = RT_HALIGN_LEFT, text = 1), # index 1 is the state
-							MultiContentEntryPixmapAlphaTest(pos = (0, 1), size = (48, 48), png = 2), # index 2 is the status pixmap
-							MultiContentEntryPixmapAlphaTest(pos = (0, 48), size = (550, 2), png = 3), # index 3 is the div pixmap
+							MultiContentEntryPixmapAlphaBlend(pos = (0, 1), size = (48, 48), png = 2), # index 2 is the status pixmap
+							MultiContentEntryPixmapAlphaBlend(pos = (0, 48), size = (550, 2), png = 3), # index 3 is the div pixmap
 						],
 					"fonts": [gFont("Regular", 24),gFont("Regular", 22)],
 					"itemHeight": 50
@@ -1161,8 +1162,8 @@ class PluginManagerHelp(Screen):
 					{"template": [
 							MultiContentEntryText(pos = (50, 0), size = (540, 26), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
 							MultiContentEntryText(pos = (50, 27), size = (540, 23), font=1, flags = RT_HALIGN_LEFT, text = 1), # index 1 is the state
-							MultiContentEntryPixmapAlphaTest(pos = (0, 1), size = (48, 48), png = 2), # index 2 is the status pixmap
-							MultiContentEntryPixmapAlphaTest(pos = (0, 48), size = (550, 2), png = 3), # index 3 is the div pixmap
+							MultiContentEntryPixmapAlphaBlend(pos = (0, 1), size = (48, 48), png = 2), # index 2 is the status pixmap
+							MultiContentEntryPixmapAlphaBlend(pos = (0, 48), size = (550, 2), png = 3), # index 3 is the div pixmap
 						],
 					"fonts": [gFont("Regular", 24),gFont("Regular", 22)],
 					"itemHeight": 50
@@ -1260,8 +1261,8 @@ class PluginDetails(Screen, PackageInfoHandler):
 			"red": self.exit,
 			"green": self.go,
 			"up": self.pageUp,
-			"down":	self.pageDown,
-			"left":	self.pageUp,
+			"down": self.pageDown,
+			"left": self.pageUp,
 			"right": self.pageDown,
 		}, -1)
 
@@ -1405,6 +1406,7 @@ class PluginDetails(Screen, PackageInfoHandler):
 			self.session.openWithCallback(self.UpgradeReboot, MessageBox, _("Installation has completed.") + "\n" + _("Do you want to reboot your receiver?"), MessageBox.TYPE_YESNO)
 		else:
 			self.close(True)
+
 	def UpgradeReboot(self, result):
 		if result:
 			self.session.open(TryQuitMainloop, retvalue=3)
@@ -1423,6 +1425,7 @@ class PluginDetails(Screen, PackageInfoHandler):
 	def fetchFailed(self, string):
 		self.setThumbnail(noScreenshot=True)
 		print("[PluginDetails] fetch failed " + string.getErrorMessage())
+
 
 class UpdatePlugin(Screen):
 	skin = """
@@ -1505,7 +1508,6 @@ class UpdatePlugin(Screen):
 		else:
 			self.close()
 			return
-
 
 	def runUpgrade(self, result):
 		self.TraficResult = result
@@ -1634,6 +1636,7 @@ class UpdatePlugin(Screen):
 		if result is not None and result:
 			self.session.open(TryQuitMainloop, retvalue=2)
 		self.close()
+
 
 class OPKGMenu(Screen):
 	skin = """
@@ -1819,8 +1822,8 @@ class PacketManager(Screen, NumericalTextInput):
 					{"template": [
 							MultiContentEntryText(pos = (5, 1), size = (440, 28), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
 							MultiContentEntryText(pos = (5, 26), size = (440, 20), font=1, flags = RT_HALIGN_LEFT, text = 2), # index 2 is the description
-							MultiContentEntryPixmapAlphaTest(pos = (445, 2), size = (48, 48), png = 4), # index 4 is the status pixmap
-							MultiContentEntryPixmapAlphaTest(pos = (5, 50), size = (510, 2), png = 5), # index 4 is the div pixmap
+							MultiContentEntryPixmapAlphaBlend(pos = (445, 2), size = (48, 48), png = 4), # index 4 is the status pixmap
+							MultiContentEntryPixmapAlphaBlend(pos = (5, 50), size = (510, 2), png = 5), # index 4 is the div pixmap
 						],
 					"fonts": [gFont("Regular", 22),gFont("Regular", 14)],
 					"itemHeight": 52
@@ -2192,6 +2195,7 @@ def filescan_open(list, session, **kwargs):
 	filelist = [x.path for x in list]
 	session.open(OpkgInstaller, filelist) # list
 
+
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
 	return \
@@ -2266,7 +2270,6 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 
 		rcinput = eRCInput.getInstance()
 		rcinput.setKeyboardMode(rcinput.kmAscii)
-
 
 	def keyNumberGlobal(self, val):
 		key = self.getKey(val)
@@ -2364,8 +2367,10 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 		else:
 			self.setStatus('error')
 
+
 def UpgradeMain(session, **kwargs):
 	session.open(UpdatePluginMenu)
+
 
 def startSetup(menuid):
 	if menuid == "system" and config.plugins.softwaremanager.onSetupMenu.value:

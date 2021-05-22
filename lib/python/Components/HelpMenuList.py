@@ -4,10 +4,11 @@ from Components.GUIComponent import GUIComponent
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont
 from Tools.KeyBindings import queryKeyBinding, getKeyDescription
-import skin
+from skin import applySkinFactor, fonts, parameters
 #getKeyPositions
 
 # [ ( actionmap, context, [(action, help), (action, help), ...] ), (actionmap, ... ), ... ]
+
 
 class HelpMenuList(GUIComponent):
 	def __init__(self, helplist, callback):
@@ -64,13 +65,13 @@ class HelpMenuList(GUIComponent):
 
 		self.l.setList(l)
 		if self.extendedHelp is True:
-			font = skin.fonts.get("HelpMenuListExt0", ("Regular", 24, 50))
+			font = fonts.get("HelpMenuListExt0", applySkinFactor("Regular", 24, 50))
 			self.l.setFont(0, gFont(font[0], font[1]))
 			self.l.setItemHeight(font[2])
-			font = skin.fonts.get("HelpMenuListExt1", ("Regular", 18))
+			font = fonts.get("HelpMenuListExt1", applySkinFactor("Regular", 18))
 			self.l.setFont(1, gFont(font[0], font[1]))
 		else:
-			font = skin.fonts.get("HelpMenuList", ("Regular", 24, 38))
+			font = fonts.get("HelpMenuList", applySkinFactor("Regular", 24, 38))
 			self.l.setFont(0, gFont(font[0], font[1]))
 			self.l.setItemHeight(font[2])
 

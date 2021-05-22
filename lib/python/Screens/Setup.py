@@ -25,11 +25,13 @@ except:
 setupdom = xml.etree.cElementTree.parse(setupfile)
 setupfile.close()
 
+
 def getConfigMenuItem(configElement):
 	for item in setupdom.getroot().findall('./setup/item/.'):
 		if item.text == configElement:
 			return _(item.attrib["text"]), eval(configElement)
 	return "", None
+
 
 class SetupError(Exception):
 	def __init__(self, message):
@@ -37,6 +39,7 @@ class SetupError(Exception):
 
 	def __str__(self):
 		return self.msg
+
 
 class SetupSummary(Screen):
 
@@ -65,6 +68,7 @@ class SetupSummary(Screen):
 		self["SetupValue"].text = self.parent.getCurrentValue()
 		if hasattr(self.parent, "getCurrentDescription") and "description" in self.parent:
 			self.parent["description"].text = self.parent.getCurrentDescription()
+
 
 class Setup(ConfigListScreen, Screen):
 

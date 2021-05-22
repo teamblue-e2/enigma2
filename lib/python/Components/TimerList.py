@@ -14,6 +14,7 @@ import six
 
 SIGN = '°' if six.PY3 else str('\xc2\xb0')
 
+
 class TimerList(GUIComponent, object):
 #
 #  | <Name of the Timer>     <Service>  |
@@ -122,6 +123,7 @@ class TimerList(GUIComponent, object):
 	def applySkin(self, desktop, parent):
 		def itemHeight(value):
 			self.itemHeight = parseScale(value)
+
 		def setServiceNameFont(value):
 			self.serviceNameFont = parseFont(value, ((1, 1), (1, 1)))
 		def setEventNameFont(value):
@@ -130,12 +132,16 @@ class TimerList(GUIComponent, object):
 			self.font = parseFont(value, ((1, 1), (1, 1)))
 		def rowSplit(value):
 			self.rowSplit = parseScale(value)
+
 		def iconMargin(value):
 			self.iconMargin = parseScale(value)
+
 		def satPosLeft(value):
 			self.satPosLeft = parseScale(value)
+
 		def backupColor(value):
 			self.backupColor = int(value)
+
 		def backupColorSel(value):
 			self.backupColorSel = int(value)
 		for (attrib, value) in list(self.skinAttributes):

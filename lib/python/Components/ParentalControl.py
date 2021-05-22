@@ -18,6 +18,7 @@ LIST_BLACKLIST = "blacklist"
 
 FLAG_IS_PARENTAL_PROTECTED_HIDDEN = 256
 
+
 def InitParentalControl():
 	config.ParentalControl = ConfigSubsection()
 	config.ParentalControl.storeservicepin = ConfigSelection(default="never", choices=[("never", _("never")), ("5", _("%d minutes") % 5), ("15", _("%d minutes") % 15), ("30", _("%d minutes") % 30), ("60", _("%d minutes") % 60), ("120", _("%d minutes") % 120), ("standby", _("until standby/restart"))])
@@ -51,6 +52,7 @@ def InitParentalControl():
 
 	global parentalControl
 	parentalControl = ParentalControl()
+
 
 class ParentalControl:
 	def __init__(self):
@@ -261,7 +263,7 @@ class ParentalControl:
 
 	def setHideFlag(self, ref, flag):
 		if TYPE_BOUQUET in ref:
-			if "alternatives" in ref:
+			if "alternatives" in ref or TYPE_BOUQUETSERVICE in self.blacklist[ref]:
 				return
 			ref = ref.split(":")
 			ref[1], ref[9] = '519', '1'

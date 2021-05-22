@@ -16,6 +16,7 @@ from Components.TuneTest import Tuner
 from Tools.Transponder import getChannelNumber, channel2frequency
 from Tools.BoundFunction import boundFunction
 
+
 class Satfinder(ScanSetup, ServiceScan):
 	"""Inherits StaticText [key_red] and [key_green] properties from ScanSetup"""
 
@@ -324,7 +325,7 @@ class Satfinder(ScanSetup, ServiceScan):
 		for n in nimmanager.nim_slots:
 			if not any([n.isCompatible(x) for x in ["DVB-S", "DVB-T", "DVB-C", "ATSC"]]):
 				continue
-			if n.config_mode  in ("loopthrough", "satposdepends", "nothing"):
+			if n.config_mode in ("loopthrough", "satposdepends", "nothing"):
 				continue
 			if n.isCompatible("DVB-S") and n.config_mode == "advanced" and len(nimmanager.getSatListForNim(n.slot)) < 1:
 				continue
@@ -568,9 +569,11 @@ class Satfinder(ScanSetup, ServiceScan):
 			del self.raw_channel
 		self.close(True)
 
+
 def SatfinderCallback(close, answer):
 	if close and answer:
 		close(True)
+
 
 def SatfinderMain(session, close=None, **kwargs):
 	nims = nimmanager.nim_slots
@@ -589,11 +592,13 @@ def SatfinderMain(session, close=None, **kwargs):
 	else:
 		session.openWithCallback(boundFunction(SatfinderCallback, close), Satfinder)
 
+
 def SatfinderStart(menuid, **kwargs):
 	if menuid == "scan" and nimmanager.somethingConnected():
 		return [(_("Signal finder"), SatfinderMain, "satfinder", None)]
 	else:
 		return []
+
 
 def Plugins(**kwargs):
 	if any([nimmanager.hasNimType(x) for x in ["DVB-S", "DVB-T", "DVB-C", "ATSC"]]):

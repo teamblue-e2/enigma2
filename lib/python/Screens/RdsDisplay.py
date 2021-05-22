@@ -10,6 +10,7 @@ from Components.Sources.StaticText import StaticText
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from Tools.LoadPixmap import LoadPixmap
 
+
 class RdsInfoDisplaySummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent=parent)
@@ -22,6 +23,7 @@ class RdsInfoDisplaySummary(Screen):
 			self.show()
 		else:
 			self.hide()
+
 
 class RdsInfoDisplay(Screen):
 	ALLOW_SUSPEND = True
@@ -95,6 +97,7 @@ class RdsInfoDisplay(Screen):
 			self.rassInteractivePossible = False
 			for x in self.onRassInteractivePossibilityChanged:
 				x(False)
+
 
 class RassInteractive(Screen):
 	def __init__(self, session):

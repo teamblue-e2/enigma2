@@ -4,6 +4,7 @@ from __future__ import division
 import os
 import re
 
+
 class Disks():
 	ptypes = {
 	 "0": "Empty", "24":  "NEC DOS", "81":  "Minix / old Lin", "bf":  "Solaris",

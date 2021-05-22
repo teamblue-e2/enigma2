@@ -7,6 +7,7 @@ from Components.SystemInfo import SystemInfo
 import os
 from boxbranding import getBoxType, getMachineBuild
 
+
 class AVSwitch:
 	def setInput(self, input):
 		INPUT = {"ENCODER": 0, "SCART": 1, "AUX": 2}
@@ -66,6 +67,7 @@ class AVSwitch:
 		else:
 			value = 1 # auto
 		eAVSwitch.getInstance().setWSS(value)
+
 
 def InitAVSwitch():
 	config.av = ConfigSubsection()
@@ -310,4 +312,3 @@ def InitAVSwitch():
 			open(SystemInfo["HDMIAudioSource"], "w").write(configElement.value)
 		config.av.hdmi_audio_source = ConfigSelection(default="pcm", choices=[("pcm", _("PCM")), ("spdif", _("SPDIF"))])
 		config.av.hdmi_audio_source.addNotifier(setHDMIAudioSource)
-

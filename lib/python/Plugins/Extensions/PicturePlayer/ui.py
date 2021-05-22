@@ -13,10 +13,12 @@ from Components.Sources.List import List
 from Components.ConfigList import ConfigList, ConfigListScreen
 
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigText, ConfigYesNo, KEY_LEFT, KEY_RIGHT, getConfigListEntry
-import skin
+from skin import applySkinFactor, parameters
+
 
 def getScale():
 	return AVSwitch().getFramebufferScale()
+
 
 config.pic = ConfigSubsection()
 config.pic.framesize = ConfigInteger(default=30, limits=(5, 99))
@@ -142,6 +144,7 @@ class picshow(Screen):
 
 #------------------------------------------------------------------------------------------
 
+
 class Pic_Setup(Screen, ConfigListScreen):
 
 	def __init__(self, session):
@@ -205,6 +208,7 @@ class Pic_Setup(Screen, ConfigListScreen):
 
 #---------------------------------------------------------------------------
 
+
 class Pic_Exif(Screen):
 	skin = """
 		<screen name="Pic_Exif" position="center,center" size="560,360" title="Info" >
@@ -248,11 +252,13 @@ class Pic_Exif(Screen):
 
 #----------------------------------------------------------------------------------------
 
+
 T_INDEX = 0
 T_FRAME_POS = 1
 T_PAGE = 2
 T_NAME = 3
 T_FULL = 4
+
 
 class Pic_Thumb(Screen):
 	def __init__(self, session, piclist, lastindex, path):
@@ -321,7 +327,7 @@ class Pic_Thumb(Screen):
 		Page = 0
 		for x in piclist:
 			if x[0][1] == False:
-				self.filelist.append((index, framePos, Page, x[0][0],  path + x[0][0]))
+				self.filelist.append((index, framePos, Page, x[0][0], path + x[0][0]))
 				index += 1
 				framePos += 1
 				if framePos > (self.thumbsC - 1):
@@ -430,11 +436,13 @@ class Pic_Thumb(Screen):
 		self.index = val
 		if self.old_index != self.index:
 			self.paintFrame()
+
 	def Exit(self):
 		del self.picload
 		self.close(self.index + self.dirlistcount)
 
 #---------------------------------------------------------------------------
+
 
 class Pic_Full_View(Screen):
 	def __init__(self, session, filelist, index, path):

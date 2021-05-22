@@ -93,6 +93,7 @@ class VideoClippingCoordinates(Screen, ConfigListScreen):
 		setConfiguredPosition()
 		self.close()
 
+
 def setPosition(clip_left, clip_width, clip_top, clip_height):
 	if clip_left + clip_width > 720:
 		clip_width = 720 - clip_left
@@ -114,14 +115,18 @@ def setPosition(clip_left, clip_width, clip_top, clip_height):
 	except:
 		return
 
+
 def setConfiguredPosition():
 	setPosition(int(config.plugins.VideoClippingSetup.clip_left.value), int(config.plugins.VideoClippingSetup.clip_width.value), int(config.plugins.VideoClippingSetup.clip_top.value), int(config.plugins.VideoClippingSetup.clip_height.value))
+
 
 def main(session, **kwargs):
 	session.open(VideoClippingCoordinates)
 
+
 def startup(reason, **kwargs):
 	setConfiguredPosition()
+
 
 def Plugins(**kwargs):
 	from os import path

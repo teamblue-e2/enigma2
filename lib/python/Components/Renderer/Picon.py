@@ -18,6 +18,7 @@ if sys.version_info.major == 3:
 searchPaths = []
 lastPiconPath = None
 
+
 def initPiconPaths():
 	global searchPaths
 	searchPaths = []
@@ -25,6 +26,7 @@ def initPiconPaths():
 		onMountpointAdded(mp)
 	for part in harddiskmanager.getMountedPartitions():
 		onMountpointAdded(part.mountpoint)
+
 
 def onMountpointAdded(mountpoint):
 	global searchPaths
@@ -39,6 +41,7 @@ def onMountpointAdded(mountpoint):
 	except Exception as ex:
 		print("[Picon] Failed to investigate %s:" % mountpoint, ex)
 
+
 def onMountpointRemoved(mountpoint):
 	global searchPaths
 	path = os.path.join(mountpoint, 'picon') + '/'
@@ -48,11 +51,13 @@ def onMountpointRemoved(mountpoint):
 	except:
 		pass
 
+
 def onPartitionChange(why, part):
 	if why == 'add':
 		onMountpointAdded(part.mountpoint)
 	elif why == 'remove':
 		onMountpointRemoved(part.mountpoint)
+
 
 def findPicon(serviceName):
 	global lastPiconPath
@@ -70,6 +75,7 @@ def findPicon(serviceName):
 					lastPiconPath = path
 					return pngname
 	return ""
+
 
 def getPiconName(serviceName):
 	#remove the path and name fields, and replace ':' by '_'
@@ -110,6 +116,7 @@ def getPiconName(serviceName):
 		except:
 			pass
 	return pngname
+
 
 class Picon(Renderer):
 	def __init__(self):
@@ -168,6 +175,7 @@ class Picon(Renderer):
 					self.pngname = pngname
 			elif self.visible:
 				self.instance.hide()
+
 
 harddiskmanager.on_partition_list_change.append(onPartitionChange)
 initPiconPaths()

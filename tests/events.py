@@ -9,12 +9,15 @@ def event(self, name, args, kwargs):
 	print("*EVENT*", time.time(), self, name, args, kwargs)
 	recorded_events.append((time.time(), self, name, args, kwargs))
 
+
 def eventfnc(f):
 	name = f.__name__
+
 	def wrapper(self, *args, **kwargs):
 		event(self, name, args, kwargs)
 		return f(self, *args, **kwargs)
 	return wrapper
+
 
 def get_events():
 	global recorded_events
@@ -22,9 +25,11 @@ def get_events():
 	recorded_events = []
 	return r
 
+
 def start_log():
 	global base_time
 	base_time = time.time()
+
 
 def end_log(test_name):
 	global base_time

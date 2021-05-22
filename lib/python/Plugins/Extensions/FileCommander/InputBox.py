@@ -2,6 +2,7 @@ from __future__ import absolute_import
 from Screens.InputBox import InputBox as InputBoxBase
 from Components.ActionMap import ActionMap
 
+
 class InputBox(InputBoxBase):
 	def __init__(self, session, title="", windowTitle=None, useableChars=None, overwrite=False, firstpos_end=False, allmarked=True, **kwargs):
 		InputBoxBase.__init__(self, session, title=title, windowTitle=windowTitle, useableChars=useableChars, maxSize=overwrite, currPos=firstpos_end and len(kwargs["text"].decode("utf-8")) or 0, allMarked=allmarked, **kwargs)
@@ -17,6 +18,7 @@ class InputBox(InputBoxBase):
 			# Toggle insert/overwrite action for remote
 			"playpauseService": self.keyInsert,
 		}, -1)
+
 
 class InputBoxWide(InputBox):
 	skin = """

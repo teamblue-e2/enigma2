@@ -12,6 +12,7 @@ from Tools.HardwareInfo import HardwareInfo
 from time import time
 import six
 
+
 class SoftwareTools(PackageInfoHandler):
 	lastDownloadDate = None
 	NetworkConnectionAvailable = None
@@ -20,7 +21,6 @@ class SoftwareTools(PackageInfoHandler):
 	available_updatelist = []
 	available_packetlist = []
 	installed_packetlist = {}
-
 
 	def __init__(self):
 		aboutInfo = about.getImageVersionString()
@@ -274,5 +274,6 @@ class SoftwareTools(PackageInfoHandler):
 			if not hardware_found:
 				return False
 		return True
+
 
 iSoftwareTools = SoftwareTools()

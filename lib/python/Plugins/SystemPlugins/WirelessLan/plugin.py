@@ -193,7 +193,7 @@ class WlanScan(Screen):
 							MultiContentEntryText(pos = (175, 30), size = (175, 20), font=1, flags = RT_HALIGN_LEFT, text = 4), # index 0 is the encryption
 							MultiContentEntryText(pos = (350, 0), size = (200, 20), font=1, flags = RT_HALIGN_LEFT, text = 2), # index 0 is the signal
 							MultiContentEntryText(pos = (350, 30), size = (200, 20), font=1, flags = RT_HALIGN_LEFT, text = 3), # index 0 is the maxrate
-							MultiContentEntryPixmapAlphaTest(pos = (0, 52), size = (550, 2), png = 6), # index 6 is the div pixmap
+							MultiContentEntryPixmapAlphaBlend(pos = (0, 52), size = (550, 2), png = 6), # index 6 is the div pixmap
 						],
 					"fonts": [gFont("Regular", 28),gFont("Regular", 18)],
 					"itemHeight": 54
@@ -372,12 +372,14 @@ class WlanScan(Screen):
 def WlanStatusScreenMain(session, iface):
 	session.open(WlanStatus, iface)
 
+
 def callFunction(iface):
 	iWlan.setInterface(iface)
 	i = iWlan.getWirelessInterfaces()
 	if iface in i or iNetwork.isWirelessInterface(iface):
 		return WlanStatusScreenMain
 	return None
+
 
 def configStrings(iface):
 	driver = iNetwork.detectWlanModule(iface)
@@ -394,6 +396,7 @@ def configStrings(iface):
 		ret += "\tpre-up wpa_supplicant -i" + iface + " -c" + getWlanConfigName(iface) + " -B -dd -D" + driver + " || true\n"
 		ret += "\tpre-down wpa_cli -i" + iface + " terminate || true\n"
 	return ret
+
 
 def Plugins(**kwargs):
 	return PluginDescriptor(name=_("Wireless LAN"), description=_("Connect to a wireless network"), where=PluginDescriptor.WHERE_NETWORKSETUP, needsRestart=False, fnc={"ifaceSupported": callFunction, "configStrings": configStrings, "WlanPluginEntry": lambda x: _("Wireless network configuration...")})

@@ -10,6 +10,7 @@ from Components.config import config, getConfigListEntry
 from enigma import eEPGCache
 from time import time, localtime, mktime
 
+
 class SleepTimerEdit(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -183,6 +184,7 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 			return remaining + config.recording.margin_after.value * 60
 		return remaining
 
+
 def isNextWakeupTime(standby_timer=False):
 	wakeup_enabled = config.usage.wakeup_enabled.value
 	if wakeup_enabled != "no":
@@ -199,6 +201,7 @@ def isNextWakeupTime(standby_timer=False):
 			return wakeup_time
 		return wakeup_time + (86400 * wakeup_day)
 	return -1
+
 
 def WakeupDayTimeOfWeek():
 	now = localtime()

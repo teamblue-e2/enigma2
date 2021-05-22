@@ -6,15 +6,16 @@ from Components.ActionMap import NumberActionMap, ActionMap
 from enigma import eListbox, eListboxPythonConfigContent, eRCInput, eTimer
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
-import skin
+from skin import applySkinFactor, parameters
+
 
 class ConfigList(GUIComponent, object):
 	def __init__(self, list, session=None):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonConfigContent()
-		seperation = skin.parameters.get("ConfigListSeperator", 200)
+		seperation = parameters.get("ConfigListSeperator", applySkinFactor(200))
 		self.l.setSeperation(seperation)
-		height, space = skin.parameters.get("ConfigListSlider", (17, 0))
+		height, space = parameters.get("ConfigListSlider", applySkinFactor(17, 0))
 		self.l.setSlider(height, space)
 		self.timer = eTimer()
 		self.list = list
@@ -136,6 +137,7 @@ class ConfigList(GUIComponent, object):
 		for x in self.onSelectionChanged:
 			if x.__func__.__name__ == "selectionChanged":
 				x()
+
 
 class ConfigListScreen:
 	def __init__(self, list, session=None, on_change=None):

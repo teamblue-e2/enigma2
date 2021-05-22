@@ -256,7 +256,7 @@ class ImageBackup(Screen):
 					os.system("mount --bind / %s" % (self.backuproot))
 
 				if "jffs2" in self.ROOTFSTYPE.split():
-					cmd1 = "%s --root=%s --faketime --output=%s/root.jffs2 %s" % (self.MKFS_JFFS2,  self.backuproot, self.WORKDIR, self.MKUBIFS_ARGS)
+					cmd1 = "%s --root=%s --faketime --output=%s/root.jffs2 %s" % (self.MKFS_JFFS2, self.backuproot, self.WORKDIR, self.MKUBIFS_ARGS)
 					cmd2 = None
 					cmd3 = None
 				elif "ubi" in self.ROOTFSTYPE.split():
@@ -271,7 +271,7 @@ class ImageBackup(Screen):
 					f.close()
 					ff = open("%s/root.ubi" % self.WORKDIR, "w")
 					ff.close()
-					cmd1 = "%s -r %s -o %s/root.ubi %s" % (self.MKFS_UBI,  self.backuproot, self.WORKDIR, self.MKUBIFS_ARGS)
+					cmd1 = "%s -r %s -o %s/root.ubi %s" % (self.MKFS_UBI, self.backuproot, self.WORKDIR, self.MKUBIFS_ARGS)
 					cmd2 = "%s -o %s/root.ubifs %s %s/ubinize.cfg" % (self.UBINIZE, self.WORKDIR, self.UBINIZE_ARGS, self.WORKDIR)
 					cmd3 = "mv %s/root.ubifs %s/root.%s" % (self.WORKDIR, self.WORKDIR, self.ROOTFSTYPE)
 				else:

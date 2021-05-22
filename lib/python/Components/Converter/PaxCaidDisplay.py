@@ -100,6 +100,7 @@ def cardnames(caid, prov):
 				cn = 'Card'
 		return cn
 
+
 class PaxCaidDisplay(Poll, Converter, object):
 	def __init__(self, type):
 		Poll.__init__(self)
@@ -329,7 +330,6 @@ class PaxCaidDisplay(Poll, Converter, object):
 		return textvalue
 
 	text = property(getText)
-
 
 	def ecmfile(self):
 		ecm = None

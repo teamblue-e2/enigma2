@@ -8,7 +8,7 @@ from Components.ActionMap import HelpableActionMap
 from Components.GUIComponent import GUIComponent
 from Components.EpgList import Rect
 from Components.Sources.Event import Event
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest, MultiContentEntryPixmapAlphaBlend
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend
 from Components.TimerList import TimerList
 from Components.Renderer.Picon import getPiconName
 from Components.Sources.ServiceEvent import ServiceEvent
@@ -77,6 +77,7 @@ config.misc.graph_mepg.show_record_clocks = ConfigYesNo(default=True)
 config.misc.graph_mepg.zap_blind_bouquets = ConfigYesNo(default=False)
 
 listscreen = config.misc.graph_mepg.default_mode.value
+
 
 class EPGList(GUIComponent):
 	def __init__(self, selChangedCB=None, timer=None, time_epoch=120, overjump_empty=True, epg_bouquet=None):
@@ -167,9 +168,9 @@ class EPGList(GUIComponent):
 		self.backColorNow = 0x505080
 		self.foreColorRec = 0xffffff
 		self.backColorRec = 0x805050
-		self.serviceFont = gFont("Regular", 20)
+		self.serviceFont = gFont("Regular", applySkinFactor(20))
 		self.entryFontName = "Regular"
-		self.entryFontSize = 18
+		self.entryFontSize = applySkinFactor(18)
 
 		self.listHeight = None
 		self.listWidth = None
@@ -181,7 +182,7 @@ class EPGList(GUIComponent):
 		self.eventBorderVerWidth = 1 # for png backgrounds only
 		self.eventBorderHorWidth = 1 # for png backgrounds only
 		self.eventNamePadding = 0
-		self.recIconSize = 21
+		self.recIconSize = applySkinFactor(21)
 		self.iconXPadding = 1
 		self.iconYPadding = 1
 
@@ -190,60 +191,86 @@ class EPGList(GUIComponent):
 			font = parseFont(value, ((1, 1), (1, 1)))
 			self.entryFontName = font.family
 			self.entryFontSize = font.pointSize
+
 		def EntryForegroundColor(value):
 			self.foreColor = parseColor(value).argb()
+
 		def EntryForegroundColorSelected(value):
 			self.foreColorSelected = parseColor(value).argb()
+
 		def EntryForegroundColorNow(value):
 			self.foreColorNow = parseColor(value).argb()
+
 		def EntryForegroundColorSelectedRec(value):
 			self.foreColorSelectedRec = parseColor(value).argb()
+
 		def EntryBackgroundColor(value):
 			self.backColor = parseColor(value).argb()
+
 		def EntryBackgroundColorSelected(value):
 			self.backColorSelected = parseColor(value).argb()
+
 		def EntryBackgroundColorNow(value):
 			self.backColorNow = parseColor(value).argb()
+
 		def EntryBorderColor(value):
 			self.borderColor = parseColor(value).argb()
+
 		def EventBorderWidth(value): # for solid backgrounds only (we are limited to the same horizontal and vertical border width)
-			self.eventBorderWidth = int(value)
+			self.eventBorderWidth = parseScale(value)
+
 		def EventBorderHorWidth(value): # for png backgrounds only
-			self.eventBorderHorWidth = int(value)
+			self.eventBorderHorWidth = parseScale(value)
+
 		def EventBorderVerWidth(value): # for png backgrounds only
-			self.eventBorderVerWidth = int(value)
+			self.eventBorderVerWidth = parseScale(value)
+
 		def EventNamePadding(value):
-			self.eventNamePadding = int(value)
+			self.eventNamePadding = parseScale(value)
+
 		def ServiceFont(value):
 			self.serviceFont = parseFont(value, ((1, 1), (1, 1)))
 		def ServiceForegroundColor(value):
 			self.foreColorService = parseColor(value).argb()
+
 		def ServiceForegroundColorSelected(value):
 			self.foreColorServiceSelected = parseColor(value).argb()
+
 		def ServiceForegroundColorRecording(value):
 			self.foreColorRec = parseColor(value).argb()
+
 		def ServiceBackgroundColor(value):
 			self.backColorService = parseColor(value).argb()
+
 		def ServiceBackgroundColorSelected(value):
 			self.backColorServiceSelected = parseColor(value).argb()
+
 		def ServiceBackgroundColorRecording(value):
 			self.backColorRec = parseColor(value).argb()
+
 		def ServiceBorderColor(value):
 			self.borderColorService = parseColor(value).argb()
+
 		def ServiceBorderWidth(value): # for solid backgrounds only (we are limited to the same horizontal and vertical border width)
-			self.serviceBorderWidth = int(value)
+			self.serviceBorderWidth = parseScale(value)
+
 		def ServiceBorderHorWidth(value): # for png backgrounds only
-			self.serviceBorderHorWidth = int(value)
+			self.serviceBorderHorWidth = parseScale(value)
+
 		def ServiceBorderVerWidth(value): # for png backgrounds only
-			self.serviceBorderVerWidth = int(value)
+			self.serviceBorderVerWidth = parseScale(value)
+
 		def ServiceNamePadding(value):
-			self.serviceNamePadding = int(value)
+			self.serviceNamePadding = parseScale(value)
+
 		def RecIconSize(value):
-			self.recIconSize = int(value)
+			self.recIconSize = parseScale(value)
+
 		def IconXPadding(value):
-			self.iconXPadding = int(value)
+			self.iconXPadding = parseScale(value)
+
 		def IconYPadding(value):
-			self.iconYPadding = int(value)
+			self.iconYPadding = parseScale(value)
 		for (attrib, value) in list(self.skinAttributes):
 			try:
 				locals().get(attrib)(value)
@@ -387,11 +414,11 @@ class EPGList(GUIComponent):
 			self.instance.resize(eSize(self.listWidth, itemHeight * config.misc.graph_mepg.items_per_page.getValue()))
 		self.l.setItemHeight(itemHeight)
 
-		self.nowEvPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/CurrentEvent.png'))
-		self.othEvPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/OtherEvent.png'))
-		self.selEvPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedEvent.png'))
-		self.recEvPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/RecordingEvent.png'))
-		self.curSerPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/CurrentService.png'))
+		self.nowEvPix = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/CurrentEvent.png'))
+		self.othEvPix = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/OtherEvent.png'))
+		self.selEvPix = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedEvent.png'))
+		self.recEvPix = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/RecordingEvent.png'))
+		self.curSerPix = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/CurrentService.png'))
 
 		# if no background png's are present at all, use the solid background borders for further calculations
 		if (self.nowEvPix, self.othEvPix, self.selEvPix, self.recEvPix, self.curSerPix) == (None, None, None, None, None):
@@ -496,7 +523,7 @@ class EPGList(GUIComponent):
 			piconWidth = self.picon_size.width()
 			piconHeight = self.picon_size.height()
 			if picon != "":
-				displayPicon = loadPNG(picon)
+				displayPicon = LoadPixmap(picon)
 			if displayPicon is not None:
 				res.append(MultiContentEntryPixmapAlphaTest(
 					pos=(r1.x + self.serviceBorderVerWidth + self.number_width, r1.y + self.serviceBorderHorWidth),
@@ -734,6 +761,7 @@ class EPGList(GUIComponent):
 	def resetOffset(self):
 		self.offs = 0
 
+
 class TimelineText(GUIComponent):
 	def __init__(self):
 		GUIComponent.__init__(self)
@@ -751,8 +779,10 @@ class TimelineText(GUIComponent):
 	def applySkin(self, desktop, screen):
 		def foregroundColor(value):
 			self.foreColor = parseColor(value).argb()
+
 		def backgroundColor(value):
 			self.backColor = parseColor(value).argb()
+
 		def font(value):
 			self.font = parseFont(value,  ((1, 1), (1, 1)))
 		for (attrib, value) in list(self.skinAttributes):
@@ -839,6 +869,7 @@ class TimelineText(GUIComponent):
 		else:
 			timeline_now.visible = False
 
+
 class GraphMultiEPG(Screen, HelpableScreen):
 	EMPTY = 0
 	ADD_TIMER = 1
@@ -894,46 +925,46 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		HelpableScreen.__init__(self)
 		self["okactions"] = HelpableActionMap(self, "OkCancelActions",
 			{
-				"cancel": (self.closeScreen,   _("Exit EPG")),
-				"ok":	  (self.eventSelected, _("Zap to selected channel, or show detailed event info (depends on configuration)"))
+				"cancel": (self.closeScreen, _("Exit EPG")),
+				"ok": (self.eventSelected, _("Zap to selected channel, or show detailed event info (depends on configuration)"))
 			}, -1)
 		self["okactions"].csel = self
 		self["gmepgactions"] = HelpableActionMap(self, "GMEPGSelectActions",
 			{
-				"timerAdd":    (self.timerAdd,       _("Add/remove change timer for current event")),
-				"info":        (self.infoKeyPressed, _("Show detailed event info")),
-				"red":         (self.zapTo,          _("Zap to selected channel")),
-				"blue":        (self.togglePrimeNow, _("Goto primetime / now")),
-				"blue_long":   (self.enterDateTime,  _("Goto specific date/time")),
-				"yellow":      (self.swapMode,       _("Switch between normal mode and list mode")),
-				"menu":	       (self.furtherOptions, _("Further Options")),
+				"timerAdd": (self.timerAdd, _("Add/remove change timer for current event")),
+				"info": (self.infoKeyPressed, _("Show detailed event info")),
+				"red": (self.zapTo, _("Zap to selected channel")),
+				"blue": (self.togglePrimeNow, _("Goto primetime / now")),
+				"blue_long": (self.enterDateTime, _("Goto specific date/time")),
+				"yellow": (self.swapMode, _("Switch between normal mode and list mode")),
+				"menu": (self.furtherOptions, _("Further Options")),
 				"nextBouquet": (self.nextBouquet, self.getKeyNextBouquetHelptext),
 				"prevBouquet": (self.prevBouquet, self.getKeyPrevBouquetHelptext),
-				"nextService": (self.nextPressed,    _("Goto next page of events")),
-				"prevService": (self.prevPressed,    _("Goto previous page of events")),
-				"preview":     (self.preview,        _("Preview selected channel")),
-				"window":      (self.showhideWindow, _("Show/hide window")),
-				"nextDay":     (self.nextDay,        _("Goto next day of events")),
-				"prevDay":     (self.prevDay,        _("Goto previous day of events")),
-				"moveUp":      (self.moveUp,         _("Goto up service")),
-				"moveDown":    (self.moveDown,      _("Goto down service"))
+				"nextService": (self.nextPressed, _("Goto next page of events")),
+				"prevService": (self.prevPressed, _("Goto previous page of events")),
+				"preview": (self.preview, _("Preview selected channel")),
+				"window": (self.showhideWindow, _("Show/hide window")),
+				"nextDay": (self.nextDay, _("Goto next day of events")),
+				"prevDay": (self.prevDay, _("Goto previous day of events")),
+				"moveUp": (self.moveUp, _("Goto up service")),
+				"moveDown": (self.moveDown, _("Goto down service"))
 			}, -1)
 		self["gmepgactions"].csel = self
 
 		self["inputactions"] = HelpableActionMap(self, "InputActions",
 			{
-				"left":  (self.leftPressed,  _("Go to previous event")),
+				"left": (self.leftPressed, _("Go to previous event")),
 				"right": (self.rightPressed, _("Go to next event")),
-				"1":     (self.key1,         _("Set time window to 1 hour")),
-				"2":     (self.key2,         _("Set time window to 2 hours")),
-				"3":     (self.key3,         _("Set time window to 3 hours")),
-				"4":     (self.key4,         _("Set time window to 4 hours")),
-				"5":     (self.key5,         _("Set time window to 5 hours")),
-				"6":     (self.key6,         _("Set time window to 6 hours")),
-				"7":     (self.prevPage,     _("Go to previous page of service")),
-				"9":     (self.nextPage,     _("Go to next page of service")),
-				"8":     (self.toTop,        _("Go to first service")),
-				"0":     (self.toEnd,        _("Go to last service"))
+				"1": (self.key1, _("Set time window to 1 hour")),
+				"2": (self.key2, _("Set time window to 2 hours")),
+				"3": (self.key3, _("Set time window to 3 hours")),
+				"4": (self.key4, _("Set time window to 4 hours")),
+				"5": (self.key5, _("Set time window to 5 hours")),
+				"6": (self.key6, _("Set time window to 6 hours")),
+				"7": (self.prevPage, _("Go to previous page of service")),
+				"9": (self.nextPage, _("Go to next page of service")),
+				"8": (self.toTop, _("Go to first service")),
+				"0": (self.toEnd, _("Go to last service"))
 			}, -1)
 		self["inputactions"].csel = self
 
@@ -1150,6 +1181,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			keys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow"][:len(menu)] + (len(menu) - 13) * [""] + keys
 		menu.append((_("Timer overview"), self.openTimerOverview))
 		menu.append((_("Setup menu"), self.showSetup, "menu"))
+
 		def boxAction(choice):
 			if choice:
 				choice[1]()
@@ -1344,6 +1376,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				buttons.append("yellow")
 			menu.append((_("Timer overview"), "timereditlist"))
 			buttons.append("blue")
+
 			def timerAction(choice):
 				if choice is not None:
 					if choice[1] == "delete":
@@ -1372,6 +1405,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				def removeEditTimer():
 					entry.service_ref, entry.begin, entry.end, entry.external = entry.service_ref_prev, entry.begin_prev, entry.end_prev, entry.external_prev
 					self.removeTimer(entry)
+
 				def moveEditTimerError():
 					entry.external = entry.external_prev
 					self.onSelectionChanged()

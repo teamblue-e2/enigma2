@@ -6,6 +6,7 @@ from Components.NimManager import nimmanager
 from skin import parameters
 from Tools.Hex2strColor import Hex2strColor
 
+
 class FrontendInfo(Converter):
 	BER = 0
 	SNR = 1
@@ -73,7 +74,7 @@ class FrontendInfo(Converter):
 						color = Hex2strColor(colors[0])
 					elif self.source.tuner_mask & 1 << n.slot:
 						color = Hex2strColor(colors[1])
-					elif len(nimmanager.nim_slots) <= self.space_for_tuners or n.isFBCRoot() or self.show_all_non_link_tuners and not(n.isFBCLink() or n.internally_connectable):
+					elif len(nimmanager.nim_slots) <= self.space_for_tuners or n.isFBCRoot() or self.show_all_non_link_tuners and not (n.isFBCLink() or n.config_mode == "loopthrough"):
 						color = Hex2strColor(colors[2])
 					else:
 						continue

@@ -83,6 +83,7 @@ def getType(_file):
 			return "video/x-vcd"
 	return _type
 
+
 class Scanner:
 	def __init__(self, name, mimetypes=[], paths_to_scan=[], description="", openfnc=None):
 		self.mimetypes = mimetypes
@@ -105,6 +106,7 @@ class Scanner:
 		if self.openfnc is not None:
 			self.openfnc(list, *args, **kwargs)
 
+
 class ScanPath:
 	def __init__(self, path, with_subdirs=False):
 		self.path = path
@@ -125,6 +127,7 @@ class ScanPath:
 		else:
 			return self.with_subdirs.__cmp__(other.with_subdirs)
 
+
 class ScanFile:
 	def __init__(self, path, mimetype=None, size=None, autodetect=True):
 		self.path = path
@@ -137,6 +140,7 @@ class ScanFile:
 	def __repr__(self):
 		return "<ScanFile " + self.path + " (" + str(self.mimetype) + ", " + str(self.size) + " MB)>"
 
+
 def execute(option):
 	print("execute", option)
 	if option is None:
@@ -144,6 +148,7 @@ def execute(option):
 
 	(_, scanner, files, session) = option
 	scanner.open(files, session)
+
 
 def scanDevice(mountpoint):
 	scanner = []
@@ -197,6 +202,7 @@ def scanDevice(mountpoint):
 
 	# res is a dict with scanner -> [ScanFiles]
 	return res
+
 
 def openList(session, files):
 	if not isinstance(files, list):

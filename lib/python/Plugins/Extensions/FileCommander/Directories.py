@@ -227,8 +227,10 @@ def resolveFilename(scope, base="", path_prefix=None):
 	return path + base
 	# this is only the BASE - an extension must be added later.
 
+
 pathExists = os.path.exists
 isMount = os.path.ismount
+
 
 def defaultRecordingLocation(candidate=None):
 	if candidate and os.path.exists(candidate):
@@ -278,6 +280,7 @@ def createDir(path, makeParents=False):
 	else:
 		return 1
 
+
 def removeDir(path):
 	try:
 		os.rmdir(path)
@@ -285,6 +288,7 @@ def removeDir(path):
 		return 0
 	else:
 		return 1
+
 
 def fileExists(f, mode='r'):
 	if mode == 'r':
@@ -295,8 +299,10 @@ def fileExists(f, mode='r'):
 		acc_mode = os.F_OK
 	return os.access(f, acc_mode)
 
+
 def fileCheck(f, mode='r'):
 	return fileExists(f, mode) and f
+
 
 def fileHas(f, content, mode='r'):
 	return fileExists(f, mode) and content in open(f, mode).read()
@@ -337,6 +343,8 @@ def getRecordingFilename(basename, dirname=None):
 			return path
 
 # this is clearly a hack:
+
+
 def InitFallbackFiles():
 	resolveFilename(SCOPE_CONFIG, "userbouquet.favourites.tv")
 	resolveFilename(SCOPE_CONFIG, "bouquets.tv")
@@ -345,6 +353,8 @@ def InitFallbackFiles():
 
 # returns a list of tuples containing pathname and filename matching the given pattern
 # example-pattern: match all txt-files: ".*\.txt$"
+
+
 def crawlDirectory(directory, pattern):
 	_list = []
 	if directory:
@@ -354,6 +364,7 @@ def crawlDirectory(directory, pattern):
 				if expression.match(_file) is not None:
 					_list.append((root, _file))
 	return _list
+
 
 def copyfile(src, dst):
 	try:
@@ -376,6 +387,7 @@ def copyfile(src, dst):
 		print("copy", src, "to", dst, "failed!")
 		return -1
 	return 0
+
 
 def copytree(src, dst, symlinks=False):
 	names = os.listdir(src)
@@ -410,6 +422,8 @@ def copytree(src, dst, symlinks=False):
 
 # Renames files or if source and destination are on different devices moves them in background
 # input list of (source, destination)
+
+
 def moveFiles(fileList):
 	movedList = []
 	try:
@@ -434,6 +448,7 @@ def moveFiles(fileList):
 				print("[Directories] Failed to undo move:", item)
 				raise
 
+
 def getSize(path, pattern=".*"):
 	path_size = 0
 	if os.path.isdir(path):
@@ -444,6 +459,7 @@ def getSize(path, pattern=".*"):
 	elif os.path.isfile(path):
 		path_size = os.path.getsize(path)
 	return path_size
+
 
 def shellquote(s):
     return "'" + s.replace("'", "'\\''") + "'"

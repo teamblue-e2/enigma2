@@ -37,7 +37,8 @@ import os
 class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		hddsplit = skin.parameters.get("AboutHddSplit", 0)
+		self.setTitle(_("About"))
+		hddsplit = parameters.get("AboutHddSplit", 0)
 
 		#AboutHddSplit = 0
 		#try:
@@ -276,6 +277,7 @@ class About(Screen):
 	def showTroubleshoot(self):
 		self.session.open(Troubleshoot)
 
+
 class TranslationInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -429,6 +431,7 @@ class CommitInfo(Screen):
 		self.project = self.project != len(self.projects) - 1 and self.project + 1 or 0
 		self.updateCommitLogs()
 
+
 class ContactInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -440,6 +443,7 @@ class ContactInfo(Screen):
 		minfo = "teamBlue\n"
 		minfo += "http://teamblue.tech\n"
 		return minfo
+
 
 class MemoryInfo(Screen):
 	def __init__(self, session):
@@ -508,21 +512,23 @@ class MemoryInfo(Screen):
 		open("/proc/sys/vm/drop_caches", "w").write("3")
 		self.getMemoryInfo()
 
+
 class MemoryInfoSkinParams(GUIComponent):
 	def __init__(self):
 		GUIComponent.__init__(self)
-		self.rows_in_column = 25
+		self.rows_in_column = applySkinFactor(25)
 
 	def applySkin(self, desktop, screen):
 		if self.skinAttributes is not None:
 			attribs = []
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "rowsincolumn":
-					self.rows_in_column = int(value)
+					self.rows_in_column = parseScale(value)
 			self.skinAttributes = attribs
 		return GUIComponent.applySkin(self, desktop, screen)
 
 	GUI_WIDGET = eLabel
+
 
 class SystemNetworkInfo(Screen):
 	def __init__(self, session):
@@ -810,6 +816,7 @@ class SystemNetworkInfo(Screen):
 					self.LinkState = True
 				else:
 					self.LinkState = False
+
 
 class Troubleshoot(Screen):
 	def __init__(self, session):

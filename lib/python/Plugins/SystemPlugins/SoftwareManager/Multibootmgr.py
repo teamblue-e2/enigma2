@@ -15,6 +15,7 @@ from Tools.BoundFunction import boundFunction
 from Tools.Directories import pathExists
 from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, EmptySlot
 
+
 class MultiBootWizard(Screen):
 
 	skin = """

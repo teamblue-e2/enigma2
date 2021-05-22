@@ -11,6 +11,7 @@ from enigma import eTimer
 
 import enigma
 
+
 class NetworkWizard(WizardLanguage, Rc):
 	skin = """
 		<screen position="0,0" size="720,576" title="Welcome..." flags="wfNoBorder" >
@@ -340,7 +341,6 @@ class NetworkWizard(WizardLanguage, Rc):
 
 		self.rescanTimer.start(4000)
 		return self.APList
-
 
 	def AccessPointsSelectionMoved(self):
 		self.ap = self.selection

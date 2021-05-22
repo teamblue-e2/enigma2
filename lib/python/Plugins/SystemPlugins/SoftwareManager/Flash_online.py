@@ -137,7 +137,6 @@ class FlashOnline(Screen):
 		else:
 			self.session.openWithCallback(self.close, MessageBox, _("Cannot find images - please try later"), type=MessageBox.TYPE_ERROR, timeout=3)
 
-
 	def keyOk(self):
 		currentSelected = self["list"].l.getCurrentSelection()
 		if currentSelected[0][1] == "Expander":
@@ -195,6 +194,7 @@ class FlashOnline(Screen):
 		self["list"].instance.moveSelection(self["list"].instance.moveDown)
 		self.selectionChanged()
 
+
 class FlashImage(Screen):
 	skin = """<screen position="center,center" size="640,150" flags="wfNoBorder" backgroundColor="#54242424">
 		<widget name="header" position="5,10" size="e-10,50" font="Regular;40" backgroundColor="#54242424"/>
@@ -202,7 +202,7 @@ class FlashImage(Screen):
 		<widget name="progress" position="5,e-39" size="e-10,24" backgroundColor="#54242424"/>
 	</screen>"""
 
-	def __init__(self, session,  imagename, source):
+	def __init__(self, session, imagename, source):
 		Screen.__init__(self, session)
 		self.containerbackup = None
 		self.containerofgwrite = None
@@ -506,6 +506,7 @@ class FlashImage(Screen):
 	def flashimage(self):
 		self["header"].setText(_("Flashing Image"))
 		self["summary_header"].setText(self["header"].getText())
+
 		def findimagefiles(path):
 			for path, subdirs, files in os.walk(path):
 				if not subdirs and files:

@@ -53,11 +53,13 @@ def parseEvent(ev, description=True):
 	end += config.recording.margin_after.value * 60
 	return (begin, end, name, description, eit)
 
+
 class AFTEREVENT:
 	NONE = 0
 	STANDBY = 1
 	DEEPSTANDBY = 2
 	AUTO = 3
+
 
 def findSafeRecordPath(dirname):
 	if not dirname:
@@ -76,6 +78,7 @@ def findSafeRecordPath(dirname):
 			return None
 	return dirname
 
+
 def checkForRecordings():
 	if NavigationInstance.instance.getRecordings():
 		return True
@@ -84,7 +87,9 @@ def checkForRecordings():
 		print("another recording starts in", rec_time - time(), "seconds... do not shutdown yet")
 	return rec_time > 0 and (rec_time - time()) < 360
 
+
 wasRecTimerWakeup = False
+
 
 def createRecordTimerEntry(timer):
 	return RecordTimerEntry(timer.service_ref, timer.begin, timer.end, timer.name, timer.description,
@@ -482,7 +487,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					self.sendactivesource()
 					notify = config.usage.show_message_when_recording_starts.value and self.InfoBarInstance and self.InfoBarInstance.execing
 					cur_ref = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
-					pip_zap = self.pipzap or (cur_ref and cur_ref.getPath() and SystemInfo["PIPAvailable"])
+					pip_zap = self.pipzap or (cur_ref and cur_ref.getPath() and '%3a//' not in cur_ref.toString() and SystemInfo["PIPAvailable"])
 					if pip_zap:
 						cur_ref_group = NavigationInstance.instance.getCurrentlyPlayingServiceOrGroup()
 						if cur_ref_group and cur_ref_group != self.service_ref.ref and self.InfoBarInstance and hasattr(self.InfoBarInstance.session, 'pipshown') and not Components.ParentalControl.parentalControl.isProtected(self.service_ref.ref):
@@ -648,6 +653,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			#if self.justplay or self.always_zap:
 			#	choice.insert(2, (_("Don't zap"), "continue"))
 			choice.insert(2, (_("Don't zap"), "continue"))
+
 			def zapAction(choice):
 				start_zap = True
 				if choice:
@@ -785,6 +791,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 	record_service = property(lambda self: self.__record_service, setRecordService)
 
+
 def createTimer(xml):
 	begin = int(xml.get("begin"))
 	end = int(xml.get("end"))
@@ -839,6 +846,7 @@ def createTimer(xml):
 		entry.log_entries.append((time, code, msg))
 
 	return entry
+
 
 class RecordTimer(timer.Timer):
 	def __init__(self):

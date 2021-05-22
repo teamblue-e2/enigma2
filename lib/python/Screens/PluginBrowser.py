@@ -49,10 +49,12 @@ def languageChanged():
 	plugins.clearPluginList()
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
+
 def checksoftcam():
 	softcam = False
 	if os.path.isfile('/etc/init.d/softcam.none'):
 		softcam = True
+
 
 def CreateFeedConfig():
 	fileconf = "/etc/opkg/user-feed.conf"
@@ -62,8 +64,10 @@ def CreateFeedConfig():
 	f.close()
 	os.system("opkg update")
 
+
 config.misc.pluginbrowser = ConfigSubsection()
 config.misc.pluginbrowser.plugin_order = ConfigText(default="")
+
 
 class PluginBrowserSummary(Screen):
 	def __init__(self, session, parent):
@@ -295,6 +299,7 @@ class PluginBrowser(Screen, ProtectedScreen):
 				self.session.open(MessageBox, _("The software management extension is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			else:
 				self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginManager)
+
 
 class PluginDownloadBrowser(Screen):
 	DOWNLOAD = 0
@@ -731,6 +736,7 @@ class PluginDownloadBrowser(Screen):
 		self.list = _list
 		self["list"].l.setList(_list)
 
+
 class PluginFilter(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -821,5 +827,6 @@ class PluginFilter(ConfigListScreen, Screen):
 			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
 		else:
 			self.close()
+
 
 language.addCallback(languageChanged)

@@ -23,6 +23,7 @@ from Screens.Setup import Setup, getSetupTitle, getSetupTitleLevel
 # read the menu
 mdom = xml.etree.cElementTree.parse(resolveFilename(SCOPE_SKIN, 'menu.xml'))
 
+
 class MenuUpdater:
 	def __init__(self):
 		self.updatedMenuItems = {}
@@ -40,6 +41,7 @@ class MenuUpdater:
 
 	def getUpdatedMenu(self, _id):
 		return self.updatedMenuItems[_id]
+
 
 menuupdater = MenuUpdater()
 
@@ -460,6 +462,7 @@ class MenuSort(Menu):
 			self["menu"].down()
 		else:
 			self["menu"].up()
+
 
 class MainMenu(Menu):
 	#add file load functions for the xml-file

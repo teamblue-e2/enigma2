@@ -13,10 +13,12 @@ from Screens.MessageBox import MessageBox
 from Components.config import config
 from Tools import Notifications
 from base64 import encodestring
+from urllib import quote
 import xml.etree.ElementTree as et
 import six
 
 settingfiles = ('lamedb', 'bouquets.', 'userbouquet.', 'blacklist', 'whitelist', 'alternatives.')
+
 
 class ImportChannels():
 
