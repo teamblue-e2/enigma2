@@ -15,7 +15,7 @@ epg_bouquet = None
 epg = None
 ref = None
 
-def zapToService(service, preview = False, zapback = False):
+def zapToService(service, preview=False, zapback=False):
 	if Servicelist.startServiceRef is None:
 		Servicelist.startServiceRef = Session.nav.getCurrentlyPlayingServiceOrGroup()
 	if not service is None:
@@ -38,7 +38,7 @@ def zapToService(service, preview = False, zapback = False):
 		Servicelist.startRoot = None
 
 def getBouquetServices(bouquet):
-	services = [ ]
+	services = []
 	Servicelist = eServiceCenter.getInstance().list(bouquet)
 	if not Servicelist is None:
 		while True:
@@ -91,14 +91,14 @@ def changeBouquetCB(direction, epgcall):
 		global bouquets
 		global epg_bouquet
 		try:
-			onSelectBouquetClose(None, bouquets[ ([x[1] for x in bouquets].index(epg_bouquet) + (direction > 0 and 1 or -1)) ][1])
+			onSelectBouquetClose(None, bouquets[([x[1] for x in bouquets].index(epg_bouquet) + (direction > 0 and 1 or -1))][1])
 		except:
 			pass
 	else:
 		if epg["list"].getCurrent() and epg["list"].getCurrent()[1]:
-			Session.openWithCallback(onSelectBouquetClose, SimpleChannelSelection, _("Select channel"), True, True, epg["list"].getCurrent()[1].ref )
+			Session.openWithCallback(onSelectBouquetClose, SimpleChannelSelection, _("Select channel"), True, True, epg["list"].getCurrent()[1].ref)
 
-def main(session, servicelist = None, **kwargs):
+def main(session, servicelist=None, **kwargs):
 	global ref
 	global Session
 	Session = session
@@ -115,7 +115,7 @@ def runGraphMultiEpg():
 	global bouquets
 	global epg_bouquet
 	if epg_bouquet is not None:
-		if len(bouquets) > 1 :
+		if len(bouquets) > 1:
 			cb = changeBouquetCB
 		else:
 			cb = None
@@ -135,7 +135,7 @@ def reopen(answer):
 def Plugins(**kwargs):
 	name = _("Graphical Multi EPG")
 	descr = _("A graphical EPG for all services of a specific bouquet")
-	_list = [(PluginDescriptor(name=name, description=descr, where = PluginDescriptor.WHERE_EVENTINFO, needsRestart = False, fnc=main))]
+	_list = [(PluginDescriptor(name=name, description=descr, where=PluginDescriptor.WHERE_EVENTINFO, needsRestart=False, fnc=main))]
 	if config.misc.graph_mepg.extension_menu.value:
-		_list.append(PluginDescriptor(name=name, description=descr, where = PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart = False, fnc=main))
+		_list.append(PluginDescriptor(name=name, description=descr, where=PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart=False, fnc=main))
 	return _list

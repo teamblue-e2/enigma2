@@ -1,6 +1,12 @@
 from __future__ import print_function
 from __future__ import absolute_import
-import threading, urllib.request, urllib.error, urllib.parse, os, shutil, tempfile
+import threading
+import urllib.request
+import urllib.error
+import urllib.parse
+import os
+import shutil
+import tempfile
 from json import loads
 from enigma import eDVBDB, eEPGCache
 from Screens.MessageBox import MessageBox

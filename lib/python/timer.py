@@ -5,11 +5,11 @@ from enigma import eTimer
 import datetime
 
 class TimerEntry:
-	StateWaiting  = 0
+	StateWaiting = 0
 	StatePrepared = 1
-	StateRunning  = 2
-	StateEnded    = 3
-	StateFailed   = 4
+	StateRunning = 2
+	StateEnded = 3
+	StateFailed = 4
 
 	def __init__(self, begin, end):
 		self.begin = begin
@@ -45,7 +45,7 @@ class TimerEntry:
 
 	def addOneDay(self, timedatestruct):
 		oldHour = timedatestruct.tm_hour
-		newdate =  (datetime.datetime(timedatestruct.tm_year, timedatestruct.tm_mon, timedatestruct.tm_mday, timedatestruct.tm_hour, timedatestruct.tm_min, timedatestruct.tm_sec) + datetime.timedelta(days=1)).timetuple()
+		newdate = (datetime.datetime(timedatestruct.tm_year, timedatestruct.tm_mon, timedatestruct.tm_mday, timedatestruct.tm_hour, timedatestruct.tm_min, timedatestruct.tm_sec) + datetime.timedelta(days=1)).timetuple()
 		if localtime(mktime(newdate)).tm_hour != oldHour:
 			return (datetime.datetime(timedatestruct.tm_year, timedatestruct.tm_mon, timedatestruct.tm_mday, timedatestruct.tm_hour, timedatestruct.tm_min, timedatestruct.tm_sec) + datetime.timedelta(days=2)).timetuple()
 		return newdate
@@ -146,15 +146,15 @@ class Timer:
 	MaxWaitTime = 100
 
 	def __init__(self):
-		self.timer_list = [ ]
-		self.processed_timers = [ ]
+		self.timer_list = []
+		self.processed_timers = []
 
 		self.timer = eTimer()
 		self.timer.callback.append(self.calcNextActivation)
 		self.lastActivation = time()
 
 		self.calcNextActivation()
-		self.on_state_change = [ ]
+		self.on_state_change = []
 
 	def stateChanged(self, entry):
 		for f in self.on_state_change:
@@ -219,7 +219,7 @@ class Timer:
 		if self.lastActivation > now:
 			print("[timer.py] timewarp - re-evaluating all processed timers.")
 			tl = self.processed_timers
-			self.processed_timers = [ ]
+			self.processed_timers = []
 			for x in tl:
 				# simulate a "waiting" state to give them a chance to re-occure
 				x.resetState()
@@ -233,7 +233,7 @@ class Timer:
 		self.timer_list and sorted(self.timer_list) #  resort/refresh list, try to fix hanging timers
 
 		# calculate next activation point
-		timer_list = [ t for t in self.timer_list if not t.disabled ]
+		timer_list = [t for t in self.timer_list if not t.disabled]
 		if timer_list:
 			w = timer_list[0].getNextActivation()
 			if w < min:
@@ -296,7 +296,7 @@ class Timer:
 		t = int(time()) + 1
 		# we keep on processing the first entry until it goes into the future.
 		while True:
-			timer_list = [ tmr for tmr in self.timer_list if not tmr.disabled ]
+			timer_list = [tmr for tmr in self.timer_list if not tmr.disabled]
 			if timer_list and timer_list[0].getNextActivation() < t:
 				self.doActivate(timer_list[0])
 			else:

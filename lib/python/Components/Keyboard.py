@@ -33,7 +33,7 @@ class Keyboard:
 	def activateKeyboardMap(self, index):
 		try:
 			keymap = self.keyboardmaps[index]
-			print("Activating keymap:",keymap[1])
+			print("Activating keymap:", keymap[1])
 			keymappath = os.path.join(self.kpath, keymap[0])
 			if os.path.exists(keymappath):
 				Console().ePopen(("loadkmap < " + str(keymappath)))

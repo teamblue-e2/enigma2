@@ -105,7 +105,7 @@ config.plugins.filecommander.script_messagelen = ConfigSelectionNumber(default=3
 config.plugins.filecommander.script_priority_nice = ConfigSelectionNumber(default=0, stepwidth=1, min=0, max=19, wraparound=True)
 config.plugins.filecommander.script_priority_ionice = ConfigSelectionNumber(default=0, stepwidth=3, min=0, max=3, wraparound=True)
 config.plugins.filecommander.unknown_extension_as_text = ConfigYesNo(default=False)
-config.plugins.filecommander.sortDirs = ConfigSelection(default = "0.0", choices = [
+config.plugins.filecommander.sortDirs = ConfigSelection(default="0.0", choices=[
 				("0.0", _("Name")),
 				("0.1", _("Name reverse")),
 				("1.0", _("Date")),
@@ -117,8 +117,8 @@ choicelist = [
 				("1.1", _("Date reverse")),
 				("2.0", _("Size")),
 				("2.1", _("Size reverse"))]
-config.plugins.filecommander.sortFiles_left = ConfigSelection(default = "1.1", choices = choicelist)
-config.plugins.filecommander.sortFiles_right = ConfigSelection(default = "1.1", choices = choicelist)
+config.plugins.filecommander.sortFiles_left = ConfigSelection(default="1.1", choices=choicelist)
+config.plugins.filecommander.sortFiles_right = ConfigSelection(default="1.1", choices=choicelist)
 config.plugins.filecommander.firstDirs = ConfigYesNo(default=True)
 config.plugins.filecommander.path_left_selected = ConfigYesNo(default=True)
 config.plugins.filecommander.showTaskCompleted_message = ConfigYesNo(default=True)
@@ -127,8 +127,8 @@ config.plugins.filecommander.hashes = ConfigSet(list(key_actions.hashes.keys()),
 config.plugins.filecommander.bookmarks = ConfigLocations()
 config.plugins.filecommander.fake_entry = NoSave(ConfigNothing())
 
-tmpLeft = '%s,%s' %(config.plugins.filecommander.sortDirs.value, config.plugins.filecommander.sortFiles_left.value)
-tmpRight = '%s,%s' %(config.plugins.filecommander.sortDirs.value, config.plugins.filecommander.sortFiles_right.value)
+tmpLeft = '%s,%s' % (config.plugins.filecommander.sortDirs.value, config.plugins.filecommander.sortFiles_left.value)
+tmpRight = '%s,%s' % (config.plugins.filecommander.sortDirs.value, config.plugins.filecommander.sortFiles_right.value)
 config.plugins.filecommander.sortingLeft_tmp = NoSave(ConfigText(default=tmpLeft))
 config.plugins.filecommander.sortingRight_tmp = NoSave(ConfigText(default=tmpRight))
 config.plugins.filecommander.path_left_tmp = NoSave(ConfigText(default=config.plugins.filecommander.path_left.value))
@@ -184,7 +184,7 @@ class FileCommanderSetup(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("File checksums/hashes"), config.plugins.filecommander.hashes))
 		self.list.append(getConfigListEntry(_("Time for Slideshow"), config.plugins.filecommander.diashow))
 
-		ConfigListScreen.__init__(self, self.list, session = session)
+		ConfigListScreen.__init__(self, self.list, session=session)
 		self["help"] = Label(_("Select your personal settings:"))
 		self["key_red"] = Label(_("Cancel"))
 		self["key_green"] = Label(_("Ok"))
@@ -200,7 +200,7 @@ class FileCommanderSetup(ConfigListScreen, Screen):
 
 	def onLayout(self):
 		#self.setTitle(pname+" ("+pversion+") "+_("Settings"))
-		self.setTitle(pname+" "+_("Settings"))
+		self.setTitle(pname + " " + _("Settings"))
 
 	def ok(self):
 		if self["config"].getCurrent()[1] is config.plugins.filecommander.path_default:
@@ -225,11 +225,11 @@ class FileCommanderSetup(ConfigListScreen, Screen):
 def formatSortingTyp(sortDirs, sortFiles):
 	sortDirs, reverseDirs = [int(x) for x in sortDirs.split('.')]
 	sortFiles, reverseFiles = [int(x) for x in sortFiles.split('.')]
-	sD = ('n','d','s')[sortDirs] #name, date, size
-	sF = ('n','d','s')[sortFiles]
-	rD = ('+','-')[reverseDirs] #normal, reverse
-	rF = ('+','-')[reverseFiles]
-	return '[D]%s%s[F]%s%s' %(sD,rD,sF,rF)
+	sD = ('n', 'd', 's')[sortDirs] #name, date, size
+	sF = ('n', 'd', 's')[sortFiles]
+	rD = ('+', '-')[reverseDirs] #normal, reverse
+	rF = ('+', '-')[reverseFiles]
+	return '[D]%s%s[F]%s%s' % (sD, rD, sF, rF)
 
 ###################
 # ## Main Screen ###
@@ -384,8 +384,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		self["list_left"] = FileList(path_left, matchingPattern=_filter, sortDirs=sortDirs, sortFiles=sortFilesLeft, firstDirs=firstDirs)
 		self["list_right"] = FileList(path_right, matchingPattern=_filter, sortDirs=sortDirs, sortFiles=sortFilesRight, firstDirs=firstDirs)
 
-		sortLeft = formatSortingTyp(sortDirs,sortFilesLeft)
-		sortRight = formatSortingTyp(sortDirs,sortFilesRight)
+		sortLeft = formatSortingTyp(sortDirs, sortFilesLeft)
+		sortRight = formatSortingTyp(sortDirs, sortFilesRight)
 		self["sort_left"] = Label(sortLeft)
 		self["sort_right"] = Label(sortRight)
 
@@ -460,7 +460,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			filtered = "(*)"
 
 		if self.jobs or self.jobs_old:
-			jobs = _("(1 job)") if (self.jobs+self.jobs_old) == 1 else _("(%d jobs)") % (self.jobs+self.jobs_old)
+			jobs = _("(1 job)") if (self.jobs + self.jobs_old) == 1 else _("(%d jobs)") % (self.jobs + self.jobs_old)
 		else:
 			jobs = ""
 		self.setTitle(pname + " " + filtered + " " + jobs)
@@ -468,7 +468,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 	def checkJobs_TimerCB(self):
 		self.jobs_old = 0
 		for job in job_manager.getPendingJobs():
-			if (job.name.startswith(_('Copy file')) or job.name.startswith(_('Copy folder')) or job.name.startswith(_('move file')) or job.name.startswith(_('move folder'))or job.name.startswith(_('Run script'))):
+			if (job.name.startswith(_('Copy file')) or job.name.startswith(_('Copy folder')) or job.name.startswith(_('move file')) or job.name.startswith(_('move folder')) or job.name.startswith(_('Run script'))):
 				self.jobs_old += 1
 		self.jobs_old -= self.jobs
 		self.onLayout()
@@ -719,7 +719,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		for job in job_manager.getPendingJobs():
 			#self.tasklist.append((job, job.name, job.getStatustext(), int(100 * job.progress / float(job.end)), str(100 * job.progress / float(job.end)) + "%"))
 			progress = job.getProgress()
-			self.tasklist.append((job,job.name,job.getStatustext(),progress,str(progress) + " %" ))
+			self.tasklist.append((job, job.name, job.getStatustext(), progress, str(progress) + " %"))
 		self.session.open(TaskListScreen, self.tasklist)
 
 	def addJob(self, job, updateDirs):
@@ -764,7 +764,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				del self.containers[:]
 		if not glob_running and config.plugins.filecommander.showTaskCompleted_message.value:
 			for job in job_manager.getPendingJobs():
-				if (job.name.startswith(_('Copy file')) or job.name.startswith(_('Copy folder')) or job.name.startswith(_('move file')) or job.name.startswith(_('move folder'))or job.name.startswith(_('Run script'))):
+				if (job.name.startswith(_('Copy file')) or job.name.startswith(_('Copy folder')) or job.name.startswith(_('move file')) or job.name.startswith(_('move folder')) or job.name.startswith(_('Run script'))):
 					return
 			# commented out
 			# from Screens.Standby import inStandby
@@ -777,7 +777,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			#else:
 			Notifications.AddNotification(MessageBox, message, type=messageboxtyp, timeout=timeout)
 
-	def setSort(self, list, setDirs = False):
+	def setSort(self, list, setDirs=False):
 		sortDirs, sortFiles = list.getSortBy().split(',')
 		if setDirs:
 			sort, reverse = [int(x) for x in sortDirs.split('.')]
@@ -789,9 +789,9 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			sort += 1
 			if sort > 2:
 				sort = 0
-		return '%d.%d' %(sort, reverse)
+		return '%d.%d' % (sort, reverse)
 
-	def setReverse(self, list, setDirs = False):
+	def setReverse(self, list, setDirs=False):
 		sortDirs, sortFiles = list.getSortBy().split(',')
 		if setDirs:
 			sort, reverse = [int(x) for x in sortDirs.split('.')]
@@ -800,7 +800,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		reverse += 1
 		if reverse > 1:
 			reverse = 0
-		return '%d.%d' %(sort, reverse)
+		return '%d.%d' % (sort, reverse)
 
 # ## sorting files left ###
 	def goRedLong(self):
@@ -1302,8 +1302,8 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		sortDirsRight, sortFilesRight = config.plugins.filecommander.sortingRight_tmp.value.split(',')
 		firstDirs = config.plugins.filecommander.firstDirs.value
 
-		sortLeft = formatSortingTyp(sortDirsLeft,sortFilesLeft)
-		sortRight = formatSortingTyp(sortDirsRight,sortFilesRight)
+		sortLeft = formatSortingTyp(sortDirsLeft, sortFilesLeft)
+		sortRight = formatSortingTyp(sortDirsRight, sortFilesRight)
 		self["sort_left"] = Label(sortLeft)
 		self["sort_right"] = Label(sortRight)
 
@@ -1426,7 +1426,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		for job in job_manager.getPendingJobs():
 			#self.tasklist.append((job, job.name, job.getStatustext(), int(100 * job.progress / float(job.end)), str(100 * job.progress / float(job.end)) + "%"))
 			progress = job.getProgress()
-			self.tasklist.append((job,job.name,job.getStatustext(),progress,str(progress) + " %" ))
+			self.tasklist.append((job, job.name, job.getStatustext(), progress, str(progress) + " %"))
 		self.session.open(TaskListScreen, self.tasklist)
 
 # ## delete select ###
@@ -1441,11 +1441,11 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self.delete_files = []
 		self.delete_updateDirs = [self.SOURCELIST.getCurrentDirectory()]
 		for _file in self.selectedFiles:
-			print('delete: %s' %file)
+			print('delete: %s' % file)
 			if not cnt:
-				filename += '%s' %file
+				filename += '%s' % file
 			elif cnt < 5:
-				filename += ', %s' %file
+				filename += ', %s' % file
 			elif cnt < 6:
 				filename += ', ...'
 			cnt += 1
@@ -1454,7 +1454,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 			else:
 				self.delete_files.append(_file)
 		if cnt > 1:
-			deltext = _("Delete %d elements") %len(self.selectedFiles)
+			deltext = _("Delete %d elements") % len(self.selectedFiles)
 		else:
 			deltext = _("Delete 1 element")
 		self.session.openWithCallback(self.doDelete, ChoiceBox, title=deltext + "?\n%s\n%s\n%s" % (filename, _("from dir"), sourceDir), list=[(_("Yes"), True), (_("No"), False)])
@@ -1483,16 +1483,16 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self.move_jobs = []
 		for _file in self.selectedFiles:
 			if not cnt:
-				filename += '%s' %_file
+				filename += '%s' % _file
 			elif cnt < 3:
-				filename += ', %s' %_file
+				filename += ', %s' % _file
 			elif cnt < 4:
 				filename += ', ...'
 			cnt += 1
 			if os.path.exists(targetDir + '/' + _file.rstrip('/').split('/')[-1]):
 				warncnt += 1
 				if warncnt > 1:
-					warntxt = _(" - %d elements exist! Overwrite") %warncnt
+					warntxt = _(" - %d elements exist! Overwrite") % warncnt
 				else:
 					warntxt = _(" - 1 element exist! Overwrite")
 			dst_file = targetDir
@@ -1500,7 +1500,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 				targetDir = dst_file[:-1]
 			self.move_jobs.append(FileTransferJob(_file, targetDir, False, False, "%s : %s" % (_("move file"), _file)))
 		if cnt > 1:
-			movetext = (_("Move %d elements") %len(self.selectedFiles)) + warntxt
+			movetext = (_("Move %d elements") % len(self.selectedFiles)) + warntxt
 		else:
 			movetext = _("Move 1 element") + warntxt
 		self.session.openWithCallback(self.doMove, ChoiceBox, title=movetext + "?\n%s\n%s\n%s\n%s\n%s" % (filename, _("from dir"), sourceDir, _("to dir"), targetDir), list=[(_("Yes"), True), (_("No"), False)])
@@ -1526,16 +1526,16 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self.copy_jobs = []
 		for _file in self.selectedFiles:
 			if not cnt:
-				filename += '%s' %_file
+				filename += '%s' % _file
 			elif cnt < 3:
-				filename += ', %s' %_file
+				filename += ', %s' % _file
 			elif cnt < 4:
 				filename += ', ...'
 			cnt += 1
 			if os.path.exists(targetDir + '/' + _file.rstrip('/').split('/')[-1]):
 				warncnt += 1
 				if warncnt > 1:
-					warntxt = _(" - %d elements exist! Overwrite") %warncnt
+					warntxt = _(" - %d elements exist! Overwrite") % warncnt
 				else:
 					warntxt = _(" - 1 element exist! Overwrite")
 			dst_file = targetDir
@@ -1546,7 +1546,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 			else:
 				self.copy_jobs.append(FileTransferJob(_file, targetDir, False, True, "%s : %s" % (_("Copy file"), _file)))
 		if cnt > 1:
-			copytext = (_("Copy %d elements") %len(self.selectedFiles)) + warntxt
+			copytext = (_("Copy %d elements") % len(self.selectedFiles)) + warntxt
 		else:
 			copytext = _("Copy 1 element") + warntxt
 		self.session.openWithCallback(self.doCopy, ChoiceBox, title=copytext + "?\n%s\n%s\n%s\n%s\n%s" % (filename, _("from dir"), sourceDir, _("to dir"), targetDir), list=[(_("Yes"), True), (_("No"), False)])
@@ -1718,7 +1718,7 @@ class FileCommanderFileStatInfo(Screen, stat_info):
 		self.list.append((_("Type:"), self.filetypeStr(mode)))
 		self.list.append((_("Owner:"), "%s (%d)" % (self.username(st.st_uid), st.st_uid)))
 		self.list.append((_("Group:"), "%s (%d)" % (self.groupname(st.st_gid), st.st_gid)))
-		self.list.append((_("Permissions:"), _("%s (%04o)") % ( self.fileModeStr(perms), perms)))
+		self.list.append((_("Permissions:"), _("%s (%04o)") % (self.fileModeStr(perms), perms)))
 		if not (stat.S_ISCHR(mode) or stat.S_ISBLK(mode)):
 			self.list.append((_("Size:"), "%s (%sB)" % ("{:n}".format(st.st_size), ' '.join(self.SIZESCALER.scale(st.st_size)))))
 		self.list.append((_("Modified:"), self.formatTime(st.st_mtime)))

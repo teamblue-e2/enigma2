@@ -12,7 +12,7 @@ from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from Components.Renderer.Picon import getPiconName
 from Components.config import config
 
-def refreshServiceList(configElement = None):
+def refreshServiceList(configElement=None):
 	from Screens.InfoBar import InfoBar
 	InfoBarInstance = InfoBar.instance
 	if InfoBarInstance is not None:
@@ -51,15 +51,15 @@ class ServiceList(GUIComponent):
 		self.root = None
 		self.mode = self.MODE_NORMAL
 		self.ItemHeight = 28
-		self.ServiceNameFont = parseFont("Regular;22", ((1,1),(1,1)))
-		self.ServiceInfoFont = parseFont("Regular;18", ((1,1),(1,1)))
-		self.ServiceNextInfoFont = parseFont("Regular;15", ((1,1),(1,1)))
-		self.ServiceNumberFont = parseFont("Regular;20", ((1,1),(1,1)))
+		self.ServiceNameFont = parseFont("Regular;22", ((1, 1), (1, 1)))
+		self.ServiceInfoFont = parseFont("Regular;18", ((1, 1), (1, 1)))
+		self.ServiceNextInfoFont = parseFont("Regular;15", ((1, 1), (1, 1)))
+		self.ServiceNumberFont = parseFont("Regular;20", ((1, 1), (1, 1)))
 		self.progressBarWidth = 52
 		self.progressPercentWidth = 0
 		self.fieldMargins = 10
 
-		self.onSelectionChanged = [ ]
+		self.onSelectionChanged = []
 
 	def applySkin(self, desktop, parent):
 		def foregroundColorMarked(value):
@@ -116,14 +116,14 @@ class ServiceList(GUIComponent):
 		def serviceItemHeight(value):
 			self.ItemHeight = parseScale(value)
 		def serviceNameFont(value):
-			self.ServiceNameFont = parseFont(value, ((1,1),(1,1)))
+			self.ServiceNameFont = parseFont(value, ((1, 1), (1, 1)))
 		def serviceInfoFont(value):
-			self.ServiceInfoFont = parseFont(value, ((1,1),(1,1)))
-			self.ServiceNextInfoFont = parseFont(value, ((5,6),(1,1)))
+			self.ServiceInfoFont = parseFont(value, ((1, 1), (1, 1)))
+			self.ServiceNextInfoFont = parseFont(value, ((5, 6), (1, 1)))
 		#def serviceNextInfoFont(value):
 		#	self.ServiceNextInfoFont = parseFont(value, ((1,1),(1,1)))
 		def serviceNumberFont(value):
-			self.ServiceNumberFont = parseFont(value, ((1,1),(1,1)))
+			self.ServiceNumberFont = parseFont(value, ((1, 1), (1, 1)))
 		def progressbarHeight(value):
 			self.l.setProgressbarHeight(parseScale(value))
 		def progressbarBorderWidth(value):
@@ -266,7 +266,7 @@ class ServiceList(GUIComponent):
 	def getRootServices(self):
 		serviceHandler = eServiceCenter.getInstance()
 		_list = serviceHandler.list(self.root)
-		dest = [ ]
+		dest = []
 		if _list is not None:
 			while True:
 				s = _list.getNext()
@@ -322,7 +322,7 @@ class ServiceList(GUIComponent):
 		i = self.l
 		i.markedQueryStart()
 		ref = eServiceReference()
-		marked = [ ]
+		marked = []
 		while i.markedQueryNext(ref) == 0:
 			marked.append(ref.toString())
 			ref = eServiceReference()
@@ -344,10 +344,10 @@ class ServiceList(GUIComponent):
 		else:
 			ItemHeight = int(self.instance.size().height() / int(config.usage.servicelist_number_of_services.value)) * (2 if show_two_lines else 1)
 			FontFactor = ItemHeight * 100 / self.ItemHeight
-			ServiceNameFont = gFont(self.ServiceNameFont.family, int(self.ServiceNameFont.pointSize * FontFactor/(200 if show_two_lines else 100)))
-			ServiceNumberFont = gFont(self.ServiceNumberFont.family, int(self.ServiceNumberFont.pointSize * FontFactor/(200 if show_two_lines else 100)))
-			ServiceInfoFont = gFont(self.ServiceInfoFont.family, int(self.ServiceInfoFont.pointSize * FontFactor/(200 if show_two_lines else 100)))
-			ServiceNextInfoFont = gFont(self.ServiceNextInfoFont.family, int(self.ServiceNextInfoFont.pointSize * FontFactor/(200 if show_two_lines else 100)))
+			ServiceNameFont = gFont(self.ServiceNameFont.family, int(self.ServiceNameFont.pointSize * FontFactor / (200 if show_two_lines else 100)))
+			ServiceNumberFont = gFont(self.ServiceNumberFont.family, int(self.ServiceNumberFont.pointSize * FontFactor / (200 if show_two_lines else 100)))
+			ServiceInfoFont = gFont(self.ServiceInfoFont.family, int(self.ServiceInfoFont.pointSize * FontFactor / (200 if show_two_lines else 100)))
+			ServiceNextInfoFont = gFont(self.ServiceNextInfoFont.family, int(self.ServiceNextInfoFont.pointSize * FontFactor / (200 if show_two_lines else 100)))
 
 		self.mode = mode
 		self.l.setItemHeight(ItemHeight)
@@ -374,14 +374,14 @@ class ServiceList(GUIComponent):
 			progressWidth = self.progressPercentWidth or self.progressBarWidth
 
 		if "left" in config.usage.show_event_progress_in_servicelist.value:
-			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(channelNumberWidth+channelNumberSpace, 0, progressWidth , ItemHeight))
-			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth+channelNumberSpace + progressWidth + self.fieldMargins, 0, rowWidth - (channelNumberWidth+channelNumberSpace + progressWidth + self.fieldMargins), ItemHeight))
+			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(channelNumberWidth + channelNumberSpace, 0, progressWidth, ItemHeight))
+			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth + channelNumberSpace + progressWidth + self.fieldMargins, 0, rowWidth - (channelNumberWidth + channelNumberSpace + progressWidth + self.fieldMargins), ItemHeight))
 		elif "right" in config.usage.show_event_progress_in_servicelist.value:
 			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(rowWidth - progressWidth, 0, progressWidth, ItemHeight))
-			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth+channelNumberSpace, 0, rowWidth - (channelNumberWidth+channelNumberSpace + progressWidth + self.fieldMargins), ItemHeight))
+			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth + channelNumberSpace, 0, rowWidth - (channelNumberWidth + channelNumberSpace + progressWidth + self.fieldMargins), ItemHeight))
 		else:
 			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(0, 0, 0, 0))
-			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth+channelNumberSpace, 0, rowWidth - (channelNumberWidth+channelNumberSpace), ItemHeight))
+			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth + channelNumberSpace, 0, rowWidth - (channelNumberWidth + channelNumberSpace), ItemHeight))
 
 		self.l.setElementFont(self.l.celServiceName, ServiceNameFont)
 		self.l.setElementFont(self.l.celServiceNumber, ServiceNumberFont)

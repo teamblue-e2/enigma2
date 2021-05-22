@@ -77,14 +77,14 @@ def getType(_file):
 		p = _file.rfind('.')
 		if p == -1:
 			return None
-		ext = _file[p+1:].lower()
+		ext = _file[p + 1:].lower()
 
 		if ext == "dat" and _file[-11:-6].lower() == "avseq":
 			return "video/x-vcd"
 	return _type
 
 class Scanner:
-	def __init__(self, name, mimetypes= [], paths_to_scan = [], description = "", openfnc = None):
+	def __init__(self, name, mimetypes=[], paths_to_scan=[], description="", openfnc=None):
 		self.mimetypes = mimetypes
 		self.name = name
 		self.paths_to_scan = paths_to_scan
@@ -106,7 +106,7 @@ class Scanner:
 			self.openfnc(list, *args, **kwargs)
 
 class ScanPath:
-	def __init__(self, path, with_subdirs = False):
+	def __init__(self, path, with_subdirs=False):
 		self.path = path
 		self.with_subdirs = with_subdirs
 
@@ -126,7 +126,7 @@ class ScanPath:
 			return self.with_subdirs.__cmp__(other.with_subdirs)
 
 class ScanFile:
-	def __init__(self, path, mimetype = None, size = None, autodetect = True):
+	def __init__(self, path, mimetype=None, size=None, autodetect=True):
 		self.path = path
 		if mimetype is None and autodetect:
 			self.mimetype = getType(path)
@@ -146,7 +146,7 @@ def execute(option):
 	scanner.open(files, session)
 
 def scanDevice(mountpoint):
-	scanner = [ ]
+	scanner = []
 
 	for p in plugins.getPlugins(PluginDescriptor.WHERE_FILESCAN):
 		l = p()
@@ -156,7 +156,7 @@ def scanDevice(mountpoint):
 
 	print("scanner:", scanner)
 
-	res = { }
+	res = {}
 
 	# merge all to-be-scanned paths, with priority to
 	# with_subdirs.
@@ -174,7 +174,7 @@ def scanDevice(mountpoint):
 			paths_to_scan.remove(ScanPath(path=p.path))
 
 	from Components.Harddisk import harddiskmanager
-	blockdev = mountpoint.rstrip("/").rsplit('/',1)[-1]
+	blockdev = mountpoint.rstrip("/").rsplit('/', 1)[-1]
 	error, blacklisted, removable, is_cdrom, partitions, medium_found = harddiskmanager.getBlockDevInfo(blockdev)
 
 	# now scan the paths
@@ -185,7 +185,7 @@ def scanDevice(mountpoint):
 			for f in files:
 				path = os.path.join(root, f)
 				if (is_cdrom and f.endswith(".wav") and f.startswith("track")) or f == "cdplaylist.cdpls":
-					sfile = ScanFile(path,"audio/x-cda")
+					sfile = ScanFile(path, "audio/x-cda")
 				else:
 					sfile = ScanFile(path)
 				for s in scanner:
@@ -200,9 +200,9 @@ def scanDevice(mountpoint):
 
 def openList(session, files):
 	if not isinstance(files, list):
-		files = [ files ]
+		files = [files]
 
-	scanner = [ ]
+	scanner = []
 
 	for p in plugins.getPlugins(PluginDescriptor.WHERE_FILESCAN):
 		l = p()
@@ -213,13 +213,13 @@ def openList(session, files):
 
 	print("scanner:", scanner)
 
-	res = { }
+	res = {}
 
 	for _file in files:
 		for s in scanner:
 			s.handleFile(res, _file)
 
-	choices = [ (r.description, r, res[r], session) for r in res ]
+	choices = [(r.description, r, res[r], session) for r in res]
 	Len = len(choices)
 	if Len > 1:
 		from Screens.ChoiceBox import ChoiceBox
@@ -227,8 +227,8 @@ def openList(session, files):
 		session.openWithCallback(
 			execute,
 			ChoiceBox,
-			title = "The following viewers were found...",
-			list = choices
+			title="The following viewers were found...",
+			list=choices
 		)
 		return True
 	elif Len:

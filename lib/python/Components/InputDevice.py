@@ -17,14 +17,14 @@ IOC_SIZEBITS = 13 if "mips" in platform.machine() else 14
 IOC_DIRBITS = 3 if "mips" in platform.machine() else 2
 
 IOC_NRSHIFT = 0
-IOC_TYPESHIFT = IOC_NRSHIFT+IOC_NRBITS
-IOC_SIZESHIFT = IOC_TYPESHIFT+IOC_TYPEBITS
-IOC_DIRSHIFT = IOC_SIZESHIFT+IOC_SIZEBITS
+IOC_TYPESHIFT = IOC_NRSHIFT + IOC_NRBITS
+IOC_SIZESHIFT = IOC_TYPESHIFT + IOC_TYPEBITS
+IOC_DIRSHIFT = IOC_SIZESHIFT + IOC_SIZEBITS
 
 IOC_READ = 2
 
 def EVIOCGNAME(length):
-	return (IOC_READ<<IOC_DIRSHIFT)|(length<<IOC_SIZESHIFT)|(0x45<<IOC_TYPESHIFT)|(0x06<<IOC_NRSHIFT)
+	return (IOC_READ << IOC_DIRSHIFT) | (length << IOC_SIZESHIFT) | (0x45 << IOC_TYPESHIFT) | (0x06 << IOC_NRSHIFT)
 
 
 class inputDevices:
@@ -39,7 +39,7 @@ class inputDevices:
 
 		for evdev in devices:
 			try:
-				_buffer = "\0"*512
+				_buffer = "\0" * 512
 				self.fd = os_open("/dev/input/" + evdev, O_RDWR | O_NONBLOCK)
 				self.name = ioctl(self.fd, EVIOCGNAME(256), _buffer)
 				self.name = self.name[:self.name.find(b"\0")]
@@ -52,7 +52,7 @@ class inputDevices:
 				self.name = None
 
 			if self.name:
-				self.Devices[evdev] = {'name': self.name, 'type': self.getInputDeviceType(self.name),'enabled': False, 'configuredName': None }
+				self.Devices[evdev] = {'name': self.name, 'type': self.getInputDeviceType(self.name), 'enabled': False, 'configuredName': None}
 
 	def getInputDeviceType(self, name):
 		if "remote control" in name:
@@ -200,7 +200,7 @@ iInputDevices = inputDevices()
 
 
 config.plugins.remotecontroltype = ConfigSubsection()
-config.plugins.remotecontroltype.rctype = ConfigInteger(default = 0)
+config.plugins.remotecontroltype.rctype = ConfigInteger(default=0)
 
 class RcTypeControl():
 	def __init__(self):

@@ -102,9 +102,9 @@ class InfoHandler(xml.sax.ContentHandler):
 						directory = self.directory + directory
 				else:
 					directory = self.directory
-				self.attributes[self.filetype].append({ "name": str(self.fileattrs["name"]), "directory": directory })
+				self.attributes[self.filetype].append({"name": str(self.fileattrs["name"]), "directory": directory})
 
-		if name in ( "default", "package" ):
+		if name in ("default", "package"):
 			self.list.append({"attributes": self.attributes, 'prerequisites': self.globalprerequisites})
 			self.attributes = {}
 			self.globalprerequisites = {}
@@ -131,7 +131,7 @@ class PackageInfoHandler:
 	STATUS_ERROR = 2
 	STATUS_INIT = 4
 
-	def __init__(self, statusCallback, blocking = False, neededTag = None, neededFlag = None):
+	def __init__(self, statusCallback, blocking=False, neededTag=None, neededFlag=None):
 		self.directory = "/"
 
 		self.neededTag = neededTag
@@ -159,7 +159,7 @@ class PackageInfoHandler:
 		try:
 			xml.sax.parse(_file, handler)
 			for entry in handler.list:
-				self.packageslist.append((entry,_file))
+				self.packageslist.append((entry, _file))
 		except InfoHandlerParseError:
 			pass
 
@@ -168,7 +168,7 @@ class PackageInfoHandler:
 		try:
 			xml.sax.parse(_file, handler)
 			for entry in handler.list:
-				self.packagesIndexlist.append((entry,_file))
+				self.packagesIndexlist.append((entry, _file))
 		except InfoHandlerParseError:
 			pass
 
@@ -178,11 +178,11 @@ class PackageInfoHandler:
 		try:
 			xml.sax.parse(_file, handler)
 			for entry in handler.list:
-				self.packageDetails.append((entry,_file))
+				self.packageDetails.append((entry, _file))
 		except InfoHandlerParseError:
 			pass
 
-	def fillPackagesList(self, prerequisites = True):
+	def fillPackagesList(self, prerequisites=True):
 		self.packageslist = []
 		packages = []
 		if not isinstance(self.directory, list):
@@ -200,7 +200,7 @@ class PackageInfoHandler:
 					self.packageslist.remove(package)
 		return self.packageslist
 
-	def fillPackagesIndexList(self, prerequisites = True):
+	def fillPackagesIndexList(self, prerequisites=True):
 		self.packagesIndexlist = []
 		indexfileList = []
 
@@ -217,7 +217,7 @@ class PackageInfoHandler:
 			for _file in indexfileList:
 				neededFile = self.directory[0] + "/" + _file
 				if os.path.isfile(neededFile):
-					self.readIndex(self.directory[0] + "/" , neededFile)
+					self.readIndex(self.directory[0] + "/", neededFile)
 
 		if prerequisites:
 			for package in self.packagesIndexlist[:]:
@@ -225,7 +225,7 @@ class PackageInfoHandler:
 					self.packagesIndexlist.remove(package)
 		return self.packagesIndexlist
 
-	def fillPackageDetails(self, details = None):
+	def fillPackageDetails(self, details=None):
 		self.packageDetails = []
 		detailsfile = details
 		if not isinstance(self.directory, list):
@@ -361,7 +361,7 @@ class PackageInfoHandler:
 		fd.close()
 		return lines
 
-	def mergeConfig(self, directory, name, merge = True):
+	def mergeConfig(self, directory, name, merge=True):
 		if os.path.isfile(directory + name):
 			config.loadFromFile(directory + name, base_file=False)
 			configfile.save()
@@ -390,7 +390,7 @@ class PackageInfoHandler:
 			if self.console.execute("cp -a %s %s" % (directory, resolveFilename(SCOPE_SKIN))):
 				self.installNext()
 
-	def mergeServices(self, directory, name, merge = False):
+	def mergeServices(self, directory, name, merge=False):
 		if os.path.isfile(directory + name):
 			db = eDVBDB.getInstance()
 			db.reloadServicelist()

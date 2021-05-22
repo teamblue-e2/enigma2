@@ -47,10 +47,10 @@ class SoftcamStartup(Screen, ConfigListScreen):
 				"cancel": self.cancel,
 				"red": self.cancel,
 				"green": self.save,
-			},-1)
+			}, -1)
 
-		self.list = [ ]
-		ConfigListScreen.__init__(self, self.list, session = session)
+		self.list = []
+		ConfigListScreen.__init__(self, self.list, session=session)
 
 		self.initd()
 
@@ -60,9 +60,9 @@ class SoftcamStartup(Screen, ConfigListScreen):
 		softcamlistprimary = self.softcam1.getList()
 		softcamlistsecondary = self.softcam2.getList()
 
-		self.softcamlistprimary = ConfigSelection(choices = softcamlistprimary)
+		self.softcamlistprimary = ConfigSelection(choices=softcamlistprimary)
 		self.softcamlistprimary.value = self.softcam1.current()
-		self.softcamlistsecondary = ConfigSelection(choices = softcamlistsecondary)
+		self.softcamlistsecondary = ConfigSelection(choices=softcamlistsecondary)
 		self.softcamlistsecondary.value = self.softcam2.current()
 
 		self.list.append(getConfigListEntry(_("Select primary softcam"), self.softcamlistprimary))
@@ -88,7 +88,7 @@ class SoftcamStartup(Screen, ConfigListScreen):
 			if "c" in what:
 				msg = _("Please wait, restarting primary and secondary softcam.")
 			else:
-				msg  = _("Please wait, restarting primary softcam.")
+				msg = _("Please wait, restarting primary softcam.")
 		elif "c" in what:
 			msg = _("Please wait, restarting secondary softcam.")
 		self.mbox = self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)
@@ -165,7 +165,7 @@ class SoftcamStartup(Screen, ConfigListScreen):
 		if not fileExists('/etc/init.d/cardserver'):
 			os.system('ln -s /etc/init.d/cardserver.None /etc/init.d/cardserver')
 
-		if fileExists ('/etc/rc0.d/K20softcam'):
+		if fileExists('/etc/rc0.d/K20softcam'):
 			os.system('update-rc.d -f softcam remove && update-rc.d -f cardserver remove')
 		if not fileExists('/etc/rc0.d/K09softcam'):
 			os.system('update-rc.d softcam stop 09 0 1 6 . start  60 2 3 4 5 .')

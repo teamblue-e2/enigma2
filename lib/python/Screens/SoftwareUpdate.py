@@ -32,7 +32,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 		Screen.__init__(self, session)
 		ProtectedScreen.__init__(self)
 
-		self.sliderPackages = { "gigablue-": 1, "enigma2": 2, "teamblue-": 3 }
+		self.sliderPackages = {"gigablue-": 1, "enigma2": 2, "teamblue-": 3}
 
 		self.setTitle(_("Software update"))
 		self.slider = Slider(0, 4)
@@ -111,7 +111,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 			self.showDisclaimer()
 		else:
 			message += "\n" + _("Do you want to update your receiver?")
-			self.session.openWithCallback(self.startActualUpdate, MessageBox, message, default = default, picon = picon)
+			self.session.openWithCallback(self.startActualUpdate, MessageBox, message, default=default, picon=picon)
 
 	def showDisclaimer(self, justShow=False):
 		if config.usage.show_update_disclaimer.value or justShow:
@@ -151,7 +151,7 @@ If you discover 'bugs' please keep them reported on www.teamblue.tech.\n\nDo you
 		print("[SoftwareUpdate] latestImageTimestamp:", latestImageTimestamp)
 		return latestImageTimestamp
 
-	def startActualUpdate(self,answer):
+	def startActualUpdate(self, answer):
 		if answer:
 			self.updating = True
 			self.opkg.startCmd(OpkgComponent.CMD_UPDATE)
@@ -259,7 +259,7 @@ If you discover 'bugs' please keep them reported on www.teamblue.tech.\n\nDo you
 					error = _("No updates available. Please try again later.")
 				if self.updating:
 					error = _("Update failed. Your receiver does not have a working internet connection.")
-				self.status.setText(_("Error") +  " - " + error)
+				self.status.setText(_("Error") + " - " + error)
 		elif event == OpkgComponent.EVENT_LISTITEM:
 			if 'enigma2-plugin-settings-' in param[0] and self.channellist_only > 0:
 				self.channellist_name = param[0]
@@ -279,12 +279,12 @@ If you discover 'bugs' please keep them reported on www.teamblue.tech.\n\nDo you
 			self.close()
 			return
 		if answer[1] == "cold":
-			self.session.open(TryQuitMainloop,retvalue=42)
+			self.session.open(TryQuitMainloop, retvalue=42)
 			self.close()
 		elif answer[1] == "channels":
 			self.channellist_only = 1
 			self.slider.setValue(1)
-			self.opkg.startCmd(OpkgComponent.CMD_LIST, args = {'installed_only': True})
+			self.opkg.startCmd(OpkgComponent.CMD_LIST, args={'installed_only': True})
 		elif answer[1] == "commits":
 			self.session.openWithCallback(boundFunction(self.opkgCallback, OpkgComponent.EVENT_DONE, None), CommitInfo)
 		elif answer[1] == "disclaimer":
@@ -296,7 +296,7 @@ If you discover 'bugs' please keep them reported on www.teamblue.tech.\n\nDo you
 			text = open("/home/root/opkgupgrade.log", "r").read()
 			self.session.openWithCallback(boundFunction(self.opkgCallback, OpkgComponent.EVENT_DONE, None), TextBox, text, _("Latest update log"), True)
 		else:
-			self.opkg.startCmd(OpkgComponent.CMD_UPGRADE, args = {'test_only': False})
+			self.opkg.startCmd(OpkgComponent.CMD_UPGRADE, args={'test_only': False})
 
 	def modificationCallback(self, res):
 		self.opkg.write(res and "N" or "Y")

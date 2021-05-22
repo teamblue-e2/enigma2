@@ -36,12 +36,12 @@ PACKAGE_PATH = os.path.dirname(str((globals())["__file__"]))
 KEYMAPPINGS = {'aspect': os.path.join(PACKAGE_PATH, 'keymap-aspect.xml')}
 
 config.plugins.GBAspectRatioSwitch = ConfigSubsection()
-config.plugins.GBAspectRatioSwitch.enabled = ConfigEnableDisable(default = True)
+config.plugins.GBAspectRatioSwitch.enabled = ConfigEnableDisable(default=True)
 config.plugins.GBAspectRatioSwitch.keymap = ConfigSelection({'aspect': _('ASPECT key')})
-config.plugins.GBAspectRatioSwitch.showmsg = ConfigEnableDisable(default = True)
+config.plugins.GBAspectRatioSwitch.showmsg = ConfigEnableDisable(default=True)
 config.plugins.GBAspectRatioSwitch.modes = ConfigSubDict()
 for aspect in ASPECT:
-	config.plugins.GBAspectRatioSwitch.modes[aspect] = ConfigYesNo(default = True)
+	config.plugins.GBAspectRatioSwitch.modes[aspect] = ConfigYesNo(default=True)
 
 aspect_ratio_switch = None
 
@@ -193,16 +193,16 @@ def main(session, **kwargs):
 def startGBAspectRatioSwitch(menuid):
 	if menuid != "video_menu":
 		return []
-	return [( _("AspectRatio switch"), main, "aspectratio_switch", 99)]
+	return [(_("AspectRatio switch"), main, "aspectratio_switch", 99)]
 
 def Plugins(**kwargs):
 	return [
 		PluginDescriptor(
 			name="GBAspectRatioSwitch",
 			description=_("Quick switching of aspect ratio setting"),
-			where = PluginDescriptor.WHERE_MENU,
-			needsRestart = False,
+			where=PluginDescriptor.WHERE_MENU,
+			needsRestart=False,
 			fnc=startGBAspectRatioSwitch),
 		PluginDescriptor(
-			where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],
-			fnc = autostart)]
+			where=[PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART],
+			fnc=autostart)]

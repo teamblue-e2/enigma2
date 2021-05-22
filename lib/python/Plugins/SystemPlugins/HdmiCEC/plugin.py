@@ -50,7 +50,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 
 		self.list = []
 		self.logpath_entry = None
-		ConfigListScreen.__init__(self, self.list, session = self.session)
+		ConfigListScreen.__init__(self, self.list, session=self.session)
 		self.createSetup()
 		self.updateAddress()
 
@@ -154,5 +154,5 @@ def Plugins(**kwargs):
 	if path.exists("/dev/hdmi_cec") or path.exists("/dev/misc/hdmi_cec0"):
 		import Components.HdmiCec
 		from Plugins.Plugin import PluginDescriptor
-		return [PluginDescriptor(where = PluginDescriptor.WHERE_MENU, fnc = startSetup)]
+		return [PluginDescriptor(where=PluginDescriptor.WHERE_MENU, fnc=startSetup)]
 	return []

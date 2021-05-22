@@ -9,7 +9,9 @@ Maintainer: U{Felix Domke<mailto:tmbinc@elitedvb.net>}
 """
 
 # System imports
-import select, errno, sys
+import select
+import errno
+import sys
 
 # Twisted imports
 from twisted.python import log, failure
@@ -28,16 +30,16 @@ POLL_DISCONNECTED = (select.POLLHUP | select.POLLERR | select.POLLNVAL)
 
 class E2SharedPoll:
 	def __init__(self):
-		self.dict = { }
+		self.dict = {}
 		self.eApp = getApplication()
 
-	def register(self, fd, eventmask = select.POLLIN | select.POLLERR | select.POLLOUT):
+	def register(self, fd, eventmask=select.POLLIN | select.POLLERR | select.POLLOUT):
 		self.dict[fd] = eventmask
 
 	def unregister(self, fd):
 		del self.dict[fd]
 
-	def poll(self, timeout = None):
+	def poll(self, timeout=None):
 		try:
 			r = self.eApp.poll(timeout, self.dict)
 		except KeyboardInterrupt:
@@ -97,7 +99,7 @@ class PollReactor(posixbase.PosixReactorBase):
 		fd = reader.fileno()
 		if fd not in reads:
 			selectables[fd] = reader
-			reads[fd] =  1
+			reads[fd] = 1
 			self._updateRegistration(fd)
 
 	def addWriter(self, writer, writes=writes, selectables=selectables):
@@ -106,7 +108,7 @@ class PollReactor(posixbase.PosixReactorBase):
 		fd = writer.fileno()
 		if fd not in writes:
 			selectables[fd] = writer
-			writes[fd] =  1
+			writes[fd] = 1
 			self._updateRegistration(fd)
 
 	def removeReader(self, reader, reads=reads):
@@ -153,7 +155,7 @@ class PollReactor(posixbase.PosixReactorBase):
 			if l is None:
 				if self.running:
 					self.stop()
-				l = [ ]
+				l = []
 		except select.error as e:
 			if e[0] is errno.EINTR:
 				return

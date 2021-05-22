@@ -1,6 +1,8 @@
 from __future__ import print_function
 from __future__ import absolute_import
-import os, re, unicodedata
+import os
+import re
+import unicodedata
 from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap
 from Tools.Alternatives import GetWithAlternative
@@ -8,7 +10,8 @@ from Tools.Directories import pathExists, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, 
 from Components.Harddisk import harddiskmanager
 from ServiceReference import ServiceReference
 from Components.config import config
-import six, sys
+import six
+import sys
 if sys.version_info.major == 3:
     unicode = str
 
@@ -138,10 +141,10 @@ class Picon(Renderer):
 		for (attrib, value) in self.skinAttributes:
 			if attrib == "path":
 				self.addPath(value)
-				attribs.remove((attrib,value))
+				attribs.remove((attrib, value))
 			elif attrib == "isFrontDisplayPicon":
 				self.showPicon = value == "0"
-				attribs.remove((attrib,value))
+				attribs.remove((attrib, value))
 		self.skinAttributes = attribs
 		return Renderer.applySkin(self, desktop, parent)
 

@@ -26,7 +26,7 @@ class FailedPostcondition(Components.Task.Condition):
 		return self.exception is None
 
 # Same as Python 3.3 open(filename, "x"), we must be the creator
-def openex(filename, flags = os.O_CREAT | os.O_EXCL | os.O_WRONLY):
+def openex(filename, flags=os.O_CREAT | os.O_EXCL | os.O_WRONLY):
 	return os.fdopen(os.open(filename, flags), 'wb', 0)
 
 class CopyFileTask(Components.Task.PythonTask):
@@ -35,7 +35,7 @@ class CopyFileTask(Components.Task.PythonTask):
 		self.fileList = fileList
 		self.handles = [(open(fn[0], 'rb', buffering=0), openex(fn[1])) for fn in fileList]
 		self.end = 0
-		for src,dst in fileList:
+		for src, dst in fileList:
 			try:
 				self.end += os.stat(src).st_size
 			except:
@@ -89,7 +89,7 @@ class CopyFileTask(Components.Task.PythonTask):
 			for src, dst in self.handles:
 				src.close()
 				dst.close()
-			for s,d in self.fileList:
+			for s, d in self.fileList:
 				# Remove incomplete data.
 				try:
 					os.unlink(d)
@@ -102,7 +102,7 @@ class MoveFileTask(CopyFileTask):
 		CopyFileTask.work(self)
 		print("[MoveFileTask]: delete source files")
 		errors = []
-		for s,d in self.fileList:
+		for s, d in self.fileList:
 			try:
 				os.unlink(s)
 			except Exception as e:

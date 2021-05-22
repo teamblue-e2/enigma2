@@ -35,11 +35,11 @@ class CIselectMainMenu(Screen):
 			<widget name="CiList" position="5,50" size="490,200" scrollbarMode="showOnDemand" />
 		</screen>"""
 
-	def __init__(self, session, args = 0):
+	def __init__(self, session, args=0):
 		Screen.__init__(self, session)
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Edit"))
-		self["actions"] = ActionMap(["ColorActions","SetupActions"],
+		self["actions"] = ActionMap(["ColorActions", "SetupActions"],
 			{
 				"green": self.greenPressed,
 				"red": self.close,
@@ -52,22 +52,22 @@ class CIselectMainMenu(Screen):
 		print("[CI_Wizzard] FOUND %d CI Slots " % NUM_CI)
 
 		self.dlg = None
-		self.state = { }
-		self.list = [ ]
+		self.state = {}
+		self.list = []
 		if  NUM_CI and NUM_CI > 0:
 			for slot in list(range(NUM_CI)):
 				state = eDVBCI_UI.getInstance().getState(slot)
 				if state != -1:
-					appname = _("Slot %d") %(slot+1) + " - " + _("unknown error")
+					appname = _("Slot %d") % (slot + 1) + " - " + _("unknown error")
 					if state == 0:
-						appname = _("Slot %d") %(slot+1) + " - " + _("no module found")
+						appname = _("Slot %d") % (slot + 1) + " - " + _("no module found")
 					elif state == 1:
-						appname = _("Slot %d") %(slot+1) + " - " + _("init modules")
+						appname = _("Slot %d") % (slot + 1) + " - " + _("init modules")
 					elif state == 2:
-						appname = _("Slot %d") %(slot+1) + " - " + eDVBCI_UI.getInstance().getAppName(slot)
-					self.list.append( (appname, ConfigNothing(), 0, slot) )
+						appname = _("Slot %d") % (slot + 1) + " - " + eDVBCI_UI.getInstance().getAppName(slot)
+					self.list.append((appname, ConfigNothing(), 0, slot))
 		else:
-			self.list.append( (_("no CI slots found") , ConfigNothing(), 1, -1) )
+			self.list.append((_("no CI slots found"), ConfigNothing(), 1, -1))
 
 		menuList = ConfigList(self.list)
 		menuList.list = self.list
@@ -126,7 +126,7 @@ class CIconfigMenu(Screen):
 		self["ServiceList_desc"] = StaticText(_("Assigned services/provider:"))
 		self["ServiceList_info"] = StaticText()
 
-		self["actions"] = ActionMap(["ColorActions","SetupActions", "MenuActions"],
+		self["actions"] = ActionMap(["ColorActions", "SetupActions", "MenuActions"],
 			{
 				"green": self.greenPressed,
 				"red": self.redPressed,
@@ -142,9 +142,9 @@ class CIconfigMenu(Screen):
 		self.caidlist = []
 		for caid in eDVBCIInterfaces.getInstance().readCICaIds(self.ci_slot):
 			i += 1
-			self.caidlist.append((str(hex(int(caid))),str(caid),i))
+			self.caidlist.append((str(hex(int(caid))), str(caid), i))
 
-		print("[CI_Wizzard_Config_CI%d] read following CAIds from CI: %s" %(self.ci_slot, self.caidlist))
+		print("[CI_Wizzard_Config_CI%d] read following CAIds from CI: %s" % (self.ci_slot, self.caidlist))
 
 		self.selectedcaid = []
 		self.servicelist = []
@@ -169,10 +169,10 @@ class CIconfigMenu(Screen):
 		self.delete()
 
 	def greenPressed(self):
-		self.session.openWithCallback( self.finishedChannelSelection, myChannelSelection, None)
+		self.session.openWithCallback(self.finishedChannelSelection, myChannelSelection, None)
 
 	def yellowPressed(self):
-		self.session.openWithCallback( self.finishedProviderSelection, myProviderSelection, None)
+		self.session.openWithCallback(self.finishedProviderSelection, myProviderSelection, None)
 
 	def bluePressed(self):
 		self.session.openWithCallback(self.finishedCAidSelection, CAidSelect, self.caidlist, self.selectedcaid)
@@ -263,7 +263,7 @@ class CIconfigMenu(Screen):
 	def finishedCAidSelection(self, *args):
 		if len(args):
 			self.selectedcaid = args[0]
-			self.caids=""
+			self.caids = ""
 			if len(self.selectedcaid):
 				for item in self.selectedcaid:
 					if len(self.caids):
@@ -298,7 +298,7 @@ class CIconfigMenu(Screen):
 					if item[2] == 1:
 						fp.write("\t\t<provider name=\"%s\" dvbnamespace=\"%s\" />\n" % (stringToXML(name), item[3]))
 					else:
-						fp.write("\t\t<service name=\"%s\" ref=\"%s\" />\n"  % (stringToXML(name), item[3]))
+						fp.write("\t\t<service name=\"%s\" ref=\"%s\" />\n" % (stringToXML(name), item[3]))
 			fp.write("\t</slot>\n")
 			fp.write("</ci>\n")
 			fp.close()
@@ -313,7 +313,7 @@ class CIconfigMenu(Screen):
 
 		def getValue(definitions, default):
 			Len = len(definitions)
-			return Len > 0 and definitions[Len-1].text or default
+			return Len > 0 and definitions[Len - 1].text or default
 		self.read_services = []
 		self.read_providers = []
 		self.usingcaid = []
@@ -325,19 +325,19 @@ class CIconfigMenu(Screen):
 				i = 0
 				for caid in slot.findall("caid"):
 					read_caid = six.ensure_str(caid.get("id"))
-					self.selectedcaid.append((str(read_caid),str(read_caid),i))
-					self.usingcaid.append(int(read_caid,16))
+					self.selectedcaid.append((str(read_caid), str(read_caid), i))
+					self.usingcaid.append(int(read_caid, 16))
 					i += 1
 
 				for service in  slot.findall("service"):
 					read_service_name = six.ensure_str(service.get("name"))
 					read_service_ref = six.ensure_str(service.get("ref"))
-					self.read_services.append (read_service_ref)
+					self.read_services.append(read_service_ref)
 
 				for provider in  slot.findall("provider"):
 					read_provider_name = six.ensure_str(provider.get("name"))
 					read_provider_dvbname = six.ensure_str(provider.get("dvbnamespace"))
-					self.read_providers.append((read_provider_name,read_provider_dvbname))
+					self.read_providers.append((read_provider_name, read_provider_dvbname))
 
 				self.ci_config.append((int(read_slot), (self.read_services, self.read_providers, self.usingcaid)))
 		except:
@@ -353,7 +353,7 @@ class CIconfigMenu(Screen):
 
 		for item in self.read_providers:
 			if len(item):
-				self.finishedProviderSelection(item[0],item[1])
+				self.finishedProviderSelection(item[0], item[1])
 
 		self.finishedCAidSelection(self.selectedcaid)
 		self["ServiceList"].l.setList(self.servicelist)
@@ -375,7 +375,7 @@ class easyCIconfigMenu(CIconfigMenu):
 
 	def __init__(self, session, ci_slot="9"):
 		CIconfigMenu.__init__(self, session, ci_slot)
-		self["actions"] = ActionMap(["ColorActions","SetupActions", "MenuActions"],
+		self["actions"] = ActionMap(["ColorActions", "SetupActions", "MenuActions"],
 			{
 				"green": self.greenPressed,
 				"red": self.redPressed,
@@ -404,7 +404,7 @@ class CAidSelect(Screen):
 		self["list"] = self.list
 
 		for listindex in list(range(len(list))):
-			if find_in_list(selected_caids,list[listindex][0],0):
+			if find_in_list(selected_caids, list[listindex][0], 0):
 				self.list.addSelection(list[listindex][0], list[listindex][1], listindex, True)
 			else:
 				self.list.addSelection(list[listindex][0], list[listindex][1], listindex, False)
@@ -413,7 +413,7 @@ class CAidSelect(Screen):
 		self["key_green"] = StaticText(_("Save"))
 		self["introduction"] = StaticText(_("Press OK to select/deselect a CAId."))
 
-		self["actions"] = ActionMap(["ColorActions","SetupActions"],
+		self["actions"] = ActionMap(["ColorActions", "SetupActions"],
 		{
 			"ok": self.list.toggleSelection,
 			"cancel": self.cancel,
@@ -481,14 +481,15 @@ class myProviderSelection(ChannelSelectionBase):
 
 	def channelSelected(self): # just return selected service
 		ref = self.getCurrentSelection()
-		if ref is None: return
+		if ref is None:
+			return
 		if not (ref.flags & 64):
 			splited_ref = ref.toString().split(":")
 			if ref.flags == 7 and splited_ref[6] != "0":
 				self.dvbnamespace = splited_ref[6]
 				self.enterPath(ref)
 			elif (ref.flags & 7) == 7 and 'provider' in ref.toString():
-				menu = [(_("Provider"), "provider"),(_("All services provider"), "providerlist")]
+				menu = [(_("Provider"), "provider"), (_("All services provider"), "providerlist")]
 				def addAction(choice):
 					if choice is not None:
 						if choice[1] == "provider":
@@ -507,26 +508,26 @@ class myProviderSelection(ChannelSelectionBase):
 									self.close(providerlist, self.dvbnamespace, True)
 								else:
 									self.close(None)
-				self.session.openWithCallback(addAction, ChoiceBox, title = _("Select action"), list=menu)
+				self.session.openWithCallback(addAction, ChoiceBox, title=_("Select action"), list=menu)
 
 	def showSatellites(self, changeMode=False):
 		if changeMode:
 			return
 		if not self.pathChangeDisabled:
-			refstr = '%s FROM SATELLITES ORDER BY satellitePosition'%(self.service_types)
+			refstr = '%s FROM SATELLITES ORDER BY satellitePosition' % (self.service_types)
 			if not self.preEnterPath(refstr):
 				ref = eServiceReference(refstr)
-				justSet=False
+				justSet = False
 				prev = None
 
 				if self.isBasePathEqual(ref):
 					if self.isPrevPathEqual(ref):
-						justSet=True
+						justSet = True
 					prev = self.pathUp(justSet)
 				else:
 					currentRoot = self.getRoot()
 					if currentRoot is None or currentRoot != ref:
-						justSet=True
+						justSet = True
 						self.clearPath()
 						self.enterPath(ref, True)
 				if justSet:
@@ -716,6 +717,6 @@ def Plugins(**kwargs):
 	description = _("a gui to assign services/providers to common interface modules")
 	if config.usage.setup_level.index > 1:
 		description = _("a gui to assign services/providers/caids to common interface modules")
-	return [PluginDescriptor(where = PluginDescriptor.WHERE_SESSIONSTART, needsRestart = False, fnc = sessionstart),
-			PluginDescriptor(where = PluginDescriptor.WHERE_AUTOSTART, needsRestart = False, fnc = autostart),
-			PluginDescriptor(name = _("CI assignment"), description = description, where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu)]
+	return [PluginDescriptor(where=PluginDescriptor.WHERE_SESSIONSTART, needsRestart=False, fnc=sessionstart),
+			PluginDescriptor(where=PluginDescriptor.WHERE_AUTOSTART, needsRestart=False, fnc=autostart),
+			PluginDescriptor(name=_("CI assignment"), description=description, where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=menu)]

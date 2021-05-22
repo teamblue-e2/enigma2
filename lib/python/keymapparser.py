@@ -40,7 +40,7 @@ def parseKeys(context, filename, actionmap, device, keys):
 		id = get_attr("id")
 		flags = get_attr("flags")
 
-		flag_ascii_to_id = lambda x: {'m':1,'b':2,'r':4,'l':8}[x]
+		flag_ascii_to_id = lambda x: {'m': 1, 'b': 2, 'r': 4, 'l': 8}[x]
 
 		flags = sum(map(flag_ascii_to_id, flags))
 
@@ -69,7 +69,7 @@ def parseTrans(filename, actionmap, device, keys):
 		assert keyin, "[keymapparser] %s: must specify key to translate from '%s'" % (filename, keyin)
 		assert keyout, "[keymapparser] %s: must specify key to translate to '%s'" % (filename, keyout)
 
-		keyin  = getKeyId(keyin)
+		keyin = getKeyId(keyin)
 		keyout = getKeyId(keyout)
 		toggle = int(toggle)
 		actionmap.bindTranslation(filename, device, keyin, keyout, toggle)

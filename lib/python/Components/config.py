@@ -34,13 +34,13 @@ import collections
 #
 class ConfigElement(object):
 	def __init__(self):
-		self.extra_args = { }
+		self.extra_args = {}
 		self.saved_value = None
 		self.save_forced = False
 		self.last_value = None
 		self.save_disabled = False
-		self.__notifiers = { }
-		self.__notifiers_final = { }
+		self.__notifiers = {}
+		self.__notifiers_final = {}
 		self.enabled = True
 		self.callNotifiersOnSaveAndCancel = False
 
@@ -131,11 +131,13 @@ class ConfigElement(object):
 	# immediate_feedback = False means call notifier on leave the config element (up/down) when value have CHANGED
 	# call_on_save_or_cancel = True means call notifier always on save/cancel.. even when value have not changed
 	def addNotifier(self, notifier, initial_call=True, immediate_feedback=True, call_on_save_or_cancel=False, extra_args=None):
-		if not extra_args: extra_args = []
+		if not extra_args:
+			extra_args = []
 		assert isinstance(notifier, collections.Callable), "notifiers must be callable"
 		try:
 			self.extra_args[notifier] = extra_args
-		except: pass
+		except:
+			pass
 		if immediate_feedback:
 			self.__notifiers[str(notifier)] = (notifier, self.value, call_on_save_or_cancel)
 		else:
@@ -150,7 +152,7 @@ class ConfigElement(object):
 		#     the entry could just be new.)
 		if initial_call:
 			if extra_args:
-				notifier(self,extra_args)
+				notifier(self, extra_args)
 			else:
 				notifier(self)
 
@@ -164,8 +166,8 @@ class ConfigElement(object):
 				pass
 
 	def clearNotifiers(self):
-		self.__notifiers = { }
-		self.__notifiers_final = { }
+		self.__notifiers = {}
+		self.__notifiers_final = {}
 
 	#def removeNotifier(self, notifier):
 	#	notifier in self.notifiers and self.notifiers.remove(notifier)
@@ -812,9 +814,9 @@ class ConfigMAC(ConfigSequence):
 		ConfigSequence.__init__(self, seperator=":", limits=mac_limits, default=default)
 
 class ConfigMacText(ConfigElement, NumericalTextInput):
-	def __init__(self, default = "", visible_width = False):
+	def __init__(self, default="", visible_width=False):
 		ConfigElement.__init__(self)
-		NumericalTextInput.__init__(self, nextFunc = self.nextFunc, handleTimeout = False)
+		NumericalTextInput.__init__(self, nextFunc=self.nextFunc, handleTimeout=False)
 
 		self.marked_pos = 0
 		self.allmarked = (default != "")
@@ -828,8 +830,8 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 
 	def validateMarker(self):
 		textlen = len(self.text)
-		if self.marked_pos > textlen-1:
-			self.marked_pos = textlen-1
+		if self.marked_pos > textlen - 1:
+			self.marked_pos = textlen - 1
 		elif self.marked_pos < 0:
 			self.marked_pos = 0
 
@@ -850,7 +852,7 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 				self.marked_pos = len(self.text)
 				self.allmarked = False
 			else:
-				if self.text[self.marked_pos-1] == ':':
+				if self.text[self.marked_pos - 1] == ':':
 					self.marked_pos -= 2
 				else:
 					self.marked_pos -= 1
@@ -860,8 +862,8 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 				self.marked_pos = 0
 				self.allmarked = False
 			else:
-				if self.marked_pos < (len(self.text)-1):
-					if self.text[self.marked_pos+1] == ':':
+				if self.marked_pos < (len(self.text) - 1):
+					if self.text[self.marked_pos + 1] == ':':
 						self.marked_pos += 2
 					else:
 						self.marked_pos += 1
@@ -912,14 +914,14 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 			if self.allmarked:
 				mark = list(range(0, min(self.visible_width, len(self.text))))
 			else:
-				mark = [self.marked_pos-self.offset]
-			return ("mtext"[1-selected:], six.ensure_str(text[self.offset:self.offset+self.visible_width])+" ", mark)
+				mark = [self.marked_pos - self.offset]
+			return ("mtext"[1 - selected:], six.ensure_str(text[self.offset:self.offset + self.visible_width]) + " ", mark)
 		else:
 			if self.allmarked:
 				mark = list(range(0, len(self.text)))
 			else:
 				mark = [self.marked_pos]
-			return "mtext"[1-selected:], six.ensure_str(self.text) + " ", mark
+			return "mtext"[1 - selected:], six.ensure_str(self.text) + " ", mark
 
 	def onSelect(self, session):
 		self.allmarked = (self.value != "")
@@ -1205,13 +1207,13 @@ class ConfigText(ConfigElement, NumericalTextInput):
 				mark = list(range(0, min(self.visible_width, len(self.text))))
 			else:
 				mark = [self.marked_pos - self.offset]
-			return ("mtext"[1-selected:], six.ensure_str(text[self.offset:self.offset+self.visible_width])+" ", mark)
+			return ("mtext"[1 - selected:], six.ensure_str(text[self.offset:self.offset + self.visible_width]) + " ", mark)
 		else:
 			if self.allmarked:
 				mark = list(range(0, len(self.text)))
 			else:
 				mark = [self.marked_pos]
-			return "mtext"[1-selected:], six.ensure_str(self.text) + " ", mark
+			return "mtext"[1 - selected:], six.ensure_str(self.text) + " ", mark
 
 	def onSelect(self, session):
 		self.allmarked = (self.value != "")
@@ -1468,7 +1470,8 @@ class ConfigSatlist(ConfigSelection):
 
 class ConfigSet(ConfigElement):
 	def __init__(self, choices, default=None):
-		if not default: default = []
+		if not default:
+			default = []
 		ConfigElement.__init__(self)
 		if isinstance(choices, list):
 			sorted(choices)
@@ -1623,7 +1626,8 @@ class ConfigDictionarySet(ConfigElement):
 
 class ConfigLocations(ConfigElement):
 	def __init__(self, default=None, visible_width=False):
-		if not default: default = []
+		if not default:
+			default = []
 		ConfigElement.__init__(self)
 		self.visible_width = visible_width
 		self.pos = -1

@@ -21,7 +21,7 @@ class GraphMultiEpgSetup(Screen, ConfigListScreen):
 			<widget name="config" position="10,50" size="550,430" />
 		</screen>"""
 
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		self.setTitle(_("GraphMultiEpg Settings"))
 
@@ -38,15 +38,15 @@ class GraphMultiEpgSetup(Screen, ConfigListScreen):
 			"menu": self.closeRecursive,
 		}, -1)
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.session = session
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session)
+		ConfigListScreen.__init__(self, self.list, session=self.session)
 		self.createSetup()
 
 	def createSetup(self):
 		global addnotifier
-		self.list = [ ]
+		self.list = []
 		self.list.append(getConfigListEntry(_("Event font size (relative to skin size)"), config.misc.graph_mepg.ev_fontsize))
 		self.list.append(getConfigListEntry(_("Time scale"), config.misc.graph_mepg.prev_time_period))
 		self.list.append(getConfigListEntry(_("Prime time"), config.misc.graph_mepg.prime_time))

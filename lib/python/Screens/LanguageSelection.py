@@ -55,7 +55,7 @@ class LanguageSelection(Screen):
 		self.commit(self.run())
 		if self.oldActiveLanguage != config.osd.language.value:
 			if InfoBar.instance:
-				self.session.openWithCallback(self.restartGUI, MessageBox,_("GUI needs a restart to apply a new language\nDo you want to restart the GUI now?"), MessageBox.TYPE_YESNO, title=_("Restart GUI now?"))
+				self.session.openWithCallback(self.restartGUI, MessageBox, _("GUI needs a restart to apply a new language\nDo you want to restart the GUI now?"), MessageBox.TYPE_YESNO, title=_("Restart GUI now?"))
 			else:
 				self.restartGUI()
 		else:
@@ -85,9 +85,9 @@ class LanguageSelection(Screen):
 	def updateList(self):
 		languageList = language.getLanguageList()
 		if not languageList: # no language available => display only english
-			_list = [ LanguageEntryComponent("en", "English", "en_EN") ]
+			_list = [LanguageEntryComponent("en", "English", "en_EN")]
 		else:
-			_list = [ LanguageEntryComponent(_file = x[1][2].lower(), name = x[1][0], index = x[0]) for x in languageList]
+			_list = [LanguageEntryComponent(_file=x[1][2].lower(), name=x[1][0], index=x[0]) for x in languageList]
 		self.list = _list
 		self["languages"].list = _list
 

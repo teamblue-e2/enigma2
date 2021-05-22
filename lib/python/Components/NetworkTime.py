@@ -37,12 +37,12 @@ class NTPSyncPoller:
 		else:
 			self.update_schedule()
 
-	def update_schedule(self, result = None, retval = None, extra_args = None):
+	def update_schedule(self, result=None, retval=None, extra_args=None):
 		nowTime = time()
 		nowTimereal = ctime(nowTime)
 		if nowTime > 10000:
-			print(('[NTP]: setting E2 unixtime:',nowTime))
-			print(('[NTP]: setting E2 realtime:',nowTimereal))
+			print(('[NTP]: setting E2 unixtime:', nowTime))
+			print(('[NTP]: setting E2 realtime:', nowTimereal))
 			setRTCtime(nowTime)
 			if config.misc.SyncTimeUsing.value == "1":
 				eDVBLocalTimeHandler.getInstance().setUseDVBTime(False)

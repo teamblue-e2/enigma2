@@ -3,7 +3,7 @@ from __future__ import print_function
 
 class slot:
 	def __init__(self):
-		self.list = [ ]
+		self.list = []
 
 	def get(self):
 		return self.list
@@ -26,7 +26,7 @@ class eTimer:
 		self.next_activation = None
 		print("NEW TIMER")
 
-	def start(self, msec, singleshot = False):
+	def start(self, msec, singleshot=False):
 		print("start timer", msec)
 		self.next_activation = time.time() + msec / 1000.0
 		self.msec = msec
@@ -71,7 +71,7 @@ def stop():
 	global stopped
 	stopped = True
 
-def run(duration = 1000):
+def run(duration=1000):
 	stoptimer = eTimer()
 	stoptimer.start(duration * 1000.0)
 	stoptimer.callback.append(stop)
@@ -139,15 +139,15 @@ getPrevAsciiCode = None
 
 class eServiceReference:
 
-	isDirectory=1
-	mustDescent=2
-	canDescent=4
-	flagDirectory=isDirectory|mustDescent|canDescent
-	shouldSort=8
-	hasSortKey=16
-	sort1=32
-	isMarker=64
-	isGroup=128
+	isDirectory = 1
+	mustDescent = 2
+	canDescent = 4
+	flagDirectory = isDirectory | mustDescent | canDescent
+	shouldSort = 8
+	hasSortKey = 16
+	sort1 = 32
+	isMarker = 64
+	isGroup = 128
 
 	def __init__(self, ref):
 		self.ref = ref
@@ -287,7 +287,7 @@ print("import directories")
 import Tools.Directories
 print("done")
 
-chroot="."
+chroot = "."
 
 for (x, (y, z)) in Tools.Directories.defaultPaths.items():
 	Tools.Directories.defaultPaths[x] = (chroot + y, z)
@@ -318,7 +318,8 @@ class eActionMap:
 
 def init_nav():
 	print("init nav")
-	import Navigation, NavigationInstance
+	import Navigation
+	import NavigationInstance
 	NavigationInstance.instance = Navigation.Navigation()
 
 def init_record_config():

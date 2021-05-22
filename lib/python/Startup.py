@@ -55,8 +55,8 @@ from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS,
 InitFallbackFiles()
 
 profile("config.misc")
-config.misc.radiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "radio.mvi"))
-config.misc.blackradiopic = ConfigText(default = resolveFilename(SCOPE_CURRENT_SKIN, "black.mvi"))
+config.misc.radiopic = ConfigText(default=resolveFilename(SCOPE_CURRENT_SKIN, "radio.mvi"))
+config.misc.blackradiopic = ConfigText(default=resolveFilename(SCOPE_CURRENT_SKIN, "black.mvi"))
 config.misc.useTransponderTime = ConfigYesNo(default=True)
 config.misc.startCounter = ConfigInteger(default=0) # number of e2 starts...
 config.misc.standbyCounter = NoSave(ConfigInteger(default=0)) # number of standby
@@ -66,11 +66,11 @@ config.misc.prev_wakeup_time = ConfigInteger(default=0)
 #config.misc.prev_wakeup_time_type is only valid when wakeup_time is not 0
 config.misc.prev_wakeup_time_type = ConfigInteger(default=0)
 # 0 = RecordTimer, 1 = ZapTimer, 2 = Plugins, 3 = WakeupTimer
-config.misc.epgcache_filename = ConfigText(default = '/etc/enigma2/epg.dat', fixed_size=False)
+config.misc.epgcache_filename = ConfigText(default='/etc/enigma2/epg.dat', fixed_size=False)
 config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
-config.misc.SyncTimeUsing = ConfigSelection(default = "0", choices = [("0", "Transponder Time"), ("1", _("NTP"))])
-config.misc.NTPserver = ConfigText(default = 'pool.ntp.org', fixed_size=False)
-config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30" + " " +_("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
+config.misc.SyncTimeUsing = ConfigSelection(default="0", choices=[("0", "Transponder Time"), ("1", _("NTP"))])
+config.misc.NTPserver = ConfigText(default='pool.ntp.org', fixed_size=False)
+config.misc.useNTPminutes = ConfigSelection(default="30", choices=[("30", "30" + " " + _("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
 
 def setEPGCachePath(configElement):
 	enigma.eEPGCache.getInstance().setCacheFile(configElement.value)
@@ -96,7 +96,7 @@ def useSyncUsingChanged(configelement):
 		print("[mytest] Time by NTP")
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(False)
 		enigma.eEPGCache.getInstance().timeUpdated()
-config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged, immediate_feedback = True)
+config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged, immediate_feedback=True)
 
 def NTPserverChanged(configelement):
 	if config.misc.NTPserver.value == "pool.ntp.org":
@@ -109,7 +109,7 @@ def NTPserverChanged(configelement):
 	from Components.Console import Console
 	Console = Console()
 	Console.ePopen('/usr/bin/ntpdate-sync')
-config.misc.NTPserver.addNotifier(NTPserverChanged, immediate_feedback = True)
+config.misc.NTPserver.addNotifier(NTPserverChanged, immediate_feedback=True)
 
 profile("Twisted")
 try:
@@ -130,7 +130,7 @@ except ImportError:
 profile("LOAD:Plugin")
 
 from twisted.python import log
-config.misc.enabletwistedlog = ConfigYesNo(default = False)
+config.misc.enabletwistedlog = ConfigYesNo(default=False)
 if config.misc.enabletwistedlog.value == True:
 	log.startLogging(open('/tmp/twisted.log', 'w'))
 else:
@@ -148,7 +148,7 @@ from Plugins.Plugin import PluginDescriptor
 profile("misc")
 had = dict()
 
-def dump(dir, p = ""):
+def dump(dir, p=""):
 	if isinstance(dir, dict):
 		for (entry, val) in dir.items():
 			dump(val, p + "(dict)/" + entry)
@@ -200,7 +200,7 @@ Screen.globalScreen = Globals()
 # * destroy screen
 
 class Session:
-	def __init__(self, desktop = None, summary_desktop = None, navigation = None):
+	def __init__(self, desktop=None, summary_desktop=None, navigation=None):
 		self.desktop = desktop
 		self.summary_desktop = summary_desktop
 		self.nav = navigation
@@ -209,8 +209,8 @@ class Session:
 
 		self.current_dialog = None
 
-		self.dialog_stack = [ ]
-		self.summary_stack = [ ]
+		self.dialog_stack = []
+		self.summary_stack = []
 		self.summary = None
 
 		self.in_exec = False
@@ -241,7 +241,7 @@ class Session:
 		if callback is not None:
 			callback(*retval)
 
-	def execBegin(self, first=True, do_show = True):
+	def execBegin(self, first=True, do_show=True):
 		assert not self.in_exec
 		self.in_exec = True
 		c = self.current_dialog
@@ -485,7 +485,7 @@ def autorestoreLoop():
 		try:
 			count = int(f.read())
 		except:
-			count = 0;
+			count = 0
 		f.close()
 		if count >= 3:
 			return False
@@ -505,7 +505,7 @@ def runScreenTest():
 
 	profile("Init:Session")
 	nav = Navigation(config.misc.isNextRecordTimerAfterEventActionAuto.getValue())
-	session = Session(desktop = enigma.getDesktop(0), summary_desktop = enigma.getDesktop(1), navigation = nav)
+	session = Session(desktop=enigma.getDesktop(0), summary_desktop=enigma.getDesktop(1), navigation=nav)
 
 	CiHandler.setSession(session)
 
@@ -516,14 +516,14 @@ def runScreenTest():
 		if autorestoreLoop():
 			RestoreSettings = True
 			from Plugins.SystemPlugins.SoftwareManager.BackupRestore import RestoreScreen
-			session.open(RestoreScreen, runRestore = True)
+			session.open(RestoreScreen, runRestore=True)
 		else:
-			screensToRun = [ p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD) ]
+			screensToRun = [p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD)]
 			screensToRun += wizardManager.getWizards()
 	else:
 		if os.path.exists("/media/hdd/images/config/autorestore"):
 			os.system('rm -f /media/hdd/images/config/autorestore')
-		screensToRun = [ p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD) ]
+		screensToRun = [p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD)]
 		screensToRun += wizardManager.getWizards()
 
 	screensToRun.append((100, InfoBar.InfoBar))
@@ -721,7 +721,7 @@ try:
 	Components.ParentalControl.parentalControl.save()
 except:
 	print('[mytest] EXCEPTION IN PYTHON STARTUP CODE:')
-	print('-'*60)
+	print('-' * 60)
 	print_exc(file=stdout)
 	enigma.quitMainloop(5)
-	print('-'*60)
+	print('-' * 60)

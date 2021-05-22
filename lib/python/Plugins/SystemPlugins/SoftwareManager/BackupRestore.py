@@ -59,32 +59,32 @@ def InitConfig():
 		'/usr/bin/enigma2_pre_start.sh',
 		eEnv.resolve("${datadir}/enigma2/keymap.usr"),
 		eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml")]\
-		+eEnv_resolve_multi("${datadir}/enigma2/*/skin_user_*.xml")\
-		+eEnv_resolve_multi("/usr/bin/*cam*")\
-		+eEnv_resolve_multi("/etc/*.emu")\
-		+eEnv_resolve_multi("${sysconfdir}/cron*")\
-		+eEnv_resolve_multi("${sysconfdir}/init.d/softcam*")\
-		+eEnv_resolve_multi("${sysconfdir}/init.d/cardserver*")\
-		+eEnv_resolve_multi("${sysconfdir}/sundtek.*")\
-		+eEnv_resolve_multi("/usr/sundtek/*")\
-		+eEnv_resolve_multi("/opt/bin/*")\
-		+eEnv_resolve_multi("/usr/script/*")
+		+ eEnv_resolve_multi("${datadir}/enigma2/*/skin_user_*.xml")\
+		+ eEnv_resolve_multi("/usr/bin/*cam*")\
+		+ eEnv_resolve_multi("/etc/*.emu")\
+		+ eEnv_resolve_multi("${sysconfdir}/cron*")\
+		+ eEnv_resolve_multi("${sysconfdir}/init.d/softcam*")\
+		+ eEnv_resolve_multi("${sysconfdir}/init.d/cardserver*")\
+		+ eEnv_resolve_multi("${sysconfdir}/sundtek.*")\
+		+ eEnv_resolve_multi("/usr/sundtek/*")\
+		+ eEnv_resolve_multi("/opt/bin/*")\
+		+ eEnv_resolve_multi("/usr/script/*")
 
 	# Drop non existant paths from list
-	tmpfiles=[]
+	tmpfiles = []
 	for f in BACKUPFILES:
 		if path.exists(f):
 			tmpfiles.append(f)
-	backupset=tmpfiles
+	backupset = tmpfiles
 
 	config.plugins.configurationbackup = ConfigSubsection()
-	config.plugins.configurationbackup.backuplocation = ConfigText(default = '/media/hdd/', visible_width = 50, fixed_size = False)
+	config.plugins.configurationbackup.backuplocation = ConfigText(default='/media/hdd/', visible_width=50, fixed_size=False)
 	config.plugins.configurationbackup.backupdirs_default = NoSave(ConfigLocations(default=backupset))
-	config.plugins.configurationbackup.backupdirs         = ConfigLocations(default=[]) # 'backupdirs_addon' is called 'backupdirs' for backwards compatibility, holding the user's old selection, duplicates are removed during backup
+	config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[]) # 'backupdirs_addon' is called 'backupdirs' for backwards compatibility, holding the user's old selection, duplicates are removed during backup
 	config.plugins.configurationbackup.backupdirs_exclude = ConfigLocations(default=[])
 	return config.plugins.configurationbackup
 
-config.plugins.configurationbackup=InitConfig()
+config.plugins.configurationbackup = InitConfig()
 
 def getBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.getValue()
@@ -107,9 +107,9 @@ def getBackupFilename():
 
 def SettingsEntry(name, checked):
 	if checked:
-		picture = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "icons/lock_on.png"));
+		picture = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/lock_on.png"))
 	else:
-		picture = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "icons/lock_off.png"));
+		picture = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/lock_off.png"))
 
 	return (name, picture, checked)
 
@@ -119,7 +119,7 @@ class BackupScreen(Screen, ConfigListScreen):
 		<widget name="config" position="10,10" size="330,250" transparent="1" scrollbarMode="showOnDemand" />
 		</screen>"""
 
-	def __init__(self, session, runBackup = False):
+	def __init__(self, session, runBackup=False):
 		Screen.__init__(self, session)
 		self.session = session
 		self.runBackup = runBackup
@@ -159,7 +159,7 @@ class BackupScreen(Screen, ConfigListScreen):
 			if path.exists(self.backuppath) == False:
 				makedirs(self.backuppath)
 			InitConfig()
-			self.backupdirs=" ".join(f.strip("/") for f in config.plugins.configurationbackup.backupdirs_default.value)
+			self.backupdirs = " ".join(f.strip("/") for f in config.plugins.configurationbackup.backupdirs_default.value)
 			for f in config.plugins.configurationbackup.backupdirs.value:
 				if not f.strip("/") in self.backupdirs:
 					self.backupdirs += " " + f.strip("/")
@@ -173,7 +173,7 @@ class BackupScreen(Screen, ConfigListScreen):
 				self.backupdirs += " tmp/groups.txt"
 
 			ShellCompatibleFunctions.backupUserDB()
-			pkgs=ShellCompatibleFunctions.listpkg(type="user")
+			pkgs = ShellCompatibleFunctions.listpkg(type="user")
 			installed = open("/tmp/installed-list.txt", "w")
 			installed.write('\n'.join(pkgs))
 			installed.close()
@@ -190,24 +190,24 @@ class BackupScreen(Screen, ConfigListScreen):
 				self.newfilename = self.backuppath + "/" + dt + '-' + self.backupfile
 				if path.exists(self.newfilename):
 					remove(self.newfilename)
-				rename(self.fullbackupfilename,self.newfilename)
+				rename(self.fullbackupfilename, self.newfilename)
 			if self.finished_cb:
-				self.session.openWithCallback(self.finished_cb, Console, title = _("Backup is running..."), cmdlist = cmd, finishedCallback = self.backupFinishedCB, closeOnSuccess = True)
+				self.session.openWithCallback(self.finished_cb, Console, title=_("Backup is running..."), cmdlist=cmd, finishedCallback=self.backupFinishedCB, closeOnSuccess=True)
 			else:
-				self.session.open(Console, title = _("Backup is running..."), cmdlist = cmd, finishedCallback = self.backupFinishedCB, closeOnSuccess = True)
+				self.session.open(Console, title=_("Backup is running..."), cmdlist=cmd, finishedCallback=self.backupFinishedCB, closeOnSuccess=True)
 		except OSError:
 			if self.finished_cb:
-				self.session.openWithCallback(self.finished_cb, MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout = 10 )
+				self.session.openWithCallback(self.finished_cb, MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
 			else:
-				self.session.openWithCallback(self.backupErrorCB,MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout = 10 )
+				self.session.openWithCallback(self.backupErrorCB, MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
 
-	def backupFinishedCB(self,retval = None):
+	def backupFinishedCB(self, retval=None):
 		config.usage.shutdownOK.setValue(self.save_shutdownOK)
 		config.usage.shutdownOK.save()
 		configfile.save()
 		self.close(True)
 
-	def backupErrorCB(self,retval = None):
+	def backupErrorCB(self, retval=None):
 		self.close(False)
 
 	def runAsync(self, finished_cb):
@@ -239,7 +239,7 @@ class BackupSelection(Screen):
 		self.selectedFiles = self.configBackupDirs.value
 		defaultDir = '/'
 		inhibitDirs = ["/bin", "/boot", "/dev", "/autofs", "/lib", "/proc", "/sbin", "/sys", "/hdd", "/tmp", "/mnt", "/media"]
-		self.filelist = MultiFileSelectList(self.selectedFiles, defaultDir, inhibitDirs = inhibitDirs )
+		self.filelist = MultiFileSelectList(self.selectedFiles, defaultDir, inhibitDirs=inhibitDirs)
 		self["checkList"] = self.filelist
 
 		self["actions"] = ActionMap(["DirectionActions", "OkCancelActions", "ShortcutActions"],
@@ -391,22 +391,22 @@ class RestoreMenu(Screen):
 		self["filelist"].down()
 		self.checkSummary()
 
-	def startRestore(self, ret = False):
+	def startRestore(self, ret=False):
 		if ret == True:
 			self.session.openWithCallback(self.CB_startRestore, MessageBox, _("Do you want to delete the old settings in /etc/enigma2 first?"))
 
-	def CB_startRestore(self, ret = False):
+	def CB_startRestore(self, ret=False):
 		self.exe = True
 		tarcmd = "tar -C / -xzvf " + self.path + "/" + self.sel
 		for f in BLACKLISTED:
 			tarcmd = tarcmd + " --exclude " + f.strip("/")
 
-		cmds = [ tarcmd, MANDATORY_RIGHTS, "/etc/init.d/autofs restart", "killall -9 enigma2" ]
+		cmds = [tarcmd, MANDATORY_RIGHTS, "/etc/init.d/autofs restart", "killall -9 enigma2"]
 		if ret == True:
 			cmds.insert(0, "rm -R /etc/enigma2")
-			self.session.open(Console, title = _("Restoring..."), cmdlist = cmds)
+			self.session.open(Console, title=_("Restoring..."), cmdlist=cmds)
 		else:
-			self.session.open(Console, title = _("Restoring..."), cmdlist = cmds)
+			self.session.open(Console, title=_("Restoring..."), cmdlist=cmds)
 
 	def deleteFile(self):
 		if (self.exe == False) and (self.entry == True):
@@ -415,10 +415,10 @@ class RestoreMenu(Screen):
 				self.val = self.path + "/" + self.sel
 				self.session.openWithCallback(self.startDelete, MessageBox, _("Are you sure you want to delete\nthe following backup:\n") + self.sel)
 
-	def startDelete(self, ret = False):
+	def startDelete(self, ret=False):
 		if (ret == True):
 			self.exe = True
-			print("removing:",self.val)
+			print("removing:", self.val)
 			if (path.exists(self.val) == True):
 				remove(self.val)
 			self.exe = False
@@ -434,7 +434,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 		<widget name="config" position="10,10" size="330,250" transparent="1" scrollbarMode="showOnDemand" />
 		</screen>"""
 
-	def __init__(self, session, runRestore = False):
+	def __init__(self, session, runRestore=False):
 		Screen.__init__(self, session)
 		self.session = session
 		self.runRestore = runRestore
@@ -471,9 +471,9 @@ class RestoreScreen(Screen, ConfigListScreen):
 		restorecmdlist.append("/etc/init.d/autofs restart")
 		print("[SOFTWARE MANAGER] Restore Settings !!!!")
 
-		self.session.open(Console, title = _("Restoring..."), cmdlist = restorecmdlist, finishedCallback = self.restoreFinishedCB)
+		self.session.open(Console, title=_("Restoring..."), cmdlist=restorecmdlist, finishedCallback=self.restoreFinishedCB)
 
-	def restoreFinishedCB(self,retval = None):
+	def restoreFinishedCB(self, retval=None):
 		ShellCompatibleFunctions.restoreUserDB()
 		self.session.openWithCallback(self.checkPlugins, RestartNetwork)
 
@@ -486,7 +486,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 		else:
 			self.userRestoreScript()
 
-	def userRestoreScript(self, ret = None):
+	def userRestoreScript(self, ret=None):
 		SH_List = []
 		SH_List.append('/media/hdd/images/config/myrestore.sh')
 		SH_List.append('/media/usb/images/config/myrestore.sh')
@@ -500,19 +500,19 @@ class RestoreScreen(Screen, ConfigListScreen):
 				break
 
 		if startSH:
-			self.session.openWithCallback(self.rebootSYS, Console, title = _("Running Myrestore script, Please wait ..."), cmdlist = [startSH], closeOnSuccess = True)
+			self.session.openWithCallback(self.rebootSYS, Console, title=_("Running Myrestore script, Please wait ..."), cmdlist=[startSH], closeOnSuccess=True)
 		else:
 			self.rebootSYS()
 
-	def restartGUI(self, ret = None):
-		self.session.open(Console, title = _("Your %s %s will Restart...")% (getMachineBrand(), getMachineName()), cmdlist = ["killall -9 enigma2"])
+	def restartGUI(self, ret=None):
+		self.session.open(Console, title=_("Your %s %s will Restart...") % (getMachineBrand(), getMachineName()), cmdlist=["killall -9 enigma2"])
 
-	def rebootSYS(self, ret = None):
+	def rebootSYS(self, ret=None):
 		try:
 			f = open("/tmp/rebootSYS.sh", "w")
 			f.write("#!/bin/bash\n\nkillall -9 enigma2\nreboot\n")
 			f.close()
-			self.session.open(Console, title = _("Your %s %s will Reboot...")% (getMachineBrand(), getMachineName()), cmdlist = ["chmod +x /tmp/rebootSYS.sh", "/tmp/rebootSYS.sh"])
+			self.session.open(Console, title=_("Your %s %s will Reboot...") % (getMachineBrand(), getMachineName()), cmdlist=["chmod +x /tmp/rebootSYS.sh", "/tmp/rebootSYS.sh"])
 		except:
 			self.restartGUI()
 
@@ -597,7 +597,7 @@ class installedPlugins(Screen):
 			self.readPluginList()
 
 	def readPluginList(self):
-		installedpkgs=ShellCompatibleFunctions.listpkg(type="installed")
+		installedpkgs = ShellCompatibleFunctions.listpkg(type="installed")
 		self.PluginList = []
 		with open('/tmp/installed-list.txt') as f:
 			for line in f:
@@ -619,13 +619,13 @@ class installedPlugins(Screen):
 			else:
 				self.session.openWithCallback(self.startInstall, MessageBox, _("Backup plugins found\ndo you want to install now?"))
 
-	def startInstall(self, ret = None):
+	def startInstall(self, ret=None):
 		if ret:
 			self.session.openWithCallback(self.restoreCB, RestorePlugins, self.Menulist)
 		else:
 			self.close()
 
-	def restoreCB(self, ret = None):
+	def restoreCB(self, ret=None):
 		self.close()
 
 class RestorePlugins(Screen):
@@ -686,25 +686,25 @@ class RestorePlugins(Screen):
 
 		# Install previously installed feeds first, they might be required for the other packages to install ...
 		if len(self.pluginlistfirst) > 0:
-			self.session.open(Console, title = _("Installing feeds from feed ..."), cmdlist = ['opkg install ' + ' '.join(self.pluginlistfirst) + ' ; opkg update'], finishedCallback = self.installLocalIPKFeeds, closeOnSuccess = True)
+			self.session.open(Console, title=_("Installing feeds from feed ..."), cmdlist=['opkg install ' + ' '.join(self.pluginlistfirst) + ' ; opkg update'], finishedCallback=self.installLocalIPKFeeds, closeOnSuccess=True)
 		else:
 			self.installLocalIPKFeeds()
 
 	def installLocalIPKFeeds(self):
 		if len(self.myipklistfirst) > 0:
-			self.session.open(Console, title = _("Installing feeds from IPK ..."), cmdlist = ['opkg install ' + ' '.join(self.myipklistfirst) + ' ; opkg update'], finishedCallback = self.installLocalIPK, closeOnSuccess = True)
+			self.session.open(Console, title=_("Installing feeds from IPK ..."), cmdlist=['opkg install ' + ' '.join(self.myipklistfirst) + ' ; opkg update'], finishedCallback=self.installLocalIPK, closeOnSuccess=True)
 		else:
 			self.installPlugins()
 
 	def installLocalIPK(self):
 		if len(self.myipklist) > 0:
-			self.session.open(Console, title = _("Installing plugins from IPK ..."), cmdlist = ['opkg install ' + ' '.join(self.myipklist)], finishedCallback = self.installPlugins, closeOnSuccess = True)
+			self.session.open(Console, title=_("Installing plugins from IPK ..."), cmdlist=['opkg install ' + ' '.join(self.myipklist)], finishedCallback=self.installPlugins, closeOnSuccess=True)
 		else:
 			self.installPlugins()
 
 	def installPlugins(self):
 		if len(self.pluginlist) > 0:
-			self.session.open(Console, title = _("Installing plugins from feed ..."), cmdlist = ['opkg install ' + ' '.join(self.pluginlist)], finishedCallback = self.exit, closeOnSuccess = True)
+			self.session.open(Console, title=_("Installing plugins from feed ..."), cmdlist=['opkg install ' + ' '.join(self.pluginlist)], finishedCallback=self.exit, closeOnSuccess=True)
 
 	def ok(self):
 		index = self["menu"].getIndex()
@@ -735,7 +735,7 @@ class RestorePlugins(Screen):
 
 	def SearchIPK(self, ipkname):
 		ipkname = ipkname + "*"
-		search_dirs = [ "/media/hdd/images/ipk", "/media/usb/images/ipk", "/media/mmc/images/ipk", "/media/cf/images/ipk" ]
+		search_dirs = ["/media/hdd/images/ipk", "/media/usb/images/ipk", "/media/mmc/images/ipk", "/media/cf/images/ipk"]
 		sdirs = " ".join(search_dirs)
 		cmd = 'find %s -name "%s" | grep -iv "./open-multiboot/*" | head -n 1' % (sdirs, ipkname)
 		res = popen(cmd).read()
