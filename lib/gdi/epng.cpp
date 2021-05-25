@@ -3,6 +3,7 @@
 #include <png.h>
 #include <stdio.h>
 #include <lib/base/cfile.h>
+#include <lib/base/wrappers.h>
 #include <lib/gdi/epng.h>
 #include <lib/gdi/pixmapcache.h>
 #include <unistd.h>
@@ -366,14 +367,22 @@ static int savePNGto(FILE *fp, gPixmap *pixmap)
 	return 0;
 }
 
-int loadSVG(ePtr<gPixmap> &result, const char *filename, int cached, int width, int height)
+int loadSVG(ePtr<gPixmap> &result, const char *filename, int cached, int width, int height, float scale)
 {
 	result = nullptr;
+	int size = 0;
 
-	if (cached && (result = PixmapCache::Get(filename)))
+	if (height > 0)
+		size = height;
+	else if (scale > 0)
+		size = (int)(scale * 10);
+
+	char cachefile[strlen(filename) + 10];
+	sprintf(cachefile, "%s%d", filename, size);
+
+	if (cached && (result = PixmapCache::Get(cachefile)))
 		return 0;
 
-	// load svg
 	NSVGimage *image = nullptr;
 	NSVGrasterizer *rast = nullptr;
 	double xscale = 1.0;
@@ -407,6 +416,13 @@ int loadSVG(ePtr<gPixmap> &result, const char *filename, int cached, int width, 
 		xscale = yscale;
 		width = (int)(image->width * xscale);
 	}
+	else if (scale > 0)
+	{
+		xscale = (double) scale;
+		yscale = (double) scale;
+		width = (int)(image->width * scale);
+		height = (int)(image->height * scale);
+	}
 	else
 	{
 		width = (int)image->width;
@@ -426,10 +442,22 @@ int loadSVG(ePtr<gPixmap> &result, const char *filename, int cached, int width, 
 	nsvgRasterizeFull(rast, image, 0, 0, xscale, yscale, (unsigned char*)result->surface->data, width, height, width * 4, 1);
 
 	if (cached)
-		PixmapCache::Set(filename, result);
+		PixmapCache::Set(cachefile, result);
 
 	nsvgDeleteRasterizer(rast);
 	nsvgDelete(image);
+
+	return 0;
+}
+
+int loadImage(ePtr<gPixmap> &result, const char *filename, int accel, int width, int height)
+{
+	if (endsWith(filename, ".png"))
+		return loadPNG(result, filename, accel, 1);
+	else if (endsWith(filename, ".svg"))
+		return loadSVG(result, filename, 1, width, height, 0);
+	else if (endsWith(filename, ".jpg"))
+		return loadJPG(result, filename, 0);
 
 	return 0;
 }
