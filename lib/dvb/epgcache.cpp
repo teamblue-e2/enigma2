@@ -159,7 +159,7 @@ eventData::eventData(const eit_event_struct* e, int size, int _type, int tsidoni
 					//convert our strings to UTF8
 					std::string eventNameUTF8 = convertDVBUTF8((const unsigned char*)&descr[6], eventNameLen, table, tsidonid);
 					std::string eventTextUTF8 = convertDVBUTF8((const unsigned char*)&descr[7 + eventNameLen], eventTextLen, table, tsidonid);
-					
+
 					//hack to fix split titles
 					undoAbbreviation(eventNameUTF8, eventTextUTF8);
 
@@ -2350,7 +2350,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 								auto cril = cid.getIdentifier();
 								for (auto crit = cril->begin(); crit != cril->end(); ++crit)
 								{
-									// UK broadcasters set the two top bits of crid_type, i.e. 0x31 and 0x32 rather than 
+									// UK broadcasters set the two top bits of crid_type, i.e. 0x31 and 0x32 rather than
 									// the specification's 1 and 2 for episode and series respectively
 									if (((*crit)->getType() & 0xf) == casetype)
 									{
