@@ -204,7 +204,6 @@
 		<item level="2" text="Offline decode delay (ms)" description="Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change.">config.recording.offline_decode_delay</item>
 		<item level="2" text="Default recording type" description="Descramble &amp; record ECM gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM.">config.recording.ecm_data</item>
 		<item level="2" text="Include AIT in recordings" description="If enabled, AIT data is included in recordings.">config.recording.include_ait</item>
-		<item level="0" text="Force zap to recording service in standby" description="This can be useful when using the CI(+) module. After the end of the recording, the service will be automatically stopped.">config.recording.zap_record_service_in_standby</item>
 	</setup>
 	<setup key="HDMIRecord" title="HDMI Recording">
 		<item level="0" text="Bitrate" description="The bitrate of the video encoder. Larger value improves quality and increases file size.">config.hdmirecord.bitrate</item>
