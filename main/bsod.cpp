@@ -3,7 +3,9 @@
 #include <csignal>
 #include <fstream>
 #include <sstream>
+#ifdef __GLIBC__
 #include <execinfo.h>
+#endif
 #include <dlfcn.h>
 #include <lib/base/eenv.h>
 #include <lib/base/eerror.h>
@@ -302,6 +304,7 @@ void oops(const mcontext_t &context)
  * it's not async-signal-safe and so must not be used in signal
  * handlers.
  */
+#ifdef __GLIBC__
 void print_backtrace()
 {
 	void *array[15];
@@ -321,12 +324,15 @@ void print_backtrace()
 		}
 	}
 }
+#endif
 
 void handleFatalSignal(int signum, siginfo_t *si, void *ctx)
 {
 	ucontext_t *uc = (ucontext_t*)ctx;
 	oops(uc->uc_mcontext);
+#ifdef __GLIBC__
 	print_backtrace();
+#endif
 	eLog(lvlFatal, "-------FATAL SIGNAL");
 	bsodFatal("enigma2, signal");
 }
