@@ -211,7 +211,7 @@ public:
 	{
 		ASSERT(g >= 0);
 		ASSERT(g < (int)glyphs.size());
-		glyphs[g].flags |= f;
+		glyphs[g].flags &= ~f;
 	}
 };
 
