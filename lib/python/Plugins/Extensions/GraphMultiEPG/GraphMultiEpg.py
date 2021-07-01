@@ -784,7 +784,7 @@ class TimelineText(GUIComponent):
 			self.backColor = parseColor(value).argb()
 
 		def font(value):
-			self.font = parseFont(value,  ((1, 1), (1, 1)))
+			self.font = parseFont(value, ((1, 1), (1, 1)))
 		for (attrib, value) in list(self.skinAttributes):
 			try:
 				locals().get(attrib)(value)

@@ -55,7 +55,7 @@ class CIselectMainMenu(Screen):
 		self.dlg = None
 		self.state = {}
 		self.list = []
-		if  NUM_CI and NUM_CI > 0:
+		if NUM_CI and NUM_CI > 0:
 			for slot in list(range(NUM_CI)):
 				state = eDVBCI_UI.getInstance().getState(slot)
 				if state != -1:
@@ -331,12 +331,12 @@ class CIconfigMenu(Screen):
 					self.usingcaid.append(int(read_caid, 16))
 					i += 1
 
-				for service in  slot.findall("service"):
+				for service in slot.findall("service"):
 					read_service_name = six.ensure_str(service.get("name"))
 					read_service_ref = six.ensure_str(service.get("ref"))
 					self.read_services.append(read_service_ref)
 
-				for provider in  slot.findall("provider"):
+				for provider in slot.findall("provider"):
 					read_provider_name = six.ensure_str(provider.get("name"))
 					read_provider_dvbname = six.ensure_str(provider.get("dvbnamespace"))
 					self.read_providers.append((read_provider_name, read_provider_dvbname))

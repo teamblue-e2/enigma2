@@ -120,7 +120,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 is not anymore working as expected. Therefore it is recommended to create backups. If something went wrong you can easily and quickly restore. \
 If you discover 'bugs' please keep them reported on www.teamblue.tech.\n\nDo you understand this?")
 			_list = not justShow and [(_("no"), False), (_("yes"), True), (_("yes") + " " + _("and never show this message again"), "never")] or []
-			self.session.openWithCallback(boundFunction(self.disclaimerCallback, justShow), MessageBox, message, list=list,  title=_("Disclaimer"))
+			self.session.openWithCallback(boundFunction(self.disclaimerCallback, justShow), MessageBox, message, list=list, title=_("Disclaimer"))
 		else:
 			self.startActualUpdate(True)
 
