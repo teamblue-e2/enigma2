@@ -354,11 +354,11 @@ class CommitInfo(Screen):
 		self.project = 0
 		self.projects = [
 			#("organisation",  "repository",           "readable name",                "branch", "github/gitlab"),
-                        ("teamblue-e2",      "enigma2",               "teamBlue Enigma2",             ("master" if (getImageType() in "DEV" "beta") else getImageVersion()), "github"),
-			("teamblue-e2",      "skin",             "teamBlue Skin GigaBlue Pax",   ("master" if (getImageType() == "release") else "DEV"), "github"),
-			("oe-alliance",   "oe-alliance-core",     "OE Alliance Core",             "4.4", "github"),
-			("oe-alliance",   "oe-alliance-plugins",  "OE Alliance Plugins",          "master", "github"),
-			("oe-alliance",   "enigma2-plugins",      "OE Alliance Enigma2 Plugins",  "master", "github")
+                        ("teamblue-e2", "enigma2", "teamBlue Enigma2", ("master" if (getImageType() in "DEV" "beta") else getImageVersion()), "github"),
+			("teamblue-e2", "skin", "teamBlue Skin GigaBlue Pax", ("master" if (getImageType() == "release") else "DEV"), "github"),
+			("oe-alliance", "oe-alliance-core", "OE Alliance Core", "4.4", "github"),
+			("oe-alliance", "oe-alliance-plugins", "OE Alliance Plugins", "master", "github"),
+			("oe-alliance", "enigma2-plugins", "OE Alliance Enigma2 Plugins", "master", "github")
 		]
 		self.cachedProjects = {}
 		self.Timer = eTimer()
@@ -605,7 +605,7 @@ class SystemNetworkInfo(Screen):
 					if line.count(".") == 3:
 						v4 = v4 + 1
 						ns4 += str(v4) + ".IPv4 Nameserver" + ":" + line.strip().replace("nameserver ", "") + "\n"
-					if line.count(":") > 1  and line.count(":") < 8:
+					if line.count(":") > 1 and line.count(":") < 8:
 						v6 = v6 + 1
 						ns6 += str(v6) + ".IPv6 Nameserver" + ":" + line.strip().replace("nameserver ", "") + "\n"
 			nameserver = ns4 + ns6

@@ -219,7 +219,7 @@ class PaxCaidDisplay(Poll, Converter, object):
 						address = ecm_info.get("address", "")
 						address = address.split(":")
 						address = address[0]
-						if address.count("192.168.") > 0 or  address.count("172.16.") > 0 or address.count("10.") > 0:
+						if address.count("192.168.") > 0 or address.count("172.16.") > 0 or address.count("10.") > 0:
 							address = address
 						else:
 							address = address.split(".")
@@ -267,7 +267,7 @@ class PaxCaidDisplay(Poll, Converter, object):
 											karte = ''
 									else:
 											karte = ' (' + karte + ')'
-									if share.count("192.168.") > 0 or  share.count("172.16.") > 0 or share.count("10.") > 0:
+									if share.count("192.168.") > 0 or share.count("172.16.") > 0 or share.count("10.") > 0:
 											share = share
 									else:
 											share = share.split(".")

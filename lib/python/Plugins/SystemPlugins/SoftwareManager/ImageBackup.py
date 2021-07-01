@@ -299,7 +299,7 @@ class ImageBackup(Screen):
 					cmdlist.append('echo "' + _("Create:") + " rescue dump" + '"')
 					cmdlist.append("dd if=/dev/mmcblk0p3 of=%s/rescue.bin" % self.WORKDIR)
 
-				if self.MACHINEBUILD  in ("h9", "i55plus"):
+				if self.MACHINEBUILD in ("h9", "i55plus"):
 					cmdlist.append('echo "' + _("Create:") + " fastboot dump" + '"')
 					cmdlist.append("dd if=/dev/mtd0 of=%s/fastboot.bin" % self.WORKDIR)
 					cmdlist.append('echo "' + _("Create:") + " bootargs dump" + '"')

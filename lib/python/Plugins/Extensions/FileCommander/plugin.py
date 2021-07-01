@@ -72,7 +72,7 @@ def _make_filter(media_type):
 
 
 def _make_rec_filter():
-	return "(?i)^.*\.(" + '|'.join(sorted(["ts"] + [ext == "eit" and ext or "ts." + ext  for ext in six.iterkeys(MOVIEEXTENSIONS)])) + ")$"
+	return "(?i)^.*\.(" + '|'.join(sorted(["ts"] + [ext == "eit" and ext or "ts." + ext for ext in six.iterkeys(MOVIEEXTENSIONS)])) + ")$"
 
 FULLHD = False
 if getDesktop(0).size().width() >= 1920:

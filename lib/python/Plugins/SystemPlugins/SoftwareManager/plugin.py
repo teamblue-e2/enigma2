@@ -160,7 +160,7 @@ class UpdatePluginMenu(Screen):
 				self.list.append(("multiboot-manager", _("MultiBoot Manager"), _("\nMaintain your multiboot device.") + self.oktext, None))
 			self.list.append(("system-backup", _("Backup system settings"), _("Backup your Receiver settings.") + self.oktext + "\n\n" + self.infotext, None))
 			self.list.append(("system-restore", _("Restore system settings"), _("Restore your Receiver settings.") + self.oktext, None))
-			self.list.append(("opkg-install", _("Install local extension"),  _("Scan for local extensions and install them.") + self.oktext, None))
+			self.list.append(("opkg-install", _("Install local extension"), _("Scan for local extensions and install them.") + self.oktext, None))
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_SOFTWAREMANAGER):
 				if "SoftwareSupported" in p.__call__:
 					callFnc = p.__call__["SoftwareSupported"](None)
