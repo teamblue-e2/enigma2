@@ -63,7 +63,7 @@ class ParentalControl:
 
 	def serviceMethodWrapper(self, service, method, *args):
 		if TYPE_BOUQUET in service:
-			method( service, TYPE_BOUQUET, *args)
+			method(service, TYPE_BOUQUET, *args)
 			servicelist = self.readServicesFromBouquet(service, "C")
 			for ref in servicelist:
 				sRef = str(ref[0])
