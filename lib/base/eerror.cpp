@@ -83,7 +83,7 @@ void DumpUnfreed()
 int debugLvl = lvlDebug;
 static bool debugTime = false;
 
-static pthread_mutex_t DebugLock = 
+static pthread_mutex_t DebugLock =
 #ifdef __GLIBC__
     PTHREAD_ADAPTIVE_MUTEX_INITIALIZER_NP;
 #else
