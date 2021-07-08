@@ -32,7 +32,7 @@
 
 fontRenderClass *fontRenderClass::instance;
 
-static pthread_mutex_t ftlock= 
+static pthread_mutex_t ftlock=
 #ifdef __GLIBC__
 	PTHREAD_ADAPTIVE_MUTEX_INITIALIZER_NP;
 #else

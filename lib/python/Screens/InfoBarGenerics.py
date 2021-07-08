@@ -1904,7 +1904,7 @@ class InfoBarPVRState:
 			self.pvrStateDialog["statespeed"].setText("")
 			self["statespeed"].setText("")
 
-		if state != self.SEEK_STATE_EOF:	
+		if state != self.SEEK_STATE_EOF:
 			if state[1] > 1:
 				self.pvrStateDialog["stateicon"].setPixmapNum(0) #stateFF
 				self["stateicon"].setPixmapNum(0) #stateFF
