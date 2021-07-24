@@ -133,6 +133,7 @@ try:
 		reactor.run(installSignalHandlers=False)
 except ImportError:
 	print "[StartEnigma] Twisted not available"
+
 	def runReactor():
 		enigma.runMainloop()
 

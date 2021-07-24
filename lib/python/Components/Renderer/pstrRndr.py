@@ -29,6 +29,7 @@ class pstrRndr(Renderer):
 		return Renderer.applySkin(self, desktop, parent)
 
 	GUI_WIDGET = ePixmap
+
 	def changed(self, what):
 
 		try:
