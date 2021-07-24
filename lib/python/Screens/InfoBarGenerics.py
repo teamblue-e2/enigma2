@@ -1885,7 +1885,6 @@ class InfoBarPVRState:
 			self.__playStateChanged(self.seekstate)
 			self.pvrStateDialog.show()
 
-
 	def __playStateChanged(self, state):
 		playstateString = state[3]
 		self.pvrStateDialog["state"].setText(playstateString)

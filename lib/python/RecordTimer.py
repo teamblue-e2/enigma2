@@ -95,7 +95,7 @@ def createRecordTimerEntry(timer):
 		zap_wakeup=timer.zap_wakeup, rename_repeat=timer.rename_repeat, conflict_detection=timer.conflict_detection,
 		pipzap=timer.pipzap)
 
-# please do not translate log messages
+
 class RecordTimerEntry(timer.TimerEntry, object):
 ######### the following static methods and members are only in use when the box is in (soft) standby
 	receiveRecordEvents = False
