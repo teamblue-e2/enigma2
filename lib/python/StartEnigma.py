@@ -128,7 +128,8 @@ try:
 	def runReactor():
 		reactor.run(installSignalHandlers=False)
 except ImportError:
-	print("[mytest] twisted not available")
+	print("[StartEnigma] twisted not available")
+
 	def runReactor():
 		enigma.runMainloop()
 
@@ -735,7 +736,7 @@ try:
 
 	Components.ParentalControl.parentalControl.save()
 except:
-	print('[mytest] EXCEPTION IN PYTHON STARTUP CODE:')
+	print('[StartEnigma] EXCEPTION IN PYTHON STARTUP CODE:')
 	print('-' * 60)
 	print_exc(file=stdout)
 	enigma.quitMainloop(5)

@@ -129,22 +129,19 @@ class Dish(Screen):
 	def __serviceStarted(self):
 		if self.__state == self.STATE_SHOWN:
 			self.hide()
-		if not self.showdish:
-			return
-
-		service = self.session.nav.getCurrentService()
-		info = service and service.info()
-		data = info and info.getInfoObject(iServiceInformation.sTransponderData)
-		if not data or data == -1:
-			return
-
-		tuner_type = data.get("tuner_type")
-		if tuner_type and "DVB-S" in tuner_type:
-			cur_orbpos = data.get("orbital_position", INVALID_POSITION)
-			if cur_orbpos in self.available_sat:
-				self.cur_orbpos = cur_orbpos
-				self.cur_polar = data.get("polarization", 0)
-				self.rotorTimer.start(500, False)
+		if SystemInfo["isRotorTuner"] and self.showdish:
+			service = self.session.nav.getCurrentService()
+			info = service and service.info()
+			data = info and info.getInfoObject(iServiceInformation.sTransponderData)
+			if not data or data == -1:
+				return
+			tuner_type = data.get("tuner_type")
+			if tuner_type and "DVB-S" in tuner_type:
+				cur_orbpos = data.get("orbital_position", INVALID_POSITION)
+				if cur_orbpos in self.available_sat:
+					self.cur_orbpos = cur_orbpos
+					self.cur_polar = data.get("polarization", 0)
+					self.rotorTimer.start(500, False)
 
 	def __toHide(self):
 		self.rotorTimer.stop()
@@ -333,21 +330,20 @@ class Dishpip(Dish, Screen):
 	def startPiPService(self, ref=None):
 		if self.__state == self.STATE_SHOWN:
 			self.__toHide()
-		if ref is None:
-			return
-		info = eServiceCenter.getInstance().info(ref)
-		data = info and info.getInfoObject(ref, iServiceInformation.sTransponderData)
-		if not data or data == -1:
-			return
-		tuner_type = data.get("tuner_type")
-		if tuner_type and "DVB-S" in tuner_type:
-			cur_orbpos = data.get("orbital_position", INVALID_POSITION)
-			if cur_orbpos in self.available_sat:
-				self.cur_orbpos = cur_orbpos
-				self.cur_polar = data.get("polarization", 0)
-				self.moving_timeout = 3
-				if not self.rotorTimer.isActive():
-					self.rotorTimer.start(500, True)
+		if ref and SystemInfo["isRotorTuner"]:
+			info = eServiceCenter.getInstance().info(ref)
+			data = info and info.getInfoObject(ref, iServiceInformation.sTransponderData)
+			if not data or data == -1:
+				return
+			tuner_type = data.get("tuner_type")
+			if tuner_type and "DVB-S" in tuner_type:
+				cur_orbpos = data.get("orbital_position", INVALID_POSITION)
+				if cur_orbpos in self.available_sat:
+					self.cur_orbpos = cur_orbpos
+					self.cur_polar = data.get("polarization", 0)
+					self.moving_timeout = 3
+					if not self.rotorTimer.isActive():
+						self.rotorTimer.start(500, True)
 
 	def __onShow(self):
 		self.__state = self.STATE_SHOWN

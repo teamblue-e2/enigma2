@@ -1874,8 +1874,6 @@ class InfoBarPVRState:
 	def __init__(self, screen=PVRState, force_show=False):
 		self.onPlayStateChanged.append(self.__playStateChanged)
 		self.pvrStateDialog = self.session.instantiateDialog(screen)
-		if SystemInfo["hasOSDAnimation"]:
-			self.pvrStateDialog.setAnimationMode(0)
 		self.onShow.append(self._mayShow)
 		self.onHide.append(self.pvrStateDialog.hide)
 		self.force_show = force_show
@@ -3822,14 +3820,4 @@ class InfoBarHDMI:
 				else:
 					self.session.pip.playService(slist.servicelist.getCurrent())
 			else:
-				curref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-				if curref and curref.type != 8192:
-					if curref and curref.type != -1 and os.path.splitext(curref.toString().split(":")[10])[1].lower() in AUDIO_EXTENSIONS.union(MOVIE_EXTENSIONS, DVD_EXTENSIONS):
-						setResumePoint(self.session)
-					self.session.nav.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
-				elif isStandardInfoBar(self):
-					self.session.nav.playService(slist.servicelist.getCurrent())
-				else:
-					self.session.nav.playService(self.cur_service)
-		else:
-			pass
+				self.session.nav.playService(self.cur_service)
