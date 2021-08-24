@@ -398,7 +398,11 @@ class CiSelection(Screen):
 	def layoutFinished(self):
 		global forceNotShowCiMessages
 		forceNotShowCiMessages = False
-		self.setTitle(_("Common Interface"))
+		cur = self["entries"].getCurrent()
+		if cur and len(cur) > 2:
+			self["text"].setText(_("Slot %d") % (cur[3] + 1))
+		elif not cur:
+			self["text"].setText(_("no module found"))
 
 	def selectionChanged(self):
 		if self.slot > 1:
@@ -517,7 +521,7 @@ class PermanentPinEntry(Screen, ConfigListScreen):
 	def __init__(self, session, pin, pin_slot):
 		Screen.__init__(self, session)
 		self.skinName = ["ParentalControlChangePin", "Setup"]
-		self.setup_title = _("Enter pin code")
+		self.setTitle(_("Enter pin code"))
 		self.onChangedEntry = []
 
 		self.slot = pin_slot
@@ -539,10 +543,6 @@ class PermanentPinEntry(Screen, ConfigListScreen):
 		}, -1)
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def layoutFinished(self):
-		self.setTitle(self.setup_title)
 
 	def valueChanged(self, pin, value):
 		if pin == 1:
