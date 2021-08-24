@@ -32,7 +32,6 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.session = session
 		self.onChangedEntry = []
 		self.setup_title = _("Video enhancement setup")
 		self["HelpWindow"] = Pixmap()
