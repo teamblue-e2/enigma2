@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-04 21:24+0100\n"
+"POT-Creation-Date: 2021-09-09 09:44+0200\n"
 "PO-Revision-Date: 2012-03-08 10:40+0330\n"
 "Last-Translator: \n"
 "Language-Team: Arabic <moustafagamal@hotmail.com>\n"
@@ -34,10 +34,6 @@ msgid ""
 msgstr ""
 "\n"
 "!אחרי לחיצה על אשר,נא המתן"
-
-msgid ""
-"Conflict detection disabled!"
-msgstr ""
 
 msgid ""
 "\n"
@@ -113,6 +109,9 @@ msgstr ""
 msgid " ('%s') finished with error number [%d]."
 msgstr ""
 
+msgid " (+5 volt terrestrial)"
+msgstr ""
+
 #, fuzzy
 msgid " (0 - all networks)"
 msgstr "רשת מקומית"
@@ -135,6 +134,9 @@ msgstr ""
 msgid " (TV)"
 msgstr ""
 
+msgid " (auto detection)"
+msgstr ""
+
 msgid " (disabled)"
 msgstr ""
 
@@ -154,10 +156,16 @@ msgstr ""
 msgid " - 1 element exist! Overwrite"
 msgstr ""
 
+msgid " - Unicable/JESS LNBs not found"
+msgstr ""
+
 msgid " - file exist! Overwrite"
 msgstr ""
 
 msgid " - folder exist! Overwrite"
+msgstr ""
+
+msgid " Warning: the selected tuner should not use SCR Unicable type for LNBs because each tuner need a own SCR number."
 msgstr ""
 
 #
@@ -178,12 +186,20 @@ msgstr ""
 msgid " packages selected."
 msgstr "חבילות נבחרו"
 
+msgid " unicable LNB input of rotor"
+msgstr ""
+
 #
 msgid " updates available."
 msgstr "עדכונים זמינים"
 
 msgid "$PROJECT_DIR$"
 msgstr ""
+
+#
+#, fuzzy, python-format
+msgid "%(freespace)s %(percent)s free disk space"
+msgstr "מקום פנוי בכונן הקשיח"
 
 #, python-format
 msgid "%.0f GB"
@@ -215,16 +231,6 @@ msgstr ""
 
 #, python-format
 msgid "%03d MB"
-msgstr ""
-
-#. TRANSLATORS: short time representation hour:minute
-#, python-format
-msgid "%2d:%02d"
-msgstr ""
-
-#. TRANSLATORS: full time representation hour:minute:seconds
-#, python-format
-msgid "%2d:%02d:%02d"
 msgstr ""
 
 #, python-format
@@ -416,11 +422,6 @@ msgstr ""
 msgid "%s %d.%d"
 msgstr ""
 
-#
-#, fuzzy, python-format
-msgid "%(freespace)s %(percent)s free disk space"
-msgstr "מקום פנוי בכונן הקשיח"
-
 #, fuzzy, python-format
 msgid "%s (%04o)"
 msgstr "%s (%s)\n"
@@ -470,15 +471,7 @@ msgid "%s%d min"
 msgstr ""
 
 #, python-format
-msgid "%s/%s: %s"
-msgstr ""
-
-#, python-format
 msgid "%s: %s"
-msgstr ""
-
-#, python-format
-msgid "%s:%s"
 msgstr ""
 
 #, python-format
@@ -542,6 +535,9 @@ msgstr ""
 msgid "..."
 msgstr "...עזרה"
 
+msgid "/T"
+msgstr ""
+
 msgid "/media/custom"
 msgstr ""
 
@@ -578,9 +574,6 @@ msgstr "1.2"
 msgid "1024 MB"
 msgstr ""
 
-msgid "10bit"
-msgstr ""
-
 msgid "120,2,30"
 msgstr ""
 
@@ -597,18 +590,12 @@ msgstr ""
 msgid "12V output"
 msgstr "12V output"
 
-msgid "12bit"
-msgstr ""
-
 #
 msgid "13 V"
 msgstr "13 V"
 
 msgid "16 MB"
 msgstr ""
-
-msgid "16:10"
-msgstr "16:10"
 
 #
 msgid "16:10 Letterbox"
@@ -727,9 +714,6 @@ msgstr ""
 msgid "47,1,685,24"
 msgstr ""
 
-msgid "4:3"
-msgstr "4:3"
-
 #
 msgid "4:3 Letterbox"
 msgstr "4:3 Letterbox"
@@ -803,9 +787,6 @@ msgstr ""
 #, fuzzy
 msgid "8K"
 msgstr "8"
-
-msgid "8bit"
-msgstr ""
 
 msgid "9"
 msgstr ""
@@ -983,9 +964,6 @@ msgstr ""
 msgid "ASPECT key"
 msgstr ""
 
-msgid "ASS File"
-msgstr ""
-
 msgid "ASS file"
 msgstr ""
 
@@ -1086,6 +1064,11 @@ msgstr ""
 #
 msgid "Active"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Adapter"
+msgstr "מתאם רשת"
 
 #
 msgid "Adapter settings"
@@ -1399,14 +1382,6 @@ msgstr "go to standby"
 msgid "Alternative"
 msgstr "add alternatives"
 
-#, fuzzy
-msgid "Alternative 1"
-msgstr "add alternatives"
-
-#, fuzzy
-msgid "Alternative 2"
-msgstr "add alternatives"
-
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr ""
 
@@ -1493,6 +1468,7 @@ msgstr "ערבית"
 msgid "Are you sure to purge all deleted user bouquets?"
 msgstr ""
 
+#. TRANSLATORS: The user is asked to delete all satellite services from a specific orbital position after a configuration change
 #, python-format
 msgid "Are you sure to remove all %s services?"
 msgstr ""
@@ -1745,9 +1721,6 @@ msgstr "רשומת טיימר"
 msgid "AutoTimer Settings"
 msgstr "בחירת תרגום"
 
-msgid "Automatic"
-msgstr "אוטומטי"
-
 #
 #, fuzzy
 msgid "Automatic Scan"
@@ -1807,15 +1780,6 @@ msgid "BER:"
 msgstr "BER:"
 
 msgid "BLUDISC RECORDABLE"
-msgstr ""
-
-msgid "BT 2020 CL"
-msgstr ""
-
-msgid "BT 2020 NCL"
-msgstr ""
-
-msgid "BT 709"
 msgstr ""
 
 msgid "Back"
@@ -1988,6 +1952,12 @@ msgstr ""
 msgid "Black screen till locked"
 msgstr ""
 
+msgid "Blindscan"
+msgstr ""
+
+msgid "Blindscan terrestrial (if possible)"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Block device"
@@ -2152,10 +2122,6 @@ msgstr ""
 msgid "CPU: %s"
 msgstr ""
 
-#
-msgid "CVBS"
-msgstr ""
-
 msgid "Cable"
 msgstr "Cable"
 
@@ -2305,7 +2271,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Capabilities "
+msgid "Capabilities: "
 msgstr ":נפח"
 
 #
@@ -2492,6 +2458,9 @@ msgstr ""
 #, fuzzy
 msgid "Checking Feeds"
 msgstr "...בודק קבצי מערכת"
+
+msgid "Checking ONID/TSID"
+msgstr ""
 
 #, fuzzy
 msgid "Checking disk"
@@ -3089,6 +3058,12 @@ msgstr ""
 msgid "Configuring"
 msgstr "מגדיר"
 
+msgid "Confirm closure of media player"
+msgstr ""
+
+msgid "Conflict detection disabled!"
+msgstr ""
+
 msgid "Conflict not resolved!"
 msgstr ""
 
@@ -3409,9 +3384,6 @@ msgstr "צ'כית"
 #, fuzzy
 msgid "D"
 msgstr "3"
-
-msgid "DAC"
-msgstr ""
 
 msgid "DHCP"
 msgstr "DHCP"
@@ -3785,6 +3757,11 @@ msgstr "Detected HDD:"
 #
 msgid "Detected NIMs:"
 msgstr "Detected NIMs:"
+
+#
+#, fuzzy
+msgid "Device"
+msgstr "שירותים"
 
 #
 #, fuzzy
@@ -4162,9 +4139,6 @@ msgstr ""
 msgid "Do you want to view or run the script?\n"
 msgstr "האם ברצונך להסיר את החבילה\n"
 
-msgid "Dolby"
-msgstr ""
-
 msgid "Domain:"
 msgstr ""
 
@@ -4437,10 +4411,10 @@ msgstr "Electronic Program Guide"
 msgid "Electronic Program Guide Setup"
 msgstr "Electronic Program Guide"
 
-msgid "Embedded"
+msgid "Emergency"
 msgstr ""
 
-msgid "Emergency"
+msgid "Empty Trash"
 msgstr ""
 
 msgid "Empty slot"
@@ -4709,6 +4683,9 @@ msgstr ""
 
 msgid "Enter the service pin"
 msgstr "הכנס קוד האבטחה של השירות"
+
+msgid "Enter valid ONID/TSID"
+msgstr ""
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
 msgstr ""
@@ -5047,6 +5024,13 @@ msgstr ""
 msgid ""
 "FBC automatic\n"
 "inactive"
+msgstr ""
+
+#, python-format
+msgid "FBC socket %s"
+msgstr ""
+
+msgid "FBC virtual"
 msgstr ""
 
 msgid "FEC"
@@ -5545,6 +5529,10 @@ msgid "Further options"
 msgstr ""
 
 #, fuzzy
+msgid "GB"
+msgstr "RGB"
+
+#, fuzzy
 msgid "GBAspectRatioSwitchSetup"
 msgstr "Aspect Ratio"
 
@@ -5814,9 +5802,6 @@ msgstr ""
 msgid "HDD Info"
 msgstr "פרטים"
 
-msgid "HDMI"
-msgstr ""
-
 #
 #, fuzzy
 msgid "HDMI CEC setup"
@@ -5867,9 +5852,6 @@ msgstr ""
 msgid "HDMI-CEC setup"
 msgstr ""
 
-msgid "HDR10"
-msgstr ""
-
 #, fuzzy
 msgid "HDR10 support"
 msgstr "לא נתמך"
@@ -5878,9 +5860,6 @@ msgid "HELP"
 msgstr ""
 
 msgid "HI-cleanup for external subtitles"
-msgstr ""
-
-msgid "HLG"
 msgstr ""
 
 #, fuzzy
@@ -5978,6 +5957,9 @@ msgstr "Protect services"
 #, fuzzy
 msgid "Hide player"
 msgstr "hide player"
+
+msgid "Hide sub-menu"
+msgstr ""
 
 msgid "Hide zap errors"
 msgstr ""
@@ -6491,16 +6473,12 @@ msgid "Installing software..."
 msgstr "מתקין"
 
 #, fuzzy
-msgid "Instant record"
-msgstr "...הקלטה מיידית"
+msgid "Instant recording"
+msgstr "הקלטה מיידית"
 
 #, fuzzy
 msgid "Instant recording location"
 msgstr "מיקום הקלטה מיידית"
-
-#, fuzzy
-msgid "Instant recording"
-msgstr "הקלטה מיידית"
 
 #, fuzzy
 msgid "Interface"
@@ -7040,6 +7018,12 @@ msgstr "לחיצת מקש ארוכה"
 msgid "Longitude"
 msgstr "Longitude"
 
+msgid "Looking for active transponders in the cable network. Please wait..."
+msgstr "Looking for active transponders in the cable network. Please wait..."
+
+msgid "Looking for active transponders in the terrestrial network. Please wait..."
+msgstr ""
+
 msgid "Loop through from"
 msgstr ""
 
@@ -7070,6 +7054,11 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "MB"
+msgstr "B"
+
+#
+#, fuzzy
 msgid "MIME Version"
 msgstr "Inversion"
 
@@ -7086,9 +7075,6 @@ msgid "MSN Weather City Name"
 msgstr ""
 
 msgid "Macao"
-msgstr ""
-
-msgid "North Macedonia (The Republic of)"
 msgstr ""
 
 msgid "Madagascar"
@@ -8172,6 +8158,9 @@ msgstr ""
 msgid "North"
 msgstr "North"
 
+msgid "North Macedonia (The Republic of)"
+msgstr ""
+
 msgid "Northern Mariana Islands"
 msgstr ""
 
@@ -8518,16 +8507,10 @@ msgstr ""
 msgid "PAL"
 msgstr "PAL"
 
-msgid "PCM"
-msgstr ""
-
 msgid "PCR PID"
 msgstr ""
 
 msgid "PDC"
-msgstr ""
-
-msgid "PGS File"
 msgstr ""
 
 msgid "PGS file"
@@ -10303,9 +10286,6 @@ msgstr ""
 msgid "Rwanda"
 msgstr ""
 
-msgid "S-Video"
-msgstr "S-Video"
-
 #
 #, fuzzy
 msgid "SABnzbd Setup"
@@ -10328,11 +10308,6 @@ msgstr ""
 msgid "SCR Unicable"
 msgstr ""
 
-#
-#, fuzzy
-msgid "SDR"
-msgstr "SNR"
-
 msgid "SELECTIVE"
 msgstr ""
 
@@ -10349,16 +10324,7 @@ msgstr "SNR:"
 msgid "SNR:"
 msgstr "SNR:"
 
-msgid "SPDIF"
-msgstr ""
-
-msgid "SRT File"
-msgstr ""
-
 msgid "SRT file"
-msgstr ""
-
-msgid "SSA File"
 msgstr ""
 
 msgid "SSA file"
@@ -11427,11 +11393,6 @@ msgstr "Setup Mode"
 msgid "Setup network time synchronization interval."
 msgstr ""
 
-#
-#, fuzzy
-msgid "Setup tuner"
-msgstr "Select a movie"
-
 msgid "Setup your positioner"
 msgstr ""
 
@@ -11816,6 +11777,9 @@ msgstr ""
 msgid "Show status icons in movielist"
 msgstr ""
 
+msgid "Show sub-menu"
+msgstr ""
+
 #, fuzzy
 msgid "Show subservice selection"
 msgstr "מיקום סרטים"
@@ -11842,8 +11806,18 @@ msgstr "...הצג את נגן הרדיו"
 msgid "Show the plugin browser.."
 msgstr "סייר הפלאגינים"
 
+#
+#, fuzzy
+msgid "Show the radio player..."
+msgstr "...הצג את נגן הרדיו"
+
 msgid "Show the service information on two lines in the channel selection screen. You can choose between the current event description below the channel name, or the current event description next to the channel name, and the next event description on the second line."
 msgstr ""
+
+#
+#, fuzzy
+msgid "Show the tv player..."
+msgstr "...הצג את נגן הרדיו"
 
 #, fuzzy
 msgid "Show transponder info"
@@ -12513,6 +12487,10 @@ msgstr "Stop current event but not coming events"
 #, fuzzy
 msgid "Stop entry"
 msgstr "עצור בדיקה"
+
+#, fuzzy
+msgid "Stop live TV service"
+msgstr "Protect services"
 
 #
 msgid "Stop playing this movie?"
@@ -13348,6 +13326,9 @@ msgstr ""
 msgid "This line is not editable!"
 msgstr ".הפלאגין הזה לא הותקן"
 
+msgid "This not valid ONID/TSID"
+msgstr ""
+
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr ""
 
@@ -13532,6 +13513,9 @@ msgstr ""
 #, fuzzy
 msgid "This test detects your configured LAN adapter."
 msgstr "This test detects your configured LAN-Adapter."
+
+msgid "This valid ONID/TSID"
+msgstr ""
 
 msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
@@ -13847,12 +13831,6 @@ msgid "Troubleshoot"
 msgstr ""
 
 msgid "True"
-msgstr ""
-
-msgid "Looking for active transponders in the cable network. Please wait..."
-msgstr "Looking for active transponders in the cable network. Please wait..."
-
-msgid "Looking for active transponders in the terrestrial network. Please wait..."
 msgstr ""
 
 #
@@ -14174,12 +14152,12 @@ msgstr ""
 msgid "Update failed. Your receiver does not have a working internet connection."
 msgstr ""
 
-msgid "Update has completed."
-msgstr ""
-
 #
 msgid "Update feed not available."
 msgstr "Update feed not available."
+
+msgid "Update has completed."
+msgstr ""
 
 #
 #, fuzzy
@@ -14354,6 +14332,14 @@ msgstr "Used service scan type"
 msgid "User - bouquets"
 msgstr ""
 
+#, python-format
+msgid "User Band %d"
+msgstr ""
+
+#, python-format
+msgid "User Band %d (%s)"
+msgstr ""
+
 #
 #, fuzzy
 msgid "User Feed URL"
@@ -14425,13 +14411,13 @@ msgstr ""
 msgid "VMGM (intro trailer)"
 msgstr ""
 
-msgid "VOB File"
-msgstr ""
-
 msgid "VOB file"
 msgstr ""
 
 msgid "VU+"
+msgstr ""
+
+msgid "Valid ONID/TSID look at www.lyngsat.com..."
 msgstr ""
 
 #
@@ -14747,7 +14733,13 @@ msgid ""
 "Really disable timer conflict detection?"
 msgstr ""
 
+msgid "Warning: FBC-C V1 tuner should be connected to the first slot to work correctly. Otherwise, only 2 out of 8 demodulators will be available when connected in the second slot. "
+msgstr ""
+
 msgid "Warning: no LNB; using factory defaults."
+msgstr ""
+
+msgid "Warning: the second input of this dual tuner may not support SCR LNBs. "
 msgstr ""
 
 #
@@ -15140,20 +15132,8 @@ msgstr ""
 msgid "XBox 360 support"
 msgstr "לא נתמך"
 
-msgid "YCbCr420"
-msgstr ""
-
-msgid "YCbCr422"
-msgstr ""
-
-msgid "YCbCr444"
-msgstr ""
-
 msgid "YES"
 msgstr ""
-
-msgid "YPbPr"
-msgstr "YPbPr"
 
 msgid "Year"
 msgstr "שנה"
@@ -15325,8 +15305,8 @@ msgid "You have to include at least %d aspect ratio modes!"
 msgstr ""
 
 #, python-format
-msgid "You have to wait %s!"
-msgstr "You have to wait %s!"
+msgid "You have to wait %(min)d minutes, %(sec)d seconds!"
+msgstr ""
 
 msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
 msgstr ""
@@ -15652,6 +15632,9 @@ msgstr ""
 msgid "all"
 msgstr "כולם"
 
+msgid "all tuners"
+msgstr ""
+
 #, fuzzy
 msgid "alphabetic"
 msgstr "alphabetic sort"
@@ -15724,6 +15707,10 @@ msgstr "אוטומטי"
 
 #, fuzzy
 msgid "automatic"
+msgstr "אוטומטי"
+
+#, fuzzy
+msgid "automatic from DHCP"
 msgstr "אוטומטי"
 
 #
@@ -16295,9 +16282,6 @@ msgstr ""
 msgid "multi"
 msgstr "multinorm"
 
-msgid "multinorm"
-msgstr "multinorm"
-
 msgid "music/ballet/dance (general)"
 msgstr ""
 
@@ -16395,6 +16379,10 @@ msgstr ""
 #, fuzzy
 msgid "not tested"
 msgstr "לא בשימוש"
+
+#, fuzzy
+msgid "not valid frontend"
+msgstr "No satellite frontend found!!"
 
 msgid "not_tested"
 msgstr ""
@@ -16574,6 +16562,11 @@ msgstr ""
 msgid "rotor"
 msgstr ":מחבר"
 
+#
+#, fuzzy
+msgid "rotor is not used"
+msgstr "Rotor turning speed"
+
 msgid "running"
 msgstr ""
 
@@ -16589,9 +16582,6 @@ msgstr ""
 
 msgid "script 'stout':"
 msgstr ""
-
-msgid "seconds"
-msgstr "שניות"
 
 msgid "security"
 msgstr ""

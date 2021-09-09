@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-04 21:24+0100\n"
+"POT-Creation-Date: 2021-09-09 09:44+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Budiarno\n"
 "Language-Team: \n"
@@ -26,11 +26,6 @@ msgid ""
 msgstr ""
 "\n"
 "Setelah tekan OK, silakan tunggu!"
-
-msgid ""
-"Conflict detection disabled!"
-msgstr ""
-"Deteksi konflik dimatikan!"
 
 msgid ""
 "\n"
@@ -105,6 +100,10 @@ msgstr ""
 msgid " ('%s') finished with error number [%d]."
 msgstr ""
 
+#, fuzzy
+msgid " (+5 volt terrestrial)"
+msgstr "Terrestrial"
+
 msgid " (0 - all networks)"
 msgstr " (0 - semua jaringan)"
 
@@ -125,6 +124,10 @@ msgstr " (Radio)"
 msgid " (TV)"
 msgstr " (TV)"
 
+#, fuzzy
+msgid " (auto detection)"
+msgstr "Ke pemilihan audio"
+
 msgid " (disabled)"
 msgstr " (dimatikan)"
 
@@ -144,10 +147,16 @@ msgstr ""
 msgid " - 1 element exist! Overwrite"
 msgstr ""
 
+msgid " - Unicable/JESS LNBs not found"
+msgstr ""
+
 msgid " - file exist! Overwrite"
 msgstr ""
 
 msgid " - folder exist! Overwrite"
+msgstr ""
+
+msgid " Warning: the selected tuner should not use SCR Unicable type for LNBs because each tuner need a own SCR number."
 msgstr ""
 
 msgid " extensions."
@@ -166,11 +175,18 @@ msgstr ""
 msgid " packages selected."
 msgstr " paket yang dipilih."
 
+msgid " unicable LNB input of rotor"
+msgstr ""
+
 msgid " updates available."
 msgstr " pembaruan tersedia."
 
 msgid "$PROJECT_DIR$"
 msgstr ""
+
+#, python-format
+msgid "%(freespace)s %(percent)s free disk space"
+msgstr "%(freespace)s %(percent)s sisa penyimpanan disk"
 
 #, python-format
 msgid "%.0f GB"
@@ -203,16 +219,6 @@ msgstr "%02d:%02d"
 #, python-format
 msgid "%03d MB"
 msgstr ""
-
-#. TRANSLATORS: short time representation hour:minute
-#, python-format
-msgid "%2d:%02d"
-msgstr "%2d:%02d"
-
-#. TRANSLATORS: full time representation hour:minute:seconds
-#, python-format
-msgid "%2d:%02d:%02d"
-msgstr "%2d:%02d:%02d"
 
 #, python-format
 msgid "%3.01f dB"
@@ -400,10 +406,6 @@ msgstr ""
 msgid "%s %d.%d"
 msgstr ""
 
-#, python-format
-msgid "%(freespace)s %(percent)s free disk space"
-msgstr "%(freespace)s %(percent)s sisa penyimpanan disk"
-
 #, fuzzy, python-format
 msgid "%s (%04o)"
 msgstr "%s (%s)\n"
@@ -451,17 +453,9 @@ msgstr[1] "%s pembaruan paket-paket tersedia"
 msgid "%s%d min"
 msgstr "%s%d mnt"
 
-#, python-format
-msgid "%s/%s: %s"
-msgstr "%s/%s: %s"
-
 #, fuzzy, python-format
 msgid "%s: %s"
 msgstr "%s/%s: %s"
-
-#, python-format
-msgid "%s:%s"
-msgstr "%s:%s"
 
 #, python-format
 msgid "'%s' not installed and no known package"
@@ -523,6 +517,9 @@ msgstr ""
 msgid "..."
 msgstr "Bantuan"
 
+msgid "/T"
+msgstr ""
+
 msgid "/media/custom"
 msgstr ""
 
@@ -558,9 +555,6 @@ msgstr "1.2"
 msgid "1024 MB"
 msgstr ""
 
-msgid "10bit"
-msgstr "10bit"
-
 msgid "120,2,30"
 msgstr ""
 
@@ -576,17 +570,11 @@ msgstr ""
 msgid "12V output"
 msgstr "keluaran 12V"
 
-msgid "12bit"
-msgstr "12bit"
-
 msgid "13 V"
 msgstr "13 V"
 
 msgid "16 MB"
 msgstr ""
-
-msgid "16:10"
-msgstr "16:10"
 
 msgid "16:10 Letterbox"
 msgstr "Kotaksurat 16:10"
@@ -699,9 +687,6 @@ msgstr ""
 msgid "47,1,685,24"
 msgstr ""
 
-msgid "4:3"
-msgstr "4:3"
-
 msgid "4:3 Letterbox"
 msgstr "Kotaksurat 4:3"
 
@@ -773,9 +758,6 @@ msgstr ""
 #, fuzzy
 msgid "8K"
 msgstr "8"
-
-msgid "8bit"
-msgstr ""
 
 msgid "9"
 msgstr ""
@@ -953,10 +935,6 @@ msgstr "AGC:"
 msgid "ASPECT key"
 msgstr ""
 
-#, fuzzy
-msgid "ASS File"
-msgstr "Berkas ASS"
-
 msgid "ASS file"
 msgstr "Berkas ASS"
 
@@ -1041,6 +1019,10 @@ msgstr "Aktifkan batas dan jeda timeshift"
 
 msgid "Active"
 msgstr ""
+
+#, fuzzy
+msgid "Adapter"
+msgstr "LAN adapter"
 
 msgid "Adapter settings"
 msgstr "Penyetelan adapter"
@@ -1310,14 +1292,6 @@ msgstr "Juga pada standby"
 msgid "Alternative"
 msgstr "Alternatif"
 
-#, fuzzy
-msgid "Alternative 1"
-msgstr "Alternatif"
-
-#, fuzzy
-msgid "Alternative 2"
-msgstr "Alternatif"
-
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr ""
 
@@ -1399,6 +1373,7 @@ msgstr "Arab"
 msgid "Are you sure to purge all deleted user bouquets?"
 msgstr "Anda yakin ingin membersihkan semua buket pengguna yg dihapus?"
 
+#. TRANSLATORS: The user is asked to delete all satellite services from a specific orbital position after a configuration change
 #, python-format
 msgid "Are you sure to remove all %s services?"
 msgstr "Anda yakin ingin menghapus semua layanan %s?"
@@ -1636,9 +1611,6 @@ msgstr "Timer overview"
 msgid "AutoTimer Settings"
 msgstr "Penyetelan adapter"
 
-msgid "Automatic"
-msgstr "Otomatis"
-
 msgid "Automatic Scan"
 msgstr "Pelacakan Otomatis"
 
@@ -1690,15 +1662,6 @@ msgid "BER:"
 msgstr "BER:"
 
 msgid "BLUDISC RECORDABLE"
-msgstr ""
-
-msgid "BT 2020 CL"
-msgstr ""
-
-msgid "BT 2020 NCL"
-msgstr ""
-
-msgid "BT 709"
 msgstr ""
 
 msgid "Back"
@@ -1866,6 +1829,12 @@ msgstr "Layar hitam"
 msgid "Black screen till locked"
 msgstr "Layar hitam sampai terkunci"
 
+msgid "Blindscan"
+msgstr ""
+
+msgid "Blindscan terrestrial (if possible)"
+msgstr ""
+
 #, fuzzy
 msgid "Block device"
 msgstr "Perangkat Input"
@@ -2014,9 +1983,6 @@ msgstr "CPU: "
 msgid "CPU: %s"
 msgstr "CPU: "
 
-msgid "CVBS"
-msgstr "CVBS"
-
 msgid "Cable"
 msgstr "Kabel"
 
@@ -2163,7 +2129,7 @@ msgid ""
 msgstr ""
 
 #, fuzzy
-msgid "Capabilities "
+msgid "Capabilities: "
 msgstr "Kemampuan:"
 
 msgid "Capacity: "
@@ -2328,6 +2294,9 @@ msgstr "Periksa kembali sambungan internet"
 #, fuzzy
 msgid "Checking Feeds"
 msgstr "Memeriksa sistem berkas..."
+
+msgid "Checking ONID/TSID"
+msgstr ""
 
 #, fuzzy
 msgid "Checking disk"
@@ -2911,6 +2880,12 @@ msgstr "Atur konektor keluaran video mana yang ingin digunakan."
 msgid "Configuring"
 msgstr "Pengaturan"
 
+msgid "Confirm closure of media player"
+msgstr ""
+
+msgid "Conflict detection disabled!"
+msgstr "Deteksi konflik dimatikan!"
+
 msgid "Conflict not resolved!"
 msgstr "Konflik tidak diselesaikan"
 
@@ -3222,9 +3197,6 @@ msgstr "Ceko"
 #, fuzzy
 msgid "D"
 msgstr "3"
-
-msgid "DAC"
-msgstr ""
 
 msgid "DHCP"
 msgstr "DHCP"
@@ -3584,6 +3556,10 @@ msgid "Detected NIMs:"
 msgstr "NIMs terdeteksi:"
 
 #, fuzzy
+msgid "Device"
+msgstr "Layanan"
+
+#, fuzzy
 msgid "Device Details"
 msgstr "View details"
 
@@ -3936,9 +3912,6 @@ msgstr "Anda ingin memperbarui rx anda?"
 msgid "Do you want to view or run the script?\n"
 msgstr "Anda ingin memperbarui rx anda?"
 
-msgid "Dolby"
-msgstr ""
-
 msgid "Domain:"
 msgstr ""
 
@@ -4200,10 +4173,10 @@ msgstr "Electronic Program Guide"
 msgid "Electronic Program Guide Setup"
 msgstr "Electronic Program Guide"
 
-msgid "Embedded"
+msgid "Emergency"
 msgstr ""
 
-msgid "Emergency"
+msgid "Empty Trash"
 msgstr ""
 
 msgid "Empty slot"
@@ -4449,6 +4422,9 @@ msgstr ""
 
 msgid "Enter the service pin"
 msgstr "Masukkan pin layanan"
+
+msgid "Enter valid ONID/TSID"
+msgstr ""
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
 msgstr ""
@@ -4769,6 +4745,13 @@ msgstr ""
 msgid ""
 "FBC automatic\n"
 "inactive"
+msgstr ""
+
+#, python-format
+msgid "FBC socket %s"
+msgstr ""
+
+msgid "FBC virtual"
 msgstr ""
 
 msgid "FEC"
@@ -5252,6 +5235,10 @@ msgid "Further options"
 msgstr ""
 
 #, fuzzy
+msgid "GB"
+msgstr "RGB"
+
+#, fuzzy
 msgid "GBAspectRatioSwitchSetup"
 msgstr "Aspek rasio"
 
@@ -5498,9 +5485,6 @@ msgstr ""
 msgid "HDD Info"
 msgstr "Info"
 
-msgid "HDMI"
-msgstr ""
-
 #, fuzzy
 msgid "HDMI CEC setup"
 msgstr "Pengaturan HDMI-CEC"
@@ -5549,9 +5533,6 @@ msgstr ""
 msgid "HDMI-CEC setup"
 msgstr "Pengaturan HDMI-CEC"
 
-msgid "HDR10"
-msgstr ""
-
 #, fuzzy
 msgid "HDR10 support"
 msgstr "tidak didukung"
@@ -5562,9 +5543,6 @@ msgstr ""
 #, fuzzy
 msgid "HI-cleanup for external subtitles"
 msgstr "Tunda pada teks film dari luar"
-
-msgid "HLG"
-msgstr ""
 
 #, fuzzy
 msgid "HLG support"
@@ -5653,6 +5631,9 @@ msgstr ""
 
 msgid "Hide player"
 msgstr "Hide player"
+
+msgid "Hide sub-menu"
+msgstr ""
 
 msgid "Hide zap errors"
 msgstr "Sembunyikan kesalan zap"
@@ -6143,14 +6124,15 @@ msgstr "Pasang picon pada"
 msgid "Installing software..."
 msgstr "Installing"
 
-msgid "Instant record"
-msgstr ""
+msgid "Instant recording"
+msgstr "Perekaman segera"
 
 msgid "Instant recording location"
 msgstr "Instant recording location"
 
-msgid "Instant recording"
-msgstr "Perekaman segera"
+#, fuzzy
+msgid "Interface"
+msgstr "Interface: "
 
 msgid "Interface: "
 msgstr "Interface: "
@@ -6619,6 +6601,12 @@ msgstr "Long key press"
 msgid "Longitude"
 msgstr "Longitude"
 
+msgid "Looking for active transponders in the cable network. Please wait..."
+msgstr "Mencoba temukan transponder yg digunakan pada jaringan kabel. Mohon tunggu..."
+
+msgid "Looking for active transponders in the terrestrial network. Please wait..."
+msgstr "Mencoba temukan tranponder yg digunakan pada jaringan terrestrial. Mohon tunggu..."
+
 #, fuzzy
 msgid "Loop through from"
 msgstr "loopthrough to"
@@ -6648,6 +6636,10 @@ msgid "MAC:"
 msgstr ""
 
 #, fuzzy
+msgid "MB"
+msgstr "B"
+
+#, fuzzy
 msgid "MIME Version"
 msgstr "Inversi"
 
@@ -6665,9 +6657,6 @@ msgstr ""
 
 msgid "Macao"
 msgstr ""
-
-msgid "North Macedonia (The Republic of)"
-msgstr "Makedonia"
 
 msgid "Madagascar"
 msgstr ""
@@ -7656,6 +7645,9 @@ msgstr "Normal mode"
 msgid "North"
 msgstr "North"
 
+msgid "North Macedonia (The Republic of)"
+msgstr "Makedonia"
+
 msgid "Northern Mariana Islands"
 msgstr ""
 
@@ -7976,16 +7968,10 @@ msgstr ""
 msgid "PAL"
 msgstr "PAL"
 
-msgid "PCM"
-msgstr ""
-
 msgid "PCR PID"
 msgstr "PID PCR"
 
 msgid "PDC"
-msgstr ""
-
-msgid "PGS File"
 msgstr ""
 
 msgid "PGS file"
@@ -9623,9 +9609,6 @@ msgstr ""
 msgid "Rwanda"
 msgstr ""
 
-msgid "S-Video"
-msgstr "S-Video"
-
 #, fuzzy
 msgid "SABnzbd Setup"
 msgstr "Softcam type"
@@ -9646,10 +9629,6 @@ msgstr ""
 msgid "SCR Unicable"
 msgstr ""
 
-#, fuzzy
-msgid "SDR"
-msgstr "SNR"
-
 msgid "SELECTIVE"
 msgstr ""
 
@@ -9663,16 +9642,7 @@ msgstr "SNR:"
 msgid "SNR:"
 msgstr "SNR:"
 
-msgid "SPDIF"
-msgstr ""
-
-msgid "SRT File"
-msgstr ""
-
 msgid "SRT file"
-msgstr ""
-
-msgid "SSA File"
 msgstr ""
 
 msgid "SSA file"
@@ -10649,10 +10619,6 @@ msgstr "Mode pengaturan"
 msgid "Setup network time synchronization interval."
 msgstr ""
 
-#, fuzzy
-msgid "Setup tuner"
-msgstr "Pilih Penala"
-
 msgid "Setup your positioner"
 msgstr "Atur positioner anda"
 
@@ -10988,6 +10954,10 @@ msgstr "Tampilkan ikon status di daftar film"
 msgid "Show status icons in movielist"
 msgstr "Tampilkan ikon status di daftar film"
 
+#, fuzzy
+msgid "Show sub-menu"
+msgstr "Tampilkan kolom"
+
 msgid "Show subservice selection"
 msgstr ""
 
@@ -11009,8 +10979,16 @@ msgstr "Tampilkan pemutar radio..."
 msgid "Show the plugin browser.."
 msgstr "Plugin browser"
 
+#, fuzzy
+msgid "Show the radio player..."
+msgstr "Tampilkan pemutar radio..."
+
 msgid "Show the service information on two lines in the channel selection screen. You can choose between the current event description below the channel name, or the current event description next to the channel name, and the next event description on the second line."
 msgstr ""
+
+#, fuzzy
+msgid "Show the tv player..."
+msgstr "Tampilkan pemutar radio..."
 
 #, fuzzy
 msgid "Show transponder info"
@@ -11602,6 +11580,10 @@ msgstr "Stop current event but not coming events"
 
 msgid "Stop entry"
 msgstr "Stop entry"
+
+#, fuzzy
+msgid "Stop live TV service"
+msgstr "Go to last service"
 
 msgid "Stop playing this movie?"
 msgstr "Stop playing this movie?"
@@ -12359,6 +12341,9 @@ msgstr ""
 msgid "This line is not editable!"
 msgstr "This plugin is not installed."
 
+msgid "This not valid ONID/TSID"
+msgstr ""
+
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr ""
 
@@ -12546,6 +12531,9 @@ msgstr ""
 
 msgid "This test detects your configured LAN adapter."
 msgstr "This test detects your configured LAN adapter."
+
+msgid "This valid ONID/TSID"
+msgstr ""
 
 msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
@@ -12818,12 +12806,6 @@ msgstr ""
 
 msgid "True"
 msgstr ""
-
-msgid "Looking for active transponders in the cable network. Please wait..."
-msgstr "Mencoba temukan transponder yg digunakan pada jaringan kabel. Mohon tunggu..."
-
-msgid "Looking for active transponders in the terrestrial network. Please wait..."
-msgstr "Mencoba temukan tranponder yg digunakan pada jaringan terrestrial. Mohon tunggu..."
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Trying to download a new packetlist. Please wait..."
@@ -13129,11 +13111,11 @@ msgstr "Update completed. Do you want to reboot your receiver?"
 msgid "Update failed. Your receiver does not have a working internet connection."
 msgstr "Update failed. Your receiver does not have a working internet connection."
 
-msgid "Update has completed."
-msgstr "Update has completed."
-
 msgid "Update feed not available."
 msgstr "Umpan pembaruan tidak tersedia."
+
+msgid "Update has completed."
+msgstr "Update has completed."
 
 #, fuzzy
 msgid "Updating"
@@ -13289,6 +13271,14 @@ msgstr "Used service scan type"
 msgid "User - bouquets"
 msgstr "User - bouquets"
 
+#, python-format
+msgid "User Band %d"
+msgstr ""
+
+#, python-format
+msgid "User Band %d (%s)"
+msgstr ""
+
 #, fuzzy
 msgid "User Feed URL"
 msgstr "Ditentukan pengguna"
@@ -13355,13 +13345,13 @@ msgstr ""
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
 
-msgid "VOB File"
-msgstr ""
-
 msgid "VOB file"
 msgstr ""
 
 msgid "VU+"
+msgstr ""
+
+msgid "Valid ONID/TSID look at www.lyngsat.com..."
 msgstr ""
 
 #, fuzzy
@@ -13643,8 +13633,14 @@ msgid ""
 "Really disable timer conflict detection?"
 msgstr ""
 
+msgid "Warning: FBC-C V1 tuner should be connected to the first slot to work correctly. Otherwise, only 2 out of 8 demodulators will be available when connected in the second slot. "
+msgstr ""
+
 msgid "Warning: no LNB; using factory defaults."
 msgstr "Warning: no LNB; using factory defaults."
+
+msgid "Warning: the second input of this dual tuner may not support SCR LNBs. "
+msgstr ""
 
 msgid "Watch movies..."
 msgstr "Watch movies..."
@@ -14049,20 +14045,8 @@ msgstr ""
 msgid "XBox 360 support"
 msgstr "tidak didukung"
 
-msgid "YCbCr420"
-msgstr ""
-
-msgid "YCbCr422"
-msgstr ""
-
-msgid "YCbCr444"
-msgstr ""
-
 msgid "YES"
 msgstr ""
-
-msgid "YPbPr"
-msgstr "YPbPr"
 
 msgid "Year"
 msgstr "Year"
@@ -14258,8 +14242,8 @@ msgid "You have to include at least %d aspect ratio modes!"
 msgstr ""
 
 #, python-format
-msgid "You have to wait %s!"
-msgstr "Anda harus menunggu %s!"
+msgid "You have to wait %(min)d minutes, %(sec)d seconds!"
+msgstr ""
 
 msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
 msgstr ""
@@ -14589,6 +14573,10 @@ msgstr ""
 msgid "all"
 msgstr ""
 
+#, fuzzy
+msgid "all tuners"
+msgstr "URL penggunaan rx dari jauh"
+
 msgid "alphabetic"
 msgstr "berdasarkan abjad"
 
@@ -14656,6 +14644,10 @@ msgid "auto"
 msgstr "auto"
 
 msgid "automatic"
+msgstr "otomatis"
+
+#, fuzzy
+msgid "automatic from DHCP"
 msgstr "otomatis"
 
 #, fuzzy
@@ -15192,9 +15184,6 @@ msgstr "film/drama (umum)"
 msgid "multi"
 msgstr ""
 
-msgid "multinorm"
-msgstr "multinorm"
-
 msgid "music/ballet/dance (general)"
 msgstr "musik/ballet/tari (umum)"
 
@@ -15280,6 +15269,10 @@ msgstr "tidak didukung"
 
 msgid "not tested"
 msgstr ""
+
+#, fuzzy
+msgid "not valid frontend"
+msgstr "tipe tidak valid"
 
 msgid "not_tested"
 msgstr ""
@@ -15450,6 +15443,10 @@ msgid "rotor"
 msgstr "motoring"
 
 #, fuzzy
+msgid "rotor is not used"
+msgstr "Rotor turning speed"
+
+#, fuzzy
 msgid "running"
 msgstr "Peringatan"
 
@@ -15464,9 +15461,6 @@ msgstr ""
 
 msgid "script 'stout':"
 msgstr ""
-
-msgid "seconds"
-msgstr "seconds"
 
 msgid "security"
 msgstr ""
