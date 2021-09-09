@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-04 21:24+0100\n"
+"POT-Creation-Date: 2021-09-09 09:44+0200\n"
 "PO-Revision-Date: 2010-03-09 21:03+0100\n"
 "Last-Translator: \n"
 "Language-Team: HDTV ROMANIA(superonic,costel_mbc,neutrin,otheitis,cipy_1982,neutrin,runcanion)\n"
@@ -30,10 +30,6 @@ msgid ""
 msgstr ""
 "\n"
 "Dupa apasarea OK, va rog asteptati!"
-
-msgid ""
-"Conflict detection disabled!"
-msgstr ""
 
 msgid ""
 "\n"
@@ -108,6 +104,10 @@ msgid " ('%s') finished with error number [%d]."
 msgstr ""
 
 #, fuzzy
+msgid " (+5 volt terrestrial)"
+msgstr "Terestru"
+
+#, fuzzy
 msgid " (0 - all networks)"
 msgstr "Retea locala"
 
@@ -126,6 +126,9 @@ msgid " (Radio)"
 msgstr ""
 
 msgid " (TV)"
+msgstr ""
+
+msgid " (auto detection)"
 msgstr ""
 
 msgid " (disabled)"
@@ -147,10 +150,16 @@ msgstr ""
 msgid " - 1 element exist! Overwrite"
 msgstr ""
 
+msgid " - Unicable/JESS LNBs not found"
+msgstr ""
+
 msgid " - file exist! Overwrite"
 msgstr ""
 
 msgid " - folder exist! Overwrite"
+msgstr ""
+
+msgid " Warning: the selected tuner should not use SCR Unicable type for LNBs because each tuner need a own SCR number."
 msgstr ""
 
 msgid " extensions."
@@ -168,11 +177,18 @@ msgstr ""
 msgid " packages selected."
 msgstr ""
 
+msgid " unicable LNB input of rotor"
+msgstr ""
+
 msgid " updates available."
 msgstr ""
 
 msgid "$PROJECT_DIR$"
 msgstr ""
+
+#, fuzzy, python-format
+msgid "%(freespace)s %(percent)s free disk space"
+msgstr "spatiu liber pe disk"
 
 #, python-format
 msgid "%.0f GB"
@@ -204,16 +220,6 @@ msgstr ""
 
 #, python-format
 msgid "%03d MB"
-msgstr ""
-
-#. TRANSLATORS: short time representation hour:minute
-#, python-format
-msgid "%2d:%02d"
-msgstr ""
-
-#. TRANSLATORS: full time representation hour:minute:seconds
-#, python-format
-msgid "%2d:%02d:%02d"
 msgstr ""
 
 #, python-format
@@ -400,10 +406,6 @@ msgstr ""
 msgid "%s %d.%d"
 msgstr ""
 
-#, fuzzy, python-format
-msgid "%(freespace)s %(percent)s free disk space"
-msgstr "spatiu liber pe disk"
-
 #, python-format
 msgid "%s (%04o)"
 msgstr ""
@@ -452,15 +454,7 @@ msgid "%s%d min"
 msgstr ""
 
 #, python-format
-msgid "%s/%s: %s"
-msgstr ""
-
-#, python-format
 msgid "%s: %s"
-msgstr ""
-
-#, python-format
-msgid "%s:%s"
 msgstr ""
 
 #, python-format
@@ -523,6 +517,9 @@ msgstr ""
 msgid "..."
 msgstr "ajutor..."
 
+msgid "/T"
+msgstr ""
+
 msgid "/media/custom"
 msgstr ""
 
@@ -558,9 +555,6 @@ msgstr ""
 msgid "1024 MB"
 msgstr ""
 
-msgid "10bit"
-msgstr ""
-
 msgid "120,2,30"
 msgstr ""
 
@@ -576,16 +570,10 @@ msgstr ""
 msgid "12V output"
 msgstr ""
 
-msgid "12bit"
-msgstr ""
-
 msgid "13 V"
 msgstr ""
 
 msgid "16 MB"
-msgstr ""
-
-msgid "16:10"
 msgstr ""
 
 msgid "16:10 Letterbox"
@@ -699,9 +687,6 @@ msgstr ""
 msgid "47,1,685,24"
 msgstr ""
 
-msgid "4:3"
-msgstr ""
-
 msgid "4:3 Letterbox"
 msgstr ""
 
@@ -769,9 +754,6 @@ msgid "83,28,26"
 msgstr ""
 
 msgid "8K"
-msgstr ""
-
-msgid "8bit"
 msgstr ""
 
 msgid "9"
@@ -938,9 +920,6 @@ msgstr ""
 msgid "ASPECT key"
 msgstr ""
 
-msgid "ASS File"
-msgstr ""
-
 msgid "ASS file"
 msgstr ""
 
@@ -1028,6 +1007,10 @@ msgstr ""
 
 msgid "Active"
 msgstr ""
+
+#, fuzzy
+msgid "Adapter"
+msgstr "Adaptor LAN"
 
 msgid "Adapter settings"
 msgstr "Adaptare setari"
@@ -1314,14 +1297,6 @@ msgstr "intra in standby"
 msgid "Alternative"
 msgstr "adauga alternative"
 
-#, fuzzy
-msgid "Alternative 1"
-msgstr "adauga alternative"
-
-#, fuzzy
-msgid "Alternative 2"
-msgstr "adauga alternative"
-
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr ""
 
@@ -1404,6 +1379,7 @@ msgstr "Arabic"
 msgid "Are you sure to purge all deleted user bouquets?"
 msgstr ""
 
+#. TRANSLATORS: The user is asked to delete all satellite services from a specific orbital position after a configuration change
 #, python-format
 msgid "Are you sure to remove all %s services?"
 msgstr ""
@@ -1650,9 +1626,6 @@ msgstr "Intrare timer"
 msgid "AutoTimer Settings"
 msgstr "Selectare subtitrare"
 
-msgid "Automatic"
-msgstr "Automat"
-
 #, fuzzy
 msgid "Automatic Scan"
 msgstr "Scanare automata"
@@ -1706,15 +1679,6 @@ msgid "BER:"
 msgstr "BER:"
 
 msgid "BLUDISC RECORDABLE"
-msgstr ""
-
-msgid "BT 2020 CL"
-msgstr ""
-
-msgid "BT 2020 NCL"
-msgstr ""
-
-msgid "BT 709"
 msgstr ""
 
 msgid "Back"
@@ -1879,6 +1843,12 @@ msgstr ""
 msgid "Black screen till locked"
 msgstr ""
 
+msgid "Blindscan"
+msgstr ""
+
+msgid "Blindscan terrestrial (if possible)"
+msgstr ""
+
 #, fuzzy
 msgid "Block device"
 msgstr "Servicii"
@@ -2030,9 +2000,6 @@ msgstr ""
 msgid "CPU: %s"
 msgstr ""
 
-msgid "CVBS"
-msgstr "CVBS"
-
 msgid "Cable"
 msgstr "Cablu"
 
@@ -2180,7 +2147,7 @@ msgid ""
 msgstr ""
 
 #, fuzzy
-msgid "Capabilities "
+msgid "Capabilities: "
 msgstr "Capacitate: "
 
 msgid "Capacity: "
@@ -2352,6 +2319,9 @@ msgstr ""
 #, fuzzy
 msgid "Checking Feeds"
 msgstr "Se verifica sistemul de fisiere..."
+
+msgid "Checking ONID/TSID"
+msgstr ""
 
 #, fuzzy
 msgid "Checking disk"
@@ -2935,6 +2905,12 @@ msgstr ""
 msgid "Configuring"
 msgstr "Se configureaza"
 
+msgid "Confirm closure of media player"
+msgstr ""
+
+msgid "Conflict detection disabled!"
+msgstr ""
+
 msgid "Conflict not resolved!"
 msgstr ""
 
@@ -3249,9 +3225,6 @@ msgstr "Ceha"
 #, fuzzy
 msgid "D"
 msgstr "D"
-
-msgid "DAC"
-msgstr ""
 
 msgid "DHCP"
 msgstr "DHCP"
@@ -3615,6 +3588,10 @@ msgid "Detected NIMs:"
 msgstr "NIMuri detectate:"
 
 #, fuzzy
+msgid "Device"
+msgstr "Servicii"
+
+#, fuzzy
 msgid "Device Details"
 msgstr "arata detaliile evenimentului"
 
@@ -3969,9 +3946,6 @@ msgstr ""
 msgid "Do you want to view or run the script?\n"
 msgstr "Doriti sa stergeti pachetul:\n"
 
-msgid "Dolby"
-msgstr ""
-
 msgid "Domain:"
 msgstr ""
 
@@ -4233,10 +4207,10 @@ msgstr "Ghid Electronic de Programe (EPG)"
 msgid "Electronic Program Guide Setup"
 msgstr "Ghid Electronic de Programe (EPG)"
 
-msgid "Embedded"
+msgid "Emergency"
 msgstr ""
 
-msgid "Emergency"
+msgid "Empty Trash"
 msgstr ""
 
 msgid "Empty slot"
@@ -4485,6 +4459,9 @@ msgstr ""
 
 msgid "Enter the service pin"
 msgstr "Introduceti pinul serviciului"
+
+msgid "Enter valid ONID/TSID"
+msgstr ""
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
 msgstr ""
@@ -4812,6 +4789,13 @@ msgstr ""
 msgid ""
 "FBC automatic\n"
 "inactive"
+msgstr ""
+
+#, python-format
+msgid "FBC socket %s"
+msgstr ""
+
+msgid "FBC virtual"
 msgstr ""
 
 msgid "FEC"
@@ -5284,6 +5268,10 @@ msgid "Further options"
 msgstr ""
 
 #, fuzzy
+msgid "GB"
+msgstr "RGB"
+
+#, fuzzy
 msgid "GBAspectRatioSwitchSetup"
 msgstr "Aspect Ratio"
 
@@ -5537,9 +5525,6 @@ msgstr ""
 msgid "HDD Info"
 msgstr "Canal"
 
-msgid "HDMI"
-msgstr ""
-
 #, fuzzy
 msgid "HDMI CEC setup"
 msgstr "Configurare"
@@ -5588,9 +5573,6 @@ msgstr ""
 msgid "HDMI-CEC setup"
 msgstr ""
 
-msgid "HDR10"
-msgstr ""
-
 msgid "HDR10 support"
 msgstr ""
 
@@ -5598,9 +5580,6 @@ msgid "HELP"
 msgstr ""
 
 msgid "HI-cleanup for external subtitles"
-msgstr ""
-
-msgid "HLG"
 msgstr ""
 
 msgid "HLG support"
@@ -5693,6 +5672,9 @@ msgstr "Servicii de protectie"
 #, fuzzy
 msgid "Hide player"
 msgstr "ascunde player"
+
+msgid "Hide sub-menu"
+msgstr ""
 
 msgid "Hide zap errors"
 msgstr ""
@@ -6182,16 +6164,12 @@ msgid "Installing software..."
 msgstr "Instaleaza"
 
 #, fuzzy
-msgid "Instant record"
+msgid "Instant recording"
 msgstr "Inregistrare instant"
 
 #, fuzzy
 msgid "Instant recording location"
 msgstr "schimba inregistrare (durata)"
-
-#, fuzzy
-msgid "Instant recording"
-msgstr "Inregistrare instant"
 
 #, fuzzy
 msgid "Interface"
@@ -6683,6 +6661,12 @@ msgstr "Apasare lunga pe tasta"
 msgid "Longitude"
 msgstr "Longitudine"
 
+msgid "Looking for active transponders in the cable network. Please wait..."
+msgstr "Cautare transpondere folosite in reteaua de cablu. Va rugam asteptati..."
+
+msgid "Looking for active transponders in the terrestrial network. Please wait..."
+msgstr ""
+
 #, fuzzy
 msgid "Loop through from"
 msgstr "treci la"
@@ -6711,6 +6695,10 @@ msgid "MAC:"
 msgstr ""
 
 #, fuzzy
+msgid "MB"
+msgstr "B"
+
+#, fuzzy
 msgid "MIME Version"
 msgstr "Inversare"
 
@@ -6727,9 +6715,6 @@ msgid "MSN Weather City Name"
 msgstr ""
 
 msgid "Macao"
-msgstr ""
-
-msgid "North Macedonia (The Republic of)"
 msgstr ""
 
 msgid "Madagascar"
@@ -7737,6 +7722,9 @@ msgstr ""
 msgid "North"
 msgstr "Nord"
 
+msgid "North Macedonia (The Republic of)"
+msgstr ""
+
 msgid "Northern Mariana Islands"
 msgstr ""
 
@@ -8064,16 +8052,10 @@ msgstr ""
 msgid "PAL"
 msgstr "PAL"
 
-msgid "PCM"
-msgstr ""
-
 msgid "PCR PID"
 msgstr ""
 
 msgid "PDC"
-msgstr ""
-
-msgid "PGS File"
 msgstr ""
 
 msgid "PGS file"
@@ -9747,9 +9729,6 @@ msgstr ""
 msgid "Rwanda"
 msgstr ""
 
-msgid "S-Video"
-msgstr "S-Video"
-
 #, fuzzy
 msgid "SABnzbd Setup"
 msgstr "Configurare"
@@ -9772,10 +9751,6 @@ msgstr ""
 msgid "SCR Unicable"
 msgstr "Unicable LNB"
 
-#, fuzzy
-msgid "SDR"
-msgstr "SNR"
-
 msgid "SELECTIVE"
 msgstr ""
 
@@ -9789,16 +9764,7 @@ msgstr "SNR:"
 msgid "SNR:"
 msgstr "SNR:"
 
-msgid "SPDIF"
-msgstr ""
-
-msgid "SRT File"
-msgstr ""
-
 msgid "SRT file"
-msgstr ""
-
-msgid "SSA File"
 msgstr ""
 
 msgid "SSA file"
@@ -10807,10 +10773,6 @@ msgstr "Mod configurare"
 msgid "Setup network time synchronization interval."
 msgstr ""
 
-#, fuzzy
-msgid "Setup tuner"
-msgstr "Alegeti un film"
-
 msgid "Setup your positioner"
 msgstr ""
 
@@ -11170,6 +11132,9 @@ msgstr ""
 msgid "Show status icons in movielist"
 msgstr ""
 
+msgid "Show sub-menu"
+msgstr ""
+
 #, fuzzy
 msgid "Show subservice selection"
 msgstr "Selectare timer"
@@ -11193,8 +11158,16 @@ msgstr "Arata player-ul radio"
 msgid "Show the plugin browser.."
 msgstr "Browser-ul plugin"
 
+#, fuzzy
+msgid "Show the radio player..."
+msgstr "Arata player-ul radio"
+
 msgid "Show the service information on two lines in the channel selection screen. You can choose between the current event description below the channel name, or the current event description next to the channel name, and the next event description on the second line."
 msgstr ""
+
+#, fuzzy
+msgid "Show the tv player..."
+msgstr "Arata player-ul radio"
 
 #, fuzzy
 msgid "Show transponder info"
@@ -11804,6 +11777,10 @@ msgstr "Oprire eveniment curent dar nu si evenimentele urmatoare"
 #, fuzzy
 msgid "Stop entry"
 msgstr "stop intrarea"
+
+#, fuzzy
+msgid "Stop live TV service"
+msgstr "Servicii de protectie"
 
 msgid "Stop playing this movie?"
 msgstr "Opriti redarea filmului?"
@@ -12575,6 +12552,9 @@ msgstr ""
 msgid "This line is not editable!"
 msgstr ""
 
+msgid "This not valid ONID/TSID"
+msgstr ""
+
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr ""
 
@@ -12764,6 +12744,9 @@ msgstr ""
 #, fuzzy
 msgid "This test detects your configured LAN adapter."
 msgstr "Acest test detecteaza Adaptorul-LAN configurat."
+
+msgid "This valid ONID/TSID"
+msgstr ""
 
 msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
@@ -13039,12 +13022,6 @@ msgid "Troubleshoot"
 msgstr ""
 
 msgid "True"
-msgstr ""
-
-msgid "Looking for active transponders in the cable network. Please wait..."
-msgstr "Cautare transpondere folosite in reteaua de cablu. Va rugam asteptati..."
-
-msgid "Looking for active transponders in the terrestrial network. Please wait..."
 msgstr ""
 
 msgid "Trying to download a new packetlist. Please wait..."
@@ -13351,10 +13328,10 @@ msgstr ""
 msgid "Update failed. Your receiver does not have a working internet connection."
 msgstr ""
 
-msgid "Update has completed."
+msgid "Update feed not available."
 msgstr ""
 
-msgid "Update feed not available."
+msgid "Update has completed."
 msgstr ""
 
 #, fuzzy
@@ -13519,6 +13496,14 @@ msgstr "Tipul serviciului folosit pentru scanare"
 msgid "User - bouquets"
 msgstr ""
 
+#, python-format
+msgid "User Band %d"
+msgstr ""
+
+#, python-format
+msgid "User Band %d (%s)"
+msgstr ""
+
 #, fuzzy
 msgid "User Feed URL"
 msgstr "Userul ales"
@@ -13586,13 +13571,13 @@ msgstr ""
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
 
-msgid "VOB File"
-msgstr ""
-
 msgid "VOB file"
 msgstr ""
 
 msgid "VU+"
+msgstr ""
+
+msgid "Valid ONID/TSID look at www.lyngsat.com..."
 msgstr ""
 
 #, fuzzy
@@ -13883,7 +13868,13 @@ msgid ""
 "Really disable timer conflict detection?"
 msgstr ""
 
+msgid "Warning: FBC-C V1 tuner should be connected to the first slot to work correctly. Otherwise, only 2 out of 8 demodulators will be available when connected in the second slot. "
+msgstr ""
+
 msgid "Warning: no LNB; using factory defaults."
+msgstr ""
+
+msgid "Warning: the second input of this dual tuner may not support SCR LNBs. "
 msgstr ""
 
 #, fuzzy
@@ -14277,20 +14268,8 @@ msgstr ""
 msgid "XBox 360 support"
 msgstr ""
 
-msgid "YCbCr420"
-msgstr ""
-
-msgid "YCbCr422"
-msgstr ""
-
-msgid "YCbCr444"
-msgstr ""
-
 msgid "YES"
 msgstr ""
-
-msgid "YPbPr"
-msgstr "YPbPr"
 
 msgid "Year"
 msgstr "An"
@@ -14458,8 +14437,8 @@ msgid "You have to include at least %d aspect ratio modes!"
 msgstr ""
 
 #, python-format
-msgid "You have to wait %s!"
-msgstr "Ai de asteptat %s!"
+msgid "You have to wait %(min)d minutes, %(sec)d seconds!"
+msgstr ""
 
 msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
 msgstr ""
@@ -14765,6 +14744,9 @@ msgstr ""
 msgid "all"
 msgstr "Toate"
 
+msgid "all tuners"
+msgstr ""
+
 #, fuzzy
 msgid "alphabetic"
 msgstr "sortare alfabetica"
@@ -14834,6 +14816,10 @@ msgstr "auto"
 
 #, fuzzy
 msgid "automatic"
+msgstr "Automat"
+
+#, fuzzy
+msgid "automatic from DHCP"
 msgstr "Automat"
 
 #, fuzzy
@@ -15377,9 +15363,6 @@ msgstr ""
 msgid "multi"
 msgstr "multinorma"
 
-msgid "multinorm"
-msgstr "multinorma"
-
 msgid "music/ballet/dance (general)"
 msgstr ""
 
@@ -15468,6 +15451,10 @@ msgstr ""
 #, fuzzy
 msgid "not tested"
 msgstr "nefolosit"
+
+#, fuzzy
+msgid "not valid frontend"
+msgstr "Nu a fost gasit niciun satelit!"
 
 msgid "not_tested"
 msgstr ""
@@ -15637,6 +15624,10 @@ msgstr ""
 msgid "rotor"
 msgstr "Autor: "
 
+#, fuzzy
+msgid "rotor is not used"
+msgstr "Viteza de intoarcere a rotorului"
+
 msgid "running"
 msgstr ""
 
@@ -15651,9 +15642,6 @@ msgstr ""
 
 msgid "script 'stout':"
 msgstr ""
-
-msgid "seconds"
-msgstr "secunde"
 
 msgid "security"
 msgstr ""

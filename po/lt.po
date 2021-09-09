@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-04 21:24+0100\n"
+"POT-Creation-Date: 2021-09-09 09:44+0200\n"
 "PO-Revision-Date: 2020-02-29 08:52+0200\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: Adga (C) <adga45@gmail.com>\n"
@@ -32,9 +32,9 @@ msgstr ""
 "Paspaudus OK, prašome laukti!"
 
 msgid ""
-"Conflict detection disabled!"
+"\n"
+"Maintain your multiboot device."
 msgstr ""
-"Konfliktų aptikimas išjungtas!"
 
 msgid ""
 "\n"
@@ -104,6 +104,10 @@ msgid " ('%s') finished with error number [%d]."
 msgstr ""
 
 #, fuzzy
+msgid " (+5 volt terrestrial)"
+msgstr "Antžeminė"
+
+#, fuzzy
 msgid " (0 - all networks)"
 msgstr "Vietinis tinklas"
 
@@ -122,6 +126,9 @@ msgid " (Radio)"
 msgstr ""
 
 msgid " (TV)"
+msgstr ""
+
+msgid " (auto detection)"
 msgstr ""
 
 msgid " (disabled)"
@@ -143,10 +150,16 @@ msgstr ""
 msgid " - 1 element exist! Overwrite"
 msgstr ""
 
+msgid " - Unicable/JESS LNBs not found"
+msgstr ""
+
 msgid " - file exist! Overwrite"
 msgstr ""
 
 msgid " - folder exist! Overwrite"
+msgstr ""
+
+msgid " Warning: the selected tuner should not use SCR Unicable type for LNBs because each tuner need a own SCR number."
 msgstr ""
 
 msgid " extensions."
@@ -165,11 +178,18 @@ msgstr ""
 msgid " packages selected."
 msgstr " paketai išsirinkti."
 
+msgid " unicable LNB input of rotor"
+msgstr ""
+
 msgid " updates available."
 msgstr " pasiekiami atnaujinimai."
 
 msgid "$PROJECT_DIR$"
 msgstr ""
+
+#, python-format
+msgid "%(freespace)s %(percent)s free disk space"
+msgstr "%(freespace)s %(percent)s laisvos vietos diske"
 
 #, python-format
 msgid "%.0f GB"
@@ -201,16 +221,6 @@ msgstr ""
 
 #, python-format
 msgid "%03d MB"
-msgstr ""
-
-#. TRANSLATORS: short time representation hour:minute
-#, python-format
-msgid "%2d:%02d"
-msgstr ""
-
-#. TRANSLATORS: full time representation hour:minute:seconds
-#, python-format
-msgid "%2d:%02d:%02d"
 msgstr ""
 
 #, python-format
@@ -398,9 +408,17 @@ msgstr ""
 msgid "%s %d.%d"
 msgstr ""
 
-#, python-format
-msgid "%(freespace)s %(percent)s free disk space"
-msgstr "%(freespace)s %(percent)s laisvos vietos diske"
+#, fuzzy, python-format
+msgid "%s (%04o)"
+msgstr "%s (%s)\n"
+
+#, fuzzy, python-format
+msgid "%s (%s"
+msgstr "%s (%s)\n"
+
+#, fuzzy, python-format
+msgid "%s (%s)"
+msgstr "%s (%s)\n"
 
 #, python-format
 msgid "%s (%s)\n"
@@ -438,15 +456,7 @@ msgid "%s%d min"
 msgstr ""
 
 #, python-format
-msgid "%s/%s: %s"
-msgstr ""
-
-#, python-format
 msgid "%s: %s"
-msgstr ""
-
-#, python-format
-msgid "%s:%s"
 msgstr ""
 
 #, python-format
@@ -510,6 +520,9 @@ msgstr ""
 msgid "..."
 msgstr "pagalba..."
 
+msgid "/T"
+msgstr ""
+
 msgid "/media/custom"
 msgstr ""
 
@@ -545,9 +558,6 @@ msgstr "1.2"
 msgid "1024 MB"
 msgstr ""
 
-msgid "10bit"
-msgstr ""
-
 msgid "120,2,30"
 msgstr ""
 
@@ -563,17 +573,11 @@ msgstr ""
 msgid "12V output"
 msgstr "12V išėjimas"
 
-msgid "12bit"
-msgstr ""
-
 msgid "13 V"
 msgstr "13 V"
 
 msgid "16 MB"
 msgstr ""
-
-msgid "16:10"
-msgstr "16:10"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
@@ -687,9 +691,6 @@ msgstr ""
 msgid "47,1,685,24"
 msgstr ""
 
-msgid "4:3"
-msgstr "4:3"
-
 msgid "4:3 Letterbox"
 msgstr "4:3 Letterbox"
 
@@ -761,9 +762,6 @@ msgstr ""
 #, fuzzy
 msgid "8K"
 msgstr "8"
-
-msgid "8bit"
-msgstr ""
 
 msgid "9"
 msgstr ""
@@ -933,9 +931,6 @@ msgstr ""
 msgid "ASPECT key"
 msgstr ""
 
-msgid "ASS File"
-msgstr ""
-
 msgid "ASS file"
 msgstr ""
 
@@ -1024,6 +1019,10 @@ msgstr ""
 
 msgid "Active"
 msgstr ""
+
+#, fuzzy
+msgid "Adapter"
+msgstr "Tinklo adapteris"
 
 msgid "Adapter settings"
 msgstr "Tinklo nustatymai"
@@ -1312,14 +1311,6 @@ msgstr "eiti į išjungimą"
 msgid "Alternative"
 msgstr "pridėti kitus"
 
-#, fuzzy
-msgid "Alternative 1"
-msgstr "pridėti kitus"
-
-#, fuzzy
-msgid "Alternative 2"
-msgstr "pridėti kitus"
-
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr ""
 
@@ -1402,6 +1393,7 @@ msgstr "Arabų"
 msgid "Are you sure to purge all deleted user bouquets?"
 msgstr ""
 
+#. TRANSLATORS: The user is asked to delete all satellite services from a specific orbital position after a configuration change
 #, python-format
 msgid "Are you sure to remove all %s services?"
 msgstr "Ar tikrai norite pašalinti visus %s kanalus?"
@@ -1647,9 +1639,6 @@ msgstr "Laikmačio užduotis"
 msgid "AutoTimer Settings"
 msgstr "Subtitrų pasirinkimas"
 
-msgid "Automatic"
-msgstr "Automatinis"
-
 #, fuzzy
 msgid "Automatic Scan"
 msgstr "Automatinė paieška"
@@ -1703,15 +1692,6 @@ msgid "BER:"
 msgstr "BER:"
 
 msgid "BLUDISC RECORDABLE"
-msgstr ""
-
-msgid "BT 2020 CL"
-msgstr ""
-
-msgid "BT 2020 NCL"
-msgstr ""
-
-msgid "BT 709"
 msgstr ""
 
 msgid "Back"
@@ -1877,6 +1857,12 @@ msgstr ""
 msgid "Black screen till locked"
 msgstr ""
 
+msgid "Blindscan"
+msgstr ""
+
+msgid "Blindscan terrestrial (if possible)"
+msgstr ""
+
 #, fuzzy
 msgid "Block device"
 msgstr "Įvesties prietaisai"
@@ -2029,9 +2015,6 @@ msgstr ""
 msgid "CPU: %s"
 msgstr ""
 
-msgid "CVBS"
-msgstr "CVBS"
-
 msgid "Cable"
 msgstr "Kabelinė"
 
@@ -2179,7 +2162,7 @@ msgid ""
 msgstr ""
 
 #, fuzzy
-msgid "Capabilities "
+msgid "Capabilities: "
 msgstr "Talpa: "
 
 msgid "Capacity: "
@@ -2351,6 +2334,9 @@ msgstr ""
 #, fuzzy
 msgid "Checking Feeds"
 msgstr "Tikrinti failų sistemą..."
+
+msgid "Checking ONID/TSID"
+msgstr ""
 
 #, fuzzy
 msgid "Checking disk"
@@ -2945,6 +2931,12 @@ msgstr ""
 msgid "Configuring"
 msgstr "Konfigūruojama"
 
+msgid "Confirm closure of media player"
+msgstr ""
+
+msgid "Conflict detection disabled!"
+msgstr "Konfliktų aptikimas išjungtas!"
+
 msgid "Conflict not resolved!"
 msgstr ""
 
@@ -3260,9 +3252,6 @@ msgstr "Čekų"
 #, fuzzy
 msgid "D"
 msgstr "3"
-
-msgid "DAC"
-msgstr ""
 
 msgid "DHCP"
 msgstr "DHCP"
@@ -3627,6 +3616,10 @@ msgid "Detected NIMs:"
 msgstr "Rasti imtuvai:"
 
 #, fuzzy
+msgid "Device"
+msgstr "Kanalai"
+
+#, fuzzy
 msgid "Device Details"
 msgstr "Smulkiau"
 
@@ -3983,9 +3976,6 @@ msgstr ""
 msgid "Do you want to view or run the script?\n"
 msgstr "Jūs norite pašalinti paketą:\n"
 
-msgid "Dolby"
-msgstr ""
-
 msgid "Domain:"
 msgstr ""
 
@@ -4245,10 +4235,10 @@ msgstr "Elektroninis programų gidas"
 msgid "Electronic Program Guide Setup"
 msgstr "Elektroninis programų gidas"
 
-msgid "Embedded"
+msgid "Emergency"
 msgstr ""
 
-msgid "Emergency"
+msgid "Empty Trash"
 msgstr ""
 
 msgid "Empty slot"
@@ -4500,6 +4490,9 @@ msgstr ""
 
 msgid "Enter the service pin"
 msgstr "Įrašykite kanalo PIN"
+
+msgid "Enter valid ONID/TSID"
+msgstr ""
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
 msgstr ""
@@ -4835,6 +4828,13 @@ msgstr ""
 msgid ""
 "FBC automatic\n"
 "inactive"
+msgstr ""
+
+#, python-format
+msgid "FBC socket %s"
+msgstr ""
+
+msgid "FBC virtual"
 msgstr ""
 
 msgid "FEC"
@@ -5309,6 +5309,10 @@ msgid "Further options"
 msgstr ""
 
 #, fuzzy
+msgid "GB"
+msgstr "RGB"
+
+#, fuzzy
 msgid "GBAspectRatioSwitchSetup"
 msgstr "Vaizdo formatas"
 
@@ -5567,9 +5571,6 @@ msgstr ""
 msgid "HDD Info"
 msgstr "Informacija"
 
-msgid "HDMI"
-msgstr ""
-
 #, fuzzy
 msgid "HDMI CEC setup"
 msgstr "Nustatymai"
@@ -5618,9 +5619,6 @@ msgstr ""
 msgid "HDMI-CEC setup"
 msgstr ""
 
-msgid "HDR10"
-msgstr ""
-
 #, fuzzy
 msgid "HDR10 support"
 msgstr "nepalaikomas"
@@ -5629,9 +5627,6 @@ msgid "HELP"
 msgstr ""
 
 msgid "HI-cleanup for external subtitles"
-msgstr ""
-
-msgid "HLG"
 msgstr ""
 
 #, fuzzy
@@ -5725,6 +5720,9 @@ msgstr "Apsaugoti kanalus"
 #, fuzzy
 msgid "Hide player"
 msgstr "slėpti grotuvą"
+
+msgid "Hide sub-menu"
+msgstr ""
 
 msgid "Hide zap errors"
 msgstr "Slėpti perjungimo klaidas"
@@ -6221,16 +6219,16 @@ msgstr "Įdiegiama"
 msgid "Installing software..."
 msgstr "Įdiegiama"
 
-#, fuzzy
-msgid "Instant record"
-msgstr "Greitas įrašas..."
+msgid "Instant recording"
+msgstr "Momentinis įrašymas"
 
 #, fuzzy
 msgid "Instant recording location"
 msgstr "Greito įrašo vieta"
 
-msgid "Instant recording"
-msgstr "Momentinis įrašymas"
+#, fuzzy
+msgid "Interface"
+msgstr "Sąsaja:"
 
 msgid "Interface: "
 msgstr "Sąsaja:"
@@ -6724,6 +6722,12 @@ msgstr "Ilgas mygtuko spaudimas"
 msgid "Longitude"
 msgstr "Ilguma"
 
+msgid "Looking for active transponders in the cable network. Please wait..."
+msgstr "Bandome surasti transponderius kabeliniuose tinkluose. Laukite..."
+
+msgid "Looking for active transponders in the terrestrial network. Please wait..."
+msgstr "Bandome surasti tinkamus antžeminių tinklų transponderius. Laukite..."
+
 #, fuzzy
 msgid "Loop through from"
 msgstr "šiurkštus į"
@@ -6752,6 +6756,10 @@ msgid "MAC:"
 msgstr ""
 
 #, fuzzy
+msgid "MB"
+msgstr "B"
+
+#, fuzzy
 msgid "MIME Version"
 msgstr "Pervertimas"
 
@@ -6769,9 +6777,6 @@ msgstr ""
 
 msgid "Macao"
 msgstr ""
-
-msgid "North Macedonia (The Republic of)"
-msgstr "Buvusioji Jugoslavijos Respublika Makedonija"
 
 msgid "Madagascar"
 msgstr ""
@@ -7781,6 +7786,9 @@ msgstr ""
 msgid "North"
 msgstr "Šiaurė"
 
+msgid "North Macedonia (The Republic of)"
+msgstr "Buvusioji Jugoslavijos Respublika Makedonija"
+
 msgid "Northern Mariana Islands"
 msgstr ""
 
@@ -8116,16 +8124,10 @@ msgstr ""
 msgid "PAL"
 msgstr "PAL"
 
-msgid "PCM"
-msgstr ""
-
 msgid "PCR PID"
 msgstr "PCR PID"
 
 msgid "PDC"
-msgstr ""
-
-msgid "PGS File"
 msgstr ""
 
 msgid "PGS file"
@@ -9819,9 +9821,6 @@ msgstr ""
 msgid "Rwanda"
 msgstr ""
 
-msgid "S-Video"
-msgstr "S-Video"
-
 #, fuzzy
 msgid "SABnzbd Setup"
 msgstr "Nustatymai"
@@ -9844,10 +9843,6 @@ msgstr ""
 msgid "SCR Unicable"
 msgstr "Unicable LNB"
 
-#, fuzzy
-msgid "SDR"
-msgstr "SNR"
-
 msgid "SELECTIVE"
 msgstr ""
 
@@ -9861,16 +9856,7 @@ msgstr "SNR:"
 msgid "SNR:"
 msgstr "SNR:"
 
-msgid "SPDIF"
-msgstr ""
-
-msgid "SRT File"
-msgstr ""
-
 msgid "SRT file"
-msgstr ""
-
-msgid "SSA File"
 msgstr ""
 
 msgid "SSA file"
@@ -10885,10 +10871,6 @@ msgstr "Valdymo būdas"
 msgid "Setup network time synchronization interval."
 msgstr ""
 
-#, fuzzy
-msgid "Setup tuner"
-msgstr "Išsirinkite filmą"
-
 msgid "Setup your positioner"
 msgstr ""
 
@@ -11254,6 +11236,9 @@ msgstr "Rodyti statuso ikonas filmų sąraše"
 msgid "Show status icons in movielist"
 msgstr "Rodyti statuso ikonas filmų sąraše"
 
+msgid "Show sub-menu"
+msgstr ""
+
 #, fuzzy
 msgid "Show subservice selection"
 msgstr "Filmo vieta"
@@ -11278,8 +11263,16 @@ msgstr "Rodyti radijo grotuvą..."
 msgid "Show the plugin browser.."
 msgstr "Papildomų programų naršyklė"
 
+#, fuzzy
+msgid "Show the radio player..."
+msgstr "Rodyti radijo grotuvą..."
+
 msgid "Show the service information on two lines in the channel selection screen. You can choose between the current event description below the channel name, or the current event description next to the channel name, and the next event description on the second line."
 msgstr ""
+
+#, fuzzy
+msgid "Show the tv player..."
+msgstr "Rodyti radijo grotuvą..."
 
 #, fuzzy
 msgid "Show transponder info"
@@ -11894,6 +11887,10 @@ msgstr "Sustabdyti dabartinę užduotį, nevykdant sekančių užduočių"
 #, fuzzy
 msgid "Stop entry"
 msgstr "stabdyti įrašą"
+
+#, fuzzy
+msgid "Stop live TV service"
+msgstr "nustatyti kaip paleidimo kanalą"
 
 msgid "Stop playing this movie?"
 msgstr "Sustabdyti šio filmo žiūrėjimą ?"
@@ -12678,6 +12675,9 @@ msgstr ""
 msgid "This line is not editable!"
 msgstr "Ši papildoma programa nėra įdiegta."
 
+msgid "This not valid ONID/TSID"
+msgstr ""
+
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr ""
 
@@ -12869,6 +12869,9 @@ msgstr ""
 #, fuzzy
 msgid "This test detects your configured LAN adapter."
 msgstr "Šis testas aptinka jūsų sukonfigūruotą tinklo adapterįį."
+
+msgid "This valid ONID/TSID"
+msgstr ""
 
 msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
@@ -13146,12 +13149,6 @@ msgstr ""
 
 msgid "True"
 msgstr ""
-
-msgid "Looking for active transponders in the cable network. Please wait..."
-msgstr "Bandome surasti transponderius kabeliniuose tinkluose. Laukite..."
-
-msgid "Looking for active transponders in the terrestrial network. Please wait..."
-msgstr "Bandome surasti tinkamus antžeminių tinklų transponderius. Laukite..."
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Bandoma parsisiųsti naują paketo sąrašą. Prašome laukti..."
@@ -13457,11 +13454,11 @@ msgstr ""
 msgid "Update failed. Your receiver does not have a working internet connection."
 msgstr ""
 
-msgid "Update has completed."
-msgstr ""
-
 msgid "Update feed not available."
 msgstr "Atnaujinimo šaltinis nepasiekiamas."
+
+msgid "Update has completed."
+msgstr ""
 
 #, fuzzy
 msgid "Updating"
@@ -13625,6 +13622,14 @@ msgstr "Naudojamas kanalo skanavimo būdas"
 msgid "User - bouquets"
 msgstr ""
 
+#, python-format
+msgid "User Band %d"
+msgstr ""
+
+#, python-format
+msgid "User Band %d (%s)"
+msgstr ""
+
 #, fuzzy
 msgid "User Feed URL"
 msgstr "Vartotojo pasirinktas"
@@ -13692,13 +13697,13 @@ msgstr ""
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (įvadas)"
 
-msgid "VOB File"
-msgstr ""
-
 msgid "VOB file"
 msgstr ""
 
 msgid "VU+"
+msgstr ""
+
+msgid "Valid ONID/TSID look at www.lyngsat.com..."
 msgstr ""
 
 #, fuzzy
@@ -13990,7 +13995,13 @@ msgid ""
 "Really disable timer conflict detection?"
 msgstr ""
 
+msgid "Warning: FBC-C V1 tuner should be connected to the first slot to work correctly. Otherwise, only 2 out of 8 demodulators will be available when connected in the second slot. "
+msgstr ""
+
 msgid "Warning: no LNB; using factory defaults."
+msgstr ""
+
+msgid "Warning: the second input of this dual tuner may not support SCR LNBs. "
 msgstr ""
 
 #, fuzzy
@@ -14385,20 +14396,8 @@ msgstr ""
 msgid "XBox 360 support"
 msgstr "nepalaikomas"
 
-msgid "YCbCr420"
-msgstr ""
-
-msgid "YCbCr422"
-msgstr ""
-
-msgid "YCbCr444"
-msgstr ""
-
 msgid "YES"
 msgstr ""
-
-msgid "YPbPr"
-msgstr "YPbPr"
 
 msgid "Year"
 msgstr "Metai"
@@ -14566,8 +14565,8 @@ msgid "You have to include at least %d aspect ratio modes!"
 msgstr ""
 
 #, python-format
-msgid "You have to wait %s!"
-msgstr "Jūs turite laukti %s!"
+msgid "You have to wait %(min)d minutes, %(sec)d seconds!"
+msgstr ""
 
 msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
 msgstr ""
@@ -14886,6 +14885,9 @@ msgstr ""
 msgid "all"
 msgstr "Visi"
 
+msgid "all tuners"
+msgstr ""
+
 #, fuzzy
 msgid "alphabetic"
 msgstr "pagal abėcėlę"
@@ -14955,6 +14957,10 @@ msgstr "auto"
 
 #, fuzzy
 msgid "automatic"
+msgstr "Automatinis"
+
+#, fuzzy
+msgid "automatic from DHCP"
 msgstr "Automatinis"
 
 #, fuzzy
@@ -15499,9 +15505,6 @@ msgstr ""
 msgid "multi"
 msgstr "multinorma"
 
-msgid "multinorm"
-msgstr "multinorma"
-
 msgid "music/ballet/dance (general)"
 msgstr ""
 
@@ -15590,6 +15593,10 @@ msgstr "nepalaikomas"
 #, fuzzy
 msgid "not tested"
 msgstr "nenaudojamas"
+
+#, fuzzy
+msgid "not valid frontend"
+msgstr "Nerastas palydovas!!"
 
 msgid "not_tested"
 msgstr ""
@@ -15760,6 +15767,10 @@ msgstr ""
 msgid "rotor"
 msgstr "Autorius:"
 
+#, fuzzy
+msgid "rotor is not used"
+msgstr "Pozicionieriaus sukimosi greitis"
+
 msgid "running"
 msgstr ""
 
@@ -15774,9 +15785,6 @@ msgstr ""
 
 msgid "script 'stout':"
 msgstr ""
-
-msgid "seconds"
-msgstr "sekundžių"
 
 msgid "security"
 msgstr ""
