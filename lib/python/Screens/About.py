@@ -198,10 +198,9 @@ class About(Screen):
 				self["Tuner" + str(count)] = StaticText("")
 			AboutText += nims[count] + "\n"
 
-		self["HDDHeader"] = StaticText(_("Detected HDD:"))
+		self["HDDHeader"] = StaticText(_("Detected storage devices:"))
+		AboutText += "\n" + _("Detected storage devices:") + "\n"
 
-		AboutText += "\n"
-		#AboutText +=  _("Detected HDD:") + "\n"
 		hddlist = harddiskmanager.HDDList()
 		hddinfo = ""
 		if hddlist:
