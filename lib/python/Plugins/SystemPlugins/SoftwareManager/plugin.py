@@ -427,7 +427,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.list.append(self.overwriteConfigfilesEntry)
 		self.list.append(getConfigListEntry(_("show softwaremanager in setup menu"), config.plugins.softwaremanager.onSetupMenu))
 		self.list.append(getConfigListEntry(_("show softwaremanager on blue button"), config.plugins.softwaremanager.onBlueButton))
-		self.list.append(getConfigListEntry(_("epg cache backup"), config.plugins.softwaremanager.epgcache))
+		self.list.append(getConfigListEntry(_("backup EPG cache"), config.plugins.softwaremanager.epgcache))
 		self.list.append(self.overwriteSettingsfilesEntry)
 		self.list.append(self.overwriteDriversfilesEntry)
 		self.list.append(self.overwriteEmusfilesEntry)
@@ -435,6 +435,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.list.append(self.overwriteBootlogofilesEntry)
 		self.list.append(self.overwriteSpinnerfilesEntry)
 		self.list.append(self.restoremodeEntry)
+
 		self["config"].list = self.list
 		self["config"].l.setSeperation(400)
 		self["config"].l.setList(self.list)
