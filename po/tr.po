@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue (Apachi70)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-29 22:13+0200\n"
+"POT-Creation-Date: 2021-09-29 22:39+0200\n"
 "PO-Revision-Date: 2021-05-02 16:45+0200\n"
 "Last-Translator: Apachi70 <teamblue@online.de>\n"
 "Language-Team: http://www.hurforum.com <yetkina@gmail.com>\n"
@@ -199,18 +199,6 @@ msgid "%(freespace)s %(percent)s free disk space"
 msgstr "%(freespace)s %(percent)s boş disk alanı"
 
 #, python-format
-msgid "%.0f GB"
-msgstr "%.0f GB"
-
-#, python-format
-msgid "%.0f MB"
-msgstr "%.0f MB"
-
-#, python-format
-msgid "%.0f kB"
-msgstr "%.0f kB"
-
-#, python-format
 msgid "%.1f° E"
 msgstr "%.1f° E"
 
@@ -263,14 +251,6 @@ msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
 
 #, python-format
-msgid "%d B"
-msgstr "%d B"
-
-#, python-format
-msgid "%d GB"
-msgstr "%d GB"
-
-#, python-format
 msgid "%d MB"
 msgstr "%d MB"
 
@@ -310,10 +290,6 @@ msgid_plural "%d jobs are running in the background!"
 msgstr[0] "%d işi arka planda çalışıyor!"
 
 #, python-format
-msgid "%d kB"
-msgstr "%d kB"
-
-#, python-format
 msgid "%d kB/s"
 msgstr "%d kB/s"
 
@@ -329,6 +305,11 @@ msgstr[0] "%d dakika"
 #, python-format
 msgid "%d minutes"
 msgstr "%d dakika"
+
+#, fuzzy, python-format
+msgid "%d package selected."
+msgid_plural "%d packages selected."
+msgstr[0] " paket seçildi."
 
 #, python-format
 msgid "%d pixel wide"
@@ -515,11 +496,6 @@ msgstr "0,24,1147,20"
 
 msgid "1"
 msgstr "1"
-
-#, fuzzy, python-format
-msgid "1 package selected."
-msgid_plural "%d packages selected."
-msgstr[0] " paket seçildi."
 
 msgid "1024 MB"
 msgstr "1024 MB"
@@ -1187,8 +1163,8 @@ msgstr "10bit'e izin ver"
 msgid "Allow 12bit"
 msgstr "12bit'e izin ver"
 
-msgid "Allow quitting movieplayer with exit"
-msgstr "Movieplayer'ı çıkışla bırakmaya izin ver"
+msgid "Allow quitting movie player with exit"
+msgstr "Çıkışta Film Oynatıcıyi kapat"
 
 msgid "Allow subtitle language to equal audio language"
 msgstr "Aynı ses dili için altyazı dili sağlar"
@@ -3345,11 +3321,11 @@ msgstr "Eklentinin ayrıntıları: "
 msgid "Detect next boxes before standby"
 msgstr "Beklemeden önce sonraki cihazi bul"
 
-msgid "Detected storage devices:"
-msgstr "HDD:"
-
 msgid "Detected NIMs:"
 msgstr "Tanınan NIM:"
+
+msgid "Detected storage devices:"
+msgstr "HDD:"
 
 #, fuzzy
 msgid "Device"
@@ -3968,6 +3944,10 @@ msgstr "Virgin EPG etkinleştir"
 
 msgid "Enable Wake On LAN"
 msgstr "LAN Wake On etkinleştirme"
+
+#, fuzzy
+msgid "Enable auto cable scan"
+msgstr "Otomatik hızlı tarama etkinleştir"
 
 msgid "Enable auto fastscan"
 msgstr "Otomatik hızlı tarama etkinleştir"
@@ -9530,6 +9510,9 @@ msgstr "Uydu çanağının nasıl ayarlandığını seçin. sabit çanak, tek LN
 msgid "Select how your box will upgrade."
 msgstr "Alıcının nasıl yükseltileceğini seçin."
 
+msgid "Select in which resolution pictures are displayed with picture viewer or movie player."
+msgstr "Hangi çözünürlüklü resimler, resim görüntüleyici ve MoviePlayer ile görüntüleneceğini yapılandır."
+
 msgid "Select input device"
 msgstr "Giriş aygıtı seç"
 
@@ -13076,8 +13059,8 @@ msgstr "Grafik DVB altyazı orjinal renginin yerine sarı renk içinde gösteril
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "Etkinleştirildiğinde, http akışları sunucu tarafında şifrelenir. (Uzaktaki) istemci alıcının şifrelenmesi gerekmez. Normalde olması gereken."
 
-msgid "When enabled, it is possible to leave the movieplayer with exit."
-msgstr "Etkin olduğunda, bu çıkış ile film oyuncu bırakmak mümkündür."
+msgid "When enabled, it is possible to leave the movie player with exit."
+msgstr "Exit tuşuna basılınca Ortam Oynatıcıdan çık."
 
 msgid "When enabled, it will automatically play to the last saved radio service when switching to radio mode."
 msgstr "Etkinleştirildiğinde, radyo moduna geçerken en son kaydedilen radyo hizmetini otomatik olarak çalar."
@@ -13360,9 +13343,6 @@ msgstr "Yalnızca Dreambox kayıtları yakabilir!"
 
 msgid "You can remove this plugin."
 msgstr "Bu eklentiyi kaldırabilirsiniz."
-
-msgid "You can set how will be finished movieplayer with 'Exit' button."
-msgstr "'Exit' tuşuyla movieplayer'ın nasıl biteceğini ayarlayabilirsiniz."
 
 msgid "You can set selected directory as 'root' directory for movie player."
 msgstr "Seçilen dizini, film oynatıcısı için 'root' dizini olarak ayarlayabilirsiniz."
@@ -13855,9 +13835,6 @@ msgstr "otomatik"
 msgid "automatic from DHCP"
 msgstr "otomatik"
 
-msgid "automatically scan every day"
-msgstr "günlük otomatik arama"
-
 msgid "back"
 msgstr "geri"
 
@@ -13948,9 +13925,6 @@ msgstr "komedi"
 
 msgid "config menu"
 msgstr "yapılandırma menüsü"
-
-msgid "configure in which resolution pictures are displayed with the picture viewer and movieplayer"
-msgstr "hangi çözünürlüklü resimler resim görüntüleyici ve film oyuncu ile görüntülenir yapılandırmanızı"
 
 msgid "confirmed"
 msgstr "onaylandı"
@@ -14265,6 +14239,10 @@ msgstr "sayısına göre bölüme atlamak"
 
 msgid "just boot"
 msgstr "sadece boot"
+
+#, fuzzy
+msgid "kB"
+msgstr "B"
 
 msgid "languages"
 msgstr "dil"

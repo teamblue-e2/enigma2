@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-29 22:13+0200\n"
+"POT-Creation-Date: 2021-09-29 22:39+0200\n"
 "PO-Revision-Date: 2020-05-13 21:36+0200\n"
 "Last-Translator: mcfly82\n"
 "Language-Team: mcfly82 & wysless\n"
@@ -187,18 +187,6 @@ msgid "%(freespace)s %(percent)s free disk space"
 msgstr "%(freespace)s %(percent)s szabad tárterület"
 
 #, python-format
-msgid "%.0f GB"
-msgstr ""
-
-#, python-format
-msgid "%.0f MB"
-msgstr ""
-
-#, python-format
-msgid "%.0f kB"
-msgstr ""
-
-#, python-format
 msgid "%.1f° E"
 msgstr ""
 
@@ -254,14 +242,6 @@ msgid "%a %e/%m  %-H:%M"
 msgstr "%m. %e %a  %-H:%M"
 
 #, python-format
-msgid "%d B"
-msgstr ""
-
-#, python-format
-msgid "%d GB"
-msgstr ""
-
-#, python-format
 msgid "%d MB"
 msgstr ""
 
@@ -307,10 +287,6 @@ msgstr[0] "%d feladat fut a háttérben!"
 msgstr[1] "%d feladat fut a háttérben!"
 
 #, python-format
-msgid "%d kB"
-msgstr ""
-
-#, python-format
 msgid "%d kB/s"
 msgstr ""
 
@@ -327,6 +303,12 @@ msgstr[1] "%d perc"
 #, python-format
 msgid "%d minutes"
 msgstr "%d perc"
+
+#, fuzzy, python-format
+msgid "%d package selected."
+msgid_plural "%d packages selected."
+msgstr[0] " szoftvercsomag kiválasztva."
+msgstr[1] " szoftvercsomag kiválasztva."
 
 #, python-format
 msgid "%d pixel wide"
@@ -524,12 +506,6 @@ msgstr ""
 
 msgid "1"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "1 package selected."
-msgid_plural "%d packages selected."
-msgstr[0] " szoftvercsomag kiválasztva."
-msgstr[1] " szoftvercsomag kiválasztva."
 
 msgid "1024 MB"
 msgstr ""
@@ -1245,9 +1221,8 @@ msgstr ""
 msgid "Allow 12bit"
 msgstr ""
 
-#, fuzzy
-msgid "Allow quitting movieplayer with exit"
-msgstr "Média lejátszó bezárása kilépés gombbal"
+msgid "Allow quitting movie player with exit"
+msgstr "Médialejátszó bezárása kilépés gombbal"
 
 msgid "Allow subtitle language to equal audio language"
 msgstr "Azonos nyelvű hangsáv és felirat összerendelése"
@@ -3536,11 +3511,11 @@ msgstr "Plugin részletei: "
 msgid "Detect next boxes before standby"
 msgstr ""
 
-msgid "Detected storage devices:"
-msgstr "Csatlakoztatott háttértárolók:"
-
 msgid "Detected NIMs:"
 msgstr "Telepített tunerek:"
+
+msgid "Detected storage devices:"
+msgstr "Csatlakoztatott háttértárolók:"
 
 #, fuzzy
 msgid "Device"
@@ -4217,6 +4192,10 @@ msgstr ""
 
 msgid "Enable Wake On LAN"
 msgstr ""
+
+#, fuzzy
+msgid "Enable auto cable scan"
+msgstr "Gyermekzár engedélyezése"
 
 msgid "Enable auto fastscan"
 msgstr ""
@@ -10247,6 +10226,9 @@ msgstr ""
 msgid "Select how your box will upgrade."
 msgstr ""
 
+msgid "Select in which resolution pictures are displayed with picture viewer or movie player."
+msgstr "A képnézegető és médialejátszó felbontásának megadása."
+
 msgid "Select input device"
 msgstr "Válasszon beviteli eszközt"
 
@@ -14011,8 +13993,8 @@ msgstr "A DVB felirat átszínezése sárgára, az eredeti szín helyett."
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "A dekódolás a HTTP szerver oldalon történjen. A távoli kliens készülék már nem kell dekódolja a jelfolyamot."
 
-msgid "When enabled, it is possible to leave the movieplayer with exit."
-msgstr "Lehessen kilépni a lejátszóból az 'Exit' gomb megnyomásával."
+msgid "When enabled, it is possible to leave the movie player with exit."
+msgstr "Ha engedélyezi, a médialejátszóból kiléphet az 'Exit' gomb megnyomásával."
 
 #, fuzzy
 msgid "When enabled, it will automatically play to the last saved radio service when switching to radio mode."
@@ -14307,9 +14289,6 @@ msgstr "Csak ezzel a készüléktípussal felvett anyagokat lehet kiírni!"
 
 msgid "You can remove this plugin."
 msgstr "A plugin eltávolítható"
-
-msgid "You can set how will be finished movieplayer with 'Exit' button."
-msgstr ""
 
 msgid "You can set selected directory as 'root' directory for movie player."
 msgstr ""
@@ -14782,10 +14761,6 @@ msgstr "Automatikus"
 msgid "automatic from DHCP"
 msgstr "Automatikus"
 
-#, fuzzy
-msgid "automatically scan every day"
-msgstr "Automatikus keresés"
-
 msgid "back"
 msgstr "vissza"
 
@@ -14878,9 +14853,6 @@ msgstr "vígjáték"
 #, fuzzy
 msgid "config menu"
 msgstr "visszaigazolt"
-
-msgid "configure in which resolution pictures are displayed with the picture viewer and movieplayer"
-msgstr ""
 
 msgid "confirmed"
 msgstr "visszaigazolt"
@@ -15213,6 +15185,10 @@ msgstr ""
 
 msgid "just boot"
 msgstr ""
+
+#, fuzzy
+msgid "kB"
+msgstr "B"
 
 msgid "languages"
 msgstr "nyelvek"

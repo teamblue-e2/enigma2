@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-29 22:13+0200\n"
+"POT-Creation-Date: 2021-09-29 22:39+0200\n"
 "PO-Revision-Date: 2013-10-20 19:13-0300\n"
 "Last-Translator: Diogo <pingflood@gmail.com>\n"
 "Language-Team: Traduzido por Frank Viana <franksrviana@gmail.com>\n"
@@ -188,18 +188,6 @@ msgid "%(freespace)s %(percent)s free disk space"
 msgstr "%(freespace)s %(percent)s de espaço livre"
 
 #, python-format
-msgid "%.0f GB"
-msgstr ""
-
-#, python-format
-msgid "%.0f MB"
-msgstr ""
-
-#, python-format
-msgid "%.0f kB"
-msgstr ""
-
-#, python-format
 msgid "%.1f° E"
 msgstr ""
 
@@ -255,14 +243,6 @@ msgid "%a %e/%m  %-H:%M"
 msgstr ""
 
 #, python-format
-msgid "%d B"
-msgstr ""
-
-#, python-format
-msgid "%d GB"
-msgstr ""
-
-#, python-format
 msgid "%d MB"
 msgstr ""
 
@@ -308,10 +288,6 @@ msgstr[0] "%d tarefa rodando em segundo plano!"
 msgstr[1] "%d tarefa rodando em segundo plano!"
 
 #, python-format
-msgid "%d kB"
-msgstr ""
-
-#, python-format
 msgid "%d kB/s"
 msgstr ""
 
@@ -328,6 +304,12 @@ msgstr[1] "%d minutos"
 #, python-format
 msgid "%d minutes"
 msgstr "%d minutos"
+
+#, fuzzy, python-format
+msgid "%d package selected."
+msgid_plural "%d packages selected."
+msgstr[0] "pacotes selecionados."
+msgstr[1] "pacotes selecionados."
 
 #, python-format
 msgid "%d pixel wide"
@@ -522,12 +504,6 @@ msgstr ""
 
 msgid "1"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "1 package selected."
-msgid_plural "%d packages selected."
-msgstr[0] "pacotes selecionados."
-msgstr[1] "pacotes selecionados."
 
 msgid "1024 MB"
 msgstr ""
@@ -1236,7 +1212,7 @@ msgid "Allow 12bit"
 msgstr ""
 
 #, fuzzy
-msgid "Allow quitting movieplayer with exit"
+msgid "Allow quitting movie player with exit"
 msgstr "Allow quit movieplayer with exit"
 
 msgid "Allow subtitle language to equal audio language"
@@ -3515,11 +3491,11 @@ msgstr "Detalhes do plugin:"
 msgid "Detect next boxes before standby"
 msgstr ""
 
-msgid "Detected storage devices:"
-msgstr "Disco rígido detectado:"
-
 msgid "Detected NIMs:"
 msgstr "NIMs detectado:"
+
+msgid "Detected storage devices:"
+msgstr "Disco rígido detectado:"
 
 #, fuzzy
 msgid "Device"
@@ -4195,6 +4171,10 @@ msgstr ""
 
 msgid "Enable Wake On LAN"
 msgstr ""
+
+#, fuzzy
+msgid "Enable auto cable scan"
+msgstr "Ativar controle de acesso"
 
 msgid "Enable auto fastscan"
 msgstr ""
@@ -10223,6 +10203,9 @@ msgstr ""
 msgid "Select how your box will upgrade."
 msgstr ""
 
+msgid "Select in which resolution pictures are displayed with picture viewer or movie player."
+msgstr ""
+
 msgid "Select input device"
 msgstr "Selecione o dispositivo de entrada"
 
@@ -13982,7 +13965,7 @@ msgstr "Quando ativado, legendas gráficas DVB serão sempre exibidas em amarelo
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "Quando ativado, streams HTTP são decodificados no servidor. O receptor do cliente (remoto) não tem que fazer a decodificação."
 
-msgid "When enabled, it is possible to leave the movieplayer with exit."
+msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Quando ativado, é possível sair do reprodutor de vídeos com o Exit."
 
 #, fuzzy
@@ -14275,9 +14258,6 @@ msgstr "Apenas gravações são permitidas!"
 
 msgid "You can remove this plugin."
 msgstr "Este plugin pode ser removido."
-
-msgid "You can set how will be finished movieplayer with 'Exit' button."
-msgstr ""
 
 msgid "You can set selected directory as 'root' directory for movie player."
 msgstr ""
@@ -14751,10 +14731,6 @@ msgstr "Automático"
 msgid "automatic from DHCP"
 msgstr "Automático"
 
-#, fuzzy
-msgid "automatically scan every day"
-msgstr "Busca automática"
-
 msgid "back"
 msgstr "Voltar"
 
@@ -14847,9 +14823,6 @@ msgstr "Comédia"
 #, fuzzy
 msgid "config menu"
 msgstr "Confirmado"
-
-msgid "configure in which resolution pictures are displayed with the picture viewer and movieplayer"
-msgstr ""
 
 msgid "confirmed"
 msgstr "Confirmado"
@@ -15181,6 +15154,9 @@ msgid "jump to chapter by number"
 msgstr ""
 
 msgid "just boot"
+msgstr ""
+
+msgid "kB"
 msgstr ""
 
 msgid "languages"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-29 22:13+0200\n"
+"POT-Creation-Date: 2021-09-29 22:39+0200\n"
 "PO-Revision-Date: 2015-08-30 09:00+0200\n"
 "Last-Translator: Taykun345 <support@satnigmo.com>\n"
 "Language-Team: Satnigmo <support@satnigmo.com>\n"
@@ -197,18 +197,6 @@ msgid "%(freespace)s %(percent)s free disk space"
 msgstr "%(freespace)s %(percent)s praznega prostora na disku"
 
 #, python-format
-msgid "%.0f GB"
-msgstr ""
-
-#, python-format
-msgid "%.0f MB"
-msgstr ""
-
-#, python-format
-msgid "%.0f kB"
-msgstr ""
-
-#, python-format
 msgid "%.1f° E"
 msgstr ""
 
@@ -263,14 +251,6 @@ msgstr "%a %e/%m"
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
-
-#, python-format
-msgid "%d B"
-msgstr ""
-
-#, python-format
-msgid "%d GB"
-msgstr ""
 
 #, python-format
 msgid "%d MB"
@@ -333,10 +313,6 @@ msgstr[2] "%d opravilo teče v ozadju!"
 msgstr[3] "%d opravilo teče v ozadju!"
 
 #, python-format
-msgid "%d kB"
-msgstr ""
-
-#, python-format
 msgid "%d kB/s"
 msgstr ""
 
@@ -358,6 +334,14 @@ msgstr[3] "%d minut"
 #, python-format
 msgid "%d minutes"
 msgstr "%d minut"
+
+#, fuzzy, python-format
+msgid "%d package selected."
+msgid_plural "%d packages selected."
+msgstr[0] " izbranih paketov."
+msgstr[1] " izbranih paketov."
+msgstr[2] " izbranih paketov."
+msgstr[3] " izbranih paketov."
 
 #, python-format
 msgid "%d pixel wide"
@@ -586,14 +570,6 @@ msgstr ""
 
 msgid "1"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "1 package selected."
-msgid_plural "%d packages selected."
-msgstr[0] " izbranih paketov."
-msgstr[1] " izbranih paketov."
-msgstr[2] " izbranih paketov."
-msgstr[3] " izbranih paketov."
 
 msgid "1024 MB"
 msgstr ""
@@ -1424,7 +1400,7 @@ msgid "Allow 12bit"
 msgstr ""
 
 #, fuzzy
-msgid "Allow quitting movieplayer with exit"
+msgid "Allow quitting movie player with exit"
 msgstr "Izhod iz predvajalnika vsebin s pritiskom na tipko \"izhod\""
 
 #
@@ -4018,12 +3994,12 @@ msgid "Detect next boxes before standby"
 msgstr ""
 
 #
-msgid "Detected storage devices:"
-msgstr "Zaznane shranjevalne naprave:"
-
-#
 msgid "Detected NIMs:"
 msgstr "Zaznani kanalniki:"
+
+#
+msgid "Detected storage devices:"
+msgstr "Zaznane shranjevalne naprave:"
 
 #
 #, fuzzy
@@ -4834,6 +4810,10 @@ msgstr "Virgin EPG sistem"
 
 msgid "Enable Wake On LAN"
 msgstr "Omogoči zbujanje preko omrežnega vmesnika"
+
+#, fuzzy
+msgid "Enable auto cable scan"
+msgstr "Omogoči samodejno hitro iskanje"
 
 msgid "Enable auto fastscan"
 msgstr "Omogoči samodejno hitro iskanje"
@@ -11812,6 +11792,9 @@ msgstr ""
 msgid "Select how your box will upgrade."
 msgstr ""
 
+msgid "Select in which resolution pictures are displayed with picture viewer or movie player."
+msgstr "Določitev ločljivosti prikaza slik v prikazovalniku slik in predvajalniku datotek."
+
 #
 msgid "Select input device"
 msgstr "Izberite vhodno napravo"
@@ -16101,7 +16084,7 @@ msgstr "Če je nastavitev vključena, potem se DVB podnapisi prikazujejo v rumen
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "Nastavitev ni ključnega pomena za delovanje vašega sprejemnika."
 
-msgid "When enabled, it is possible to leave the movieplayer with exit."
+msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Če je nastavitev vključena, potem se lahko seznam posnetkov zapusti s pritiskom na tipko \"izhod\":"
 
 #, fuzzy
@@ -16421,9 +16404,6 @@ msgstr ""
 #
 msgid "You can remove this plugin."
 msgstr "Izbrani vtičnik lahko izbrišete."
-
-msgid "You can set how will be finished movieplayer with 'Exit' button."
-msgstr ""
 
 msgid "You can set selected directory as 'root' directory for movie player."
 msgstr ""
@@ -16941,11 +16921,6 @@ msgid "automatic from DHCP"
 msgstr "Samodejno"
 
 #
-#, fuzzy
-msgid "automatically scan every day"
-msgstr "Samodejno iskanje "
-
-#
 msgid "back"
 msgstr "Nazaj"
 
@@ -17052,9 +17027,6 @@ msgstr ""
 #, fuzzy
 msgid "config menu"
 msgstr "potrjeno"
-
-msgid "configure in which resolution pictures are displayed with the picture viewer and movieplayer"
-msgstr ""
 
 #
 msgid "confirmed"
@@ -17437,6 +17409,11 @@ msgstr ""
 
 msgid "just boot"
 msgstr ""
+
+#
+#, fuzzy
+msgid "kB"
+msgstr "B"
 
 msgid "languages"
 msgstr "jeziki"

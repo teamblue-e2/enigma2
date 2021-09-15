@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-29 22:13+0200\n"
+"POT-Creation-Date: 2021-09-29 22:39+0200\n"
 "PO-Revision-Date: 2016-11-17 12:51+0200\n"
 "Last-Translator: vovan43<vovan43@ex.ua>, sety <tim1065@mail.ru>, Irkoff <irkoff@gmail.com>\n"
 "Language-Team: gisclub.tv <http://gisclub.tv/>\n"
@@ -188,18 +188,6 @@ msgid "%(freespace)s %(percent)s free disk space"
 msgstr "%(freespace)s %(percent)s вільне місце на диску"
 
 #, python-format
-msgid "%.0f GB"
-msgstr ""
-
-#, python-format
-msgid "%.0f MB"
-msgstr ""
-
-#, python-format
-msgid "%.0f kB"
-msgstr ""
-
-#, python-format
 msgid "%.1f° E"
 msgstr ""
 
@@ -255,14 +243,6 @@ msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
 
 #, python-format
-msgid "%d B"
-msgstr ""
-
-#, python-format
-msgid "%d GB"
-msgstr ""
-
-#, python-format
 msgid "%d MB"
 msgstr ""
 
@@ -314,10 +294,6 @@ msgstr[1] "%d процес запущений у фоновому режимі!"
 msgstr[2] "%d процес запущений у фоновому режимі!"
 
 #, python-format
-msgid "%d kB"
-msgstr ""
-
-#, python-format
 msgid "%d kB/s"
 msgstr ""
 
@@ -335,6 +311,13 @@ msgstr[2] "%d хвилин"
 #, python-format
 msgid "%d minutes"
 msgstr "%d хвилин"
+
+#, fuzzy, python-format
+msgid "%d package selected."
+msgid_plural "%d packages selected."
+msgstr[0] " пакетів вибрано."
+msgstr[1] " пакетів вибрано."
+msgstr[2] " пакетів вибрано."
 
 #, python-format
 msgid "%d pixel wide"
@@ -536,13 +519,6 @@ msgstr ""
 
 msgid "1"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "1 package selected."
-msgid_plural "%d packages selected."
-msgstr[0] " пакетів вибрано."
-msgstr[1] " пакетів вибрано."
-msgstr[2] " пакетів вибрано."
 
 msgid "1024 MB"
 msgstr ""
@@ -1258,9 +1234,8 @@ msgstr ""
 msgid "Allow 12bit"
 msgstr ""
 
-#, fuzzy
-msgid "Allow quitting movieplayer with exit"
-msgstr "Дозволити вийти з відеоплеєра кнопкою вихід"
+msgid "Allow quitting movie player with exit"
+msgstr "Дозволити вийти з програвача при виході"
 
 msgid "Allow subtitle language to equal audio language"
 msgstr "Показувати субтитри при збігу з мовою Аудіо"
@@ -3560,11 +3535,11 @@ msgstr "Детальніше про плагін: "
 msgid "Detect next boxes before standby"
 msgstr ""
 
-msgid "Detected HDD:"
-msgstr "Знайдено HDD:"
-
 msgid "Detected NIMs:"
 msgstr "Знайдено тюнер:"
+
+msgid "Detected storage devices:"
+msgstr "Виявлено HDD:"
 
 #, fuzzy
 msgid "Device"
@@ -3584,8 +3559,9 @@ msgstr ""
 msgid "Device Manager"
 msgstr "Управління сервісами"
 
-msgid "Detected storage devices:"
-msgstr "Виявлено HDD:"
+#, fuzzy
+msgid "Device Manager - Fast Mounted Remove"
+msgstr "Помилка видалення"
 
 msgid "Device Manager - Fast mounted remove"
 msgstr ""
@@ -4245,6 +4221,10 @@ msgstr ""
 
 msgid "Enable Wake On LAN"
 msgstr ""
+
+#, fuzzy
+msgid "Enable auto cable scan"
+msgstr "Включити батьківський контроль"
 
 msgid "Enable auto fastscan"
 msgstr ""
@@ -10298,6 +10278,9 @@ msgstr ""
 msgid "Select how your box will upgrade."
 msgstr ""
 
+msgid "Select in which resolution pictures are displayed with picture viewer or movie player."
+msgstr "Налаштувати, в якій роздільній здатності відображатимуться зображення за допомогою програми перегляду зображень та програвача фільмів."
+
 msgid "Select input device"
 msgstr "Виберіть пристрої введення"
 
@@ -14061,8 +14044,8 @@ msgstr "Якщо увімкнено, графічні DVB субтитри бу�
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "Коли ця функція включена, http стрім декодується на стороні сервера. Обладнанню віддаленого клієнта не треба виконувати декодування."
 
-msgid "When enabled, it is possible to leave the movieplayer with exit."
-msgstr "Якщо увімкнено, то можна закрити відеоплеєр з допомогою кнопки вихід."
+msgid "When enabled, it is possible to leave the movie player with exit."
+msgstr "Якщо включено, можливо закрити медіапрогравач кнопкою exit."
 
 #, fuzzy
 msgid "When enabled, it will automatically play to the last saved radio service when switching to radio mode."
@@ -14356,9 +14339,6 @@ msgstr "Ви можете пропалити тільки записи реси�
 
 msgid "You can remove this plugin."
 msgstr "Ви можете видалити це плагін."
-
-msgid "You can set how will be finished movieplayer with 'Exit' button."
-msgstr ""
 
 msgid "You can set selected directory as 'root' directory for movie player."
 msgstr ""
@@ -14834,10 +14814,6 @@ msgstr "автоматично"
 msgid "automatic from DHCP"
 msgstr "автоматично"
 
-#, fuzzy
-msgid "automatically scan every day"
-msgstr "Автоматичний пошук"
-
 msgid "back"
 msgstr "назад"
 
@@ -14930,9 +14906,6 @@ msgstr "комедія"
 #, fuzzy
 msgid "config menu"
 msgstr "присвоєно"
-
-msgid "configure in which resolution pictures are displayed with the picture viewer and movieplayer"
-msgstr ""
 
 msgid "confirmed"
 msgstr "присвоєно"
@@ -15265,6 +15238,10 @@ msgstr ""
 
 msgid "just boot"
 msgstr ""
+
+#, fuzzy
+msgid "kB"
+msgstr "B"
 
 msgid "languages"
 msgstr "мови"

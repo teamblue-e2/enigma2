@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-29 22:13+0200\n"
+"POT-Creation-Date: 2021-09-29 22:39+0200\n"
 "PO-Revision-Date: 2019-12-06 15:54+0100\n"
 "Last-Translator: GeirJ <dummy@dummy.com>\n"
 "Language-Team: GeirJ\n"
@@ -195,18 +195,6 @@ msgid "%(freespace)s %(percent)s free disk space"
 msgstr "%(freespace)s %(percent)s ledig diskplass"
 
 #, python-format
-msgid "%.0f GB"
-msgstr ""
-
-#, python-format
-msgid "%.0f MB"
-msgstr ""
-
-#, python-format
-msgid "%.0f kB"
-msgstr ""
-
-#, python-format
 msgid "%.1f° E"
 msgstr ""
 
@@ -260,14 +248,6 @@ msgid "%a %e/%m  %-H:%M"
 msgstr ""
 
 #, python-format
-msgid "%d B"
-msgstr ""
-
-#, python-format
-msgid "%d GB"
-msgstr ""
-
-#, python-format
 msgid "%d MB"
 msgstr ""
 
@@ -314,10 +294,6 @@ msgstr[0] "%d prosess pågår i bakgrunnen!"
 msgstr[1] "%d prosess pågår i bakgrunnen!"
 
 #, python-format
-msgid "%d kB"
-msgstr ""
-
-#, python-format
 msgid "%d kB/s"
 msgstr ""
 
@@ -335,6 +311,12 @@ msgstr[1] "%d minutter"
 #, python-format
 msgid "%d minutes"
 msgstr "%d minutter"
+
+#, fuzzy, python-format
+msgid "%d package selected."
+msgid_plural "%d packages selected."
+msgstr[0] " valgte pakker."
+msgstr[1] " valgte pakker."
 
 #, python-format
 msgid "%d pixel wide"
@@ -537,12 +519,6 @@ msgstr ""
 
 msgid "1"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "1 package selected."
-msgid_plural "%d packages selected."
-msgstr[0] " valgte pakker."
-msgstr[1] " valgte pakker."
 
 msgid "1024 MB"
 msgstr ""
@@ -1313,9 +1289,8 @@ msgstr ""
 msgid "Allow 12bit"
 msgstr ""
 
-#, fuzzy
-msgid "Allow quitting movieplayer with exit"
-msgstr "Tillat å avslutte mediespiller med exit knapp"
+msgid "Allow quitting movie player with exit"
+msgstr "Tillat stopp avspiller med exit tast"
 
 msgid "Allow subtitle language to equal audio language"
 msgstr "Undertekst språk er samme som lyd språk"
@@ -3822,12 +3797,12 @@ msgid "Detect next boxes before standby"
 msgstr ""
 
 #
-msgid "Detected storage devices:"
-msgstr "Harddisk type:"
-
-#
 msgid "Detected NIMs:"
 msgstr "Gjenkjent modul:"
+
+#
+msgid "Detected storage devices:"
+msgstr "Harddisk type:"
 
 #
 #, fuzzy
@@ -4578,6 +4553,10 @@ msgstr "Aktiver Virgin EPG"
 #, fuzzy
 msgid "Enable Wake On LAN"
 msgstr "Slå på med LAN"
+
+#, fuzzy
+msgid "Enable auto cable scan"
+msgstr "Aktiver automatisk hurtigsøk"
 
 msgid "Enable auto fastscan"
 msgstr "Aktiver automatisk hurtigsøk"
@@ -11223,6 +11202,9 @@ msgstr ""
 msgid "Select how your box will upgrade."
 msgstr ""
 
+msgid "Select in which resolution pictures are displayed with picture viewer or movie player."
+msgstr "Still inn bildeoppløsningen som skal vises med bildeviseren og filmspilleren."
+
 msgid "Select input device"
 msgstr "Velg enhet"
 
@@ -15288,8 +15270,8 @@ msgstr "Når aktivert, vises DVB undertekst i gult i stedet for den opprinnelige
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "Når aktivert, vil http strømmer bli dekodet på serversiden. (Ekstern) Klient mottakeren trenger ikke å gjøre dekoding."
 
-msgid "When enabled, it is possible to leave the movieplayer with exit."
-msgstr "Når aktivert, kan mediespiller avsluttes med exit knappen."
+msgid "When enabled, it is possible to leave the movie player with exit."
+msgstr "Hvis aktivert, er det mulig å forlate mediespiller med exit."
 
 #, fuzzy
 msgid "When enabled, it will automatically play to the last saved radio service when switching to radio mode."
@@ -15597,9 +15579,6 @@ msgstr "Du kan bare brenne opptak som er gjort av mottakeren!"
 #
 msgid "You can remove this plugin."
 msgstr "Du kan slette dette programtillegg."
-
-msgid "You can set how will be finished movieplayer with 'Exit' button."
-msgstr ""
 
 msgid "You can set selected directory as 'root' directory for movie player."
 msgstr ""
@@ -16096,10 +16075,6 @@ msgstr "automatisk"
 msgid "automatic from DHCP"
 msgstr "automatisk"
 
-#, fuzzy
-msgid "automatically scan every day"
-msgstr "Automatisk søk"
-
 #
 msgid "back"
 msgstr "tilbake"
@@ -16203,9 +16178,6 @@ msgstr "komedie"
 #, fuzzy
 msgid "config menu"
 msgstr "bekreftet"
-
-msgid "configure in which resolution pictures are displayed with the picture viewer and movieplayer"
-msgstr "Still inn bilde oppløsningen til avspiller og bildeframviser"
 
 #
 msgid "confirmed"
@@ -16582,6 +16554,9 @@ msgid "jump to chapter by number"
 msgstr "hopp til kapittel ved hjelp av nummer"
 
 msgid "just boot"
+msgstr ""
+
+msgid "kB"
 msgstr ""
 
 msgid "languages"

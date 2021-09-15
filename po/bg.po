@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-29 22:13+0200\n"
+"POT-Creation-Date: 2021-09-29 22:39+0200\n"
 "PO-Revision-Date: 2018-11-12 20:51+0200\n"
 "Last-Translator: Мартин Петков <marto74bg@yahoo.co.uk>\n"
 "Language-Team: Bulgarian\n"
@@ -184,18 +184,6 @@ msgid "%(freespace)s %(percent)s free disk space"
 msgstr "%(freespace)s %(percent)s свободно място на диска"
 
 #, python-format
-msgid "%.0f GB"
-msgstr ""
-
-#, python-format
-msgid "%.0f MB"
-msgstr ""
-
-#, python-format
-msgid "%.0f kB"
-msgstr ""
-
-#, python-format
 msgid "%.1f° E"
 msgstr ""
 
@@ -248,14 +236,6 @@ msgid "%a %e/%m  %-H:%M"
 msgstr ""
 
 #, python-format
-msgid "%d B"
-msgstr ""
-
-#, python-format
-msgid "%d GB"
-msgstr ""
-
-#, python-format
 msgid "%d MB"
 msgstr ""
 
@@ -301,10 +281,6 @@ msgstr[0] "Продължаване като фон"
 msgstr[1] "Продължаване като фон"
 
 #, python-format
-msgid "%d kB"
-msgstr ""
-
-#, python-format
 msgid "%d kB/s"
 msgstr ""
 
@@ -321,6 +297,12 @@ msgstr[1] ""
 #, python-format
 msgid "%d minutes"
 msgstr ""
+
+#, fuzzy, python-format
+msgid "%d package selected."
+msgid_plural "%d packages selected."
+msgstr[0] " избрани пакети."
+msgstr[1] " избрани пакети."
 
 #, python-format
 msgid "%d pixel wide"
@@ -514,12 +496,6 @@ msgstr ""
 
 msgid "1"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "1 package selected."
-msgid_plural "%d packages selected."
-msgstr[0] " избрани пакети."
-msgstr[1] " избрани пакети."
 
 msgid "1024 MB"
 msgstr ""
@@ -1212,8 +1188,8 @@ msgstr ""
 msgid "Allow 12bit"
 msgstr ""
 
-msgid "Allow quitting movieplayer with exit"
-msgstr ""
+msgid "Allow quitting movie player with exit"
+msgstr "Позволи изход от видеоплейъра с exit"
 
 msgid "Allow subtitle language to equal audio language"
 msgstr ""
@@ -3452,11 +3428,11 @@ msgstr ""
 msgid "Detect next boxes before standby"
 msgstr ""
 
-msgid "Detected storage devices:"
-msgstr "Oткрит HDD:"
-
 msgid "Detected NIMs:"
 msgstr "Открит NIMs:"
+
+msgid "Detected storage devices:"
+msgstr "Oткрит HDD:"
 
 #, fuzzy
 msgid "Device"
@@ -4119,6 +4095,10 @@ msgstr ""
 
 msgid "Enable Wake On LAN"
 msgstr ""
+
+#, fuzzy
+msgid "Enable auto cable scan"
+msgstr "Включи родителски контрол"
 
 msgid "Enable auto fastscan"
 msgstr ""
@@ -10035,6 +10015,9 @@ msgstr ""
 msgid "Select how your box will upgrade."
 msgstr ""
 
+msgid "Select in which resolution pictures are displayed with picture viewer or movie player."
+msgstr "Настройте с каква резолюция да се показват снимките в 'Преглед на снимки' и 'Видеоплейър'."
+
 msgid "Select input device"
 msgstr ""
 
@@ -13670,8 +13653,8 @@ msgstr ""
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr ""
 
-msgid "When enabled, it is possible to leave the movieplayer with exit."
-msgstr ""
+msgid "When enabled, it is possible to leave the movie player with exit."
+msgstr "Ако е включено, можете да затворите видеоплейъра с бутон изход."
 
 msgid "When enabled, it will automatically play to the last saved radio service when switching to radio mode."
 msgstr ""
@@ -13949,9 +13932,6 @@ msgstr ""
 
 msgid "You can remove this plugin."
 msgstr "Можете да премахнете този плъгин."
-
-msgid "You can set how will be finished movieplayer with 'Exit' button."
-msgstr ""
 
 msgid "You can set selected directory as 'root' directory for movie player."
 msgstr ""
@@ -14404,10 +14384,6 @@ msgstr ""
 msgid "automatic from DHCP"
 msgstr ""
 
-#, fuzzy
-msgid "automatically scan every day"
-msgstr "Автоматично Търсене"
-
 msgid "back"
 msgstr "назад"
 
@@ -14498,9 +14474,6 @@ msgstr ""
 #, fuzzy
 msgid "config menu"
 msgstr "потвърден"
-
-msgid "configure in which resolution pictures are displayed with the picture viewer and movieplayer"
-msgstr ""
 
 msgid "confirmed"
 msgstr "потвърден"
@@ -14831,6 +14804,9 @@ msgid "jump to chapter by number"
 msgstr ""
 
 msgid "just boot"
+msgstr ""
+
+msgid "kB"
 msgstr ""
 
 msgid "languages"

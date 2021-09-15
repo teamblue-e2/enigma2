@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-29 22:13+0200\n"
+"POT-Creation-Date: 2021-09-29 22:39+0200\n"
 "PO-Revision-Date: 2018-05-22 13:54+0200\n"
 "Last-Translator: Gringo <openpli@tiscali.it>\n"
 "Language-Team: www.linsat.net <spaeleus@croci.org>\n"
@@ -198,18 +198,6 @@ msgid "%(freespace)s %(percent)s free disk space"
 msgstr "%(freespace)s %(percent)s di spazio libero su disco"
 
 #, python-format
-msgid "%.0f GB"
-msgstr ""
-
-#, python-format
-msgid "%.0f MB"
-msgstr ""
-
-#, python-format
-msgid "%.0f kB"
-msgstr ""
-
-#, python-format
 msgid "%.1f° E"
 msgstr ""
 
@@ -266,14 +254,6 @@ msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
 
 #, python-format
-msgid "%d B"
-msgstr ""
-
-#, python-format
-msgid "%d GB"
-msgstr ""
-
-#, python-format
 msgid "%d MB"
 msgstr ""
 
@@ -321,10 +301,6 @@ msgstr[0] "%d processo attivo in background."
 msgstr[1] "%d processo attivo in background."
 
 #, python-format
-msgid "%d kB"
-msgstr ""
-
-#, python-format
 msgid "%d kB/s"
 msgstr ""
 
@@ -342,6 +318,13 @@ msgstr[1] "%d minuti"
 #, python-format
 msgid "%d minutes"
 msgstr "%d minuti"
+
+#
+#, fuzzy, python-format
+msgid "%d package selected."
+msgid_plural "%d packages selected."
+msgstr[0] " pacchetti selezionati."
+msgstr[1] " pacchetti selezionati."
 
 #, python-format
 msgid "%d pixel wide"
@@ -557,13 +540,6 @@ msgstr ""
 
 msgid "1"
 msgstr ""
-
-#
-#, fuzzy, python-format
-msgid "1 package selected."
-msgid_plural "%d packages selected."
-msgstr[0] " pacchetti selezionati."
-msgstr[1] " pacchetti selezionati."
 
 msgid "1024 MB"
 msgstr ""
@@ -1378,8 +1354,8 @@ msgstr ""
 msgid "Allow 12bit"
 msgstr ""
 
-msgid "Allow quitting movieplayer with exit"
-msgstr ""
+msgid "Allow quitting movie player with exit"
+msgstr "Consentire l'uscita dal lettore video con il tasto EXIT"
 
 msgid "Allow subtitle language to equal audio language"
 msgstr "Associare la lingua sottotitoli alla lingua audio"
@@ -3925,12 +3901,12 @@ msgstr "Dettagli per il plugin: "
 msgid "Detect next boxes before standby"
 msgstr ""
 
-msgid "Detected storage devices:"
-msgstr "Disco rigido rilevato:"
-
 #
 msgid "Detected NIMs:"
 msgstr "Tuner rilevati:"
+
+msgid "Detected storage devices:"
+msgstr "Disco rigido rilevato:"
 
 #
 #, fuzzy
@@ -4707,6 +4683,10 @@ msgstr ""
 
 msgid "Enable Wake On LAN"
 msgstr ""
+
+#, fuzzy
+msgid "Enable auto cable scan"
+msgstr "Attivare il controllo parentale"
 
 msgid "Enable auto fastscan"
 msgstr ""
@@ -11536,6 +11516,9 @@ msgstr ""
 msgid "Select how your box will upgrade."
 msgstr ""
 
+msgid "Select in which resolution pictures are displayed with picture viewer or movie player."
+msgstr "Impostare a quale risoluzione mostrare le immagini tramite il visualizzatore immagini e il lettore video."
+
 msgid "Select input device"
 msgstr "Selezionare il dispositivo di input"
 
@@ -15711,8 +15694,8 @@ msgstr "Opzione per abilitare la visualizzazione in giallo dei sottotitoli DVB g
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "Opzione per abilitare la decodifica degli stream http sul server. Il client remoto non dovrà effettuare la decodifica."
 
-msgid "When enabled, it is possible to leave the movieplayer with exit."
-msgstr ""
+msgid "When enabled, it is possible to leave the movie player with exit."
+msgstr "Se questa impostazione è attivata, sarà possibile uscire dal lettore video con il tasto EXIT."
 
 #, fuzzy
 msgid "When enabled, it will automatically play to the last saved radio service when switching to radio mode."
@@ -16027,9 +16010,6 @@ msgstr "È possibile masterizzare solo registrazioni del ricevitore."
 #
 msgid "You can remove this plugin."
 msgstr "E' possibile rimuovere questo plugin."
-
-msgid "You can set how will be finished movieplayer with 'Exit' button."
-msgstr ""
 
 msgid "You can set selected directory as 'root' directory for movie player."
 msgstr ""
@@ -16539,11 +16519,6 @@ msgid "automatic from DHCP"
 msgstr "Automatico"
 
 #
-#, fuzzy
-msgid "automatically scan every day"
-msgstr "Ricerca automatica"
-
-#
 msgid "back"
 msgstr "Indietro"
 
@@ -16648,9 +16623,6 @@ msgstr "Commedia"
 #, fuzzy
 msgid "config menu"
 msgstr "Confermato"
-
-msgid "configure in which resolution pictures are displayed with the picture viewer and movieplayer"
-msgstr ""
 
 #
 msgid "confirmed"
@@ -17031,6 +17003,11 @@ msgstr ""
 
 msgid "just boot"
 msgstr ""
+
+#
+#, fuzzy
+msgid "kB"
+msgstr "B"
 
 msgid "languages"
 msgstr "Lingue"

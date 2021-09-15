@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-29 22:13+0200\n"
+"POT-Creation-Date: 2021-09-29 22:39+0200\n"
 "PO-Revision-Date: 2020-02-10 12:49+0100\n"
 "Last-Translator: Andrej Tobola <andrej.tobola@gmail.com>\n"
 "Language-Team: \n"
@@ -188,18 +188,6 @@ msgid "%(freespace)s %(percent)s free disk space"
 msgstr "%(freespace)s %(percent)s voľného miesta na disku"
 
 #, python-format
-msgid "%.0f GB"
-msgstr ""
-
-#, python-format
-msgid "%.0f MB"
-msgstr ""
-
-#, python-format
-msgid "%.0f kB"
-msgstr ""
-
-#, python-format
 msgid "%.1f° E"
 msgstr ""
 
@@ -250,14 +238,6 @@ msgstr ""
 
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
-msgstr ""
-
-#, python-format
-msgid "%d B"
-msgstr ""
-
-#, python-format
-msgid "%d GB"
 msgstr ""
 
 #, python-format
@@ -312,10 +292,6 @@ msgstr[1] "%d úloh beží na pozadí!"
 msgstr[2] "%d úloh beží na pozadí!"
 
 #, python-format
-msgid "%d kB"
-msgstr ""
-
-#, python-format
 msgid "%d kB/s"
 msgstr ""
 
@@ -333,6 +309,13 @@ msgstr[2] ""
 #, python-format
 msgid "%d minutes"
 msgstr ""
+
+#, fuzzy, python-format
+msgid "%d package selected."
+msgid_plural "%d packages selected."
+msgstr[0] " balíčkov zvolených."
+msgstr[1] " balíčkov zvolených."
+msgstr[2] " balíčkov zvolených."
 
 #, python-format
 msgid "%d pixel wide"
@@ -533,13 +516,6 @@ msgstr ""
 
 msgid "1"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "1 package selected."
-msgid_plural "%d packages selected."
-msgstr[0] " balíčkov zvolených."
-msgstr[1] " balíčkov zvolených."
-msgstr[2] " balíčkov zvolených."
 
 msgid "1024 MB"
 msgstr ""
@@ -1260,8 +1236,8 @@ msgstr ""
 msgid "Allow 12bit"
 msgstr ""
 
-msgid "Allow quitting movieplayer with exit"
-msgstr ""
+msgid "Allow quitting movie player with exit"
+msgstr "Povoliť ukončenie prehrávača filmov tlačidlom Exit"
 
 msgid "Allow subtitle language to equal audio language"
 msgstr ""
@@ -3575,11 +3551,11 @@ msgstr "Údaje o module:"
 msgid "Detect next boxes before standby"
 msgstr ""
 
-msgid "Detected storage devices:"
-msgstr "Zistený pevný disk:"
-
 msgid "Detected NIMs:"
 msgstr "Zistené tunery:"
+
+msgid "Detected storage devices:"
+msgstr "Zistený pevný disk:"
 
 #, fuzzy
 msgid "Device"
@@ -4257,6 +4233,10 @@ msgstr ""
 
 msgid "Enable Wake On LAN"
 msgstr ""
+
+#, fuzzy
+msgid "Enable auto cable scan"
+msgstr "Zapnúť rodičovskú zámku"
 
 msgid "Enable auto fastscan"
 msgstr ""
@@ -10361,6 +10341,9 @@ msgstr ""
 msgid "Select how your box will upgrade."
 msgstr ""
 
+msgid "Select in which resolution pictures are displayed with picture viewer or movie player."
+msgstr "Nastavenie, v akom rozlíšení sú obrázky zobrazené v prehliadači obrázkov a prehrávači filmov."
+
 msgid "Select input device"
 msgstr "Zvoľte vstupné zariadenie"
 
@@ -14159,8 +14142,8 @@ msgstr ""
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr ""
 
-msgid "When enabled, it is possible to leave the movieplayer with exit."
-msgstr ""
+msgid "When enabled, it is possible to leave the movie player with exit."
+msgstr "Povoliť ukončenie prehrávača filmov tlačidlom EXIT."
 
 msgid "When enabled, it will automatically play to the last saved radio service when switching to radio mode."
 msgstr ""
@@ -14441,9 +14424,6 @@ msgstr ""
 
 msgid "You can remove this plugin."
 msgstr "Tento modul môžete odstrániť!"
-
-msgid "You can set how will be finished movieplayer with 'Exit' button."
-msgstr ""
 
 msgid "You can set selected directory as 'root' directory for movie player."
 msgstr ""
@@ -14903,10 +14883,6 @@ msgstr "Automaticky"
 msgid "automatic from DHCP"
 msgstr "Automaticky"
 
-#, fuzzy
-msgid "automatically scan every day"
-msgstr "Automatické vyhľadávanie"
-
 msgid "back"
 msgstr "späť"
 
@@ -14998,9 +14974,6 @@ msgstr ""
 #, fuzzy
 msgid "config menu"
 msgstr "potvrdené"
-
-msgid "configure in which resolution pictures are displayed with the picture viewer and movieplayer"
-msgstr ""
 
 msgid "confirmed"
 msgstr "potvrdené"
@@ -15336,6 +15309,10 @@ msgstr ""
 
 msgid "just boot"
 msgstr ""
+
+#, fuzzy
+msgid "kB"
+msgstr "B"
 
 msgid "languages"
 msgstr ""
