@@ -148,10 +148,9 @@ class CableScanScreen(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_('Network ID') + _(' (0 - all networks)'), config.plugins.CableScan.networkid))
 		self.list.append(getConfigListEntry(_("Use official channel numbering"), config.plugins.CableScan.keepnumbering))
 		self.list.append(getConfigListEntry(_("HD list"), config.plugins.CableScan.hdlist))
-		self.list.append(getConfigListEntry(_("automatically scan every day"), config.plugins.CableScan.auto))
-		ConfigListScreen.__init__(self, self.list)
-		self["config"].list = self.list
-		self["config"].l.setList(self.list)
+		self.list.append(getConfigListEntry(_("Enable auto cable scan"), config.plugins.CableScan.auto))
+
+		ConfigListScreen.__init__(self, self.list, session)
 		self["introduction"] = Label(_("Configure your network settings and press OK to scan"))
 
 	def restoreService(self):
