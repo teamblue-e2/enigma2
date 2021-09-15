@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-29 22:13+0200\n"
+"POT-Creation-Date: 2021-09-29 22:39+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Frenske <voorzitter@openpli.org>\n"
 "Language-Team: PLiteam <translators@openpli.org>\n"
@@ -186,18 +186,6 @@ msgid "%(freespace)s %(percent)s free disk space"
 msgstr "%(freespace)s %(percent)s beschikbare schijfruimte"
 
 #, python-format
-msgid "%.0f GB"
-msgstr ""
-
-#, python-format
-msgid "%.0f MB"
-msgstr ""
-
-#, python-format
-msgid "%.0f kB"
-msgstr ""
-
-#, python-format
 msgid "%.1f° E"
 msgstr ""
 
@@ -253,14 +241,6 @@ msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
 
 #, python-format
-msgid "%d B"
-msgstr ""
-
-#, python-format
-msgid "%d GB"
-msgstr ""
-
-#, python-format
 msgid "%d MB"
 msgstr ""
 
@@ -306,10 +286,6 @@ msgstr[0] "%d opdracht draait op de achtergrond."
 msgstr[1] "%d opdracht draait op de achtergrond."
 
 #, python-format
-msgid "%d kB"
-msgstr ""
-
-#, python-format
 msgid "%d kB/s"
 msgstr ""
 
@@ -326,6 +302,12 @@ msgstr[1] "%d minuten"
 #, python-format
 msgid "%d minutes"
 msgstr "%d minuten"
+
+#, fuzzy, python-format
+msgid "%d package selected."
+msgid_plural "%d packages selected."
+msgstr[0] "geselecteerde pakketten."
+msgstr[1] "geselecteerde pakketten."
 
 #, python-format
 msgid "%d pixel wide"
@@ -522,12 +504,6 @@ msgstr ""
 
 msgid "1"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "1 package selected."
-msgid_plural "%d packages selected."
-msgstr[0] "geselecteerde pakketten."
-msgstr[1] "geselecteerde pakketten."
 
 msgid "1024 MB"
 msgstr ""
@@ -1244,8 +1220,7 @@ msgstr ""
 msgid "Allow 12bit"
 msgstr ""
 
-#, fuzzy
-msgid "Allow quitting movieplayer with exit"
+msgid "Allow quitting movie player with exit"
 msgstr "Verlaat de movieplayer d.m.v. de 'exit' toets"
 
 msgid "Allow subtitle language to equal audio language"
@@ -3708,11 +3683,11 @@ msgstr "Plugin details:"
 msgid "Detect next boxes before standby"
 msgstr ""
 
-msgid "Detected storage devices:"
-msgstr "Gedetecteerde harde schijf:"
-
 msgid "Detected NIMs:"
 msgstr "Gedetecteerde tuners:"
+
+msgid "Detected storage devices:"
+msgstr "Gedetecteerde harde schijf:"
 
 #, fuzzy
 msgid "Device"
@@ -4398,6 +4373,10 @@ msgstr "Virgin EPG inschakelen"
 
 msgid "Enable Wake On LAN"
 msgstr "Activeer Wake On LAN"
+
+#, fuzzy
+msgid "Enable auto cable scan"
+msgstr "Activeer auto fastscan"
 
 msgid "Enable auto fastscan"
 msgstr "Activeer auto fastscan"
@@ -10457,6 +10436,9 @@ msgstr ""
 msgid "Select how your box will upgrade."
 msgstr ""
 
+msgid "Select in which resolution pictures are displayed with picture viewer or movie player."
+msgstr ""
+
 msgid "Select input device"
 msgstr "Kies invoerapparaat"
 
@@ -14228,7 +14210,7 @@ msgstr "Indien geactiveerd, dan worden de grafische DVB ondertitels in geel weer
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "Indien geactiveerd, dan worden de http streams aan de serverzijde gedecodeerd. De cliënt-ontvanger hoeft deze dan niet meer te decoderen. "
 
-msgid "When enabled, it is possible to leave the movieplayer with exit."
+msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr ""
 "Met deze optie stelt u in of de 'exit' toets gebruikt mag worden om de movieplayer te sluiten, en zo ja, op welke manier.\n"
 "\n"
@@ -14542,9 +14524,6 @@ msgstr "U kunt enkel opnames branden die door uw receiver gemaakt zijn!"
 
 msgid "You can remove this plugin."
 msgstr "Deze plugin kunt u verwijderen."
-
-msgid "You can set how will be finished movieplayer with 'Exit' button."
-msgstr ""
 
 msgid "You can set selected directory as 'root' directory for movie player."
 msgstr ""
@@ -15015,10 +14994,6 @@ msgstr "automatisch"
 msgid "automatic from DHCP"
 msgstr "automatisch"
 
-#, fuzzy
-msgid "automatically scan every day"
-msgstr "Automatisch zoeken"
-
 msgid "back"
 msgstr "terug"
 
@@ -15111,9 +15086,6 @@ msgstr "komedie"
 #, fuzzy
 msgid "config menu"
 msgstr "bevestigd"
-
-msgid "configure in which resolution pictures are displayed with the picture viewer and movieplayer"
-msgstr ""
 
 msgid "confirmed"
 msgstr "bevestigd"
@@ -15448,6 +15420,10 @@ msgstr ""
 
 msgid "just boot"
 msgstr ""
+
+#, fuzzy
+msgid "kB"
+msgstr "B"
 
 msgid "languages"
 msgstr "talen"

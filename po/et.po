@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-29 22:13+0200\n"
+"POT-Creation-Date: 2021-09-29 22:39+0200\n"
 "PO-Revision-Date: 2019-04-03 06:49+0300\n"
 "Last-Translator: \n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas, zeros\\n faas, sateks, valgekotkas, tigekala, rootsikunn\\n kain, i70, mustkass, pelmeen, Scott\\n <digi-tv.ee>\n"
@@ -187,18 +187,6 @@ msgid "%(freespace)s %(percent)s free disk space"
 msgstr "%(freespace)s %(percent)s vaba kettaruumi"
 
 #, python-format
-msgid "%.0f GB"
-msgstr ""
-
-#, python-format
-msgid "%.0f MB"
-msgstr ""
-
-#, python-format
-msgid "%.0f kB"
-msgstr ""
-
-#, python-format
 msgid "%.1f° E"
 msgstr ""
 
@@ -254,14 +242,6 @@ msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
 
 #, python-format
-msgid "%d B"
-msgstr ""
-
-#, python-format
-msgid "%d GB"
-msgstr ""
-
-#, python-format
 msgid "%d MB"
 msgstr ""
 
@@ -307,10 +287,6 @@ msgstr[0] "%d protsessi käib taustal!"
 msgstr[1] "%d protsessi käib taustal!"
 
 #, python-format
-msgid "%d kB"
-msgstr ""
-
-#, python-format
 msgid "%d kB/s"
 msgstr ""
 
@@ -327,6 +303,12 @@ msgstr[1] "%d minutit"
 #, python-format
 msgid "%d minutes"
 msgstr "%d minutit"
+
+#, fuzzy, python-format
+msgid "%d package selected."
+msgid_plural "%d packages selected."
+msgstr[0] " paketti valitud."
+msgstr[1] " paketti valitud."
 
 #, python-format
 msgid "%d pixel wide"
@@ -524,12 +506,6 @@ msgstr ""
 
 msgid "1"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "1 package selected."
-msgid_plural "%d packages selected."
-msgstr[0] " paketti valitud."
-msgstr[1] " paketti valitud."
 
 msgid "1024 MB"
 msgstr ""
@@ -1244,9 +1220,8 @@ msgstr ""
 msgid "Allow 12bit"
 msgstr ""
 
-#, fuzzy
-msgid "Allow quitting movieplayer with exit"
-msgstr "Luba movieplayer-i sulgemine väljumisel"
+msgid "Allow quitting movie player with exit"
+msgstr "Luba väljumise EXIT nupuga"
 
 msgid "Allow subtitle language to equal audio language"
 msgstr "Luba subtiitrid heli keele valiku järgi"
@@ -3535,11 +3510,11 @@ msgstr "Laienduse üksikaskad: "
 msgid "Detect next boxes before standby"
 msgstr ""
 
-msgid "Detected storage devices:"
-msgstr "Andmekandjad:"
-
 msgid "Detected NIMs:"
 msgstr "Leitud tuunerid:"
+
+msgid "Detected storage devices:"
+msgstr "Andmekandjad:"
 
 #, fuzzy
 msgid "Device"
@@ -4214,6 +4189,10 @@ msgstr ""
 
 msgid "Enable Wake On LAN"
 msgstr ""
+
+#, fuzzy
+msgid "Enable auto cable scan"
+msgstr "Luba lapselukk"
 
 msgid "Enable auto fastscan"
 msgstr ""
@@ -10233,6 +10212,9 @@ msgstr ""
 msgid "Select how your box will upgrade."
 msgstr ""
 
+msgid "Select in which resolution pictures are displayed with picture viewer or movie player."
+msgstr "Seadista, millise eraldusega näidatakse pilte pildivaatajas ja filmimängijas."
+
 msgid "Select input device"
 msgstr "Vali sisendseade"
 
@@ -13976,8 +13958,8 @@ msgstr "Määrates 'jah', kuvatakse DVB subtiitrid nende tõelise värvi asemel 
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "Määrates 'jah', dekodeeritakse http vood serveri poolt. Klientvastuvõtja ei pea neid enam dekodeerima."
 
-msgid "When enabled, it is possible to leave the movieplayer with exit."
-msgstr ""
+msgid "When enabled, it is possible to leave the movie player with exit."
+msgstr "Määrates 'jah' saab väljuda filmimängijast EXIT nupuga."
 
 #, fuzzy
 msgid "When enabled, it will automatically play to the last saved radio service when switching to radio mode."
@@ -14269,9 +14251,6 @@ msgstr "Plaadile saab kirjutada ainult vastuvõtja salvestusi!"
 
 msgid "You can remove this plugin."
 msgstr "Selle laienduse saab eemaldada."
-
-msgid "You can set how will be finished movieplayer with 'Exit' button."
-msgstr ""
 
 msgid "You can set selected directory as 'root' directory for movie player."
 msgstr ""
@@ -14742,10 +14721,6 @@ msgstr "automaatne"
 msgid "automatic from DHCP"
 msgstr "automaatne"
 
-#, fuzzy
-msgid "automatically scan every day"
-msgstr "Automaatotsing"
-
 msgid "back"
 msgstr "tagasi"
 
@@ -14838,9 +14813,6 @@ msgstr "komöödia"
 #, fuzzy
 msgid "config menu"
 msgstr "kinnitatud"
-
-msgid "configure in which resolution pictures are displayed with the picture viewer and movieplayer"
-msgstr ""
 
 msgid "confirmed"
 msgstr "kinnitatud"
@@ -15175,6 +15147,10 @@ msgstr ""
 
 msgid "just boot"
 msgstr ""
+
+#, fuzzy
+msgid "kB"
+msgstr "B"
 
 msgid "languages"
 msgstr "keeled"

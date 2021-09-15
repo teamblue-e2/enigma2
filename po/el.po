@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-29 22:13+0200\n"
+"POT-Creation-Date: 2021-09-29 22:39+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: MCelliotG <mcelliotg@gmail.com>\n"
@@ -181,18 +181,6 @@ msgid "%(freespace)s %(percent)s free disk space"
 msgstr "%(freespace)s ελεύθερος χώρος δίσκου %(percent)s"
 
 #, python-format
-msgid "%.0f GB"
-msgstr ""
-
-#, python-format
-msgid "%.0f MB"
-msgstr ""
-
-#, python-format
-msgid "%.0f kB"
-msgstr ""
-
-#, python-format
 msgid "%.1f° E"
 msgstr ""
 
@@ -248,14 +236,6 @@ msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m %-H:%M"
 
 #, python-format
-msgid "%d B"
-msgstr ""
-
-#, python-format
-msgid "%d GB"
-msgstr ""
-
-#, python-format
 msgid "%d MB"
 msgstr ""
 
@@ -301,10 +281,6 @@ msgstr[0] "%d εργασία στο παρασκήνιο!"
 msgstr[1] "%d εργασία στο παρασκήνιο!"
 
 #, python-format
-msgid "%d kB"
-msgstr ""
-
-#, python-format
 msgid "%d kB/s"
 msgstr ""
 
@@ -321,6 +297,12 @@ msgstr[1] "%d λεπτά"
 #, python-format
 msgid "%d minutes"
 msgstr "%d λεπτά"
+
+#, fuzzy, python-format
+msgid "%d package selected."
+msgid_plural "%d packages selected."
+msgstr[0] " επιλεγμένα πακέτα."
+msgstr[1] " επιλεγμένα πακέτα."
 
 #, python-format
 msgid "%d pixel wide"
@@ -518,12 +500,6 @@ msgstr ""
 
 msgid "1"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "1 package selected."
-msgid_plural "%d packages selected."
-msgstr[0] " επιλεγμένα πακέτα."
-msgstr[1] " επιλεγμένα πακέτα."
 
 msgid "1024 MB"
 msgstr ""
@@ -1232,8 +1208,7 @@ msgstr ""
 msgid "Allow 12bit"
 msgstr ""
 
-#, fuzzy
-msgid "Allow quitting movieplayer with exit"
+msgid "Allow quitting movie player with exit"
 msgstr "Να επιτρέπεται η έξοδος από την αναπαραγωγή με το exit"
 
 msgid "Allow subtitle language to equal audio language"
@@ -3524,11 +3499,11 @@ msgstr "Λεπτομέρειες για το πρόσθετο: "
 msgid "Detect next boxes before standby"
 msgstr ""
 
-msgid "Detected storage devices:"
-msgstr "Εντοπισμένοι HDD:"
-
 msgid "Detected NIMs:"
 msgstr "Εντοπισμένα NIMs:"
+
+msgid "Detected storage devices:"
+msgstr "Εντοπισμένοι HDD:"
 
 #, fuzzy
 msgid "Device"
@@ -4210,6 +4185,10 @@ msgstr "Ενεργοποίηση Virgin EPG"
 
 msgid "Enable Wake On LAN"
 msgstr "Ενεργοποίηση Αφύπνισης Σε LAN"
+
+#, fuzzy
+msgid "Enable auto cable scan"
+msgstr "Ενεργοποίηση της αυτόματης γρήγορης ανίχνευσης"
 
 msgid "Enable auto fastscan"
 msgstr "Ενεργοποίηση της αυτόματης γρήγορης ανίχνευσης"
@@ -10259,6 +10238,9 @@ msgstr ""
 msgid "Select how your box will upgrade."
 msgstr ""
 
+msgid "Select in which resolution pictures are displayed with picture viewer or movie player."
+msgstr "Επιλέξτε σε ποια ανάλυση θα απεικονίζονται οι εικόνες με την προβολή φωτογραφιών ή την αναπαραγωγή ταινιών."
+
 msgid "Select input device"
 msgstr "Επιλογή συσκευής εισόδου"
 
@@ -14018,7 +14000,7 @@ msgstr "Όταν είναι ενεργό, οι γραφικοί υπότιτλο
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "Όταν είναι ενεργό, οι ροές http θα αποκωδικοποιούνται από μεριά του διακομιστή. Ο (απομακρυσμένος) πελάτης δεν θα απαιτείται να κάνει αποκρυπτογράφηση."
 
-msgid "When enabled, it is possible to leave the movieplayer with exit."
+msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Όταν είναι ενεργό, είναι δυνατή η έξοδος από την αναπαραγωγή ταινιών με το πλήκτρο εξόδου."
 
 #, fuzzy
@@ -14311,9 +14293,6 @@ msgstr "Μπορείτε μόνο να κάψετε εγγραφές του δέ
 
 msgid "You can remove this plugin."
 msgstr "Μπορείτε να διαγράψετε το πρόσθετο."
-
-msgid "You can set how will be finished movieplayer with 'Exit' button."
-msgstr ""
 
 msgid "You can set selected directory as 'root' directory for movie player."
 msgstr ""
@@ -14783,10 +14762,6 @@ msgstr "αυτόματο"
 msgid "automatic from DHCP"
 msgstr "αυτόματο"
 
-#, fuzzy
-msgid "automatically scan every day"
-msgstr "Αυτόματη ανίχνευση"
-
 msgid "back"
 msgstr "πίσω"
 
@@ -14879,9 +14854,6 @@ msgstr "κωμωδία"
 #, fuzzy
 msgid "config menu"
 msgstr "επιβεβαιωμένο"
-
-msgid "configure in which resolution pictures are displayed with the picture viewer and movieplayer"
-msgstr ""
 
 msgid "confirmed"
 msgstr "επιβεβαιωμένο"
@@ -15216,6 +15188,10 @@ msgstr ""
 
 msgid "just boot"
 msgstr ""
+
+#, fuzzy
+msgid "kB"
+msgstr "B"
 
 msgid "languages"
 msgstr "γλώσσες"

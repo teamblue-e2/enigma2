@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-29 22:13+0200\n"
+"POT-Creation-Date: 2021-09-29 22:39+0200\n"
 "PO-Revision-Date: 2017-01-18 16:38+0100\n"
 "Last-Translator: lupine <a_ecklon@hotmail.com>\n"
 "Language-Team: \n"
@@ -193,18 +193,6 @@ msgid "%(freespace)s %(percent)s free disk space"
 msgstr "%(freespace)s %(percent)s fri HDD plads"
 
 #, python-format
-msgid "%.0f GB"
-msgstr ""
-
-#, python-format
-msgid "%.0f MB"
-msgstr ""
-
-#, python-format
-msgid "%.0f kB"
-msgstr ""
-
-#, python-format
 msgid "%.1f° E"
 msgstr ""
 
@@ -260,14 +248,6 @@ msgid "%a %e/%m  %-H:%M"
 msgstr ""
 
 #, python-format
-msgid "%d B"
-msgstr ""
-
-#, python-format
-msgid "%d GB"
-msgstr ""
-
-#, python-format
 msgid "%d MB"
 msgstr ""
 
@@ -315,10 +295,6 @@ msgstr[0] "%d jobs kører i baggrunden!"
 msgstr[1] "%d jobs kører i baggrunden!"
 
 #, python-format
-msgid "%d kB"
-msgstr ""
-
-#, python-format
 msgid "%d kB/s"
 msgstr ""
 
@@ -336,6 +312,12 @@ msgstr[1] "%d minutter"
 #, python-format
 msgid "%d minutes"
 msgstr "%d minutter"
+
+#, fuzzy, python-format
+msgid "%d package selected."
+msgid_plural "%d packages selected."
+msgstr[0] " pakker valgt."
+msgstr[1] " pakker valgt."
 
 #, python-format
 msgid "%d pixel wide"
@@ -548,12 +530,6 @@ msgstr ""
 
 msgid "1"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "1 package selected."
-msgid_plural "%d packages selected."
-msgstr[0] " pakker valgt."
-msgstr[1] " pakker valgt."
 
 msgid "1024 MB"
 msgstr ""
@@ -1372,8 +1348,9 @@ msgstr ""
 msgid "Allow 12bit"
 msgstr ""
 
-msgid "Allow quitting movieplayer with exit"
-msgstr ""
+#, fuzzy
+msgid "Allow quitting movie player with exit"
+msgstr "Tillad "
 
 #, fuzzy
 msgid "Allow subtitle language to equal audio language"
@@ -3977,12 +3954,12 @@ msgid "Detect next boxes before standby"
 msgstr ""
 
 #
-msgid "Detected storage devices:"
-msgstr "HDD fundet:"
-
-#
 msgid "Detected NIMs:"
 msgstr "Fundne NIMs:"
+
+#
+msgid "Detected storage devices:"
+msgstr "HDD fundet:"
 
 #
 #, fuzzy
@@ -4771,6 +4748,11 @@ msgstr ""
 
 msgid "Enable Wake On LAN"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Enable auto cable scan"
+msgstr "Aktivere forældre kontrol?"
 
 msgid "Enable auto fastscan"
 msgstr ""
@@ -11760,6 +11742,9 @@ msgstr ""
 msgid "Select how your box will upgrade."
 msgstr ""
 
+msgid "Select in which resolution pictures are displayed with picture viewer or movie player."
+msgstr "Konfigurer i hvilken opløsning billeder bliver vist med picture viewer og movie player."
+
 msgid "Select input device"
 msgstr "Vælg enhed"
 
@@ -16049,8 +16034,8 @@ msgstr ""
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr ""
 
-msgid "When enabled, it is possible to leave the movieplayer with exit."
-msgstr ""
+msgid "When enabled, it is possible to leave the movie player with exit."
+msgstr "Ved aktivering er det muligt at forlade filmafspilleren ved hjælp af exit."
 
 msgid "When enabled, it will automatically play to the last saved radio service when switching to radio mode."
 msgstr ""
@@ -16358,9 +16343,6 @@ msgstr ""
 #
 msgid "You can remove this plugin."
 msgstr "Du kan fjerne dette plugin."
-
-msgid "You can set how will be finished movieplayer with 'Exit' button."
-msgstr ""
 
 msgid "You can set selected directory as 'root' directory for movie player."
 msgstr ""
@@ -16864,11 +16846,6 @@ msgid "automatic from DHCP"
 msgstr "Automatisk"
 
 #
-#, fuzzy
-msgid "automatically scan every day"
-msgstr "Automatisk søgning"
-
-#
 msgid "back"
 msgstr "tilbage"
 
@@ -16972,9 +16949,6 @@ msgstr ""
 #, fuzzy
 msgid "config menu"
 msgstr "bekræftet"
-
-msgid "configure in which resolution pictures are displayed with the picture viewer and movieplayer"
-msgstr ""
 
 #
 msgid "confirmed"
@@ -17360,6 +17334,11 @@ msgstr ""
 
 msgid "just boot"
 msgstr ""
+
+#
+#, fuzzy
+msgid "kB"
+msgstr "B"
 
 msgid "languages"
 msgstr ""

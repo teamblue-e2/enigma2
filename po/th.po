@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-29 22:13+0200\n"
+"POT-Creation-Date: 2021-09-29 22:39+0200\n"
 "PO-Revision-Date: 2010-04-08 18:13+0700\n"
 "Last-Translator: Tony - Thaidreambox\n"
 "Language-Team: Tony @ Thai Dreambox <tonyboyth@gmail.com>\n"
@@ -185,18 +185,6 @@ msgid "%(freespace)s %(percent)s free disk space"
 msgstr "เนื้อที่เหลือยู่"
 
 #, python-format
-msgid "%.0f GB"
-msgstr ""
-
-#, python-format
-msgid "%.0f MB"
-msgstr ""
-
-#, python-format
-msgid "%.0f kB"
-msgstr ""
-
-#, python-format
 msgid "%.1f° E"
 msgstr ""
 
@@ -250,14 +238,6 @@ msgid "%a %e/%m  %-H:%M"
 msgstr ""
 
 #, python-format
-msgid "%d B"
-msgstr ""
-
-#, python-format
-msgid "%d GB"
-msgstr ""
-
-#, python-format
 msgid "%d MB"
 msgstr ""
 
@@ -303,10 +283,6 @@ msgstr[0] "กำลังมีงานแบบฉากหลัง %d ง�
 msgstr[1] "กำลังมีงานแบบฉากหลัง %d งาน"
 
 #, python-format
-msgid "%d kB"
-msgstr ""
-
-#, python-format
 msgid "%d kB/s"
 msgstr ""
 
@@ -323,6 +299,12 @@ msgstr[1] ""
 #, python-format
 msgid "%d minutes"
 msgstr ""
+
+#, fuzzy, python-format
+msgid "%d package selected."
+msgid_plural "%d packages selected."
+msgstr[0] " ส่วนประกอบที่เลือกไว้"
+msgstr[1] " ส่วนประกอบที่เลือกไว้"
 
 #, python-format
 msgid "%d pixel wide"
@@ -518,12 +500,6 @@ msgstr ""
 
 msgid "1"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "1 package selected."
-msgid_plural "%d packages selected."
-msgstr[0] " ส่วนประกอบที่เลือกไว้"
-msgstr[1] " ส่วนประกอบที่เลือกไว้"
 
 msgid "1024 MB"
 msgstr ""
@@ -1241,7 +1217,7 @@ msgstr ""
 msgid "Allow 12bit"
 msgstr ""
 
-msgid "Allow quitting movieplayer with exit"
+msgid "Allow quitting movie player with exit"
 msgstr ""
 
 msgid "Allow subtitle language to equal audio language"
@@ -3548,11 +3524,11 @@ msgstr ""
 msgid "Detect next boxes before standby"
 msgstr ""
 
-msgid "Detected storage devices:"
-msgstr "ฮาร์ดไดรฟ์ที่พบ:"
-
 msgid "Detected NIMs:"
 msgstr "NIMs ที่พบ:"
+
+msgid "Detected storage devices:"
+msgstr "ฮาร์ดไดรฟ์ที่พบ:"
 
 #, fuzzy
 msgid "Device"
@@ -4226,6 +4202,10 @@ msgstr ""
 
 msgid "Enable Wake On LAN"
 msgstr ""
+
+#, fuzzy
+msgid "Enable auto cable scan"
+msgstr "เปิดใช้ส่วนควบคุมอายุรับชม"
 
 msgid "Enable auto fastscan"
 msgstr ""
@@ -10301,6 +10281,9 @@ msgstr ""
 msgid "Select how your box will upgrade."
 msgstr ""
 
+msgid "Select in which resolution pictures are displayed with picture viewer or movie player."
+msgstr ""
+
 msgid "Select input device"
 msgstr ""
 
@@ -14076,7 +14059,7 @@ msgstr ""
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr ""
 
-msgid "When enabled, it is possible to leave the movieplayer with exit."
+msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr ""
 
 msgid "When enabled, it will automatically play to the last saved radio service when switching to radio mode."
@@ -14358,9 +14341,6 @@ msgstr ""
 
 msgid "You can remove this plugin."
 msgstr "ท่านสามารถลบปลั๊กอินตัวนี้ได้"
-
-msgid "You can set how will be finished movieplayer with 'Exit' button."
-msgstr ""
 
 msgid "You can set selected directory as 'root' directory for movie player."
 msgstr ""
@@ -14815,10 +14795,6 @@ msgstr "อัตโนมัติ"
 msgid "automatic from DHCP"
 msgstr "อัตโนมัติ"
 
-#, fuzzy
-msgid "automatically scan every day"
-msgstr "ค้นหาอัตโนมัติ"
-
 msgid "back"
 msgstr "กลับ"
 
@@ -14910,9 +14886,6 @@ msgstr ""
 #, fuzzy
 msgid "config menu"
 msgstr "ยืนยันแล้ว"
-
-msgid "configure in which resolution pictures are displayed with the picture viewer and movieplayer"
-msgstr ""
 
 msgid "confirmed"
 msgstr "ยืนยันแล้ว"
@@ -15248,6 +15221,10 @@ msgstr ""
 
 msgid "just boot"
 msgstr ""
+
+#, fuzzy
+msgid "kB"
+msgstr "B"
 
 msgid "languages"
 msgstr ""

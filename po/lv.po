@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-29 22:13+0200\n"
+"POT-Creation-Date: 2021-09-29 22:39+0200\n"
 "PO-Revision-Date: 2014-11-12 00:49+0200\n"
 "Last-Translator: Taapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -188,18 +188,6 @@ msgid "%(freespace)s %(percent)s free disk space"
 msgstr "%(freespace)s %(percent)s brīva vieta uz diska"
 
 #, python-format
-msgid "%.0f GB"
-msgstr ""
-
-#, python-format
-msgid "%.0f MB"
-msgstr ""
-
-#, python-format
-msgid "%.0f kB"
-msgstr ""
-
-#, python-format
 msgid "%.1f° E"
 msgstr ""
 
@@ -255,14 +243,6 @@ msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
 
 #, python-format
-msgid "%d B"
-msgstr ""
-
-#, python-format
-msgid "%d GB"
-msgstr ""
-
-#, python-format
 msgid "%d MB"
 msgstr ""
 
@@ -314,10 +294,6 @@ msgstr[1] "%d darbs tiek veikts fonā!"
 msgstr[2] "%d darbs tiek veikts fonā!"
 
 #, python-format
-msgid "%d kB"
-msgstr ""
-
-#, python-format
 msgid "%d kB/s"
 msgstr ""
 
@@ -335,6 +311,13 @@ msgstr[2] "%d minūtes"
 #, python-format
 msgid "%d minutes"
 msgstr "%d minūtes"
+
+#, fuzzy, python-format
+msgid "%d package selected."
+msgid_plural "%d packages selected."
+msgstr[0] "izvēlētas pakotnes."
+msgstr[1] "izvēlētas pakotnes."
+msgstr[2] "izvēlētas pakotnes."
 
 #, python-format
 msgid "%d pixel wide"
@@ -537,13 +520,6 @@ msgstr ""
 
 msgid "1"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "1 package selected."
-msgid_plural "%d packages selected."
-msgstr[0] "izvēlētas pakotnes."
-msgstr[1] "izvēlētas pakotnes."
-msgstr[2] "izvēlētas pakotnes."
 
 msgid "1024 MB"
 msgstr ""
@@ -1259,9 +1235,8 @@ msgstr ""
 msgid "Allow 12bit"
 msgstr ""
 
-#, fuzzy
-msgid "Allow quitting movieplayer with exit"
-msgstr "Izejot atļut izslēgt filmu atskaņotāju"
+msgid "Allow quitting movie player with exit"
+msgstr "Iziet no mediju atskaņotāja ar exit taustiņu"
 
 msgid "Allow subtitle language to equal audio language"
 msgstr "Atļaut subtitru valodu vienādu ar audio valodu"
@@ -3556,11 +3531,11 @@ msgstr "Spraudņu papildinformācija:"
 msgid "Detect next boxes before standby"
 msgstr ""
 
-msgid "Detected storage devices:"
-msgstr "Atmiņas iekārtas:"
-
 msgid "Detected NIMs:"
 msgstr "Atrasts NIMs:"
+
+msgid "Detected storage devices:"
+msgstr "Atmiņas iekārtas:"
 
 #, fuzzy
 msgid "Device"
@@ -4240,6 +4215,10 @@ msgstr ""
 
 msgid "Enable Wake On LAN"
 msgstr ""
+
+#, fuzzy
+msgid "Enable auto cable scan"
+msgstr "Aktivizēt vecāku kontroli"
 
 msgid "Enable auto fastscan"
 msgstr ""
@@ -10282,6 +10261,9 @@ msgstr ""
 msgid "Select how your box will upgrade."
 msgstr ""
 
+msgid "Select in which resolution pictures are displayed with picture viewer or movie player."
+msgstr "Konfigurē kādā izšķirtspējā attēli tiks attēloti attēlu un mediju atskaņotājos."
+
 msgid "Select input device"
 msgstr "Izvēlieties ievades ierīci"
 
@@ -14040,8 +14022,8 @@ msgstr "Ja iespējots, grafiskie DVB subtitri tiks rādīti dzeltenā krāsā, n
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "Ja iespējots, http plūsmas tiks dekodētas serverī. Attālinātiem klientu uztvērējiem nebūs jādekodē."
 
-msgid "When enabled, it is possible to leave the movieplayer with exit."
-msgstr "Ja iespējots, ir iespējams iziet no filmu atskaņotāja ar exit taustiņu."
+msgid "When enabled, it is possible to leave the movie player with exit."
+msgstr "Ja ieslēgts, ir iespējams iziet no mediju atskaņotāja ar exit taustiņu."
 
 #, fuzzy
 msgid "When enabled, it will automatically play to the last saved radio service when switching to radio mode."
@@ -14333,9 +14315,6 @@ msgstr "Jūs varat ierakstīt tikai uztvērēja ierakstus!"
 
 msgid "You can remove this plugin."
 msgstr "Jūs varat izdzēst šo spraudni."
-
-msgid "You can set how will be finished movieplayer with 'Exit' button."
-msgstr ""
 
 msgid "You can set selected directory as 'root' directory for movie player."
 msgstr ""
@@ -14808,10 +14787,6 @@ msgstr "automātiski"
 msgid "automatic from DHCP"
 msgstr "automātiski"
 
-#, fuzzy
-msgid "automatically scan every day"
-msgstr "Automātiskā meklēšana"
-
 msgid "back"
 msgstr "atpakaļ"
 
@@ -14904,9 +14879,6 @@ msgstr "komēdija"
 #, fuzzy
 msgid "config menu"
 msgstr "apstiprināts"
-
-msgid "configure in which resolution pictures are displayed with the picture viewer and movieplayer"
-msgstr ""
 
 msgid "confirmed"
 msgstr "apstiprināts"
@@ -15239,6 +15211,10 @@ msgstr ""
 
 msgid "just boot"
 msgstr ""
+
+#, fuzzy
+msgid "kB"
+msgstr "B"
 
 msgid "languages"
 msgstr "valodas"

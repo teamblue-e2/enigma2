@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-29 22:13+0200\n"
+"POT-Creation-Date: 2021-09-29 22:39+0200\n"
 "PO-Revision-Date: 2017-03-05 13:24+0100\n"
 "Last-Translator: Magnus Nilsson <mag_nilsson@hotmail.com>\n"
 "Language-Team: \n"
@@ -194,18 +194,6 @@ msgid "%(freespace)s %(percent)s free disk space"
 msgstr "%(freespace)s %(percent)s ledigt diskutrymme"
 
 #, python-format
-msgid "%.0f GB"
-msgstr ""
-
-#, python-format
-msgid "%.0f MB"
-msgstr ""
-
-#, python-format
-msgid "%.0f kB"
-msgstr ""
-
-#, python-format
 msgid "%.1f° E"
 msgstr ""
 
@@ -262,14 +250,6 @@ msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
 
 #, python-format
-msgid "%d B"
-msgstr ""
-
-#, python-format
-msgid "%d GB"
-msgstr ""
-
-#, python-format
 msgid "%d MB"
 msgstr ""
 
@@ -316,10 +296,6 @@ msgstr[0] "%d jobb körs i bakgrunden!"
 msgstr[1] "%d jobb körs i bakgrunden!"
 
 #, python-format
-msgid "%d kB"
-msgstr ""
-
-#, python-format
 msgid "%d kB/s"
 msgstr ""
 
@@ -336,6 +312,13 @@ msgstr[1] "%d minuter"
 #, python-format
 msgid "%d minutes"
 msgstr "%d minuter"
+
+#
+#, fuzzy, python-format
+msgid "%d package selected."
+msgid_plural "%d packages selected."
+msgstr[0] " valda paket."
+msgstr[1] " valda paket."
 
 #, python-format
 msgid "%d pixel wide"
@@ -545,13 +528,6 @@ msgstr ""
 
 msgid "1"
 msgstr ""
-
-#
-#, fuzzy, python-format
-msgid "1 package selected."
-msgid_plural "%d packages selected."
-msgstr[0] " valda paket."
-msgstr[1] " valda paket."
 
 msgid "1024 MB"
 msgstr ""
@@ -1365,7 +1341,7 @@ msgid "Allow 12bit"
 msgstr ""
 
 #, fuzzy
-msgid "Allow quitting movieplayer with exit"
+msgid "Allow quitting movie player with exit"
 msgstr "Avsluta movieplayer med exitknappen"
 
 msgid "Allow subtitle language to equal audio language"
@@ -3912,12 +3888,12 @@ msgstr "Detaljer för plugin: "
 msgid "Detect next boxes before standby"
 msgstr ""
 
-msgid "Detected storage devices:"
-msgstr "Hittad HDD :"
-
 #
 msgid "Detected NIMs:"
 msgstr "Hittade tuners:"
+
+msgid "Detected storage devices:"
+msgstr "Hittad HDD :"
 
 #
 #, fuzzy
@@ -4691,6 +4667,11 @@ msgstr ""
 
 msgid "Enable Wake On LAN"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Enable auto cable scan"
+msgstr "Aktivera föräldrakontroll"
 
 msgid "Enable auto fastscan"
 msgstr ""
@@ -11515,6 +11496,9 @@ msgstr ""
 msgid "Select how your box will upgrade."
 msgstr ""
 
+msgid "Select in which resolution pictures are displayed with picture viewer or movie player."
+msgstr "Konfigurera i vilken upplösning bilderna skall visas med bildvisaren och movie player."
+
 msgid "Select input device"
 msgstr "Välj inmatningsenhet"
 
@@ -15704,8 +15688,8 @@ msgstr "Vid aktiverad, kommer grafiska DVB-undertexter att visas i gult, i stäl
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "Vid aktiverad, kommer http-strömmar avkodas på serversidan. (Fjärr) Klientmottagaren behöver inte göra avkodningen."
 
-msgid "When enabled, it is possible to leave the movieplayer with exit."
-msgstr "Vid aktiverad, kan man avsluta movieplayer med exitknappen."
+msgid "When enabled, it is possible to leave the movie player with exit."
+msgstr "Vid aktiverad kan man avsluta movieplayer med exitknappen."
 
 #, fuzzy
 msgid "When enabled, it will automatically play to the last saved radio service when switching to radio mode."
@@ -16020,9 +16004,6 @@ msgstr "Du kan bara bränna mottagarens inspelningar!"
 #
 msgid "You can remove this plugin."
 msgstr "Du kan ta bort detta plugin."
-
-msgid "You can set how will be finished movieplayer with 'Exit' button."
-msgstr ""
 
 msgid "You can set selected directory as 'root' directory for movie player."
 msgstr ""
@@ -16533,11 +16514,6 @@ msgid "automatic from DHCP"
 msgstr "Automatisk"
 
 #
-#, fuzzy
-msgid "automatically scan every day"
-msgstr "Automatisk sökning"
-
-#
 msgid "back"
 msgstr "tillbaka"
 
@@ -16642,9 +16618,6 @@ msgstr "komedi"
 #, fuzzy
 msgid "config menu"
 msgstr "bekräftad"
-
-msgid "configure in which resolution pictures are displayed with the picture viewer and movieplayer"
-msgstr ""
 
 #
 msgid "confirmed"
@@ -17026,6 +16999,11 @@ msgstr ""
 
 msgid "just boot"
 msgstr ""
+
+#
+#, fuzzy
+msgid "kB"
+msgstr "B"
 
 msgid "languages"
 msgstr "språk"
