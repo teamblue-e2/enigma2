@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-09 09:44+0200\n"
+"POT-Creation-Date: 2021-09-24 00:28+0200\n"
 "PO-Revision-Date: 2020-05-13 21:36+0200\n"
 "Last-Translator: mcfly82\n"
 "Language-Team: mcfly82 & wysless\n"
@@ -166,9 +166,6 @@ msgstr ""
 msgid " Warning: the selected tuner should not use SCR Unicable type for LNBs because each tuner need a own SCR number."
 msgstr ""
 
-msgid " extensions."
-msgstr " bővítmény."
-
 #, fuzzy
 msgid " min"
 msgstr "%d perc"
@@ -179,14 +176,8 @@ msgstr " ms"
 msgid " or save the picture additionally to a file"
 msgstr ""
 
-msgid " packages selected."
-msgstr " szoftvercsomag kiválasztva."
-
 msgid " unicable LNB input of rotor"
 msgstr ""
-
-msgid " updates available."
-msgstr " frissítés elérhető."
 
 msgid "$PROJECT_DIR$"
 msgstr ""
@@ -222,10 +213,6 @@ msgstr ""
 #, fuzzy, python-format
 msgid "%02d:%02d"
 msgstr "%2d:%02d"
-
-#, python-format
-msgid "%03d MB"
-msgstr ""
 
 #, python-format
 msgid "%3.01f dB"
@@ -376,10 +363,6 @@ msgstr "%d-%m"
 msgid "%d.%02d. %02d:%02d"
 msgstr "%2d:%02d:%02d"
 
-#, python-format
-msgid "%d.%03d GB"
-msgstr ""
-
 msgid "%d.%B %Y"
 msgstr "%Y. %B %d."
 
@@ -427,10 +410,6 @@ msgid "%s (%s)"
 msgstr "%s (%s)\n"
 
 #, python-format
-msgid "%s (%s)\n"
-msgstr "%s (%s)\n"
-
-#, python-format
 msgid "%s - extraction errors."
 msgstr ""
 
@@ -456,10 +435,6 @@ msgid "%s updated package available"
 msgid_plural "%s updated packages available"
 msgstr[0] "%s frissítés elérhető."
 msgstr[1] "%s frissítés elérhető."
-
-#, python-format
-msgid "%s%d min"
-msgstr "%s%d perc"
 
 #, fuzzy, python-format
 msgid "%s: %s"
@@ -526,9 +501,6 @@ msgstr ""
 msgid "..."
 msgstr "Súgó..."
 
-msgid "/T"
-msgstr ""
-
 msgid "/media/custom"
 msgstr ""
 
@@ -553,14 +525,11 @@ msgstr ""
 msgid "1"
 msgstr ""
 
-msgid "1.0"
-msgstr "1.0"
-
-msgid "1.1"
-msgstr "1.1"
-
-msgid "1.2"
-msgstr "1.2"
+#, fuzzy, python-format
+msgid "1 package selected."
+msgid_plural "%d packages selected."
+msgstr[0] " szoftvercsomag kiválasztva."
+msgstr[1] " szoftvercsomag kiválasztva."
 
 msgid "1024 MB"
 msgstr ""
@@ -955,9 +924,6 @@ msgstr ""
 msgid "ASS file"
 msgstr "%d fájl"
 
-msgid "ATSC"
-msgstr ""
-
 #, fuzzy
 msgid "ATSC provider"
 msgstr "Szolgáltató hozzáadása"
@@ -983,11 +949,11 @@ msgstr "Névjegy"
 msgid "About..."
 msgstr "Névjegy..."
 
-#, fuzzy
-msgid "Accessed:"
+msgid "Access point:"
 msgstr "Hozzáférési pont:"
 
-msgid "Access point:"
+#, fuzzy
+msgid "Accessed:"
 msgstr "Hozzáférési pont:"
 
 #, fuzzy
@@ -3281,49 +3247,27 @@ msgstr "DVB felirat fekete-áttetszőssége"
 msgid "DVB type"
 msgstr "Típuslista"
 
-msgid "DVB-C"
-msgstr "DVB-C"
-
-#, fuzzy
-msgid "DVB-C ANNEX B"
-msgstr "DVB-C Annex C"
-
-msgid "DVB-C ANNEX C"
-msgstr "DVB-C Annex C"
-
-msgid "DVB-S"
-msgstr "DVB-S"
-
-msgid "DVB-S2"
-msgstr "DVB-S2"
-
-msgid "DVB-T"
-msgstr "DVB-T"
-
-msgid "DVB-T2"
-msgstr "DVB-T2"
-
 msgid "DVD Burn"
 msgstr ""
-
-#, fuzzy
-msgid "DVD File Browser"
-msgstr "DVD Fájlkezelő"
 
 #, fuzzy
 msgid "DVD Menu"
 msgstr "Menü"
 
 #, fuzzy
-msgid "DVD Titlelist"
-msgstr "DVD Címlista"
-
-#, fuzzy
 msgid "DVD file browser"
 msgstr "DVD Fájlkezelő"
 
+#, fuzzy
+msgid "DVD media toolbox"
+msgstr "DVD media toolbox"
+
 msgid "DVD player"
 msgstr "DVD lejátszó"
+
+#, fuzzy
+msgid "DVD titlelist"
+msgstr "DVD Címlista"
 
 #, fuzzy
 msgid "DVDPlayer"
@@ -4429,6 +4373,9 @@ msgstr "IP cím"
 msgid "Enter PIN"
 msgstr "Új PIN-kód mégegyszer"
 
+msgid "Enter PIN code"
+msgstr "Adja meg a PIN-kódot"
+
 #, fuzzy
 msgid "Enter URL"
 msgstr "Új PIN-kód mégegyszer"
@@ -4449,9 +4396,6 @@ msgstr "Címválasztás bezárása"
 #, fuzzy
 msgid "Enter persistent PIN code"
 msgstr "PIN-Kód:"
-
-msgid "Enter PIN code"
-msgstr "Adja meg a PIN-kódot"
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the spec sheet of your LNB."
 msgstr ""
@@ -7979,9 +7923,6 @@ msgstr "Feliratozás"
 msgid "Overall progress:"
 msgstr "Folyamatban"
 
-msgid "Overscan Wizard"
-msgstr ""
-
 #, fuzzy
 msgid "Overscan wizard"
 msgstr "Hálózati Varázsló"
@@ -8399,6 +8340,10 @@ msgid "Please enter new description:"
 msgstr "Kérem, adja meg az új nevet:"
 
 msgid "Please enter new name:"
+msgstr "Kérem, adja meg az új nevet:"
+
+#, fuzzy
+msgid "Please enter password"
 msgstr "Kérem, adja meg az új nevet:"
 
 msgid "Please enter the correct PIN code"
@@ -9464,6 +9409,9 @@ msgstr "Ismétlések"
 msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)"
 msgstr ""
 
+msgid "Replace newlines in EPG"
+msgstr ""
+
 msgid "Report Msgid Bugs To"
 msgstr ""
 
@@ -10035,9 +9983,6 @@ msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
 msgstr[0] "A keresés befejeződött, és %d csatornát talált"
 msgstr[1] "A keresés befejeződött, és %d csatornát talált"
-
-msgid "Scanning failed!"
-msgstr "A keresés sikertelen!"
 
 msgid "Scanning..."
 msgstr "Keresés..."
@@ -11325,6 +11270,10 @@ msgstr "Elektronikus műsorújság"
 msgid "Sleep/wakeup timer"
 msgstr "Elalvás időzítő"
 
+#, fuzzy
+msgid "SleepTimer Configuration"
+msgstr "Tuner beállítások"
+
 msgid "Sleeptimer"
 msgstr "Elalvás időzítő"
 
@@ -12263,6 +12212,9 @@ msgstr "A PIN-kódot sikeresen megváltoztatta."
 msgid "The PIN code has been saved successfully."
 msgstr "A PIN-kódot sikeresen megváltoztatta."
 
+msgid "The PIN code you entered is wrong."
+msgstr "A megadott PIN kód helytelen."
+
 msgid "The PIN codes you entered are different."
 msgstr "A megadott PIN-kódok eltérnek egymástól."
 
@@ -12365,9 +12317,6 @@ msgstr ""
 msgid "The path %s already exists."
 msgstr "A %s útvonal már létezik."
 
-msgid "The PIN code you entered is wrong."
-msgstr "A megadott PIN kód helytelen."
-
 #, fuzzy, python-format
 msgid "The results have been written to %s"
 msgstr "Az eredmények ide lettek kiírva: %s"
@@ -12430,9 +12379,6 @@ msgstr "A varázsló el tudja menteni a jelenlegi beállításait. szeretne most
 
 msgid "The wizard is finished now."
 msgstr "A varázsló befejezte feladatát."
-
-msgid "There are at least "
-msgstr "Legalább"
 
 #, python-format
 msgid "There are at least %d updates available."
@@ -12507,6 +12453,9 @@ msgstr ""
 
 msgid "This allows you to show systemplugins modules in downloads"
 msgstr ""
+
+msgid "This bouquet is protected by a parental control PIN"
+msgstr "Ez a lista gyermekzár PIN-kóddal védett"
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
@@ -12663,6 +12612,9 @@ msgstr "A plugin el lesz távolítva."
 #, python-format
 msgid "This receiver cannot decode %s streams!"
 msgstr "Ez a készülék nem képes %s folyamokat dekódolni!"
+
+msgid "This service is protected by a parental control PIN"
+msgstr "Ez a csatorna gyermekzárral védett"
 
 msgid "This setting allows the tuner configuration to be a duplication of how another tuner is already configured."
 msgstr ""
@@ -13140,9 +13092,6 @@ msgstr ""
 
 msgid "URL of fallback remote receiver"
 msgstr ""
-
-msgid "USALS"
-msgstr "USALS"
 
 msgid "USALS automatically moves a motorised dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
 msgstr ""
@@ -13658,8 +13607,9 @@ msgstr "Rass interaktív szolgáltatás használata..."
 msgid "View details"
 msgstr "Részletek megtekintése"
 
-msgid "View list of available "
-msgstr "Az elérhetők listázása: "
+#, fuzzy, python-format
+msgid "View list of available %s extensions."
+msgstr "Az elérhető EPG-bővítmények listája"
 
 msgid "View list of available CommonInterface extensions"
 msgstr "Az elérhető CI-Bővítmények listázása"
@@ -13754,9 +13704,6 @@ msgstr "Ny"
 msgid "WARNING!"
 msgstr ""
 
-msgid "WEP"
-msgstr "WEP"
-
 msgid "WLAN connection"
 msgstr "Vezeték nélküli kapcsolat"
 
@@ -13767,15 +13714,6 @@ msgstr "AC3/DTS lekeverés"
 #, fuzzy
 msgid "WOL standby"
 msgstr "Nincs kikapcsolás"
-
-msgid "WPA"
-msgstr "WPA"
-
-msgid "WPA or WPA2"
-msgstr "WPA vagy WPA2"
-
-msgid "WPA2"
-msgstr "WPA2"
 
 msgid "WSS on 4:3"
 msgstr "WSS 4:3-on"
@@ -14576,9 +14514,9 @@ msgstr "A készüléknek nincs kapcsolata az internettel."
 
 #, fuzzy
 msgid ""
-"Your receiver is now ready to use.\n"
+"Your receiver is now ready to be used.\n"
 "\n"
-"Your internet connection is working now.\n"
+"Your internet connection is working.\n"
 "\n"
 msgstr ""
 "A készülék most már használható állapotban van.\n"
@@ -14859,6 +14797,9 @@ msgstr "vissza"
 msgid "background image"
 msgstr "háttérkép"
 
+msgid "backup EPG cache"
+msgstr "EPG cache biztonsági mentése"
+
 msgid "ballet"
 msgstr "Balett"
 
@@ -15062,9 +15003,6 @@ msgstr "szórakoztató (10-16 éves korosztály"
 
 msgid "entertainment (6-14 year old)"
 msgstr "szórakoztató (6-14 éves korosztály"
-
-msgid "backup EPG cache"
-msgstr "EPG cache biztonsági mentése"
 
 msgid "equestrian"
 msgstr "lovaglás"
@@ -15831,14 +15769,15 @@ msgstr "tenisz/fallabda"
 msgid "testing"
 msgstr "Felbontás"
 
-msgid "This bouquet is protected by a parental control PIN"
-msgstr "Ez a lista gyermekzár PIN-kóddal védett"
-
 msgid "this recording"
 msgstr "ez a felvétel"
 
-msgid "This service is protected by a parental control PIN"
-msgstr "Ez a csatorna gyermekzárral védett"
+msgid "to dir"
+msgstr ""
+
+#, fuzzy
+msgid "toggels between tv and radio..."
+msgstr "Rádiólista megnyitása..."
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "idő, chapter, hangsáv, feliratsáv választás"

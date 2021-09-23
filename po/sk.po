@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-09 09:44+0200\n"
+"POT-Creation-Date: 2021-09-24 00:28+0200\n"
 "PO-Revision-Date: 2020-02-10 12:49+0100\n"
 "Last-Translator: Andrej Tobola <andrej.tobola@gmail.com>\n"
 "Language-Team: \n"
@@ -167,9 +167,6 @@ msgstr ""
 msgid " Warning: the selected tuner should not use SCR Unicable type for LNBs because each tuner need a own SCR number."
 msgstr ""
 
-msgid " extensions."
-msgstr " rozšírenia."
-
 #, fuzzy
 msgid " min"
 msgstr "%d min"
@@ -180,14 +177,8 @@ msgstr " ms"
 msgid " or save the picture additionally to a file"
 msgstr ""
 
-msgid " packages selected."
-msgstr " balíčkov zvolených."
-
 msgid " unicable LNB input of rotor"
 msgstr ""
-
-msgid " updates available."
-msgstr " aktualizácie k dispozícii."
 
 msgid "$PROJECT_DIR$"
 msgstr ""
@@ -222,10 +213,6 @@ msgstr ""
 
 #, python-format
 msgid "%02d:%02d"
-msgstr ""
-
-#, python-format
-msgid "%03d MB"
 msgstr ""
 
 #, python-format
@@ -386,10 +373,6 @@ msgstr ""
 msgid "%d.%02d. %02d:%02d"
 msgstr ""
 
-#, python-format
-msgid "%d.%03d GB"
-msgstr ""
-
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
 
@@ -437,10 +420,6 @@ msgid "%s (%s)"
 msgstr "%s (%s)\n"
 
 #, python-format
-msgid "%s (%s)\n"
-msgstr "%s (%s)\n"
-
-#, python-format
 msgid "%s - extraction errors."
 msgstr ""
 
@@ -467,10 +446,6 @@ msgid_plural "%s updated packages available"
 msgstr[0] " aktualizácie k dispozícii."
 msgstr[1] " aktualizácie k dispozícii."
 msgstr[2] " aktualizácie k dispozícii."
-
-#, python-format
-msgid "%s%d min"
-msgstr ""
 
 #, python-format
 msgid "%s: %s"
@@ -536,9 +511,6 @@ msgstr ""
 msgid "..."
 msgstr "Pomoc..."
 
-msgid "/T"
-msgstr ""
-
 msgid "/media/custom"
 msgstr ""
 
@@ -562,14 +534,12 @@ msgstr ""
 msgid "1"
 msgstr ""
 
-msgid "1.0"
-msgstr "1,0"
-
-msgid "1.1"
-msgstr "1,1"
-
-msgid "1.2"
-msgstr "1,2"
+#, fuzzy, python-format
+msgid "1 package selected."
+msgid_plural "%d packages selected."
+msgstr[0] " balíčkov zvolených."
+msgstr[1] " balíčkov zvolených."
+msgstr[2] " balíčkov zvolených."
 
 msgid "1024 MB"
 msgstr ""
@@ -949,9 +919,6 @@ msgstr ""
 msgid "ASS file"
 msgstr ""
 
-msgid "ATSC"
-msgstr ""
-
 #, fuzzy
 msgid "ATSC provider"
 msgstr "pridať poskytovateľa"
@@ -977,11 +944,11 @@ msgstr "O Dreamboxe"
 msgid "About..."
 msgstr "O Dreamboxe..."
 
-#, fuzzy
-msgid "Accessed:"
+msgid "Access point:"
 msgstr "Prístupový bod:"
 
-msgid "Access point:"
+#, fuzzy
+msgid "Accessed:"
 msgstr "Prístupový bod:"
 
 #, fuzzy
@@ -3314,49 +3281,28 @@ msgstr ""
 msgid "DVB type"
 msgstr "Druh testu"
 
-msgid "DVB-C"
-msgstr ""
-
-msgid "DVB-C ANNEX B"
-msgstr ""
-
-msgid "DVB-C ANNEX C"
-msgstr ""
-
-msgid "DVB-S"
-msgstr "DVB-S"
-
-msgid "DVB-S2"
-msgstr "DVB-S2"
-
-msgid "DVB-T"
-msgstr ""
-
-msgid "DVB-T2"
-msgstr ""
-
 msgid "DVD Burn"
 msgstr ""
-
-#, fuzzy
-msgid "DVD File Browser"
-msgstr "Prehliadač súborov DVD"
 
 #, fuzzy
 msgid "DVD Menu"
 msgstr "Menu"
 
 #, fuzzy
-msgid "DVD Titlelist"
-msgstr "Zoznam titulov DVD"
-
-#, fuzzy
 msgid "DVD file browser"
 msgstr "Prehliadač súborov DVD"
 
 #, fuzzy
+msgid "DVD media toolbox"
+msgstr "Nástroje pre DVD"
+
+#, fuzzy
 msgid "DVD player"
 msgstr "Prehrávač DVD"
+
+#, fuzzy
+msgid "DVD titlelist"
+msgstr "Zoznam titulov DVD"
 
 #, fuzzy
 msgid "DVDPlayer"
@@ -4470,6 +4416,9 @@ msgstr "Adresa IP"
 msgid "Enter PIN"
 msgstr "Znova zadajte nový PIN."
 
+msgid "Enter PIN code"
+msgstr "Zadajte kód PIN"
+
 #, fuzzy
 msgid "Enter URL"
 msgstr "Znova zadajte nový PIN."
@@ -4489,9 +4438,6 @@ msgstr "Zatvoriť výber titulkov"
 
 #, fuzzy
 msgid "Enter persistent PIN code"
-msgstr "Zadajte kód PIN"
-
-msgid "Enter PIN code"
 msgstr "Zadajte kód PIN"
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the spec sheet of your LNB."
@@ -8070,9 +8016,6 @@ msgstr "Výber titulkov"
 msgid "Overall progress:"
 msgstr "Prebieha"
 
-msgid "Overscan Wizard"
-msgstr ""
-
 #, fuzzy
 msgid "Overscan wizard"
 msgstr "Sprievodca sieťou"
@@ -9569,6 +9512,9 @@ msgstr "Opakovania"
 msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)"
 msgstr ""
 
+msgid "Replace newlines in EPG"
+msgstr ""
+
 msgid "Report Msgid Bugs To"
 msgstr ""
 
@@ -10143,9 +10089,6 @@ msgid_plural "Scanning completed, %d channels found"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
-
-msgid "Scanning failed!"
-msgstr ""
 
 msgid "Scanning..."
 msgstr ""
@@ -11463,6 +11406,10 @@ msgstr "Voľba EPG"
 msgid "Sleep/wakeup timer"
 msgstr "Časovač vypnutia"
 
+#, fuzzy
+msgid "SleepTimer Configuration"
+msgstr "Nastavenie tunera"
+
 msgid "Sleeptimer"
 msgstr ""
 
@@ -12412,6 +12359,9 @@ msgstr "Kód PIN bol úspešne zmenený."
 msgid "The PIN code has been saved successfully."
 msgstr "Kód PIN bol úspešne zmenený."
 
+msgid "The PIN code you entered is wrong."
+msgstr "Zadaný PIN kód je nesprávny."
+
 msgid "The PIN codes you entered are different."
 msgstr "Kódy PIN, ktoré ste zadali, sú rôzne."
 
@@ -12513,9 +12463,6 @@ msgstr ""
 msgid "The path %s already exists."
 msgstr "Cesta %s už existuje."
 
-msgid "The PIN code you entered is wrong."
-msgstr "Zadaný PIN kód je nesprávny."
-
 #, fuzzy, python-format
 msgid "The results have been written to %s"
 msgstr "Výsledky boli zapísané do súboru %s."
@@ -12579,9 +12526,6 @@ msgstr "Sprievodca môže zálohovať aktuálne nastavenia. Chcete teraz záloho
 
 msgid "The wizard is finished now."
 msgstr "Sprievodca teraz skončil."
-
-msgid "There are at least "
-msgstr "Je aspoň"
 
 #, python-format
 msgid "There are at least %d updates available."
@@ -12656,6 +12600,9 @@ msgstr ""
 
 msgid "This allows you to show systemplugins modules in downloads"
 msgstr ""
+
+msgid "This bouquet is protected by a parental control PIN"
+msgstr "Tento zoznam je chránený rodičovskou kontrolou"
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
@@ -12812,6 +12759,9 @@ msgstr "Tento modul sa odstráni."
 #, python-format
 msgid "This receiver cannot decode %s streams!"
 msgstr ""
+
+msgid "This service is protected by a parental control PIN"
+msgstr "Táto stanica je chránená rodičovskou kontrolou"
 
 msgid "This setting allows the tuner configuration to be a duplication of how another tuner is already configured."
 msgstr ""
@@ -13297,9 +13247,6 @@ msgstr ""
 
 msgid "URL of fallback remote receiver"
 msgstr ""
-
-msgid "USALS"
-msgstr "USALS"
 
 msgid "USALS automatically moves a motorised dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
 msgstr ""
@@ -13821,8 +13768,9 @@ msgstr "Zobraziť RASS interaktívne..."
 msgid "View details"
 msgstr "Zobraziť podrobnosti"
 
-msgid "View list of available "
-msgstr "Zobraziť zoznam dostupných"
+#, fuzzy, python-format
+msgid "View list of available %s extensions."
+msgstr "Zobraziť zoznam dostupných rozšírení EPG."
 
 msgid "View list of available CommonInterface extensions"
 msgstr "Zobraziť zoznam dostupných rozšírení CommonInterface"
@@ -13921,9 +13869,6 @@ msgstr "Z"
 msgid "WARNING!"
 msgstr ""
 
-msgid "WEP"
-msgstr "WEP"
-
 msgid "WLAN connection"
 msgstr "Spojenie WLAN"
 
@@ -13933,15 +13878,6 @@ msgstr ""
 #, fuzzy
 msgid "WOL standby"
 msgstr "žiadny pohotovostný režim"
-
-msgid "WPA"
-msgstr "WPA"
-
-msgid "WPA or WPA2"
-msgstr "WPA alebo WPA2"
-
-msgid "WPA2"
-msgstr "WPA2"
 
 msgid "WSS on 4:3"
 msgstr "WSS pri 4:3"
@@ -14707,9 +14643,9 @@ msgstr ""
 
 #, fuzzy
 msgid ""
-"Your receiver is now ready to use.\n"
+"Your receiver is now ready to be used.\n"
 "\n"
-"Your internet connection is working now.\n"
+"Your internet connection is working.\n"
 "\n"
 msgstr ""
 "Váš Dreambox je teraz pripravený na používanie.\n"
@@ -14982,6 +14918,9 @@ msgstr "späť"
 msgid "background image"
 msgstr "obraz v pozadí"
 
+msgid "backup EPG cache"
+msgstr "záloha pamäte EPG"
+
 msgid "ballet"
 msgstr ""
 
@@ -15185,9 +15124,6 @@ msgstr ""
 
 msgid "entertainment (6-14 year old)"
 msgstr ""
-
-msgid "backup EPG cache"
-msgstr "záloha pamäte EPG"
 
 msgid "equestrian"
 msgstr ""
@@ -15952,14 +15888,15 @@ msgstr ""
 msgid "testing"
 msgstr "Rozlíšenie"
 
-msgid "This bouquet is protected by a parental control PIN"
-msgstr "Tento zoznam je chránený rodičovskou kontrolou"
-
 msgid "this recording"
 msgstr "táto nahrávka"
 
-msgid "This service is protected by a parental control PIN"
-msgstr "Táto stanica je chránená rodičovskou kontrolou"
+msgid "to dir"
+msgstr ""
+
+#, fuzzy
+msgid "toggels between tv and radio..."
+msgstr "Počúvať rádio..."
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "prepnúť informácie o čase, kapitole, zvuku a podtitulkoch"

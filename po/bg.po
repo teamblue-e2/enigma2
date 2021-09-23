@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-09 09:44+0200\n"
+"POT-Creation-Date: 2021-09-24 00:28+0200\n"
 "PO-Revision-Date: 2018-11-12 20:51+0200\n"
 "Last-Translator: Мартин Петков <marto74bg@yahoo.co.uk>\n"
 "Language-Team: Bulgarian\n"
@@ -163,9 +163,6 @@ msgstr ""
 msgid " Warning: the selected tuner should not use SCR Unicable type for LNBs because each tuner need a own SCR number."
 msgstr ""
 
-msgid " extensions."
-msgstr ""
-
 #, fuzzy
 msgid " min"
 msgstr "%d мин"
@@ -176,14 +173,8 @@ msgstr ""
 msgid " or save the picture additionally to a file"
 msgstr ""
 
-msgid " packages selected."
-msgstr " избрани пакети."
-
 msgid " unicable LNB input of rotor"
 msgstr ""
-
-msgid " updates available."
-msgstr " ъпдейти на разположение."
 
 msgid "$PROJECT_DIR$"
 msgstr ""
@@ -218,10 +209,6 @@ msgstr ""
 
 #, python-format
 msgid "%02d:%02d"
-msgstr ""
-
-#, python-format
-msgid "%03d MB"
 msgstr ""
 
 #, python-format
@@ -370,10 +357,6 @@ msgstr ""
 msgid "%d.%02d. %02d:%02d"
 msgstr ""
 
-#, python-format
-msgid "%d.%03d GB"
-msgstr ""
-
 msgid "%d.%B %Y"
 msgstr ""
 
@@ -421,10 +404,6 @@ msgid "%s (%s)"
 msgstr ""
 
 #, python-format
-msgid "%s (%s)\n"
-msgstr ""
-
-#, python-format
 msgid "%s - extraction errors."
 msgstr ""
 
@@ -450,10 +429,6 @@ msgid "%s updated package available"
 msgid_plural "%s updated packages available"
 msgstr[0] "%s актуализиран пакет е наличен"
 msgstr[1] "%s актуализирани пакети са налични"
-
-#, python-format
-msgid "%s%d min"
-msgstr ""
 
 #, python-format
 msgid "%s: %s"
@@ -517,9 +492,6 @@ msgstr ""
 msgid "..."
 msgstr "помощ..."
 
-msgid "/T"
-msgstr ""
-
 msgid "/media/custom"
 msgstr ""
 
@@ -543,14 +515,11 @@ msgstr ""
 msgid "1"
 msgstr ""
 
-msgid "1.0"
-msgstr ""
-
-msgid "1.1"
-msgstr ""
-
-msgid "1.2"
-msgstr ""
+#, fuzzy, python-format
+msgid "1 package selected."
+msgid_plural "%d packages selected."
+msgstr[0] " избрани пакети."
+msgstr[1] " избрани пакети."
 
 msgid "1024 MB"
 msgstr ""
@@ -927,9 +896,6 @@ msgstr ""
 msgid "ASS file"
 msgstr ""
 
-msgid "ATSC"
-msgstr ""
-
 #, fuzzy
 msgid "ATSC provider"
 msgstr "Провайдър"
@@ -955,14 +921,14 @@ msgstr "Относно"
 msgid "About..."
 msgstr "Относно..."
 
+msgid "Access point:"
+msgstr "Точка за достъп:"
+
 msgid "Accessed:"
 msgstr ""
 
 msgid "Activate"
 msgstr ""
-
-msgid "Access point:"
-msgstr "Точка за достъп:"
 
 msgid "Activate HbbTV (Redbutton)"
 msgstr ""
@@ -3204,46 +3170,25 @@ msgstr ""
 msgid "DVB type"
 msgstr ""
 
-msgid "DVB-C"
-msgstr ""
-
-msgid "DVB-C ANNEX B"
-msgstr ""
-
-msgid "DVB-C ANNEX C"
-msgstr ""
-
-msgid "DVB-S"
-msgstr ""
-
-msgid "DVB-S2"
-msgstr ""
-
-msgid "DVB-T"
-msgstr ""
-
-msgid "DVB-T2"
-msgstr ""
-
 msgid "DVD Burn"
-msgstr ""
-
-msgid "DVD File Browser"
 msgstr ""
 
 #, fuzzy
 msgid "DVD Menu"
 msgstr "Меню"
 
-#, fuzzy
-msgid "DVD Titlelist"
-msgstr "бял лист"
-
 msgid "DVD file browser"
+msgstr ""
+
+msgid "DVD media toolbox"
 msgstr ""
 
 msgid "DVD player"
 msgstr ""
+
+#, fuzzy
+msgid "DVD titlelist"
+msgstr "бял лист"
 
 #, fuzzy
 msgid "DVDPlayer"
@@ -4328,6 +4273,9 @@ msgstr ""
 msgid "Enter PIN"
 msgstr "Въведете отново новия ПИН"
 
+msgid "Enter PIN code"
+msgstr "Въведете ПИН код"
+
 #, fuzzy
 msgid "Enter URL"
 msgstr "Въведете отново новия ПИН"
@@ -4348,9 +4296,6 @@ msgstr "Избор  на субтитри"
 #, fuzzy
 msgid "Enter persistent PIN code"
 msgstr "Моля въведете коректен ПИН код"
-
-msgid "Enter PIN code"
-msgstr "Въведете ПИН код"
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the spec sheet of your LNB."
 msgstr ""
@@ -7815,9 +7760,6 @@ msgstr "Настройка на субтитрите"
 msgid "Overall progress:"
 msgstr ""
 
-msgid "Overscan Wizard"
-msgstr ""
-
 #, fuzzy
 msgid "Overscan wizard"
 msgstr "Мрежов Помощник"
@@ -9266,6 +9208,9 @@ msgstr "Повторения"
 msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)"
 msgstr ""
 
+msgid "Replace newlines in EPG"
+msgstr ""
+
 msgid "Report Msgid Bugs To"
 msgstr ""
 
@@ -9827,9 +9772,6 @@ msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
 msgstr[0] ""
 msgstr[1] ""
-
-msgid "Scanning failed!"
-msgstr ""
 
 msgid "Scanning..."
 msgstr ""
@@ -11098,6 +11040,10 @@ msgstr "Избор на таймер"
 msgid "Sleep/wakeup timer"
 msgstr "Tаймер за Сън"
 
+#, fuzzy
+msgid "SleepTimer Configuration"
+msgstr "Тунер конфигурация"
+
 msgid "Sleeptimer"
 msgstr ""
 
@@ -12002,6 +11948,9 @@ msgstr ""
 msgid "The PIN code has been saved successfully."
 msgstr ""
 
+msgid "The PIN code you entered is wrong."
+msgstr "Въведеният ПИН код е грешен."
+
 msgid "The PIN codes you entered are different."
 msgstr ""
 
@@ -12098,9 +12047,6 @@ msgstr ""
 msgid "The path %s already exists."
 msgstr "Пътя %s вeче съществува"
 
-msgid "The PIN code you entered is wrong."
-msgstr "Въведеният ПИН код е грешен."
-
 #, fuzzy, python-format
 msgid "The results have been written to %s"
 msgstr "Резултатите са записани в %s."
@@ -12161,9 +12107,6 @@ msgstr "Помощникът може да backup вашите текущи на
 
 msgid "The wizard is finished now."
 msgstr "Помощникът завърши."
-
-msgid "There are at least "
-msgstr "Има най-малко "
 
 #, python-format
 msgid "There are at least %d updates available."
@@ -12237,6 +12180,9 @@ msgstr ""
 
 msgid "This allows you to show systemplugins modules in downloads"
 msgstr ""
+
+msgid "This bouquet is protected by a parental control PIN"
+msgstr "Този букет е защитен с ПИН кода на родителски контрол"
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
@@ -12393,6 +12339,9 @@ msgstr "Плъгинът ще бъде премахнат."
 #, python-format
 msgid "This receiver cannot decode %s streams!"
 msgstr ""
+
+msgid "This service is protected by a parental control PIN"
+msgstr "Този канал е заключен с ПИН за родителски контрол"
 
 msgid "This setting allows the tuner configuration to be a duplication of how another tuner is already configured."
 msgstr ""
@@ -12843,9 +12792,6 @@ msgstr ""
 
 msgid "URL of fallback remote receiver"
 msgstr ""
-
-msgid "USALS"
-msgstr "USALS"
 
 msgid "USALS automatically moves a motorised dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
 msgstr ""
@@ -13349,8 +13295,9 @@ msgstr ""
 msgid "View details"
 msgstr "Детайли..."
 
-msgid "View list of available "
-msgstr "Списък с наличните "
+#, fuzzy, python-format
+msgid "View list of available %s extensions."
+msgstr "Списък с наличните EPG extensions."
 
 msgid "View list of available CommonInterface extensions"
 msgstr "Списък с наличните Common Interface extensions"
@@ -13443,9 +13390,6 @@ msgstr ""
 msgid "WARNING!"
 msgstr ""
 
-msgid "WEP"
-msgstr ""
-
 msgid "WLAN connection"
 msgstr ""
 
@@ -13455,15 +13399,6 @@ msgstr ""
 #, fuzzy
 msgid "WOL standby"
 msgstr "Изключване"
-
-msgid "WPA"
-msgstr ""
-
-msgid "WPA or WPA2"
-msgstr ""
-
-msgid "WPA2"
-msgstr ""
 
 msgid "WSS on 4:3"
 msgstr ""
@@ -14219,9 +14154,9 @@ msgid "Your receiver does not have an internet connection"
 msgstr ""
 
 msgid ""
-"Your receiver is now ready to use.\n"
+"Your receiver is now ready to be used.\n"
 "\n"
-"Your internet connection is working now.\n"
+"Your internet connection is working.\n"
 "\n"
 msgstr ""
 
@@ -14484,6 +14419,9 @@ msgstr "назад"
 msgid "background image"
 msgstr "фон"
 
+msgid "backup EPG cache"
+msgstr "запазване на EPG кеша"
+
 msgid "ballet"
 msgstr ""
 
@@ -14684,9 +14622,6 @@ msgstr ""
 
 msgid "entertainment (6-14 year old)"
 msgstr ""
-
-msgid "backup EPG cache"
-msgstr "запазване на EPG кеша"
 
 msgid "equestrian"
 msgstr ""
@@ -15447,14 +15382,8 @@ msgstr ""
 msgid "testing"
 msgstr "Резолюция"
 
-msgid "This bouquet is protected by a parental control PIN"
-msgstr "Този букет е защитен с ПИН кода на родителски контрол"
-
 msgid "this recording"
 msgstr "този запис"
-
-msgid "This service is protected by a parental control PIN"
-msgstr "Този канал е заключен с ПИН за родителски контрол"
 
 msgid "to dir"
 msgstr ""

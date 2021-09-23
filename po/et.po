@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-09 09:44+0200\n"
+"POT-Creation-Date: 2021-09-24 00:28+0200\n"
 "PO-Revision-Date: 2019-04-03 06:49+0300\n"
 "Last-Translator: \n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas, zeros\\n faas, sateks, valgekotkas, tigekala, rootsikunn\\n kain, i70, mustkass, pelmeen, Scott\\n <digi-tv.ee>\n"
@@ -166,9 +166,6 @@ msgstr ""
 msgid " Warning: the selected tuner should not use SCR Unicable type for LNBs because each tuner need a own SCR number."
 msgstr ""
 
-msgid " extensions."
-msgstr " laiendused."
-
 #, fuzzy
 msgid " min"
 msgstr "%d min"
@@ -179,14 +176,8 @@ msgstr " ms"
 msgid " or save the picture additionally to a file"
 msgstr ""
 
-msgid " packages selected."
-msgstr " paketti valitud."
-
 msgid " unicable LNB input of rotor"
 msgstr ""
-
-msgid " updates available."
-msgstr " uuendust saadaval."
 
 msgid "$PROJECT_DIR$"
 msgstr ""
@@ -222,10 +213,6 @@ msgstr ""
 #, fuzzy, python-format
 msgid "%02d:%02d"
 msgstr "%2d:%02d"
-
-#, python-format
-msgid "%03d MB"
-msgstr ""
 
 #, python-format
 msgid "%3.01f dB"
@@ -376,10 +363,6 @@ msgstr "%d-%m"
 msgid "%d.%02d. %02d:%02d"
 msgstr "%2d:%02d:%02d"
 
-#, python-format
-msgid "%d.%03d GB"
-msgstr ""
-
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
 
@@ -427,10 +410,6 @@ msgid "%s (%s)"
 msgstr "%s (%s)\n"
 
 #, python-format
-msgid "%s (%s)\n"
-msgstr "%s (%s)\n"
-
-#, python-format
 msgid "%s - extraction errors."
 msgstr ""
 
@@ -456,10 +435,6 @@ msgid "%s updated package available"
 msgid_plural "%s updated packages available"
 msgstr[0] " %s uuendatud pakett saadaval."
 msgstr[1] " %s uuendatud paketti saadaval."
-
-#, python-format
-msgid "%s%d min"
-msgstr "%s%d min"
 
 #, fuzzy, python-format
 msgid "%s: %s"
@@ -526,9 +501,6 @@ msgstr ""
 msgid "..."
 msgstr "abi"
 
-msgid "/T"
-msgstr ""
-
 msgid "/media/custom"
 msgstr ""
 
@@ -553,14 +525,11 @@ msgstr ""
 msgid "1"
 msgstr ""
 
-msgid "1.0"
-msgstr "1.0"
-
-msgid "1.1"
-msgstr "1.1"
-
-msgid "1.2"
-msgstr "1.2"
+#, fuzzy, python-format
+msgid "1 package selected."
+msgid_plural "%d packages selected."
+msgstr[0] " paketti valitud."
+msgstr[1] " paketti valitud."
 
 msgid "1024 MB"
 msgstr ""
@@ -954,9 +923,6 @@ msgstr ""
 msgid "ASS file"
 msgstr ""
 
-msgid "ATSC"
-msgstr ""
-
 #, fuzzy
 msgid "ATSC provider"
 msgstr "Lisa levitaja"
@@ -982,6 +948,9 @@ msgstr "Süsteemiinfo"
 msgid "About..."
 msgstr "Süsteemiinfo"
 
+msgid "Access point:"
+msgstr "WiFi ruuter:"
+
 #, fuzzy
 msgid "Accessed:"
 msgstr "WiFi Ruuter:"
@@ -989,9 +958,6 @@ msgstr "WiFi Ruuter:"
 #, fuzzy
 msgid "Activate"
 msgstr "Ava pilt-pildis"
-
-msgid "Access point:"
-msgstr "WiFi ruuter:"
 
 msgid "Activate HbbTV (Redbutton)"
 msgstr ""
@@ -3280,49 +3246,27 @@ msgstr "DVB subtiitrite tausta läbipaistvus"
 msgid "DVB type"
 msgstr "Testi tüüp"
 
-msgid "DVB-C"
-msgstr "DVB-C"
-
-#, fuzzy
-msgid "DVB-C ANNEX B"
-msgstr "DVB-C ANNEX C"
-
-msgid "DVB-C ANNEX C"
-msgstr "DVB-C ANNEX C"
-
-msgid "DVB-S"
-msgstr "DVB-S"
-
-msgid "DVB-S2"
-msgstr "DVB-S2"
-
-msgid "DVB-T"
-msgstr "DVB-T"
-
-msgid "DVB-T2"
-msgstr "DVB-T2"
-
 msgid "DVD Burn"
 msgstr ""
-
-#, fuzzy
-msgid "DVD File Browser"
-msgstr "DVD failibrauser"
 
 #, fuzzy
 msgid "DVD Menu"
 msgstr "Menüü"
 
 #, fuzzy
-msgid "DVD Titlelist"
-msgstr "DVD nimekiri"
-
-#, fuzzy
 msgid "DVD file browser"
 msgstr "DVD failibrauser"
 
+#, fuzzy
+msgid "DVD media toolbox"
+msgstr "DVD tööriistad"
+
 msgid "DVD player"
 msgstr "DVD mängija"
+
+#, fuzzy
+msgid "DVD titlelist"
+msgstr "DVD nimekiri"
 
 #, fuzzy
 msgid "DVDPlayer"
@@ -4426,6 +4370,9 @@ msgstr "IP aadress"
 msgid "Enter PIN"
 msgstr "Korda uut PIN-i"
 
+msgid "Enter PIN code"
+msgstr "Sisesta PIN kood"
+
 #, fuzzy
 msgid "Enter URL"
 msgstr "Korda uut PIN-i"
@@ -4446,9 +4393,6 @@ msgstr "Sulge pealkirja valik"
 #, fuzzy
 msgid "Enter persistent PIN code"
 msgstr "Sisesta pin kood"
-
-msgid "Enter PIN code"
-msgstr "Sisesta PIN kood"
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the spec sheet of your LNB."
 msgstr ""
@@ -7970,9 +7914,6 @@ msgstr "Subtiitrite seadistus"
 msgid "Overall progress:"
 msgstr "Väike edenemisriba"
 
-msgid "Overscan Wizard"
-msgstr ""
-
 #, fuzzy
 msgid "Overscan wizard"
 msgstr "Võrgu abimees"
@@ -8052,6 +7993,15 @@ msgstr ""
 #, fuzzy
 msgid "PIN code needed"
 msgstr "Vajalik on PIN kood"
+
+msgid "PIP"
+msgstr ""
+
+msgid "PIP on frontpanel"
+msgstr ""
+
+msgid "PIP with OSD"
+msgstr ""
 
 msgid "PLP ID"
 msgstr ""
@@ -8379,6 +8329,10 @@ msgid "Please enter new description:"
 msgstr "Sisesta uus nimi:"
 
 msgid "Please enter new name:"
+msgstr "Sisesta uus nimi:"
+
+#, fuzzy
+msgid "Please enter password"
 msgstr "Sisesta uus nimi:"
 
 msgid "Please enter the correct PIN code"
@@ -9444,6 +9398,9 @@ msgstr "Kordused"
 msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)"
 msgstr ""
 
+msgid "Replace newlines in EPG"
+msgstr ""
+
 msgid "Report Msgid Bugs To"
 msgstr ""
 
@@ -10012,9 +9969,6 @@ msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
 msgstr[0] "Otsing tehtud, %d kanalit leitud"
 msgstr[1] "Otsing tehtud, %d kanalit leitud"
-
-msgid "Scanning failed!"
-msgstr "Otsing nurjus!"
 
 msgid "Scanning..."
 msgstr "Otsing..."
@@ -11303,6 +11257,10 @@ msgstr "Saatekava"
 msgid "Sleep/wakeup timer"
 msgstr "Unetaimer"
 
+#, fuzzy
+msgid "SleepTimer Configuration"
+msgstr "Tuuneri seaded"
+
 msgid "Sleeptimer"
 msgstr ""
 
@@ -12226,6 +12184,9 @@ msgstr "PIN kood on muudetud."
 msgid "The PIN code has been saved successfully."
 msgstr "PIN kood on muudetud."
 
+msgid "The PIN code you entered is wrong."
+msgstr "Vale kood."
+
 msgid "The PIN codes you entered are different."
 msgstr "Sisestatud PIN koodid on erinevad."
 
@@ -12328,9 +12289,6 @@ msgstr ""
 msgid "The path %s already exists."
 msgstr "Kaust %s on juba olemas."
 
-msgid "The PIN code you entered is wrong."
-msgstr "Vale kood."
-
 #, fuzzy, python-format
 msgid "The results have been written to %s"
 msgstr "Tulemused on salvestatud %s."
@@ -12393,9 +12351,6 @@ msgstr "Praegustest seadetest saab teha varukoopia. Kas teha seda nüüd?"
 
 msgid "The wizard is finished now."
 msgstr "Toiming on nüüd lõpetatud. Vajuta OK."
-
-msgid "There are at least "
-msgstr "Seal on vähemalt "
 
 #, python-format
 msgid "There are at least %d updates available."
@@ -12470,6 +12425,9 @@ msgstr ""
 
 msgid "This allows you to show systemplugins modules in downloads"
 msgstr ""
+
+msgid "This bouquet is protected by a parental control PIN"
+msgstr "See kanalivalik on kaitstud lapseluku PIN koodiga"
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
@@ -12626,6 +12584,9 @@ msgstr "See laiendus eemaldatakse."
 #, python-format
 msgid "This receiver cannot decode %s streams!"
 msgstr "See vastuvõtja ei toeta %s voogude dekodeerimist!"
+
+msgid "This service is protected by a parental control PIN"
+msgstr "See kanal on kaitstud lapselukuga"
 
 msgid "This setting allows the tuner configuration to be a duplication of how another tuner is already configured."
 msgstr ""
@@ -13100,9 +13061,6 @@ msgstr ""
 
 msgid "URL of fallback remote receiver"
 msgstr ""
-
-msgid "USALS"
-msgstr "USALS"
 
 msgid "USALS automatically moves a motorised dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
 msgstr ""
@@ -13617,8 +13575,9 @@ msgstr "Vaata Rass interactive"
 msgid "View details"
 msgstr "Vaata detaile"
 
-msgid "View list of available "
-msgstr "Vaata saadaval olevat nimekirja "
+#, fuzzy, python-format
+msgid "View list of available %s extensions."
+msgstr "Vaata EPG laienduste nimekirja."
 
 msgid "View list of available CommonInterface extensions"
 msgstr "Vaata CI laienduste nimekirja"
@@ -13713,9 +13672,6 @@ msgstr "W"
 msgid "WARNING!"
 msgstr ""
 
-msgid "WEP"
-msgstr "WEP"
-
 msgid "WLAN connection"
 msgstr "WiFi ühendus"
 
@@ -13726,15 +13682,6 @@ msgstr "AC3/DTS > stereo"
 #, fuzzy
 msgid "WOL standby"
 msgstr "Ooterežiimita"
-
-msgid "WPA"
-msgstr "WPA"
-
-msgid "WPA or WPA2"
-msgstr "WPA või WPA2"
-
-msgid "WPA2"
-msgstr "WPA2"
 
 msgid "WSS on 4:3"
 msgstr "WSS 4:3 -ga"
@@ -14529,9 +14476,9 @@ msgstr "Vastuvõtjal puudub internetiühendus"
 
 #, fuzzy
 msgid ""
-"Your receiver is now ready to use.\n"
+"Your receiver is now ready to be used.\n"
 "\n"
-"Your internet connection is working now.\n"
+"Your internet connection is working.\n"
 "\n"
 msgstr ""
 "Vastuvõtja on kasutamiseks valmis.\n"
@@ -14810,6 +14757,9 @@ msgstr "tagasi"
 msgid "background image"
 msgstr "taustapilt"
 
+msgid "backup EPG cache"
+msgstr "EPG vahemälu varukoopia"
+
 msgid "ballet"
 msgstr "ballett"
 
@@ -15013,9 +14963,6 @@ msgstr "meelelahutus (10-16 aastastele)"
 
 msgid "entertainment (6-14 year old)"
 msgstr "meelelahutus (6-14 aastastele)"
-
-msgid "backup EPG cache"
-msgstr "EPG vahemälu varukoopia"
 
 msgid "equestrian"
 msgstr "ratsutamine"
@@ -15783,14 +15730,8 @@ msgstr "tennis/squash"
 msgid "testing"
 msgstr "Resolutsioon"
 
-msgid "This bouquet is protected by a parental control PIN"
-msgstr "See kanalivalik on kaitstud lapseluku PIN koodiga"
-
 msgid "this recording"
 msgstr "see salvestis"
-
-msgid "This service is protected by a parental control PIN"
-msgstr "See kanal on kaitstud lapselukuga"
 
 msgid "to dir"
 msgstr ""

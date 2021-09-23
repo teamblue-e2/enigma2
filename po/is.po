@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-09 09:44+0200\n"
+"POT-Creation-Date: 2021-09-24 00:28+0200\n"
 "PO-Revision-Date: 2011-05-07 12:23+0200\n"
 "Last-Translator: Baldur <bsveinsson@gmail.com>\n"
 "Language-Team: Polar Team/LT Team <baddi@oreind.is>\n"
@@ -171,9 +171,6 @@ msgstr ""
 msgid " Warning: the selected tuner should not use SCR Unicable type for LNBs because each tuner need a own SCR number."
 msgstr ""
 
-msgid " extensions."
-msgstr " viðbætur."
-
 #
 #, fuzzy
 msgid " min"
@@ -185,16 +182,8 @@ msgstr " ms"
 msgid " or save the picture additionally to a file"
 msgstr ""
 
-#
-msgid " packages selected."
-msgstr " pakkar valdir."
-
 msgid " unicable LNB input of rotor"
 msgstr ""
-
-#
-msgid " updates available."
-msgstr " uppfærslur tiltækar."
 
 msgid "$PROJECT_DIR$"
 msgstr ""
@@ -230,10 +219,6 @@ msgstr ""
 
 #, python-format
 msgid "%02d:%02d"
-msgstr ""
-
-#, python-format
-msgid "%03d MB"
 msgstr ""
 
 #, python-format
@@ -390,10 +375,6 @@ msgstr ""
 msgid "%d.%02d. %02d:%02d"
 msgstr ""
 
-#, python-format
-msgid "%d.%03d GB"
-msgstr ""
-
 #
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
@@ -446,11 +427,6 @@ msgstr "%s (%s)\n"
 msgid "%s (%s)"
 msgstr "%s (%s)\n"
 
-#
-#, python-format
-msgid "%s (%s)\n"
-msgstr "%s (%s)\n"
-
 #, python-format
 msgid "%s - extraction errors."
 msgstr ""
@@ -478,10 +454,6 @@ msgid "%s updated package available"
 msgid_plural "%s updated packages available"
 msgstr[0] " uppfærslur tiltækar."
 msgstr[1] " uppfærslur tiltækar."
-
-#, python-format
-msgid "%s%d min"
-msgstr ""
 
 #, python-format
 msgid "%s: %s"
@@ -557,9 +529,6 @@ msgstr ""
 msgid "..."
 msgstr "hjálp..."
 
-msgid "/T"
-msgstr ""
-
 msgid "/media/custom"
 msgstr ""
 
@@ -585,16 +554,11 @@ msgid "1"
 msgstr ""
 
 #
-msgid "1.0"
-msgstr "1.0"
-
-#
-msgid "1.1"
-msgstr "1.1"
-
-#
-msgid "1.2"
-msgstr "1.2"
+#, fuzzy, python-format
+msgid "1 package selected."
+msgid_plural "%d packages selected."
+msgstr[0] " pakkar valdir."
+msgstr[1] " pakkar valdir."
 
 msgid "1024 MB"
 msgstr ""
@@ -1006,9 +970,6 @@ msgstr ""
 msgid "ASS file"
 msgstr ""
 
-msgid "ATSC"
-msgstr ""
-
 #
 #, fuzzy
 msgid "ATSC provider"
@@ -1039,12 +1000,12 @@ msgid "About..."
 msgstr "Um..."
 
 #
-#, fuzzy
-msgid "Accessed:"
+msgid "Access point:"
 msgstr "Aðgangspunktur:"
 
 #
-msgid "Access point:"
+#, fuzzy
+msgid "Accessed:"
 msgstr "Aðgangspunktur:"
 
 #
@@ -3473,44 +3434,13 @@ msgstr ""
 msgid "DVB type"
 msgstr "Prufa gerð"
 
-msgid "DVB-C"
-msgstr ""
-
-msgid "DVB-C ANNEX B"
-msgstr ""
-
-msgid "DVB-C ANNEX C"
-msgstr ""
-
-msgid "DVB-S"
-msgstr "DVB-S"
-
-#
-msgid "DVB-S2"
-msgstr "DVB-S2"
-
-msgid "DVB-T"
-msgstr ""
-
-msgid "DVB-T2"
-msgstr ""
-
 msgid "DVD Burn"
 msgstr ""
-
-#, fuzzy
-msgid "DVD File Browser"
-msgstr "DVD skráar stjóri"
 
 #
 #, fuzzy
 msgid "DVD Menu"
 msgstr "Valmynd"
-
-#
-#, fuzzy
-msgid "DVD Titlelist"
-msgstr "DVD titlaskrá"
 
 #, fuzzy
 msgid "DVD file browser"
@@ -3518,8 +3448,18 @@ msgstr "DVD skráar stjóri"
 
 #
 #, fuzzy
+msgid "DVD media toolbox"
+msgstr "DVD miðla tól"
+
+#
+#, fuzzy
 msgid "DVD player"
 msgstr "DVD spilari"
+
+#
+#, fuzzy
+msgid "DVD titlelist"
+msgstr "DVD titlaskrá"
 
 #
 #, fuzzy
@@ -4776,6 +4716,9 @@ msgstr "IP Netfang"
 msgid "Enter PIN"
 msgstr "Sláðu aftur inn nýtt PIN"
 
+msgid "Enter PIN code"
+msgstr "Slá inn kóða"
+
 #, fuzzy
 msgid "Enter URL"
 msgstr "Sláðu aftur inn nýtt PIN"
@@ -4796,9 +4739,6 @@ msgstr "Loka titils vali"
 
 #, fuzzy
 msgid "Enter persistent PIN code"
-msgstr "Slá inn kóða"
-
-msgid "Enter PIN code"
 msgstr "Slá inn kóða"
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the spec sheet of your LNB."
@@ -8779,9 +8719,6 @@ msgstr "Velja undirtexta"
 msgid "Overall progress:"
 msgstr "Í vinnslu"
 
-msgid "Overscan Wizard"
-msgstr ""
-
 #, fuzzy
 msgid "Overscan wizard"
 msgstr "Netkerfis ráðgjafi"
@@ -10511,6 +10448,9 @@ msgstr "Endurtekningar"
 msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)"
 msgstr ""
 
+msgid "Replace newlines in EPG"
+msgstr ""
+
 msgid "Report Msgid Bugs To"
 msgstr ""
 
@@ -11162,9 +11102,6 @@ msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
 msgstr[0] ""
 msgstr[1] ""
-
-msgid "Scanning failed!"
-msgstr ""
 
 msgid "Scanning..."
 msgstr ""
@@ -12647,6 +12584,11 @@ msgstr "EPG val"
 msgid "Sleep/wakeup timer"
 msgstr "Tímastilling"
 
+#
+#, fuzzy
+msgid "SleepTimer Configuration"
+msgstr "Stilling móttakara"
+
 msgid "Sleeptimer"
 msgstr ""
 
@@ -13730,6 +13672,10 @@ msgstr "Það tókst að breyta PIN kóðanum."
 msgid "The PIN code has been saved successfully."
 msgstr "Það tókst að breyta PIN kóðanum."
 
+#
+msgid "The PIN code you entered is wrong."
+msgstr "Kóðinn sem þú slóst inn er rangur."
+
 msgid "The PIN codes you entered are different."
 msgstr "PIN númerin sem að þú slóst inn eru ekki eins."
 
@@ -13837,10 +13783,6 @@ msgid "The path %s already exists."
 msgstr "Slóðin %s er þegar til."
 
 #
-msgid "The PIN code you entered is wrong."
-msgstr "Kóðinn sem þú slóst inn er rangur."
-
-#
 #, fuzzy, python-format
 msgid "The results have been written to %s"
 msgstr "Útkoman hefur verið skrifuð á %s."
@@ -13911,10 +13853,6 @@ msgstr "Ráðgjafinn getur tekið afrit af stillingum þínum. Viltu taka afrit 
 
 msgid "The wizard is finished now."
 msgstr "Ráðgjafinn er búinn núna."
-
-#
-msgid "There are at least "
-msgstr "Það eru allavega "
 
 #, fuzzy, python-format
 msgid "There are at least %d updates available."
@@ -13993,6 +13931,9 @@ msgid "This allows you to show softcams modules in downloads"
 msgstr ""
 
 msgid "This allows you to show systemplugins modules in downloads"
+msgstr ""
+
+msgid "This bouquet is protected by a parental control PIN"
 msgstr ""
 
 #, python-format
@@ -14150,6 +14091,10 @@ msgstr "Þetta íforrit verður tekið út."
 #, python-format
 msgid "This receiver cannot decode %s streams!"
 msgstr ""
+
+#
+msgid "This service is protected by a parental control PIN"
+msgstr "Þessi rás er læst með kóða"
 
 msgid "This setting allows the tuner configuration to be a duplication of how another tuner is already configured."
 msgstr ""
@@ -14707,10 +14652,6 @@ msgstr ""
 
 msgid "URL of fallback remote receiver"
 msgstr ""
-
-#
-msgid "USALS"
-msgstr "USALS"
 
 msgid "USALS automatically moves a motorised dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
 msgstr ""
@@ -15284,8 +15225,9 @@ msgid "View details"
 msgstr "Skoða nánar"
 
 #
-msgid "View list of available "
-msgstr "Skoða lista af tiltækum"
+#, fuzzy, python-format
+msgid "View list of available %s extensions."
+msgstr "Skoða lista af tiltækum EPG viðbótum."
 
 #
 msgid "View list of available CommonInterface extensions"
@@ -15406,10 +15348,6 @@ msgstr "W"
 msgid "WARNING!"
 msgstr ""
 
-#
-msgid "WEP"
-msgstr "WEP"
-
 msgid "WLAN connection"
 msgstr "WLAN nettenging"
 
@@ -15420,18 +15358,6 @@ msgstr ""
 #, fuzzy
 msgid "WOL standby"
 msgstr "ekki biðstaða"
-
-#
-msgid "WPA"
-msgstr "WPA"
-
-#
-msgid "WPA or WPA2"
-msgstr "WPA eða WPA2"
-
-#
-msgid "WPA2"
-msgstr "WPA2"
 
 #
 msgid "WSS on 4:3"
@@ -16243,9 +16169,9 @@ msgstr ""
 
 #, fuzzy
 msgid ""
-"Your receiver is now ready to use.\n"
+"Your receiver is now ready to be used.\n"
 "\n"
-"Your internet connection is working now.\n"
+"Your internet connection is working.\n"
 "\n"
 msgstr ""
 "Dreamboxið þitt er nú tilbúið til notkunar.\n"
@@ -16543,6 +16469,9 @@ msgstr "til baka"
 msgid "background image"
 msgstr "bakgrunns mynd"
 
+msgid "backup EPG cache"
+msgstr ""
+
 msgid "ballet"
 msgstr ""
 
@@ -16773,9 +16702,6 @@ msgid "entertainment (10-16 year old)"
 msgstr ""
 
 msgid "entertainment (6-14 year old)"
-msgstr ""
-
-msgid "backup EPG cache"
 msgstr ""
 
 msgid "equestrian"
@@ -17651,16 +17577,9 @@ msgstr ""
 msgid "testing"
 msgstr "Upplausn"
 
-msgid "This bouquet is protected by a parental control PIN"
-msgstr ""
-
 #
 msgid "this recording"
 msgstr "þessi upptaka"
-
-#
-msgid "This service is protected by a parental control PIN"
-msgstr "Þessi rás er læst með kóða"
 
 msgid "to dir"
 msgstr ""

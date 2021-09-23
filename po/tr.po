@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue (Apachi70)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-09 09:44+0200\n"
+"POT-Creation-Date: 2021-09-24 00:28+0200\n"
 "PO-Revision-Date: 2021-05-02 16:45+0200\n"
 "Last-Translator: Apachi70 <teamblue@online.de>\n"
 "Language-Team: http://www.hurforum.com <yetkina@gmail.com>\n"
@@ -179,9 +179,6 @@ msgstr " - klasör var! Üzerine Yaz"
 msgid " Warning: the selected tuner should not use SCR Unicable type for LNBs because each tuner need a own SCR number."
 msgstr ""
 
-msgid " extensions."
-msgstr " eklentiler."
-
 msgid " min"
 msgstr " dk"
 
@@ -191,14 +188,8 @@ msgstr " ms"
 msgid " or save the picture additionally to a file"
 msgstr " veya resmi ek olarak bir dosyaya kaydedin"
 
-msgid " packages selected."
-msgstr " paket seçildi."
-
 msgid " unicable LNB input of rotor"
 msgstr ""
-
-msgid " updates available."
-msgstr " güncelleme mevcut."
 
 msgid "$PROJECT_DIR$"
 msgstr "$ PROJECT_DIR $"
@@ -234,10 +225,6 @@ msgstr "%.2f GB"
 #, python-format
 msgid "%02d:%02d"
 msgstr "%02d:%02d"
-
-#, python-format
-msgid "%03d MB"
-msgstr "%03d MB"
 
 #, python-format
 msgid "%3.01f dB"
@@ -374,10 +361,6 @@ msgstr "%d-%m"
 msgid "%d.%02d. %02d:%02d"
 msgstr "%d.%02d. %02d:%02d"
 
-#, python-format
-msgid "%d.%03d GB"
-msgstr "%d.%03d GB"
-
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
 
@@ -428,10 +411,6 @@ msgid "%s (%s)"
 msgstr "%s (%s)"
 
 #, python-format
-msgid "%s (%s)\n"
-msgstr "%s (%s)\n"
-
-#, python-format
 msgid "%s - extraction errors."
 msgstr "% s - çıkarma hataları."
 
@@ -456,10 +435,6 @@ msgstr "% s başarıyla çıkarıldı."
 msgid "%s updated package available"
 msgid_plural "%s updated packages available"
 msgstr[0] "%s mevcut paket güncellendi"
-
-#, python-format
-msgid "%s%d min"
-msgstr "%s%d dk"
 
 #, python-format
 msgid "%s: %s"
@@ -520,9 +495,6 @@ msgstr "-SERVICE ERROR:% d\n"
 msgid "..."
 msgstr "..."
 
-msgid "/T"
-msgstr ""
-
 msgid "/media/custom"
 msgstr "/media/custom"
 
@@ -544,14 +516,10 @@ msgstr "0,24,1147,20"
 msgid "1"
 msgstr "1"
 
-msgid "1.0"
-msgstr "1.0"
-
-msgid "1.1"
-msgstr "1.1"
-
-msgid "1.2"
-msgstr "1.2"
+#, fuzzy, python-format
+msgid "1 package selected."
+msgid_plural "%d packages selected."
+msgstr[0] " paket seçildi."
 
 msgid "1024 MB"
 msgstr "1024 MB"
@@ -926,9 +894,6 @@ msgstr "ASPECT key"
 msgid "ASS file"
 msgstr "ASS dosyası"
 
-msgid "ATSC"
-msgstr "ATSC"
-
 msgid "ATSC provider"
 msgstr "ATSC sağlayıcı"
 
@@ -950,11 +915,11 @@ msgstr "Hakkında"
 msgid "About..."
 msgstr "Hakkında..."
 
-msgid "Accessed:"
-msgstr "Erişim:"
-
 msgid "Access point:"
 msgstr "Erişim noktası:"
+
+msgid "Accessed:"
+msgstr "Erişim:"
 
 msgid "Activate"
 msgstr "Etkinleştir"
@@ -3115,44 +3080,25 @@ msgstr "DVB altyazı siyah saydamlığı"
 msgid "DVB type"
 msgstr "DVB tipi"
 
-msgid "DVB-C"
-msgstr "DVB-C"
-
-msgid "DVB-C ANNEX B"
-msgstr "DVB-C ANNEX B"
-
-msgid "DVB-C ANNEX C"
-msgstr "DVB-C EK C"
-
-msgid "DVB-S"
-msgstr "DVB-S"
-
-msgid "DVB-S2"
-msgstr "DVB-S2"
-
-msgid "DVB-T"
-msgstr "DVB-T"
-
-msgid "DVB-T2"
-msgstr "DVB-T2"
-
 msgid "DVD Burn"
 msgstr "DVD Burn"
-
-msgid "DVD File Browser"
-msgstr "DVD Dosya Gezgini"
 
 msgid "DVD Menu"
 msgstr "DVD menü"
 
-msgid "DVD Titlelist"
-msgstr "DVD Başlık Listesi"
-
 msgid "DVD file browser"
 msgstr "DVD dosya tarayıcısı"
 
+#, fuzzy
+msgid "DVD media toolbox"
+msgstr "DVD medya araçları"
+
 msgid "DVD player"
 msgstr "DVD oynatıcı"
+
+#, fuzzy
+msgid "DVD titlelist"
+msgstr "DVD Başlık Listesi"
 
 msgid "DVDPlayer"
 msgstr "DVD oynatıcı"
@@ -4162,6 +4108,9 @@ msgstr "IP adresini girin"
 msgid "Enter PIN"
 msgstr "PIN kodunu girin"
 
+msgid "Enter PIN code"
+msgstr "Şİfre"
+
 msgid "Enter URL"
 msgstr "URL girin"
 
@@ -4179,9 +4128,6 @@ msgstr "Çok dosyalı seçim moduna girin"
 
 msgid "Enter persistent PIN code"
 msgstr "Kalıcı PIN kodunu girin"
-
-msgid "Enter PIN code"
-msgstr "Şİfre"
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the spec sheet of your LNB."
 msgstr "LNB'nin düşük bant ve yüksek bant arasında geçiş yaptığı frekansı girin. Daha fazla bilgi için LNB'nizin spec sayfasını inceleyiniz."
@@ -7475,9 +7421,6 @@ msgstr "Diğer altyazılar & uzun"
 msgid "Overall progress:"
 msgstr "Genel ilerleme:"
 
-msgid "Overscan Wizard"
-msgstr "Fazla tarama Sihirbazı"
-
 msgid "Overscan wizard"
 msgstr "Fazla tarama Sihirbazı"
 
@@ -8824,6 +8767,9 @@ msgstr "Tekrarlama"
 msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)"
 msgstr "`Değiştirin -` diyalog hoparlör başına renkli metin ile (teletekst altyazı gibi işitme engelli için)"
 
+msgid "Replace newlines in EPG"
+msgstr ""
+
 msgid "Report Msgid Bugs To"
 msgstr "Msgid Hata bildirimi"
 
@@ -9342,9 +9288,6 @@ msgstr[0] "Taranıyor - %%%d tamamlandı"
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
 msgstr[0] "Tarama tamamlandı, %d kanal bulundu"
-
-msgid "Scanning failed!"
-msgstr "Tarama başarısız!"
 
 msgid "Scanning..."
 msgstr "Taranıyor..."
@@ -10519,6 +10462,10 @@ msgstr "Seçimi atla"
 msgid "Sleep/wakeup timer"
 msgstr "Uyku/uyandırma zamanlayıcı"
 
+#, fuzzy
+msgid "SleepTimer Configuration"
+msgstr "Tuner Yapılandırma"
+
 msgid "Sleeptimer"
 msgstr "Uyku Zamanlayıcı"
 
@@ -11386,6 +11333,9 @@ msgstr "Şİfre başarıyla değiştirildi."
 msgid "The PIN code has been saved successfully."
 msgstr "PIN kodu başarıyla kaydedildi."
 
+msgid "The PIN code you entered is wrong."
+msgstr "Girdiğiniz şifre yanlış."
+
 msgid "The PIN codes you entered are different."
 msgstr "Girdiğiniz şifreler farklı."
 
@@ -11504,9 +11454,6 @@ msgstr "Parola boş olamaz."
 msgid "The path %s already exists."
 msgstr "%s yolu zaten var."
 
-msgid "The PIN code you entered is wrong."
-msgstr "Girdiğiniz şifre yanlış."
-
 #, python-format
 msgid "The results have been written to %s"
 msgstr "Sonuçlar %s yazılmıştır"
@@ -11569,9 +11516,6 @@ msgstr "Bu sihirbaz geçerli ayarlarınızın yedeğini alacaktır. Yedeği şim
 
 msgid "The wizard is finished now."
 msgstr "Sihirbaz tamamlandı."
-
-msgid "There are at least "
-msgstr "En az "
 
 #, python-format
 msgid "There are at least %d updates available."
@@ -11643,6 +11587,9 @@ msgstr "Bu indirme içinde softcams modülleri göstermek sağlar"
 
 msgid "This allows you to show systemplugins modules in downloads"
 msgstr "Bu indirme içinde systemplugins modülleri göstermek sağlar"
+
+msgid "This bouquet is protected by a parental control PIN"
+msgstr "Bu buket Aile Koruma Şifresi ile Kilitlenmiş"
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
@@ -11804,6 +11751,9 @@ msgstr "Bu eklenti kaldırılabilir."
 #, python-format
 msgid "This receiver cannot decode %s streams!"
 msgstr "Bu alıcı %s akışları çözülemiyor!"
+
+msgid "This service is protected by a parental control PIN"
+msgstr "Bu kanal Aile Koruma Şifresi ile Kilitlenmiş"
 
 msgid "This setting allows the tuner configuration to be a duplication of how another tuner is already configured."
 msgstr "Bu ayar, tuner yapılandırmasının başka bir ayarlayıcının halihazırda nasıl yapılandırıldığının bir kopyası olmasını sağlar."
@@ -12253,9 +12203,6 @@ msgstr "Adres"
 
 msgid "URL of fallback remote receiver"
 msgstr "Yedek uzaktan kumanda alıcısı URL"
-
-msgid "USALS"
-msgstr "USALS"
 
 msgid "USALS automatically moves a motorised dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
 msgstr "USALS, motorlu bir çantayı otomatik olarak kullanıcı tarafından girilen koordinatları temel alarak doğru uyduya taşır. USALS olmadan, her bir uydu kurulum ve bireysel olarak kaydedilmelidir."
@@ -12743,8 +12690,9 @@ msgstr "Görünüm Rass interaktif ..."
 msgid "View details"
 msgstr "Detayları incele"
 
-msgid "View list of available "
-msgstr "Kullanilabilir "
+#, fuzzy, python-format
+msgid "View list of available %s extensions."
+msgstr "Mevcut EPG uzantılarının listesini görüntüleyin."
 
 msgid "View list of available CommonInterface extensions"
 msgstr "Ortak arayüz eklentileri"
@@ -12834,9 +12782,6 @@ msgstr "W"
 msgid "WARNING!"
 msgstr "UYARI!"
 
-msgid "WEP"
-msgstr "WEP"
-
 msgid "WLAN connection"
 msgstr "WLAN bağlantısı"
 
@@ -12845,15 +12790,6 @@ msgstr "WMA pro downmix"
 
 msgid "WOL standby"
 msgstr "İnternet (WOL) bekleme"
-
-msgid "WPA"
-msgstr "WPA"
-
-msgid "WPA or WPA2"
-msgstr "WPA veya WPA2"
-
-msgid "WPA2"
-msgstr "WPA2"
 
 msgid "WSS on 4:3"
 msgstr "WSS 4:3"
@@ -13663,10 +13599,11 @@ msgstr "Alıcınız ton amplitüdünü kullanabilir. Daha fazla bilgi için alı
 msgid "Your receiver does not have an internet connection"
 msgstr "Alıcınızın internet bağlantısı yok"
 
+#, fuzzy
 msgid ""
-"Your receiver is now ready to use.\n"
+"Your receiver is now ready to be used.\n"
 "\n"
-"Your internet connection is working now.\n"
+"Your internet connection is working.\n"
 "\n"
 msgstr ""
 "Alıcınız artık kullanıma hazır.\n"
@@ -13933,6 +13870,9 @@ msgstr "geri"
 msgid "background image"
 msgstr "arkaplan resmi"
 
+msgid "backup EPG cache"
+msgstr "EPG önbelleğini yedekle"
+
 msgid "ballet"
 msgstr "balet"
 
@@ -14128,9 +14068,6 @@ msgstr "eğlence (10-16 yaş arası)"
 
 msgid "entertainment (6-14 year old)"
 msgstr "eğlence (10-16 yaş arası)"
-
-msgid "backup EPG cache"
-msgstr "EPG önbelleğini yedekle"
 
 msgid "equestrian"
 msgstr "Binicilik"
@@ -14864,14 +14801,16 @@ msgstr "tenis/squash"
 msgid "testing"
 msgstr "test yapmak"
 
-msgid "This bouquet is protected by a parental control PIN"
-msgstr "Bu buket Aile Koruma Şifresi ile Kilitlenmiş"
-
 msgid "this recording"
 msgstr "bu kaydın"
 
-msgid "This service is protected by a parental control PIN"
-msgstr "Bu kanal Aile Koruma Şifresi ile Kilitlenmiş"
+#, fuzzy
+msgid "to dir"
+msgstr "senden"
+
+#, fuzzy
+msgid "toggels between tv and radio..."
+msgstr "Radyo dinleme..."
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "geçis süresi, bölüm, ses, altyazı bilgileri"

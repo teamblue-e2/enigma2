@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-09 09:44+0200\n"
+"POT-Creation-Date: 2021-09-24 00:28+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: MCelliotG <mcelliotg@gmail.com>\n"
@@ -160,9 +160,6 @@ msgstr ""
 msgid " Warning: the selected tuner should not use SCR Unicable type for LNBs because each tuner need a own SCR number."
 msgstr ""
 
-msgid " extensions."
-msgstr " επεκτάσεις."
-
 #, fuzzy
 msgid " min"
 msgstr "%d λεπτά"
@@ -173,14 +170,8 @@ msgstr " ms"
 msgid " or save the picture additionally to a file"
 msgstr ""
 
-msgid " packages selected."
-msgstr " επιλεγμένα πακέτα."
-
 msgid " unicable LNB input of rotor"
 msgstr ""
-
-msgid " updates available."
-msgstr " διαθέσιμες ενημερώσεις."
 
 msgid "$PROJECT_DIR$"
 msgstr ""
@@ -216,10 +207,6 @@ msgstr ""
 #, fuzzy, python-format
 msgid "%02d:%02d"
 msgstr "%2d:%02d"
-
-#, python-format
-msgid "%03d MB"
-msgstr ""
 
 #, python-format
 msgid "%3.01f dB"
@@ -370,10 +357,6 @@ msgstr "%d-%m"
 msgid "%d.%02d. %02d:%02d"
 msgstr "%2d:%02d:%02d"
 
-#, python-format
-msgid "%d.%03d GB"
-msgstr ""
-
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
 
@@ -421,10 +404,6 @@ msgid "%s (%s)"
 msgstr "%s (%s)\n"
 
 #, python-format
-msgid "%s (%s)\n"
-msgstr "%s (%s)\n"
-
-#, python-format
 msgid "%s - extraction errors."
 msgstr ""
 
@@ -450,10 +429,6 @@ msgid "%s updated package available"
 msgid_plural "%s updated packages available"
 msgstr[0] "%s διαθέσιμη ενημέρωση"
 msgstr[1] "%s διαθέσιμες ενημερώσεις"
-
-#, python-format
-msgid "%s%d min"
-msgstr "%s%d min"
 
 #, fuzzy, python-format
 msgid "%s: %s"
@@ -520,9 +495,6 @@ msgstr ""
 msgid "..."
 msgstr "βοήθεια..."
 
-msgid "/T"
-msgstr ""
-
 msgid "/media/custom"
 msgstr ""
 
@@ -547,14 +519,11 @@ msgstr ""
 msgid "1"
 msgstr ""
 
-msgid "1.0"
-msgstr "1.0"
-
-msgid "1.1"
-msgstr "1.1"
-
-msgid "1.2"
-msgstr "1.2"
+#, fuzzy, python-format
+msgid "1 package selected."
+msgid_plural "%d packages selected."
+msgstr[0] " επιλεγμένα πακέτα."
+msgstr[1] " επιλεγμένα πακέτα."
 
 msgid "1024 MB"
 msgstr ""
@@ -941,9 +910,6 @@ msgstr ""
 msgid "ASS file"
 msgstr "%d αρχείο"
 
-msgid "ATSC"
-msgstr ""
-
 #, fuzzy
 msgid "ATSC provider"
 msgstr "Προσθήκη παρόχου"
@@ -969,11 +935,11 @@ msgstr "Περί"
 msgid "About..."
 msgstr "Περί..."
 
-#, fuzzy
-msgid "Accessed:"
+msgid "Access point:"
 msgstr "Σημείο πρόσβασης:"
 
-msgid "Access point:"
+#, fuzzy
+msgid "Accessed:"
 msgstr "Σημείο πρόσβασης:"
 
 #, fuzzy
@@ -3269,49 +3235,27 @@ msgstr "Διαφάνεια υποτίτλων DVB"
 msgid "DVB type"
 msgstr "Τύπος λίστας"
 
-msgid "DVB-C"
-msgstr "DVB-C"
-
-#, fuzzy
-msgid "DVB-C ANNEX B"
-msgstr "DVB-C ANNEX C"
-
-msgid "DVB-C ANNEX C"
-msgstr "DVB-C ANNEX C"
-
-msgid "DVB-S"
-msgstr "DVB-S"
-
-msgid "DVB-S2"
-msgstr "DVB-S2"
-
-msgid "DVB-T"
-msgstr "DVB-T"
-
-msgid "DVB-T2"
-msgstr "DVB-T2"
-
 msgid "DVD Burn"
 msgstr ""
-
-#, fuzzy
-msgid "DVD File Browser"
-msgstr "Πλοηγός DVD"
 
 #, fuzzy
 msgid "DVD Menu"
 msgstr "Μενού"
 
 #, fuzzy
-msgid "DVD Titlelist"
-msgstr "Λίστα τίτλων DVD"
-
-#, fuzzy
 msgid "DVD file browser"
 msgstr "Πλοηγός DVD"
 
+#, fuzzy
+msgid "DVD media toolbox"
+msgstr "Εργαλειοθήκη πολυμέσων DVD"
+
 msgid "DVD player"
 msgstr "Αναπαραγωγή DVD"
+
+#, fuzzy
+msgid "DVD titlelist"
+msgstr "Λίστα τίτλων DVD"
 
 #, fuzzy
 msgid "DVDPlayer"
@@ -4423,6 +4367,9 @@ msgstr "Διεύθυνση IP"
 msgid "Enter PIN"
 msgstr "Εισαγωγή PIN ξανά"
 
+msgid "Enter PIN code"
+msgstr "Εισαγωγή κωδικού PIN"
+
 #, fuzzy
 msgid "Enter URL"
 msgstr "Εισαγωγή PIN ξανά"
@@ -4443,9 +4390,6 @@ msgstr "Κλείσιμο επιλογής τίτλου"
 #, fuzzy
 msgid "Enter persistent PIN code"
 msgstr "Εισαγωγή κωδικού pin"
-
-msgid "Enter PIN code"
-msgstr "Εισαγωγή κωδικού PIN"
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the spec sheet of your LNB."
 msgstr ""
@@ -7985,9 +7929,6 @@ msgstr "Ρυθμίσεις υποτίτλων"
 msgid "Overall progress:"
 msgstr "Μικρή πρόοδος"
 
-msgid "Overscan Wizard"
-msgstr ""
-
 #, fuzzy
 msgid "Overscan wizard"
 msgstr "Οδηγός δικτύου"
@@ -9477,6 +9418,10 @@ msgstr "Επαναλήψεις"
 msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)"
 msgstr ""
 
+#, fuzzy
+msgid "Replace newlines in EPG"
+msgstr "Επιλογή του χαρακτήρα με τον οποίο θα γίνεται αντικατάσταση των νέων γραμμών στο EPG."
+
 msgid "Report Msgid Bugs To"
 msgstr ""
 
@@ -10050,9 +9995,6 @@ msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
 msgstr[0] "Η ανίχνευση ολοκληρώθηκε, βρέθηκε %d κανάλι"
 msgstr[1] "Η ανίχνευση ολοκληρώθηκε, βρέθηκαν %d κανάλια"
-
-msgid "Scanning failed!"
-msgstr "Η ανίχνευση απέτυχε!"
 
 msgid "Scanning..."
 msgstr "Ανίχνευση..."
@@ -11342,6 +11284,10 @@ msgstr "Επιλογή EPG"
 msgid "Sleep/wakeup timer"
 msgstr "Χρονοδιακόπτης ύπνου"
 
+#, fuzzy
+msgid "SleepTimer Configuration"
+msgstr "Ρύθμιση tuner"
+
 msgid "Sleeptimer"
 msgstr "Χρονοδιακόπτης ύπνου"
 
@@ -12272,6 +12218,9 @@ msgstr "Το PIN άλλαξε με επιτυχία."
 msgid "The PIN code has been saved successfully."
 msgstr "Το PIN άλλαξε με επιτυχία."
 
+msgid "The PIN code you entered is wrong."
+msgstr "Ο κωδικός PIN που εισάγατε είναι λάθος."
+
 msgid "The PIN codes you entered are different."
 msgstr "Τα PIN που εισάγατε είναι διαφορετικά."
 
@@ -12374,9 +12323,6 @@ msgstr ""
 msgid "The path %s already exists."
 msgstr "Η διαδρομή %s υπάρχει ήδη."
 
-msgid "The PIN code you entered is wrong."
-msgstr "Ο κωδικός PIN που εισάγατε είναι λάθος."
-
 #, fuzzy, python-format
 msgid "The results have been written to %s"
 msgstr "Τα αποτελέσματα γράφτηκαν στο %s."
@@ -12439,9 +12385,6 @@ msgstr "Ο οδηγός μπορεί να κρατήσει αντίγραφο τ
 
 msgid "The wizard is finished now."
 msgstr "Ο οδηγός ολοκληρώθηκε."
-
-msgid "There are at least "
-msgstr "Υπάρχουν τουλάχιστον "
 
 #, python-format
 msgid "There are at least %d updates available."
@@ -12516,6 +12459,9 @@ msgstr ""
 
 msgid "This allows you to show systemplugins modules in downloads"
 msgstr ""
+
+msgid "This bouquet is protected by a parental control PIN"
+msgstr "Αυτό το μπουκέτο προστατεύεται με γονικό κωδικό PIN"
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
@@ -12672,6 +12618,9 @@ msgstr "Αυτό το πρόσθετο θα διαγραφεί."
 #, python-format
 msgid "This receiver cannot decode %s streams!"
 msgstr "Αυτός ο δέκτης δεν μπορεί να αποκωδικοποιήσει ροές %s!"
+
+msgid "This service is protected by a parental control PIN"
+msgstr "Αυτή η υπηρεσία προστατεύεται με γονικό κωδικό PIN"
 
 msgid "This setting allows the tuner configuration to be a duplication of how another tuner is already configured."
 msgstr ""
@@ -13150,9 +13099,6 @@ msgstr ""
 
 msgid "URL of fallback remote receiver"
 msgstr ""
-
-msgid "USALS"
-msgstr "USALS"
 
 msgid "USALS automatically moves a motorised dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
 msgstr ""
@@ -13669,8 +13615,9 @@ msgstr "Εμφάνιση διαδραστικού Rass..."
 msgid "View details"
 msgstr "Εμφάνιση λεπτομερειών"
 
-msgid "View list of available "
-msgstr "Εμφάνιση λίστας διαθέσιμων "
+#, fuzzy, python-format
+msgid "View list of available %s extensions."
+msgstr "Εμφάνιση λίστας διαθέσιμων επεκτάσεων EPG"
 
 msgid "View list of available CommonInterface extensions"
 msgstr "Εμφάνιση λίστας διαθέσιμων επεκτάσεων Κοινής Διεπαφής"
@@ -13765,9 +13712,6 @@ msgstr "Δ"
 msgid "WARNING!"
 msgstr ""
 
-msgid "WEP"
-msgstr "WEP"
-
 msgid "WLAN connection"
 msgstr "Σύνδεση WLAN"
 
@@ -13778,15 +13722,6 @@ msgstr "Μίξη AC3/DTS"
 #, fuzzy
 msgid "WOL standby"
 msgstr "Χωρίς αναμονή"
-
-msgid "WPA"
-msgstr "WPA"
-
-msgid "WPA or WPA2"
-msgstr "WPA ή WPA2"
-
-msgid "WPA2"
-msgstr "WPA2"
 
 msgid "WSS on 4:3"
 msgstr "WSS σε 4:3"
@@ -14581,9 +14516,9 @@ msgstr "Ο δέκτης σας δεν διαθέτει σύνδεση στο δ�
 
 #, fuzzy
 msgid ""
-"Your receiver is now ready to use.\n"
+"Your receiver is now ready to be used.\n"
 "\n"
-"Your internet connection is working now.\n"
+"Your internet connection is working.\n"
 "\n"
 msgstr ""
 "Ο δέκτης σας είναι τώρα έτοιμος για χρήση.\n"
@@ -14863,6 +14798,9 @@ msgstr "πίσω"
 msgid "background image"
 msgstr "εικόνα φόντου"
 
+msgid "backup EPG cache"
+msgstr "αντίγραφο ασφαλείας των πληροφοριών EPG"
+
 msgid "ballet"
 msgstr "μπαλέτο"
 
@@ -15067,9 +15005,6 @@ msgstr "ψυχαγωγία (10-16 ετών)"
 
 msgid "entertainment (6-14 year old)"
 msgstr "ψυχαγωγία (6-14 ετών)"
-
-msgid "backup EPG cache"
-msgstr "αντίγραφο ασφαλείας των πληροφοριών EPG"
 
 msgid "equestrian"
 msgstr "ιπποδρομίες"
@@ -15835,14 +15770,16 @@ msgstr "τένις/σκουώς"
 msgid "testing"
 msgstr "Ανάλυση"
 
-msgid "This bouquet is protected by a parental control PIN"
-msgstr "Αυτό το μπουκέτο προστατεύεται με γονικό κωδικό PIN"
-
 msgid "this recording"
 msgstr "αυτή η εγγραφή"
 
-msgid "This service is protected by a parental control PIN"
-msgstr "Αυτή η υπηρεσία προστατεύεται με γονικό κωδικό PIN"
+#, fuzzy
+msgid "to dir"
+msgstr "από"
+
+#, fuzzy
+msgid "toggels between tv and radio..."
+msgstr "Ακρόαση ραδιοφώνου..."
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "εναλλαγή πληροφοριών χρόνου, κεφαλαίου, ήχου, υποτίτλων"

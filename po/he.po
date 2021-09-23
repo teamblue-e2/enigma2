@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-09 09:44+0200\n"
+"POT-Creation-Date: 2021-09-24 00:28+0200\n"
 "PO-Revision-Date: 2012-03-08 10:40+0330\n"
 "Last-Translator: \n"
 "Language-Team: Arabic <moustafagamal@hotmail.com>\n"
@@ -169,10 +169,6 @@ msgid " Warning: the selected tuner should not use SCR Unicable type for LNBs be
 msgstr ""
 
 #
-msgid " extensions."
-msgstr "תוספות"
-
-#
 #, fuzzy
 msgid " min"
 msgstr "דקות %d"
@@ -183,15 +179,8 @@ msgstr "ms"
 msgid " or save the picture additionally to a file"
 msgstr ""
 
-msgid " packages selected."
-msgstr "חבילות נבחרו"
-
 msgid " unicable LNB input of rotor"
 msgstr ""
-
-#
-msgid " updates available."
-msgstr "עדכונים זמינים"
 
 msgid "$PROJECT_DIR$"
 msgstr ""
@@ -227,10 +216,6 @@ msgstr ""
 
 #, python-format
 msgid "%02d:%02d"
-msgstr ""
-
-#, python-format
-msgid "%03d MB"
 msgstr ""
 
 #, python-format
@@ -384,10 +369,6 @@ msgstr ""
 msgid "%d.%02d. %02d:%02d"
 msgstr ""
 
-#, python-format
-msgid "%d.%03d GB"
-msgstr ""
-
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
 
@@ -435,10 +416,6 @@ msgid "%s (%s)"
 msgstr "%s (%s)\n"
 
 #, python-format
-msgid "%s (%s)\n"
-msgstr "%s (%s)\n"
-
-#, python-format
 msgid "%s - extraction errors."
 msgstr ""
 
@@ -465,10 +442,6 @@ msgid "%s updated package available"
 msgid_plural "%s updated packages available"
 msgstr[0] "עדכונים זמינים"
 msgstr[1] "עדכונים זמינים"
-
-#, python-format
-msgid "%s%d min"
-msgstr ""
 
 #, python-format
 msgid "%s: %s"
@@ -535,9 +508,6 @@ msgstr ""
 msgid "..."
 msgstr "...עזרה"
 
-msgid "/T"
-msgstr ""
-
 msgid "/media/custom"
 msgstr ""
 
@@ -562,14 +532,11 @@ msgstr ""
 msgid "1"
 msgstr ""
 
-msgid "1.0"
-msgstr "1.0"
-
-msgid "1.1"
-msgstr "1.1"
-
-msgid "1.2"
-msgstr "1.2"
+#, fuzzy, python-format
+msgid "1 package selected."
+msgid_plural "%d packages selected."
+msgstr[0] "חבילות נבחרו"
+msgstr[1] "חבילות נבחרו"
 
 msgid "1024 MB"
 msgstr ""
@@ -967,9 +934,6 @@ msgstr ""
 msgid "ASS file"
 msgstr ""
 
-msgid "ATSC"
-msgstr ""
-
 #, fuzzy
 msgid "ATSC provider"
 msgstr "add Provider"
@@ -1001,12 +965,12 @@ msgid "About..."
 msgstr "...אודות"
 
 #
-#, fuzzy
-msgid "Accessed:"
+msgid "Access point:"
 msgstr ":נקודת גישה"
 
 #
-msgid "Access point:"
+#, fuzzy
+msgid "Accessed:"
 msgstr ":נקודת גישה"
 
 #
@@ -3431,33 +3395,8 @@ msgstr ""
 msgid "DVB type"
 msgstr "Test Type"
 
-msgid "DVB-C"
-msgstr ""
-
-msgid "DVB-C ANNEX B"
-msgstr ""
-
-msgid "DVB-C ANNEX C"
-msgstr ""
-
-msgid "DVB-S"
-msgstr "DVB-S"
-
-msgid "DVB-S2"
-msgstr "DVB-S2"
-
-msgid "DVB-T"
-msgstr ""
-
-msgid "DVB-T2"
-msgstr ""
-
 msgid "DVD Burn"
 msgstr ""
-
-#, fuzzy
-msgid "DVD File Browser"
-msgstr "DVD מציג קבצי"
 
 #
 #, fuzzy
@@ -3465,16 +3404,21 @@ msgid "DVD Menu"
 msgstr "תפריט"
 
 #, fuzzy
-msgid "DVD Titlelist"
-msgstr "DVD Titlelist"
-
-#, fuzzy
 msgid "DVD file browser"
 msgstr "DVD מציג קבצי"
+
+#
+#, fuzzy
+msgid "DVD media toolbox"
+msgstr "DVD media toolbox"
 
 #, fuzzy
 msgid "DVD player"
 msgstr "DVD נגן"
+
+#, fuzzy
+msgid "DVD titlelist"
+msgstr "DVD Titlelist"
 
 #, fuzzy
 msgid "DVDPlayer"
@@ -4647,6 +4591,9 @@ msgstr "IP כתובת"
 msgid "Enter PIN"
 msgstr "ערוץ"
 
+msgid "Enter PIN code"
+msgstr ":הכנס קוד אבטחה"
+
 #
 #, fuzzy
 msgid "Enter URL"
@@ -4667,9 +4614,6 @@ msgstr "סגור בחירת כותרת"
 
 #, fuzzy
 msgid "Enter persistent PIN code"
-msgstr ":הכנס קוד אבטחה"
-
-msgid "Enter PIN code"
 msgstr ":הכנס קוד אבטחה"
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the spec sheet of your LNB."
@@ -8443,9 +8387,6 @@ msgstr "בחירת תרגום"
 msgid "Overall progress:"
 msgstr "בפעולה"
 
-msgid "Overscan Wizard"
-msgstr ""
-
 #, fuzzy
 msgid "Overscan wizard"
 msgstr "אשף הרשת"
@@ -8889,6 +8830,10 @@ msgstr "בבקשה הכנס שם קובץ חדש"
 
 msgid "Please enter new name:"
 msgstr ""
+
+#, fuzzy
+msgid "Please enter password"
+msgstr "בבקשה הכנס את הקוד המתאים"
 
 msgid "Please enter the correct PIN code"
 msgstr "בבקשה הכנס את הקוד המתאים"
@@ -10012,6 +9957,9 @@ msgstr "Repeats"
 msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)"
 msgstr ""
 
+msgid "Replace newlines in EPG"
+msgstr ""
+
 msgid "Report Msgid Bugs To"
 msgstr ""
 
@@ -10611,9 +10559,6 @@ msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
 msgstr[0] ""
 msgstr[1] ""
-
-msgid "Scanning failed!"
-msgstr ""
 
 msgid "Scanning..."
 msgstr ""
@@ -12021,6 +11966,10 @@ msgstr "EPG בחירת"
 msgid "Sleep/wakeup timer"
 msgstr "טיימר שינה"
 
+#, fuzzy
+msgid "SleepTimer Configuration"
+msgstr "Tuner הגדרת"
+
 msgid "Sleeptimer"
 msgstr ""
 
@@ -13044,6 +12993,10 @@ msgstr ""
 msgid "The PIN code has been saved successfully."
 msgstr ""
 
+#
+msgid "The PIN code you entered is wrong."
+msgstr ".הקוד שהכנסת שגוי"
+
 msgid "The PIN codes you entered are different."
 msgstr ""
 
@@ -13147,10 +13100,6 @@ msgstr ""
 msgid "The path %s already exists."
 msgstr "The path %s already exists."
 
-#
-msgid "The PIN code you entered is wrong."
-msgstr ".הקוד שהכנסת שגוי"
-
 #, python-format
 msgid "The results have been written to %s"
 msgstr ""
@@ -13216,9 +13165,6 @@ msgstr "?האשף יכול לבצע גיבוי להגדרות. האם אתה מ�
 
 msgid "The wizard is finished now."
 msgstr "The wizard is finished now."
-
-msgid "There are at least "
-msgstr "There are at least "
 
 #, fuzzy, python-format
 msgid "There are at least %d updates available."
@@ -13296,6 +13242,9 @@ msgid "This allows you to show softcams modules in downloads"
 msgstr ""
 
 msgid "This allows you to show systemplugins modules in downloads"
+msgstr ""
+
+msgid "This bouquet is protected by a parental control PIN"
 msgstr ""
 
 #, python-format
@@ -13453,6 +13402,9 @@ msgstr ".הפלאגין הזה יוסר"
 #, python-format
 msgid "This receiver cannot decode %s streams!"
 msgstr ""
+
+msgid "This service is protected by a parental control PIN"
+msgstr "שירות זה מוגן על ידי בקרת הורים"
 
 msgid "This setting allows the tuner configuration to be a duplication of how another tuner is already configured."
 msgstr ""
@@ -13980,10 +13932,6 @@ msgstr ""
 
 msgid "URL of fallback remote receiver"
 msgstr ""
-
-#
-msgid "USALS"
-msgstr "USALS"
 
 msgid "USALS automatically moves a motorised dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
 msgstr ""
@@ -14526,9 +14474,9 @@ msgstr ""
 msgid "View details"
 msgstr "הצג פרטים"
 
-#
-msgid "View list of available "
-msgstr ""
+#, fuzzy, python-format
+msgid "View list of available %s extensions."
+msgstr "View list of available system extensions"
 
 #
 msgid "View list of available CommonInterface extensions"
@@ -14640,10 +14588,6 @@ msgstr ""
 msgid "WARNING!"
 msgstr ""
 
-#
-msgid "WEP"
-msgstr ""
-
 msgid "WLAN connection"
 msgstr "WLAN connection"
 
@@ -14653,18 +14597,6 @@ msgstr ""
 #, fuzzy
 msgid "WOL standby"
 msgstr "מצב המתנה"
-
-#
-msgid "WPA"
-msgstr "WPA"
-
-#
-msgid "WPA or WPA2"
-msgstr "WPA or WPA2"
-
-#
-msgid "WPA2"
-msgstr "WPA2"
 
 #
 msgid "WSS on 4:3"
@@ -15436,9 +15368,9 @@ msgstr ""
 
 #, fuzzy
 msgid ""
-"Your receiver is now ready to use.\n"
+"Your receiver is now ready to be used.\n"
 "\n"
-"Your internet connection is working now.\n"
+"Your internet connection is working.\n"
 "\n"
 msgstr ""
 "Your Dreambox is now ready to use.\n"
@@ -15723,6 +15655,9 @@ msgstr "אחורנית"
 msgid "background image"
 msgstr "תמונת רקע"
 
+msgid "backup EPG cache"
+msgstr ""
+
 msgid "ballet"
 msgstr ""
 
@@ -15932,9 +15867,6 @@ msgid "entertainment (10-16 year old)"
 msgstr ""
 
 msgid "entertainment (6-14 year old)"
-msgstr ""
-
-msgid "backup EPG cache"
 msgstr ""
 
 msgid "equestrian"
@@ -16744,14 +16676,8 @@ msgstr ""
 msgid "testing"
 msgstr "תאור"
 
-msgid "This bouquet is protected by a parental control PIN"
-msgstr ""
-
 msgid "this recording"
 msgstr "ההקלטה הזו"
-
-msgid "This service is protected by a parental control PIN"
-msgstr "שירות זה מוגן על ידי בקרת הורים"
 
 msgid "to dir"
 msgstr ""
