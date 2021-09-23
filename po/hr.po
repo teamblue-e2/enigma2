@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-09 09:44+0200\n"
+"POT-Creation-Date: 2021-09-24 00:28+0200\n"
 "PO-Revision-Date: 2020-03-03 08:50+0100\n"
 "Last-Translator: Željko <zeljko2@hi.ht.hr>\n"
 "Language-Team: Željko\n"
@@ -168,10 +168,6 @@ msgid " Warning: the selected tuner should not use SCR Unicable type for LNBs be
 msgstr ""
 
 #
-msgid " extensions."
-msgstr ""
-
-#
 #, fuzzy
 msgid " min"
 msgstr "%d min"
@@ -182,15 +178,7 @@ msgstr ""
 msgid " or save the picture additionally to a file"
 msgstr ""
 
-#
-msgid " packages selected."
-msgstr ""
-
 msgid " unicable LNB input of rotor"
-msgstr ""
-
-#
-msgid " updates available."
 msgstr ""
 
 msgid "$PROJECT_DIR$"
@@ -226,10 +214,6 @@ msgstr ""
 
 #, python-format
 msgid "%02d:%02d"
-msgstr ""
-
-#, python-format
-msgid "%03d MB"
 msgstr ""
 
 #, python-format
@@ -384,10 +368,6 @@ msgstr ""
 msgid "%d.%02d. %02d:%02d"
 msgstr ""
 
-#, python-format
-msgid "%d.%03d GB"
-msgstr ""
-
 #
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
@@ -440,11 +420,6 @@ msgstr "%s (%s)\n"
 msgid "%s (%s)"
 msgstr "%s (%s)\n"
 
-#
-#, python-format
-msgid "%s (%s)\n"
-msgstr "%s (%s)\n"
-
 #, python-format
 msgid "%s - extraction errors."
 msgstr ""
@@ -471,10 +446,6 @@ msgid "%s updated package available"
 msgid_plural "%s updated packages available"
 msgstr[0] ""
 msgstr[1] ""
-
-#, python-format
-msgid "%s%d min"
-msgstr ""
 
 #, python-format
 msgid "%s: %s"
@@ -549,9 +520,6 @@ msgstr ""
 msgid "..."
 msgstr "pomoć..."
 
-msgid "/T"
-msgstr ""
-
 msgid "/media/custom"
 msgstr ""
 
@@ -577,17 +545,11 @@ msgstr ""
 msgid "1"
 msgstr ""
 
-#
-msgid "1.0"
-msgstr "1.0"
-
-#
-msgid "1.1"
-msgstr "1.1"
-
-#
-msgid "1.2"
-msgstr "1.2"
+#, python-format
+msgid "1 package selected."
+msgid_plural "%d packages selected."
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "1024 MB"
 msgstr ""
@@ -1006,9 +968,6 @@ msgstr ""
 msgid "ASS file"
 msgstr ""
 
-msgid "ATSC"
-msgstr ""
-
 #
 #, fuzzy
 msgid "ATSC provider"
@@ -1041,6 +1000,9 @@ msgstr "O programu"
 msgid "About..."
 msgstr "O prijemniku..."
 
+msgid "Access point:"
+msgstr "Pristupna točka:"
+
 msgid "Accessed:"
 msgstr ""
 
@@ -1048,9 +1010,6 @@ msgstr ""
 #, fuzzy
 msgid "Activate"
 msgstr "Aktiviraj Sliku u Slici"
-
-msgid "Access point:"
-msgstr "Pristupna točka:"
 
 msgid "Activate HbbTV (Redbutton)"
 msgstr ""
@@ -3576,36 +3535,8 @@ msgstr ""
 msgid "DVB type"
 msgstr "Test mod"
 
-msgid "DVB-C"
-msgstr ""
-
-msgid "DVB-C ANNEX B"
-msgstr ""
-
-msgid "DVB-C ANNEX C"
-msgstr ""
-
-#
-msgid "DVB-S"
-msgstr "DVB-S"
-
-#
-msgid "DVB-S2"
-msgstr "DVB-S2"
-
-msgid "DVB-T"
-msgstr ""
-
-msgid "DVB-T2"
-msgstr ""
-
 msgid "DVD Burn"
 msgstr ""
-
-#
-#, fuzzy
-msgid "DVD File Browser"
-msgstr "Preglednik dodataka"
 
 #
 #, fuzzy
@@ -3614,18 +3545,21 @@ msgstr "Izbornik "
 
 #
 #, fuzzy
-msgid "DVD Titlelist"
-msgstr "bijelalista"
-
-#
-#, fuzzy
 msgid "DVD file browser"
 msgstr "Preglednik dodataka"
+
+msgid "DVD media toolbox"
+msgstr ""
 
 #
 #, fuzzy
 msgid "DVD player"
 msgstr "sakri player"
+
+#
+#, fuzzy
+msgid "DVD titlelist"
+msgstr "bijelalista"
 
 #
 #, fuzzy
@@ -4879,6 +4813,9 @@ msgstr "IP Adresa"
 msgid "Enter PIN"
 msgstr "Kanal"
 
+msgid "Enter PIN code"
+msgstr "Unesite PIN kod"
+
 #
 #, fuzzy
 msgid "Enter URL"
@@ -4903,9 +4840,6 @@ msgstr "Sekcija titlova"
 #, fuzzy
 msgid "Enter persistent PIN code"
 msgstr "Molim unesite ispravan pin kod"
-
-msgid "Enter PIN code"
-msgstr "Unesite PIN kod"
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the spec sheet of your LNB."
 msgstr ""
@@ -8828,9 +8762,6 @@ msgstr "Sekcija titlova"
 msgid "Overall progress:"
 msgstr "Tijek izvođenja:"
 
-msgid "Overscan Wizard"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Overscan wizard"
@@ -10540,6 +10471,9 @@ msgstr ""
 msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)"
 msgstr ""
 
+msgid "Replace newlines in EPG"
+msgstr ""
+
 msgid "Report Msgid Bugs To"
 msgstr ""
 
@@ -11179,9 +11113,6 @@ msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
 msgstr[0] ""
 msgstr[1] ""
-
-msgid "Scanning failed!"
-msgstr ""
 
 msgid "Scanning..."
 msgstr ""
@@ -12640,6 +12571,11 @@ msgstr "EPG selektor "
 msgid "Sleep/wakeup timer"
 msgstr "Tajmer spavanja"
 
+#
+#, fuzzy
+msgid "SleepTimer Configuration"
+msgstr "Konfiguracija Tunera"
+
 msgid "Sleeptimer"
 msgstr ""
 
@@ -13682,6 +13618,9 @@ msgstr ""
 msgid "The PIN code has been saved successfully."
 msgstr ""
 
+msgid "The PIN code you entered is wrong."
+msgstr "Uneseni PIN je pogrešan."
+
 msgid "The PIN codes you entered are different."
 msgstr ""
 
@@ -13777,9 +13716,6 @@ msgstr ""
 msgid "The path %s already exists."
 msgstr ""
 
-msgid "The PIN code you entered is wrong."
-msgstr "Uneseni PIN je pogrešan."
-
 #, python-format
 msgid "The results have been written to %s"
 msgstr ""
@@ -13843,10 +13779,6 @@ msgstr "Čarobnjak može napraviti sigurnosnu kopiju postavki. Želite li je nap
 #
 msgid "The wizard is finished now."
 msgstr "Čarobnjak je gotov."
-
-#
-msgid "There are at least "
-msgstr ""
 
 #, python-format
 msgid "There are at least %d updates available."
@@ -13924,6 +13856,9 @@ msgstr ""
 
 msgid "This allows you to show systemplugins modules in downloads"
 msgstr ""
+
+msgid "This bouquet is protected by a parental control PIN"
+msgstr "Ovaj paket je zaštićen pinom roditeljske kontrole"
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
@@ -14083,6 +14018,9 @@ msgstr ""
 #, python-format
 msgid "This receiver cannot decode %s streams!"
 msgstr ""
+
+msgid "This service is protected by a parental control PIN"
+msgstr "Ova usluga je zaštićena pinom roditeljske kontrole"
 
 msgid "This setting allows the tuner configuration to be a duplication of how another tuner is already configured."
 msgstr ""
@@ -14606,10 +14544,6 @@ msgstr ""
 
 msgid "URL of fallback remote receiver"
 msgstr ""
-
-#
-msgid "USALS"
-msgstr "USALS"
 
 msgid "USALS automatically moves a motorised dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
 msgstr ""
@@ -15178,8 +15112,8 @@ msgstr "Gledaj Rass interaktivno..."
 msgid "View details"
 msgstr ""
 
-#
-msgid "View list of available "
+#, python-format
+msgid "View list of available %s extensions."
 msgstr ""
 
 #
@@ -15292,10 +15226,6 @@ msgstr "W"
 msgid "WARNING!"
 msgstr ""
 
-#
-msgid "WEP"
-msgstr ""
-
 msgid "WLAN connection"
 msgstr ""
 
@@ -15306,18 +15236,6 @@ msgstr ""
 #, fuzzy
 msgid "WOL standby"
 msgstr "ne stanje pripravnosti"
-
-#
-msgid "WPA"
-msgstr ""
-
-#
-msgid "WPA or WPA2"
-msgstr ""
-
-#
-msgid "WPA2"
-msgstr ""
 
 #
 msgid "WSS on 4:3"
@@ -16104,9 +16022,9 @@ msgid "Your receiver does not have an internet connection"
 msgstr ""
 
 msgid ""
-"Your receiver is now ready to use.\n"
+"Your receiver is now ready to be used.\n"
 "\n"
-"Your internet connection is working now.\n"
+"Your internet connection is working.\n"
 "\n"
 msgstr ""
 
@@ -16400,6 +16318,9 @@ msgstr "natrag"
 msgid "background image"
 msgstr ""
 
+msgid "backup EPG cache"
+msgstr "sigurnosna kopija EPG-a"
+
 msgid "ballet"
 msgstr ""
 
@@ -16631,9 +16552,6 @@ msgstr ""
 
 msgid "entertainment (6-14 year old)"
 msgstr ""
-
-msgid "backup EPG cache"
-msgstr "sigurnosna kopija EPG-a"
 
 msgid "equestrian"
 msgstr ""
@@ -17511,15 +17429,9 @@ msgstr ""
 msgid "testing"
 msgstr "Opis"
 
-msgid "This bouquet is protected by a parental control PIN"
-msgstr "Ovaj paket je zaštićen pinom roditeljske kontrole"
-
 #
 msgid "this recording"
 msgstr "ovo snimanje"
-
-msgid "This service is protected by a parental control PIN"
-msgstr "Ova usluga je zaštićena pinom roditeljske kontrole"
 
 msgid "to dir"
 msgstr ""

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-09 09:44+0200\n"
+"POT-Creation-Date: 2021-09-24 00:28+0200\n"
 "PO-Revision-Date: 2010-04-08 18:13+0700\n"
 "Last-Translator: Tony - Thaidreambox\n"
 "Language-Team: Tony @ Thai Dreambox <tonyboyth@gmail.com>\n"
@@ -164,9 +164,6 @@ msgstr ""
 msgid " Warning: the selected tuner should not use SCR Unicable type for LNBs because each tuner need a own SCR number."
 msgstr ""
 
-msgid " extensions."
-msgstr " ส่วนเพิ่มเติม"
-
 #, fuzzy
 msgid " min"
 msgstr "%d นาที"
@@ -177,14 +174,8 @@ msgstr ""
 msgid " or save the picture additionally to a file"
 msgstr ""
 
-msgid " packages selected."
-msgstr " ส่วนประกอบที่เลือกไว้"
-
 msgid " unicable LNB input of rotor"
 msgstr ""
-
-msgid " updates available."
-msgstr " มีรายการปรับปรุง"
 
 msgid "$PROJECT_DIR$"
 msgstr ""
@@ -219,10 +210,6 @@ msgstr ""
 
 #, python-format
 msgid "%02d:%02d"
-msgstr ""
-
-#, python-format
-msgid "%03d MB"
 msgstr ""
 
 #, python-format
@@ -372,10 +359,6 @@ msgstr ""
 msgid "%d.%02d. %02d:%02d"
 msgstr ""
 
-#, python-format
-msgid "%d.%03d GB"
-msgstr ""
-
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
 
@@ -423,10 +406,6 @@ msgid "%s (%s)"
 msgstr "%s (%s)\n"
 
 #, python-format
-msgid "%s (%s)\n"
-msgstr "%s (%s)\n"
-
-#, python-format
 msgid "%s - extraction errors."
 msgstr ""
 
@@ -452,10 +431,6 @@ msgid "%s updated package available"
 msgid_plural "%s updated packages available"
 msgstr[0] " มีรายการปรับปรุง"
 msgstr[1] " มีรายการปรับปรุง"
-
-#, python-format
-msgid "%s%d min"
-msgstr ""
 
 #, python-format
 msgid "%s: %s"
@@ -521,9 +496,6 @@ msgstr ""
 msgid "..."
 msgstr "ช่วยเหลือ..."
 
-msgid "/T"
-msgstr ""
-
 msgid "/media/custom"
 msgstr ""
 
@@ -547,14 +519,11 @@ msgstr ""
 msgid "1"
 msgstr ""
 
-msgid "1.0"
-msgstr "1.0"
-
-msgid "1.1"
-msgstr "1.1"
-
-msgid "1.2"
-msgstr "1.2"
+#, fuzzy, python-format
+msgid "1 package selected."
+msgid_plural "%d packages selected."
+msgstr[0] " ส่วนประกอบที่เลือกไว้"
+msgstr[1] " ส่วนประกอบที่เลือกไว้"
 
 msgid "1024 MB"
 msgstr ""
@@ -932,9 +901,6 @@ msgstr ""
 msgid "ASS file"
 msgstr ""
 
-msgid "ATSC"
-msgstr ""
-
 #, fuzzy
 msgid "ATSC provider"
 msgstr "เพิ่มผู้ให้บริการ"
@@ -960,12 +926,12 @@ msgstr "เกี่ยวกับ"
 msgid "About..."
 msgstr "เกี่ยวกับ..."
 
+msgid "Access point:"
+msgstr "Access point:"
+
 #, fuzzy
 msgid "Accessed:"
 msgstr "Accesspoint:"
-
-msgid "Access point:"
-msgstr "Access point:"
 
 #, fuzzy
 msgid "Activate"
@@ -3288,49 +3254,28 @@ msgstr ""
 msgid "DVB type"
 msgstr "ประเภทการทดสอบ"
 
-msgid "DVB-C"
-msgstr ""
-
-msgid "DVB-C ANNEX B"
-msgstr ""
-
-msgid "DVB-C ANNEX C"
-msgstr ""
-
-msgid "DVB-S"
-msgstr "DVB-S"
-
-msgid "DVB-S2"
-msgstr "DVB-S2"
-
-msgid "DVB-T"
-msgstr ""
-
-msgid "DVB-T2"
-msgstr ""
-
 msgid "DVD Burn"
 msgstr ""
-
-#, fuzzy
-msgid "DVD File Browser"
-msgstr "ดูแฟ้มในดีวีดี"
 
 #, fuzzy
 msgid "DVD Menu"
 msgstr "เมนู"
 
 #, fuzzy
-msgid "DVD Titlelist"
-msgstr "รายการบนแผ่นดีวีดี"
-
-#, fuzzy
 msgid "DVD file browser"
 msgstr "ดูแฟ้มในดีวีดี"
 
 #, fuzzy
+msgid "DVD media toolbox"
+msgstr "เครื่องมือจัดการดีวีดี"
+
+#, fuzzy
 msgid "DVD player"
 msgstr "เครื่องเล่นดีวีดี"
+
+#, fuzzy
+msgid "DVD titlelist"
+msgstr "รายการบนแผ่นดีวีดี"
 
 #, fuzzy
 msgid "DVDPlayer"
@@ -4440,6 +4385,9 @@ msgstr "IP Address"
 msgid "Enter PIN"
 msgstr "ช่อง"
 
+msgid "Enter PIN code"
+msgstr ""
+
 #, fuzzy
 msgid "Enter URL"
 msgstr "ช่อง"
@@ -4460,9 +4408,6 @@ msgstr "ปิดหน้าเลือกชื่อเรื่อง"
 #, fuzzy
 msgid "Enter persistent PIN code"
 msgstr "กรุณาป้อนรหัสที่ถูกต้องด้วย"
-
-msgid "Enter PIN code"
-msgstr ""
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the spec sheet of your LNB."
 msgstr ""
@@ -8026,9 +7971,6 @@ msgstr "เลือกซับไตเติ้ล"
 msgid "Overall progress:"
 msgstr "กำลังทำงาน"
 
-msgid "Overscan Wizard"
-msgstr ""
-
 #, fuzzy
 msgid "Overscan wizard"
 msgstr "ตัวช่วยเครือข่าย"
@@ -8447,6 +8389,10 @@ msgstr "กรุณป้อนชื่อไฟล์ใหม่"
 
 msgid "Please enter new name:"
 msgstr ""
+
+#, fuzzy
+msgid "Please enter password"
+msgstr "กรุณาป้อนรหัสที่ถูกต้องด้วย"
 
 msgid "Please enter the correct PIN code"
 msgstr "กรุณาป้อนรหัสที่ถูกต้องด้วย"
@@ -9514,6 +9460,9 @@ msgstr "ทำซ้ำ"
 msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)"
 msgstr ""
 
+msgid "Replace newlines in EPG"
+msgstr ""
+
 msgid "Report Msgid Bugs To"
 msgstr ""
 
@@ -10080,9 +10029,6 @@ msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
 msgstr[0] ""
 msgstr[1] ""
-
-msgid "Scanning failed!"
-msgstr ""
 
 msgid "Scanning..."
 msgstr ""
@@ -11397,6 +11343,10 @@ msgstr "เลือกผังรายการ"
 msgid "Sleep/wakeup timer"
 msgstr "ตั้งเวลาปิดเครื่อง"
 
+#, fuzzy
+msgid "SleepTimer Configuration"
+msgstr "ตั้งค่า Tuner"
+
 msgid "Sleeptimer"
 msgstr ""
 
@@ -12340,6 +12290,9 @@ msgstr ""
 msgid "The PIN code has been saved successfully."
 msgstr ""
 
+msgid "The PIN code you entered is wrong."
+msgstr "รหัสที่ป้อนผิด"
+
 msgid "The PIN codes you entered are different."
 msgstr ""
 
@@ -12433,9 +12386,6 @@ msgstr ""
 msgid "The path %s already exists."
 msgstr "พาธ %s นี้มีแล้วในระบบ"
 
-msgid "The PIN code you entered is wrong."
-msgstr "รหัสที่ป้อนผิด"
-
 #, fuzzy, python-format
 msgid "The results have been written to %s"
 msgstr "ผลลัพธ์ถูกเขียนลง %s."
@@ -12495,9 +12445,6 @@ msgstr "ตัวช่วยเหลือสามารถสำรองข
 
 msgid "The wizard is finished now."
 msgstr "จบการทำงานของตัวช่วยเหลือ"
-
-msgid "There are at least "
-msgstr "อย่างน้อยต้องมี"
 
 #, fuzzy, python-format
 msgid "There are at least %d updates available."
@@ -12571,6 +12518,9 @@ msgid "This allows you to show softcams modules in downloads"
 msgstr ""
 
 msgid "This allows you to show systemplugins modules in downloads"
+msgstr ""
+
+msgid "This bouquet is protected by a parental control PIN"
 msgstr ""
 
 #, python-format
@@ -12728,6 +12678,9 @@ msgstr "ปลั๊กอินตัวนี้จะถูกลบออก
 #, python-format
 msgid "This receiver cannot decode %s streams!"
 msgstr ""
+
+msgid "This service is protected by a parental control PIN"
+msgstr "บริการนี้ถูกควบคุมอายุรับชม"
 
 msgid "This setting allows the tuner configuration to be a duplication of how another tuner is already configured."
 msgstr ""
@@ -13213,9 +13166,6 @@ msgstr ""
 
 msgid "URL of fallback remote receiver"
 msgstr ""
-
-msgid "USALS"
-msgstr "USALS"
 
 msgid "USALS automatically moves a motorised dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
 msgstr ""
@@ -13735,8 +13685,9 @@ msgstr "แสดง RASS แบบ Interactive"
 msgid "View details"
 msgstr "แสดงรายละเอียด"
 
-msgid "View list of available "
-msgstr "แสดงรายการที่ใช้ได้"
+#, fuzzy, python-format
+msgid "View list of available %s extensions."
+msgstr "แสดงผังรายการเพิ่มเติม"
 
 msgid "View list of available CommonInterface extensions"
 msgstr "แสดงรายการส่วนเพิ่มเติมสำหรับอินเตอร์เฟซพื้นฐาน"
@@ -13835,9 +13786,6 @@ msgstr "W"
 msgid "WARNING!"
 msgstr ""
 
-msgid "WEP"
-msgstr "WEP"
-
 msgid "WLAN connection"
 msgstr ""
 
@@ -13847,15 +13795,6 @@ msgstr ""
 #, fuzzy
 msgid "WOL standby"
 msgstr "ไม่ Standby"
-
-msgid "WPA"
-msgstr "WPA"
-
-msgid "WPA or WPA2"
-msgstr "WPA หรือ WPA2"
-
-msgid "WPA2"
-msgstr "WPA2"
 
 msgid "WSS on 4:3"
 msgstr "WSS บน 4:3"
@@ -14620,9 +14559,9 @@ msgid "Your receiver does not have an internet connection"
 msgstr ""
 
 msgid ""
-"Your receiver is now ready to use.\n"
+"Your receiver is now ready to be used.\n"
 "\n"
-"Your internet connection is working now.\n"
+"Your internet connection is working.\n"
 "\n"
 msgstr ""
 
@@ -14891,6 +14830,9 @@ msgstr "กลับ"
 msgid "background image"
 msgstr "รูปพื้นหลัง"
 
+msgid "backup EPG cache"
+msgstr ""
+
 msgid "ballet"
 msgstr ""
 
@@ -15093,9 +15035,6 @@ msgid "entertainment (10-16 year old)"
 msgstr ""
 
 msgid "entertainment (6-14 year old)"
-msgstr ""
-
-msgid "backup EPG cache"
 msgstr ""
 
 msgid "equestrian"
@@ -15861,14 +15800,8 @@ msgstr ""
 msgid "testing"
 msgstr "ความละเอียดจอ"
 
-msgid "This bouquet is protected by a parental control PIN"
-msgstr ""
-
 msgid "this recording"
 msgstr "กำลังถูกบันทึก"
-
-msgid "This service is protected by a parental control PIN"
-msgstr "บริการนี้ถูกควบคุมอายุรับชม"
 
 msgid "to dir"
 msgstr ""
