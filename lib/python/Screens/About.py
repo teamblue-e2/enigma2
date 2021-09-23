@@ -749,7 +749,7 @@ class SystemNetworkInfo(Screen):
 						else:
 							accesspoint = status[self.iface]["accesspoint"]
 						if "BSSID" in self:
-							self.AboutText += _('Accesspoint:') + accesspoint + '\n'
+							self.AboutText += _('Access point:') + accesspoint + '\n'
 						if "ESSID" in self:
 							self.AboutText += _('SSID:') + essid + '\n'
 
