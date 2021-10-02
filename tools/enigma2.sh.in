@@ -173,9 +173,28 @@ case $ret in
 		/sbin/reboot
 		;;
 	42)
+		df -P | grep -v "tmpfs " | awk '{print $6}' | tail -n +3 > /tmp/upgrade_mountpoints.txt
+		while read line; do
+			if [  -f $line/var/lib/opkg/status ]; then
+			DESTS=$DESTS" --add-dest "$line":"$line
+		fi
+		done < /tmp/upgrade_mountpoints.txt
 		# bind the console (when available)
 		[ -f /sys/class/vtconsole/vtcon1/bind ] && echo 1 > /sys/class/vtconsole/vtcon1/bind
-		opkg upgrade 2>&1 | tee /home/root/opkgupgrade.log
+		prevupd=0
+		currupd=999
+		opkg update 2>&1 | tee /home/root/opkgupgrade.log
+		# check if we need to upgrade busybox first
+		if [ "$(opkg list-upgradable busybox)" != "" ]; then
+			opkg update busybox 2>&1 | tee -a /home/root/opkgupgrade.log
+		fi
+		# update all other packages
+		while [ $currupd -gt 0 -a $currupd -ne $prevupd ]; do
+			opkg upgrade $DESTS 2>&1 | tee -a /home/root/opkgupgrade.log
+			prevupd=$currupd
+			currupd=`opkg list-upgradable | wc -l`
+			echo "===> $currupd PACKAGE(S) REMAINING" >> /home/root/ipkupgrade.log
+		done
 		/sbin/reboot
 		;;
 	44)
