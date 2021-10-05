@@ -389,6 +389,7 @@ class TryQuitMainloop(MessageBox):
 		global inTryQuitMainloop
 		inTryQuitMainloop = False
 
+
 class SwitchToAndroid(Screen):
 	def __init__(self, session):
 		self.session = session

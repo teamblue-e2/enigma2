@@ -895,6 +895,7 @@ def showrotorpositionChoicesUpdate(update=False):
 		config.misc.showrotorposition.setChoices(choiceslist, "no")
 	SystemInfo["isRotorTuner"] = count > 0
 
+
 def preferredTunerChoicesUpdate(update=False):
 	dvbs_nims = [("-2", _("disabled"))]
 	dvbt_nims = [("-2", _("disabled"))]
