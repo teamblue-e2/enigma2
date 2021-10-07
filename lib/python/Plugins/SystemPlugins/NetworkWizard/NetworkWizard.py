@@ -237,8 +237,8 @@ class NetworkWizard(WizardLanguage, Rc):
 		if data is not None:
 			if data is True:
 				if status is not None:
-					text1 = _("Your receiver is now ready to use.\n\nYour internet connection is working now.\n\n")
-					text2 = _('Accesspoint:') + "\t" + str(status[self.selectedInterface]["accesspoint"]) + "\n"
+					text1 = _("Your receiver is now ready to be used.\n\nYour internet connection is working.\n\n")
+					text2 = _('Access point:') + "\t" + str(status[self.selectedInterface]["accesspoint"]) + "\n"
 					text3 = _('SSID:') + "\t" + str(status[self.selectedInterface]["essid"]) + "\n"
 					text4 = _('Link Quality:') + "\t" + str(status[self.selectedInterface]["quality"]) + "\n"
 					text5 = _('Signal Strength:') + "\t" + str(status[self.selectedInterface]["signal"]) + "\n"
