@@ -503,7 +503,6 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		self.setTitle(_("Network setup"))
-		self.session = session
 		if isinstance(networkinfo, (list, tuple)):
 			self.iface = networkinfo[0]
 			self.essid = networkinfo[1]
@@ -616,11 +615,11 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.ws = wpaSupplicant()
 			self.encryptionlist = []
 			self.encryptionlist.append(("Unencrypted", _("Unencrypted")))
-			self.encryptionlist.append(("WEP", _("WEP")))
-			self.encryptionlist.append(("WPA", _("WPA")))
-			if not path.exists("/tmp/bcm/" + self.iface):
-				self.encryptionlist.append(("WPA/WPA2", _("WPA or WPA2")))
-			self.encryptionlist.append(("WPA2", _("WPA2")))
+			self.encryptionlist.append(("WEP", "WEP"))
+			self.encryptionlist.append(("WPA", "WPA"))
+			if not os.path.exists("/tmp/bcm/" + self.iface):
+				self.encryptionlist.append(("WPA/WPA2", "WPA/WPA2"))
+			self.encryptionlist.append(("WPA2", "WPA2"))
 			self.weplist = []
 			self.weplist.append("ASCII")
 			self.weplist.append("HEX")
@@ -912,7 +911,6 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		self.setTitle(_("Network configuration"))
-		self.session = session
 		self.iface = iface
 		self.restartLanRef = None
 		self.LinkState = None

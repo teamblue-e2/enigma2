@@ -366,7 +366,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				x[1].value = int(mktime(dt.timetuple()))
 			x[1].save()
 		nimmanager.sec.update()
-		self.saveAll()
+		self.saveAll(reopen=True)
 		return True
 
 	def autoDiseqcRun(self, ports):
@@ -457,8 +457,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.list.append(getConfigListEntry(self.indent % _("Tone mode"), Sat.tonemode, _("Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec sheet.")))
 
 			if lnbnum < 65 or lnbnum == 71:
-				if self.nim.isFBCLink() and ("1_2", _("1.2")) in currLnb.diseqcMode.choices.choices:
-					currLnb.diseqcMode.setChoices([("none", _("None")), ("1_0", _("1.0")), ("1_1", _("1.1"))], "none")
+				if self.nim.isFBCLink() and ("1_2", "1.2") in currLnb.diseqcMode.choices.choices:
+					currLnb.diseqcMode.setChoices([("none", _("none")), ("1_0", "1.0"), ("1_1", "1.1")], "none")
 				self.advancedDiseqcMode = getConfigListEntry(self.indent % _("DiSEqC mode"), currLnb.diseqcMode, _("Select '1.0' for standard committed switches, '1.1' for uncommitted switches, and '1.2' for systems using a positioner."))
 				self.list.append(self.advancedDiseqcMode)
 			if currLnb.diseqcMode.value != "none":
@@ -642,7 +642,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.newConfig()
 
 	def setTextKeyYellow(self):
-		self["key_yellow"].setText((self.nimConfig.configMode.value == "simple" and self.nimConfig.diseqcMode.value in ("single", "diseqc_a_b", "diseqc_a_b_c_d") and (not self.nim.isCombined() or self.nimConfig.configModeDVBS.value)) and _("Auto Diseqc") or self.configMode and _("Configuration mode") or "")
+		self["key_yellow"].setText((self.nimConfig.configMode.value == "simple" and self.nimConfig.diseqcMode.value in ("single", "diseqc_a_b", "diseqc_a_b_c_d") and (not self.nim.isCombined() or self.nimConfig.configModeDVBS.value)) and _("Auto DiSEqC") or self.configMode and _("Configuration mode") or "")
 
 	def setTextKeyBlue(self):
 		self["key_blue"].setText(self.isChanged() and _("Set default") or "")
@@ -674,7 +674,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			is_changed |= x[1].isChanged()
 		return is_changed
 
-	def saveAll(self):
+	def saveAll(self, reopen=False):
 		if self.nim.isCompatible("DVB-S"):
 			# reset connectedTo to all choices to properly store the default value
 			choices = []
@@ -685,11 +685,29 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			# sanity check for empty sat list
 			if not (self.nimConfig.configMode.value == "satposdepends" or self.nimConfig.configMode.value == "advanced" and int(self.nimConfig.advanced.sat[3607].lnb.value) != 0) and len(nimmanager.getSatListForNim(self.slotid)) < 1:
 				self.nimConfig.configMode.value = "nothing"
-		elif self.nim.isCompatible("DVB-C") and self.nim.isFBCRoot() and self.nimConfig.configMode.value == "nothing":
+		elif self.nim.isCompatible("DVB-C") and self.nim.isFBCRoot():
+			value = "nothing"
+			if self.nimConfig.configMode.value == "enabled":
+				value = "enabled"
 			for slot in nimmanager.nim_slots:
-				if slot.isFBCLink() and slot.is_fbc[2] == self.nim.is_fbc[2] and slot.config.configMode.value != "nothing":
-					slot.config.configMode.value = "nothing"
+				if slot.isFBCLink() and slot.is_fbc[2] == self.nim.is_fbc[2] and slot.config.configMode.value != value:
+					slot.config.configMode.value = value
 					slot.config.configMode.save()
+		if reopen and self.oldref and self.slot_number == self.slotid:
+			type_service = self.oldAlternativeref.getUnsignedData(4) >> 16
+			force_reopen = False
+			if type_service == 0xEEEE and (self.nim.isCompatible("DVB-T") and self.nimConfig.configMode.value == "nothing") or (self.nim.isCombined() and self.nim.canBeCompatible("DVB-T") and not self.nimConfig.configModeDVBT.value):
+				force_reopen = True
+			elif type_service == 0xFFFF and ((self.nim.isCompatible("DVB-C") and self.nimConfig.configMode.value == "nothing") or (self.nim.isCombined() and self.nim.canBeCompatible("DVB-C") and not self.nimConfig.configModeDVBC.value)) or ((self.nim.isCompatible("ATSC") and self.nimConfig.configMode.value == "nothing") or (self.nim.isCombined() and self.nim.canBeCompatible("ATSC") and not self.nimConfig.configModeATSC.value)):
+				force_reopen = True
+			if force_reopen:
+				raw_channel = eDVBResourceManager.getInstance().allocateRawChannel(self.slotid)
+				if raw_channel:
+					frontend = raw_channel.getFrontend()
+					if frontend:
+						frontend.closeFrontend()
+						frontend.reopenFrontend()
+				del raw_channel
 		if self.isChanged():
 			for x in self["config"].list:
 				x[1].save()
@@ -903,7 +921,7 @@ class NimSelection(Screen):
 					text = ("%s: %s\n%s" % (_("Modes") if "/" in enabledTuners else _("Mode"), enabledTuners if enabledTuners == 'ATSC' else "DVB-%s" % enabledTuners, text)) if enabledTuners else _("Disabled")
 				if not x.isSupported():
 					text = _("Tuner is not supported")
-				if x.isCompatible("DVB-T") and (_("DVB-T") in (text + x.friendly_full_description) or _("/T") in (text + x.friendly_full_description)) and _("Disabled") not in text and hasattr(nimConfig, "terrestrial_5V") and nimConfig.terrestrial_5V.value:
+				if x.isCompatible("DVB-T") and ("DVB-T" in (text + x.friendly_full_description) or "/T" in (text + x.friendly_full_description)) and _("Disabled") not in text and hasattr(nimConfig, "terrestrial_5V") and nimConfig.terrestrial_5V.value:
 					text += _(" (+5 volt terrestrial)")
 				self.list.append((slotid, x.friendly_full_description, text or nimConfig.configMode.value, x))
 		self["nimlist"].setList(self.list)

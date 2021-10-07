@@ -18,6 +18,7 @@ class FileBrowser(Screen, HelpableScreen):
 		Screen.__init__(self, session)
 		# for the skin: first try FileBrowser_DVDBurn, then FileBrowser, this allows individual skinning
 		self.skinName = ["FileBrowser_DVDBurn", "FileBrowser"]
+		self.setTitle(_("DVD file browser"))
 
 		HelpableScreen.__init__(self)
 		self.scope = scope
@@ -59,10 +60,6 @@ class FileBrowser(Screen, HelpableScreen):
 			})
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def layoutFinished(self):
-		self.setTitle(_("DVD File Browser"))
 
 	def getDir(self, currentVal=None, defaultDir=None):
 		if currentVal:
@@ -103,6 +100,7 @@ class ProjectSettings(Screen, ConfigListScreen):
 
 	def __init__(self, session, project=None):
 		Screen.__init__(self, session)
+		self.setTitle(_("Collection settings"))
 		self.project = project
 
 		self["key_red"] = StaticText(_("Cancel"))
@@ -133,10 +131,6 @@ class ProjectSettings(Screen, ConfigListScreen):
 			"cancel": self.cancel,
 			"ok": self.ok,
 		}, -2)
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def layoutFinished(self):
-		self.setTitle(_("Collection settings"))
 
 	def changedConfigList(self):
 		key = self.keydict[self["config"].getCurrent()[1]]

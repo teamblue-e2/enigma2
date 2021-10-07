@@ -38,6 +38,7 @@ class CIselectMainMenu(Screen):
 
 	def __init__(self, session, args=0):
 		Screen.__init__(self, session)
+		self.setTitle(_("CI assignment"))
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Edit"))
 		self["actions"] = ActionMap(["ColorActions", "SetupActions"],
@@ -74,10 +75,6 @@ class CIselectMainMenu(Screen):
 		menuList.list = self.list
 		menuList.l.setList(self.list)
 		self["CiList"] = menuList
-		self.onShown.append(self.setWindowTitle)
-
-	def setWindowTitle(self):
-		self.setTitle(_("CI assignment"))
 
 	def greenPressed(self):
 		cur = self["CiList"].getCurrent()
@@ -116,6 +113,7 @@ class CIconfigMenu(Screen):
 	def __init__(self, session, ci_slot="9"):
 
 		Screen.__init__(self, session)
+		self.setTitle(_("CI assignment"))
 		self.ci_slot = ci_slot
 		self.filename = eEnv.resolve("${sysconfdir}/enigma2/ci") + str(self.ci_slot) + ".xml"
 
@@ -162,10 +160,6 @@ class CIconfigMenu(Screen):
 		if config.usage.setup_level.index <= 1: # advanced
 			self.selectedcaid = self.caidlist
 			self.finishedCAidSelection(self.selectedcaid)
-		self.onShown.append(self.setWindowTitle)
-
-	def setWindowTitle(self):
-		self.setTitle(_("CI assignment"))
 
 	def redPressed(self):
 		self.delete()
@@ -403,6 +397,7 @@ class CAidSelect(Screen):
 	def __init__(self, session, list, selected_caids):
 
 		Screen.__init__(self, session)
+		self.setTitle(_("select CAId's"))
 
 		self.list = SelectionList()
 		self["list"] = self.list
@@ -424,10 +419,6 @@ class CAidSelect(Screen):
 			"green": self.greenPressed,
 			"red": self.cancel
 		}, -1)
-		self.onShown.append(self.setWindowTitle)
-
-	def setWindowTitle(self):
-		self.setTitle(_("select CAId's"))
 
 	def greenPressed(self):
 		_list = self.list.getSelectionsList()
@@ -452,7 +443,8 @@ class myProviderSelection(ChannelSelectionBase):
 
 	def __init__(self, session, title):
 		ChannelSelectionBase.__init__(self, session)
-		self.onShown.append(self.__onExecCallback)
+		self.setTitle(_("Select provider to add..."))
+		self.onShown.append(self.showSatellites)
 		self.bouquet_mark_edit = EDIT_BOUQUET
 
 		self["actions"] = ActionMap(["OkCancelActions", "ChannelSelectBaseActions"],
@@ -478,10 +470,6 @@ class myProviderSelection(ChannelSelectionBase):
 
 	def showFavourites(self):
 		pass
-
-	def __onExecCallback(self):
-		self.showSatellites()
-		self.setTitle(_("Select provider to add..."))
 
 	def channelSelected(self): # just return selected service
 		ref = self.getCurrentSelection()
@@ -591,6 +579,7 @@ class myChannelSelection(ChannelSelectionBase):
 
 	def __init__(self, session, title):
 		ChannelSelectionBase.__init__(self, session)
+		self.setTitle(_("Select service to add..."))
 		self.onShown.append(self.__onExecCallback)
 		self.bouquet_mark_edit = OFF
 
@@ -613,7 +602,6 @@ class myChannelSelection(ChannelSelectionBase):
 
 	def __onExecCallback(self):
 		self.setModeTv()
-		self.setTitle(_("Select service to add..."))
 		self.isFavourites()
 
 	def isFavourites(self):

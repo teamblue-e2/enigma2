@@ -18,10 +18,6 @@ import xml.etree.cElementTree
 config.unicable = ConfigSubsection()
 
 
-def orbStr(pos):
-	return pos > 3600 and "N/A" or "%d.%d\xc2\xb0%s" % (pos > 1800 and ((3600 - pos) / 10, (3600 - pos) % 10, "W") or (pos / 10, pos % 10, "E"))
-
-
 def getConfigSatlist(orbpos, satlist):
 	default_orbpos = None
 	for x in satlist:
@@ -122,7 +118,7 @@ class SecConfigure:
 
 	def linkNIMs(self, sec, nim1, nim2):
 		print("[SecConfigure] link tuner", nim1, "to tuner", nim2)
-		if nim2 == (nim1 - 1):
+		if (nim2 == nim1 - 1) or HardwareInfo().get_device_model() == "vusolo2":
 			self.linkInternally(nim1)
 		sec.setTunerLinked(nim1, nim2)
 
@@ -943,13 +939,16 @@ class NimManager:
 				entry["i2c"] = None
 			if "has_outputs" not in entry:
 				entry["has_outputs"] = entry["name"] in SystemInfo["HasPhysicalLoopthrough"] # "Has_Outputs: yes" not in /proc/bus/nim_sockets NIM, but the physical loopthrough exist
+			entry["internally_connectable"] = None
 			if "frontend_device" in entry: # check if internally connectable
 				if os.path.exists("/proc/stb/frontend/%d/rf_switch" % entry["frontend_device"]) and (not id or entries[id]["name"] == entries[id - 1]["name"]):
-					entry["internally_connectable"] = entry["frontend_device"] - 1
-				else:
-					entry["internally_connectable"] = None
+					if HardwareInfo().get_device_model() == "vusolo2":
+						if not id:
+							entry["internally_connectable"] = 1
+					elif id:
+						entry["internally_connectable"] = entry["frontend_device"] - 1
 			else:
-				entry["frontend_device"] = entry["internally_connectable"] = None
+				entry["frontend_device"] = None
 			if "multi_type" not in entry:
 				entry["multi_type"] = {}
 			if not ("input_name" in entry):
@@ -1202,8 +1201,26 @@ class NimManager:
 	def getNimListForSat(self, orb_pos):
 		return [nim.slot for nim in self.nim_slots if nim.isCompatible("DVB-S") and not nim.isFBCLink() and orb_pos in [sat[0] for sat in self.getSatListForNim(nim.slot)]]
 
-	def getRotorSatListForNim(self, slotid):
-		result = []
+	def rotorLastPositionForNim(self, slotid, number=True):
+		available_slot = False
+		for slot in self.nim_slots:
+			if slot.slot == slotid:
+				available_slot = True
+				break
+		if available_slot:
+			if self.getRotorSatListForNim(slotid, only_first=True):
+				lastrotorposition = secClass.getInstance().frontendLastRotorOrbitalPosition(slotid)
+				if lastrotorposition == -1:
+					return number and -1 or _("undefined")
+				else:
+					from Tools.Transponder import orbpos as orbStr # imported here so doesn't cause a circular import
+					return number and lastrotorposition or orbStr(lastrotorposition)
+		else:
+			return number and 9999 or _("not valid frontend")
+		return number and 9998 or _("rotor is not used")
+
+	def getRotorSatListForNim(self, slotid, only_first=False):
+		list = []
 		if self.nim_slots[slotid].isCompatible("DVB-S"):
 			nim = config.Nims[slotid]
 			configMode = nim.configMode.value
@@ -1336,7 +1353,7 @@ def InitNimManager(nimmgr, update_slots=None):
 		("diseqc_a_b", "DiSEqC A/B"), ("diseqc_a_b_c_d", "DiSEqC A/B/C/D"),
 		("positioner", _("Positioner")), ("positioner_select", _("Positioner (selecting satellites)"))]
 
-	positioner_mode_choices = [("usals", _("USALS")), ("manual", _("manual"))]
+	positioner_mode_choices = [("usals", "USALS"), ("manual", _("manual"))]
 
 	diseqc_satlist_choices = [(3600, _('automatic'), 1), (3601, _('nothing connected'), 1)] + nimmgr.satList
 
@@ -1350,9 +1367,9 @@ def InitNimManager(nimmgr, update_slots=None):
 	advanced_voltage_choices = [("polarization", _("Polarization")), ("13V", _("13 V")), ("18V", _("18 V")), ("0V", _("Externally powered"))]
 	advanced_tonemode_choices = [("band", _("Band")), ("on", _("On")), ("off", _("Off"))]
 	advanced_lnb_toneburst_choices = [("none", _("None")), ("A", _("A")), ("B", _("B"))]
-	advanced_lnb_allsat_diseqcmode_choices = [("1_2", _("1.2"))]
-	advanced_lnb_satposdepends_diseqcmode_choices = [("none", _("None")), ("1_0", _("1.0")), ("1_1", _("1.1"))]
-	advanced_lnb_diseqcmode_choices = [("none", _("None")), ("1_0", _("1.0")), ("1_1", _("1.1")), ("1_2", _("1.2"))]
+	advanced_lnb_allsat_diseqcmode_choices = [("1_2", "1.2")]
+	advanced_lnb_satposdepends_diseqcmode_choices = [("none", _("None")), ("1_0", "1.0"), ("1_1", "1.1")]
+	advanced_lnb_diseqcmode_choices = [("none", _("None")), ("1_0", "1.0"), ("1_1", "1.1"), ("1_2", "1.2")]
 	advanced_lnb_commandOrder1_0_choices = [("ct", "DiSEqC 1.0, toneburst"), ("tc", "toneburst, DiSEqC 1.0")]
 	advanced_lnb_commandOrder_choices = [
 		("ct", "DiSEqC 1.0, toneburst"), ("tc", "toneburst, DiSEqC 1.0"),
@@ -1397,7 +1414,7 @@ def InitNimManager(nimmgr, update_slots=None):
 					section.powerinserter.save_forced = True
 					section.powerinserter.addNotifier(setPowerInserter)
 					srcfrequencylist = productparameters.get("scrs").split(",")
-					section.scrList = ConfigSelection([("%d" % (x + 1), "User Band %d (%s)" % ((x + 1), srcfrequencylist[x])) for x in list(range(len(srcfrequencylist)))])
+					section.scrList = ConfigSelection([("%d" % (x + 1), _("User Band %d (%s)") % ((x + 1), srcfrequencylist[x])) for x in range(len(srcfrequencylist))])
 					section.scrList.save_forced = True
 					section.scrList.addNotifier(boundFunction(scrListChanged, productparameters, srcfrequencylist))
 
@@ -1421,7 +1438,7 @@ def InitNimManager(nimmgr, update_slots=None):
 					section.positions = ConfigInteger(default=configEntry.value == "jess" and 64 or 2)
 					section.positions.addNotifier(positionsChanged)
 					section.positionsOffset = ConfigInteger(default=0)
-					section.scrList = ConfigSelection([("%d" % (x + 1), "User Band %d" % (x + 1)) for x in list(range(configEntry.value == "jess" and 32 or 8))])
+					section.scrList = ConfigSelection([("%d" % (x + 1), _("User Band %d") % (x + 1)) for x in range(configEntry.value == "jess" and 32 or 8)])
 					section.scrList.save_forced = True
 					srcfrequencyList = configEntry.value == "jess" and (1210, 1420, 1680, 2040, 984, 1020, 1056, 1092, 1128, 1164, 1256, 1292, 1328, 1364, 1458, 1494, 1530, 1566, 1602,
 						1638, 1716, 1752, 1788, 1824, 1860, 1896, 1932, 1968, 2004, 2076, 2112, 2148) or (1284, 1400, 1516, 1632, 1748, 1864, 1980, 2096)

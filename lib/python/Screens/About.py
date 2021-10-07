@@ -205,22 +205,21 @@ class About(Screen):
 				self["Tuner" + str(count)] = StaticText("")
 			AboutText += nims[count] + "\n"
 
-		self["HDDHeader"] = StaticText(_("Detected HDD:"))
+		self["HDDHeader"] = StaticText(_("Detected storage devices:"))
+		AboutText += "\n" + _("Detected storage devices:") + "\n"
 
-		AboutText += "\n"
-		#AboutText +=  _("Detected HDD:") + "\n"
 		hddlist = harddiskmanager.HDDList()
 		hddinfo = ""
 		if hddlist:
-			formatstring = hddsplit and "%s:%s, %.1f %sB %s" or "%s:(%s, %.1f %sB %s)"
-			for count in list(range(len(hddlist))):
+			formatstring = hddsplit and "%s:%s, %.1f %s %s" or "%s\n(%s, %.1f %s %s)"
+			for count in range(len(hddlist)):
 				if hddinfo:
 					hddinfo += "\n"
 				hdd = hddlist[count][1]
 				if int(hdd.free()) > 1024:
-					hddinfo += formatstring % (hdd.model(), hdd.capacity(), hdd.free() / 1024.0, "G", _("free"))
+					hddinfo += formatstring % (hdd.model(), hdd.capacity(), hdd.free() / 1024.0, _("GB"), _("free"))
 				else:
-					hddinfo += formatstring % (hdd.model(), hdd.capacity(), hdd.free(), "M", _("free"))
+					hddinfo += formatstring % (hdd.model(), hdd.capacity(), hdd.free(), _("MB"), _("free"))
 		else:
 			hddinfo = _("none")
 		self["hddA"] = StaticText(hddinfo)
@@ -230,6 +229,8 @@ class About(Screen):
 		#for x in about.GetIPsFromNetworkInterfaces():
 		#	AboutText += "\n" + iNetwork.getFriendlyAdapterDescription(x[0]) + " :" + "/dev/" + x[0] + " " + x[1]
 		AboutText += '\n\n' + _("Uptime") + ": " + about.getBoxUptime()
+		if config.hdmicec.enabled.value:
+			AboutText += "\n\n" + _("HDMI-CEC address") + ": " + config.hdmicec.fixed_physical_address.value
 
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 		self["key_green"] = Button(_("Translations"))
@@ -756,7 +757,7 @@ class SystemNetworkInfo(Screen):
 						else:
 							accesspoint = status[self.iface]["accesspoint"]
 						if "BSSID" in self:
-							self.AboutText += _('Accesspoint:') + accesspoint + '\n'
+							self.AboutText += _('Access point:') + accesspoint + '\n'
 						if "ESSID" in self:
 							self.AboutText += _('SSID:') + essid + '\n'
 

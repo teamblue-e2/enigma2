@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-04 21:24+0100\n"
+"POT-Creation-Date: 2021-09-29 22:39+0200\n"
 "PO-Revision-Date: 2016-11-17 12:51+0200\n"
 "Last-Translator: vovan43<vovan43@ex.ua>, sety <tim1065@mail.ru>, Irkoff <irkoff@gmail.com>\n"
 "Language-Team: gisclub.tv <http://gisclub.tv/>\n"
@@ -33,11 +33,6 @@ msgid ""
 msgstr ""
 "\n"
 "Після натискання ОК, зачекайте!"
-
-msgid ""
-"\n"
-"Conflict detection disabled!"
-msgstr ""
 
 msgid ""
 "\n"
@@ -113,6 +108,10 @@ msgid " ('%s') finished with error number [%d]."
 msgstr ""
 
 #, fuzzy
+msgid " (+5 volt terrestrial)"
+msgstr "Наземний"
+
+#, fuzzy
 msgid " (0 - all networks)"
 msgstr "Локальна мережа"
 
@@ -133,6 +132,10 @@ msgstr " (Радіо)"
 msgid " (TV)"
 msgstr " (ТБ)"
 
+#, fuzzy
+msgid " (auto detection)"
+msgstr "Вибір звуку"
+
 msgid " (disabled)"
 msgstr ""
 
@@ -152,14 +155,17 @@ msgstr ""
 msgid " - 1 element exist! Overwrite"
 msgstr ""
 
+msgid " - Unicable/JESS LNBs not found"
+msgstr ""
+
 msgid " - file exist! Overwrite"
 msgstr ""
 
 msgid " - folder exist! Overwrite"
 msgstr ""
 
-msgid " extensions."
-msgstr " Доповнень."
+msgid " Warning: the selected tuner should not use SCR Unicable type for LNBs because each tuner need a own SCR number."
+msgstr ""
 
 #, fuzzy
 msgid " min"
@@ -171,26 +177,15 @@ msgstr " мс"
 msgid " or save the picture additionally to a file"
 msgstr ""
 
-msgid " packages selected."
-msgstr " пакетів вибрано."
-
-msgid " updates available."
-msgstr " доступних оновлень."
+msgid " unicable LNB input of rotor"
+msgstr ""
 
 msgid "$PROJECT_DIR$"
 msgstr ""
 
 #, python-format
-msgid "%.0f GB"
-msgstr ""
-
-#, python-format
-msgid "%.0f MB"
-msgstr ""
-
-#, python-format
-msgid "%.0f kB"
-msgstr ""
+msgid "%(freespace)s %(percent)s free disk space"
+msgstr "%(freespace)s %(percent)s вільне місце на диску"
 
 #, python-format
 msgid "%.1f° E"
@@ -207,20 +202,6 @@ msgstr ""
 #, fuzzy, python-format
 msgid "%02d:%02d"
 msgstr "%2d:%02d"
-
-#, python-format
-msgid "%03d MB"
-msgstr ""
-
-#. TRANSLATORS: short time representation hour:minute
-#, python-format
-msgid "%2d:%02d"
-msgstr "%2d:%02d"
-
-#. TRANSLATORS: full time representation hour:minute:seconds
-#, python-format
-msgid "%2d:%02d:%02d"
-msgstr "%2d:%02d:%02d"
 
 #, fuzzy, python-format
 msgid "%3.01f dB"
@@ -260,14 +241,6 @@ msgstr "%a %e/%m"
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
-
-#, python-format
-msgid "%d B"
-msgstr ""
-
-#, python-format
-msgid "%d GB"
-msgstr ""
 
 #, python-format
 msgid "%d MB"
@@ -321,10 +294,6 @@ msgstr[1] "%d процес запущений у фоновому режимі!"
 msgstr[2] "%d процес запущений у фоновому режимі!"
 
 #, python-format
-msgid "%d kB"
-msgstr ""
-
-#, python-format
 msgid "%d kB/s"
 msgstr ""
 
@@ -342,6 +311,13 @@ msgstr[2] "%d хвилин"
 #, python-format
 msgid "%d minutes"
 msgstr "%d хвилин"
+
+#, fuzzy, python-format
+msgid "%d package selected."
+msgid_plural "%d packages selected."
+msgstr[0] " пакетів вибрано."
+msgstr[1] " пакетів вибрано."
+msgstr[2] " пакетів вибрано."
 
 #, python-format
 msgid "%d pixel wide"
@@ -382,10 +358,6 @@ msgstr "%d-%m"
 msgid "%d.%02d. %02d:%02d"
 msgstr "%2d:%02d:%02d"
 
-#, python-format
-msgid "%d.%03d GB"
-msgstr ""
-
 msgid "%d.%B %Y"
 msgstr "%d.%B %Y"
 
@@ -420,10 +392,6 @@ msgstr ""
 msgid "%s %d.%d"
 msgstr ""
 
-#, python-format
-msgid "%s %s free disk space"
-msgstr "%s %s вільне місце на диску"
-
 #, fuzzy, python-format
 msgid "%s (%04o)"
 msgstr "%s (%s)\n"
@@ -434,10 +402,6 @@ msgstr "%s (%s)\n"
 
 #, fuzzy, python-format
 msgid "%s (%s)"
-msgstr "%s (%s)\n"
-
-#, python-format
-msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
 #, python-format
@@ -468,21 +432,9 @@ msgstr[0] "%s оновлений пакет доступний"
 msgstr[1] "%s оновлених пакета доступно"
 msgstr[2] "%s оновлених пакетів доступно"
 
-#, python-format
-msgid "%s%d min"
-msgstr "%s%d хв"
-
-#, python-format
-msgid "%s/%s: %s"
-msgstr "%s/%s: %s"
-
 #, fuzzy, python-format
 msgid "%s: %s"
 msgstr "%s/%s: %s"
-
-#, python-format
-msgid "%s:%s"
-msgstr ""
 
 #, python-format
 msgid "'%s' not installed and no known package"
@@ -568,19 +520,7 @@ msgstr ""
 msgid "1"
 msgstr ""
 
-msgid "1.0"
-msgstr "1.0"
-
-msgid "1.1"
-msgstr "1.1"
-
-msgid "1.2"
-msgstr "1.2"
-
 msgid "1024 MB"
-msgstr ""
-
-msgid "10bit"
 msgstr ""
 
 msgid "120,2,30"
@@ -598,17 +538,11 @@ msgstr ""
 msgid "12V output"
 msgstr "12V вихід"
 
-msgid "12bit"
-msgstr ""
-
 msgid "13 V"
 msgstr "13 V"
 
 msgid "16 MB"
 msgstr ""
-
-msgid "16:10"
-msgstr "16:10"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
@@ -722,9 +656,6 @@ msgstr ""
 msgid "47,1,685,24"
 msgstr ""
 
-msgid "4:3"
-msgstr "4:3"
-
 msgid "4:3 Letterbox"
 msgstr "4:3 Letterbox"
 
@@ -797,9 +728,6 @@ msgstr ""
 msgid "8K"
 msgstr "8"
 
-msgid "8bit"
-msgstr ""
-
 msgid "9"
 msgstr ""
 
@@ -842,12 +770,8 @@ msgid "A background update check is in progress, please wait a few minutes and t
 msgstr ""
 
 #, python-format
-msgid ""
-"A configuration file (%s) has been modified since it was installed.\n"
-"Do you want to keep your modifications?"
-msgstr ""
-"Конфігураційний файл (%s)  був змінений в процесі установки.\n"
-"Зберегти вашу модифікацію?"
+msgid "A configuration file (%s) has been modified since it was installed. Would you like to keep the modified version?"
+msgstr "Файл конфігурації (%s) був змінений після його встановлення. Бажаєте зберегти вашу версію?"
 
 #, python-format
 msgid ""
@@ -860,19 +784,11 @@ msgstr ""
 msgid "A file from media is in use!"
 msgstr ""
 
-msgid ""
-"A finished record timer wants to set your\n"
-"receiver to standby. Do that now?"
-msgstr ""
-"Запис за таймером завершено, ресивер буде переведений в режим очікування.\n"
-"Зробити це зараз?"
+msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
+msgstr "Запис по таймеру завершено, тюнер буде переведено в режим очікування. Зробити це зараз?"
 
-msgid ""
-"A finished record timer wants to shut down\n"
-"your receiver. Shutdown now?"
-msgstr ""
-"Запис за таймером закінчена, ваш ресивер буде вимкнений.\n"
-"Вимкнути зараз?"
+msgid "A completed recording timer is about to shut down your receiver. Would you like to proceed?"
+msgstr "Запис по таймеру закінчено і Ваш тюнер буде вимкнено Зробити це зараз?"
 
 #, fuzzy
 msgid "A graphical EPG for all services of a specific bouquet"
@@ -880,7 +796,7 @@ msgstr "Графічний EPG для всіх сервісів в обрани�
 
 #, python-format
 msgid ""
-"A record has been started:\n"
+"A recording has started:\n"
 "%s"
 msgstr ""
 "Запис було розпочато:\n"
@@ -900,9 +816,12 @@ msgstr ""
 msgid "A recording is currently running. Please stop the recording before trying to scan."
 msgstr "У поточний час йде запис. Будь ласка, зупиніть запис, перш ніжспробувати сканувати."
 
+msgid "A recording is currently running. Please stop the recording before starting a DiSEqC test."
+msgstr "В даний час триває запис. Будь ласка, зупиніть запис перед тестуванням DiSEqC."
+
 #, fuzzy
-msgid "A recording is currently running. Please stop the recording before trying to start a testing DiSEqC."
-msgstr "У поточний час йде запис. Зупиніть запис перед пошуком супутника."
+msgid "A repeating event is currently recording. What would you like to do?"
+msgstr "Повторювальна подія зараз записується ... Що ви хочете зробити?"
 
 #, python-format
 msgid "A required tool (%s) was not found."
@@ -920,19 +839,11 @@ msgstr ""
 "\n"
 "Ви хочете відключити другий мережний інтерфейс?"
 
-msgid ""
-"A sleep timer wants to set your\n"
-"receiver to standby. Do that now?"
-msgstr ""
-"Таймер сну хоче перевести ваш\n"
-"ресивер в Режим Очікування. Зробити це зараз?"
+msgid "A sleep timer is about to put your receiver in standby mode. Would you like to proceed?"
+msgstr "Таймер переведе приймач в режим очікування. Зробити це зараз?"
 
-msgid ""
-"A sleep timer wants to shut down\n"
-"your receiver. Shutdown now?"
-msgstr ""
-"Таймер сну хоче вимкнути\n"
-"ваш ресивер. Вимкнути зараз?"
+msgid "A sleep timer is about to shut down your receiver. Would you like to proceed?"
+msgstr "Таймер сну хоче вимкнути Ваш приймач. Вимкнути зараз?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Невеликий огляд доступних станів, іконок та дій."
@@ -981,15 +892,8 @@ msgid "ASPECT key"
 msgstr ""
 
 #, fuzzy
-msgid "ASS File"
-msgstr "%d файл"
-
-#, fuzzy
 msgid "ASS file"
 msgstr "%d файл"
-
-msgid "ATSC"
-msgstr ""
 
 #, fuzzy
 msgid "ATSC provider"
@@ -1016,11 +920,11 @@ msgstr "Информація"
 msgid "About..."
 msgstr "Информація..."
 
+msgid "Access point:"
+msgstr "Точка доступу:"
+
 #, fuzzy
 msgid "Accessed:"
-msgstr "Точка доступа:"
-
-msgid "Accesspoint:"
 msgstr "Точка доступа:"
 
 #, fuzzy
@@ -1071,6 +975,10 @@ msgstr ""
 
 msgid "Active"
 msgstr ""
+
+#, fuzzy
+msgid "Adapter"
+msgstr "LAN адаптер"
 
 msgid "Adapter settings"
 msgstr "Налаштування адаптера"
@@ -1305,9 +1213,8 @@ msgstr ""
 msgid "Allow 12bit"
 msgstr ""
 
-#, fuzzy
-msgid "Allow quitting movieplayer with exit"
-msgstr "Дозволити вийти з відеоплеєра кнопкою вихід"
+msgid "Allow quitting movie player with exit"
+msgstr "Дозволити вийти з програвача при виході"
 
 msgid "Allow subtitle language to equal audio language"
 msgstr "Показувати субтитри при збігу з мовою Аудіо"
@@ -1342,14 +1249,6 @@ msgid "Also on standby"
 msgstr "перейти в Режим очікування"
 
 msgid "Alternative"
-msgstr "Альтернативний DNS"
-
-#, fuzzy
-msgid "Alternative 1"
-msgstr "Альтернативний DNS"
-
-#, fuzzy
-msgid "Alternative 2"
 msgstr "Альтернативний DNS"
 
 msgid "Alternative URLs for DVB-T/C or ATSC"
@@ -1432,9 +1331,10 @@ msgstr "Арабський"
 msgid "Are you sure to purge all deleted user bouquets?"
 msgstr ""
 
+#. TRANSLATORS: The user is asked to delete all satellite services from a specific orbital position after a configuration change
 #, python-format
-msgid "Are you sure to remove all %d.%d%s%s services?"
-msgstr ""
+msgid "Are you sure to remove all %s services?"
+msgstr "Ви впевнені, що хочете видалити усі %s канали?"
 
 msgid "Are you sure to remove all cable services?"
 msgstr ""
@@ -1625,9 +1525,11 @@ msgstr "Режим авторизації"
 msgid "Auto"
 msgstr "Авто"
 
-#, fuzzy
-msgid "Auto Diseqc"
-msgstr "Автоматично"
+msgid "Auto DiSEqC"
+msgstr "Авто DiSEqC"
+
+msgid "Auto EXIF Orientation rotation/flipping"
+msgstr "Авто EXIF обертання орієнтація/гортати"
 
 msgid "Auto chapter split every ? minutes (0=never)"
 msgstr "Автоматично розділяти на розділи кожні ? хвилин (0 = ніколи)"
@@ -1668,9 +1570,6 @@ msgstr "Огляд таймерів"
 #, fuzzy
 msgid "AutoTimer Settings"
 msgstr "Меню налаштування субтитрів"
-
-msgid "Automatic"
-msgstr "Автоматично"
 
 #, fuzzy
 msgid "Automatic Scan"
@@ -1727,15 +1626,6 @@ msgstr "BER:"
 msgid "BLUDISC RECORDABLE"
 msgstr ""
 
-msgid "BT 2020 CL"
-msgstr ""
-
-msgid "BT 2020 NCL"
-msgstr ""
-
-msgid "BT 709"
-msgstr ""
-
 msgid "Back"
 msgstr "Назад"
 
@@ -1782,9 +1672,6 @@ msgstr "Бекап завершено."
 #, fuzzy
 msgid "Backup Settings"
 msgstr "Змінити налаштування"
-
-msgid "Backup EPG cache"
-msgstr "Резервне кешування EPG"
 
 msgid "Backup completed."
 msgstr "Бекап завершено."
@@ -1837,7 +1724,8 @@ msgstr "Бангладеш"
 msgid "Barbados"
 msgstr ""
 
-msgid "Basic PID Info"
+#, fuzzy
+msgid "Basic PID info"
 msgstr "Основна інформація про ПІД"
 
 #, fuzzy
@@ -1903,6 +1791,12 @@ msgstr "Чорний екран"
 
 msgid "Black screen till locked"
 msgstr "Чорний екран-заблоковано"
+
+msgid "Blindscan"
+msgstr ""
+
+msgid "Blindscan terrestrial (if possible)"
+msgstr ""
 
 #, fuzzy
 msgid "Block device"
@@ -2055,9 +1949,6 @@ msgstr ""
 msgid "CPU: %s"
 msgstr ""
 
-msgid "CVBS"
-msgstr "CVBS"
-
 msgid "Cable"
 msgstr "Кабельне ТБ"
 
@@ -2204,7 +2095,7 @@ msgid ""
 msgstr ""
 
 #, fuzzy
-msgid "Capabilities "
+msgid "Capabilities: "
 msgstr "Ємність: "
 
 msgid "Capacity: "
@@ -2375,6 +2266,9 @@ msgstr "Перевірте інтернет-з'єднання знову"
 #, fuzzy
 msgid "Checking Feeds"
 msgstr "Перевірка Файлової системи..."
+
+msgid "Checking ONID/TSID"
+msgstr ""
 
 #, fuzzy
 msgid "Checking disk"
@@ -2972,6 +2866,12 @@ msgstr "Вкажіть, який роз'єм відеовиходу буде в�
 msgid "Configuring"
 msgstr "Налаштування"
 
+msgid "Confirm closure of media player"
+msgstr ""
+
+msgid "Conflict detection disabled!"
+msgstr "Виявлення конфліктів відключено!"
+
 msgid "Conflict not resolved!"
 msgstr ""
 
@@ -3285,9 +3185,6 @@ msgstr "Чешський"
 msgid "D"
 msgstr "3"
 
-msgid "DAC"
-msgstr ""
-
 msgid "DHCP"
 msgstr "DHCP"
 
@@ -3334,49 +3231,27 @@ msgstr "Чорна прозорість DVB субтитрів"
 msgid "DVB type"
 msgstr "Вигляд списку"
 
-msgid "DVB-C"
-msgstr "DVB-C"
-
-#, fuzzy
-msgid "DVB-C ANNEX B"
-msgstr "DVB-C ANNEX C"
-
-msgid "DVB-C ANNEX C"
-msgstr "DVB-C ANNEX C"
-
-msgid "DVB-S"
-msgstr "DVB-S"
-
-msgid "DVB-S2"
-msgstr "DVB-S2"
-
-msgid "DVB-T"
-msgstr "DVB-T"
-
-msgid "DVB-T2"
-msgstr "DVB-T2"
-
 msgid "DVD Burn"
 msgstr ""
-
-#, fuzzy
-msgid "DVD File Browser"
-msgstr "Повернутися в провідник"
 
 #, fuzzy
 msgid "DVD Menu"
 msgstr "Меню"
 
 #, fuzzy
-msgid "DVD Titlelist"
-msgstr "білий список"
-
-#, fuzzy
 msgid "DVD file browser"
 msgstr "Повернутися в провідник"
 
+#, fuzzy
+msgid "DVD media toolbox"
+msgstr "DVD медіа-інструменти"
+
 msgid "DVD player"
 msgstr "DVD плеєр"
+
+#, fuzzy
+msgid "DVD titlelist"
+msgstr "білий список"
 
 #, fuzzy
 msgid "DVDPlayer"
@@ -3641,11 +3516,15 @@ msgstr "Детальніше про плагін: "
 msgid "Detect next boxes before standby"
 msgstr ""
 
-msgid "Detected HDD:"
-msgstr "Знайдено HDD:"
-
 msgid "Detected NIMs:"
 msgstr "Знайдено тюнер:"
+
+msgid "Detected storage devices:"
+msgstr "Виявлено HDD:"
+
+#, fuzzy
+msgid "Device"
+msgstr "Пристрої:"
 
 #, fuzzy
 msgid "Device Details"
@@ -3661,18 +3540,20 @@ msgstr ""
 msgid "Device Manager"
 msgstr "Управління сервісами"
 
+#, fuzzy
 msgid "Device Manager - Fast Mounted Remove"
-msgstr ""
+msgstr "Помилка видалення"
 
 msgid "Device Manager - Fast mounted remove"
 msgstr ""
 
 #, fuzzy
+msgid "Device name:"
+msgstr "Ім'я пристрою:"
+
+#, fuzzy
 msgid "Devicelist"
 msgstr "Пристрої:"
-
-msgid "Devicename:"
-msgstr "Ім'я пристрою:"
 
 #, fuzzy
 msgid "Devices"
@@ -3730,8 +3611,8 @@ msgid "Directory browser"
 msgstr "Директорія браузера"
 
 #, python-format
-msgid "Directory contains %s and %s."
-msgstr " Директорія містить %s и %s."
+msgid "Directory contains %(file)s and %(subdir)s."
+msgstr "Директорія містить %(file)s і %(subdir)s."
 
 msgid "Disable"
 msgstr "Відключити"
@@ -4000,9 +3881,6 @@ msgstr "Ви хочете оновити ваш ресивер?"
 msgid "Do you want to view or run the script?\n"
 msgstr "Ви хочете перезавантажити ваш ресивер?"
 
-msgid "Dolby"
-msgstr ""
-
 msgid "Domain:"
 msgstr ""
 
@@ -4134,9 +4012,6 @@ msgstr ""
 
 msgid "EPG Cache Path"
 msgstr ""
-
-msgid "EPG cache backup"
-msgstr "Резервне копіювання кешу ЕПГ"
 
 msgid "EPG language selection 1"
 msgstr "Вибір мови EPG 1"
@@ -4271,10 +4146,10 @@ msgstr "Електронний програмний гід"
 msgid "Electronic Program Guide Setup"
 msgstr "Електронний програмний гід"
 
-msgid "Embedded"
+msgid "Emergency"
 msgstr ""
 
-msgid "Emergency"
+msgid "Empty Trash"
 msgstr ""
 
 msgid "Empty slot"
@@ -4327,6 +4202,10 @@ msgstr ""
 
 msgid "Enable Wake On LAN"
 msgstr ""
+
+#, fuzzy
+msgid "Enable auto cable scan"
+msgstr "Включити батьківський контроль"
 
 msgid "Enable auto fastscan"
 msgstr ""
@@ -4488,6 +4367,9 @@ msgstr "IP адреса"
 msgid "Enter PIN"
 msgstr "Повторіть новий PIN-код"
 
+msgid "Enter PIN code"
+msgstr "Введіть пін-код"
+
 #, fuzzy
 msgid "Enter URL"
 msgstr "Повторіть новий PIN-код"
@@ -4509,9 +4391,6 @@ msgstr "Закрити вибір назв"
 msgid "Enter persistent PIN code"
 msgstr "Змінити PIN-код"
 
-msgid "Enter pin code"
-msgstr "Змінити PIN-код"
-
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the spec sheet of your LNB."
 msgstr ""
 
@@ -4521,8 +4400,11 @@ msgstr ""
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr ""
 
-msgid "Enter the service pin"
-msgstr "Введіть PIN-код для сервісу"
+msgid "Enter the service PIN"
+msgstr "Введіть пін-код для каналу"
+
+msgid "Enter valid ONID/TSID"
+msgstr ""
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
 msgstr ""
@@ -4849,6 +4731,13 @@ msgstr ""
 msgid ""
 "FBC automatic\n"
 "inactive"
+msgstr ""
+
+#, python-format
+msgid "FBC socket %s"
+msgstr ""
+
+msgid "FBC virtual"
 msgstr ""
 
 msgid "FEC"
@@ -5334,6 +5223,10 @@ msgid "Further options"
 msgstr "дальнейшее образование"
 
 #, fuzzy
+msgid "GB"
+msgstr "RGB"
+
+#, fuzzy
 msgid "GBAspectRatioSwitchSetup"
 msgstr "AspectRatioSwitch Налаштування"
 
@@ -5583,9 +5476,6 @@ msgstr ""
 msgid "HDD Info"
 msgstr "Інфо"
 
-msgid "HDMI"
-msgstr ""
-
 #, fuzzy
 msgid "HDMI CEC setup"
 msgstr "Налаштування"
@@ -5634,9 +5524,6 @@ msgstr ""
 msgid "HDMI-CEC setup"
 msgstr ""
 
-msgid "HDR10"
-msgstr ""
-
 #, fuzzy
 msgid "HDR10 support"
 msgstr "Невідома"
@@ -5647,9 +5534,6 @@ msgstr ""
 #, fuzzy
 msgid "HI-cleanup for external subtitles"
 msgstr "Затримка для зовнішніх субтитрів"
-
-msgid "HLG"
-msgstr ""
 
 #, fuzzy
 msgid "HLG support"
@@ -5740,6 +5624,9 @@ msgstr "Захистити сервіси"
 
 msgid "Hide player"
 msgstr "Приховати програвач"
+
+msgid "Hide sub-menu"
+msgstr ""
 
 msgid "Hide zap errors"
 msgstr "Заховати помилки при перемиканні каналів"
@@ -6229,15 +6116,11 @@ msgstr "Інсталяція Піконів в"
 msgid "Installing software..."
 msgstr "Інсталяція"
 
-#, fuzzy
-msgid "Instant record"
-msgstr "Меню негайного запису..."
+msgid "Instant recording"
+msgstr "Негайний запис"
 
 msgid "Instant recording location"
 msgstr "Місце негайного запису"
-
-msgid "Instant recording..."
-msgstr "Меню негайного запису..."
 
 #, fuzzy
 msgid "Interface"
@@ -6630,11 +6513,11 @@ msgid "List type"
 msgstr "Вигляд списку"
 
 #, python-format
-msgid "List version %d, found %d channel"
-msgid_plural "List version %d, found %d channels"
-msgstr[0] "Список версії %d, знайдений %d канал"
-msgstr[1] "Список версії %d, знайдено %d канала"
-msgstr[2] "Список версії %d, знайдено %d каналів"
+msgid "List version %(ver)d, found %(num)d channel"
+msgid_plural "List version %(ver)d, found %(num)d channels"
+msgstr[0] "Версія списку %(ver)d, знайдено %(num)d канал"
+msgstr[1] "Версія списку %(ver)d, знайдено %(num)d канали"
+msgstr[2] "Версія списку %(ver)d, знайдено %(num)d каналів"
 
 msgid "Listen to the radio..."
 msgstr "Слухати радіо..."
@@ -6714,6 +6597,12 @@ msgstr "Довге натиснення"
 msgid "Longitude"
 msgstr "Довгота"
 
+msgid "Looking for active transponders in the cable network. Please wait..."
+msgstr "Намагаємося знайти транспондери, використовувані в кабельній мережі. Будь ласка, зачекайте..."
+
+msgid "Looking for active transponders in the terrestrial network. Please wait..."
+msgstr "Намагаємося знайти транспондери в наземній мережі. Будь ласка, зачекайте..."
+
 #, fuzzy
 msgid "Loop through from"
 msgstr "петля до"
@@ -6742,6 +6631,10 @@ msgid "MAC:"
 msgstr ""
 
 #, fuzzy
+msgid "MB"
+msgstr "B"
+
+#, fuzzy
 msgid "MIME Version"
 msgstr "Інверсія"
 
@@ -6759,9 +6652,6 @@ msgstr ""
 
 msgid "Macao"
 msgstr ""
-
-msgid "North Macedonia (The Republic of)"
-msgstr "Македонія (колишня Югославська Республіка)"
 
 msgid "Madagascar"
 msgstr "Мадагаскар"
@@ -7764,6 +7654,9 @@ msgstr "Стандарт"
 msgid "North"
 msgstr "Північ"
 
+msgid "North Macedonia (The Republic of)"
+msgstr "Македонія (колишня Югославська Республіка)"
+
 msgid "Northern Mariana Islands"
 msgstr ""
 
@@ -7792,8 +7685,8 @@ msgid "Not defined"
 msgstr "Визначено користувачем"
 
 #, python-format
-msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
-msgstr "Немає місця на диску. Будь ласка звільніть трохи місця і спробуйте знову. (%d MB потрібно, %d MB доступно)"
+msgid "Not enough disk space. Please free up some disk space and try again. (%(req)d MB required, %(avail)d MB available)"
+msgstr "Недостатньо місця на диску. Будь ласка, звільніть місце на диску і спробуйте ще раз. (потрібно %(req)d МБ, доступний %(avail)d МБ)"
 
 #, fuzzy
 msgid "Not tested:"
@@ -8004,9 +7897,6 @@ msgstr "Індикатор LED під час роботи."
 msgid "Opkg"
 msgstr ""
 
-msgid "Options/Restore"
-msgstr "Параметри/Відновлення"
-
 msgid "Options disable timer"
 msgstr "Варіант для всіх іміджів"
 
@@ -8032,9 +7922,6 @@ msgstr "Меню налаштування субтитрів"
 #, fuzzy
 msgid "Overall progress:"
 msgstr "Маленький прогресс"
-
-msgid "Overscan Wizard"
-msgstr ""
 
 #, fuzzy
 msgid "Overscan wizard"
@@ -8100,18 +7987,11 @@ msgstr ""
 msgid "PAL"
 msgstr "PAL"
 
-msgid "PCM"
-msgstr ""
-
 msgid "PCR PID"
 msgstr "PCR ПІД"
 
 msgid "PDC"
 msgstr ""
-
-#, fuzzy
-msgid "PGS File"
-msgstr "%d файл"
 
 #, fuzzy
 msgid "PGS file"
@@ -8469,8 +8349,8 @@ msgstr "Будь ласка, введіть нове ім'я:"
 msgid "Please enter password"
 msgstr "Будь ласка, введіть нове ім'я:"
 
-msgid "Please enter the correct pin code"
-msgstr "Будь ласка, введіть правильний PIN-код"
+msgid "Please enter the correct PIN code"
+msgstr "Будь ласка, введіть правильний пін-код"
 
 #, fuzzy
 msgid "Please enter the new PIN code"
@@ -8641,8 +8521,8 @@ msgstr "Зачекайте, йде активація вашої мережев�
 msgid "Please wait while feeds state is checked."
 msgstr "Зачекайте поки йде перевірка вашої мережі..."
 
-msgid "Please wait while scanning is in progress..."
-msgstr "Будь ласка почекайте, поки йде сканування..."
+msgid "Please wait while scanning..."
+msgstr "Будь ласка, почекайте, виконується сканування..."
 
 #, fuzzy
 msgid "Please wait while we check your installed plugins..."
@@ -9049,9 +8929,8 @@ msgstr "Закрити список фільмів"
 msgid "Protect movie list"
 msgstr "Закрити список фільмів"
 
-#, fuzzy
-msgid "Protect on epg age"
-msgstr "Захистити установки"
+msgid "Protect on EPG age"
+msgstr "Захистити вікове обмеження EPG"
 
 #, fuzzy
 msgid "Protect plugin browser"
@@ -9409,9 +9288,6 @@ msgstr "Всі файли видалені"
 msgid "Remove all new found flags"
 msgstr "видалити всі нові знайдені прапори"
 
-msgid "Remove autoinstall list"
-msgstr "Видалити список автовстановлення"
-
 msgid "Remove bookmark"
 msgstr "Видалити закладку"
 
@@ -9524,20 +9400,15 @@ msgstr "Очистити список відтворення"
 msgid "Repeat type"
 msgstr "Тип повторення"
 
-#, fuzzy
-msgid ""
-"Repeating event currently recording.\n"
-"What do you want to do?"
-msgstr "Повторювальна подія зараз записується ... Що ви хочете зробити?"
-
-msgid "Repeating event currently recording... What do you want to do?"
-msgstr "Повторювальна подія зараз записується ... Що ви хочете зробити?"
-
 msgid "Repeats"
 msgstr "Повторення"
 
 msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)"
 msgstr ""
+
+#, fuzzy
+msgid "Replace newlines in EPG"
+msgstr "Виберіть символ для заміни нових рядків у EPG."
 
 msgid "Report Msgid Bugs To"
 msgstr ""
@@ -9795,9 +9666,6 @@ msgstr "Працює"
 msgid "Running Myrestore script, Please wait ..."
 msgstr "Будь ласка зачекайте..."
 
-msgid "Run autoinstall"
-msgstr "Запуск автовстановлення"
-
 msgid "Russian"
 msgstr "Російський"
 
@@ -9806,9 +9674,6 @@ msgstr "Російська Федерація"
 
 msgid "Rwanda"
 msgstr ""
-
-msgid "S-Video"
-msgstr "S-Video"
 
 #, fuzzy
 msgid "SABnzbd Setup"
@@ -9833,10 +9698,6 @@ msgstr ""
 msgid "SCR Unicable"
 msgstr "Unicable LNB"
 
-#, fuzzy
-msgid "SDR"
-msgstr "SNR"
-
 msgid "SELECTIVE"
 msgstr ""
 
@@ -9850,19 +9711,8 @@ msgstr "SNR:"
 msgid "SNR:"
 msgstr "SNR:"
 
-msgid "SPDIF"
-msgstr ""
-
-#, fuzzy
-msgid "SRT File"
-msgstr "%d файл"
-
 #, fuzzy
 msgid "SRT file"
-msgstr "%d файл"
-
-#, fuzzy
-msgid "SSA File"
 msgstr "%d файл"
 
 #, fuzzy
@@ -10016,9 +9866,6 @@ msgstr "Зберегти плейлист при виході"
 msgid "Save right folder on exit"
 msgstr "Створити нову папку"
 
-msgid "Save previous backup"
-msgstr "Зберегти попередню резервну копію"
-
 msgid "Save settings and EPG data"
 msgstr "Зберегти epg.dat"
 
@@ -10142,9 +9989,6 @@ msgid_plural "Scanning completed, %d channels found"
 msgstr[0] "Сканування завершено, %d канал знайдено"
 msgstr[1] "Сканування завершено, %d канала знайдено"
 msgstr[2] "Сканування завершено, %d каналів знайдено"
-
-msgid "Scanning failed!"
-msgstr "Помилка сканування!"
 
 msgid "Scanning..."
 msgstr "Сканування..."
@@ -10365,7 +10209,10 @@ msgid "Select channel"
 msgstr "Вибрати тюнер"
 
 msgid "Select channel to record from"
-msgstr "Вибрати канал для запису з"
+msgstr "Вибір каналу для запису з"
+
+msgid "Select char for replacing newlines in EPG."
+msgstr "Виберіть символ для заміни нових рядків у EPG."
 
 msgid "Select copy destination for:"
 msgstr "Вибір місця для копії:"
@@ -10411,6 +10258,9 @@ msgstr ""
 
 msgid "Select how your box will upgrade."
 msgstr ""
+
+msgid "Select in which resolution pictures are displayed with picture viewer or movie player."
+msgstr "Налаштувати, в якій роздільній здатності відображатимуться зображення за допомогою програми перегляду зображень та програвача фільмів."
 
 msgid "Select input device"
 msgstr "Виберіть пристрої введення"
@@ -10790,8 +10640,8 @@ msgstr "Набір обмежень"
 msgid "Set movielist type."
 msgstr "Закрити список фільмів"
 
-msgid "Set pin code persistent"
-msgstr ""
+msgid "Set persistent PIN code"
+msgstr "Встановити надійний пін-код"
 
 msgid "Set sequence repeats if your aerial system requires this. Normally if the aerial system has been configured correctly sequence repeats will not be necessary. If yours does, recheck you have command order set correctly."
 msgstr ""
@@ -10865,10 +10715,6 @@ msgstr "Режим налаштувань"
 
 msgid "Setup network time synchronization interval."
 msgstr ""
-
-#, fuzzy
-msgid "Setup tuner"
-msgstr "Вибрати тюнер"
 
 msgid "Setup your positioner"
 msgstr "Настройки вашего позиционера"
@@ -11223,6 +11069,9 @@ msgstr "Показати іконку статусу в списку відео"
 msgid "Show status icons in movielist"
 msgstr "Показати іконку статусу в списку відео"
 
+msgid "Show sub-menu"
+msgstr ""
+
 #, fuzzy
 msgid "Show subservice selection"
 msgstr "Вибір субтитрів"
@@ -11247,8 +11096,16 @@ msgstr "Перейти на радіо плеєр..."
 msgid "Show the plugin browser.."
 msgstr "Браузер плагінів"
 
+#, fuzzy
+msgid "Show the radio player..."
+msgstr "Перейти на радіо плеєр..."
+
 msgid "Show the service information on two lines in the channel selection screen. You can choose between the current event description below the channel name, or the current event description next to the channel name, and the next event description on the second line."
 msgstr ""
+
+#, fuzzy
+msgid "Show the tv player..."
+msgstr "Перейти на радіо плеєр..."
 
 #, fuzzy
 msgid "Show transponder info"
@@ -11424,6 +11281,10 @@ msgstr "Вибір EPG"
 #, fuzzy
 msgid "Sleep/wakeup timer"
 msgstr "Таймер сну"
+
+#, fuzzy
+msgid "SleepTimer Configuration"
+msgstr "Налаштування тюнера"
 
 msgid "Sleeptimer"
 msgstr "Таймер сну"
@@ -11848,6 +11709,10 @@ msgstr "Зупинити поточну подію, але не наступні
 
 msgid "Stop entry"
 msgstr "Зупинити вхід"
+
+#, fuzzy
+msgid "Stop live TV service"
+msgstr "Перейти на останній сервіс"
 
 msgid "Stop playing this movie?"
 msgstr "Зупинити відтворення цього відео?"
@@ -12351,6 +12216,9 @@ msgstr "PIN-код успішно змінений."
 msgid "The PIN code has been saved successfully."
 msgstr "PIN-код успішно змінений."
 
+msgid "The PIN code you entered is wrong."
+msgstr "Введений пін-код невірний."
+
 msgid "The PIN codes you entered are different."
 msgstr "Введений PIN код не вірний"
 
@@ -12451,9 +12319,6 @@ msgstr ""
 msgid "The path %s already exists."
 msgstr "Цей шлях %s вже існує."
 
-msgid "The pin code you entered is wrong."
-msgstr "Введений PIN-код невірний."
-
 #, fuzzy, python-format
 msgid "The results have been written to %s"
 msgstr "Результати були записані в %s."
@@ -12517,12 +12382,9 @@ msgstr "Майстер може зберегти Ваші поточні нас�
 msgid "The wizard is finished now."
 msgstr "Майстер закінчив роботу."
 
-msgid "There are at least "
-msgstr "Знайдено принаймні "
-
 #, python-format
-msgid "There are at least %s updates available."
-msgstr "%s доступних оновлень для вашого ресивера."
+msgid "There are at least %d updates available."
+msgstr "Доступно щонайменше %d оновлень."
 
 msgid "There are currently no outstanding actions."
 msgstr "У поточний момент немає нових оновлень."
@@ -12594,6 +12456,9 @@ msgstr ""
 msgid "This allows you to show systemplugins modules in downloads"
 msgstr ""
 
+msgid "This bouquet is protected by a parental control PIN"
+msgstr "Цей фаворит захищений батьківським контролем"
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr ""
@@ -12621,6 +12486,9 @@ msgid "This line is not editable!"
 msgstr ""
 "Плагін Witeless LAN не встановлений!\n"
 "Будь ласка, встановіть його."
+
+msgid "This not valid ONID/TSID"
+msgstr ""
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr ""
@@ -12751,6 +12619,9 @@ msgstr "Плагін буде видалений."
 msgid "This receiver cannot decode %s streams!"
 msgstr "Цей ресівер не може декодувати %s потоки!"
 
+msgid "This service is protected by a parental control PIN"
+msgstr "Цей канал захищений батьківським контролем"
+
 msgid "This setting allows the tuner configuration to be a duplication of how another tuner is already configured."
 msgstr ""
 
@@ -12811,6 +12682,9 @@ msgstr ""
 
 msgid "This test detects your configured LAN adapter."
 msgstr "Даний тест визначить ваш мережевий-адаптер."
+
+msgid "This valid ONID/TSID"
+msgstr ""
 
 msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
@@ -13030,9 +12904,8 @@ msgstr "Верх і низ"
 msgid "Total Clients streaming: "
 msgstr "Без HD стримінгу"
 
-#, python-format
-msgid "Total clients streaming: %d (%s)"
-msgstr ""
+msgid "Total clients streaming: "
+msgstr "Кількість клієнтів в стрімі: "
 
 msgid "Track"
 msgstr "Доріжка"
@@ -13087,19 +12960,8 @@ msgstr ""
 msgid "True"
 msgstr ""
 
-msgid "Try to find used transponders in cable network.. please wait..."
-msgstr "Намагаємося знайти транспондери, використовувані в кабельній мережі .. Будь ласка, зачекайте ..."
-
-#, fuzzy
-msgid "Try to find used transponders in terrestrial network... please wait..."
-msgstr "Намагаємося знайти транспондери, використовувані в кабельній мережі .. Будь ласка, зачекайте ..."
-
-msgid "Trying to download a new packetlist. Please wait..."
-msgstr "Намагаємося завантажити новий список пакетів. Будь ласка, зачекайте..."
-
-#, fuzzy
-msgid "Trying to download a new updatelist. Please wait..."
-msgstr "Намагаємося завантажити новий список пакетів. Будь ласка, зачекайте..."
+msgid "Downloading a new packet list. Please wait..."
+msgstr "Спроба завантажити новий список пакетів. Зачекайте..."
 
 msgid "Tue"
 msgstr "Вівт"
@@ -13230,9 +13092,6 @@ msgstr ""
 
 msgid "URL of fallback remote receiver"
 msgstr ""
-
-msgid "USALS"
-msgstr "USALS"
 
 msgid "USALS automatically moves a motorised dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
 msgstr ""
@@ -13401,11 +13260,11 @@ msgstr "Оновлення закінчено. Хочете перезавант
 msgid "Update failed. Your receiver does not have a working internet connection."
 msgstr "Оновлення не вдалося. У вашому ресівері немає працюючого інтернет-з'єднання."
 
+msgid "Update feed not available."
+msgstr "Канал Оновленя не доступний."
+
 msgid "Update has completed."
 msgstr "Оновлення закінчено."
-
-msgid "Updatefeed not available."
-msgstr "Оновлення з фида недоступні."
 
 #, fuzzy
 msgid "Updating"
@@ -13561,8 +13420,16 @@ msgstr "Використання кошика в списку фільмів"
 msgid "Used service scan type"
 msgstr "Використовуваний тип сканування"
 
-msgid "User - bouquets"
-msgstr "Список фаворитів"
+msgid "User bouquets"
+msgstr "Фаворити користувача"
+
+#, python-format
+msgid "User Band %d"
+msgstr ""
+
+#, python-format
+msgid "User Band %d (%s)"
+msgstr ""
 
 #, fuzzy
 msgid "User Feed URL"
@@ -13631,14 +13498,13 @@ msgid "VMGM (intro trailer)"
 msgstr "VMGM (трейлер)"
 
 #, fuzzy
-msgid "VOB File"
-msgstr "%d файл"
-
-#, fuzzy
 msgid "VOB file"
 msgstr "%d файл"
 
 msgid "VU+"
+msgstr ""
+
+msgid "Valid ONID/TSID look at www.lyngsat.com..."
 msgstr ""
 
 #, fuzzy
@@ -13684,9 +13550,6 @@ msgstr "Перегляд установок"
 #, fuzzy
 msgid "Video clipping setup"
 msgstr "Налаштування відео"
-
-msgid "Video codec"
-msgstr "Відео кодек"
 
 msgid "Video enhancement preview"
 msgstr "Попередній перегляд відео налаштувань"
@@ -13749,8 +13612,9 @@ msgstr "Інтерактивний перегляд RASS"
 msgid "View details"
 msgstr "Показати деталі"
 
-msgid "View list of available "
-msgstr "Перегляд списку доступних "
+#, fuzzy, python-format
+msgid "View list of available %s extensions."
+msgstr "Перегляд списку доступних доповнень EPG"
 
 msgid "View list of available CommonInterface extensions"
 msgstr "Перегляд списку доступних доповнень картрідера"
@@ -13845,9 +13709,6 @@ msgstr "W"
 msgid "WARNING!"
 msgstr ""
 
-msgid "WEP"
-msgstr "WEP"
-
 msgid "WLAN connection"
 msgstr "WLAN з'єднання"
 
@@ -13858,15 +13719,6 @@ msgstr "AC3/DTS мікшування"
 #, fuzzy
 msgid "WOL standby"
 msgstr "Не переходить в Режим очікування"
-
-msgid "WPA"
-msgstr "WPA"
-
-msgid "WPA or WPA2"
-msgstr "WPA або WPA2"
-
-msgid "WPA2"
-msgstr "WPA2"
 
 msgid "WSS on 4:3"
 msgstr "WSS on 4:3"
@@ -13932,8 +13784,14 @@ msgid ""
 "Really disable timer conflict detection?"
 msgstr ""
 
+msgid "Warning: FBC-C V1 tuner should be connected to the first slot to work correctly. Otherwise, only 2 out of 8 demodulators will be available when connected in the second slot. "
+msgstr ""
+
 msgid "Warning: no LNB; using factory defaults."
 msgstr "Попередження: немає LNB; використовуються заводські налаштування."
+
+msgid "Warning: the second input of this dual tuner may not support SCR LNBs. "
+msgstr ""
 
 msgid "Watch movies..."
 msgstr "Відтворити записане відео..."
@@ -14163,8 +14021,8 @@ msgstr "Якщо увімкнено, графічні DVB субтитри бу�
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr "Коли ця функція включена, http стрім декодується на стороні сервера. Обладнанню віддаленого клієнта не треба виконувати декодування."
 
-msgid "When enabled, it is possible to leave the movieplayer with exit."
-msgstr "Якщо увімкнено, то можна закрити відеоплеєр з допомогою кнопки вихід."
+msgid "When enabled, it is possible to leave the movie player with exit."
+msgstr "Якщо включено, можливо закрити медіапрогравач кнопкою exit."
 
 #, fuzzy
 msgid "When enabled, it will automatically play to the last saved radio service when switching to radio mode."
@@ -14345,20 +14203,8 @@ msgstr "Не вдалося записати /tmp/positionersetup.log: "
 msgid "XBox 360 support"
 msgstr "Невідома"
 
-msgid "YCbCr420"
-msgstr ""
-
-msgid "YCbCr422"
-msgstr ""
-
-msgid "YCbCr444"
-msgstr ""
-
 msgid "YES"
 msgstr ""
-
-msgid "YPbPr"
-msgstr "YPbPr"
 
 msgid "Year"
 msgstr "Рік"
@@ -14423,9 +14269,6 @@ msgstr "Так, вимкнути зараз."
 msgid "Yesterday"
 msgstr "Вчора"
 
-msgid "You PIN code is 0000. This is the default PIN code and it disables parental control!\n"
-msgstr ""
-
 #, fuzzy, python-format
 msgid ""
 "You already have a bootlogo installed,\n"
@@ -14473,9 +14316,6 @@ msgstr "Ви можете пропалити тільки записи реси�
 
 msgid "You can remove this plugin."
 msgstr "Ви можете видалити це плагін."
-
-msgid "You can set how will be finished movieplayer with 'Exit' button."
-msgstr ""
 
 msgid "You can set selected directory as 'root' directory for movie player."
 msgstr ""
@@ -14534,8 +14374,8 @@ msgid "You have to include at least %d aspect ratio modes!"
 msgstr ""
 
 #, python-format
-msgid "You have to wait %s!"
-msgstr "Необходимо подождать %s!"
+msgid "You have to wait %(min)d minutes, %(sec)d seconds!"
+msgstr ""
 
 msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
 msgstr ""
@@ -14611,6 +14451,9 @@ msgid ""
 "Do you want to remove now ?"
 msgstr ""
 
+msgid "Your PIN code is 0000. This is the default PIN code and it disables parental control!\n"
+msgstr ""
+
 msgid "Your Receiver isn't connected to the internet properly. Please check it and try again."
 msgstr ""
 
@@ -14655,8 +14498,8 @@ msgstr ""
 "Оберіть, що будете робити далі."
 
 #, python-format
-msgid "Your internet connection is working (ip: %s)"
-msgstr "Ваше інтернет з'єднання працює (ip: %s)"
+msgid "Your internet connection is working (IP address: %s)"
+msgstr "Ваше інтернет з'єднання працює (IP: %s)"
 
 msgid "Your network configuration has been activated."
 msgstr "Ваші мережеві настройки активовані."
@@ -14672,9 +14515,9 @@ msgstr "Оновлення не вдалося. У вашому ресивері
 
 #, fuzzy
 msgid ""
-"Your receiver is now ready to use.\n"
+"Your receiver is now ready to be used.\n"
 "\n"
-"Your internet connection is working now.\n"
+"Your internet connection is working.\n"
 "\n"
 msgstr ""
 " Ваш ресивер готовий до роботи.\n"
@@ -14870,6 +14713,11 @@ msgstr "через "
 msgid "all"
 msgstr "Все"
 
+# plugin HDD 3
+#, fuzzy
+msgid "all tuners"
+msgstr "Повна резервна копія на HDD"
+
 msgid "alphabetic"
 msgstr "сортувати за алфавітом"
 
@@ -14940,14 +14788,17 @@ msgid "automatic"
 msgstr "автоматично"
 
 #, fuzzy
-msgid "automatically scan every day"
-msgstr "Автоматичний пошук"
+msgid "automatic from DHCP"
+msgstr "автоматично"
 
 msgid "back"
 msgstr "назад"
 
 msgid "background image"
 msgstr "фонове зображення"
+
+msgid "backup EPG cache"
+msgstr "резервне копіювання кешу EPG"
 
 msgid "ballet"
 msgstr "балет"
@@ -15032,9 +14883,6 @@ msgstr "комедія"
 #, fuzzy
 msgid "config menu"
 msgstr "присвоєно"
-
-msgid "configure in which resolution pictures are displayed with the picture viewer and movieplayer"
-msgstr ""
 
 msgid "confirmed"
 msgstr "присвоєно"
@@ -15153,14 +15001,11 @@ msgstr "розваги (10-16 років)"
 msgid "entertainment (6-14 year old)"
 msgstr "розваги (6-14 років)"
 
-msgid "epg cache backup"
-msgstr ""
-
 msgid "equestrian"
 msgstr "кінний спорт"
 
-msgid "error starting scanning"
-msgstr ""
+msgid "error starting scan"
+msgstr "помилка при запуску сканування"
 
 #, fuzzy
 msgid "error while scanning"
@@ -15371,6 +15216,10 @@ msgstr ""
 msgid "just boot"
 msgstr ""
 
+#, fuzzy
+msgid "kB"
+msgstr "B"
+
 msgid "languages"
 msgstr "мови"
 
@@ -15480,9 +15329,6 @@ msgstr "фільми/драма (загальне)"
 msgid "multi"
 msgstr "мультинорм"
 
-msgid "multinorm"
-msgstr "мультинорм"
-
 msgid "music/ballet/dance (general)"
 msgstr "музика/балет/танець (загальне)"
 
@@ -15571,6 +15417,10 @@ msgstr "Невідома"
 #, fuzzy
 msgid "not tested"
 msgstr "не використано"
+
+#, fuzzy
+msgid "not valid frontend"
+msgstr "Не знайдено супутниковий інтерфейс!"
 
 msgid "not_tested"
 msgstr ""
@@ -15743,6 +15593,10 @@ msgid "rotor"
 msgstr "Автор: "
 
 #, fuzzy
+msgid "rotor is not used"
+msgstr "Швидкість обертання мотора"
+
+#, fuzzy
 msgid "running"
 msgstr "Працює"
 
@@ -15757,9 +15611,6 @@ msgstr ""
 
 msgid "script 'stout':"
 msgstr ""
-
-msgid "seconds"
-msgstr "секунд"
 
 msgid "security"
 msgstr ""
@@ -15921,15 +15772,8 @@ msgstr "теніс/сквош"
 msgid "testing"
 msgstr "Роздільна здатність"
 
-#, fuzzy
-msgid "this bouquet is protected by a parental control pin"
-msgstr "цей сервіс захищений PIN-кодом батьківського контролю"
-
 msgid "this recording"
 msgstr "це записано"
-
-msgid "this service is protected by a parental control pin"
-msgstr "цей сервіс захищений PIN-кодом батьківського контролю"
 
 msgid "to dir"
 msgstr ""
