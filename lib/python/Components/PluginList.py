@@ -10,28 +10,25 @@ from skin import applySkinFactor, fonts, parameters
 
 
 def PluginEntryComponent(plugin, width=440):
-	if plugin.icon is None:
-		png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/plugin.png"))
-	else:
-		png = plugin.icon
-	nx, ny, nh = skin.parameters.get("PluginBrowserName", (120, 5, 25))
-	dx, dy, dh = skin.parameters.get("PluginBrowserDescr", (120, 26, 17))
-	ix, iy, iw, ih = skin.parameters.get("PluginBrowserIcon", (10, 5, 100, 40))
+	png = plugin.icon or LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/plugin.png"))
+	nx, ny, nh = parameters.get("PluginBrowserName", applySkinFactor(120, 5, 25))
+	dx, dy, dh = parameters.get("PluginBrowserDescr", applySkinFactor(120, 26, 17))
+	ix, iy, iw, ih = parameters.get("PluginBrowserIcon", applySkinFactor(10, 5, 100, 40))
 	return [
 		plugin,
 		MultiContentEntryText(pos=(nx, ny), size=(width - nx, nh), font=0, text=plugin.name),
 		MultiContentEntryText(pos=(nx, dy), size=(width - dx, dh), font=1, text=plugin.description),
-		MultiContentEntryPixmapAlphaTest(pos=(ix, iy), size=(iw, ih), png=png, flags=BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_CENTER)
+		MultiContentEntryPixmapAlphaBlend(pos=(ix, iy), size=(iw, ih), png=png, flags=BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_CENTER)
 	]
 
 
 def PluginCategoryComponent(name, png, width=440):
-	x, y, h = skin.parameters.get("PluginBrowserDownloadName", (80, 5, 25))
-	ix, iy, iw, ih = skin.parameters.get("PluginBrowserDownloadIcon", (10, 0, 60, 50))
+	x, y, h = parameters.get("PluginBrowserDownloadName", applySkinFactor(80, 5, 25))
+	ix, iy, iw, ih = parameters.get("PluginBrowserDownloadIcon", applySkinFactor(10, 0, 60, 50))
 	return [
 		name,
 		MultiContentEntryText(pos=(x, y), size=(width - x, h), font=0, text=name),
-		MultiContentEntryPixmapAlphaTest(pos=(ix, iy), size=(iw, ih), png=png)
+		MultiContentEntryPixmapAlphaBlend(pos=(ix, iy), size=(iw, ih), png=png)
 	]
 
 
@@ -44,14 +41,14 @@ def PluginDownloadComponent(plugin, name, version=None, width=440):
 		elif version.startswith('experimental-'):
 			version = version[13:]
 		name += "  (" + version + ")"
-	x, y, h = skin.parameters.get("PluginBrowserDownloadName", (80, 5, 25))
-	dx, dy, dh = skin.parameters.get("PluginBrowserDownloadDescr", (80, 26, 17))
-	ix, iy, iw, ih = skin.parameters.get("PluginBrowserDownloadIcon", (10, 0, 60, 50))
+	x, y, h = parameters.get("PluginBrowserDownloadName", applySkinFactor(80, 5, 25))
+	dx, dy, dh = parameters.get("PluginBrowserDownloadDescr", applySkinFactor(80, 26, 17))
+	ix, iy, iw, ih = parameters.get("PluginBrowserDownloadIcon", applySkinFactor(10, 0, 60, 50))
 	return [
 		plugin,
 		MultiContentEntryText(pos=(x, y), size=(width - x, h), font=0, text=name),
 		MultiContentEntryText(pos=(dx, dy), size=(width - dx, dh), font=1, text=plugin.description),
-		MultiContentEntryPixmapAlphaTest(pos=(ix, iy), size=(iw, ih), png=png)
+		MultiContentEntryPixmapAlphaBlend(pos=(ix, iy), size=(iw, ih), png=png)
 	]
 
 

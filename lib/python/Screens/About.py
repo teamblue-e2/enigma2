@@ -30,7 +30,8 @@ from enigma import eTimer, eLabel, eConsoleAppContainer, getDesktop
 import six
 
 from Components.GUIComponent import GUIComponent
-import skin
+from skin import applySkinFactor, parameters, parseScale
+
 import os
 
 
@@ -42,7 +43,7 @@ class About(Screen):
 
 		#AboutHddSplit = 0
 		#try:
-		#	hddsplit = skin.parameters.get("AboutHddSplit",(0))[0]
+		#	hddsplit = parameters.get("AboutHddSplit",(0))[0]
 		#except:
 		#	hddsplit = AboutHddSplit
 
