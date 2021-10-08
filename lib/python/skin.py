@@ -1116,6 +1116,21 @@ def readSkin(screen, skin, names, desktop):
 	screen.renderer = []
 	usedComponents = set()
 
+	def processConstant(constant_widget, context):
+		wname = constant_widget.attrib.get("name")
+		if wname:
+			try:
+				cwvalue = constantWidgets[wname]
+			except KeyError:
+				raise SkinError("Given constant-widget '%s' not found in skin" % wname)
+		if cwvalue:
+			for x in cwvalue:
+				myScreen.append((x))
+		try:
+			myScreen.remove(constant_widget)
+		except ValueError:
+			pass
+
 	def processNone(widget, context):
 		pass
 
@@ -1222,7 +1237,9 @@ def readSkin(screen, skin, names, desktop):
 		screen.additionalWidgets.append(w)
 
 	def processScreen(widget, context):
-		for w in widget.getchildren():
+		for w in widget.findall('constant-widget'):
+			processConstant(w, context)
+		for w in widget:
 			conditional = w.attrib.get("conditional")
 			if conditional and not [i for i in conditional.split(",") if i in screen.keys()]:
 				continue
