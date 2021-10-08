@@ -409,7 +409,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					warning_text = _("Warning: the second input of this dual tuner may not support SCR LNBs. ")
 				self.advancedUnicable = getConfigListEntry(self.indent % ("%s%s" % ("SCR (Unicable/JESS) ", _("type"))), currLnb.unicable, warning_text + _("Select the type of Single Cable Reception device you are using."))
 				self.list.append(self.advancedUnicable)
-				self.externallyPowered = getConfigListEntry(self.indent % _("Externally powered"), currLnb.powerinserter, _("Is your SCR device externally powered"))
+				self.externallyPowered = getConfigListEntry(self.indent % _("Externally powered"), currLnb.powerinserter, _("Select whether your SCR device is externally powered."))
 				if currLnb.unicable.value == "unicable_user":
 					self.advancedFormat = getConfigListEntry(self.indent % _("Format"), currLnb.format, _("Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."))
 					self.advancedPosition = getConfigListEntry(self.indent % _("Position"), currLnb.positionNumber, _("Only change this setting if you are using a SCR device that has been reprogrammed with a custom programmer. For further information check with the person that reprogrammed the device."))
@@ -428,7 +428,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				else:
 					self.advancedManufacturer = getConfigListEntry(self.indent % _("Manufacturer"), currLnb.unicableManufacturer, _("Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."))
 					self.advancedType = getConfigListEntry(self.indent % _("Model"), currLnb.unicableProduct, _("Select the model number of your SCR device. If the model number is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."))
-					self.advancedSCR = getConfigListEntry(self.indent % _("Channel"), currLnb.scrList, _("Select the User Band channel to be assigned to this tuner. This is an index into the table of frequencies the SCR switch or SCR LNB uses to pass the requested transponder to the tuner."))
+					self.advancedSCR = getConfigListEntry(self.indent % _("Channel"), currLnb.scrList, _("Select the User Band to be assigned to this tuner. This is an index into the table of frequencies the SCR switch or SCR LNB uses to pass the requested transponder to the tuner."))
 					self.advancedPosition = getConfigListEntry(self.indent % _("Position"), currLnb.positionNumber, _("Only change this setting if you are using a SCR device that has been reprogrammed with a custom programmer. For further information check with the person that reprogrammed the device."))
 					self.list.append(self.advancedManufacturer)
 					self.list.append(self.advancedType)
@@ -992,6 +992,7 @@ class SelectSatsEntryScreen(Screen):
 			connected_sat = [x[0][1] for x in lst if x[0][3]]
 			if len(connected_sat) > 0:
 				menu.insert(0, (_("Connected satellites"), "3"))
+
 			def sortAction(choice):
 				if choice:
 					reverse_flag = False

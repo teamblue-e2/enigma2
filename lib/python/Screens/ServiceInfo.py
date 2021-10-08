@@ -1,4 +1,3 @@
-
 from __future__ import absolute_import
 from __future__ import print_function
 from Components.GUIComponent import GUIComponent
@@ -9,7 +8,7 @@ from Components.Label import Label
 from ServiceReference import ServiceReference
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eServiceCenter, eDVBFrontendParametersSatellite, RT_HALIGN_LEFT, RT_VALIGN_CENTER
 from Tools.Transponder import ConvertToHumanReadable, getChannelNumber
-import skin
+from skin import applySkinFactor, fonts, parameters
 import six
 
 TYPE_TEXT = 0
@@ -48,9 +47,9 @@ def ServiceInfoListEntry(a, b="", valueType=TYPE_TEXT, param=4, altColor=False):
 			b = ("%d.%d%s") % (b // 10, b % 10, direction)
 		else:
 			b = str(b)
-	xa, ya, wa, ha = skin.parameters.get("ServiceInfoLeft", (0, 0, 300, 25))
-	xb, yb, wb, hb = skin.parameters.get("ServiceInfoRight", (300, 0, 600, 25))
-	color = skin.parameters.get("ServiceInfoAltColor", (0x00FFBF00)) # alternative foreground color
+	xa, ya, wa, ha = parameters.get("ServiceInfoLeft", applySkinFactor(0, 0, 300, 25))
+	xb, yb, wb, hb = parameters.get("ServiceInfoRight", applySkinFactor(300, 0, 600, 25))
+	color = parameters.get("ServiceInfoAltColor", (0x00FFBF00)) # alternative foreground color
 	res = [None]
 	if b:
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, xa, ya, wa, ha, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, a))
@@ -239,12 +238,17 @@ class ServiceInfo(Screen):
 		return trackList
 
 	def togglePIDButton(self):
-		if (self["key_yellow"].text == _("Service & PIDs") or self["key_yellow"].text == _("Basic PID info")) and (self.numberofTracks > 1 or self.subList):
-			self.showAll = False
-			self["key_yellow"].text = self["yellow"].text = _("Extended PID info")
-			self["Title"].text = _("Service info - service & Basic PID Info")
-		elif (self.numberofTracks < 2) and not self.subList:
-			self.showAll = False
+		if self.numberofTracks:
+			if (self["key_yellow"].text == _("Service & PIDs") or self["key_yellow"].text == _("Basic PID info")) and (self.numberofTracks > 1 or self.subList):
+				self.showAll = False
+				self["key_yellow"].text = self["yellow"].text = _("Extended PID info")
+				self["Title"].text = _("Service info - service & Basic PID Info")
+			elif (self.numberofTracks < 2) and not self.subList:
+				self.showAll = False
+			else:
+				self.showAll = True
+				self["key_yellow"].text = self["yellow"].text = _("Basic PID info")
+				self["Title"].text = _("Service info - service & Extended PID Info")
 		else:
 			self.showAll = True
 			self["key_yellow"].text = self["yellow"].text = _("Basic PID info")
