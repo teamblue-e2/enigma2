@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-from enigma import iPlayableService
+from enigma import iPlayableService, eDVBResourceManager, eDVBSatelliteEquipmentControl
 from Components.Sources.Source import Source
 from Components.PerServiceDisplay import PerServiceBase
 from Components.NimManager import nimmanager

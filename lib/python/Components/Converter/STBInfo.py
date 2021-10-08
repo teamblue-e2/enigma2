@@ -101,24 +101,24 @@ class STBInfo(Poll, Converter):
              self.HDDINFO: ('/media/hdd', 'HDD'),
              self.FLASHINFO: ('/', 'Flash')}[self.type]
             if self.type in (self.USBINFO, self.HDDINFO, self.FLASHINFO):
-                list = self.getDiskInfo(entry[0])
+                _list = self.getDiskInfo(entry[0])
             else:
-                list = self.getMemInfo(entry[0])
-            if list[0] == 0:
+                _list = self.getMemInfo(entry[0])
+            if _list[0] == 0:
                 text = '%s: Not Available' % entry[1]
             elif self.shortFormat:
-                text = '%s:  Total %s, in use %s%%' % (entry[1], self.getSizeStr(list[0]), list[3])
+                text = '%s:  Total %s, in use %s%%' % (entry[1], self.getSizeStr(_list[0]), _list[3])
             elif self.fullFormat:
                 text = '%s:  Total %s  Free %s  Used %s (%s%%)' % (entry[1],
-                 self.getSizeStr(list[0]),
-                 self.getSizeStr(list[2]),
-                 self.getSizeStr(list[1]),
-                 list[3])
+                 self.getSizeStr(_list[0]),
+                 self.getSizeStr(_list[2]),
+                 self.getSizeStr(_list[1]),
+                 _list[3])
             else:
                 text = '%s:  Total %s  Used %s  Free %s' % (entry[1],
-                 self.getSizeStr(list[0]),
-                 self.getSizeStr(list[1]),
-                 self.getSizeStr(list[2]))
+                 self.getSizeStr(_list[0]),
+                 self.getSizeStr(_list[1]),
+                 self.getSizeStr(_list[2]))
         return text
 
     @cached

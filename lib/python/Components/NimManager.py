@@ -530,7 +530,7 @@ class SecConfigure:
 
 
 class NIM(object):
-	def __init__(self, slot, type, description, has_outputs=True, internally_connectable=None, multi_type={}, frontend_id=None, i2c=None, is_empty=False, supports_blind_scan=False, number_of_slots=0, input_name=None):
+	def __init__(self, slot, type, description, has_outputs=True, internally_connectable=None, multi_type={}, frontend_id=None, i2c=None, is_empty=False, supports_blind_scan=False, is_fbc=[0, 0, 0], number_of_slots=0, input_name=None):
 		nim_types = ["DVB-S", "DVB-S2", "DVB-S2X", "DVB-C", "DVB-T", "DVB-T2", "ATSC"]
 
 		if type and type not in nim_types:
@@ -681,7 +681,7 @@ class NIM(object):
 		return self.multi_type
 
 	def isFBCTuner(self):
-		return self.frontend_id is not None and (self.frontend_id / 8 + 1) * 8 <= self.number_of_slots and os.access("/proc/stb/frontend/%d/fbc_id" % self.frontend_id, os.F_OK)
+		return self.is_fbc[0] != 0
 
 	def isFBCRoot(self):
 		return self.is_fbc[0] == 1
@@ -931,6 +931,8 @@ class NimManager:
 				entries[current_slot]["isempty"] = True
 		nimfile.close()
 		self.number_of_slots = len(list(entries.keys()))
+		fbc_number = 0
+		fbc_tuner = 1
 		for id, entry in list(entries.items()):
 			if not ("name" in entry and "type" in entry):
 				entry["name"] = _("N/A")
@@ -1220,7 +1222,7 @@ class NimManager:
 		return number and 9998 or _("rotor is not used")
 
 	def getRotorSatListForNim(self, slotid, only_first=False):
-		list = []
+		_list = []
 		if self.nim_slots[slotid].isCompatible("DVB-S"):
 			nim = config.Nims[slotid]
 			configMode = nim.configMode.value
