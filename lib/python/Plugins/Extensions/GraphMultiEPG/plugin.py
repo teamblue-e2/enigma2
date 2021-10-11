@@ -4,7 +4,7 @@ from .GraphMultiEpg import GraphMultiEPG
 from Screens.ChannelSelection import SimpleChannelSelection
 import Screens.InfoBar
 from enigma import eServiceCenter, eServiceReference
-from .ServiceReference import ServiceReference
+from ServiceReference import ServiceReference
 from Screens.Screen import Screen
 from Components.config import config
 
