@@ -12,6 +12,7 @@ from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from . import VideoEnhancement
+import skin
 
 
 class VideoEnhancementSetup(Screen, ConfigListScreen):
@@ -40,6 +41,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 
 		self.list = []
 		self.xtdlist = []
+		self.seperation = skin.parameters.get("ConfigListSeperator", 300)
 		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		self.createSetup()
 
@@ -53,7 +55,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 			}, -2)
 
 		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("OK"))
+		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText(_("Last config"))
 		self["key_blue"] = StaticText(_("Default"))
 
@@ -79,7 +81,6 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		self.oldGreen_boost = config.pep.green_boost.value
 		self.oldBlue_boost = config.pep.blue_boost.value
 		self.oldDynamic_contrast = config.pep.dynamic_contrast.value
-		self.oldColor_space = config.pep.color_space.value
 
 	def addToConfigList(self, description, configEntry, hinttext, add_to_xtdlist=False):
 		if isinstance(configEntry, ConfigNothing):
@@ -101,7 +102,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		self.brightnessEntry = addToConfigList(_("Brightness"), config.pep.brightness, _("This option sets the picture brightness."))
 		self.blue_boostEntry = addToConfigList(_("Boost blue"), config.pep.blue_boost, _("This option allows you to boost the blue tones in the picture."), add_to_xtdlist)
 		self.green_boostEntry = addToConfigList(_("Boost green"), config.pep.green_boost, _("This option allows you to boost the green tones in the picture."), add_to_xtdlist)
-		self.contrastEntry = addToConfigList(_("Contrast"), config.pep.contrast, _("This option sets  the picture contrast."))
+		self.contrastEntry = addToConfigList(_("Contrast"), config.pep.contrast, _("This option sets the picture contrast."))
 		self.digital_contour_removalEntry = addToConfigList(_("Digital contour removal"), config.pep.digital_contour_removal, _("This option sets the surpression of false digital contours, that are the result of a limited number of discrete values."), add_to_xtdlist)
 		self.dynamic_contrastEntry = addToConfigList(_("Dynamic contrast"), config.pep.dynamic_contrast, _("This option allows to set the level of dynamic contrast of the picture."), add_to_xtdlist)
 		self.hueEntry = addToConfigList(_("Hue"), config.pep.hue, _("This option sets the picture hue."))
@@ -111,14 +112,14 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		self.smoothEntry = addToConfigList(_("Smooth"), config.pep.smooth, _("This option allows you enable smoothing filter to control the dithering process."))
 		self.sharpnessEntry = addToConfigList(_("Sharpness"), config.pep.sharpness, _("This option sets up the picture sharpness, used when the picture is being upscaled."), add_to_xtdlist)
 		self.saturationEntry = addToConfigList(_("Saturation"), config.pep.saturation, _("This option sets the picture saturation."))
-		self.color_spaceEntry = addToConfigList(_("Color space"), config.pep.color_space, _("This option sets the picture color space."))
 		self["config"].list = self.list
+		self["config"].l.setSeperation(self.seperation)
 		self["config"].l.setList(self.list)
 		if config.usage.sort_settings.value:
 			sorted(self["config"].list)
 
 	def SelectionChanged(self):
-		self["description"].setText(self["config"].getCurrent()[2])
+		self["introduction"].setText(self["config"].getCurrent() and len(self["config"].getCurrent()[2]) > 2 and self["config"].getCurrent()[2] or "")
 
 	def PreviewClosed(self):
 		self["config"].invalidate(self["config"].getCurrent())
@@ -126,48 +127,34 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 
 	def keyLeft(self):
 		current = self["config"].getCurrent()
-		if current == self.splitEntry or current == self.color_spaceEntry:
+		if current in (self.splitEntry, self.scaler_vertical_dejaggingEntry, self.smoothEntry):
 			ConfigListScreen.keyLeft(self)
-		elif (current == self.scaler_vertical_dejaggingEntry) or (current == self.smoothEntry):
-			ConfigListScreen.keyLeft(self)
-		elif current != self.splitEntry and current in self.xtdlist:
-			self.previewlist = [
-				current,
-				self.splitEntry
-			]
-			maxvalue = current[1].max
-			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry=self.previewlist, oldSplitMode=config.pep.split.value, maxValue=maxvalue)
 		else:
-			self.previewlist = [
-				current
-			]
+			if current in self.xtdlist:
+				self.previewlist = [current, self.splitEntry]
+				oldsplitmode = config.pep.split.value
+			else:
+				self.previewlist = [current]
+				oldsplitmode = None
 			maxvalue = current[1].max
-			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry=self.previewlist, oldSplitMode=None, maxValue=maxvalue)
+			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry=self.previewlist, oldSplitMode=oldsplitmode, maxValue=maxvalue)
 
 	def keyRight(self):
 		current = self["config"].getCurrent()
-		if current == self.splitEntry or current == self.color_spaceEntry:
+		if current in (self.splitEntry, self.scaler_vertical_dejaggingEntry, self.smoothEntry):
 			ConfigListScreen.keyRight(self)
-		elif (current == self.scaler_vertical_dejaggingEntry) or (current == self.smoothEntry):
-			ConfigListScreen.keyRight(self)
-		elif current != self.splitEntry and current in self.xtdlist:
-			self.previewlist = [
-				current,
-				self.splitEntry
-			]
-			maxvalue = current[1].max
-			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry=self.previewlist, oldSplitMode=config.pep.split.value, maxValue=maxvalue)
 		else:
-			self.previewlist = [
-				current
-			]
+			if current in self.xtdlist:
+				self.previewlist = [current, self.splitEntry]
+				oldsplitmode = config.pep.split.value
+			else:
+				self.previewlist = [current]
+				oldsplitmode = None
 			maxvalue = current[1].max
-			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry=self.previewlist, oldSplitMode=None, maxValue=maxvalue)
+			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry=self.previewlist, oldSplitMode=oldsplitmode, maxValue=maxvalue)
 
 	def confirm(self, confirmed):
-		if not confirmed:
-			print("not confirmed")
-		else:
+		if confirmed:
 			if self.splitEntry is not None:
 				config.pep.split.setValue('off')
 			self.keySave()
@@ -188,9 +175,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 			self.close()
 
 	def keyYellowConfirm(self, confirmed):
-		if not confirmed:
-			print("not confirmed")
-		else:
+		if confirmed:
 			if self.contrastEntry is not None:
 				config.pep.contrast.setValue(self.oldContrast)
 			if self.saturationEntry is not None:
@@ -223,8 +208,6 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 				config.pep.blue_boost.setValue(self.oldBlue_boost)
 			if self.dynamic_contrastEntry is not None:
 				config.pep.dynamic_contrast.setValue(self.oldDynamic_contrast)
-			if self.color_spaceEntry is not None:
-				config.pep.color_space.setValue(self.oldColor_space)
 			self.keySave()
 
 	def keyYellow(self):
@@ -232,8 +215,6 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 
 	def keyBlueConfirm(self, confirmed):
 		if not confirmed:
-			print("not confirmed")
-		else:
 			if self.contrastEntry is not None:
 				config.pep.contrast.setValue(128)
 			if self.saturationEntry is not None:
@@ -313,6 +294,7 @@ class VideoEnhancementPreview(Screen, ConfigListScreen):
 		self.maxValue = maxValue
 		self.configStepsEntry = None
 		self.isStepSlider = None
+		self.seperation = skin.parameters.get("ConfigListSeperator", 300)
 
 		self.list = []
 		self.configEntry = configEntry
@@ -332,16 +314,16 @@ class VideoEnhancementPreview(Screen, ConfigListScreen):
 
 	def createSetup(self):
 		self.list = []
-		if self.maxValue == 256:
+		if self.maxValue == 255:
 			self.configStepsEntry = getConfigListEntry(_("Change step size"), config.pep.configsteps)
 
 		if self.configEntry is not None:
 			self.list = self.configEntry
-		if self.maxValue == 256:
+		if self.maxValue == 255:
 			self.list.append(self.configStepsEntry)
 
 		self["config"].list = self.list
-		self["config"].l.setSeperation(300)
+		self["config"].l.setSeperation(self.seperation)
 		self["config"].l.setList(self.list)
 		if not self.selectionChanged in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.selectionChanged)
@@ -351,7 +333,7 @@ class VideoEnhancementPreview(Screen, ConfigListScreen):
 		self["introduction"].setText(_("Current value: ") + self.getCurrentValue())
 		try:
 			max_avail = self["config"].getCurrent()[1].max
-			if max_avail == 256:
+			if max_avail == 255:
 				self.isStepSlider = True
 			else:
 				self.isStepSlider = False
@@ -410,9 +392,10 @@ def videoEnhancementSetupMain(session, **kwargs):
 
 
 def startSetup(menuid):
-	if menuid != "video_menu":
-		return []
-	return [(_("Extended settings"), videoEnhancementSetupMain, "videoenhancement_setup", 41)]
+       if menuid != "video_menu":
+               return []
+       return [(_("Extended settings"), videoEnhancementSetupMain, "videoenhancement_setup", 41)]
+
 
 def Plugins(**kwargs):
 	_list = []
