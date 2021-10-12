@@ -5,9 +5,9 @@
 ## teamBlue 6.5 (based on openPLi) is build using oe-alliance build-environment "4.5" and several git repositories: ##
 
 > [https://github.com/oe-alliance/oe-alliance-core/tree/4.5](https://github.com/oe-alliance/oe-alliance-core/tree/4.5 "OE-Alliance")
-> 
+>
 > [https://github.com/teamblue-e2/enigma2/tree/6.5](https://github.com/teamblue-e2/enigma2/tree/6.5 "teamBlue E2")
-> 
+>
 > [https://github.com/teamblue-e2/skin/tree/master](https://github.com/teamblue-e2/skin/tree/master "teamBlue Skin")
 
 > and a lot more...
@@ -95,3 +95,5 @@
 Build Status - branch master: [![Build Status](https://travis-ci.org/teamblue-e2/enigma2.svg?branch=master)](https://travis-ci.org/teamblue-e2/enigma2)
 
 Build Status - branch 6.5:    [![Build Status](https://travis-ci.org/teamblue-e2/enigma2.svg?branch=6.5)](https://travis-ci.org/teamblue-e2/enigma2)
+
+Build Status - branch python3-old:    [![Build Status](https://circleci.com/gh/teamblue-e2/enigma2.svg?style=shield&branch=python3-old)]()
