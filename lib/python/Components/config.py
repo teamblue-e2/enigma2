@@ -36,29 +36,33 @@ import collections
 
 class ConfigElement(object):
 	def __init__(self):
-		self.extra_args = {}
+		self.extra_args = []
 		self.saved_value = None
 		self.save_forced = False
 		self.last_value = None
 		self.save_disabled = False
-		self.__notifiers = {}
-		self.__notifiers_final = {}
+		self.__notifiers = None
+		self.__notifiers_final = None
 		self.enabled = True
 		self.callNotifiersOnSaveAndCancel = False
 
 	def getNotifiers(self):
-		return [func for (func, val, call_on_save_and_cancel) in six.itervalues(self.__notifiers)]
+		if self.__notifiers is None:
+			self.__notifiers = []
+		return self.__notifiers
 
 	def setNotifiers(self, val):
-		print("just readonly access to notifiers is allowed! append/remove doesnt work anymore! please use addNotifier, removeNotifier, clearNotifiers")
+		self.__notifiers = val
 
 	notifiers = property(getNotifiers, setNotifiers)
 
 	def getNotifiersFinal(self):
-		return [func for (func, val, call_on_save_and_cancel) in six.itervalues(self.__notifiers_final)]
+		if self.__notifiers_final is None:
+			self.__notifiers_final = []
+		return self.__notifiers_final
 
 	def setNotifiersFinal(self, val):
-		print("just readonly access to notifiers_final is allowed! append/remove doesnt work anymore! please use addNotifier, removeNotifier, clearNotifiers")
+		self.__notifiers_final = val
 
 	notifiers_final = property(getNotifiersFinal, setNotifiersFinal)
 
@@ -83,6 +87,7 @@ class ConfigElement(object):
 			self.value = self.default
 		else:
 			self.value = self.fromstring(sv)
+		self.last_value = self.tostring(self.value)
 
 	def tostring(self, value):
 		return str(value)
@@ -110,40 +115,40 @@ class ConfigElement(object):
 	def changed(self):
 		if self.__notifiers:
 			for x in self.notifiers:
-				try:
-					if self.extra_args and self.extra_args[x]:
-						x(self, self.extra_args[x])
-					else:
-						x(self)
-				except:
+				extra_args = self.__getExtraArgs(x)
+				if extra_args is not None:
+					x(self, extra_args)
+				else:
 					x(self)
 
 	def changedFinal(self):
 		if self.__notifiers_final:
 			for x in self.notifiers_final:
-				try:
-					if self.extra_args and self.extra_args[x]:
-						x(self, self.extra_args[x])
-					else:
-						x(self)
-				except:
+				extra_args = self.__getExtraArgs(x)
+				if extra_args is not None:
+					x(self, extra_args)
+				else:
 					x(self)
 
-	# immediate_feedback = True means call notifier on every value CHANGE
-	# immediate_feedback = False means call notifier on leave the config element (up/down) when value have CHANGED
-	# call_on_save_or_cancel = True means call notifier always on save/cancel.. even when value have not changed
-	def addNotifier(self, notifier, initial_call=True, immediate_feedback=True, call_on_save_or_cancel=False, extra_args=None):
-		if not extra_args:
-			extra_args = []
-		assert isinstance(notifier, collections.Callable), "notifiers must be callable"
-		try:
-			self.extra_args[notifier] = extra_args
-		except:
-			pass
+	def addNotifier(self, notifier, initial_call=True, immediate_feedback=True, extra_args=None):
+		# "initial_call=True" triggers the notifier as soon as "addNotifier" is encountered in the code.
+		#
+		# "initial_call=False" skips the above activation of the notifier.
+		#
+		# "immediate_feedback=True" notifiers are called on every single change of the config item,
+		# e.g. if going left/right through a ConfigSelection it will trigger on every step.
+		#
+		# "immediate_feedback=False" notifiers are called on ConfigElement.save() only.
+		#
+		# Use of the "self.callNotifiersOnSaveAndCancel" flag serves no purpose in the current code.
+		#
+		assert callable(notifier), "notifiers must be callable"
+		if extra_args is not None:
+			self.__addExtraArgs(notifier, extra_args)
 		if immediate_feedback:
-			self.__notifiers[str(notifier)] = (notifier, self.value, call_on_save_or_cancel)
+			self.notifiers.append(notifier)
 		else:
-			self.__notifiers_final[str(notifier)] = (notifier, self.value, call_on_save_or_cancel)
+			self.notifiers_final.append(notifier)
 		# CHECKME:
 		# do we want to call the notifier
 		#  - at all when adding it? (yes, though optional)
@@ -159,21 +164,21 @@ class ConfigElement(object):
 				notifier(self)
 
 	def removeNotifier(self, notifier):
+		notifier in self.notifiers and self.notifiers.remove(notifier)
+		notifier in self.notifiers_final and self.notifiers_final.remove(notifier)
+		self.__removeExtraArgs(notifier)
 		try:
 			del self.__notifiers[str(notifier)]
-		except:
-			try:
-				del self.__notifiers_final[str(notifier)]
-			except:
-				pass
+		except BaseException:
+			pass
+		try:
+			del self.__notifiers_final[str(notifier)]
+		except BaseException:
+			pass
 
 	def clearNotifiers(self):
 		self.__notifiers = {}
 		self.__notifiers_final = {}
-
-	#def removeNotifier(self, notifier):
-	#	notifier in self.notifiers and self.notifiers.remove(notifier)
-	#	notifier in self.notifiers_final and self.notifiers_final.remove(notifier)
 
 	def disableSave(self):
 		self.save_disabled = True
@@ -195,7 +200,18 @@ class ConfigElement(object):
 	def showHelp(self, session):
 		pass
 
+	def __addExtraArgs(self, notifier, extra_args):
+		self.extra_args.append((notifier, extra_args))
 
+	def __removeExtraArgs(self, notifier):
+		for i in range(len(self.extra_args)):
+			if self.extra_args[i][0] == notifier:
+				del self.extra_args[i]
+
+	def __getExtraArgs(self, notifier):
+		for extra_arg in self.extra_args:
+			if extra_arg[0] == notifier:
+				return extra_arg[1]
 KEY_LEFT = 0
 KEY_RIGHT = 1
 KEY_OK = 2
@@ -216,7 +232,7 @@ def getKeyNumber(key):
 	return key - KEY_0
 
 
-class choicesList(object):  # XXX: we might want a better name for this
+class choicesList(object): # XXX: we might want a better name for this
 	LIST_TYPE_LIST = 1
 	LIST_TYPE_DICT = 2
 
@@ -294,7 +310,7 @@ class choicesList(object):  # XXX: we might want a better name for this
 		return default
 
 
-class descriptionList(choicesList):  # XXX: we might want a better name for this
+class descriptionList(choicesList): # XXX: we might want a better name for this
 	def __list__(self):
 		if self.type == choicesList.LIST_TYPE_LIST:
 			ret = [not isinstance(x, tuple) and x or x[1] for x in self.choices]
