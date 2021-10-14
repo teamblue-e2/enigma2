@@ -8,7 +8,7 @@ from Components.Element import cached
 from Components.config import config
 from Tools.Transponder import ConvertToHumanReadable
 from Tools.GetEcmInfo import GetEcmInfo
-from Poll import Poll
+from Components.Comverter.Poll import Poll
 from skin import parameters
 import six
 
