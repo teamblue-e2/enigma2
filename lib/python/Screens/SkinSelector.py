@@ -113,13 +113,13 @@ class SkinSelector(Screen, HelpableScreen):
 						try:
 							with open(skinPath, "r") as fd:
 								resolutions = {
-									"480": _("NTSC"),
-									"576": _("PAL"),
-									"720": _("HD"),
-									"1080": _("FHD"),
-									"2160": _("4K"),
-									"4320": _("8K"),
-									"8640": _("16K")
+									"480": "NTSC",
+									"576": "PAL",
+									"720": "HD",
+									"1080": "FHD",
+									"2160": "4K",
+									"4320": "8K",
+									"8640": "16K"
 								}
 								mm = mmap.mmap(fd.fileno(), 0, prot=mmap.PROT_READ)
 								skinheight = re.search("\<?resolution.*?\syres\s*=\s*\"(\d+)\"", mm).group(1)

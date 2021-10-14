@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-29 22:39+0200\n"
+"POT-Creation-Date: 2021-10-14 22:16+0200\n"
 "PO-Revision-Date: 2020-05-13 21:36+0200\n"
 "Last-Translator: mcfly82\n"
 "Language-Team: mcfly82 & wysless\n"
@@ -25,6 +25,12 @@ msgid ""
 "\n"
 "[User - bouquets (TV)]\n"
 msgstr "Felhasználói bouquet-ek"
+
+#, fuzzy
+msgid ""
+"\n"
+" Do you want to switch to Android ?"
+msgstr "Le szeretné játszani a behelyezett DVD-t?"
 
 msgid ""
 "\n"
@@ -177,9 +183,6 @@ msgid " or save the picture additionally to a file"
 msgstr ""
 
 msgid " unicable LNB input of rotor"
-msgstr ""
-
-msgid "$PROJECT_DIR$"
 msgstr ""
 
 #, python-format
@@ -507,16 +510,10 @@ msgstr ""
 msgid "1"
 msgstr ""
 
-msgid "1024 MB"
-msgstr ""
-
 msgid "120,2,30"
 msgstr ""
 
 msgid "120,28,26"
-msgstr ""
-
-msgid "128 MB"
 msgstr ""
 
 msgid "128 MB (recommended for this chipset)"
@@ -524,12 +521,6 @@ msgstr ""
 
 msgid "12V output"
 msgstr "12V kimenet"
-
-msgid "13 V"
-msgstr "13 V"
-
-msgid "16 MB"
-msgstr ""
 
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
@@ -545,12 +536,6 @@ msgstr "16:9 Letterbox"
 
 msgid "16:9 always"
 msgstr "mindig 16:9"
-
-msgid "16K"
-msgstr ""
-
-msgid "18 V"
-msgstr "18 V"
 
 #, fuzzy
 msgid "19"
@@ -574,9 +559,6 @@ msgstr "24"
 
 msgid "25"
 msgstr "25"
-
-msgid "256 MB"
-msgstr ""
 
 msgid "256 MB (recommended for this chipset)"
 msgstr ""
@@ -602,9 +584,6 @@ msgstr ""
 
 msgid "30"
 msgstr "30"
-
-msgid "32 MB"
-msgstr ""
 
 msgid "33,1,694,24"
 msgstr ""
@@ -650,10 +629,6 @@ msgstr "4:3 Letterbox"
 msgid "4:3 PanScan"
 msgstr "4:3 PanScan"
 
-#, fuzzy
-msgid "4K"
-msgstr "4"
-
 msgid "5"
 msgstr "5"
 
@@ -678,9 +653,6 @@ msgstr ""
 msgid "5,7,16,16"
 msgstr ""
 
-msgid "512 MB"
-msgstr ""
-
 msgid "512 MB (recommended for this chipset)"
 msgstr ""
 
@@ -691,9 +663,6 @@ msgid "6"
 msgstr ""
 
 msgid "63,1,661,24"
-msgstr ""
-
-msgid "64 MB"
 msgstr ""
 
 msgid "7"
@@ -712,10 +681,6 @@ msgstr ""
 msgid "83,28,26"
 msgstr ""
 
-#, fuzzy
-msgid "8K"
-msgstr "8"
-
 msgid "9"
 msgstr ""
 
@@ -727,10 +692,6 @@ msgstr ""
 
 msgid "<Current movielist location>"
 msgstr "<Fájllista aktuális tárhelye>"
-
-#, fuzzy
-msgid "<Default Skin>"
-msgstr "Alapértelmezett beállítások"
 
 msgid "<Default movie location>"
 msgstr "<Felvételek tárhelye>"
@@ -757,6 +718,12 @@ msgstr "A"
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr ""
 
+msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
+msgstr "Egy befejezett időzítés le akarja kapcsolni a készüléket készenléti módba. Engedélyezi?"
+
+msgid "A completed recording timer is about to shut down your receiver. Would you like to proceed?"
+msgstr "Egy befejezett időzítés ki akarja kapcsolni a készüléket. Engedélyezi?"
+
 #, python-format
 msgid "A configuration file (%s) has been modified since it was installed. Would you like to keep the modified version?"
 msgstr "A telepítés óta a (%s) konfigurációs fájl módosítva lett. Meg akarja tartani az Ön verzióját?"
@@ -771,12 +738,6 @@ msgstr ""
 
 msgid "A file from media is in use!"
 msgstr ""
-
-msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
-msgstr "Egy befejezett időzítés le akarja kapcsolni a készüléket készenléti módba. Engedélyezi?"
-
-msgid "A completed recording timer is about to shut down your receiver. Would you like to proceed?"
-msgstr "Egy befejezett időzítés ki akarja kapcsolni a készüléket. Engedélyezi?"
 
 #, fuzzy
 msgid "A graphical EPG for all services of a specific bouquet"
@@ -801,11 +762,11 @@ msgstr ""
 "Egy felvétel éppen fut. \n"
 "Mit szeretne tenni?"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
-msgstr "Egy felvétel most folyamatban van. Kérem, előbb állítsa azt meg a kereséshez."
-
 msgid "A recording is currently running. Please stop the recording before starting a DiSEqC test."
 msgstr "Egy felvétel folyamatban van. A DiSEqC tesztelés elindítása előtt állítsa meg a felvételt."
+
+msgid "A recording is currently running. Please stop the recording before trying to scan."
+msgstr "Egy felvétel most folyamatban van. Kérem, előbb állítsa azt meg a kereséshez."
 
 #, fuzzy
 msgid "A repeating event is currently recording. What would you like to do?"
@@ -904,9 +865,6 @@ msgstr "kedvencek módosításának megszakítása"
 
 msgid "About"
 msgstr "Névjegy"
-
-msgid "About..."
-msgstr "Névjegy..."
 
 msgid "Access point:"
 msgstr "Hozzáférési pont:"
@@ -1238,6 +1196,14 @@ msgstr "lekapcsolás készenléti módba"
 msgid "Alternative"
 msgstr "Alternatív"
 
+#, fuzzy
+msgid "Alternative 1"
+msgstr "Alternatív"
+
+#, fuzzy
+msgid "Alternative 2"
+msgstr "Alternatív"
+
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr ""
 
@@ -1516,9 +1482,6 @@ msgstr "Automata"
 msgid "Auto DiSEqC"
 msgstr "Automatikus DiSEqC"
 
-msgid "Auto EXIF Orientation rotation/flipping"
-msgstr "Automatikus EXIF elrendezés forgatása/tükrözése"
-
 msgid "Auto chapter split every ? minutes (0=never)"
 msgstr "Automatikus fejezet készítés ? percenként (0=soha)"
 
@@ -1528,7 +1491,8 @@ msgstr "Auto-flash"
 msgid "Auto focus"
 msgstr "Autofókusz"
 
-msgid "Auto focus commencing ..."
+#, fuzzy
+msgid "Auto focus commencing..."
 msgstr "Autofókusz kezdődik..."
 
 msgid "Auto language selection"
@@ -2404,10 +2368,6 @@ msgid "Color"
 msgstr "Szín"
 
 msgid "Color format"
-msgstr "Színformátum"
-
-#, fuzzy
-msgid "Color space"
 msgstr "Színformátum"
 
 #, fuzzy
@@ -3920,6 +3880,9 @@ msgstr "Letöltés"
 msgid "Downloading Image"
 msgstr "Letöltés"
 
+msgid "Downloading a new packet list. Please wait..."
+msgstr "Az új csomaglitsa letöltése folyamatban. Kérem, várjon..."
+
 msgid "Downloading plugin information. Please wait..."
 msgstr "Plugin-lista letöltése. Kérem, várjon..."
 
@@ -4717,9 +4680,6 @@ msgstr "FEC"
 msgid "FEC:"
 msgstr ""
 
-msgid "FHD"
-msgstr ""
-
 msgid "FIFO"
 msgstr ""
 
@@ -5213,13 +5173,6 @@ msgstr ""
 "Az új skin betöltéséhez újra kell indítani a kezelő felületet.\n"
 "Megtörténhet ez most azonnal?"
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"Az új skin betöltéséhez újra kell indítani a kezelő felületet.\n"
-"Megtörténhet ez most azonnal?"
-
 msgid "Gabon"
 msgstr ""
 
@@ -5425,10 +5378,6 @@ msgstr ""
 msgid "Guyana"
 msgstr ""
 
-#, fuzzy
-msgid "HD"
-msgstr "D"
-
 msgid "HD list"
 msgstr "HD csatornák"
 
@@ -5486,6 +5435,10 @@ msgstr ""
 
 msgid "HDMI-CEC Source Inactive"
 msgstr ""
+
+#, fuzzy
+msgid "HDMI-CEC address"
+msgstr "IP cím"
 
 msgid "HDMI-CEC setup"
 msgstr ""
@@ -5567,7 +5520,7 @@ msgid "Height"
 msgstr "magasság"
 
 #, fuzzy
-msgid "Helps setting up your antenna"
+msgid "Helps setting up your signal"
 msgstr "Segítség az antenna beállításhoz"
 
 msgid "Hidden network"
@@ -5691,9 +5644,6 @@ msgid "I/O priority for script execution"
 msgstr ""
 
 msgid "IDLE"
-msgstr ""
-
-msgid "IGNORE"
 msgstr ""
 
 msgid "INFO"
@@ -6166,9 +6116,6 @@ msgstr "Ezen beállítások használata?"
 
 msgid "Is this video mode ok?"
 msgstr "Megfelelő ez a videómód?"
-
-msgid "Is your SCR device externally powered"
-msgstr ""
 
 #, fuzzy
 msgid "Isle of Man"
@@ -7116,13 +7063,15 @@ msgstr "Fájllista menü"
 msgid "Moving"
 msgstr "Mozgatás"
 
-msgid "Moving east ..."
+#, fuzzy
+msgid "Moving east..."
 msgstr "Mozgatás kelet felé..."
 
 msgid "Moving to position"
 msgstr "Mozgatás erre: "
 
-msgid "Moving west ..."
+#, fuzzy
+msgid "Moving west..."
 msgstr "Mozgatás nyugat felé..."
 
 msgid "Mozambique"
@@ -7489,9 +7438,6 @@ msgstr "Nem észlelhető hálózat"
 msgid "No packages were upgraded yet. So you can check your network and try again."
 msgstr ""
 
-msgid "No positioner capable frontend found."
-msgstr "Nem találtam forgatómotort támogató tunert."
-
 #, fuzzy
 msgid "No priority"
 msgstr "Prioritás"
@@ -7526,9 +7472,6 @@ msgstr "Mindenre NEM"
 
 msgid "No transparency"
 msgstr "Áttetszőség"
-
-msgid "No tuner is configured for use with a diseqc positioner!"
-msgstr "Az egyik tuner sincs beállítva DiSEqC forgatómotorra!"
 
 msgid ""
 "No tuner is enabled!\n"
@@ -8731,9 +8674,6 @@ msgstr "Nyomja le az OK gombot a távirányítón a folytatáshoz."
 msgid "Press OK to activate the selected %s skin."
 msgstr "Nyomja le az OK gombot az új skin aktiválásához."
 
-msgid "Press OK to activate the selected skin."
-msgstr "Nyomja le az OK gombot az új skin aktiválásához."
-
 msgid "Press OK to activate the settings."
 msgstr "Az OK gombbal aktiválhatja a beállításokat."
 
@@ -9652,9 +9592,6 @@ msgstr ""
 msgid "SCR Unicable"
 msgstr "Unicable fej"
 
-msgid "SELECTIVE"
-msgstr ""
-
 msgid "SINGLE LAYER DVD"
 msgstr "Egyrétegű DVD"
 
@@ -9675,15 +9612,6 @@ msgstr "%d fájl"
 
 msgid "SSID:"
 msgstr "SSID:"
-
-msgid ""
-"STB-GUI Skinselector\n"
-"\n"
-"If you experience any problems please contact\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-msgstr ""
 
 msgid "Saint Barthelemy"
 msgstr ""
@@ -9980,7 +9908,8 @@ msgstr "Léptetés nyugat felé"
 msgid "Searching"
 msgstr "Keresés"
 
-msgid "Searching east ..."
+#, fuzzy
+msgid "Searching east..."
 msgstr "Keresés keletre..."
 
 msgid "Searching for available updates. Please wait..."
@@ -9989,7 +9918,8 @@ msgstr "Elérhető frissítések keresése. Kérem, várjon..."
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "Újonnan telepített, vagy eltávolított szoftvercsomagok keresése. Kérem, várjon..."
 
-msgid "Searching west ..."
+#, fuzzy
+msgid "Searching west..."
 msgstr "Keresés nyugatra..."
 
 #, fuzzy
@@ -10268,6 +10198,10 @@ msgstr ""
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch or SCR LNB uses to pass the requested transponder to the tuner."
 msgstr "Válassza ki a tunerhez rendelt felhasználói sáv frekvenciáját. Ez az a frekvencia, amelyet az Unicable switch vagy az Unicable LNB használ a tuner és a kívánt transzponder között."
 
+#, fuzzy
+msgid "Select the User Band to be assigned to this tuner. This is an index into the table of frequencies the SCR switch or SCR LNB uses to pass the requested transponder to the tuner."
+msgstr "Válassza ki a tunerhez rendelt felhasználói sáv frekvenciáját. Ez az a frekvencia, amelyet az Unicable switch vagy az Unicable LNB használ a tuner és a kívánt transzponder között."
+
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Váltás karakter vagy művelet mód között a virtuális billentyűzeten"
 
@@ -10349,16 +10283,15 @@ msgstr "Válasszon videó bemenetet a FEL/LE gombokkal"
 msgid "Select video mode"
 msgstr "Válassza ki a video módot"
 
+msgid "Select whether your SCR device is externally powered."
+msgstr ""
+
 msgid "Select wireless network"
 msgstr "Válasszon vezeték nélküli hálózatot"
 
 #, fuzzy
 msgid "Select your ATSC provider."
 msgstr "Szolgáltató hozzáadása"
-
-#, fuzzy
-msgid "Select your Skin"
-msgstr "Felvétel kiválasztása"
 
 #, fuzzy
 msgid ""
@@ -11106,6 +11039,10 @@ msgstr "Kétoldalt"
 msgid "Sierra Leone"
 msgstr ""
 
+#, fuzzy
+msgid "Signal Finder"
+msgstr "Jel:"
+
 msgid "Signal OK, proceeding"
 msgstr "Jelszint rendben, kezdem"
 
@@ -11189,9 +11126,6 @@ msgstr "Referencia szám"
 #, fuzzy
 msgid "Size:"
 msgstr "Csatornák cserélése"
-
-msgid "Skin"
-msgstr "Skin"
 
 #, python-format
 msgid "Skin & Resolution: %s (%sx%s)"
@@ -11625,6 +11559,10 @@ msgstr "Keletre léptetve"
 msgid "Stepped west"
 msgstr "Nyugatra léptetve"
 
+#, fuzzy
+msgid "Steps"
+msgstr "Léptetés kelet felé"
+
 msgid "Stop"
 msgstr "Állj"
 
@@ -11914,6 +11852,10 @@ msgstr "A kijelző kikapcsolása Felfüggesztett módban"
 #, fuzzy
 msgid "Switch on the display during operation."
 msgstr "A kijelző kikapcsolása működés közben."
+
+#, fuzzy
+msgid "Switch to Android"
+msgstr "Váltás fájllistára"
 
 msgid "Switch to TV mode"
 msgstr "Váltás fájllistára"
@@ -12529,13 +12471,10 @@ msgstr ""
 msgid "This option set the level of surpression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr ""
 
-msgid "This option sets  the picture contrast."
-msgstr ""
-
 msgid "This option sets the picture brightness."
 msgstr ""
 
-msgid "This option sets the picture color space."
+msgid "This option sets the picture contrast."
 msgstr ""
 
 msgid "This option sets the picture flesh tones."
@@ -12912,9 +12851,6 @@ msgstr ""
 
 msgid "True"
 msgstr ""
-
-msgid "Downloading a new packet list. Please wait..."
-msgstr "Az új csomaglitsa letöltése folyamatban. Kérem, várjon..."
 
 #, fuzzy
 msgid "Trying to download a new updatelist. Please wait..."
@@ -13375,9 +13311,6 @@ msgstr "Kuka használata a felvétel-listában"
 msgid "Used service scan type"
 msgstr "Csatornakeresés típusa"
 
-msgid "User bouquets"
-msgstr "Felhasználói listák"
-
 #, python-format
 msgid "User Band %d"
 msgstr ""
@@ -13392,6 +13325,9 @@ msgstr "Felh. által megadva"
 
 msgid "User ID"
 msgstr ""
+
+msgid "User bouquets"
+msgstr "Felhasználói listák"
 
 msgid "User defined"
 msgstr "Felh. által megadva"
@@ -14603,10 +14539,6 @@ msgid "[Enigma2 Settings]\n"
 msgstr "Beállítások módosítása"
 
 #, fuzzy
-msgid "[Harddisk] You system does not support ext4"
-msgstr "Az ön rendszere nem támogatja az ext4-et."
-
-#, fuzzy
 msgid "[Image Info]\n"
 msgstr "Image: "
 
@@ -14825,9 +14757,6 @@ msgstr ""
 msgid "codec"
 msgstr "Videó kodek"
 
-msgid "com.jetbrains.python.configuration.PythonContentEntriesConfigurable"
-msgstr ""
-
 msgid "comedy"
 msgstr "vígjáték"
 
@@ -14938,9 +14867,6 @@ msgstr "engedélyezve"
 
 msgid "end cut here"
 msgstr "vágás kilépő pontja"
-
-msgid "enigma2"
-msgstr ""
 
 #, fuzzy
 msgid "enigma2 and network"

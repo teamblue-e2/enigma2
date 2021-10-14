@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-29 22:39+0200\n"
+"POT-Creation-Date: 2021-10-14 22:16+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Frenske <voorzitter@openpli.org>\n"
 "Language-Team: PLiteam <translators@openpli.org>\n"
@@ -25,6 +25,12 @@ msgid ""
 "\n"
 "[User - bouquets (TV)]\n"
 msgstr "Gebruiker - bouquets"
+
+#, fuzzy
+msgid ""
+"\n"
+" Do you want to switch to Android ?"
+msgstr "Wilt u de DVD in de speler afspelen?"
 
 msgid ""
 "\n"
@@ -176,9 +182,6 @@ msgid " or save the picture additionally to a file"
 msgstr ""
 
 msgid " unicable LNB input of rotor"
-msgstr ""
-
-msgid "$PROJECT_DIR$"
 msgstr ""
 
 #, python-format
@@ -505,16 +508,10 @@ msgstr ""
 msgid "1"
 msgstr ""
 
-msgid "1024 MB"
-msgstr ""
-
 msgid "120,2,30"
 msgstr ""
 
 msgid "120,28,26"
-msgstr ""
-
-msgid "128 MB"
 msgstr ""
 
 msgid "128 MB (recommended for this chipset)"
@@ -522,12 +519,6 @@ msgstr ""
 
 msgid "12V output"
 msgstr "12V uitgang"
-
-msgid "13 V"
-msgstr "13V"
-
-msgid "16 MB"
-msgstr ""
 
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
@@ -543,12 +534,6 @@ msgstr "16:9 Letterbox"
 
 msgid "16:9 always"
 msgstr "Altijd 16:9"
-
-msgid "16K"
-msgstr ""
-
-msgid "18 V"
-msgstr "18V"
 
 #, fuzzy
 msgid "19"
@@ -572,9 +557,6 @@ msgstr "24"
 
 msgid "25"
 msgstr "25"
-
-msgid "256 MB"
-msgstr ""
 
 msgid "256 MB (recommended for this chipset)"
 msgstr ""
@@ -600,9 +582,6 @@ msgstr ""
 
 msgid "30"
 msgstr "30"
-
-msgid "32 MB"
-msgstr ""
 
 msgid "33,1,694,24"
 msgstr ""
@@ -648,10 +627,6 @@ msgstr "4:3 Letterbox"
 msgid "4:3 PanScan"
 msgstr "4:3 PanScan"
 
-#, fuzzy
-msgid "4K"
-msgstr "4"
-
 msgid "5"
 msgstr "5"
 
@@ -676,9 +651,6 @@ msgstr ""
 msgid "5,7,16,16"
 msgstr ""
 
-msgid "512 MB"
-msgstr ""
-
 msgid "512 MB (recommended for this chipset)"
 msgstr ""
 
@@ -689,9 +661,6 @@ msgid "6"
 msgstr ""
 
 msgid "63,1,661,24"
-msgstr ""
-
-msgid "64 MB"
 msgstr ""
 
 msgid "7"
@@ -710,10 +679,6 @@ msgstr ""
 msgid "83,28,26"
 msgstr ""
 
-#, fuzzy
-msgid "8K"
-msgstr "8"
-
 msgid "9"
 msgstr ""
 
@@ -725,10 +690,6 @@ msgstr ""
 
 msgid "<Current movielist location>"
 msgstr "<Huidige opnamelijstlocatie>"
-
-#, fuzzy
-msgid "<Default Skin>"
-msgstr "Standaard instellingen"
 
 msgid "<Default movie location>"
 msgstr "<Standaard opnamelocatie>"
@@ -755,6 +716,12 @@ msgstr "A"
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr ""
 
+msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
+msgstr "Een opname die gereed is wil de ontvanger in stand-by zetten. Akkoord?"
+
+msgid "A completed recording timer is about to shut down your receiver. Would you like to proceed?"
+msgstr "Een opname die gereed is wil de ontvanger uitschakelen. Nu afsluiten?"
+
 #, python-format
 msgid "A configuration file (%s) has been modified since it was installed. Would you like to keep the modified version?"
 msgstr "Een configuratiebestand (%s) is sinds de installatie gewijzigd. Wilt u de aanpassingen behouden?"
@@ -769,12 +736,6 @@ msgstr ""
 
 msgid "A file from media is in use!"
 msgstr ""
-
-msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
-msgstr "Een opname die gereed is wil de ontvanger in stand-by zetten. Akkoord?"
-
-msgid "A completed recording timer is about to shut down your receiver. Would you like to proceed?"
-msgstr "Een opname die gereed is wil de ontvanger uitschakelen. Nu afsluiten?"
 
 #, fuzzy
 msgid "A graphical EPG for all services of a specific bouquet"
@@ -799,11 +760,11 @@ msgstr ""
 "Bezig met opnemen.\n"
 "Wat wilt u doen?"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
-msgstr "Een opname is nu bezig. Stop de opname voor u gaat scannen."
-
 msgid "A recording is currently running. Please stop the recording before starting a DiSEqC test."
 msgstr "Er is momenteel een opname actief. Stop de opname alvorens een DiSEqC test te starten."
+
+msgid "A recording is currently running. Please stop the recording before trying to scan."
+msgstr "Een opname is nu bezig. Stop de opname voor u gaat scannen."
 
 #, fuzzy
 msgid "A repeating event is currently recording. What would you like to do?"
@@ -902,9 +863,6 @@ msgstr "Favorieten bewerken afsluiten"
 
 msgid "About"
 msgstr "Uw ontvanger"
-
-msgid "About..."
-msgstr "Informatie over uw ontvanger"
 
 msgid "Access point:"
 msgstr "Access point:"
@@ -1237,6 +1195,14 @@ msgstr "standby"
 msgid "Alternative"
 msgstr "Alternatieven"
 
+#, fuzzy
+msgid "Alternative 1"
+msgstr "Alternatieven"
+
+#, fuzzy
+msgid "Alternative 2"
+msgstr "Alternatieven"
+
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr ""
 
@@ -1519,9 +1485,6 @@ msgstr "Auto"
 msgid "Auto DiSEqC"
 msgstr "Auto DiSEqC"
 
-msgid "Auto EXIF Orientation rotation/flipping"
-msgstr "Automatisch EXIF Oriëntatie rotatie/spiegeling"
-
 msgid "Auto chapter split every ? minutes (0=never)"
 msgstr "Automatisch hoofdstuk splitsen elke ? min (0=nooit)"
 
@@ -1531,7 +1494,8 @@ msgstr "Automatische huidskleurtint"
 msgid "Auto focus"
 msgstr "Auto focus"
 
-msgid "Auto focus commencing ..."
+#, fuzzy
+msgid "Auto focus commencing..."
 msgstr "Starten van de auto focus..."
 
 msgid "Auto language selection"
@@ -2412,10 +2376,6 @@ msgid "Color"
 msgstr "Kleurformaat"
 
 msgid "Color format"
-msgstr "Kleurformaat"
-
-#, fuzzy
-msgid "Color space"
 msgstr "Kleurformaat"
 
 #, fuzzy
@@ -4094,6 +4054,9 @@ msgstr "Bezig met downloaden"
 msgid "Downloading Image"
 msgstr "Bezig met downloaden"
 
+msgid "Downloading a new packet list. Please wait..."
+msgstr "Er wordt geprobeerd een nieuwe pakketlijst te downloaden... Een ogenblik aub..."
+
 msgid "Downloading plugin information. Please wait..."
 msgstr "Applicatie informatie ophalen. Een ogenblik aub..."
 
@@ -4909,9 +4872,6 @@ msgstr "FEC"
 msgid "FEC:"
 msgstr ""
 
-msgid "FHD"
-msgstr ""
-
 msgid "FIFO"
 msgstr ""
 
@@ -5403,13 +5363,6 @@ msgstr ""
 "De gebruikersinterface moet herstart worden om\n"
 "de nieuwe skin te activeren. Nu herstarten?"
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"De gebruikersinterface moet herstart worden om\n"
-"de nieuwe skin te activeren. Nu herstarten?"
-
 msgid "Gabon"
 msgstr ""
 
@@ -5614,10 +5567,6 @@ msgstr ""
 msgid "Guyana"
 msgstr ""
 
-#, fuzzy
-msgid "HD"
-msgstr "D"
-
 msgid "HD list"
 msgstr "HD lijst"
 
@@ -5677,6 +5626,10 @@ msgstr "HDMI-CEC instellingen"
 
 msgid "HDMI-CEC Source Inactive"
 msgstr ""
+
+#, fuzzy
+msgid "HDMI-CEC address"
+msgstr "IP-adres"
 
 #, fuzzy
 msgid "HDMI-CEC setup"
@@ -5759,7 +5712,7 @@ msgid "Height"
 msgstr "hoogte"
 
 #, fuzzy
-msgid "Helps setting up your antenna"
+msgid "Helps setting up your signal"
 msgstr "Helpt u uw schotel in te stellen"
 
 msgid "Hidden network"
@@ -5883,9 +5836,6 @@ msgid "I/O priority for script execution"
 msgstr ""
 
 msgid "IDLE"
-msgstr ""
-
-msgid "IGNORE"
 msgstr ""
 
 msgid "INFO"
@@ -6362,9 +6312,6 @@ msgstr "Zijn deze instellingen correct?"
 
 msgid "Is this video mode ok?"
 msgstr "Is deze videomode correct?"
-
-msgid "Is your SCR device externally powered"
-msgstr ""
 
 #, fuzzy
 msgid "Isle of Man"
@@ -7315,13 +7262,15 @@ msgstr "Opnamelijstmenu"
 msgid "Moving"
 msgstr "Draaien"
 
-msgid "Moving east ..."
+#, fuzzy
+msgid "Moving east..."
 msgstr "Draaien naar oost ..."
 
 msgid "Moving to position"
 msgstr "Draaien naar positie"
 
-msgid "Moving west ..."
+#, fuzzy
+msgid "Moving west..."
 msgstr "Draaien naar west ..."
 
 msgid "Mozambique"
@@ -7688,9 +7637,6 @@ msgstr "Geen netwerken gevonden"
 msgid "No packages were upgraded yet. So you can check your network and try again."
 msgstr ""
 
-msgid "No positioner capable frontend found."
-msgstr "Geen geschikte positioner gevonden."
-
 #, fuzzy
 msgid "No priority"
 msgstr "Prioriteit"
@@ -7726,9 +7672,6 @@ msgstr "Nee op alles"
 
 msgid "No transparency"
 msgstr "Geen transparantie"
-
-msgid "No tuner is configured for use with a diseqc positioner!"
-msgstr "Er is geen tuner ingesteld voor gebruik van een DiSEqC motor!"
 
 msgid ""
 "No tuner is enabled!\n"
@@ -8937,9 +8880,6 @@ msgstr "Druk OK op uw afstandsbediening om verder te gaan."
 msgid "Press OK to activate the selected %s skin."
 msgstr "Druk op OK om de geselecteerde skin te activeren."
 
-msgid "Press OK to activate the selected skin."
-msgstr "Druk op OK om de geselecteerde skin te activeren."
-
 msgid "Press OK to activate the settings."
 msgstr "Druk op OK om op te slaan"
 
@@ -9862,9 +9802,6 @@ msgstr ""
 msgid "SCR Unicable"
 msgstr "Unicable LNB"
 
-msgid "SELECTIVE"
-msgstr ""
-
 msgid "SINGLE LAYER DVD"
 msgstr "SINGLE LAYER DVD"
 
@@ -9885,15 +9822,6 @@ msgstr "%d bestand"
 
 msgid "SSID:"
 msgstr "SSID:"
-
-msgid ""
-"STB-GUI Skinselector\n"
-"\n"
-"If you experience any problems please contact\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-msgstr ""
 
 msgid "Saint Barthelemy"
 msgstr ""
@@ -10190,7 +10118,8 @@ msgstr "Zoek west"
 msgid "Searching"
 msgstr "Zoeken"
 
-msgid "Searching east ..."
+#, fuzzy
+msgid "Searching east..."
 msgstr "Oost zoeken ..."
 
 msgid "Searching for available updates. Please wait..."
@@ -10199,7 +10128,8 @@ msgstr "Zoeken naar update's. Een moment aub."
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "Zoeken naar nieuw geïnstalleerde of verwijderde pakketten. Een ogenblikje..."
 
-msgid "Searching west ..."
+#, fuzzy
+msgid "Searching west..."
 msgstr "West zoeken ..."
 
 #, fuzzy
@@ -10478,6 +10408,9 @@ msgstr ""
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch or SCR LNB uses to pass the requested transponder to the tuner."
 msgstr ""
 
+msgid "Select the User Band to be assigned to this tuner. This is an index into the table of frequencies the SCR switch or SCR LNB uses to pass the requested transponder to the tuner."
+msgstr ""
+
 msgid "Select the character or action under the keyboard cursor"
 msgstr ""
 
@@ -10560,16 +10493,15 @@ msgstr "Selecteer video-ingang met de omhoog / omlaag toetsen"
 msgid "Select video mode"
 msgstr "Selecteer videomodus"
 
+msgid "Select whether your SCR device is externally powered."
+msgstr ""
+
 msgid "Select wireless network"
 msgstr "Secteer draadloos netwerk"
 
 #, fuzzy
 msgid "Select your ATSC provider."
 msgstr "Provider toevoegen"
-
-#, fuzzy
-msgid "Select your Skin"
-msgstr "Kies een skin"
 
 #, fuzzy
 msgid ""
@@ -11324,6 +11256,10 @@ msgstr "Naast elkaar"
 msgid "Sierra Leone"
 msgstr ""
 
+#, fuzzy
+msgid "Signal Finder"
+msgstr "Signaal:"
+
 msgid "Signal OK, proceeding"
 msgstr "Signaal ok, doorgaan"
 
@@ -11407,9 +11343,6 @@ msgstr "Zenderreferentie"
 #, fuzzy
 msgid "Size:"
 msgstr "Zenders omwisselen"
-
-msgid "Skin"
-msgstr "Skin selectie"
 
 #, python-format
 msgid "Skin & Resolution: %s (%sx%s)"
@@ -11842,6 +11775,10 @@ msgstr "Naar oost gestapt"
 msgid "Stepped west"
 msgstr "Naar west gestapt"
 
+#, fuzzy
+msgid "Steps"
+msgstr "Stap > oost"
+
 msgid "Stop"
 msgstr "Stop"
 
@@ -12128,6 +12065,10 @@ msgstr "Schakel het display in tijdens de deep stand-by"
 
 msgid "Switch on the display during operation."
 msgstr "Schakel het display in tijdens normaal bedrijf"
+
+#, fuzzy
+msgid "Switch to Android"
+msgstr "Schakel naar de HDMI in modus"
 
 #, fuzzy
 msgid "Switch to TV mode"
@@ -12738,13 +12679,10 @@ msgstr ""
 msgid "This option set the level of surpression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr ""
 
-msgid "This option sets  the picture contrast."
-msgstr ""
-
 msgid "This option sets the picture brightness."
 msgstr ""
 
-msgid "This option sets the picture color space."
+msgid "This option sets the picture contrast."
 msgstr ""
 
 msgid "This option sets the picture flesh tones."
@@ -13123,7 +13061,8 @@ msgstr ""
 msgid "True"
 msgstr ""
 
-msgid "Downloading a new packet list. Please wait..."
+#, fuzzy
+msgid "Trying to download a new updatelist. Please wait..."
 msgstr "Er wordt geprobeerd een nieuwe pakketlijst te downloaden... Een ogenblik aub..."
 
 msgid "Tue"
@@ -13583,9 +13522,6 @@ msgstr "Gebruik de prullenbak in de opnamelijst"
 msgid "Used service scan type"
 msgstr "Gebruikte zoekmethode"
 
-msgid "User bouquets"
-msgstr "Gebruiker bouquets"
-
 #, python-format
 msgid "User Band %d"
 msgstr ""
@@ -13600,6 +13536,9 @@ msgstr "Door u ingesteld"
 
 msgid "User ID"
 msgstr ""
+
+msgid "User bouquets"
+msgstr "Gebruiker bouquets"
 
 msgid "User defined"
 msgstr "Door u ingesteld"
@@ -14834,10 +14773,6 @@ msgid "[Enigma2 Settings]\n"
 msgstr "Instellingen wijzigen"
 
 #, fuzzy
-msgid "[Harddisk] You system does not support ext4"
-msgstr "Uw systeem ondersteunt geen ext4"
-
-#, fuzzy
 msgid "[Image Info]\n"
 msgstr "Image: "
 
@@ -15054,9 +14989,6 @@ msgstr ""
 msgid "codec"
 msgstr "Videocodec"
 
-msgid "com.jetbrains.python.configuration.PythonContentEntriesConfigurable"
-msgstr ""
-
 msgid "comedy"
 msgstr "komedie"
 
@@ -15168,9 +15100,6 @@ msgstr "geactiveerd"
 
 msgid "end cut here"
 msgstr "Stop snijpunt hier"
-
-msgid "enigma2"
-msgstr ""
 
 #, fuzzy
 msgid "enigma2 and network"
