@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-29 22:39+0200\n"
+"POT-Creation-Date: 2021-10-14 22:16+0200\n"
 "PO-Revision-Date: 2019-07-25 17:52+0300\n"
 "Last-Translator: Dimitrij <Dima-73@inbox.lv>\n"
 "Language-Team: openPLi Dimitrij\n"
@@ -26,6 +26,12 @@ msgid ""
 "\n"
 "[User - bouquets (TV)]\n"
 msgstr "Список фаворитов"
+
+#, fuzzy
+msgid ""
+"\n"
+" Do you want to switch to Android ?"
+msgstr "Вы хотите воспроизвести DVD в приводе?"
 
 msgid ""
 "\n"
@@ -178,9 +184,6 @@ msgid " or save the picture additionally to a file"
 msgstr ""
 
 msgid " unicable LNB input of rotor"
-msgstr ""
-
-msgid "$PROJECT_DIR$"
 msgstr ""
 
 #, python-format
@@ -519,16 +522,10 @@ msgstr ""
 msgid "1"
 msgstr ""
 
-msgid "1024 MB"
-msgstr ""
-
 msgid "120,2,30"
 msgstr ""
 
 msgid "120,28,26"
-msgstr ""
-
-msgid "128 MB"
 msgstr ""
 
 msgid "128 MB (recommended for this chipset)"
@@ -536,12 +533,6 @@ msgstr ""
 
 msgid "12V output"
 msgstr "12V выход"
-
-msgid "13 V"
-msgstr "13 V"
-
-msgid "16 MB"
-msgstr ""
 
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
@@ -557,12 +548,6 @@ msgstr "16:9 Letterbox"
 
 msgid "16:9 always"
 msgstr "16:9 всегда"
-
-msgid "16K"
-msgstr ""
-
-msgid "18 V"
-msgstr "18 V"
 
 #, fuzzy
 msgid "19"
@@ -584,9 +569,6 @@ msgid "24"
 msgstr ""
 
 msgid "25"
-msgstr ""
-
-msgid "256 MB"
 msgstr ""
 
 msgid "256 MB (recommended for this chipset)"
@@ -612,9 +594,6 @@ msgid "3,5,100,40"
 msgstr ""
 
 msgid "30"
-msgstr ""
-
-msgid "32 MB"
 msgstr ""
 
 msgid "33,1,694,24"
@@ -661,10 +640,6 @@ msgstr "4:3 Letterbox"
 msgid "4:3 PanScan"
 msgstr "4:3 PanScan"
 
-#, fuzzy
-msgid "4K"
-msgstr "4"
-
 msgid "5"
 msgstr "5"
 
@@ -689,9 +664,6 @@ msgstr ""
 msgid "5,7,16,16"
 msgstr ""
 
-msgid "512 MB"
-msgstr ""
-
 msgid "512 MB (recommended for this chipset)"
 msgstr ""
 
@@ -702,9 +674,6 @@ msgid "6"
 msgstr ""
 
 msgid "63,1,661,24"
-msgstr ""
-
-msgid "64 MB"
 msgstr ""
 
 msgid "7"
@@ -723,10 +692,6 @@ msgstr ""
 msgid "83,28,26"
 msgstr ""
 
-#, fuzzy
-msgid "8K"
-msgstr "8"
-
 msgid "9"
 msgstr ""
 
@@ -738,10 +703,6 @@ msgstr ""
 
 msgid "<Current movielist location>"
 msgstr "<Текущее место списка видео>"
-
-#, fuzzy
-msgid "<Default Skin>"
-msgstr "Дефолтные настройки"
 
 msgid "<Default movie location>"
 msgstr "<Место видео по дефолту>"
@@ -768,6 +729,12 @@ msgstr "A"
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr ""
 
+msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
+msgstr "Запись по таймеру завершена, ресивер будет переведен в режим ожидания. Сделать это сейчас?"
+
+msgid "A completed recording timer is about to shut down your receiver. Would you like to proceed?"
+msgstr "Запись по таймеру закончена, ваш ресивер будет выключен (режим глубокого ожидания). Выключить сейчас?"
+
 #, python-format
 msgid "A configuration file (%s) has been modified since it was installed. Would you like to keep the modified version?"
 msgstr "Конфигурационный файл (%s) был изменен в процессе установки. Сохранить Ваши изменения?"
@@ -782,12 +749,6 @@ msgstr ""
 
 msgid "A file from media is in use!"
 msgstr ""
-
-msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
-msgstr "Запись по таймеру завершена, ресивер будет переведен в режим ожидания. Сделать это сейчас?"
-
-msgid "A completed recording timer is about to shut down your receiver. Would you like to proceed?"
-msgstr "Запись по таймеру закончена, ваш ресивер будет выключен (режим глубокого ожидания). Выключить сейчас?"
 
 #, fuzzy
 msgid "A graphical EPG for all services of a specific bouquet"
@@ -812,11 +773,11 @@ msgstr ""
 "В текущее время идет запись.\n"
 "Что вы хотите сделать?"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
-msgstr "В текущее время идет запись.Пожалуйста, остановите запись, прежде чем попытаться сканировать."
-
 msgid "A recording is currently running. Please stop the recording before starting a DiSEqC test."
 msgstr "В текущее время идет запись. Пожалуйста остановите запись перед началом тестирования DiSEqC."
+
+msgid "A recording is currently running. Please stop the recording before trying to scan."
+msgstr "В текущее время идет запись.Пожалуйста, остановите запись, прежде чем попытаться сканировать."
 
 #, fuzzy
 msgid "A repeating event is currently recording. What would you like to do?"
@@ -915,9 +876,6 @@ msgstr "прервать редактирование фаворитов"
 
 msgid "About"
 msgstr "Информация"
-
-msgid "About..."
-msgstr "Информация..."
 
 msgid "Access point:"
 msgstr "Точка доступа:"
@@ -1249,6 +1207,14 @@ msgstr "перейти в режим ожидания"
 msgid "Alternative"
 msgstr "Альтернативный ДНС"
 
+#, fuzzy
+msgid "Alternative 1"
+msgstr "Альтернативный ДНС"
+
+#, fuzzy
+msgid "Alternative 2"
+msgstr "Альтернативный ДНС"
+
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr ""
 
@@ -1528,9 +1494,6 @@ msgstr "Авто"
 msgid "Auto DiSEqC"
 msgstr "Авто DiSEqC"
 
-msgid "Auto EXIF Orientation rotation/flipping"
-msgstr "Авто EXIF ориентация вращения/поворота"
-
 msgid "Auto chapter split every ? minutes (0=never)"
 msgstr "Автоматически разделять на главы каждые ? минут (0 =никогда)"
 
@@ -1540,7 +1503,8 @@ msgstr "Авто flesh"
 msgid "Auto focus"
 msgstr "Автофокусировка"
 
-msgid "Auto focus commencing ..."
+#, fuzzy
+msgid "Auto focus commencing..."
 msgstr "Автофокусировка началась ..."
 
 msgid "Auto language selection"
@@ -2417,10 +2381,6 @@ msgid "Color"
 msgstr "Формат цвета"
 
 msgid "Color format"
-msgstr "Формат цвета"
-
-#, fuzzy
-msgid "Color space"
 msgstr "Формат цвета"
 
 #, fuzzy
@@ -3935,6 +3895,9 @@ msgstr "Загрузка"
 msgid "Downloading Image"
 msgstr "Загрузка"
 
+msgid "Downloading a new packet list. Please wait..."
+msgstr "Пытаемся загрузить новый список пакетов. Пожалуйста, подождите..."
+
 msgid "Downloading plugin information. Please wait..."
 msgstr "Загрузка информации о плагинах. Ждите..."
 
@@ -4738,9 +4701,6 @@ msgstr "FEC"
 msgid "FEC:"
 msgstr ""
 
-msgid "FHD"
-msgstr ""
-
 msgid "FIFO"
 msgstr ""
 
@@ -5233,13 +5193,6 @@ msgstr ""
 "Для активации нового скина необходим рестарт GUI.\n"
 "Вы хотите сделать это сейчас?"
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"Для активации нового скина необходим рестарт GUI.\n"
-"Вы хотите сделать это сейчас?"
-
 msgid "Gabon"
 msgstr ""
 
@@ -5444,10 +5397,6 @@ msgstr ""
 msgid "Guyana"
 msgstr ""
 
-#, fuzzy
-msgid "HD"
-msgstr "D"
-
 msgid "HD list"
 msgstr "HD лист"
 
@@ -5505,6 +5454,10 @@ msgstr ""
 
 msgid "HDMI-CEC Source Inactive"
 msgstr ""
+
+#, fuzzy
+msgid "HDMI-CEC address"
+msgstr "IP адрес"
 
 msgid "HDMI-CEC setup"
 msgstr ""
@@ -5585,7 +5538,7 @@ msgstr "Иврит"
 msgid "Height"
 msgstr "высота"
 
-msgid "Helps setting up your antenna"
+msgid "Helps setting up your signal"
 msgstr ""
 
 msgid "Hidden network"
@@ -5709,9 +5662,6 @@ msgid "I/O priority for script execution"
 msgstr ""
 
 msgid "IDLE"
-msgstr ""
-
-msgid "IGNORE"
 msgstr ""
 
 msgid "INFO"
@@ -6186,9 +6136,6 @@ msgstr "Этот вариант настройки вас устраивает?"
 
 msgid "Is this video mode ok?"
 msgstr "Установить данный видеорежим?"
-
-msgid "Is your SCR device externally powered"
-msgstr ""
 
 #, fuzzy
 msgid "Isle of Man"
@@ -7138,13 +7085,15 @@ msgstr "Меню списка видео"
 msgid "Moving"
 msgstr "Перемещаем"
 
-msgid "Moving east ..."
+#, fuzzy
+msgid "Moving east..."
 msgstr "Перемещаем на восток ..."
 
 msgid "Moving to position"
 msgstr "Перемещаем на позицию"
 
-msgid "Moving west ..."
+#, fuzzy
+msgid "Moving west..."
 msgstr "Перемещаем на запад ..."
 
 msgid "Mozambique"
@@ -7510,9 +7459,6 @@ msgstr "Сети не найдены"
 msgid "No packages were upgraded yet. So you can check your network and try again."
 msgstr ""
 
-msgid "No positioner capable frontend found."
-msgstr "Нет фронтэнда с позиционером"
-
 #, fuzzy
 msgid "No priority"
 msgstr "Очередность"
@@ -7547,9 +7493,6 @@ msgstr "Нет - для всех"
 
 msgid "No transparency"
 msgstr "нет прозрачности"
-
-msgid "No tuner is configured for use with a diseqc positioner!"
-msgstr "Нет тюнера, настроенного для использования с diseqc позиционером!"
 
 msgid ""
 "No tuner is enabled!\n"
@@ -8751,9 +8694,6 @@ msgstr "Нажмите OK на пульте, чтобы продолжить."
 msgid "Press OK to activate the selected %s skin."
 msgstr "Нажмите OK для активации выбранного скина."
 
-msgid "Press OK to activate the selected skin."
-msgstr "Нажмите OK для активации выбранного скина."
-
 msgid "Press OK to activate the settings."
 msgstr "Нажмите OK для активации настроек."
 
@@ -9673,9 +9613,6 @@ msgstr ""
 msgid "SCR Unicable"
 msgstr "Unicable LNB"
 
-msgid "SELECTIVE"
-msgstr ""
-
 msgid "SINGLE LAYER DVD"
 msgstr "Однослойный ДВД"
 
@@ -9696,15 +9633,6 @@ msgstr "%d файл"
 
 msgid "SSID:"
 msgstr "SSID:"
-
-msgid ""
-"STB-GUI Skinselector\n"
-"\n"
-"If you experience any problems please contact\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-msgstr ""
 
 msgid "Saint Barthelemy"
 msgstr ""
@@ -10004,7 +9932,8 @@ msgstr "Поиск на западе"
 msgid "Searching"
 msgstr "Поиск"
 
-msgid "Searching east ..."
+#, fuzzy
+msgid "Searching east..."
 msgstr "Поиск на востоке ..."
 
 msgid "Searching for available updates. Please wait..."
@@ -10013,7 +9942,8 @@ msgstr "Поиск доступных обновлений. Пожалуйста
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "Поиск новых пакетов,установки или удаления. Пожалуйста подождите ..."
 
-msgid "Searching west ..."
+#, fuzzy
+msgid "Searching west..."
 msgstr "Поиск на западе ..."
 
 #, fuzzy
@@ -10292,6 +10222,9 @@ msgstr ""
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch or SCR LNB uses to pass the requested transponder to the tuner."
 msgstr ""
 
+msgid "Select the User Band to be assigned to this tuner. This is an index into the table of frequencies the SCR switch or SCR LNB uses to pass the requested transponder to the tuner."
+msgstr ""
+
 msgid "Select the character or action under the keyboard cursor"
 msgstr ""
 
@@ -10374,16 +10307,15 @@ msgstr "Выберите видеовход кнопками вверх/вниз
 msgid "Select video mode"
 msgstr "Выберите видеорежим"
 
+msgid "Select whether your SCR device is externally powered."
+msgstr ""
+
 msgid "Select wireless network"
 msgstr "Выберите беспроводную сеть"
 
 #, fuzzy
 msgid "Select your ATSC provider."
 msgstr "Добавить провайдера"
-
-#, fuzzy
-msgid "Select your Skin"
-msgstr "Выбрать скин"
 
 #, fuzzy
 msgid ""
@@ -11131,6 +11063,10 @@ msgstr "Лево и право"
 msgid "Sierra Leone"
 msgstr ""
 
+#, fuzzy
+msgid "Signal Finder"
+msgstr "Сигнал: "
+
 msgid "Signal OK, proceeding"
 msgstr "Сигнал ОК,в процессе"
 
@@ -11214,9 +11150,6 @@ msgstr "Референс"
 #, fuzzy
 msgid "Size:"
 msgstr "Поменять местами сервисы"
-
-msgid "Skin"
-msgstr "Выбор скина"
 
 #, python-format
 msgid "Skin & Resolution: %s (%sx%s)"
@@ -11650,6 +11583,10 @@ msgstr "Шаг на восток"
 msgid "Stepped west"
 msgstr "Шаг на запад"
 
+#, fuzzy
+msgid "Steps"
+msgstr "Шаг на восток"
+
 msgid "Stop"
 msgstr "Стоп"
 
@@ -11936,6 +11873,10 @@ msgstr ""
 
 msgid "Switch on the display during operation."
 msgstr ""
+
+#, fuzzy
+msgid "Switch to Android"
+msgstr "переключить на список файлов"
 
 #, fuzzy
 msgid "Switch to TV mode"
@@ -12545,13 +12486,10 @@ msgstr ""
 msgid "This option set the level of surpression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr ""
 
-msgid "This option sets  the picture contrast."
-msgstr ""
-
 msgid "This option sets the picture brightness."
 msgstr ""
 
-msgid "This option sets the picture color space."
+msgid "This option sets the picture contrast."
 msgstr ""
 
 msgid "This option sets the picture flesh tones."
@@ -12929,9 +12867,6 @@ msgstr ""
 
 msgid "True"
 msgstr ""
-
-msgid "Downloading a new packet list. Please wait..."
-msgstr "Пытаемся загрузить новый список пакетов. Пожалуйста, подождите..."
 
 #, fuzzy
 msgid "Trying to download a new updatelist. Please wait..."
@@ -13393,9 +13328,6 @@ msgstr "Использование корзины в списке фильмов
 msgid "Used service scan type"
 msgstr "Используемый тип сканирования"
 
-msgid "User bouquets"
-msgstr "Пользователь букеты"
-
 #, python-format
 msgid "User Band %d"
 msgstr ""
@@ -13410,6 +13342,9 @@ msgstr "Определены пользователем"
 
 msgid "User ID"
 msgstr ""
+
+msgid "User bouquets"
+msgstr "Пользователь букеты"
 
 msgid "User defined"
 msgstr "Определены пользователем"
@@ -14619,9 +14554,6 @@ msgstr ""
 msgid "[Enigma2 Settings]\n"
 msgstr "Изменить настройки"
 
-msgid "[Harddisk] You system does not support ext4"
-msgstr ""
-
 msgid "[Image Info]\n"
 msgstr ""
 
@@ -14863,9 +14795,6 @@ msgstr ""
 msgid "codec"
 msgstr ""
 
-msgid "com.jetbrains.python.configuration.PythonContentEntriesConfigurable"
-msgstr ""
-
 msgid "comedy"
 msgstr ""
 
@@ -14985,9 +14914,6 @@ msgid "enabled"
 msgstr "Включен"
 
 msgid "end cut here"
-msgstr ""
-
-msgid "enigma2"
 msgstr ""
 
 #, fuzzy
