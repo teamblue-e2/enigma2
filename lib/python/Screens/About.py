@@ -13,6 +13,7 @@ from enigma import eGetEnigmaDebugLvl
 
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
+from Components.SystemInfo import SystemInfo
 
 from Components.Label import Label
 from Components.ProgressBar import ProgressBar
@@ -223,6 +224,7 @@ class About(Screen):
 		#	AboutText += "\n" + iNetwork.getFriendlyAdapterDescription(x[0]) + " :" + "/dev/" + x[0] + " " + x[1]
 		AboutText += '\n\n' + _("Uptime") + ": " + about.getBoxUptime()
 		if config.hdmicec.enabled.value:
+		if SystemInfo["HasHDMI-CEC"] and config.hdmicec.enabled.value:
 			AboutText += "\n\n" + _("HDMI-CEC address") + ": " + config.hdmicec.fixed_physical_address.value
 
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
