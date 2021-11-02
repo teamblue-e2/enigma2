@@ -223,7 +223,6 @@ class About(Screen):
 		#for x in about.GetIPsFromNetworkInterfaces():
 		#	AboutText += "\n" + iNetwork.getFriendlyAdapterDescription(x[0]) + " :" + "/dev/" + x[0] + " " + x[1]
 		AboutText += '\n\n' + _("Uptime") + ": " + about.getBoxUptime()
-		if config.hdmicec.enabled.value:
 		if SystemInfo["HasHDMI-CEC"] and config.hdmicec.enabled.value:
 			AboutText += "\n\n" + _("HDMI-CEC address") + ": " + config.hdmicec.fixed_physical_address.value
 
