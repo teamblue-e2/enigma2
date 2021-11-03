@@ -224,7 +224,8 @@ class About(Screen):
 		#	AboutText += "\n" + iNetwork.getFriendlyAdapterDescription(x[0]) + " :" + "/dev/" + x[0] + " " + x[1]
 		AboutText += '\n\n' + _("Uptime") + ": " + about.getBoxUptime()
 		if SystemInfo["HasHDMI-CEC"] and config.hdmicec.enabled.value:
-			AboutText += "\n\n" + _("HDMI-CEC address") + ": " + config.hdmicec.fixed_physical_address.value
+			address = config.hdmicec.fixed_physical_address.value if config.hdmicec.fixed_physical_address.value != "0.0.0.0" else _("not set")
+			AboutText += "\n\n" + _("HDMI-CEC address") + ": " + address
 
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 		self["key_green"] = Button(_("Translations"))
