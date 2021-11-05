@@ -726,7 +726,7 @@ def InitUsageConfig():
 	config.autolanguage = ConfigSubsection()
 	audio_language_choices = [
 		("", _("None")),
-		("orj dos ory org esl qaa und mis mul ORY ORJ Audio_ORJ", _("Original")),
+		("orj dos ory org esl qaa und mis mul ORY ORJ Audio_ORJ oth", _("Original")),
 		("ara", _("Arabic")),
 		("eus baq", _("Basque")),
 		("bul", _("Bulgarian")),
@@ -736,7 +736,7 @@ def InitUsageConfig():
 		("ces cze", _("Czech")),
 		("dan", _("Danish")),
 		("dut ndl nld", _("Dutch")),
-		("eng qaa", _("English")),
+		("eng", _("English")),
 		("est", _("Estonian")),
 		("fin", _("Finnish")),
 		("fra fre", _("French")),
@@ -762,7 +762,7 @@ def InitUsageConfig():
 		("tha", _("Thai")),
 		("tur Audio_TUR", _("Turkish")),
 		("ukr Ukr", _("Ukrainian")),
-		("NAR", _("Visual impaired commentary"))]
+		("NAR qad", _("Visual impaired commentary"))]
 
 	epg_language_choices = audio_language_choices[:1] + audio_language_choices[2:]
 
