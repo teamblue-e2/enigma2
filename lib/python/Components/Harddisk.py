@@ -373,6 +373,9 @@ class Harddisk:
 			h.write(zero)
 		h.close()
 
+	def createMovieDir(self):
+		os.mkdir(os.path.join(self.mount_path, 'movie'))
+
 	def createInitializeJob(self):
 		job = Components.Task.Job(_("Initializing storage device..."))
 		size = self.diskSize()
@@ -461,6 +464,10 @@ class Harddisk:
 
 		task = Components.Task.ConditionTask(job, _("Waiting for mount"), timeoutCount=20)
 		task.check = self.mountDevice
+		task.weighting = 1
+
+		task = Task.PythonTask(job, _("Create directory") + ": movie")
+		task.work = self.createMovieDir
 		task.weighting = 1
 
 		return job
