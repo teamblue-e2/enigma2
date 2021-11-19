@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-14 22:16+0200\n"
+"POT-Creation-Date: 2021-11-19 09:51+0100\n"
 "PO-Revision-Date: 2020-05-13 21:36+0200\n"
 "Last-Translator: mcfly82\n"
 "Language-Team: mcfly82 & wysless\n"
@@ -1167,6 +1167,9 @@ msgstr "Azonos nyelvű hangsáv és felirat összerendelése"
 msgid "Allow subtitles for hearing impaired"
 msgstr "Hallássérülteknek szánt feliratok engedélyezése"
 
+msgid "Allows the TV remote to be used to control the receiver."
+msgstr ""
+
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr ""
 
@@ -1434,6 +1437,9 @@ msgstr ""
 msgid "Audio channel"
 msgstr "Köv. csatorna az előzményekben"
 
+msgid "Audio description for the visually impaired"
+msgstr ""
+
 msgid "Audio language selection 1"
 msgstr "Elsődleges előnyben részesített hangsáv"
 
@@ -1533,6 +1539,9 @@ msgstr "Automatikus keresés"
 
 msgid "Automatic scan"
 msgstr "Automatikus keresés"
+
+msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
+msgstr ""
 
 msgid "Automatically start timeshift after"
 msgstr "Időcsúszatás automatikus bekapcsolása ennyi idő múlva"
@@ -1684,6 +1693,9 @@ msgstr "Beállítások módosítása"
 
 msgid "Basque"
 msgstr "Baszk"
+
+msgid "Before sending the command to switch the TV to standby, the receiver tests if all the other devices plugged to TV are in standby. If they are not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
+msgstr ""
 
 msgid "Begin time"
 msgstr "Kezdési idő"
@@ -2383,6 +2395,9 @@ msgstr "Csatorna választás"
 
 msgid "Command order"
 msgstr "Parancs sorrend"
+
+msgid "Command the TV to switch to the correct HDMI input when zap timers activate."
+msgstr ""
 
 #, fuzzy
 msgid "Commit info"
@@ -3330,6 +3345,9 @@ msgstr "Késleltetés ismétlések előtt:"
 msgid "Delay before sequence repeat"
 msgstr "Késleltetés ismétlések előtt:"
 
+msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
+msgstr ""
+
 msgid "Delay between diseqc commands"
 msgstr ""
 
@@ -4184,6 +4202,10 @@ msgstr "Többszörös bouquetek engedélyezése"
 
 msgid "Enable or disable Ipv6."
 msgstr ""
+
+#, fuzzy
+msgid "Enable or disable using HDMI-CEC."
+msgstr "EIT EPG engedélyezése"
 
 #, fuzzy
 msgid "Enable parental protection"
@@ -5443,6 +5465,9 @@ msgstr "IP cím"
 msgid "HDMI-CEC setup"
 msgstr ""
 
+msgid "HDMI-IN Actions"
+msgstr ""
+
 #, fuzzy
 msgid "HDR10 support"
 msgstr "nem támogatott"
@@ -5690,6 +5715,9 @@ msgstr ""
 msgid "If enabled, AIT data is included in recordings."
 msgstr ""
 
+msgid "If enabled, a log will be kept of CEC protocol traffic ('hdmicec.log')"
+msgstr ""
+
 msgid "If enabled, bookmarks will be updated with the new location when you move or copy a recording."
 msgstr ""
 
@@ -5707,6 +5735,9 @@ msgid "If set as 'Yes', then audiofiles are played in 'list mode' only, instead 
 msgstr ""
 
 msgid "If set to 'yes' signal values (SNR, etc) will be calculated from API V3. This is an old API version that has now been superseded."
+msgstr ""
+
+msgid "If set to 'yes' the same commands will be sent to the TV for deep standby events, as are sent during regular standby events."
 msgstr ""
 
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
@@ -8704,6 +8735,10 @@ msgstr "Nyomja le az OK gombot egy szolgáltató kiválasztásához."
 msgid "Press OK to select satellites"
 msgstr ""
 
+#, fuzzy
+msgid "Press OK to select the save location of the log file."
+msgstr "Nyomja le az OK gombot a jelölés változtatásához."
+
 msgid "Press OK to select/deselect a CAId."
 msgstr "Nyomja le az OK gombot a CAId ki/bejelöléséhez."
 
@@ -8862,6 +8897,10 @@ msgstr ""
 #, fuzzy
 msgid "Purge deleted user bouquets"
 msgstr "Többszörös bouquetek engedélyezése"
+
+#, fuzzy
+msgid "Put A/V receiver to standby too."
+msgstr "Készülék kikapcsolása"
 
 msgid "Put TV in standby"
 msgstr "TV kikapcsolása"
@@ -11285,6 +11324,9 @@ msgstr ""
 msgid "Somalia"
 msgstr ""
 
+msgid "Some TVs do not wake from standby when they receive the 'Image View On' command. If this is the case try the 'Text View On' command instead."
+msgstr ""
+
 msgid "Some error occurred - Please try later"
 msgstr ""
 
@@ -11857,6 +11899,10 @@ msgstr "A kijelző kikapcsolása működés közben."
 msgid "Switch to Android"
 msgstr "Váltás fájllistára"
 
+#, fuzzy
+msgid "Switch to HDMI in mode"
+msgstr "Váltás fájllistára"
+
 msgid "Switch to TV mode"
 msgstr "Váltás fájllistára"
 
@@ -12146,6 +12192,9 @@ msgid "The backup failed. Please choose a different backup location."
 msgstr "A mentés nem sikerült. Válasszon másik célt ahova menthetem."
 
 msgid "The bitrate of the video encoder. Larger value improves quality and increases file size."
+msgstr ""
+
+msgid "The command to wake from standby will be sent multiple times."
 msgstr ""
 
 #, fuzzy, python-format
@@ -12930,6 +12979,18 @@ msgstr "Török"
 msgid "Turks and Caicos Islands"
 msgstr ""
 
+msgid "Turn off HDMI-IN Full screen mode"
+msgstr ""
+
+msgid "Turn off HDMI-IN PiP mode"
+msgstr ""
+
+msgid "Turn on HDMI-IN Full screen mode"
+msgstr ""
+
+msgid "Turn on HDMI-IN PiP mode"
+msgstr ""
+
 msgid "Turn on the power LED during deep standby."
 msgstr ""
 
@@ -13574,9 +13635,6 @@ msgstr "Virtuális Billentyűzet"
 msgid "Virtual keyboard"
 msgstr "Virtuális Billentyűzet"
 
-msgid "Visual impaired commentary"
-msgstr ""
-
 msgid "Voltage mode"
 msgstr "Feszültség"
 
@@ -13587,6 +13645,9 @@ msgstr "Hangerő"
 #, fuzzy
 msgid "Volume down"
 msgstr "Hangerő"
+
+msgid "Volume keys on the receiver remote will control the TV volume."
+msgstr ""
 
 #, fuzzy
 msgid "Volume up"
@@ -13629,8 +13690,15 @@ msgstr "Várakozás a megosztás csatlakozására"
 msgid "Waiting for partition"
 msgstr "Várakozás a partícióra"
 
+msgid "Wake the receiver from standby when selected wake command is sent from the TV."
+msgstr ""
+
 msgid "Wakeup"
 msgstr "Bekapcsolás"
+
+#, fuzzy
+msgid "Wakeup A/V receiver from standby too."
+msgstr "A készülék bekapcsolása"
 
 msgid "Wakeup TV from standby"
 msgstr "A TV bekapcsolása"
@@ -13808,6 +13876,14 @@ msgstr ""
 
 msgid "When enabled the left, right, CH+/-, B+/-, P+/- buttons will follow the 'neutrino' style zap controls instead of the enigma2 style."
 msgstr ""
+
+#, fuzzy
+msgid "When enabled the receiver will automatically return to standby when the TV is turned off."
+msgstr "A készülék ugyanazt a hangsávot fogja legközelebb is kiválasztani, amit Ön legutoljára kiválasztott."
+
+#, fuzzy
+msgid "When enabled the receiver will automatically wake from standby when the TV is turned on."
+msgstr "A készülék ugyanazt a hangsávot fogja legközelebb is kiválasztani, amit Ön legutoljára kiválasztott."
 
 msgid "When enabled the timer from the fallback tuner is imported"
 msgstr ""
@@ -14000,11 +14076,17 @@ msgstr "Ennyivel korábban kezdje a felvételt, mint amennyi időt mond az EPG."
 msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
 msgstr "Ennyivel később fejezze be a felvételt, mint amennyi időt mond az EPG."
 
+msgid "When receiver wakes from standby, it will command the TV to switch to the HDMI input the receiver is connected to."
+msgstr ""
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Egy 16:9-es kép méretarányú tartalom nagyítva vagy széthúzva legyen."
 
 msgid "When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture."
 msgstr "Egy 4:3-as kép méretarányú tartalom nagyítva vagy széthúzva legyen."
+
+msgid "When the receiver wakes from standby or deep standby, it will send a command to the TV to bring it out of standby too."
+msgstr ""
 
 msgid "Where do you want to backup your settings?"
 msgstr "Hova szeretné elmenteni a beállításait?"
@@ -15287,6 +15369,10 @@ msgstr "nem hangolt"
 #, fuzzy
 msgid "not running"
 msgstr "Fogratómotor sebesség"
+
+#, fuzzy
+msgid "not set"
+msgstr "nem használt"
 
 msgid "not supported"
 msgstr "nem támogatott"
