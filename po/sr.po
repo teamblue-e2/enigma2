@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-29 22:39+0200\n"
+"POT-Creation-Date: 2021-11-19 13:16+0100\n"
 "PO-Revision-Date: 2011-04-14 00:02+0200\n"
 "Last-Translator: majevica <jovanovic@gmx.ch>\n"
 "Language-Team: veselin & majevica CRNABERZA <jovanovic@gmx.ch>\n"
@@ -27,6 +27,13 @@ msgid ""
 "\n"
 "[User - bouquets (TV)]\n"
 msgstr ""
+
+#
+#, fuzzy
+msgid ""
+"\n"
+" Do you want to switch to Android ?"
+msgstr "Da li želite da reprodukujete DVD u drajvu?"
 
 #
 msgid ""
@@ -206,6 +213,10 @@ msgstr ""
 
 #, python-format
 msgid "%.2f GB"
+msgstr ""
+
+#, python-format
+msgid "%.3f MHz"
 msgstr ""
 
 #, python-format
@@ -427,6 +438,14 @@ msgstr "%s (%s)\n"
 
 #, python-format
 msgid "%s - extraction errors."
+msgstr ""
+
+#, python-format
+msgid "%s KSymb/s"
+msgstr ""
+
+#, python-format
+msgid "%s MHz"
 msgstr ""
 
 #, python-format
@@ -826,6 +845,12 @@ msgstr "A"
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr ""
 
+msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
+msgstr ""
+
+msgid "A completed recording timer is about to shut down your receiver. Would you like to proceed?"
+msgstr ""
+
 #
 #, fuzzy, python-format
 msgid "A configuration file (%s) has been modified since it was installed. Would you like to keep the modified version?"
@@ -841,12 +866,6 @@ msgstr ""
 "Želite li zadržati vašu verziju?"
 
 msgid "A file from media is in use!"
-msgstr ""
-
-msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
-msgstr ""
-
-msgid "A completed recording timer is about to shut down your receiver. Would you like to proceed?"
 msgstr ""
 
 #
@@ -876,10 +895,10 @@ msgstr ""
 "Snimanje je trenutno u toku.\n"
 "Šta želite da uradte?"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
+msgid "A recording is currently running. Please stop the recording before starting a DiSEqC test."
 msgstr ""
 
-msgid "A recording is currently running. Please stop the recording before starting a DiSEqC test."
+msgid "A recording is currently running. Please stop the recording before trying to scan."
 msgstr ""
 
 #
@@ -1371,6 +1390,9 @@ msgstr ""
 msgid "Allow subtitles for hearing impaired"
 msgstr ""
 
+msgid "Allows the TV remote to be used to control the receiver."
+msgstr ""
+
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr ""
 
@@ -1673,6 +1695,9 @@ msgstr ""
 msgid "Audio channel"
 msgstr "sledeći kanal u istoriji"
 
+msgid "Audio description for the visually impaired"
+msgstr ""
+
 msgid "Audio language selection 1"
 msgstr ""
 
@@ -1729,9 +1754,6 @@ msgstr "Auto"
 msgid "Auto DiSEqC"
 msgstr ""
 
-msgid "Auto EXIF Orientation rotation/flipping"
-msgstr ""
-
 #
 msgid "Auto chapter split every ? minutes (0=never)"
 msgstr "Automatska podela delova svakih ? minuta (0=nikad)"
@@ -1743,7 +1765,7 @@ msgstr "Auto fleš"
 msgid "Auto focus"
 msgstr ""
 
-msgid "Auto focus commencing ..."
+msgid "Auto focus commencing..."
 msgstr ""
 
 msgid "Auto language selection"
@@ -1792,6 +1814,9 @@ msgstr "Automatsko skeniranje "
 #, fuzzy
 msgid "Automatic scan"
 msgstr "Automatsko skeniranje "
+
+msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
+msgstr ""
 
 msgid "Automatically start timeshift after"
 msgstr ""
@@ -1968,6 +1993,9 @@ msgid "Basic settings"
 msgstr "Urediti postavke"
 
 msgid "Basque"
+msgstr ""
+
+msgid "Before sending the command to switch the TV to standby, the receiver tests if all the other devices plugged to TV are in standby. If they are not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
 msgstr ""
 
 #
@@ -2758,6 +2786,9 @@ msgstr "Izbor kanala"
 #
 msgid "Command order"
 msgstr "Redosled komandi"
+
+msgid "Command the TV to switch to the correct HDMI input when zap timers activate."
+msgstr ""
 
 #
 #, fuzzy
@@ -3831,6 +3862,9 @@ msgstr ""
 msgid "Delay before sequence repeat"
 msgstr "Ponovi redosled"
 
+msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
+msgstr ""
+
 msgid "Delay between diseqc commands"
 msgstr ""
 
@@ -4480,6 +4514,10 @@ msgid "Downloading Image"
 msgstr "Skidanje"
 
 #
+msgid "Downloading a new packet list. Please wait..."
+msgstr "Pokušavam skinuti novu listu paketa. Molim sačekajte..."
+
+#
 msgid "Downloading plugin information. Please wait..."
 msgstr "Skidanje informacija o dodacima. Molim pričekajte..."
 
@@ -4818,6 +4856,9 @@ msgid "Enable multiple bouquets"
 msgstr "Uključi višestruke bukete"
 
 msgid "Enable or disable Ipv6."
+msgstr ""
+
+msgid "Enable or disable using HDMI-CEC."
 msgstr ""
 
 #
@@ -6262,7 +6303,15 @@ msgstr ""
 msgid "HDMI-CEC Source Inactive"
 msgstr ""
 
+#
+#, fuzzy
+msgid "HDMI-CEC address"
+msgstr "IP Adresa"
+
 msgid "HDMI-CEC setup"
+msgstr ""
+
+msgid "HDMI-IN Actions"
 msgstr ""
 
 #, fuzzy
@@ -6546,6 +6595,9 @@ msgstr ""
 msgid "If enabled, AIT data is included in recordings."
 msgstr ""
 
+msgid "If enabled, a log will be kept of CEC protocol traffic ('hdmicec.log')"
+msgstr ""
+
 msgid "If enabled, bookmarks will be updated with the new location when you move or copy a recording."
 msgstr ""
 
@@ -6562,6 +6614,9 @@ msgid "If set as 'Yes', then audiofiles are played in 'list mode' only, instead 
 msgstr ""
 
 msgid "If set to 'yes' signal values (SNR, etc) will be calculated from API V3. This is an old API version that has now been superseded."
+msgstr ""
+
+msgid "If set to 'yes' the same commands will be sent to the TV for deep standby events, as are sent during regular standby events."
 msgstr ""
 
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
@@ -8155,14 +8210,18 @@ msgstr "Meni liste filmova"
 msgid "Moving"
 msgstr ""
 
-msgid "Moving east ..."
-msgstr ""
+#
+#, fuzzy
+msgid "Moving east..."
+msgstr "Pokreći na istok"
 
 msgid "Moving to position"
 msgstr ""
 
-msgid "Moving west ..."
-msgstr ""
+#
+#, fuzzy
+msgid "Moving west..."
+msgstr "Pokreći na zapad"
 
 msgid "Mozambique"
 msgstr ""
@@ -8587,10 +8646,6 @@ msgid "No packages were upgraded yet. So you can check your network and try agai
 msgstr ""
 
 #
-msgid "No positioner capable frontend found."
-msgstr "Nijedan sposoban čeoni pozicioner nije pronađen."
-
-#
 #, fuzzy
 msgid "No priority"
 msgstr "Prioritet"
@@ -8634,10 +8689,6 @@ msgstr "Ne za sve"
 
 msgid "No transparency"
 msgstr ""
-
-#
-msgid "No tuner is configured for use with a diseqc positioner!"
-msgstr "Niedan tjuner nije konfigurisan za rad s DiSEqC pozicionerom!"
 
 #
 msgid ""
@@ -9025,6 +9076,9 @@ msgid "Ordinary"
 msgstr ""
 
 msgid "Original"
+msgstr ""
+
+msgid "Original audio"
 msgstr ""
 
 msgid "OscamSmartcard-Setup"
@@ -10074,6 +10128,11 @@ msgid "Press OK to select satellites"
 msgstr ""
 
 #
+#, fuzzy
+msgid "Press OK to select the save location of the log file."
+msgstr "Pritisnite OK da prebacite izbor."
+
+#
 msgid "Press OK to select/deselect a CAId."
 msgstr "Pritisni OK da izabereš/odbaciš CAId"
 
@@ -10257,6 +10316,9 @@ msgstr ""
 #, fuzzy
 msgid "Purge deleted user bouquets"
 msgstr "Uključi višestruke bukete"
+
+msgid "Put A/V receiver to standby too."
+msgstr ""
 
 msgid "Put TV in standby"
 msgstr ""
@@ -11501,8 +11563,10 @@ msgstr "Pretraži zapad"
 msgid "Searching"
 msgstr ""
 
-msgid "Searching east ..."
-msgstr ""
+#
+#, fuzzy
+msgid "Searching east..."
+msgstr "Pretraži istok"
 
 #
 msgid "Searching for available updates. Please wait..."
@@ -11512,8 +11576,10 @@ msgstr "Traženje dostupnih ažuriranja.Molim sačekajte..."
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "Traženje novih instaliranih ili uklonjenih paketa.Molim sačekajte..."
 
-msgid "Searching west ..."
-msgstr ""
+#
+#, fuzzy
+msgid "Searching west..."
+msgstr "Pretraži zapad"
 
 #
 #, fuzzy
@@ -13117,6 +13183,9 @@ msgstr ""
 msgid "Somalia"
 msgstr ""
 
+msgid "Some TVs do not wake from standby when they receive the 'Image View On' command. If this is the case try the 'Text View On' command instead."
+msgstr ""
+
 msgid "Some error occurred - Please try later"
 msgstr ""
 
@@ -13424,6 +13493,11 @@ msgstr ""
 
 msgid "Stepped west"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Steps"
+msgstr "Korak na istok"
 
 #
 msgid "Stop"
@@ -13768,6 +13842,16 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "Switch to Android"
+msgstr "prebaci u listu datoteka"
+
+#
+#, fuzzy
+msgid "Switch to HDMI in mode"
+msgstr "prebaci u listu datoteka"
+
+#
+#, fuzzy
 msgid "Switch to TV mode"
 msgstr "prebaci u listu datoteka"
 
@@ -14094,6 +14178,9 @@ msgid "The backup failed. Please choose a different backup location."
 msgstr "Neuspešna sigurnosna kopija. Molim odaberite drugu lokaciju."
 
 msgid "The bitrate of the video encoder. Larger value improves quality and increases file size."
+msgstr ""
+
+msgid "The command to wake from standby will be sent multiple times."
 msgstr ""
 
 #, python-format
@@ -14891,10 +14978,6 @@ msgid "True"
 msgstr ""
 
 #
-msgid "Downloading a new packet list. Please wait..."
-msgstr "Pokušavam skinuti novu listu paketa. Molim sačekajte..."
-
-#
 #, fuzzy
 msgid "Trying to download a new updatelist. Please wait..."
 msgstr "Pokušavam skinuti novu listu paketa.Molim sačekajte..."
@@ -14990,6 +15073,18 @@ msgid "Turkmenistan"
 msgstr "Turski"
 
 msgid "Turks and Caicos Islands"
+msgstr ""
+
+msgid "Turn off HDMI-IN Full screen mode"
+msgstr ""
+
+msgid "Turn off HDMI-IN PiP mode"
+msgstr ""
+
+msgid "Turn on HDMI-IN Full screen mode"
+msgstr ""
+
+msgid "Turn on HDMI-IN PiP mode"
 msgstr ""
 
 msgid "Turn on the power LED during deep standby."
@@ -15417,9 +15512,6 @@ msgstr "Vratite se na listu filmova"
 msgid "Used service scan type"
 msgstr "Korišćeni tip skeniranja kanala"
 
-msgid "User bouquets"
-msgstr ""
-
 #, python-format
 msgid "User Band %d"
 msgstr ""
@@ -15434,6 +15526,9 @@ msgid "User Feed URL"
 msgstr "Definisano od korisnika"
 
 msgid "User ID"
+msgstr ""
+
+msgid "User bouquets"
 msgstr ""
 
 #
@@ -15732,7 +15827,7 @@ msgstr "Virtuelna tastatura"
 msgid "Virtual keyboard"
 msgstr "Virtuelna tastatura"
 
-msgid "Visual impaired commentary"
+msgid "Visually impaired commentary"
 msgstr ""
 
 #
@@ -15748,6 +15843,9 @@ msgstr "Volumen"
 #, fuzzy
 msgid "Volume down"
 msgstr "Volumen"
+
+msgid "Volume keys on the receiver remote will control the TV volume."
+msgstr ""
 
 #
 #, fuzzy
@@ -15796,7 +15894,13 @@ msgstr ""
 msgid "Waiting for partition"
 msgstr ""
 
+msgid "Wake the receiver from standby when selected wake command is sent from the TV."
+msgstr ""
+
 msgid "Wakeup"
+msgstr ""
+
+msgid "Wakeup A/V receiver from standby too."
 msgstr ""
 
 msgid "Wakeup TV from standby"
@@ -15976,6 +16080,12 @@ msgid "When enabled the arrow buttons around the OK button will follow the 'neut
 msgstr ""
 
 msgid "When enabled the left, right, CH+/-, B+/-, P+/- buttons will follow the 'neutrino' style zap controls instead of the enigma2 style."
+msgstr ""
+
+msgid "When enabled the receiver will automatically return to standby when the TV is turned off."
+msgstr ""
+
+msgid "When enabled the receiver will automatically wake from standby when the TV is turned on."
 msgstr ""
 
 msgid "When enabled the timer from the fallback tuner is imported"
@@ -16165,10 +16275,16 @@ msgstr ""
 msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
 msgstr ""
 
+msgid "When receiver wakes from standby, it will command the TV to switch to the HDMI input the receiver is connected to."
+msgstr ""
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr ""
 
 msgid "When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture."
+msgstr ""
+
+msgid "When the receiver wakes from standby or deep standby, it will send a command to the TV to bring it out of standby too."
 msgstr ""
 
 #
@@ -17601,6 +17717,11 @@ msgstr "nije prihvaćen"
 #, fuzzy
 msgid "not running"
 msgstr "Brzina okretanja rotora"
+
+#
+#, fuzzy
+msgid "not set"
+msgstr "nije u upotrebi"
 
 msgid "not supported"
 msgstr "nije podržano"

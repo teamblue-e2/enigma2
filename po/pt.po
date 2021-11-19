@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-29 22:39+0200\n"
+"POT-Creation-Date: 2021-11-19 13:16+0100\n"
 "PO-Revision-Date: 2014-12-15 19:38-0000\n"
 "Last-Translator: Phenom <phenomxy@gmail.com>\n"
 "Language-Team: Muaitai <muaitai@gmail.com>\n"
@@ -26,6 +26,13 @@ msgid ""
 "\n"
 "[User - bouquets (TV)]\n"
 msgstr "Favoritos"
+
+#
+#, fuzzy
+msgid ""
+"\n"
+" Do you want to switch to Android ?"
+msgstr "Deseja reproduzir o DVD inserido?"
 
 #
 msgid ""
@@ -205,6 +212,10 @@ msgstr ""
 
 #, python-format
 msgid "%.2f GB"
+msgstr ""
+
+#, python-format
+msgid "%.3f MHz"
 msgstr ""
 
 #, fuzzy, python-format
@@ -414,6 +425,14 @@ msgstr "%s (%s)\n"
 
 #, python-format
 msgid "%s - extraction errors."
+msgstr ""
+
+#, python-format
+msgid "%s KSymb/s"
+msgstr ""
+
+#, python-format
+msgid "%s MHz"
 msgstr ""
 
 #, python-format
@@ -804,6 +823,12 @@ msgstr "A"
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr ""
 
+msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
+msgstr "Uma gravação agendada terminou. Colocar o receptor em Standby?"
+
+msgid "A completed recording timer is about to shut down your receiver. Would you like to proceed?"
+msgstr "Uma gravação agendada terminou. Desligar o receptor?"
+
 #
 #, fuzzy, python-format
 msgid "A configuration file (%s) has been modified since it was installed. Would you like to keep the modified version?"
@@ -820,12 +845,6 @@ msgstr ""
 
 msgid "A file from media is in use!"
 msgstr ""
-
-msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
-msgstr "Uma gravação agendada terminou. Colocar o receptor em Standby?"
-
-msgid "A completed recording timer is about to shut down your receiver. Would you like to proceed?"
-msgstr "Uma gravação agendada terminou. Desligar o receptor?"
 
 #
 #, fuzzy
@@ -853,11 +872,11 @@ msgstr ""
 "Uma gravação está a decorrer.\n"
 "O que deseja fazer?"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
-msgstr "Uma gravação está em progresso. Por favor pare a gravação antes de efectuar uma pesquisa."
-
 msgid "A recording is currently running. Please stop the recording before starting a DiSEqC test."
 msgstr ""
+
+msgid "A recording is currently running. Please stop the recording before trying to scan."
+msgstr "Uma gravação está em progresso. Por favor pare a gravação antes de efectuar uma pesquisa."
 
 #
 #, fuzzy
@@ -1353,6 +1372,9 @@ msgstr "Permitir legendas iguais ao audio"
 msgid "Allow subtitles for hearing impaired"
 msgstr "Permitir legendas para deficientes auditivos"
 
+msgid "Allows the TV remote to be used to control the receiver."
+msgstr ""
+
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr ""
 
@@ -1659,6 +1681,9 @@ msgstr ""
 msgid "Audio channel"
 msgstr "Instalar Lista de Canais"
 
+msgid "Audio description for the visually impaired"
+msgstr ""
+
 msgid "Audio language selection 1"
 msgstr "Idioma de áudio 1"
 
@@ -1716,9 +1741,6 @@ msgstr "Auto"
 msgid "Auto DiSEqC"
 msgstr ""
 
-msgid "Auto EXIF Orientation rotation/flipping"
-msgstr ""
-
 #
 msgid "Auto chapter split every ? minutes (0=never)"
 msgstr "Auto separação de capítulos ? minutos (0=nunca)"
@@ -1730,7 +1752,8 @@ msgstr "Matéria auto"
 msgid "Auto focus"
 msgstr "Auto focagem"
 
-msgid "Auto focus commencing ..."
+#, fuzzy
+msgid "Auto focus commencing..."
 msgstr "A iniciar auto focagem ..."
 
 msgid "Auto language selection"
@@ -1777,6 +1800,9 @@ msgstr "Pesquisa automática"
 #, fuzzy
 msgid "Automatic scan"
 msgstr "Pesquisa automática"
+
+msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
+msgstr ""
 
 msgid "Automatically start timeshift after"
 msgstr "Ligar automaticamente o Timeshift"
@@ -1953,6 +1979,9 @@ msgstr "Editar definições"
 
 msgid "Basque"
 msgstr "Basco"
+
+msgid "Before sending the command to switch the TV to standby, the receiver tests if all the other devices plugged to TV are in standby. If they are not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
+msgstr ""
 
 #
 msgid "Begin time"
@@ -2738,6 +2767,9 @@ msgstr "Selecção de canal"
 #
 msgid "Command order"
 msgstr "Ordem de comando"
+
+msgid "Command the TV to switch to the correct HDMI input when zap timers activate."
+msgstr ""
 
 #
 #, fuzzy
@@ -3812,6 +3844,9 @@ msgstr "Atraso antes da repetição do botão:"
 msgid "Delay before sequence repeat"
 msgstr "Atraso antes da repetição do botão:"
 
+msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
+msgstr ""
+
 msgid "Delay between diseqc commands"
 msgstr ""
 
@@ -4454,6 +4489,10 @@ msgid "Downloading Image"
 msgstr "Descarregando"
 
 #
+msgid "Downloading a new packet list. Please wait..."
+msgstr "A tentar descarregar uma nova lista de pacotes. Por favor aguarde..."
+
+#
 msgid "Downloading plugin information. Please wait..."
 msgstr "A descarregar informações de Plugins. Por favor aguarde..."
 
@@ -4791,6 +4830,10 @@ msgstr "Activar Bouquets múltiplos"
 
 msgid "Enable or disable Ipv6."
 msgstr ""
+
+#, fuzzy
+msgid "Enable or disable using HDMI-CEC."
+msgstr "Configurações HDMI-CEC"
 
 #
 #, fuzzy
@@ -6221,9 +6264,17 @@ msgstr "Configurações HDMI-CEC"
 msgid "HDMI-CEC Source Inactive"
 msgstr ""
 
+#
+#, fuzzy
+msgid "HDMI-CEC address"
+msgstr "Endereço IP"
+
 #, fuzzy
 msgid "HDMI-CEC setup"
 msgstr "Configurações HDMI-CEC"
+
+msgid "HDMI-IN Actions"
+msgstr ""
 
 #, fuzzy
 msgid "HDR10 support"
@@ -6504,6 +6555,9 @@ msgstr ""
 msgid "If enabled, AIT data is included in recordings."
 msgstr ""
 
+msgid "If enabled, a log will be kept of CEC protocol traffic ('hdmicec.log')"
+msgstr ""
+
 msgid "If enabled, bookmarks will be updated with the new location when you move or copy a recording."
 msgstr ""
 
@@ -6521,6 +6575,9 @@ msgid "If set as 'Yes', then audiofiles are played in 'list mode' only, instead 
 msgstr ""
 
 msgid "If set to 'yes' signal values (SNR, etc) will be calculated from API V3. This is an old API version that has now been superseded."
+msgstr ""
+
+msgid "If set to 'yes' the same commands will be sent to the TV for deep standby events, as are sent during regular standby events."
 msgstr ""
 
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
@@ -8093,13 +8150,15 @@ msgstr "Menu da Lista de Filmes"
 msgid "Moving"
 msgstr "A mover"
 
-msgid "Moving east ..."
+#, fuzzy
+msgid "Moving east..."
 msgstr "A mover para este ..."
 
 msgid "Moving to position"
 msgstr "A mover para a posição"
 
-msgid "Moving west ..."
+#, fuzzy
+msgid "Moving west..."
 msgstr "A mover para oeste ..."
 
 msgid "Mozambique"
@@ -8521,10 +8580,6 @@ msgid "No packages were upgraded yet. So you can check your network and try agai
 msgstr ""
 
 #
-msgid "No positioner capable frontend found."
-msgstr "Nenhum posicionador encontrado."
-
-#
 #, fuzzy
 msgid "No priority"
 msgstr "Prioridade"
@@ -8570,10 +8625,6 @@ msgstr "Não para todos"
 #, fuzzy
 msgid "No transparency"
 msgstr "Sem transparência"
-
-#
-msgid "No tuner is configured for use with a diseqc positioner!"
-msgstr "Nenhum sintonizador encontrado para usar como posicionador de DiSEqC!"
 
 #
 msgid ""
@@ -8962,6 +9013,10 @@ msgid "Ordinary"
 msgstr ""
 
 msgid "Original"
+msgstr "Original"
+
+#, fuzzy
+msgid "Original audio"
 msgstr "Original"
 
 msgid "OscamSmartcard-Setup"
@@ -10020,6 +10075,11 @@ msgid "Press OK to select satellites"
 msgstr "Prima OK para seleccionar satélites."
 
 #
+#, fuzzy
+msgid "Press OK to select the save location of the log file."
+msgstr "Prima OK para alterar a selecção."
+
+#
 msgid "Press OK to select/deselect a CAId."
 msgstr "Prima OK para (des)seleccionar a CAId."
 
@@ -10201,6 +10261,10 @@ msgstr ""
 #, fuzzy
 msgid "Purge deleted user bouquets"
 msgstr "Activar Bouquets múltiplos"
+
+#, fuzzy
+msgid "Put A/V receiver to standby too."
+msgstr "Colocar receptor em Standby"
 
 msgid "Put TV in standby"
 msgstr "Colocar TV em Standby"
@@ -11445,7 +11509,8 @@ msgstr "Pesquisa oeste"
 msgid "Searching"
 msgstr "A pesquisar"
 
-msgid "Searching east ..."
+#, fuzzy
+msgid "Searching east..."
 msgstr "A pesquisar a este..."
 
 #
@@ -11456,7 +11521,8 @@ msgstr "A verificar se estão disponíveis actualizações. Por favor aguarde...
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "Em pesquisa de novos pacotes instalados ou removidos. Por favor aguarde..."
 
-msgid "Searching west ..."
+#, fuzzy
+msgid "Searching west..."
 msgstr "A procurar a oeste ..."
 
 #, fuzzy
@@ -13035,6 +13101,9 @@ msgstr ""
 msgid "Somalia"
 msgstr ""
 
+msgid "Some TVs do not wake from standby when they receive the 'Image View On' command. If this is the case try the 'Text View On' command instead."
+msgstr ""
+
 msgid "Some error occurred - Please try later"
 msgstr ""
 
@@ -13346,6 +13415,11 @@ msgstr "Rodado para este"
 
 msgid "Stepped west"
 msgstr "Rodado para oeste"
+
+#
+#, fuzzy
+msgid "Steps"
+msgstr "Rodar para este"
 
 #
 msgid "Stop"
@@ -13679,6 +13753,14 @@ msgid "Switch on the display during operation."
 msgstr ""
 
 #, fuzzy
+msgid "Switch to Android"
+msgstr "Trocar para HDMI em modo"
+
+#, fuzzy
+msgid "Switch to HDMI in mode"
+msgstr "Trocar para HDMI em modo"
+
+#, fuzzy
 msgid "Switch to TV mode"
 msgstr "Trocar para HDMI em modo"
 
@@ -14004,6 +14086,9 @@ msgid "The backup failed. Please choose a different backup location."
 msgstr "O Backup falhou. Por favor escolha outra localização para o Backup."
 
 msgid "The bitrate of the video encoder. Larger value improves quality and increases file size."
+msgstr ""
+
+msgid "The command to wake from standby will be sent multiple times."
 msgstr ""
 
 #, fuzzy, python-format
@@ -14801,10 +14886,6 @@ msgid "True"
 msgstr ""
 
 #
-msgid "Downloading a new packet list. Please wait..."
-msgstr "A tentar descarregar uma nova lista de pacotes. Por favor aguarde..."
-
-#
 #, fuzzy
 msgid "Trying to download a new updatelist. Please wait..."
 msgstr "A tentar descarregar uma nova lista de pacotes. Por favor aguarde..."
@@ -14899,6 +14980,18 @@ msgid "Turkmenistan"
 msgstr "Turco"
 
 msgid "Turks and Caicos Islands"
+msgstr ""
+
+msgid "Turn off HDMI-IN Full screen mode"
+msgstr ""
+
+msgid "Turn off HDMI-IN PiP mode"
+msgstr ""
+
+msgid "Turn on HDMI-IN Full screen mode"
+msgstr ""
+
+msgid "Turn on HDMI-IN PiP mode"
 msgstr ""
 
 #, fuzzy
@@ -15334,9 +15427,6 @@ msgstr "Usar reciclagem na Lista de Filmes"
 msgid "Used service scan type"
 msgstr "Tipo usado na pesquisa de canais"
 
-msgid "User bouquets"
-msgstr "Favoritos"
-
 #, python-format
 msgid "User Band %d"
 msgstr ""
@@ -15352,6 +15442,9 @@ msgstr "Definido pelo utilizador"
 
 msgid "User ID"
 msgstr ""
+
+msgid "User bouquets"
+msgstr "Favoritos"
 
 #
 msgid "User defined"
@@ -15651,7 +15744,7 @@ msgstr "Teclado virtual"
 msgid "Virtual keyboard"
 msgstr "Teclado virtual"
 
-msgid "Visual impaired commentary"
+msgid "Visually impaired commentary"
 msgstr ""
 
 #
@@ -15667,6 +15760,9 @@ msgstr "Volume"
 #, fuzzy
 msgid "Volume down"
 msgstr "Volume"
+
+msgid "Volume keys on the receiver remote will control the TV volume."
+msgstr ""
 
 #
 #, fuzzy
@@ -15718,8 +15814,15 @@ msgstr "Esperar pela montagem"
 msgid "Waiting for partition"
 msgstr "Esperar por partição"
 
+msgid "Wake the receiver from standby when selected wake command is sent from the TV."
+msgstr ""
+
 msgid "Wakeup"
 msgstr "Acordar"
+
+#, fuzzy
+msgid "Wakeup A/V receiver from standby too."
+msgstr "Acordar o receptor do Standby"
 
 msgid "Wakeup TV from standby"
 msgstr "Acordar TV do Standby"
@@ -15911,6 +16014,14 @@ msgstr "Quando activado as setas em redor do botão OK seguirão controles zap a
 
 msgid "When enabled the left, right, CH+/-, B+/-, P+/- buttons will follow the 'neutrino' style zap controls instead of the enigma2 style."
 msgstr "Quando activado os botões direita, esquerda, CH+/-, B+/-, P+/- seguirão controles zap ao estilo 'neutrino' em vez do estilo enigma2."
+
+#, fuzzy
+msgid "When enabled the receiver will automatically return to standby when the TV is turned off."
+msgstr "Quando activado, o receptor irá usar a faixa de áudio que seleccionou antes automaticamente."
+
+#, fuzzy
+msgid "When enabled the receiver will automatically wake from standby when the TV is turned on."
+msgstr "Quando activado, o receptor irá usar a faixa de áudio que seleccionou antes automaticamente."
 
 msgid "When enabled the timer from the fallback tuner is imported"
 msgstr ""
@@ -16107,11 +16218,17 @@ msgstr "Quando diferente de zero, uma gravação irá começar mais cedo do que 
 msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
 msgstr "Quando diferente de zero, uma gravação irá parar mais tarde do que o horário de término indicado pelo Guia de Programação."
 
+msgid "When receiver wakes from standby, it will command the TV to switch to the HDMI input the receiver is connected to."
+msgstr ""
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Quando o conteúdo tem uma relação de aspecto de 16:9, escolher se deseja dimensionar/esticar a imagem."
 
 msgid "When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture."
 msgstr "Quando o conteúdo tem uma relação de aspecto de 4:3, escolha se deseja dimensionar/esticar a imagem."
+
+msgid "When the receiver wakes from standby or deep standby, it will send a command to the TV to bring it out of standby too."
+msgstr ""
 
 #
 msgid "Where do you want to backup your settings?"
@@ -17565,6 +17682,11 @@ msgstr "não sintonizado"
 #, fuzzy
 msgid "not running"
 msgstr "Velocidade do motor"
+
+#
+#, fuzzy
+msgid "not set"
+msgstr "não usado"
 
 msgid "not supported"
 msgstr "não suportado"

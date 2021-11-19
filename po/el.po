@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-29 22:39+0200\n"
+"POT-Creation-Date: 2021-11-19 13:16+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: MCelliotG <mcelliotg@gmail.com>\n"
@@ -19,6 +19,12 @@ msgid ""
 "\n"
 "[User - bouquets (TV)]\n"
 msgstr "Μπουκέτα χρήστη"
+
+#, fuzzy
+msgid ""
+"\n"
+" Do you want to switch to Android ?"
+msgstr "Θέλετε να αναπαραχθεί το DVD στη συσκευή;"
 
 msgid ""
 "\n"
@@ -190,6 +196,10 @@ msgstr ""
 
 #, python-format
 msgid "%.2f GB"
+msgstr ""
+
+#, python-format
+msgid "%.3f MHz"
 msgstr ""
 
 #, fuzzy, python-format
@@ -387,6 +397,14 @@ msgstr "%s (%s)\n"
 
 #, python-format
 msgid "%s - extraction errors."
+msgstr ""
+
+#, python-format
+msgid "%s KSymb/s"
+msgstr ""
+
+#, python-format
+msgid "%s MHz"
 msgstr ""
 
 #, python-format
@@ -751,6 +769,12 @@ msgstr "A"
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr ""
 
+msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
+msgstr "Ένας ολοκληρωμένος χρονοδιακόπτης πρόκειται να θέσει τον δέκτη σας σε κατάσταση αναμονής. Θέλετε να προχωρήσετε;"
+
+msgid "A completed recording timer is about to shut down your receiver. Would you like to proceed?"
+msgstr "Ένας ολοκληρωμένος χρονοδιακόπτης πρόκειται να τερματίσει τη λειτουργία του δέκτη σας. Θέλετε να προχωρήσετε;"
+
 #, python-format
 msgid "A configuration file (%s) has been modified since it was installed. Would you like to keep the modified version?"
 msgstr "Ένα αρχείο ρυθμίσεων (%s) έχει τροποποιηθεί μετά την εγκατάστασή του. Θέλετε να διατηρήσετε την τροποποιημένη έκδοση;"
@@ -765,12 +789,6 @@ msgstr ""
 
 msgid "A file from media is in use!"
 msgstr ""
-
-msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
-msgstr "Ένας ολοκληρωμένος χρονοδιακόπτης πρόκειται να θέσει τον δέκτη σας σε κατάσταση αναμονής. Θέλετε να προχωρήσετε;"
-
-msgid "A completed recording timer is about to shut down your receiver. Would you like to proceed?"
-msgstr "Ένας ολοκληρωμένος χρονοδιακόπτης πρόκειται να τερματίσει τη λειτουργία του δέκτη σας. Θέλετε να προχωρήσετε;"
 
 #, fuzzy
 msgid "A graphical EPG for all services of a specific bouquet"
@@ -795,11 +813,11 @@ msgstr ""
 "Μια εγγραφή είναι σε εξέλιξη.\n"
 "Τι θέλετε να γίνει;"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
-msgstr "Μια εγγραφή είναι σε εξέλιξη. Πρέπει να σταματήσετε την εγγραφή πριν την ανίχνευση."
-
 msgid "A recording is currently running. Please stop the recording before starting a DiSEqC test."
 msgstr "Μία εγγραφή βρίσκεται σε εξέλιξη. Σταματήστε την εγγραφή πριν ξεκινήσετε τον έλεγχο ενός DiSEqC."
+
+msgid "A recording is currently running. Please stop the recording before trying to scan."
+msgstr "Μια εγγραφή είναι σε εξέλιξη. Πρέπει να σταματήσετε την εγγραφή πριν την ανίχνευση."
 
 #, fuzzy
 msgid "A repeating event is currently recording. What would you like to do?"
@@ -1204,6 +1222,9 @@ msgstr "Να επιτρέπεται η εξίσωση υποτίτλων και 
 msgid "Allow subtitles for hearing impaired"
 msgstr "Να επιτρέπονται υπότιτλοι για άτομα με προβλήματα ακοής"
 
+msgid "Allows the TV remote to be used to control the receiver."
+msgstr ""
+
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr ""
 
@@ -1463,6 +1484,9 @@ msgstr ""
 msgid "Audio channel"
 msgstr "Εγκατάσταση λίστας καναλιών"
 
+msgid "Audio description for the visually impaired"
+msgstr ""
+
 msgid "Audio language selection 1"
 msgstr "Επιλογή γλώσσας ήχου 1"
 
@@ -1511,9 +1535,6 @@ msgstr "Αυτόματο"
 msgid "Auto DiSEqC"
 msgstr "Αυτόματο DiSEqC"
 
-msgid "Auto EXIF Orientation rotation/flipping"
-msgstr "Αυτόματη περιστροφή/αναστροφή προσανατολισμού του EXIF"
-
 msgid "Auto chapter split every ? minutes (0=never)"
 msgstr "Αυτόματη δημιουργία κεφαλαίου κάθε ; λεπτα (0=ποτέ)"
 
@@ -1523,7 +1544,8 @@ msgstr "Αυτόματο χρώμα δέρματος"
 msgid "Auto focus"
 msgstr "Αυτόματη εστίαση"
 
-msgid "Auto focus commencing ..."
+#, fuzzy
+msgid "Auto focus commencing..."
 msgstr "Έναρξη αυτόματης εστίασης..."
 
 msgid "Auto language selection"
@@ -1564,6 +1586,9 @@ msgstr "Αυτόματη ανίχνευση"
 
 msgid "Automatic scan"
 msgstr "Αυτόματη ανίχνευση"
+
+msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
+msgstr ""
 
 msgid "Automatically start timeshift after"
 msgstr "Αυτόματη εκκίνηση της χρονομετατόπισης μετά από"
@@ -1715,6 +1740,9 @@ msgstr "Επεξεργασία ρυθμίσεων"
 
 msgid "Basque"
 msgstr "Βασκικά"
+
+msgid "Before sending the command to switch the TV to standby, the receiver tests if all the other devices plugged to TV are in standby. If they are not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
+msgstr ""
 
 msgid "Begin time"
 msgstr "Ώρα έναρξης"
@@ -2419,6 +2447,9 @@ msgstr "Επιλογή Καναλιού"
 
 msgid "Command order"
 msgstr "Σειρά εντολών"
+
+msgid "Command the TV to switch to the correct HDMI input when zap timers activate."
+msgstr ""
 
 #, fuzzy
 msgid "Commit info"
@@ -3366,6 +3397,9 @@ msgstr "Καθυστέρηση πριν ξεκινήσει η επανάληψη
 msgid "Delay before sequence repeat"
 msgstr "Καθυστέρηση πριν ξεκινήσει η επανάληψη πλήκτρου:"
 
+msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
+msgstr ""
+
 msgid "Delay between diseqc commands"
 msgstr ""
 
@@ -3918,6 +3952,9 @@ msgstr "Λήψη"
 msgid "Downloading Image"
 msgstr "Λήψη"
 
+msgid "Downloading a new packet list. Please wait..."
+msgstr "Λήψη νέας λίστας πακέτων. Παρακαλώ περιμένετε..."
+
 msgid "Downloading plugin information. Please wait..."
 msgstr "Λήψη πληροφοριών προσθέτων. Παρακαλώ περιμένετε ..."
 
@@ -4222,6 +4259,10 @@ msgstr "Ενεργοποίηση πολλαπλών μπουκέτων"
 
 msgid "Enable or disable Ipv6."
 msgstr ""
+
+#, fuzzy
+msgid "Enable or disable using HDMI-CEC."
+msgstr "Ρύθμιση HDMI-CEC"
 
 #, fuzzy
 msgid "Enable parental protection"
@@ -5495,8 +5536,15 @@ msgid "HDMI-CEC Source Inactive"
 msgstr ""
 
 #, fuzzy
+msgid "HDMI-CEC address"
+msgstr "Διεύθυνση IP"
+
+#, fuzzy
 msgid "HDMI-CEC setup"
 msgstr "Ρύθμιση HDMI-CEC"
+
+msgid "HDMI-IN Actions"
+msgstr ""
 
 #, fuzzy
 msgid "HDR10 support"
@@ -5748,6 +5796,9 @@ msgstr ""
 msgid "If enabled, AIT data is included in recordings."
 msgstr ""
 
+msgid "If enabled, a log will be kept of CEC protocol traffic ('hdmicec.log')"
+msgstr ""
+
 msgid "If enabled, bookmarks will be updated with the new location when you move or copy a recording."
 msgstr ""
 
@@ -5765,6 +5816,9 @@ msgid "If set as 'Yes', then audiofiles are played in 'list mode' only, instead 
 msgstr ""
 
 msgid "If set to 'yes' signal values (SNR, etc) will be calculated from API V3. This is an old API version that has now been superseded."
+msgstr ""
+
+msgid "If set to 'yes' the same commands will be sent to the TV for deep standby events, as are sent during regular standby events."
 msgstr ""
 
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
@@ -7126,13 +7180,15 @@ msgstr "Μένου λίστας ταινιών"
 msgid "Moving"
 msgstr "Μετακίνηση"
 
-msgid "Moving east ..."
+#, fuzzy
+msgid "Moving east..."
 msgstr "Κίνηση ανατολικά ..."
 
 msgid "Moving to position"
 msgstr "Κίνηση στη θέση"
 
-msgid "Moving west ..."
+#, fuzzy
+msgid "Moving west..."
 msgstr "Κίνηση δυτικά ..."
 
 msgid "Mozambique"
@@ -7501,9 +7557,6 @@ msgstr "Δεν βρέθηκαν δίκτυα"
 msgid "No packages were upgraded yet. So you can check your network and try again."
 msgstr ""
 
-msgid "No positioner capable frontend found."
-msgstr "Δεν βρέθηκε tuner που να υποστηρίζει μοτέρ."
-
 #, fuzzy
 msgid "No priority"
 msgstr "Προτεραιότητα"
@@ -7539,9 +7592,6 @@ msgstr "Όχι σε όλα"
 
 msgid "No transparency"
 msgstr "Χωρίς διαφάνεια"
-
-msgid "No tuner is configured for use with a diseqc positioner!"
-msgstr "Δεν υπάρχει ενεργοποιημένο tuner για χρήση με μοτέρ diseqc!"
 
 msgid ""
 "No tuner is enabled!\n"
@@ -7886,6 +7936,10 @@ msgid "Ordinary"
 msgstr ""
 
 msgid "Original"
+msgstr "Πρωτότυπο"
+
+#, fuzzy
+msgid "Original audio"
 msgstr "Πρωτότυπο"
 
 msgid "OscamSmartcard-Setup"
@@ -8781,6 +8835,10 @@ msgstr "Πιέστε ΟΚ για επιλογή παρόχου"
 msgid "Press OK to select satellites"
 msgstr "Πιέστε ΟΚ για επιλογή δορυφόρων"
 
+#, fuzzy
+msgid "Press OK to select the save location of the log file."
+msgstr "Πιέστε ΟΚ για εναλλαγή της επιλογής."
+
 msgid "Press OK to select/deselect a CAId."
 msgstr "Πιέστε ΟΚ για επιλογή/αποεπιλογή CAId."
 
@@ -8939,6 +8997,10 @@ msgstr ""
 #, fuzzy
 msgid "Purge deleted user bouquets"
 msgstr "Ενεργοποίηση πολλαπλών μπουκέτων"
+
+#, fuzzy
+msgid "Put A/V receiver to standby too."
+msgstr "Θέστε το δέκτη σε αναμονή"
 
 msgid "Put TV in standby"
 msgstr "Θέστε την TV σε αναμονή"
@@ -10000,7 +10062,8 @@ msgstr "Αναζήτηση δυτικά"
 msgid "Searching"
 msgstr "Αναζήτηση"
 
-msgid "Searching east ..."
+#, fuzzy
+msgid "Searching east..."
 msgstr "Αναζήτηση ανατολικά ..."
 
 msgid "Searching for available updates. Please wait..."
@@ -10009,7 +10072,8 @@ msgstr "Αναζήτηση για διαθέσιμες ενnμερώσεις. Π
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "Αναζήτηση για νέα εγκατεστημένα ή διεγραμμένα πακέτα. Παρακαλώ περιμένετε..."
 
-msgid "Searching west ..."
+#, fuzzy
+msgid "Searching west..."
 msgstr "Αναζήτηση δυτικά ..."
 
 #, fuzzy
@@ -11373,6 +11437,9 @@ msgstr ""
 msgid "Somalia"
 msgstr ""
 
+msgid "Some TVs do not wake from standby when they receive the 'Image View On' command. If this is the case try the 'Text View On' command instead."
+msgstr ""
+
 msgid "Some error occurred - Please try later"
 msgstr ""
 
@@ -11645,6 +11712,10 @@ msgstr "Βηματισμός ανατολικά"
 
 msgid "Stepped west"
 msgstr "Βηματισμός δυτικά"
+
+#, fuzzy
+msgid "Steps"
+msgstr "Βήμα ανατολικά"
 
 msgid "Stop"
 msgstr "Σταμάτημα"
@@ -11934,6 +12005,14 @@ msgid "Switch on the display during operation."
 msgstr ""
 
 #, fuzzy
+msgid "Switch to Android"
+msgstr "Αλλαγή σε HDMI σε λειτουργία"
+
+#, fuzzy
+msgid "Switch to HDMI in mode"
+msgstr "Αλλαγή σε HDMI σε λειτουργία"
+
+#, fuzzy
 msgid "Switch to TV mode"
 msgstr "Αλλαγή σε HDMI σε λειτουργία"
 
@@ -12218,6 +12297,9 @@ msgid "The backup failed. Please choose a different backup location."
 msgstr "Το αντίγραφο ασφαλείας απέτυχε. Επιλέξτε άλλη τοποθεσία για το αντίγραφο."
 
 msgid "The bitrate of the video encoder. Larger value improves quality and increases file size."
+msgstr ""
+
+msgid "The command to wake from standby will be sent multiple times."
 msgstr ""
 
 #, fuzzy, python-format
@@ -12926,7 +13008,8 @@ msgstr ""
 msgid "True"
 msgstr ""
 
-msgid "Downloading a new packet list. Please wait..."
+#, fuzzy
+msgid "Trying to download a new updatelist. Please wait..."
 msgstr "Λήψη νέας λίστας πακέτων. Παρακαλώ περιμένετε..."
 
 msgid "Tue"
@@ -13001,6 +13084,18 @@ msgid "Turkmenistan"
 msgstr "Τούρκικα"
 
 msgid "Turks and Caicos Islands"
+msgstr ""
+
+msgid "Turn off HDMI-IN Full screen mode"
+msgstr ""
+
+msgid "Turn off HDMI-IN PiP mode"
+msgstr ""
+
+msgid "Turn on HDMI-IN Full screen mode"
+msgstr ""
+
+msgid "Turn on HDMI-IN PiP mode"
 msgstr ""
 
 #, fuzzy
@@ -13386,9 +13481,6 @@ msgstr "Χρήση του κάδου αχρήστων στη λίστα ταιν
 msgid "Used service scan type"
 msgstr "Χρησιμοποιημένος τύπος ανίχνευσης υπηρεσιών"
 
-msgid "User bouquets"
-msgstr "Μπουκέτα χρήστη"
-
 #, python-format
 msgid "User Band %d"
 msgstr ""
@@ -13403,6 +13495,9 @@ msgstr "Ορισμός από το χρήστη"
 
 msgid "User ID"
 msgstr ""
+
+msgid "User bouquets"
+msgstr "Μπουκέτα χρήστη"
 
 msgid "User defined"
 msgstr "Ορισμός από το χρήστη"
@@ -13650,7 +13745,7 @@ msgstr "Εικονικό πληκτρολόγιο"
 msgid "Virtual keyboard"
 msgstr "Εικονικό πληκτρολόγιο"
 
-msgid "Visual impaired commentary"
+msgid "Visually impaired commentary"
 msgstr ""
 
 msgid "Voltage mode"
@@ -13663,6 +13758,9 @@ msgstr "Ένταση"
 #, fuzzy
 msgid "Volume down"
 msgstr "Ένταση"
+
+msgid "Volume keys on the receiver remote will control the TV volume."
+msgstr ""
 
 #, fuzzy
 msgid "Volume up"
@@ -13705,8 +13803,15 @@ msgstr "Αναμονή για προσάρτηση"
 msgid "Waiting for partition"
 msgstr "Αναμονή για κατάτμηση"
 
+msgid "Wake the receiver from standby when selected wake command is sent from the TV."
+msgstr ""
+
 msgid "Wakeup"
 msgstr "Αφύπνιση"
+
+#, fuzzy
+msgid "Wakeup A/V receiver from standby too."
+msgstr "Αφύπνιση δέκτη από αναμονή"
 
 msgid "Wakeup TV from standby"
 msgstr "Αφύπνιση TV από αναμονή"
@@ -13883,6 +13988,14 @@ msgstr ""
 
 msgid "When enabled the left, right, CH+/-, B+/-, P+/- buttons will follow the 'neutrino' style zap controls instead of the enigma2 style."
 msgstr ""
+
+#, fuzzy
+msgid "When enabled the receiver will automatically return to standby when the TV is turned off."
+msgstr "Όταν είναι ενεργό, ο δέκτης θα χρησιμοποιεί αυτόματα το κανάλι ήχου που είχατε προεπιλέξει."
+
+#, fuzzy
+msgid "When enabled the receiver will automatically wake from standby when the TV is turned on."
+msgstr "Όταν είναι ενεργό, ο δέκτης θα χρησιμοποιεί αυτόματα το κανάλι ήχου που είχατε προεπιλέξει."
 
 msgid "When enabled the timer from the fallback tuner is imported"
 msgstr ""
@@ -14075,11 +14188,17 @@ msgstr "Όταν δεν είναι μηδέν, μία εγγραφή θα ξεκ
 msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
 msgstr "Όταν δεν είναι μηδέν, μία εγγραφή θα σταματά μετά την ώρα που αναγράφεται στο EPG."
 
+msgid "When receiver wakes from standby, it will command the TV to switch to the HDMI input the receiver is connected to."
+msgstr ""
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Όταν το περιεχόμενο έχει λόγο πλευρών 16:9, επιλέξτε αν θα γίνεται κλιμάκωση/άπλωμα της εικόνας."
 
 msgid "When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture."
 msgstr "Όταν το περιεχόμενο έχει λόγο πλευρών 4:3, επιλέξτε αν θα γίνεται κλιμάκωση/άπλωμα της εικόνας."
+
+msgid "When the receiver wakes from standby or deep standby, it will send a command to the TV to bring it out of standby too."
+msgstr ""
 
 msgid "Where do you want to backup your settings?"
 msgstr "Που θέλετε να γίνει η αντιγραφή των ρυθμίσεων;"
@@ -15368,6 +15487,10 @@ msgstr "μη κλειδωμένο"
 #, fuzzy
 msgid "not running"
 msgstr "Ταχύτητα περιστροφής του μοτέρ"
+
+#, fuzzy
+msgid "not set"
+msgstr "δεν χρησιμοποιείται"
 
 msgid "not supported"
 msgstr "δεν υποστηρίζεται"
