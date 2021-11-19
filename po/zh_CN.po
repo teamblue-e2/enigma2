@@ -30,14 +30,9 @@ msgid ""
 msgstr ""
 
 msgid ""
-"\n"
 "Conflict detection disabled!"
 msgstr ""
-
-msgid ""
-"\n"
-"Maintain your multiboot device."
-msgstr ""
+"冲突检测禁用!"
 
 msgid ""
 "\n"
@@ -391,20 +386,8 @@ msgid "%s %d.%d"
 msgstr ""
 
 #, python-format
-msgid "%s %s free disk space"
-msgstr ""
-
-#, python-format
-msgid "%s (%04o)"
-msgstr ""
-
-#, python-format
-msgid "%s (%s"
-msgstr ""
-
-#, python-format
-msgid "%s (%s)"
-msgstr ""
+msgid "%(freespace)s %(percent)s free disk space"
+msgstr "%(freespace)s %(percent)s 空闲空间"
 
 #, python-format
 msgid "%s (%s)\n"
@@ -710,10 +693,8 @@ msgid "A background update check is in progress, please wait a few minutes and t
 msgstr ""
 
 #, python-format
-msgid ""
-"A configuration file (%s) has been modified since it was installed.\n"
-"Do you want to keep your modifications?"
-msgstr ""
+msgid "A configuration file (%s) has been modified since it was installed. Would you like to keep the modified version?"
+msgstr "配置文件(%s)已经变更. 是否要保留所做更改?"
 
 #, python-format
 msgid ""
@@ -724,22 +705,18 @@ msgstr ""
 msgid "A file from media is in use!"
 msgstr ""
 
-msgid ""
-"A finished record timer wants to set your\n"
-"receiver to standby. Do that now?"
-msgstr ""
+msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
+msgstr "机顶盒待机定时器命令触发了是否确定现在进入待机?"
 
-msgid ""
-"A finished record timer wants to shut down\n"
-"your receiver. Shutdown now?"
-msgstr ""
+msgid "A completed recording timer is about to shut down your receiver. Would you like to proceed?"
+msgstr "机顶盒关机定时器命令触发了是否确定现在关机?"
 
 msgid "A graphical EPG for all services of a specific bouquet"
 msgstr ""
 
 #, python-format
 msgid ""
-"A record has been started:\n"
+"A recording has started:\n"
 "%s"
 msgstr ""
 
@@ -754,8 +731,11 @@ msgstr ""
 msgid "A recording is currently running. Please stop the recording before trying to scan."
 msgstr ""
 
-msgid "A recording is currently running. Please stop the recording before trying to start a testing DiSEqC."
-msgstr ""
+msgid "A recording is currently running. Please stop the recording before starting a DiSEqC test."
+msgstr "当前有录制正在进行.要测试DisEqc请先停止录制."
+
+msgid "A repeating event is currently recording. What would you like to do?"
+msgstr "正在重复当前录制的事件.你要做什么?"
 
 #, python-format
 msgid "A required tool (%s) was not found."
@@ -770,15 +750,11 @@ msgid ""
 "Do you want to disable the second network interface?"
 msgstr ""
 
-msgid ""
-"A sleep timer wants to set your\n"
-"receiver to standby. Do that now?"
-msgstr ""
+msgid "A sleep timer is about to put your receiver in standby mode. Would you like to proceed?"
+msgstr "睡眠定时器触发了待机命令是否确定现在就待机?"
 
-msgid ""
-"A sleep timer wants to shut down\n"
-"your receiver. Shutdown now?"
-msgstr ""
+msgid "A sleep timer is about to shut down your receiver. Would you like to proceed?"
+msgstr "睡眠定时器触发了关机命令是否确定现在就关机?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr ""
@@ -851,11 +827,11 @@ msgstr ""
 msgid "Accessed:"
 msgstr ""
 
-msgid "Accesspoint:"
-msgstr ""
-
 msgid "Activate"
 msgstr ""
+
+msgid "Access point:"
+msgstr "存取点:"
 
 msgid "Activate HbbTV (Redbutton)"
 msgstr ""
@@ -1112,8 +1088,8 @@ msgstr ""
 msgid "Allow 12bit"
 msgstr ""
 
-msgid "Allow quitting movieplayer with exit"
-msgstr ""
+msgid "Allow quitting movie player with exit"
+msgstr "允许退出电影播放器"
 
 msgid "Allow subtitle language to equal audio language"
 msgstr ""
@@ -1227,8 +1203,8 @@ msgid "Are you sure to purge all deleted user bouquets?"
 msgstr ""
 
 #, python-format
-msgid "Are you sure to remove all %d.%d%s%s services?"
-msgstr ""
+msgid "Are you sure to remove all %s services?"
+msgstr "是否要移除所有 %s 频道?"
 
 msgid "Are you sure to remove all cable services?"
 msgstr ""
@@ -1392,8 +1368,11 @@ msgstr ""
 msgid "Auto"
 msgstr ""
 
-msgid "Auto Diseqc"
-msgstr ""
+msgid "Auto DiSEqC"
+msgstr "自动DiSEqC"
+
+msgid "Auto EXIF Orientation rotation/flipping"
+msgstr "自动EXIF信息方向旋转／翻转"
 
 msgid "Auto chapter split every ? minutes (0=never)"
 msgstr ""
@@ -3236,8 +3215,8 @@ msgstr ""
 msgid "Detect next boxes before standby"
 msgstr ""
 
-msgid "Detected HDD:"
-msgstr ""
+msgid "Detected storage devices:"
+msgstr "检测到的硬盘:"
 
 msgid "Detected NIMs:"
 msgstr ""
@@ -3320,8 +3299,8 @@ msgid "Directory browser"
 msgstr ""
 
 #, python-format
-msgid "Directory contains %s and %s."
-msgstr ""
+msgid "Directory contains %(file)s and %(subdir)s."
+msgstr "目录包含 %(file)s 和 %(subdir)s."
 
 msgid "Disable"
 msgstr ""
@@ -3957,8 +3936,8 @@ msgstr ""
 msgid "Enter persistent PIN code"
 msgstr ""
 
-msgid "Enter pin code"
-msgstr ""
+msgid "Enter PIN code"
+msgstr "输入密码"
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the spec sheet of your LNB."
 msgstr ""
@@ -3969,8 +3948,11 @@ msgstr ""
 msgid "Enter the number stored in the positioner that corresponds to this satellite."
 msgstr ""
 
-msgid "Enter the service pin"
-msgstr ""
+msgid "Enter the service PIN"
+msgstr "输入服务密码"
+
+msgid "Enter valid ONID/TSID"
+msgstr "输入ONID/TSID选项"
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
 msgstr ""
@@ -5487,11 +5469,8 @@ msgstr ""
 msgid "Instant recording location"
 msgstr ""
 
-msgid "Instant recording..."
-msgstr ""
-
-msgid "Interface"
-msgstr ""
+msgid "Instant recording"
+msgstr "即时录制"
 
 msgid "Interface: "
 msgstr ""
@@ -5856,10 +5835,10 @@ msgid "List type"
 msgstr ""
 
 #, python-format
-msgid "List version %d, found %d channel"
-msgid_plural "List version %d, found %d channels"
-msgstr[0] ""
-msgstr[1] ""
+msgid "List version %(ver)d, found %(num)d channel"
+msgid_plural "List version %(ver)d, found %(num)d channels"
+msgstr[0] "列表版本 %(ver)d, 发现 %(num)d 频道"
+msgstr[1] "列表版本 %(ver)d, 发现 %(num)d 频道"
 
 msgid "Listen to the radio..."
 msgstr ""
@@ -5972,8 +5951,8 @@ msgstr ""
 msgid "Macao"
 msgstr ""
 
-msgid "Macedonia (the former Yugoslav Republic of)"
-msgstr ""
+msgid "North Macedonia (The Republic of)"
+msgstr "马其顿(前南斯拉夫共和国)"
 
 msgid "Madagascar"
 msgstr ""
@@ -6898,8 +6877,8 @@ msgid "Not defined"
 msgstr ""
 
 #, python-format
-msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
-msgstr ""
+msgid "Not enough disk space. Please free up some disk space and try again. (%(req)d MB required, %(avail)d MB available)"
+msgstr "磁盘空间不足.请释放一些磁盘空间并重试.（%(req)d MB 被请求, %(avail)d MB 可用）"
 
 msgid "Not tested:"
 msgstr ""
@@ -7483,8 +7462,8 @@ msgstr ""
 msgid "Please enter password"
 msgstr ""
 
-msgid "Please enter the correct pin code"
-msgstr ""
+msgid "Please enter the correct PIN code"
+msgstr "请输入正确的密码"
 
 msgid "Please enter the new PIN code"
 msgstr ""
@@ -7629,11 +7608,11 @@ msgstr ""
 msgid "Please wait while feeds state is checked."
 msgstr ""
 
-msgid "Please wait while scanning is in progress..."
-msgstr ""
-
 msgid "Please wait while we check your installed plugins..."
 msgstr ""
+
+msgid "Please wait while scanning..."
+msgstr "正在扫描...请稍候..."
 
 msgid "Please wait while we configure your network..."
 msgstr ""
@@ -8002,8 +7981,8 @@ msgstr ""
 msgid "Protect movie list"
 msgstr ""
 
-msgid "Protect on epg age"
-msgstr ""
+msgid "Protect on EPG age"
+msgstr "保护等级（限制级电子品安全年龄）"
 
 msgid "Protect plugin browser"
 msgstr ""
@@ -9148,6 +9127,9 @@ msgid "Select channel"
 msgstr ""
 
 msgid "Select channel to record from"
+msgstr "选择要录制的频道"
+
+msgid "Select char for replacing newlines in EPG."
 msgstr ""
 
 msgid "Select copy destination for:"
@@ -9531,8 +9513,8 @@ msgstr ""
 msgid "Set movielist type."
 msgstr ""
 
-msgid "Set pin code persistent"
-msgstr ""
+msgid "Set persistent PIN code"
+msgstr "设置PIN码有效期"
 
 msgid "Set sequence repeats if your aerial system requires this. Normally if the aerial system has been configured correctly sequence repeats will not be necessary. If yours does, recheck you have command order set correctly."
 msgstr ""
@@ -11031,8 +11013,8 @@ msgstr ""
 msgid "The path %s already exists."
 msgstr ""
 
-msgid "The pin code you entered is wrong."
-msgstr ""
+msgid "The PIN code you entered is wrong."
+msgstr "密码输入有误."
 
 #, python-format
 msgid "The results have been written to %s"
@@ -11095,8 +11077,8 @@ msgid "There are at least "
 msgstr ""
 
 #, python-format
-msgid "There are at least %s updates available."
-msgstr ""
+msgid "There are at least %d updates available."
+msgstr "有一个最近更新 %d 可用."
 
 msgid "There are currently no outstanding actions."
 msgstr ""
@@ -11554,8 +11536,8 @@ msgid "Total Clients streaming: "
 msgstr ""
 
 #, python-format
-msgid "Total clients streaming: %d (%s)"
-msgstr ""
+msgid "Total clients streaming: "
+msgstr "媒体流总客户端数量: "
 
 msgid "Track"
 msgstr ""
@@ -11602,17 +11584,14 @@ msgstr ""
 msgid "True"
 msgstr ""
 
-msgid "Try to find used transponders in cable network.. please wait..."
-msgstr ""
+msgid "Looking for active transponders in the cable network. Please wait..."
+msgstr "尝试从电缆找寻可用的转发器.请稍候..."
 
-msgid "Try to find used transponders in terrestrial network... please wait..."
-msgstr ""
+msgid "Looking for active transponders in the terrestrial network. Please wait..."
+msgstr "尝试从电缆找寻可用的转发器.请稍候..."
 
-msgid "Trying to download a new packetlist. Please wait..."
-msgstr ""
-
-msgid "Trying to download a new updatelist. Please wait..."
-msgstr ""
+msgid "Downloading a new packet list. Please wait..."
+msgstr "尝试下载新的软件包列表.请稍候..."
 
 msgid "Tue"
 msgstr ""
@@ -11909,8 +11888,8 @@ msgstr ""
 msgid "Upgrade and ask to reboot"
 msgstr ""
 
-msgid "Upgrade finished."
-msgstr ""
+msgid "Update feed not available."
+msgstr "更新资源无效."
 
 msgid "Upgrade with GUI"
 msgstr ""
@@ -12044,7 +12023,11 @@ msgstr ""
 msgid "Used service scan type"
 msgstr ""
 
-msgid "User - bouquets"
+msgid "User bouquets"
+msgstr "自定义组"
+
+#, python-format
+msgid "User Band %d"
 msgstr ""
 
 msgid "User Feed URL"
@@ -12556,8 +12539,8 @@ msgstr ""
 msgid "When enabled, http streams are descrambled on the server side. The (remote) client receiver does not have to do descrambling. Default on."
 msgstr ""
 
-msgid "When enabled, it is possible to leave the movieplayer with exit."
-msgstr ""
+msgid "When enabled, it is possible to leave the movie player with exit."
+msgstr "一旦启用,有可能可以使用exit键退出电影播放器."
 
 msgid "When enabled, it will automatically play to the last saved radio service when switching to radio mode."
 msgstr ""
@@ -12803,7 +12786,7 @@ msgstr ""
 msgid "Yesterday"
 msgstr ""
 
-msgid "You PIN code is 0000. This is the default PIN code and it disables parental control!\n"
+msgid "Your PIN code is 0000. This is the default PIN code and it disables parental control!\n"
 msgstr ""
 
 #, python-format
@@ -13019,8 +13002,8 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid "Your internet connection is working (ip: %s)"
-msgstr ""
+msgid "Your internet connection is working (IP address: %s)"
+msgstr "互联网连接正常,IP地址为：%s"
 
 msgid "Your network configuration has been activated."
 msgstr ""
@@ -13349,8 +13332,8 @@ msgstr ""
 msgid "config menu"
 msgstr ""
 
-msgid "configure in which resolution pictures are displayed with the picture viewer and movieplayer"
-msgstr ""
+msgid "Select in which resolution pictures are displayed with picture viewer or movie player."
+msgstr "配置使用何种解决方案来显示图片浏览器和电影播放器."
 
 msgid "confirmed"
 msgstr ""
@@ -13463,14 +13446,14 @@ msgstr ""
 msgid "entertainment (6-14 year old)"
 msgstr ""
 
-msgid "epg cache backup"
-msgstr ""
+msgid "backup EPG cache"
+msgstr "epg缓存备份"
 
 msgid "equestrian"
 msgstr ""
 
-msgid "error starting scanning"
-msgstr ""
+msgid "error starting scan"
+msgstr "启动扫描发生错误"
 
 msgid "error while scanning"
 msgstr ""
@@ -14185,20 +14168,14 @@ msgstr ""
 msgid "testing"
 msgstr ""
 
-msgid "this bouquet is protected by a parental control pin"
-msgstr ""
+msgid "This bouquet is protected by a parental control PIN"
+msgstr "此频道受家长控制"
 
 msgid "this recording"
 msgstr ""
 
-msgid "this service is protected by a parental control pin"
-msgstr ""
-
-msgid "to dir"
-msgstr ""
-
-msgid "toggels between tv and radio..."
-msgstr ""
+msgid "This service is protected by a parental control PIN"
+msgstr "此频道受家长控制"
 
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr ""
