@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-29 22:39+0200\n"
+"POT-Creation-Date: 2021-11-19 13:16+0100\n"
 "PO-Revision-Date: 2019-04-03 06:49+0300\n"
 "Last-Translator: \n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas, zeros\\n faas, sateks, valgekotkas, tigekala, rootsikunn\\n kain, i70, mustkass, pelmeen, Scott\\n <digi-tv.ee>\n"
@@ -25,6 +25,12 @@ msgid ""
 "\n"
 "[User - bouquets (TV)]\n"
 msgstr "Lemmiknimekirjad"
+
+#, fuzzy
+msgid ""
+"\n"
+" Do you want to switch to Android ?"
+msgstr "Soovid panna DVD mängima?"
 
 msgid ""
 "\n"
@@ -196,6 +202,10 @@ msgstr ""
 
 #, python-format
 msgid "%.2f GB"
+msgstr ""
+
+#, python-format
+msgid "%.3f MHz"
 msgstr ""
 
 #, fuzzy, python-format
@@ -393,6 +403,14 @@ msgstr "%s (%s)\n"
 
 #, python-format
 msgid "%s - extraction errors."
+msgstr ""
+
+#, python-format
+msgid "%s KSymb/s"
+msgstr ""
+
+#, python-format
+msgid "%s MHz"
 msgstr ""
 
 #, python-format
@@ -757,6 +775,12 @@ msgstr "A"
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr ""
 
+msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
+msgstr "Lõpetanud salvestuse taimer soovib panna vastuvõtja ooterežiimi. Kas nõustud?"
+
+msgid "A completed recording timer is about to shut down your receiver. Would you like to proceed?"
+msgstr "Salvestuse lõpetanud taimer soovib vastuvõtja välja lülitada. Kas nõustud?"
+
 #, python-format
 msgid "A configuration file (%s) has been modified since it was installed. Would you like to keep the modified version?"
 msgstr "Seadistusfaili (%s) on muudetud peale algpaigaldust. Kas tahad säilitada oma versiooni?"
@@ -771,12 +795,6 @@ msgstr ""
 
 msgid "A file from media is in use!"
 msgstr ""
-
-msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
-msgstr "Lõpetanud salvestuse taimer soovib panna vastuvõtja ooterežiimi. Kas nõustud?"
-
-msgid "A completed recording timer is about to shut down your receiver. Would you like to proceed?"
-msgstr "Salvestuse lõpetanud taimer soovib vastuvõtja välja lülitada. Kas nõustud?"
 
 #, fuzzy
 msgid "A graphical EPG for all services of a specific bouquet"
@@ -801,11 +819,11 @@ msgstr ""
 "Hetkel salvestatakse.\n"
 "Mida soovid teha?"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
-msgstr "Hetkel salvestatakse. Peata salvestamine enne kanaliotsingu alustamist."
-
 msgid "A recording is currently running. Please stop the recording before starting a DiSEqC test."
 msgstr "Hetkel salvestatakse. Peata salvestamine enne DiSEqC testimist."
+
+msgid "A recording is currently running. Please stop the recording before trying to scan."
+msgstr "Hetkel salvestatakse. Peata salvestamine enne kanaliotsingu alustamist."
 
 #, fuzzy
 msgid "A repeating event is currently recording. What would you like to do?"
@@ -1208,6 +1226,9 @@ msgstr "Luba subtiitrid heli keele valiku järgi"
 msgid "Allow subtitles for hearing impaired"
 msgstr "Luba vaegkuuljate subtiitrid"
 
+msgid "Allows the TV remote to be used to control the receiver."
+msgstr ""
+
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr ""
 
@@ -1468,6 +1489,9 @@ msgstr ""
 msgid "Audio channel"
 msgstr "Paigalda kanalinimekiri"
 
+msgid "Audio description for the visually impaired"
+msgstr ""
+
 msgid "Audio language selection 1"
 msgstr "Heli keele valik 1"
 
@@ -1516,9 +1540,6 @@ msgstr "Automaatne"
 msgid "Auto DiSEqC"
 msgstr "Auto DiSEqC"
 
-msgid "Auto EXIF Orientation rotation/flipping"
-msgstr "EXIF orientatsiooni automaatne pööramine/ümberpööramine"
-
 msgid "Auto chapter split every ? minutes (0=never)"
 msgstr "Automaatne kaadri lõikamine iga ? minuti (0=mitte kunagi)"
 
@@ -1528,7 +1549,7 @@ msgstr ""
 msgid "Auto focus"
 msgstr ""
 
-msgid "Auto focus commencing ..."
+msgid "Auto focus commencing..."
 msgstr ""
 
 msgid "Auto language selection"
@@ -1569,6 +1590,9 @@ msgstr "Automaatotsing"
 
 msgid "Automatic scan"
 msgstr "Automaatotsing"
+
+msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
+msgstr ""
 
 msgid "Automatically start timeshift after"
 msgstr ""
@@ -1720,6 +1744,9 @@ msgstr "Muuda seadeid"
 
 msgid "Basque"
 msgstr "Baski"
+
+msgid "Before sending the command to switch the TV to standby, the receiver tests if all the other devices plugged to TV are in standby. If they are not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
+msgstr ""
 
 msgid "Begin time"
 msgstr "Algusaeg"
@@ -2422,6 +2449,9 @@ msgstr "Kanalid"
 
 msgid "Command order"
 msgstr "Käskude järjekord"
+
+msgid "Command the TV to switch to the correct HDMI input when zap timers activate."
+msgstr ""
 
 #, fuzzy
 msgid "Commit info"
@@ -3369,6 +3399,9 @@ msgstr "Viiviteaeg enne võtme kordamist:"
 msgid "Delay before sequence repeat"
 msgstr "Viiviteaeg enne võtme kordamist:"
 
+msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
+msgstr ""
+
 msgid "Delay between diseqc commands"
 msgstr ""
 
@@ -3918,6 +3951,9 @@ msgstr "Laetakse alla"
 msgid "Downloading Image"
 msgstr "Laetakse alla"
 
+msgid "Downloading a new packet list. Please wait..."
+msgstr "Üritan laadida alla uut nimekirja. Oota."
+
 msgid "Downloading plugin information. Please wait..."
 msgstr "Laeme alla laienduse infot. Palun oota."
 
@@ -4218,6 +4254,10 @@ msgstr "Luba lemmiknimekirjad"
 
 msgid "Enable or disable Ipv6."
 msgstr ""
+
+#, fuzzy
+msgid "Enable or disable using HDMI-CEC."
+msgstr "Luba EIT EPG"
 
 #, fuzzy
 msgid "Enable parental protection"
@@ -5479,7 +5519,14 @@ msgstr ""
 msgid "HDMI-CEC Source Inactive"
 msgstr ""
 
+#, fuzzy
+msgid "HDMI-CEC address"
+msgstr "IP aadress"
+
 msgid "HDMI-CEC setup"
+msgstr ""
+
+msgid "HDMI-IN Actions"
 msgstr ""
 
 #, fuzzy
@@ -5731,6 +5778,9 @@ msgstr ""
 msgid "If enabled, AIT data is included in recordings."
 msgstr ""
 
+msgid "If enabled, a log will be kept of CEC protocol traffic ('hdmicec.log')"
+msgstr ""
+
 msgid "If enabled, bookmarks will be updated with the new location when you move or copy a recording."
 msgstr ""
 
@@ -5748,6 +5798,9 @@ msgid "If set as 'Yes', then audiofiles are played in 'list mode' only, instead 
 msgstr ""
 
 msgid "If set to 'yes' signal values (SNR, etc) will be calculated from API V3. This is an old API version that has now been superseded."
+msgstr ""
+
+msgid "If set to 'yes' the same commands will be sent to the TV for deep standby events, as are sent during regular standby events."
 msgstr ""
 
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
@@ -7108,13 +7161,15 @@ msgstr "Salvestiste menüü"
 msgid "Moving"
 msgstr "Liikuv"
 
-msgid "Moving east ..."
+#, fuzzy
+msgid "Moving east..."
 msgstr "Keerab itta ..."
 
 msgid "Moving to position"
 msgstr "Liigub asukohta"
 
-msgid "Moving west ..."
+#, fuzzy
+msgid "Moving west..."
 msgstr "Keerab läände ..."
 
 msgid "Mozambique"
@@ -7480,9 +7535,6 @@ msgstr "Võrke ei leidnud"
 msgid "No packages were upgraded yet. So you can check your network and try again."
 msgstr ""
 
-msgid "No positioner capable frontend found."
-msgstr "Ei leitud positsioneeri toetavat tuunerit."
-
 #, fuzzy
 msgid "No priority"
 msgstr "Prioriteet"
@@ -7517,9 +7569,6 @@ msgstr "EI kõigile"
 
 msgid "No transparency"
 msgstr "Läbipaistmatu"
-
-msgid "No tuner is configured for use with a diseqc positioner!"
-msgstr "Ükski tuuner pole seadistatud DISEqC-positsioneeri kasutama!"
 
 msgid ""
 "No tuner is enabled!\n"
@@ -7863,6 +7912,10 @@ msgid "Ordinary"
 msgstr ""
 
 msgid "Original"
+msgstr "Algupärane"
+
+#, fuzzy
+msgid "Original audio"
 msgstr "Algupärane"
 
 msgid "OscamSmartcard-Setup"
@@ -8753,6 +8806,10 @@ msgstr "Levitaja valimiseks vajuta OK."
 msgid "Press OK to select satellites"
 msgstr ""
 
+#, fuzzy
+msgid "Press OK to select the save location of the log file."
+msgstr "Valiku muutmiseks vajuta OK."
+
 msgid "Press OK to select/deselect a CAId."
 msgstr "Vajuta OK valik/valik maha CAId."
 
@@ -8911,6 +8968,10 @@ msgstr ""
 #, fuzzy
 msgid "Purge deleted user bouquets"
 msgstr "Luba lemmiknimekirjad"
+
+#, fuzzy
+msgid "Put A/V receiver to standby too."
+msgstr "Pane vastuvõtja ooterežiimi"
 
 msgid "Put TV in standby"
 msgstr "Lülita TV välja"
@@ -9966,8 +10027,9 @@ msgstr "Otsi läände"
 msgid "Searching"
 msgstr "Otsing"
 
-msgid "Searching east ..."
-msgstr ""
+#, fuzzy
+msgid "Searching east..."
+msgstr "Otsi itta"
 
 msgid "Searching for available updates. Please wait..."
 msgstr "Otsin uuendusi. Palun oota."
@@ -9975,8 +10037,9 @@ msgstr "Otsin uuendusi. Palun oota."
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "Otsin uusi paigaldatud või kustutatud pakette. Oota."
 
-msgid "Searching west ..."
-msgstr ""
+#, fuzzy
+msgid "Searching west..."
+msgstr "Otsi läände"
 
 #, fuzzy
 msgid "Second InfoBar"
@@ -11338,6 +11401,9 @@ msgstr ""
 msgid "Somalia"
 msgstr ""
 
+msgid "Some TVs do not wake from standby when they receive the 'Image View On' command. If this is the case try the 'Text View On' command instead."
+msgstr ""
+
 msgid "Some error occurred - Please try later"
 msgstr ""
 
@@ -11606,6 +11672,10 @@ msgstr ""
 
 msgid "Stepped west"
 msgstr ""
+
+#, fuzzy
+msgid "Steps"
+msgstr "Samm itta"
 
 msgid "Stop"
 msgstr "Peata"
@@ -11894,6 +11964,14 @@ msgid "Switch on the display during operation."
 msgstr ""
 
 #, fuzzy
+msgid "Switch to Android"
+msgstr "Mine faililoendisse"
+
+#, fuzzy
+msgid "Switch to HDMI in mode"
+msgstr "Mine faililoendisse"
+
+#, fuzzy
 msgid "Switch to TV mode"
 msgstr "Mine faililoendisse"
 
@@ -12176,6 +12254,9 @@ msgid "The backup failed. Please choose a different backup location."
 msgstr "Varukoopia loomine nurjus. Vali uus varukoopia asukoht."
 
 msgid "The bitrate of the video encoder. Larger value improves quality and increases file size."
+msgstr ""
+
+msgid "The command to wake from standby will be sent multiple times."
 msgstr ""
 
 #, fuzzy, python-format
@@ -12882,9 +12963,6 @@ msgstr ""
 msgid "True"
 msgstr ""
 
-msgid "Downloading a new packet list. Please wait..."
-msgstr "Üritan laadida alla uut nimekirja. Oota."
-
 #, fuzzy
 msgid "Trying to download a new updatelist. Please wait..."
 msgstr "Üritan laadida alla uut nimekirja. Oota."
@@ -12961,6 +13039,18 @@ msgid "Turkmenistan"
 msgstr "Türgi"
 
 msgid "Turks and Caicos Islands"
+msgstr ""
+
+msgid "Turn off HDMI-IN Full screen mode"
+msgstr ""
+
+msgid "Turn off HDMI-IN PiP mode"
+msgstr ""
+
+msgid "Turn on HDMI-IN Full screen mode"
+msgstr ""
+
+msgid "Turn on HDMI-IN PiP mode"
 msgstr ""
 
 msgid "Turn on the power LED during deep standby."
@@ -13343,9 +13433,6 @@ msgstr "Kasuta filmilistis prügikasti"
 msgid "Used service scan type"
 msgstr "Kasutatud otsingu tüüp"
 
-msgid "User bouquets"
-msgstr "Lemmiknimekirjad"
-
 #, python-format
 msgid "User Band %d"
 msgstr ""
@@ -13360,6 +13447,9 @@ msgstr "Kasutaja määratud"
 
 msgid "User ID"
 msgstr ""
+
+msgid "User bouquets"
+msgstr "Lemmiknimekirjad"
 
 msgid "User defined"
 msgstr "Kasutaja määratud"
@@ -13606,7 +13696,7 @@ msgstr "Virtuaalklahvistik"
 msgid "Virtual keyboard"
 msgstr "Virtuaalklahvistik"
 
-msgid "Visual impaired commentary"
+msgid "Visually impaired commentary"
 msgstr ""
 
 msgid "Voltage mode"
@@ -13619,6 +13709,9 @@ msgstr "Helitugevus"
 #, fuzzy
 msgid "Volume down"
 msgstr "Helitugevus"
+
+msgid "Volume keys on the receiver remote will control the TV volume."
+msgstr ""
 
 #, fuzzy
 msgid "Volume up"
@@ -13661,8 +13754,15 @@ msgstr "Oodatakse haakimist"
 msgid "Waiting for partition"
 msgstr "Oodatakse partitsiooni"
 
+msgid "Wake the receiver from standby when selected wake command is sent from the TV."
+msgstr ""
+
 msgid "Wakeup"
 msgstr "Ärata"
+
+#, fuzzy
+msgid "Wakeup A/V receiver from standby too."
+msgstr "Käivita vastuvõtja"
 
 msgid "Wakeup TV from standby"
 msgstr "Käivita teler"
@@ -13839,6 +13939,14 @@ msgstr ""
 
 msgid "When enabled the left, right, CH+/-, B+/-, P+/- buttons will follow the 'neutrino' style zap controls instead of the enigma2 style."
 msgstr ""
+
+#, fuzzy
+msgid "When enabled the receiver will automatically return to standby when the TV is turned off."
+msgstr "Määrates 'jah', kasutab vastuvõtja automaatselt varem valitud heliriba."
+
+#, fuzzy
+msgid "When enabled the receiver will automatically wake from standby when the TV is turned on."
+msgstr "Määrates 'jah', kasutab vastuvõtja automaatselt varem valitud heliriba."
 
 msgid "When enabled the timer from the fallback tuner is imported"
 msgstr ""
@@ -14030,11 +14138,17 @@ msgstr "Salvestamist alustatakse enne saatekavas näidatud aega."
 msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
 msgstr "Salvestamine lõpetatakse pärast saatekavas näidatud aega."
 
+msgid "When receiver wakes from standby, it will command the TV to switch to the HDMI input the receiver is connected to."
+msgstr ""
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Määra, kas 16:9 pildisuhtega sisu tuleb skaleerida/venitada."
 
 msgid "When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture."
 msgstr "Määra, kas 4:3 pildisuhtega sisu tuleb skaleerida/venitada."
+
+msgid "When the receiver wakes from standby or deep standby, it will send a command to the TV to bring it out of standby too."
+msgstr ""
 
 msgid "Where do you want to backup your settings?"
 msgstr "Kuhu teha seadete varukoopia?"
@@ -15322,6 +15436,10 @@ msgstr "pole lukustatud"
 #, fuzzy
 msgid "not running"
 msgstr "Mootori pööramise kiirus"
+
+#, fuzzy
+msgid "not set"
+msgstr "pole lukustatud"
 
 msgid "not supported"
 msgstr "pole toetatud"

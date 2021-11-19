@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue (Apachi70)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-29 22:39+0200\n"
+"POT-Creation-Date: 2021-11-19 13:16+0100\n"
 "PO-Revision-Date: 2021-05-02 16:45+0200\n"
 "Last-Translator: Apachi70 <teamblue@online.de>\n"
 "Language-Team: http://www.hurforum.com <yetkina@gmail.com>\n"
@@ -28,6 +28,12 @@ msgstr ""
 "\n"
 "\n"
 "(Kullanıcı - buketleri (TV)]\n"
+
+#, fuzzy
+msgid ""
+"\n"
+" Do you want to switch to Android ?"
+msgstr "DVD'yi oynatmak istiyor musunuz?"
 
 msgid ""
 "\n"
@@ -209,6 +215,10 @@ msgstr "%.1f° W"
 #, python-format
 msgid "%.2f GB"
 msgstr "%.2f GB"
+
+#, python-format
+msgid "%.3f MHz"
+msgstr ""
 
 #, python-format
 msgid "%02d:%02d"
@@ -394,6 +404,14 @@ msgstr "%s (%s)"
 #, python-format
 msgid "%s - extraction errors."
 msgstr "% s - çıkarma hataları."
+
+#, python-format
+msgid "%s KSymb/s"
+msgstr ""
+
+#, python-format
+msgid "%s MHz"
+msgstr ""
 
 #, python-format
 msgid "%s imported from fallback tuner"
@@ -737,6 +755,12 @@ msgstr "A"
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Arkaplan güncelleme kontrolu sürüyor, birkaç dakika sonra tekrar deneyin."
 
+msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
+msgstr "Kayıt süresi dolmuş. Alıcı bekleme konumuna geçecek. Şimdi yapılsın mı?"
+
+msgid "A completed recording timer is about to shut down your receiver. Would you like to proceed?"
+msgstr "Kayıt süresi dolmuş. Alıcı kapatılacak Şimdi Kapatılsın mı?"
+
 #, python-format
 msgid "A configuration file (%s) has been modified since it was installed. Would you like to keep the modified version?"
 msgstr "Yüklendikten bu yana yapılandırma dosyası (%s) değiştirilmiştir. Değişiklikleri korumak istiyor musunuz?"
@@ -751,12 +775,6 @@ msgstr ""
 
 msgid "A file from media is in use!"
 msgstr "Medyadan bir dosya kullanılıyor!"
-
-msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
-msgstr "Kayıt süresi dolmuş. Alıcı bekleme konumuna geçecek. Şimdi yapılsın mı?"
-
-msgid "A completed recording timer is about to shut down your receiver. Would you like to proceed?"
-msgstr "Kayıt süresi dolmuş. Alıcı kapatılacak Şimdi Kapatılsın mı?"
 
 msgid "A graphical EPG for all services of a specific bouquet"
 msgstr "Belirli bir buketin tüm hizmetleri için bir grafiksel EPG"
@@ -779,11 +797,11 @@ msgstr ""
 "Kayıt devam ediyor.\n"
 "Ne yapmak istiyorsunuz?"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
-msgstr "Bir kayıt şu anda çalışıyor. Tarama yapmayı denemeden önce kaydı durdurun."
-
 msgid "A recording is currently running. Please stop the recording before starting a DiSEqC test."
 msgstr ""
+
+msgid "A recording is currently running. Please stop the recording before trying to scan."
+msgstr "Bir kayıt şu anda çalışıyor. Tarama yapmayı denemeden önce kaydı durdurun."
 
 #, fuzzy
 msgid "A repeating event is currently recording. What would you like to do?"
@@ -1152,6 +1170,9 @@ msgstr "Aynı ses dili için altyazı dili sağlar"
 msgid "Allow subtitles for hearing impaired"
 msgstr "İşitme engelliler için altyazı sağlar"
 
+msgid "Allows the TV remote to be used to control the receiver."
+msgstr ""
+
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr "Hata ayıklama günlüğünü etkinleştirmenizi sağlar. Sistemin yaptığı her şey hakkında çok ayrıntılı bilgiler içerirler."
 
@@ -1395,6 +1416,9 @@ msgstr "Ses otomatik ses seviyesi"
 msgid "Audio channel"
 msgstr "Ses kanalı"
 
+msgid "Audio description for the visually impaired"
+msgstr ""
+
 msgid "Audio language selection 1"
 msgstr "Ses dili seçimi 1"
 
@@ -1438,9 +1462,6 @@ msgstr "Otomatik"
 msgid "Auto DiSEqC"
 msgstr ""
 
-msgid "Auto EXIF Orientation rotation/flipping"
-msgstr "Otomatik EXIF Oryantasyon Rotasyon/Çevirme"
-
 msgid "Auto chapter split every ? minutes (0=never)"
 msgstr "Belirtilen sürelerde otomatik bölümlere ayrılsın mı? dakika (0=ayırma)"
 
@@ -1450,7 +1471,8 @@ msgstr "Otomatik ten rengi"
 msgid "Auto focus"
 msgstr "Otomatik netleme"
 
-msgid "Auto focus commencing ..."
+#, fuzzy
+msgid "Auto focus commencing..."
 msgstr "Otomatik netleme baslamadan ..."
 
 msgid "Auto language selection"
@@ -1485,6 +1507,9 @@ msgstr "Otomatik yer imleri"
 
 msgid "Automatic scan"
 msgstr "Otomatik arama"
+
+msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
+msgstr ""
 
 msgid "Automatically start timeshift after"
 msgstr "Zaman kaydırmayı sonra otomatik başlat"
@@ -1622,6 +1647,9 @@ msgstr "Temel ayarlar"
 
 msgid "Basque"
 msgstr "Bask"
+
+msgid "Before sending the command to switch the TV to standby, the receiver tests if all the other devices plugged to TV are in standby. If they are not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
+msgstr ""
 
 msgid "Begin time"
 msgstr "Başlama zamanı"
@@ -2309,6 +2337,9 @@ msgstr "Komut yürütme ..."
 
 msgid "Command order"
 msgstr "Komut sırası"
+
+msgid "Command the TV to switch to the correct HDMI input when zap timers activate."
+msgstr ""
 
 msgid "Commit info"
 msgstr "Kaydetme bilgileri"
@@ -3189,6 +3220,9 @@ msgstr "Key (şifre) beklemeden önce tekrar süresi:"
 msgid "Delay before sequence repeat"
 msgstr "Dizi tekrarından önce gecikme"
 
+msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
+msgstr ""
+
 msgid "Delay between diseqc commands"
 msgstr "Diseqc komutları arasındaki gecikme"
 
@@ -3699,6 +3733,9 @@ msgstr "İndiriliyor"
 msgid "Downloading Image"
 msgstr "Image İndiriliyor"
 
+msgid "Downloading a new packet list. Please wait..."
+msgstr "Paket listesi indiriliyor. Lütfen bekleyin..."
+
 msgid "Downloading plugin information. Please wait..."
 msgstr "Eklenti bilgileri indiriliyor. Lütfen bekleyin..."
 
@@ -3970,6 +4007,10 @@ msgid "Enable multiple bouquets"
 msgstr "Çoklu buket kullanımını etkinleştir"
 
 msgid "Enable or disable Ipv6."
+msgstr "Ipv6 etkin veya devre dışı."
+
+#, fuzzy
+msgid "Enable or disable using HDMI-CEC."
 msgstr "Ipv6 etkin veya devre dışı."
 
 msgid "Enable parental protection"
@@ -5160,8 +5201,15 @@ msgstr "HDMI-CEC Kaynak Aktif"
 msgid "HDMI-CEC Source Inactive"
 msgstr "HDMI-CEC Kaynağı İnaktif"
 
+#, fuzzy
+msgid "HDMI-CEC address"
+msgstr "IP adresi"
+
 msgid "HDMI-CEC setup"
 msgstr "HDMI-CEC kurulumu"
+
+msgid "HDMI-IN Actions"
+msgstr ""
 
 msgid "HDR10 support"
 msgstr "HDR10 desteği"
@@ -5389,6 +5437,9 @@ msgstr "Bir dosyayı düzenliyorsanız, imlecin başlangıç konumunu satırın 
 msgid "If enabled, AIT data is included in recordings."
 msgstr "Etkinse, AIT verileri kayıtlara dahil edilir."
 
+msgid "If enabled, a log will be kept of CEC protocol traffic ('hdmicec.log')"
+msgstr ""
+
 msgid "If enabled, bookmarks will be updated with the new location when you move or copy a recording."
 msgstr "Etkinleştirilirse, bir kaydı taşıdığınızda veya kopyaladığınızda yer imleri yeni konumla güncellenecektir."
 
@@ -5406,6 +5457,9 @@ msgstr "'Evet' olarak ayarlanırsa, ses dosyaları yalnızca tam ekran oynatıc�
 
 msgid "If set to 'yes' signal values (SNR, etc) will be calculated from API V3. This is an old API version that has now been superseded."
 msgstr "'Evet' olarak ayarlanmışsa sinyal değerleri (SNR, vb) API V3'ten hesaplanacaktır. Bu, artık yerini almış eski bir API sürümüdür."
+
+msgid "If set to 'yes' the same commands will be sent to the TV for deep standby events, as are sent during regular standby events."
+msgstr ""
 
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr "Çoklu teslim edilmeyen anahtarlar kullanılıyorsa, DiSEqC komutlarının birden çok kez gönderilmesi gerekir. Zincirdeki eksi olmayan anahtarların sayısını ayarlayın."
@@ -6677,13 +6731,15 @@ msgstr "Film Listesi Menüsü"
 msgid "Moving"
 msgstr "Taşınıyor"
 
-msgid "Moving east ..."
+#, fuzzy
+msgid "Moving east..."
 msgstr "Doğuya hareket ..."
 
 msgid "Moving to position"
 msgstr "Hareket pozisyonu"
 
-msgid "Moving west ..."
+#, fuzzy
+msgid "Moving west..."
 msgstr "Batıya hareket ..."
 
 msgid "Mozambique"
@@ -7022,9 +7078,6 @@ msgstr "Ağ bulunamadı"
 msgid "No packages were upgraded yet. So you can check your network and try again."
 msgstr "Hiç bir paketleri henüz yükseltememiş. Yani ağınızı kontrol edebilirsiniz ve yeniden deneyin."
 
-msgid "No positioner capable frontend found."
-msgstr "Pozisyoner uyumlu uç ekipman bulunamadı."
-
 msgid "No priority"
 msgstr "Öncelik yok"
 
@@ -7057,9 +7110,6 @@ msgstr "Tümüne hayır"
 
 msgid "No transparency"
 msgstr "Şeffaflık yok"
-
-msgid "No tuner is configured for use with a diseqc positioner!"
-msgstr "DiSEqC pozisyoner kullanımı için tuner ayarı yapılmamış!"
 
 msgid ""
 "No tuner is enabled!\n"
@@ -7375,6 +7425,10 @@ msgid "Ordinary"
 msgstr "Sıradan"
 
 msgid "Original"
+msgstr "Orjinal"
+
+#, fuzzy
+msgid "Original audio"
 msgstr "Orjinal"
 
 msgid "OscamSmartcard-Setup"
@@ -8180,6 +8234,10 @@ msgstr "Bir kanal seçmek için OK tuşuna basın."
 msgid "Press OK to select satellites"
 msgstr "Uyduları seçmek için OK tuşuna basın"
 
+#, fuzzy
+msgid "Press OK to select the save location of the log file."
+msgstr "Seçiminde geçiş yapmak için OK tuşuna basın."
+
 msgid "Press OK to select/deselect a CAId."
 msgstr "CAId seçmek/bırakmak için OK tuşuna basın."
 
@@ -8332,6 +8390,10 @@ msgstr "Porto Riko"
 
 msgid "Purge deleted user bouquets"
 msgstr "Silinen kullanıcı buketlerini temizleyin"
+
+#, fuzzy
+msgid "Put A/V receiver to standby too."
+msgstr "Alıcıyı bekleme konumuna al"
 
 msgid "Put TV in standby"
 msgstr "TV yi bekleme konumuna al"
@@ -9284,7 +9346,8 @@ msgstr "Batı'yı ara"
 msgid "Searching"
 msgstr "Aranıyor"
 
-msgid "Searching east ..."
+#, fuzzy
+msgid "Searching east..."
 msgstr "Doğu aranıyor ..."
 
 msgid "Searching for available updates. Please wait..."
@@ -9293,7 +9356,8 @@ msgstr "Güncellemeler kontrol ediliyor. Lütfen bekleyin..."
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "Yeni yüklenen veya kaldırılan paketler aranıyor. Lütfen bekleyin..."
 
-msgid "Searching west ..."
+#, fuzzy
+msgid "Searching west..."
 msgstr "Batı aranıyor ..."
 
 msgid "Second InfoBar"
@@ -10538,6 +10602,9 @@ msgstr "Solomon Adaları"
 msgid "Somalia"
 msgstr "Somali"
 
+msgid "Some TVs do not wake from standby when they receive the 'Image View On' command. If this is the case try the 'Text View On' command instead."
+msgstr ""
+
 msgid "Some error occurred - Please try later"
 msgstr "Bazı hata oluştu - Lütfen daha sonra tekrar deneyin"
 
@@ -10796,6 +10863,10 @@ msgstr "Kademeli doğu"
 
 msgid "Stepped west"
 msgstr "Kademeli batı"
+
+#, fuzzy
+msgid "Steps"
+msgstr "Doğu adımı"
 
 msgid "Stop"
 msgstr "Durdur"
@@ -11063,6 +11134,14 @@ msgstr "Askıya Alma Modu sırasında ekranı açın"
 msgid "Switch on the display during operation."
 msgstr "Çalışma sırasında ekranı açın."
 
+#, fuzzy
+msgid "Switch to Android"
+msgstr "TV kipine geç"
+
+#, fuzzy
+msgid "Switch to HDMI in mode"
+msgstr "TV kipine geç"
+
 msgid "Switch to TV mode"
 msgstr "TV kipine geç"
 
@@ -11325,6 +11404,9 @@ msgstr "Yedek alınamadı. Lütfen başka bir yedekleme konumu seçin."
 
 msgid "The bitrate of the video encoder. Larger value improves quality and increases file size."
 msgstr "Video kodlayıcının bit hızı. Daha büyük değer kaliteyi artırır ve dosya boyutunu artırır."
+
+msgid "The command to wake from standby will be sent multiple times."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -12036,9 +12118,6 @@ msgstr "Giderilir"
 msgid "True"
 msgstr "Doğru"
 
-msgid "Downloading a new packet list. Please wait..."
-msgstr "Paket listesi indiriliyor. Lütfen bekleyin..."
-
 msgid "Trying to download a new updatelist. Please wait..."
 msgstr "Yeni bir güncelleme listesi indirmek için çalışılıyor. Lütfen bekleyin..."
 
@@ -12110,6 +12189,18 @@ msgstr "Türkmenistan"
 
 msgid "Turks and Caicos Islands"
 msgstr "Turks ve Caicos Adaları"
+
+msgid "Turn off HDMI-IN Full screen mode"
+msgstr ""
+
+msgid "Turn off HDMI-IN PiP mode"
+msgstr ""
+
+msgid "Turn on HDMI-IN Full screen mode"
+msgstr ""
+
+msgid "Turn on HDMI-IN PiP mode"
+msgstr ""
 
 msgid "Turn on the power LED during deep standby."
 msgstr "Derin bekleme sırasında güç LED'ini açın."
@@ -12474,9 +12565,6 @@ msgstr "Movielist içinde çöp tenekesi kullanın"
 msgid "Used service scan type"
 msgstr "Kullanılan kanal arama tipi"
 
-msgid "User bouquets"
-msgstr "Kullanıcı buketleri"
-
 #, python-format
 msgid "User Band %d"
 msgstr ""
@@ -12490,6 +12578,9 @@ msgstr "Kullanıcı Feed URL"
 
 msgid "User ID"
 msgstr "Kullanıcı kimliği"
+
+msgid "User bouquets"
+msgstr "Kullanıcı buketleri"
 
 msgid "User defined"
 msgstr "Kullanıcı tanımlı"
@@ -12721,7 +12812,8 @@ msgstr "Sanal Klavye Metni:"
 msgid "Virtual keyboard"
 msgstr "Sanal klavye"
 
-msgid "Visual impaired commentary"
+#, fuzzy
+msgid "Visually impaired commentary"
 msgstr "Görsel engelli yorum"
 
 msgid "Voltage mode"
@@ -12732,6 +12824,9 @@ msgstr "Ses"
 
 msgid "Volume down"
 msgstr "Ses azalt"
+
+msgid "Volume keys on the receiver remote will control the TV volume."
+msgstr ""
 
 msgid "Volume up"
 msgstr "Ses yükselt"
@@ -12769,8 +12864,15 @@ msgstr "Bağlama için bekleniyor"
 msgid "Waiting for partition"
 msgstr "Bölümleme için bekleniyor"
 
+msgid "Wake the receiver from standby when selected wake command is sent from the TV."
+msgstr ""
+
 msgid "Wakeup"
 msgstr "Wake Up"
+
+#, fuzzy
+msgid "Wakeup A/V receiver from standby too."
+msgstr "Bekleme modunda uyandırma alıcısı"
 
 msgid "Wakeup TV from standby"
 msgstr "TV'nin bekleme modundan açılması bekleniyor"
@@ -12944,6 +13046,14 @@ msgstr "Tamam düğmesine etrafında ok düğmelerini etkin olduğunda 'neutrino
 
 msgid "When enabled the left, right, CH+/-, B+/-, P+/- buttons will follow the 'neutrino' style zap controls instead of the enigma2 style."
 msgstr "Etkinleştirildiğinde sol, sağ, CH +/-, B +/-, P +/- düğmeleri enigma2 stili yerine 'nötrino' stil zap kontrollerini izleyecektir."
+
+#, fuzzy
+msgid "When enabled the receiver will automatically return to standby when the TV is turned off."
+msgstr "Alıcı otomatik olarak önceden seçilen ses izini kullanır."
+
+#, fuzzy
+msgid "When enabled the receiver will automatically wake from standby when the TV is turned on."
+msgstr "Alıcı otomatik olarak önceden seçilen ses izini kullanır."
 
 msgid "When enabled the timer from the fallback tuner is imported"
 msgstr "Etkinleştirildiğinde, yedek tunerden gelen zamanlayıcı içe aktarılır"
@@ -13129,11 +13239,17 @@ msgstr "Boş değilse, kayıt başlangıç ??zamanı EPG ile gösterilenden daha
 msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
 msgstr "Boş değilse, kayıt EPG zamanından önce tamamlanır."
 
+msgid "When receiver wakes from standby, it will command the TV to switch to the HDMI input the receiver is connected to."
+msgstr ""
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "16:9 görüntü oranı varsa, resmi büyütme/uzatma için seçebilirsiniz."
 
 msgid "When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture."
 msgstr "4:3 görüntü oranı varsa, resmi büyütme/uzatma için seçebilirsiniz."
+
+msgid "When the receiver wakes from standby or deep standby, it will send a command to the TV to bring it out of standby too."
+msgstr ""
 
 msgid "Where do you want to backup your settings?"
 msgstr "Ayarlarnızın yedeğini nereye almak istiyorsunuz?"
@@ -14411,6 +14527,10 @@ msgstr "kilitlenmedi"
 
 msgid "not running"
 msgstr "calisma yok"
+
+#, fuzzy
+msgid "not set"
+msgstr "test edilmedi"
 
 msgid "not supported"
 msgstr "desteklenmiyor"

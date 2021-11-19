@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-29 22:39+0200\n"
+"POT-Creation-Date: 2021-11-19 13:16+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Budiarno\n"
 "Language-Team: \n"
@@ -19,6 +19,12 @@ msgid ""
 "\n"
 "[User - bouquets (TV)]\n"
 msgstr "User - bouquets"
+
+#, fuzzy
+msgid ""
+"\n"
+" Do you want to switch to Android ?"
+msgstr "Anda ingin memutar DVD pada drive?"
 
 msgid ""
 "\n"
@@ -189,6 +195,10 @@ msgstr ""
 
 #, python-format
 msgid "%.2f GB"
+msgstr ""
+
+#, python-format
+msgid "%.3f MHz"
 msgstr ""
 
 #, python-format
@@ -385,6 +395,14 @@ msgstr "%s (%s)\n"
 
 #, python-format
 msgid "%s - extraction errors."
+msgstr ""
+
+#, python-format
+msgid "%s KSymb/s"
+msgstr ""
+
+#, python-format
+msgid "%s MHz"
 msgstr ""
 
 #, python-format
@@ -745,6 +763,12 @@ msgstr "A"
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr ""
 
+msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
+msgstr "Pewaktu rekam yang telah selesai ingin memproses Rx pada mode standby. Lakukan sekarang?"
+
+msgid "A completed recording timer is about to shut down your receiver. Would you like to proceed?"
+msgstr "Pewaktu rekam yang telah selesai ingin mematikan Rx anda. Matikan sekarang?"
+
 #, python-format
 msgid "A configuration file (%s) has been modified since it was installed. Would you like to keep the modified version?"
 msgstr "Berkas pengaturan (%s) telah diubah sejak ia diinstall. Anda ingin lanjut dgn perubahan anda?"
@@ -759,12 +783,6 @@ msgstr ""
 
 msgid "A file from media is in use!"
 msgstr ""
-
-msgid "A completed recording timer is about to put your receiver in standby mode. Would you like to proceed?"
-msgstr "Pewaktu rekam yang telah selesai ingin memproses Rx pada mode standby. Lakukan sekarang?"
-
-msgid "A completed recording timer is about to shut down your receiver. Would you like to proceed?"
-msgstr "Pewaktu rekam yang telah selesai ingin mematikan Rx anda. Matikan sekarang?"
 
 #, fuzzy
 msgid "A graphical EPG for all services of a specific bouquet"
@@ -789,11 +807,11 @@ msgstr ""
 "Rekaman sedang berjalan.\n"
 "Apa yg ingin anda lakukan?"
 
-msgid "A recording is currently running. Please stop the recording before trying to scan."
-msgstr "Perekaman sedang berjalan saat ini. Mohon hentikan rekaman sebelum mencoba pelacakan."
-
 msgid "A recording is currently running. Please stop the recording before starting a DiSEqC test."
 msgstr "Perekaman sedang berjalan saat ini. Mohon hentikan rekaman sebelum mencoba memulai test DiSEqC."
+
+msgid "A recording is currently running. Please stop the recording before trying to scan."
+msgstr "Perekaman sedang berjalan saat ini. Mohon hentikan rekaman sebelum mencoba pelacakan."
 
 #, fuzzy
 msgid "A repeating event is currently recording. What would you like to do?"
@@ -1190,6 +1208,9 @@ msgstr "Izinkan bahasa teks film sama dengan bahasa audio"
 msgid "Allow subtitles for hearing impaired"
 msgstr "Izinkan teks film untuk tuna rungu"
 
+msgid "Allows the TV remote to be used to control the receiver."
+msgstr ""
+
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr ""
 
@@ -1450,6 +1471,9 @@ msgstr ""
 msgid "Audio channel"
 msgstr "%d kanal ditemukan"
 
+msgid "Audio description for the visually impaired"
+msgstr ""
+
 msgid "Audio language selection 1"
 msgstr "Pemilihan bahasa audio 1"
 
@@ -1506,7 +1530,8 @@ msgstr "Flesh otomatis"
 msgid "Auto focus"
 msgstr "Fokus otomatis"
 
-msgid "Auto focus commencing ..."
+#, fuzzy
+msgid "Auto focus commencing..."
 msgstr "Memulai fokus otomatis ..."
 
 msgid "Auto language selection"
@@ -1546,6 +1571,9 @@ msgstr "Pelacakan Otomatis"
 
 msgid "Automatic scan"
 msgstr "Pelacakan otomatis"
+
+msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
+msgstr ""
 
 msgid "Automatically start timeshift after"
 msgstr "Mulai timeshift otomatis setelah"
@@ -1697,6 +1725,9 @@ msgstr "Buat berkas cadangan penyetelan sistem"
 
 msgid "Basque"
 msgstr "Lapisan"
+
+msgid "Before sending the command to switch the TV to standby, the receiver tests if all the other devices plugged to TV are in standby. If they are not, the 'sourceinactive' command will be sent to the TV instead of the 'standby' command."
+msgstr ""
 
 msgid "Begin time"
 msgstr "Waktu mulai"
@@ -2391,6 +2422,9 @@ msgstr "Pilihan Kanal"
 
 msgid "Command order"
 msgstr "Urutan perintah"
+
+msgid "Command the TV to switch to the correct HDMI input when zap timers activate."
+msgstr ""
 
 #, fuzzy
 msgid "Commit info"
@@ -3330,6 +3364,9 @@ msgstr "Tunda sebelum tombol ulang mulai:"
 msgid "Delay before sequence repeat"
 msgstr "Tunda sebelum pengulangan sekuens"
 
+msgid "Delay between CEC commands when sending a series of commands. Some devices require this delay for correct functioning, usually between 50-150ms."
+msgstr ""
+
 msgid "Delay between diseqc commands"
 msgstr "Tunda antara perintah diseqc"
 
@@ -3880,6 +3917,9 @@ msgstr "Mengunduh"
 msgid "Downloading Image"
 msgstr "Mengunduh"
 
+msgid "Downloading a new packet list. Please wait..."
+msgstr "Mencoba unduh daftar paket yg baru. Mohon tunggu..."
+
 msgid "Downloading plugin information. Please wait..."
 msgstr "Mengunduh informasi plugin. Mohon menunggu..."
 
@@ -4183,6 +4223,10 @@ msgstr "Aktifkan buket multi"
 
 #, fuzzy
 msgid "Enable or disable Ipv6."
+msgstr "Aktifkan pelacakan kabel otomatis"
+
+#, fuzzy
+msgid "Enable or disable using HDMI-CEC."
 msgstr "Aktifkan pelacakan kabel otomatis"
 
 msgid "Enable parental protection"
@@ -5440,8 +5484,15 @@ msgstr "Pengaturan HDMI-CEC"
 msgid "HDMI-CEC Source Inactive"
 msgstr ""
 
+#, fuzzy
+msgid "HDMI-CEC address"
+msgstr "IP address"
+
 msgid "HDMI-CEC setup"
 msgstr "Pengaturan HDMI-CEC"
+
+msgid "HDMI-IN Actions"
+msgstr ""
 
 #, fuzzy
 msgid "HDR10 support"
@@ -5688,6 +5739,9 @@ msgstr ""
 msgid "If enabled, AIT data is included in recordings."
 msgstr "Selalu sertakan ECM dalam merekam"
 
+msgid "If enabled, a log will be kept of CEC protocol traffic ('hdmicec.log')"
+msgstr ""
+
 msgid "If enabled, bookmarks will be updated with the new location when you move or copy a recording."
 msgstr ""
 
@@ -5705,6 +5759,9 @@ msgid "If set as 'Yes', then audiofiles are played in 'list mode' only, instead 
 msgstr ""
 
 msgid "If set to 'yes' signal values (SNR, etc) will be calculated from API V3. This is an old API version that has now been superseded."
+msgstr ""
+
+msgid "If set to 'yes' the same commands will be sent to the TV for deep standby events, as are sent during regular standby events."
 msgstr ""
 
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
@@ -7061,13 +7118,15 @@ msgstr "Movielist menu"
 msgid "Moving"
 msgstr "Moving"
 
-msgid "Moving east ..."
+#, fuzzy
+msgid "Moving east..."
 msgstr "Moving east ..."
 
 msgid "Moving to position"
 msgstr "Moving to position"
 
-msgid "Moving west ..."
+#, fuzzy
+msgid "Moving west..."
 msgstr "Moving west ..."
 
 msgid "Mozambique"
@@ -7428,9 +7487,6 @@ msgstr "Jaringan tidak ditemukan"
 msgid "No packages were upgraded yet. So you can check your network and try again."
 msgstr ""
 
-msgid "No positioner capable frontend found."
-msgstr "No positioner capable frontend found."
-
 msgid "No priority"
 msgstr "Tidak Diprioritaskan"
 
@@ -7463,9 +7519,6 @@ msgstr "Tidak pada semuanya"
 
 msgid "No transparency"
 msgstr "Tanpa transparan"
-
-msgid "No tuner is configured for use with a diseqc positioner!"
-msgstr "No tuner is configured for use with a diseqc positioner!"
 
 msgid ""
 "No tuner is enabled!\n"
@@ -7798,6 +7851,10 @@ msgid "Ordinary"
 msgstr ""
 
 msgid "Original"
+msgstr "Asli"
+
+#, fuzzy
+msgid "Original audio"
 msgstr "Asli"
 
 msgid "OscamSmartcard-Setup"
@@ -8668,6 +8725,10 @@ msgstr "Press OK to select a provider."
 msgid "Press OK to select satellites"
 msgstr ""
 
+#, fuzzy
+msgid "Press OK to select the save location of the log file."
+msgstr "Press OK to toggle the selection."
+
 msgid "Press OK to select/deselect a CAId."
 msgstr "Press OK to select/deselect a CAId."
 
@@ -8814,6 +8875,10 @@ msgstr ""
 #, fuzzy
 msgid "Purge deleted user bouquets"
 msgstr "Anda yakin ingin membersihkan semua buket pengguna yg dihapus?"
+
+#, fuzzy
+msgid "Put A/V receiver to standby too."
+msgstr "Put receiver in standby"
 
 msgid "Put TV in standby"
 msgstr "Put TV in standby"
@@ -9847,7 +9912,8 @@ msgstr "Search west"
 msgid "Searching"
 msgstr "Searching"
 
-msgid "Searching east ..."
+#, fuzzy
+msgid "Searching east..."
 msgstr "Searching east ..."
 
 msgid "Searching for available updates. Please wait..."
@@ -9856,7 +9922,8 @@ msgstr "Searching for available updates. Please wait..."
 msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "Searching for new installed or removed packages. Please wait..."
 
-msgid "Searching west ..."
+#, fuzzy
+msgid "Searching west..."
 msgstr "Searching west ..."
 
 #, fuzzy
@@ -11190,6 +11257,9 @@ msgstr ""
 msgid "Somalia"
 msgstr ""
 
+msgid "Some TVs do not wake from standby when they receive the 'Image View On' command. If this is the case try the 'Text View On' command instead."
+msgstr ""
+
 #, fuzzy
 msgid "Some error occurred - Please try later"
 msgstr "Pembaruan tidak tersedia. Silakan coba lain waktu."
@@ -11459,6 +11529,10 @@ msgstr "Stepped east"
 
 msgid "Stepped west"
 msgstr "Stepped west"
+
+#, fuzzy
+msgid "Steps"
+msgstr "Step east"
 
 msgid "Stop"
 msgstr "Stop"
@@ -11737,6 +11811,14 @@ msgstr ""
 msgid "Switch on the display during operation."
 msgstr ""
 
+#, fuzzy
+msgid "Switch to Android"
+msgstr "Switch to filelist"
+
+#, fuzzy
+msgid "Switch to HDMI in mode"
+msgstr "Switch to filelist"
+
 msgid "Switch to TV mode"
 msgstr ""
 
@@ -12012,6 +12094,9 @@ msgid "The backup failed. Please choose a different backup location."
 msgstr "The backup failed. Please choose a different backup location."
 
 msgid "The bitrate of the video encoder. Larger value improves quality and increases file size."
+msgstr ""
+
+msgid "The command to wake from standby will be sent multiple times."
 msgstr ""
 
 #, fuzzy, python-format
@@ -12718,7 +12803,8 @@ msgstr ""
 msgid "True"
 msgstr ""
 
-msgid "Downloading a new packet list. Please wait..."
+#, fuzzy
+msgid "Trying to download a new updatelist. Please wait..."
 msgstr "Mencoba unduh daftar paket yg baru. Mohon tunggu..."
 
 msgid "Tue"
@@ -12789,6 +12875,18 @@ msgid "Turkmenistan"
 msgstr "Turki"
 
 msgid "Turks and Caicos Islands"
+msgstr ""
+
+msgid "Turn off HDMI-IN Full screen mode"
+msgstr ""
+
+msgid "Turn off HDMI-IN PiP mode"
+msgstr ""
+
+msgid "Turn on HDMI-IN Full screen mode"
+msgstr ""
+
+msgid "Turn on HDMI-IN PiP mode"
 msgstr ""
 
 msgid "Turn on the power LED during deep standby."
@@ -13172,9 +13270,6 @@ msgstr "Gunakan tong sampah di daftar film"
 msgid "Used service scan type"
 msgstr "Used service scan type"
 
-msgid "User bouquets"
-msgstr "Pengguna buket"
-
 #, python-format
 msgid "User Band %d"
 msgstr ""
@@ -13189,6 +13284,9 @@ msgstr "Ditentukan pengguna"
 
 msgid "User ID"
 msgstr ""
+
+msgid "User bouquets"
+msgstr "Pengguna buket"
 
 msgid "User defined"
 msgstr "Ditentukan pengguna"
@@ -13433,7 +13531,7 @@ msgstr "Virtual keyboard"
 msgid "Virtual keyboard"
 msgstr "Virtual keyboard"
 
-msgid "Visual impaired commentary"
+msgid "Visually impaired commentary"
 msgstr ""
 
 msgid "Voltage mode"
@@ -13443,6 +13541,9 @@ msgid "Volume"
 msgstr ""
 
 msgid "Volume down"
+msgstr ""
+
+msgid "Volume keys on the receiver remote will control the TV volume."
 msgstr ""
 
 msgid "Volume up"
@@ -13485,8 +13586,15 @@ msgstr "Waiting for mount"
 msgid "Waiting for partition"
 msgstr "Waiting for partition"
 
+msgid "Wake the receiver from standby when selected wake command is sent from the TV."
+msgstr ""
+
 msgid "Wakeup"
 msgstr "Wakeup"
+
+#, fuzzy
+msgid "Wakeup A/V receiver from standby too."
+msgstr "Wakeup receiver from standby"
 
 msgid "Wakeup TV from standby"
 msgstr "Wakeup TV from standby"
@@ -13663,6 +13771,14 @@ msgstr "Ketika diaktifkan, tombol panah di sekeliling tombol OK akan mengikuti k
 
 msgid "When enabled the left, right, CH+/-, B+/-, P+/- buttons will follow the 'neutrino' style zap controls instead of the enigma2 style."
 msgstr "Ketika diaktifkan; tombol kiri, kanan, CH+/-, B+/-, P+/- akan mengikuti kontrol zap gaya 'neutrino' daripada gaya enigma2."
+
+#, fuzzy
+msgid "When enabled the receiver will automatically return to standby when the TV is turned off."
+msgstr "Ketika diaktifkan, rx akan secara otomatis menggunakan jalur audio yang anda pilih sebelumnya."
+
+#, fuzzy
+msgid "When enabled the receiver will automatically wake from standby when the TV is turned on."
+msgstr "Ketika diaktifkan, rx akan secara otomatis menggunakan jalur audio yang anda pilih sebelumnya."
 
 msgid "When enabled the timer from the fallback tuner is imported"
 msgstr ""
@@ -13850,11 +13966,17 @@ msgstr "Ketika bukan nol, rekaman akan dimulai lebih awal daripada waktu mulai y
 msgid "When nonzero, a recording will stop later than the ending time indicated by the EPG."
 msgstr "Ketika bukan nol, rekaman akan dihentikan lebih lambat daripada waktu berhenti yang ditunjukkan oleh EPG."
 
+msgid "When receiver wakes from standby, it will command the TV to switch to the HDMI input the receiver is connected to."
+msgstr ""
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 
 msgid "When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture."
 msgstr "When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture."
+
+msgid "When the receiver wakes from standby or deep standby, it will send a command to the TV to bring it out of standby too."
+msgstr ""
 
 msgid "Where do you want to backup your settings?"
 msgstr "Where do you want to backup your settings?"
@@ -15150,6 +15272,10 @@ msgstr "tidak dikunci"
 #, fuzzy
 msgid "not running"
 msgstr "Di awal"
+
+#, fuzzy
+msgid "not set"
+msgstr "tidak didukung"
 
 msgid "not supported"
 msgstr "tidak didukung"
