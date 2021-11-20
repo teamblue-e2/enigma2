@@ -211,7 +211,7 @@ class InfoBarDish:
 
 class InfoBarLongKeyDetection:
 	def __init__(self):
-		eActionMap.getInstance().bindAction('', -maxsize - 1, self.detection) #highest prio
+		eActionMap.getInstance().bindAction('', -maxint - 1, self.detection) #highest prio
 		self.LongButtonPressed = False
 
 	#this function is called on every keypress!
