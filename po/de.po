@@ -7,17 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-19 09:51+0100\n"
-"PO-Revision-Date: 2021-11-23 22:17+0100\n"
+"POT-Creation-Date: 2021-11-25 14:40+0100\n"
+"PO-Revision-Date: 2021-11-25 14:36+0100\n"
 "Last-Translator: teamblue-e2 <teamblue@online.de>\n"
 "Language-Team: Teamblue teamblue@online.de\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0\n"
-"X-Poedit-SourceCharset: utf-8\n"
 
 msgid ""
 "\n"
@@ -102,7 +101,7 @@ msgstr ""
 "optionaler Parameter:%s"
 
 msgid " "
-msgstr ""
+msgstr " "
 
 msgid "     no space left on back-up device"
 msgstr "     kein Platz mehr auf dem Backup-Gerät"
@@ -194,6 +193,10 @@ msgstr " oder Bild zusätzlich in eine Datei speichern"
 msgid " unicable LNB input of rotor"
 msgstr " Unicable LNB-Eingang des Rotors"
 
+#, fuzzy
+msgid "$PROJECT_DIR$"
+msgstr "$PROJEKT_DIR$"
+
 #, python-format
 msgid "%(freespace)s %(percent)s free disk space"
 msgstr "%(freespace)s %(percent)s freier Speicherplatz"
@@ -209,6 +212,10 @@ msgstr "%.1f° W"
 #, python-format
 msgid "%.2f GB"
 msgstr "%.2f GB"
+
+#, fuzzy, python-format
+msgid "%.3f MHz"
+msgstr "%.3f MHz"
 
 #, python-format
 msgid "%02d:%02d"
@@ -322,12 +329,12 @@ msgstr[1] "%d Pakete ausgewählt."
 #, python-format
 msgid "%d pixel wide"
 msgid_plural "%d pixels wide"
-msgstr[0] "%d Pixel breit"
+msgstr[0] "%d Bildpunkt groß"
 msgstr[1] "%d Bildpunkte groß"
 
 #, python-format
 msgid "%d sec"
-msgstr "%d sek"
+msgstr "%d Sekunde"
 
 #, python-format
 msgid "%d second"
@@ -406,6 +413,14 @@ msgstr "%s (%s)"
 #, python-format
 msgid "%s - extraction errors."
 msgstr "%s - entpack Fehler."
+
+#, fuzzy, python-format
+msgid "%s KSymb/s"
+msgstr "%s KSymb/s"
+
+#, fuzzy, python-format
+msgid "%s MHz"
+msgstr "%s MHz"
 
 #, python-format
 msgid "%s imported from fallback tuner"
@@ -490,10 +505,10 @@ msgid "..."
 msgstr "..."
 
 msgid "/media/custom"
-msgstr ""
+msgstr "/media/custom"
 
 msgid "/s"
-msgstr ""
+msgstr "%s/%s: %s"
 
 msgid "/usr/share/enigma2 directory"
 msgstr "/usr/share/enigma2 Verzeichnis"
@@ -502,25 +517,40 @@ msgid "/var directory"
 msgstr "/var Verzeichnis"
 
 msgid "0"
-msgstr ""
+msgstr "0"
 
+#, fuzzy
 msgid "0,24,1147,20"
-msgstr ""
+msgstr "0,24,1147,20"
 
 msgid "1"
-msgstr ""
+msgstr "1"
 
+msgid "1024 MB"
+msgstr "1024 MB"
+
+#, fuzzy
 msgid "120,2,30"
-msgstr ""
+msgstr "120,2,30"
 
+#, fuzzy
 msgid "120,28,26"
-msgstr ""
+msgstr "120,28,26"
+
+msgid "128 MB"
+msgstr "128 MB"
 
 msgid "128 MB (recommended for this chipset)"
 msgstr "128 MB (für diesen Chipsatz empfohlen)"
 
 msgid "12V output"
 msgstr "12V Ausgang"
+
+msgid "13 V"
+msgstr "13 V"
+
+msgid "16 MB"
+msgstr "16 MB"
 
 msgid "16:10 Letterbox"
 msgstr "16:10 Letterbox"
@@ -529,7 +559,7 @@ msgid "16:10 PanScan"
 msgstr "16:10 PanScan"
 
 msgid "16:9"
-msgstr ""
+msgstr "16:9"
 
 msgid "16:9 Letterbox"
 msgstr "16:9 Letterbox"
@@ -537,59 +567,79 @@ msgstr "16:9 Letterbox"
 msgid "16:9 always"
 msgstr "immer 16:9"
 
+msgid "16K"
+msgstr "16K"
+
+msgid "18 V"
+msgstr "18 V"
+
 msgid "19"
-msgstr ""
+msgstr "19"
 
 msgid "2"
-msgstr ""
+msgstr "2"
 
+#, fuzzy
 msgid "2,0,80,50"
-msgstr ""
+msgstr "2,0,80,50"
 
 msgid "2048 MB (maximum)"
 msgstr "2048 MB (maximum)"
 
 msgid "23.976"
-msgstr ""
+msgstr "23.976"
 
 msgid "24"
-msgstr ""
+msgstr "24"
 
 msgid "25"
-msgstr ""
+msgstr "25"
+
+msgid "256 MB"
+msgstr "256 MB"
 
 msgid "256 MB (recommended for this chipset)"
 msgstr "256 MB (für diesen Chipsatz empfohlen)"
 
+#, fuzzy
 msgid "26,1,559,28"
-msgstr ""
+msgstr "26,1,559,28"
 
+#, fuzzy
 msgid "265,1,300,23"
-msgstr ""
+msgstr "265,1,300,23"
 
 msgid "29.97"
-msgstr ""
+msgstr "29.97"
 
 msgid "3"
-msgstr ""
+msgstr "3"
 
+#, fuzzy
 msgid "3,0,25,25"
-msgstr ""
+msgstr "3,0,25,25"
 
+#, fuzzy
 msgid "3,5,100,40"
-msgstr ""
+msgstr "3,5,100,40"
 
 msgid "30"
-msgstr ""
+msgstr "30"
 
+msgid "32 MB"
+msgstr "32 MB"
+
+#, fuzzy
 msgid "33,1,694,24"
-msgstr ""
+msgstr "33,1,694,24"
 
+#, fuzzy
 msgid "33,3,22,22"
-msgstr ""
+msgstr "33,3,22,22"
 
+#, fuzzy
 msgid "36,1,694,23"
-msgstr ""
+msgstr "36,1,694,23"
 
 msgid "3D"
 msgstr "3D"
@@ -607,16 +657,18 @@ msgid "3d mode"
 msgstr "3D-Modus"
 
 msgid "4"
-msgstr ""
+msgstr "4"
 
 msgid "400"
 msgstr "400"
 
+#, fuzzy
 msgid "47,1,1147,24"
-msgstr ""
+msgstr "47,1,1147,24"
 
+#, fuzzy
 msgid "47,1,685,24"
-msgstr ""
+msgstr "47,1,685,24"
 
 msgid "4:3 Letterbox"
 msgstr "4:3 Letterbox"
@@ -624,68 +676,95 @@ msgstr "4:3 Letterbox"
 msgid "4:3 PanScan"
 msgstr "4:3 PanScan"
 
+msgid "4K"
+msgstr "4K"
+
 msgid "5"
-msgstr ""
+msgstr "5"
 
+#, fuzzy
 msgid "5,1,250,23"
-msgstr ""
+msgstr "5,1,250,23"
 
+#, fuzzy
 msgid "5,1,520,23"
-msgstr ""
+msgstr "5,1,520,23"
 
+#, fuzzy
 msgid "5,1,530,28"
-msgstr ""
+msgstr "5,1,530,28"
 
+#, fuzzy
 msgid "5,1,630,23"
-msgstr ""
+msgstr "5,1,630,23"
 
+#, fuzzy
 msgid "5,25,630,23"
-msgstr ""
+msgstr "5,25,630,23"
 
+#, fuzzy
 msgid "5,28,530,23"
-msgstr ""
+msgstr "5,28,530,23"
 
+#, fuzzy
 msgid "5,7,16,16"
-msgstr ""
+msgstr "5,7,16,16"
+
+msgid "512 MB"
+msgstr "512 MB"
 
 msgid "512 MB (recommended for this chipset)"
 msgstr "512 MB (für diesen Chipsatz empfohlen)"
 
+#, fuzzy
 msgid "535,1,100,23"
-msgstr ""
+msgstr "535,1,100,23"
 
 msgid "6"
-msgstr ""
+msgstr "6"
 
+#, fuzzy
 msgid "63,1,661,24"
-msgstr ""
+msgstr "63,1,661,24"
+
+msgid "64 MB"
+msgstr "64 MB"
 
 msgid "7"
-msgstr ""
+msgstr "7"
 
+#, fuzzy
 msgid "7,0,40,25"
-msgstr ""
+msgstr "7,0,40,25"
 
 msgid "8"
-msgstr ""
+msgstr "8"
 
+#, fuzzy
 msgid "83,2,30"
-msgstr ""
+msgstr "83,2,30"
 
+#, fuzzy
 msgid "83,28,26"
-msgstr ""
+msgstr "83,28,26"
+
+msgid "8K"
+msgstr "8K"
 
 msgid "9"
-msgstr ""
+msgstr "9"
 
 msgid ": "
-msgstr ""
+msgstr ": "
 
 msgid ": 0000 - default (disabled)"
 msgstr ": 0000 - Standard (deaktiviert)"
 
 msgid "<Current movielist location>"
 msgstr "<Aktuelles Filmlisten-Verzeichnis>"
+
+msgid "<Default Skin>"
+msgstr "<Standard Skin>"
 
 msgid "<Default movie location>"
 msgstr "<Standard Filmlisten-Verzeichnis>"
@@ -700,13 +779,14 @@ msgid "=NO STREAM\n"
 msgstr "=KEIN STREAM\n"
 
 msgid "?"
-msgstr ""
+msgstr "?"
 
+#, fuzzy
 msgid "??"
-msgstr ""
+msgstr "??"
 
 msgid "A"
-msgstr ""
+msgstr "A"
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Eine Prüfung auf Aktualisierungen läuft im Hintergrund, bitte warten Sie einige Minuten und versuchen Sie es erneut."
@@ -844,6 +924,9 @@ msgstr "Favoriten Bearbeitung abbrechen"
 
 msgid "About"
 msgstr "Über"
+
+msgid "About..."
+msgstr "Über..."
 
 msgid "Access point:"
 msgstr "Zugangspunkt:"
@@ -1101,22 +1184,22 @@ msgid "Allocate"
 msgstr "Zuweisen"
 
 msgid "Allocate a number to the physical LNB you are configuring. You will be able to select this LNB again for other satellites (e.g. motorised dishes) to save setting up the same LNB multiple times."
-msgstr "Weisen Sie dem physischen LNB, den Sie konfigurieren, eine Nummer zu. Sie können dieses LNB für andere Satelliten (z. B. motorisierte Schüsseln) wieder auswählen, um die mehrfache Einrichtung desselben LNB zu vermeiden."
+msgstr "Weisen Sie dem physischen LNB, welches Sie konfigurieren, eine Nummer zu. Sie können dieses LNB erneut für andere Satellitenpositionen (z. B. motorisierte Satelliten) auswählen, um den gleichen LNB mehrere Male zu nutzen."
 
 msgid "Allocate unused memory index"
-msgstr "Unbenutzten Speicher Index reservieren"
+msgstr "Zuordnen ungenutzer Rotor Index-Positionen"
 
 msgid "Allow 10bit"
-msgstr "10bit zulassen"
+msgstr "10bit erlauben"
 
 msgid "Allow 12bit"
-msgstr "12bit zulassen"
+msgstr "12bit erlauben"
 
 msgid "Allow quitting movie player with exit"
 msgstr "Movieplayer mit Exit beenden"
 
 msgid "Allow subtitle language to equal audio language"
-msgstr "Erlauben, dass die Untertitelsprache der Audiosprache entspricht"
+msgstr "Erlaube Untertitel der Toneinstellung entsprechend"
 
 msgid "Allow subtitles for hearing impaired"
 msgstr "Erlaube Untertitel für Hörgeschädigte"
@@ -1131,7 +1214,7 @@ msgid "Allows you to enable the twisted log. They contain very detailed informat
 msgstr "Aktivieren Sie das Twisted Log. Diese enthalten sehr detaillierte Informationen von allem was Twisted macht."
 
 msgid "Almost there... "
-msgstr "Fast geschafft.. "
+msgstr "Fast fertig... "
 
 msgid "Alpha"
 msgstr "Alpha"
@@ -1150,12 +1233,6 @@ msgstr "Auch im Standby"
 
 msgid "Alternative"
 msgstr "Alternative"
-
-msgid "Alternative 1"
-msgstr "Alternative 1"
-
-msgid "Alternative 2"
-msgstr "Alternative 2"
 
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "Alternative URLs für DVB-T/C or ATSC"
@@ -2277,6 +2354,9 @@ msgstr "Farbe"
 
 msgid "Color format"
 msgstr "Farbformat"
+
+msgid "Color space"
+msgstr "Farbraum"
 
 msgid "Combined"
 msgstr "Kombiniert"
@@ -4434,6 +4514,9 @@ msgstr "FEC"
 msgid "FEC:"
 msgstr "FEC:"
 
+msgid "FHD"
+msgstr "FHD"
+
 msgid "FIFO"
 msgstr "FIFO"
 
@@ -4891,6 +4974,14 @@ msgstr ""
 "um die neue Sprache übernehmen zu können.\n"
 "Wollen Sie jetzt neu starten?"
 
+msgid ""
+"GUI needs a restart to apply a new skin\n"
+"Do you want to restart the GUI now?"
+msgstr ""
+"Das System muss neu gestartet werden,\n"
+"um das neue Aussehen übernehmen zu können.\n"
+"Wollen Sie jetzt neu starten?"
+
 msgid "Gabon"
 msgstr "Gabon"
 
@@ -5083,6 +5174,9 @@ msgstr "Guinea-Bissau"
 msgid "Guyana"
 msgstr "Guyana"
 
+msgid "HD"
+msgstr "HD"
+
 msgid "HD list"
 msgstr "HD Liste"
 
@@ -5188,9 +5282,8 @@ msgstr "Festplatten Einstellungen"
 msgid "Harddisk standby after"
 msgstr "Festplatten Standby nach"
 
-#, fuzzy
 msgid "HddMount"
-msgstr "Einhängepunkt"
+msgstr "HddMount"
 
 #, python-format
 msgid "Heads: %s (max) %s (current)"
@@ -5208,7 +5301,7 @@ msgstr "Hebräisch"
 msgid "Height"
 msgstr "Höhe"
 
-msgid "Helps setting up your signal"
+msgid "Helps setting up your antenna"
 msgstr "Hilfe zur Einrichtung der Antenne"
 
 msgid "Hidden network"
@@ -5324,6 +5417,9 @@ msgstr "I/O-Priorität für die Skriptausführung"
 
 msgid "IDLE"
 msgstr "IDLE"
+
+msgid "IGNORE"
+msgstr "IGNORIERE"
 
 msgid "INFO"
 msgstr "INFO"
@@ -5709,10 +5805,10 @@ msgid "Interface: "
 msgstr "Schnittstelle: "
 
 msgid "Interface: /dev/"
-msgstr "Schnittstelle: /dev/"
+msgstr "Interface: /dev/"
 
 msgid "Interface:/dev/"
-msgstr "Schnittstelle:/dev/"
+msgstr "Interface:/dev/"
 
 msgid "Interlaced"
 msgstr "Zeilensprungverfahren"
@@ -5771,6 +5867,9 @@ msgstr "Diese Einstellungen übernehmen?"
 
 msgid "Is this video mode ok?"
 msgstr "Diesen Videomodus beibehalten?"
+
+msgid "Is your SCR device externally powered"
+msgstr "Wird ihr SRC Gerät extern mit Strom versorgt"
 
 msgid "Isle of Man"
 msgstr "Isle of Man"
@@ -6075,7 +6174,7 @@ msgstr "Listen Typ"
 msgid "List version %(ver)d, found %(num)d channel"
 msgid_plural "List version %(ver)d, found %(num)d channels"
 msgstr[0] "Listen Version %(ver)d, %(num)d Kanal gefunden"
-msgstr[1] "Listen Version %(ver)d, %(num)d gefundene Kanäle"
+msgstr[1] "Listen Version %(ver)d, %(num)d Kanäle gefunden"
 
 msgid "Listen to the radio..."
 msgstr "Radio hören..."
@@ -6181,6 +6280,9 @@ msgstr "MAC:"
 
 msgid "MB"
 msgstr "MB"
+
+msgid "MHz"
+msgstr "MHz"
 
 msgid "MIME Version"
 msgstr "MIME Version"
@@ -6523,9 +6625,8 @@ msgstr "Der angegebene Mountpunkt ist bereits vorhanden!"
 msgid "MountEdit"
 msgstr "Einhängepunkt Anpassen"
 
-#, fuzzy
 msgid "MountView"
-msgstr "Einhängepunkt Anschauen"
+msgstr "Mount Übersicht"
 
 msgid "Mountpoints"
 msgstr "Einhängepunkt"
@@ -7356,6 +7457,9 @@ msgstr "Gewöhnlich"
 msgid "Original"
 msgstr "Original"
 
+msgid "Original audio"
+msgstr "Originalton"
+
 msgid "OscamSmartcard-Setup"
 msgstr "OscamSmartcard-Setup"
 
@@ -8129,6 +8233,9 @@ msgstr "OK drücken zum Fortfahren."
 msgid "Press OK to activate the selected %s skin."
 msgstr "OK drücken, um den markierten Skin %s zu aktivieren."
 
+msgid "Press OK to activate the selected skin."
+msgstr "OK drücken, um den markierten Skin zu aktivieren."
+
 msgid "Press OK to activate the settings."
 msgstr "OK drücken zum Aktivieren."
 
@@ -8537,13 +8644,13 @@ msgid "Regular file"
 msgstr "Normale Datei"
 
 msgid "Regular;18"
-msgstr ""
+msgstr "Regulär;18"
 
 msgid "Regular;19"
-msgstr ""
+msgstr "Regulär;19"
 
 msgid "Regular;20"
-msgstr ""
+msgstr "Regulär;20"
 
 msgid "Relative"
 msgstr "Relativ"
@@ -8965,6 +9072,9 @@ msgstr "SCR JESS"
 msgid "SCR Unicable"
 msgstr "SCR Unicable"
 
+msgid "SELECTIVE"
+msgstr "SELEKTIV"
+
 msgid "SINGLE LAYER DVD"
 msgstr "SINGLE LAYER DVD"
 
@@ -8982,6 +9092,21 @@ msgstr "SSA Datei"
 
 msgid "SSID:"
 msgstr "SSID:"
+
+msgid ""
+"STB-GUI Skinselector\n"
+"\n"
+"If you experience any problems please contact\n"
+"stephan@reichholf.net\n"
+"\n"
+"© 2006 - Stephan Reichholf"
+msgstr ""
+"STB-GUI Skinselector\n"
+"\n"
+"Bei Problemen wenden Sie sich an\n"
+"stephan@reichholf.net\n"
+"\n"
+"© 2006 - Stephan Reichholf"
 
 msgid "Saint Barthelemy"
 msgstr "Saint Barthelemy"
@@ -9166,9 +9291,8 @@ msgstr "Suche %s"
 msgid "Scan %s band"
 msgstr "Suche %s Band"
 
-#, fuzzy
 msgid "Scan IP"
-msgstr "Suchlauf IP"
+msgstr "IP scannen"
 
 msgid "Scan additional SR"
 msgstr "Durchsuche weitere SR"
@@ -9520,9 +9644,6 @@ msgstr "Wählen Sie den Kanal der diesem Empfänger zugewiesen werden soll. Dies
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch or SCR LNB uses to pass the requested transponder to the tuner."
 msgstr "Wählen Sie die Frequenz die diesem Empfänger zugewiesen werden soll. Dies ist Frequenz welche der SCR Switch oder SCR LNB nutzt um den angeforderten Transponder an den Empfänger zu übertragen."
 
-msgid "Select the User Band to be assigned to this tuner. This is an index into the table of frequencies the SCR switch or SCR LNB uses to pass the requested transponder to the tuner."
-msgstr "Wählen Sie das Benutzerband, das diesem Tuner zugewiesen werden soll. Dies ist ein Index in der Tabelle der Frequenzen, die der SCR-Switch oder SCR-LNB verwendet, um den angeforderten Transponder an den Tuner weiterzuleiten."
-
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Wählen Sie das Zeichen oder die Aktion beim Cursor der Tastatur aus"
 
@@ -9601,14 +9722,14 @@ msgstr "Wählen Sie den Video-Eingang mit den Hoch/Runter-Tasten"
 msgid "Select video mode"
 msgstr "Wählen Sie den Video-Modus"
 
-msgid "Select whether your SCR device is externally powered."
-msgstr "Wird ihr SRC Gerät extern mit Strom versorgt."
-
 msgid "Select wireless network"
 msgstr "Funk-Netzwerk auswählen"
 
 msgid "Select your ATSC provider."
 msgstr "ATSC Anbieter auswählen."
+
+msgid "Select your Skin"
+msgstr "Stil der Benutzeroberfläche wählen"
 
 msgid ""
 "Select your backup device.\n"
@@ -10284,9 +10405,6 @@ msgstr "Side by Side"
 msgid "Sierra Leone"
 msgstr "Sierra Leone"
 
-msgid "Signal Finder"
-msgstr "Signal-Finder"
-
 msgid "Signal OK, proceeding"
 msgstr "Signal OK, fortsetzen"
 
@@ -10361,6 +10479,9 @@ msgstr "Größe absteigend"
 
 msgid "Size:"
 msgstr "Größe:"
+
+msgid "Skin"
+msgstr "Skin"
 
 #, python-format
 msgid "Skin & Resolution: %s (%sx%s)"
@@ -11654,11 +11775,14 @@ msgstr "Diese Option kann für lange HDMI-Kabel nützlich sein."
 msgid "This option set the level of surpression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr "Diese Option bestimmt die Stufe der Unterdrückung von Mosquito Rauschen. Mosquito Rauschen ist eine zufällige Abtaststörung durch zu hohe Kompression. Es geht auf Kosten von Bildeinzelheiten."
 
+msgid "This option sets  the picture contrast."
+msgstr "Diese Option bestimmt den Bildkontrast."
+
 msgid "This option sets the picture brightness."
 msgstr "Diese Option bestimmt die Bildhelligkeit."
 
-msgid "This option sets the picture contrast."
-msgstr "Diese Option bestimmt den Bildkontrast."
+msgid "This option sets the picture color space."
+msgstr "Mit dieser Option kann der Farbraum eingestellt werden."
 
 msgid "This option sets the picture flesh tones."
 msgstr "Diese Option bestimmt das Aussehen von Fleischtönen."
@@ -12018,7 +12142,7 @@ msgid "True"
 msgstr "Richtig"
 
 msgid "Trying to download a new updatelist. Please wait..."
-msgstr "Es wird versucht, eine neue Updateliste herunterzuladen. Bitte warten..."
+msgstr "Versuche eine neue Aktualisierungsliste herunterzuladen. Bitte warten Sie..."
 
 msgid "Tue"
 msgstr "Di"
@@ -12711,6 +12835,9 @@ msgstr "Virtuelle Tastatur Text:"
 
 msgid "Virtual keyboard"
 msgstr "Virtuelle Tastatur"
+
+msgid "Visually impaired commentary"
+msgstr "Kommentar für Sehbehinderte"
 
 msgid "Voltage mode"
 msgstr "Spannungs-Modus"
@@ -13693,6 +13820,9 @@ msgstr "Von rchts aufblasen"
 msgid "[Enigma2 Settings]\n"
 msgstr "[Enigma2 Einstellungen]\n"
 
+msgid "[Harddisk] You system does not support ext4"
+msgstr "[Harddisk] Ihr System unterstützt das ext4 Dateisystem nicht"
+
 msgid "[Image Info]\n"
 msgstr "[Image Info]\n"
 
@@ -13754,10 +13884,10 @@ msgid "all tuners"
 msgstr "Alle Tuner"
 
 msgid "alphabetic"
-msgstr "Alphabetisch"
+msgstr "Alphabet"
 
 msgid "alphabetic reverse"
-msgstr "Umgekehrt alphabetisch"
+msgstr "Umgekehrtes Alphabet"
 
 msgid "alphabetical"
 msgstr "alphabetisch"
@@ -13902,6 +14032,10 @@ msgstr "beschneide Overscan / Letterbox Ränder"
 msgid "codec"
 msgstr "Codec"
 
+#, fuzzy
+msgid "com.jetbrains.python.configuration.PythonContentEntriesConfigurable"
+msgstr "com.jetbrains.python.configuration.PythonContentEntriesConfigurable"
+
 msgid "comedy"
 msgstr "Komödie"
 
@@ -14006,6 +14140,9 @@ msgstr "Aktiviert"
 
 msgid "end cut here"
 msgstr "Schnitt endet hier"
+
+msgid "enigma2"
+msgstr "enigma2"
 
 msgid "enigma2 and network"
 msgstr "Enigma2 und Netzwerk"
@@ -14352,7 +14489,7 @@ msgid "news/weather report"
 msgstr "Nachrichten/Wetterbericht"
 
 msgid "no"
-msgstr "Nein"
+msgstr "nein"
 
 msgid "no CAId selected"
 msgstr "Keine CAID ausgewählt"
@@ -14441,7 +14578,7 @@ msgid "offset is"
 msgstr "Endstellung auf"
 
 msgid "on"
-msgstr "An"
+msgstr "an"
 
 msgid "on READ ONLY medium."
 msgstr "auf dem nicht beschreibbaren Medium."
@@ -14915,7 +15052,7 @@ msgid "without"
 msgstr "ohne"
 
 msgid "x"
-msgstr ""
+msgstr "x"
 
 msgid "xp1000"
 msgstr "xp1000"
