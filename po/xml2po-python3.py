@@ -1,6 +1,5 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from __future__ import print_function
 import sys
 import os
 import string
@@ -50,9 +49,9 @@ if not no_comments:
 
 for arg in sys.argv[1:]:
 	if os.path.isdir(arg):
-		for _file in os.listdir(arg):
-			if _file.endswith(".xml"):
-				parser.parse(os.path.join(arg, _file))
+		for file in os.listdir(arg):
+			if file.endswith(".xml"):
+				parser.parse(os.path.join(arg, file))
 	else:
 		try:
 			parser.parse(arg)
@@ -68,7 +67,7 @@ for arg in sys.argv[1:]:
 		k.replace("\\n", "\"\n\"")
 		if c:
 			for l in c.split('\n'):
-				print(("#. ", l))
+				print("#. ", l)
 		print('msgid "' + k + '"')
 		print('msgstr ""')
 
