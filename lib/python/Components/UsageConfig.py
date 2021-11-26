@@ -464,6 +464,9 @@ def InitUsageConfig():
 		eEPGCache.getInstance().setEpgHistorySeconds(config.epg.histminutes.getValue() * 60)
 	config.epg.histminutes.addNotifier(EpgHistorySecondsChanged)
 
+	choicelist = [("no", _("no")), ("nothing", _("omit")), ("space", _("space")), ("dot", ". "), ("dash", " - "), ("asterisk", " * "), ("hashtag", " # ")]
+	config.epg.replace_newlines = ConfigSelection(default="no", choices=choicelist)
+
 	config.epg.cacheloadsched = ConfigYesNo(default=False)
 	config.epg.cachesavesched = ConfigYesNo(default=False)
 	def EpgCacheLoadSchedChanged(configElement):
