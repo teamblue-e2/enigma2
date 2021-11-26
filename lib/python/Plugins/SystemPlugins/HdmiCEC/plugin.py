@@ -7,9 +7,8 @@ from Components.Sources.StaticText import StaticText
 
 class HdmiCECSetupScreen(Screen, ConfigListScreen):
 	def __init__(self, session):
-		self.skin = HdmiCECSetupScreen.skin
 		Screen.__init__(self, session)
-
+		self.skinName = "Setup"
 		self.setTitle(_("HDMI-CEC setup"))
 
 		from Components.ActionMap import ActionMap
@@ -19,7 +18,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 		self["key_green"] = StaticText(_("OK"))
 		self["key_yellow"] = StaticText(_("Set fixed"))
 		self["key_blue"] = StaticText(_("Clear fixed"))
-		self["fixed_address"] = StaticText()
+		self["description"] = Label("")
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "MenuActions"],
 		{
@@ -116,7 +115,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 		import Components.HdmiCec
 		self.current_address = _("Current CEC address") + ":\t" + Components.HdmiCec.hdmi_cec.getPhysicalAddress()
 		if config.hdmicec.fixed_physical_address.value == "0.0.0.0":
-			self.fixed_address = ""
+			self.fixed_address = _("Press yellow button to set CEC address again")
 		else:
 			self.fixed_address = _("Using fixed address") + ":\t" + config.hdmicec.fixed_physical_address.value
 		self.updateDescription()
