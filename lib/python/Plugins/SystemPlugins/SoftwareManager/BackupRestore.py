@@ -231,6 +231,7 @@ class BackupSelection(Screen):
 
 	def __init__(self, session, title=_("Select files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs):
 		Screen.__init__(self, session)
+		self.configBackupDirs = configBackupDirs
 		self.setTitle(_("Select files/folders to backup"))
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
@@ -289,8 +290,8 @@ class BackupSelection(Screen):
 
 	def saveSelection(self):
 		self.selectedFiles = self["checkList"].getSelectedList()
-		config.plugins.configurationbackup.backupdirs.value = self.selectedFiles
-		config.plugins.configurationbackup.backupdirs.save()
+		self.configBackupDirs.setValue(self.selectedFiles)
+		self.configBackupDirs.save()
 		config.plugins.configurationbackup.save()
 		config.save()
 		self.close(None)
