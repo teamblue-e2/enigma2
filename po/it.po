@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-23 22:47+0100\n"
-"PO-Revision-Date: 2021-11-25 23:40+0100\n"
+"POT-Creation-Date: 2021-11-30 12:24+0100\n"
+"PO-Revision-Date: 2021-11-30 12:39+0100\n"
 "Last-Translator: teamblue-e2 <teamblue-e2@online.de>\n"
 "Language-Team: www.linsat.net <spaeleus@croci.org>\n"
 "Language: it\n"
@@ -202,9 +202,6 @@ msgstr " oppure salvare l'immagine in aggiunta a un file"
 
 msgid " unicable LNB input of rotor"
 msgstr " ingresso LNB unicable del rotore"
-
-msgid "$PROJECT_DIR$"
-msgstr "$PROJECT_DIR$"
 
 #
 #, python-format
@@ -1802,7 +1799,7 @@ msgstr "Backup completato."
 
 #
 msgid "Backup failed."
-msgstr "Backup fallito!"
+msgstr "Backup fallito."
 
 #
 msgid "Backup is running..."
@@ -2501,6 +2498,12 @@ msgstr "Scegli la posizione per arresti anomali e debuglog."
 
 msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
 msgstr "Scegli se le tracce audio multicanale devono essere convertite in PCM o SPDIF."
+
+msgid "Choose whether to scan a single transponder, one satellite or multiple satellites."
+msgstr ""
+
+msgid "Choose whether to scan for free services only or whether to include paid/encrypted services too."
+msgstr ""
 
 msgid "Choose which tuner to configure."
 msgstr "Selezionare il tuner da configurare."
@@ -3320,7 +3323,7 @@ msgstr "Modalità attuale: %s\n"
 
 #
 msgid "Current rotor position: "
-msgstr "Posizione attuale del rotore:"
+msgstr "Posizione attuale del rotore"
 
 #
 msgid "Current settings:"
@@ -6049,9 +6052,6 @@ msgstr "Priorità I/O per l'esecuzione dello script"
 
 msgid "IDLE"
 msgstr "IDLE"
-
-msgid "IGNORE"
-msgstr "IGNORE"
 
 msgid "INFO"
 msgstr "INFORMAZIONE"
@@ -8916,15 +8916,15 @@ msgstr "Si prega di impostare il Tuner A"
 
 #
 msgid "Please set up tuner B"
-msgstr "Configurare il Tuner B."
+msgstr "Configurare il Tuner B"
 
 #
 msgid "Please set up tuner C"
-msgstr "Configurare il Tuner C."
+msgstr "Configurare il Tuner C"
 
 #
 msgid "Please set up tuner D"
-msgstr "Configurare il Tuner D."
+msgstr "Configurare il Tuner D"
 
 #
 msgid "Please set up tuner E"
@@ -9041,7 +9041,7 @@ msgstr "Elenco in caricamento. Attendere..."
 
 #
 msgid "Please wait...almost ready! "
-msgstr "Per favore aspettate... è quasi pronto!"
+msgstr "Per favore aspettate... è quasi pronto! "
 
 #
 msgid "Plugin Browser"
@@ -9065,11 +9065,11 @@ msgstr ""
 
 #
 msgid "Plugin manager activity information"
-msgstr "Informazioni attività gestore plugin..."
+msgstr "Informazioni attività gestore plugin"
 
 #
 msgid "Plugin manager help"
-msgstr "Aiuto gestore plugin..."
+msgstr "Aiuto gestore plugin"
 
 #
 msgid "Plugins"
@@ -9226,7 +9226,7 @@ msgstr ""
 
 #
 msgid "Preparing... Please wait"
-msgstr "In preparazione. Attendere..."
+msgstr "In preparazione. Attendere"
 
 msgid "Press '0' to toggle PiP mode"
 msgstr ""
@@ -9326,6 +9326,9 @@ msgstr "Premere o selezionare il pulsante e poi premere 'OK' per allegare la fun
 
 msgid "Press or select button and then press 'OK' for attach next function or edit attached."
 msgstr "Premere o selezionare il pulsante e poi premere 'OK' per allegare la prossima funzione o modificare allegato."
+
+msgid "Press yellow button to set CEC address again"
+msgstr ""
 
 #
 msgid "Press yellow to set this interface as default interface."
@@ -9886,6 +9889,9 @@ msgstr ""
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Rimuovere i testi per gli audiolesi dai sottotitoli esterni (musica strumentale o suoni ambientali, ad esempio quando suona un campanello o si sente un colpo di pistola)."
 
+msgid "Remove the services on scanned transponders before re-adding services?"
+msgstr ""
+
 #
 msgid "Remove this logfile"
 msgstr "Rimuovere questo file di log"
@@ -10248,9 +10254,6 @@ msgstr "SCR JESS"
 msgid "SCR Unicable"
 msgstr "SCR Unicable"
 
-msgid "SELECTIVE"
-msgstr "SELETTIVO"
-
 msgid "SINGLE LAYER DVD"
 msgstr "DVD singolo strato"
 
@@ -10528,6 +10531,9 @@ msgstr ""
 #
 msgid "Scan state"
 msgstr "Scansione dello stato"
+
+msgid "Scan using transponders on NIT table? 'No' will use transponders in xml file."
+msgstr ""
 
 #
 msgid "Scan wireless networks"
@@ -10986,6 +10992,19 @@ msgstr "Selezionare l'ingresso video con i tasti Sù/Giù"
 #
 msgid "Select video mode"
 msgstr "Selezionare la modalità video"
+
+#
+#, fuzzy
+msgid "Select which satellite to scan."
+msgstr "Selezionare il canale da aggiungere..."
+
+#
+#, fuzzy
+msgid "Select which transponder to scan."
+msgstr "Selezionare il provider da aggiungere..."
+
+msgid "Select which tuner to use for the scan."
+msgstr ""
 
 #
 msgid "Select wireless network"
@@ -15770,9 +15789,6 @@ msgstr "clip overscan / bordi letterbox"
 msgid "codec"
 msgstr "codec"
 
-msgid "com.jetbrains.python.configuration.PythonContentEntriesConfigurable"
-msgstr "com.jetbrains.python.configuration.PythonContentEntriesConfigurable"
-
 msgid "comedy"
 msgstr "commedia"
 
@@ -15896,9 +15912,6 @@ msgstr "Abilitato"
 #
 msgid "end cut here"
 msgstr "Fine taglio"
-
-msgid "enigma2"
-msgstr "enigma2"
 
 #
 msgid "enigma2 and network"

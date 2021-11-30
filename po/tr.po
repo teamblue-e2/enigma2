@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-25 15:42+0100\n"
-"PO-Revision-Date: 2021-11-25 15:41+0100\n"
+"POT-Creation-Date: 2021-11-30 12:24+0100\n"
+"PO-Revision-Date: 2021-11-30 12:41+0100\n"
 "Last-Translator: teamblue-e2 <teamblue-e2@online.de>\n"
 "Language-Team: \n"
 "Language: tr\n"
@@ -121,9 +121,8 @@ msgstr "     yedekleme cihazında yer kalmadı"
 msgid "     no writing permission on back-up device"
 msgstr "     yedekleme cihazında yazma izni yok"
 
-#, fuzzy
 msgid "     wrong back-up destination "
-msgstr "     yanlış yedekleme hedefi"
+msgstr "     yanlış yedekleme hedefi "
 
 #, fuzzy, python-format
 msgid " ('%s') finished successefully."
@@ -223,10 +222,6 @@ msgstr " veya resmi ek olarak bir dosyaya kaydedin"
 #, fuzzy
 msgid " unicable LNB input of rotor"
 msgstr " rotorun unicable LNB girişi"
-
-#, fuzzy
-msgid "$PROJECT_DIR$"
-msgstr "$PROJECT_DIR$"
 
 #, fuzzy, python-format
 msgid "%(freespace)s %(percent)s free disk space"
@@ -1738,7 +1733,7 @@ msgid "Austria"
 msgstr "Avusturya"
 
 msgid "Author: "
-msgstr "Yazar:"
+msgstr "Yazar: "
 
 #, fuzzy
 msgid "Authoring mode"
@@ -2682,6 +2677,12 @@ msgstr "Kilitlenme ve hata ayıklama için konumu seçin."
 #, fuzzy
 msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
 msgstr "Çok kanallı ses parçalarının PCM'ye mi yoksa SPDIF'e mi dönüştürüleceğini seçin."
+
+msgid "Choose whether to scan a single transponder, one satellite or multiple satellites."
+msgstr "Tek bir transponder, bir uydu veya birden fazla uydunun taranmasını seçin."
+
+msgid "Choose whether to scan for free services only or whether to include paid/encrypted services too."
+msgstr "Yalnızca ücretsiz hizmetleri mi tarayacağınızı veya ücretli/şifreli hizmetleri de dahil edip etmeyeceğinizi seçin."
 
 #, fuzzy
 msgid "Choose which tuner to configure."
@@ -6593,10 +6594,6 @@ msgstr "Komut dosyası yürütme için G/Ç önceliği"
 msgid "IDLE"
 msgstr "BOŞTA"
 
-#, fuzzy
-msgid "IGNORE"
-msgstr "GÖRMEZDEN GELMEK"
-
 msgid "INFO"
 msgstr "Bilgi"
 
@@ -10155,6 +10152,9 @@ msgstr "veya seç düğmesine basın ve ardından ekleme işlevi için 'Tamam'a 
 msgid "Press or select button and then press 'OK' for attach next function or edit attached."
 msgstr "veya seç düğmesine basın ve ardından sonraki işlevi eklemek veya eklenenleri düzenlemek için 'Tamam'a basın."
 
+msgid "Press yellow button to set CEC address again"
+msgstr "CEC adresini tekrar ayarlamak için sarı düğmeye basın"
+
 #, fuzzy
 msgid "Press yellow to set this interface as default interface."
 msgstr "Bu arayüzü varsayılan arayüz olarak ayarlamak için sarıya basın."
@@ -10733,6 +10733,9 @@ msgstr "Karasal hizmetleri kaldır"
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "İşitme engelliler için harici altyazılardaki metinleri kaldırın (enstrümantal müzik veya ortam sesleri, örneğin kapı zili çaldığında veya silah sesi duyulduğunda)."
 
+msgid "Remove the services on scanned transponders before re-adding services?"
+msgstr "Hizmetleri yeniden eklemeden önce taranan aktarıcılardaki hizmetler kaldırılsın mı?"
+
 #, fuzzy
 msgid "Remove this logfile"
 msgstr "Bu günlük dosyasını kaldır"
@@ -11117,10 +11120,6 @@ msgid "SCR Unicable"
 msgstr "SCR Unicable"
 
 #, fuzzy
-msgid "SELECTIVE"
-msgstr "SEÇİCİ"
-
-#, fuzzy
 msgid "SINGLE LAYER DVD"
 msgstr "TEK KATMANLI DVD"
 
@@ -11414,6 +11413,9 @@ msgstr "Tarama seçenekleri"
 #, fuzzy
 msgid "Scan state"
 msgstr "Tarama durumu"
+
+msgid "Scan using transponders on NIT table? 'No' will use transponders in xml file."
+msgstr "NIT tablosundaki transponderleri kullanarak tarayın mı? 'Hayır', xml dosyasında aktarıcıları kullanır."
 
 #, fuzzy
 msgid "Scan wireless networks"
@@ -11933,6 +11935,17 @@ msgstr "Yukarı/aşağı düğmeleriyle video girişini seçin"
 #, fuzzy
 msgid "Select video mode"
 msgstr "Video modunu seçin"
+
+#, fuzzy
+msgid "Select which satellite to scan."
+msgstr "Uyduları seçin"
+
+#, fuzzy
+msgid "Select which transponder to scan."
+msgstr "Eklenecek sağlayıcıyı seçin..."
+
+msgid "Select which tuner to use for the scan."
+msgstr "Tarama için hangi tuneri kullanacağınızı seçin."
 
 #, fuzzy
 msgid "Select wireless network"
@@ -17266,10 +17279,6 @@ msgstr "kırp aşırı tarama / mektup kutusu kenarlıkları"
 msgid "codec"
 msgstr "kodek"
 
-#, fuzzy
-msgid "com.jetbrains.python.configuration.PythonContentEntriesConfigurable"
-msgstr "com.jetbrains.python.configuration.PythonContentEntriesYapılandırılabilir"
-
 msgid "comedy"
 msgstr "Komedi"
 
@@ -17396,10 +17405,6 @@ msgstr "etkin"
 #, fuzzy
 msgid "end cut here"
 msgstr "burada kes"
-
-#, fuzzy
-msgid "enigma2"
-msgstr "muamma2"
 
 #, fuzzy
 msgid "enigma2 and network"

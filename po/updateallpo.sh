@@ -60,10 +60,10 @@ languages=("ar" "bg" "ca" "cs" "da" "de" "el" "en" "es" "et" "fa" "fi" "fr" "fy"
 #
 
 printf "Creating temporary file enigma2-py.pot\n"
-find $findoptions .. -name "*.py" -exec xgettext --no-wrap -L Python --from-code=UTF-8 -kpgettext:1c,2 --add-comments="TRANSLATORS:" -d enigma2 -s -o enigma2-py.pot {} \+
+find $findoptions ../* -name "*.py" -exec xgettext --no-wrap -L Python --from-code=UTF-8 -kpgettext:1c,2 --add-comments="TRANSLATORS:" -d enigma2 -s -o enigma2-py.pot {} \+
 $localgsed --in-place enigma2-py.pot --expression=s/CHARSET/UTF-8/
 printf "Creating temporary file enigma2-xml.pot\n"
-find $findoptions .. -name "*.xml" -exec python xml2po.py {} \+ > enigma2-xml.pot
+find $findoptions ../* -name "*.xml" -exec python xml2po.py {} \+ > enigma2-xml.pot
 printf "Merging pot files to create: enigma2.pot\n"
 cat enigma2-py.pot enigma2-xml.pot | msguniq --no-wrap --no-location -o enigma2.pot -
 OLDIFS=$IFS
