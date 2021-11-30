@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-25 14:40+0100\n"
-"PO-Revision-Date: 2021-11-25 14:36+0100\n"
-"Last-Translator: teamblue-e2 <teamblue@online.de>\n"
+"POT-Creation-Date: 2021-11-30 12:24+0100\n"
+"PO-Revision-Date: 2021-11-30 12:26+0100\n"
+"Last-Translator: teamblue-e2 <teamblue-e2@online.de>\n"
 "Language-Team: Teamblue teamblue@online.de\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -192,10 +192,6 @@ msgstr " oder Bild zusätzlich in eine Datei speichern"
 
 msgid " unicable LNB input of rotor"
 msgstr " Unicable LNB-Eingang des Rotors"
-
-#, fuzzy
-msgid "$PROJECT_DIR$"
-msgstr "$PROJEKT_DIR$"
 
 #, python-format
 msgid "%(freespace)s %(percent)s free disk space"
@@ -2267,6 +2263,12 @@ msgstr "Speicherort für Crash- und Debuglogs auswählen."
 
 msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
 msgstr "Wählen Sie, ob Multikanal Ton zu PCM oder SPDIF konvertiert werden sollen."
+
+msgid "Choose whether to scan a single transponder, one satellite or multiple satellites."
+msgstr "Wählen Sie, ob ein einzelner Transponder, ein Satellit oder mehrere Satelliten gescannt werden sollen."
+
+msgid "Choose whether to scan for free services only or whether to include paid/encrypted services too."
+msgstr "Wählen Sie aus, ob nur kostenlose Dienste gescannt werden sollen oder ob auch kostenpflichtige/verschlüsselte Dienste einbezogen werden sollen."
 
 msgid "Choose which tuner to configure."
 msgstr "Wählen Sie den einzustellendenTuner aus."
@@ -5418,9 +5420,6 @@ msgstr "I/O-Priorität für die Skriptausführung"
 msgid "IDLE"
 msgstr "IDLE"
 
-msgid "IGNORE"
-msgstr "IGNORIERE"
-
 msgid "INFO"
 msgstr "INFO"
 
@@ -8289,6 +8288,9 @@ msgstr "Drücken oder wählen Sie die Taste, und danach 'OK' drücken um die Fun
 msgid "Press or select button and then press 'OK' for attach next function or edit attached."
 msgstr "Drücken oder wählen Sie die Taste, dann die 'OK' Taste drücken um die nächste Funktion aufzurufen, oder den Anschluss zu editieren."
 
+msgid "Press yellow button to set CEC address again"
+msgstr "Drücken Sie die gelbe Taste, um die CEC-Adresse erneut einzustellen"
+
 msgid "Press yellow to set this interface as default interface."
 msgstr "Drücken Sie Gelb, um diese Schnittstelle als Standard zu setzen."
 
@@ -8764,6 +8766,9 @@ msgstr "Terrestrischesender entfernen"
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Entfernt Texte für Hörgeschädigte aus externen Untertiteln (z.B. Beschreibungen von Geräuschen)."
 
+msgid "Remove the services on scanned transponders before re-adding services?"
+msgstr "Entfernen Sie die Dienste auf den gescannten Transpondern, bevor Sie die Dienste wieder hinzufügen?"
+
 msgid "Remove this logfile"
 msgstr "Diese Logdatei entfernen"
 
@@ -9072,9 +9077,6 @@ msgstr "SCR JESS"
 msgid "SCR Unicable"
 msgstr "SCR Unicable"
 
-msgid "SELECTIVE"
-msgstr "SELEKTIV"
-
 msgid "SINGLE LAYER DVD"
 msgstr "SINGLE LAYER DVD"
 
@@ -9317,6 +9319,9 @@ msgstr "Suchoptionen"
 
 msgid "Scan state"
 msgstr "Suche Status"
+
+msgid "Scan using transponders on NIT table? 'No' will use transponders in xml file."
+msgstr "Scannen mit Transpondern in der NIT-Tabelle? Nein' verwendet die Transponder in der Xml-Datei."
 
 msgid "Scan wireless networks"
 msgstr "WLAN-Netzwerke suchen"
@@ -9721,6 +9726,15 @@ msgstr "Wählen Sie den Video-Eingang mit den Hoch/Runter-Tasten"
 
 msgid "Select video mode"
 msgstr "Wählen Sie den Video-Modus"
+
+msgid "Select which satellite to scan."
+msgstr "Wählen Sie aus, welcher Satellit gescannt werden soll."
+
+msgid "Select which transponder to scan."
+msgstr "Wählen Sie den zu scannenden Transponder aus."
+
+msgid "Select which tuner to use for the scan."
+msgstr "Wählen Sie aus, welchen Tuner Sie für den Suchlauf verwenden möchten."
 
 msgid "Select wireless network"
 msgstr "Funk-Netzwerk auswählen"
@@ -14032,10 +14046,6 @@ msgstr "beschneide Overscan / Letterbox Ränder"
 msgid "codec"
 msgstr "Codec"
 
-#, fuzzy
-msgid "com.jetbrains.python.configuration.PythonContentEntriesConfigurable"
-msgstr "com.jetbrains.python.configuration.PythonContentEntriesConfigurable"
-
 msgid "comedy"
 msgstr "Komödie"
 
@@ -14140,9 +14150,6 @@ msgstr "Aktiviert"
 
 msgid "end cut here"
 msgstr "Schnitt endet hier"
-
-msgid "enigma2"
-msgstr "enigma2"
 
 msgid "enigma2 and network"
 msgstr "Enigma2 und Netzwerk"
