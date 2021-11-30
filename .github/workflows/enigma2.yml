@@ -115,9 +115,10 @@ jobs:
         sudo sh -c "echo 'config.misc.initialchannelselection=false' >> /usr/local/etc/enigma2/settings"
         sudo sh -c "echo 'config.misc.languageselected=false' >> /usr/local/etc/enigma2/settings"
         sudo sh -c "echo 'config.misc.videowizardenabled=false' >> /usr/local/etc/enigma2/settings"
-    - name: install boxbranding
+    - name: install boxbranding and RcModel
       run: |
         sudo find /tmp/branding-module/BoxBranding -name boxbranding.so -exec cp {} /usr/local/lib/enigma2/python/ \;
+        sudo find /tmp/branding-module/BoxBranding -name RcModel.py -exec cp {} /usr/local/lib/enigma2/python/Components/ \;
     - name: start enigma2
       run: |
         sudo LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib ENIGMA_DEBUG_LVL=5 enigma2
