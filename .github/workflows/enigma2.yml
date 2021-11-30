@@ -119,6 +119,7 @@ jobs:
       run: |
         sudo find /tmp/branding-module/BoxBranding -name boxbranding.so -exec cp {} /usr/local/lib/enigma2/python/ \;
         sudo find /tmp/branding-module/BoxBranding -name RcModel.py -exec cp {} /usr/local/lib/enigma2/python/Components/ \;
+        sudo mkdir -p /home/root/logs/
     - name: start enigma2
       run: |
         sudo LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib ENIGMA_DEBUG_LVL=5 enigma2
