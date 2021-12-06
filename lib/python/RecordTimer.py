@@ -632,7 +632,6 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					RecordTimerEntry.keypress()
 			return True
 
-
 	def setAutoincreaseEnd(self, entry=None):
 		if not self.autoincrease:
 			return False
