@@ -977,10 +977,12 @@ def preferredTunerChoicesUpdate(update=False):
 	SystemInfo["DVB-C_priority_tuner_available"] = len(dvbc_nims) > 3 and any(len(i) > 2 for i in (dvbs_nims, dvbt_nims, atsc_nims))
 	SystemInfo["ATSC_priority_tuner_available"] = len(atsc_nims) > 3 and any(len(i) > 2 for i in (dvbs_nims, dvbc_nims, dvbt_nims))
 
+
 def dropEPGNewLines(text):
 	if config.epg.replace_newlines.value != "no":
 		text = text.replace('\x0a', replaceEPGSeparator(config.epg.replace_newlines.value))
 	return text
+
 
 def replaceEPGSeparator(code):
 	return {"newline": "\n", "2newlines": "\n\n", "space": " ", "dash": " - ", "dot": " . ", "asterisk": " * ", "hashtag": " # ", "nothing": ""}.get(code)
