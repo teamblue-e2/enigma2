@@ -117,7 +117,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 			self["config"].list.sort()
 
 	def SelectionChanged(self):
-		self["description"].setText(self["config"].getCurrent()[2])
+		self["introduction"].setText(self["config"].getCurrent() and len(self["config"].getCurrent()[2]) > 2 and self["config"].getCurrent()[2] or "")
 
 	def PreviewClosed(self):
 		self["config"].invalidate(self["config"].getCurrent())
