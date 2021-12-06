@@ -81,22 +81,25 @@ class CIHelper:
 		if event in (iRecordableService.evEnd, iRecordableService.evStart, None):
 			self.CI_RECORDS_LIST = []
 			if NavigationInstance.instance.getRecordings():
-				for timer in NavigationInstance.instance.RecordTimer.timer_list:
-					if not timer.justplay and timer.state in (1, 2) and timer.record_service and not (timer.record_ecm and not timer.descramble):
-						if timer.service_ref.ref.flags & eServiceReference.isGroup:
-							timerservice = hasattr(timer, "rec_ref") and timer.rec_ref
-							if not timerservice:
-								timerservice = getBestPlayableServiceReference(timer.service_ref.ref, eServiceReference())
-						else:
-							timerservice = timer.service_ref.ref
-						if timerservice:
-							timerstr = timerservice.toString()
-							is_assignment = self.ServiceIsAssigned(timerstr)
-							if is_assignment:
-								if is_assignment[0] not in self.CI_RECORDS_LIST:
-									self.CI_RECORDS_LIST.insert(0, is_assignment[0])
-								if is_assignment not in self.CI_RECORDS_LIST:
-									self.CI_RECORDS_LIST.append(is_assignment)
+				try:
+					for timer in NavigationInstance.instance.RecordTimer.timer_list:
+						if not timer.justplay and timer.state in (1, 2) and timer.record_service and not (timer.record_ecm and not timer.descramble):
+							if timer.service_ref.ref.flags & eServiceReference.isGroup:
+								timerservice = hasattr(timer, "rec_ref") and timer.rec_ref
+								if not timerservice:
+									timerservice = getBestPlayableServiceReference(timer.service_ref.ref, eServiceReference())
+							else:
+								timerservice = timer.service_ref.ref
+							if timerservice:
+								timerstr = timerservice.toString()
+								is_assignment = self.ServiceIsAssigned(timerstr)
+								if is_assignment:
+									if is_assignment[0] not in self.CI_RECORDS_LIST:
+										self.CI_RECORDS_LIST.insert(0, is_assignment[0])
+									if is_assignment not in self.CI_RECORDS_LIST:
+										self.CI_RECORDS_LIST.append(is_assignment)
+				except:
+					pass
 
 	def load_ci_assignment(self, force=False):
 		if self.CI_ASSIGNMENT_LIST is None or force:
