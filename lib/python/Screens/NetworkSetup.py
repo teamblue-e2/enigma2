@@ -614,7 +614,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.encryptionlist.append(("Unencrypted", _("Unencrypted")))
 			self.encryptionlist.append(("WEP", "WEP"))
 			self.encryptionlist.append(("WPA", "WPA"))
-			if not os.path.exists("/tmp/bcm/" + self.iface):
+			if not path.exists("/tmp/bcm/" + self.iface):
 				self.encryptionlist.append(("WPA/WPA2", "WPA/WPA2"))
 			self.encryptionlist.append(("WPA2", "WPA2"))
 			self.weplist = []
