@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-25 15:55+0100\n"
-"PO-Revision-Date: 2021-11-25 16:02+0100\n"
+"POT-Creation-Date: 2021-12-13 14:35+0100\n"
+"PO-Revision-Date: 2021-12-06 10:44+0100\n"
 "Last-Translator: teamblue-e2 <teamblue-e2@online.de>\n"
 "Language-Team: Teamblue teamblue@online.de\n"
 "Language: de\n"
@@ -209,7 +209,7 @@ msgstr "%.1f° W"
 msgid "%.2f GB"
 msgstr "%.2f GB"
 
-#, python-format
+#, fuzzy, python-format
 msgid "%.3f MHz"
 msgstr "%.3f MHz"
 
@@ -410,11 +410,11 @@ msgstr "%s (%s)"
 msgid "%s - extraction errors."
 msgstr "%s - entpack Fehler."
 
-#, python-format
+#, fuzzy, python-format
 msgid "%s KSymb/s"
 msgstr "%s KSymb/s"
 
-#, python-format
+#, fuzzy, python-format
 msgid "%s MHz"
 msgstr "%s MHz"
 
@@ -515,15 +515,18 @@ msgstr "/var Verzeichnis"
 msgid "0"
 msgstr "0"
 
+#, fuzzy
 msgid "0,24,1147,20"
 msgstr "0,24,1147,20"
 
 msgid "1"
 msgstr "1"
 
+#, fuzzy
 msgid "120,2,30"
 msgstr "120,2,30"
 
+#, fuzzy
 msgid "120,28,26"
 msgstr "120,28,26"
 
@@ -554,6 +557,10 @@ msgstr "19"
 msgid "2"
 msgstr "2"
 
+msgid "2 new lines"
+msgstr "2 neue Zeilen"
+
+#, fuzzy
 msgid "2,0,80,50"
 msgstr "2,0,80,50"
 
@@ -572,9 +579,11 @@ msgstr "25"
 msgid "256 MB (recommended for this chipset)"
 msgstr "256 MB (für diesen Chipsatz empfohlen)"
 
+#, fuzzy
 msgid "26,1,559,28"
 msgstr "26,1,559,28"
 
+#, fuzzy
 msgid "265,1,300,23"
 msgstr "265,1,300,23"
 
@@ -584,21 +593,26 @@ msgstr "29.97"
 msgid "3"
 msgstr "3"
 
+#, fuzzy
 msgid "3,0,25,25"
 msgstr "3,0,25,25"
 
+#, fuzzy
 msgid "3,5,100,40"
 msgstr "3,5,100,40"
 
 msgid "30"
 msgstr "30"
 
+#, fuzzy
 msgid "33,1,694,24"
 msgstr "33,1,694,24"
 
+#, fuzzy
 msgid "33,3,22,22"
 msgstr "33,3,22,22"
 
+#, fuzzy
 msgid "36,1,694,23"
 msgstr "36,1,694,23"
 
@@ -623,9 +637,11 @@ msgstr "4"
 msgid "400"
 msgstr "400"
 
+#, fuzzy
 msgid "47,1,1147,24"
 msgstr "47,1,1147,24"
 
+#, fuzzy
 msgid "47,1,685,24"
 msgstr "47,1,685,24"
 
@@ -638,51 +654,63 @@ msgstr "4:3 PanScan"
 msgid "5"
 msgstr "5"
 
+#, fuzzy
 msgid "5,1,250,23"
 msgstr "5,1,250,23"
 
+#, fuzzy
 msgid "5,1,520,23"
 msgstr "5,1,520,23"
 
+#, fuzzy
 msgid "5,1,530,28"
 msgstr "5,1,530,28"
 
+#, fuzzy
 msgid "5,1,630,23"
 msgstr "5,1,630,23"
 
+#, fuzzy
 msgid "5,25,630,23"
 msgstr "5,25,630,23"
 
+#, fuzzy
 msgid "5,28,530,23"
 msgstr "5,28,530,23"
 
+#, fuzzy
 msgid "5,7,16,16"
 msgstr "5,7,16,16"
 
 msgid "512 MB (recommended for this chipset)"
 msgstr "512 MB (für diesen Chipsatz empfohlen)"
 
+#, fuzzy
 msgid "535,1,100,23"
 msgstr "535,1,100,23"
 
 msgid "6"
 msgstr "6"
 
+#, fuzzy
 msgid "63,1,661,24"
 msgstr "63,1,661,24"
 
 msgid "7"
 msgstr "7"
 
+#, fuzzy
 msgid "7,0,40,25"
 msgstr "7,0,40,25"
 
 msgid "8"
 msgstr "8"
 
+#, fuzzy
 msgid "83,2,30"
 msgstr "83,2,30"
 
+#, fuzzy
 msgid "83,28,26"
 msgstr "83,28,26"
 
@@ -713,6 +741,7 @@ msgstr "=KEIN STREAM\n"
 msgid "?"
 msgstr "?"
 
+#, fuzzy
 msgid "??"
 msgstr "??"
 
@@ -1162,11 +1191,13 @@ msgstr "Auch im Standby"
 msgid "Alternative"
 msgstr "Alternative"
 
+#, fuzzy
 msgid "Alternative 1"
-msgstr "Alternative 1"
+msgstr "Alternative"
 
+#, fuzzy
 msgid "Alternative 2"
-msgstr "Alternative 2"
+msgstr "Alternative"
 
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "Alternative URLs für DVB-T/C or ATSC"
@@ -2202,6 +2233,12 @@ msgstr "Speicherort für Crash- und Debuglogs auswählen."
 msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
 msgstr "Wählen Sie, ob Multikanal Ton zu PCM oder SPDIF konvertiert werden sollen."
 
+msgid "Choose whether to scan a single transponder, one satellite or multiple satellites."
+msgstr "Wählen Sie, ob ein einzelner Transponder, ein Satellit oder mehrere Satelliten gescannt werden sollen."
+
+msgid "Choose whether to scan for free services only or whether to include paid/encrypted services too."
+msgstr "Wählen Sie aus, ob nur kostenlose Dienste gescannt werden sollen oder ob auch kostenpflichtige/verschlüsselte Dienste einbezogen werden sollen."
+
 msgid "Choose which tuner to configure."
 msgstr "Wählen Sie den einzustellendenTuner aus."
 
@@ -2427,6 +2464,9 @@ msgstr "Einstellung der Geräte bei denen die Hintergrund-Löschung aktiviert we
 
 msgid "Configure remote control type"
 msgstr "Fernbedienungtyp einstellen"
+
+msgid "Configure separator type used in full description for separate short and extended descriptions."
+msgstr ""
 
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "DiSEqC Modus Einstellung für diesen LNB."
@@ -4762,6 +4802,9 @@ msgstr "Folgendes wird ausgeführt, nachdem Sie OK gedrückt haben!"
 msgid "Force legacy signal stats"
 msgstr "Erzwinge rohe Signaldaten"
 
+msgid "Force zap to recording service in standby"
+msgstr "Zappen zum Aufzeichnungsdienst im Standby erzwingen"
+
 msgid "Format"
 msgstr "Formatieren"
 
@@ -4852,6 +4895,9 @@ msgstr "Frontprozessor-Version: %s"
 
 msgid "Full Image Backup "
 msgstr "Image Vollsicherung "
+
+msgid "Full description separator"
+msgstr "Vollständige Beschreibung Separator"
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if the content aspect ratio does not match the screen ratio)
 msgid "Full screen"
@@ -5218,8 +5264,9 @@ msgstr "Hebräisch"
 msgid "Height"
 msgstr "Höhe"
 
+#, fuzzy
 msgid "Helps setting up your signal"
-msgstr "Hilft bei der Einrichtung Ihres Signals"
+msgstr "Hilfe zur Einrichtung der Antenne"
 
 msgid "Hidden network"
 msgstr "Verstecktes Netzwerk"
@@ -5781,6 +5828,9 @@ msgstr "Diese Einstellungen übernehmen?"
 
 msgid "Is this video mode ok?"
 msgstr "Diesen Videomodus beibehalten?"
+
+msgid "Is your SCR device externally powered"
+msgstr "Wird ihr SRC Gerät extern mit Strom versorgt"
 
 msgid "Isle of Man"
 msgstr "Isle of Man"
@@ -8197,6 +8247,9 @@ msgstr "Drücken oder wählen Sie die Taste, und danach 'OK' drücken um die Fun
 msgid "Press or select button and then press 'OK' for attach next function or edit attached."
 msgstr "Drücken oder wählen Sie die Taste, dann die 'OK' Taste drücken um die nächste Funktion aufzurufen, oder den Anschluss zu editieren."
 
+msgid "Press yellow button to set CEC address again"
+msgstr "Drücken Sie die gelbe Taste, um die CEC-Adresse erneut einzustellen"
+
 msgid "Press yellow to set this interface as default interface."
 msgstr "Drücken Sie Gelb, um diese Schnittstelle als Standard zu setzen."
 
@@ -8671,6 +8724,9 @@ msgstr "Terrestrischesender entfernen"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
 msgstr "Entfernt Texte für Hörgeschädigte aus externen Untertiteln (z.B. Beschreibungen von Geräuschen)."
+
+msgid "Remove the services on scanned transponders before re-adding services?"
+msgstr "Entfernen Sie die Dienste auf den gescannten Transpondern, bevor Sie die Dienste wieder hinzufügen?"
 
 msgid "Remove this logfile"
 msgstr "Diese Logdatei entfernen"
@@ -9208,6 +9264,9 @@ msgstr "Suchoptionen"
 msgid "Scan state"
 msgstr "Suche Status"
 
+msgid "Scan using transponders on NIT table? 'No' will use transponders in xml file."
+msgstr "Scannen mit Transpondern in der NIT-Tabelle? Nein' verwendet die Transponder in der Xml-Datei."
+
 msgid "Scan wireless networks"
 msgstr "WLAN-Netzwerke suchen"
 
@@ -9435,7 +9494,7 @@ msgstr "Kanal auswählen"
 msgid "Select channel to record from"
 msgstr "Kanal auswählen, von dem aufgenommen werden soll"
 
-msgid "Select char for replacing newlines in EPG."
+msgid "Select char for replacing newlines in epg."
 msgstr "Zeichen zum Ersetzen von Zeilenumbrüchen im EPG auswählen."
 
 msgid "Select copy destination for:"
@@ -9534,9 +9593,6 @@ msgstr "Wählen Sie den Kanal der diesem Empfänger zugewiesen werden soll. Dies
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch or SCR LNB uses to pass the requested transponder to the tuner."
 msgstr "Wählen Sie die Frequenz die diesem Empfänger zugewiesen werden soll. Dies ist Frequenz welche der SCR Switch oder SCR LNB nutzt um den angeforderten Transponder an den Empfänger zu übertragen."
 
-msgid "Select the User Band to be assigned to this tuner. This is an index into the table of frequencies the SCR switch or SCR LNB uses to pass the requested transponder to the tuner."
-msgstr "Wählen Sie das Benutzerband, das diesem Tuner zugewiesen werden soll. Dies ist ein Index in der Tabelle der Frequenzen, die der SCR-Switch oder SCR-LNB verwendet, um den angeforderten Transponder an den Tuner weiterzuleiten."
-
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Wählen Sie das Zeichen oder die Aktion beim Cursor der Tastatur aus"
 
@@ -9615,8 +9671,14 @@ msgstr "Wählen Sie den Video-Eingang mit den Hoch/Runter-Tasten"
 msgid "Select video mode"
 msgstr "Wählen Sie den Video-Modus"
 
-msgid "Select whether your SCR device is externally powered."
-msgstr "Wählen Sie aus, ob Ihr SCR-Gerät extern mit Strom versorgt wird."
+msgid "Select which satellite to scan."
+msgstr "Wählen Sie aus, welcher Satellit gescannt werden soll."
+
+msgid "Select which transponder to scan."
+msgstr "Wählen Sie den zu scannenden Transponder aus."
+
+msgid "Select which tuner to use for the scan."
+msgstr "Wählen Sie aus, welchen Tuner Sie für den Suchlauf verwenden möchten."
 
 msgid "Select wireless network"
 msgstr "Funk-Netzwerk auswählen"
@@ -10298,8 +10360,9 @@ msgstr "Side by Side"
 msgid "Sierra Leone"
 msgstr "Sierra Leone"
 
+#, fuzzy
 msgid "Signal Finder"
-msgstr "Signal-Finder"
+msgstr "Signalfinder"
 
 msgid "Signal OK, proceeding"
 msgstr "Signal OK, fortsetzen"
@@ -11550,6 +11613,9 @@ msgstr "Systemplugins in den Downloads anzeigen"
 msgid "This bouquet is protected by a parental control PIN"
 msgstr "Dieses Bouquet ist durch einen Jugendschutz-PIN Code geschützt"
 
+msgid "This can be useful when using the CI(+) module. After the end of the recording, the service will be automatically stopped."
+msgstr "Dies kann bei der Verwendung des CI(+)-Moduls nützlich sein. Nach dem Ende der Aufzeichnung wird der Dienst automatisch beendet."
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "Dieses Feld erlaubt die Suche mit einer zusätzliche Symbolrate bis zu %s."
@@ -11618,7 +11684,7 @@ msgid "This option allows you to configure the Colorimetry for HDR."
 msgstr "Diese Option erlaubt es Colorimetry für HDR einzustellen."
 
 msgid "This option allows you to configure the Colorspace from Auto to RGB"
-msgstr "Diese Option erlaubt es der Farbraum von Auto zu RGB einzustellen"
+msgstr "Diese Option erlaubt es die Farbtiefe von Auto zu RGB einzustellen"
 
 msgid "This option allows you to configure the HDR type."
 msgstr "Diese Option erlaubt es den HDR Typ einzustellen."
@@ -11671,8 +11737,9 @@ msgstr "Diese Option bestimmt die Stufe der Unterdrückung von Mosquito Rauschen
 msgid "This option sets the picture brightness."
 msgstr "Diese Option bestimmt die Bildhelligkeit."
 
+#, fuzzy
 msgid "This option sets the picture contrast."
-msgstr "Mit dieser Option wird der Bildkontrast eingestellt."
+msgstr "Diese Option bestimmt den Bildkontrast."
 
 msgid "This option sets the picture flesh tones."
 msgstr "Diese Option bestimmt das Aussehen von Fleischtönen."
@@ -11828,7 +11895,7 @@ msgid "Time zone settings"
 msgstr "Zeitzonen Einstellungen"
 
 msgid "Timer"
-msgstr "Zeitsteuerung"
+msgstr "Timer"
 
 msgid "Timer Overview"
 msgstr "Timer-Übersicht"
@@ -14356,6 +14423,9 @@ msgstr "Natur/Tiere/Umwelt"
 msgid "never"
 msgstr "Niemals"
 
+msgid "new line"
+msgstr "neue Zeile"
+
 msgid "new media"
 msgstr "Neue Medien"
 
@@ -14439,6 +14509,9 @@ msgstr "ungültiges Frontend"
 msgid "not_tested"
 msgstr "nicht getestet"
 
+msgid "nothing"
+msgstr "nichts"
+
 msgid "nothing connected"
 msgstr "Nichts angeschlossen"
 
@@ -14456,6 +14529,9 @@ msgstr "Aus ofer WPA2 an"
 
 msgid "offset is"
 msgstr "Endstellung auf"
+
+msgid "omit"
+msgstr "auslassen"
 
 msgid "on"
 msgstr "an"
@@ -14711,6 +14787,9 @@ msgstr "Sozial/Geisteswissenschaft"
 
 msgid "softcams"
 msgstr "Softcams"
+
+msgid "space"
+msgstr "Leerzeichen"
 
 msgid "special events"
 msgstr "Sondersendung"
