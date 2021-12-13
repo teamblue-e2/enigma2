@@ -236,6 +236,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 						cableNames = sorted([x[0] for x in nimmanager.getCablesByCountrycode(self.cableCountries.value)])
 					default = self.nimConfig.cable.scan_provider.value in cableNames and self.nimConfig.cable.scan_provider.value or None
 					self.cableRegions = ConfigSelection(default=default, choices=cableNames)
+
 					def updateCableProvider(configEntry):
 						self.nimConfig.cable.scan_provider.value = configEntry.value
 						self.nimConfig.cable.scan_provider.save()
@@ -297,6 +298,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					terrstrialNames = sorted([x[0] for x in nimmanager.getTerrestrialsByCountrycode(self.terrestrialCountries.value)])
 				default = self.nimConfig.terrestrial.value in terrstrialNames and self.nimConfig.terrestrial.value or None
 				self.terrestrialRegions = ConfigSelection(default=default, choices=terrstrialNames)
+
 				def updateTerrestrialProvider(configEntry):
 					self.nimConfig.terrestrial.value = configEntry.value
 					self.nimConfig.terrestrial.save()
@@ -409,7 +411,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					warning_text = _("Warning: the second input of this dual tuner may not support SCR LNBs. ")
 				self.advancedUnicable = getConfigListEntry(self.indent % ("%s%s" % ("SCR (Unicable/JESS) ", _("type"))), currLnb.unicable, warning_text + _("Select the type of Single Cable Reception device you are using."))
 				self.list.append(self.advancedUnicable)
-				self.externallyPowered = getConfigListEntry(self.indent % _("Externally powered"), currLnb.powerinserter, _("Select whether your SCR device is externally powered."))
+				self.externallyPowered = getConfigListEntry(self.indent % _("Externally powered"), currLnb.powerinserter, _("Is your SCR device externally powered"))
 				if currLnb.unicable.value == "unicable_user":
 					self.advancedFormat = getConfigListEntry(self.indent % _("Format"), currLnb.format, _("Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."))
 					self.advancedPosition = getConfigListEntry(self.indent % _("Position"), currLnb.positionNumber, _("Only change this setting if you are using a SCR device that has been reprogrammed with a custom programmer. For further information check with the person that reprogrammed the device."))
@@ -428,7 +430,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				else:
 					self.advancedManufacturer = getConfigListEntry(self.indent % _("Manufacturer"), currLnb.unicableManufacturer, _("Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."))
 					self.advancedType = getConfigListEntry(self.indent % _("Model"), currLnb.unicableProduct, _("Select the model number of your SCR device. If the model number is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."))
-					self.advancedSCR = getConfigListEntry(self.indent % _("Channel"), currLnb.scrList, _("Select the User Band to be assigned to this tuner. This is an index into the table of frequencies the SCR switch or SCR LNB uses to pass the requested transponder to the tuner."))
+					self.advancedSCR = getConfigListEntry(self.indent % _("Channel"), currLnb.scrList, _("Select the User Band channel to be assigned to this tuner. This is an index into the table of frequencies the SCR switch or SCR LNB uses to pass the requested transponder to the tuner."))
 					self.advancedPosition = getConfigListEntry(self.indent % _("Position"), currLnb.positionNumber, _("Only change this setting if you are using a SCR device that has been reprogrammed with a custom programmer. For further information check with the person that reprogrammed the device."))
 					self.list.append(self.advancedManufacturer)
 					self.list.append(self.advancedType)
@@ -450,8 +452,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					if self.nimConfig.advanced.unicableconnected.value:
 						self.nimConfig.advanced.unicableconnectedTo.setChoices(choices)
 						self.list.append(getConfigListEntry(self.indent % _("Connected to"), self.nimConfig.advanced.unicableconnectedTo, _("Select the tuner to which the signal cable of the SCR device is connected.")))
-
-			else:	#kein Unicable
+			else:	#no Unicable
 				self.list.append(getConfigListEntry(self.indent % _("Voltage mode"), Sat.voltage, _("Select 'polarisation' if using a 'universal' LNB, otherwise consult your LNB spec sheet.")))
 				self.list.append(getConfigListEntry(self.indent % _("Increased voltage"), currLnb.increased_voltage))
 				self.list.append(getConfigListEntry(self.indent % _("Tone mode"), Sat.tonemode, _("Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec sheet.")))
@@ -870,8 +871,8 @@ class NimSelection(Screen):
 							if len(satnames) <= 2:
 								text += ", ".join(satnames)
 							elif len(satnames) > 2:
-								# we need a newline here, since multi content lists don't support automtic line wrapping
-								text += "%s,\n         %s" % (", ".join(satnames[:2]), ",".join(satnames[2:]))
+								# basic info - orbital positions only
+								text += ', '.join(sat.split()[0] for sat in satnames)
 						elif nimConfig.diseqcMode.value in ("positioner", "positioner_select"):
 							text = "%s: " % {"positioner": _("Positioner"), "positioner_select": _("Positioner (selecting satellites)")}[nimConfig.diseqcMode.value]
 							if nimConfig.positionerMode.value == "usals":

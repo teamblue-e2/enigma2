@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-25 15:55+0100\n"
+"POT-Creation-Date: 2021-12-13 14:35+0100\n"
 "PO-Revision-Date: 2020-02-29 08:52+0200\n"
 "Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
 "Language-Team: Adga (C) <adga45@gmail.com>\n"
@@ -548,6 +548,10 @@ msgstr "16:9"
 
 msgid "2"
 msgstr ""
+
+#, fuzzy
+msgid "2 new lines"
+msgstr "rodyti informacijos eilutę"
 
 msgid "2,0,80,50"
 msgstr ""
@@ -2316,6 +2320,12 @@ msgstr ""
 msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
 msgstr ""
 
+msgid "Choose whether to scan a single transponder, one satellite or multiple satellites."
+msgstr ""
+
+msgid "Choose whether to scan for free services only or whether to include paid/encrypted services too."
+msgstr ""
+
 msgid "Choose which tuner to configure."
 msgstr ""
 
@@ -2564,6 +2574,9 @@ msgstr ""
 #, fuzzy
 msgid "Configure remote control type"
 msgstr "Tėvų kontrolės rūšis"
+
+msgid "Configure separator type used in full description for separate short and extended descriptions."
+msgstr ""
 
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr ""
@@ -5096,6 +5109,9 @@ msgstr "Kitos užduotys bus atliktos po to, kai jūs paspausite OK!"
 msgid "Force legacy signal stats"
 msgstr ""
 
+msgid "Force zap to recording service in standby"
+msgstr ""
+
 msgid "Format"
 msgstr "Formatas"
 
@@ -5191,6 +5207,9 @@ msgid "Frontprocessor version: %s"
 msgstr "Priekinio procesoriaus versija: %d"
 
 msgid "Full Image Backup "
+msgstr ""
+
+msgid "Full description separator"
 msgstr ""
 
 #. TRANSLATORS: (aspect ratio policy: display as fullscreen, even if the content aspect ratio does not match the screen ratio)
@@ -6216,6 +6235,9 @@ msgstr "Naudoti šiuos nustatymus?"
 #, fuzzy
 msgid "Is this video mode ok?"
 msgstr "Šis vaizdo būdas geras?"
+
+msgid "Is your SCR device externally powered"
+msgstr ""
 
 #, fuzzy
 msgid "Isle of Man"
@@ -8877,6 +8899,9 @@ msgstr ""
 msgid "Press or select button and then press 'OK' for attach next function or edit attached."
 msgstr ""
 
+msgid "Press yellow button to set CEC address again"
+msgstr ""
+
 msgid "Press yellow to set this interface as default interface."
 msgstr "Spauskite geltoną, kad nustatyti šią sąsają kaip numatytąją."
 
@@ -9403,6 +9428,9 @@ msgid "Remove terrestrial services"
 msgstr "Apsaugoti kanalus"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
+msgstr ""
+
+msgid "Remove the services on scanned transponders before re-adding services?"
 msgstr ""
 
 #, fuzzy
@@ -10002,6 +10030,9 @@ msgstr "Išplėstiniai nustatymai"
 msgid "Scan state"
 msgstr "paieškos eiga"
 
+msgid "Scan using transponders on NIT table? 'No' will use transponders in xml file."
+msgstr ""
+
 #, fuzzy
 msgid "Scan wireless networks"
 msgstr "Skanuoti Bevielį Tinklą"
@@ -10255,7 +10286,8 @@ msgstr "Išsirinkite filmą"
 msgid "Select channel to record from"
 msgstr "Pasirinkite kanalą įrašymui"
 
-msgid "Select char for replacing newlines in EPG."
+#, fuzzy
+msgid "Select char for replacing newlines in epg."
 msgstr "Pasirinkite simbolį, skirtą pakeisti naujas linijas EPG."
 
 msgid "Select copy destination for:"
@@ -10366,9 +10398,6 @@ msgstr ""
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch or SCR LNB uses to pass the requested transponder to the tuner."
 msgstr ""
 
-msgid "Select the User Band to be assigned to this tuner. This is an index into the table of frequencies the SCR switch or SCR LNB uses to pass the requested transponder to the tuner."
-msgstr ""
-
 msgid "Select the character or action under the keyboard cursor"
 msgstr ""
 
@@ -10452,7 +10481,15 @@ msgstr "Išsirinkite vaizdo įėjimą su mygtukais aukštyn/žemyn"
 msgid "Select video mode"
 msgstr "Išsirinkite vaizdo būdą"
 
-msgid "Select whether your SCR device is externally powered."
+#, fuzzy
+msgid "Select which satellite to scan."
+msgstr "Išsirinkite kanalą, kurį norite pridėti..."
+
+#, fuzzy
+msgid "Select which transponder to scan."
+msgstr "Išsirinkite tiekėją, kurį norite pridėti..."
+
+msgid "Select which tuner to use for the scan."
 msgstr ""
 
 msgid "Select wireless network"
@@ -12571,6 +12608,9 @@ msgstr ""
 
 msgid "This bouquet is protected by a parental control PIN"
 msgstr "Šis paketas apsaugotas tėvų kontrolės PIN kodu"
+
+msgid "This can be useful when using the CI(+) module. After the end of the recording, the service will be automatically stopped."
+msgstr ""
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
@@ -15440,6 +15480,10 @@ msgstr ""
 msgid "never"
 msgstr "niekada"
 
+#, fuzzy
+msgid "new line"
+msgstr "rodyti informacijos eilutę"
+
 msgid "new media"
 msgstr ""
 
@@ -15528,6 +15572,10 @@ msgstr "Nerastas palydovas!!"
 msgid "not_tested"
 msgstr ""
 
+#, fuzzy
+msgid "nothing"
+msgstr "nieko nedaryti"
+
 msgid "nothing connected"
 msgstr "niekas nepajungta"
 
@@ -15544,6 +15592,9 @@ msgid "off or wpa2 on"
 msgstr ""
 
 msgid "offset is"
+msgstr ""
+
+msgid "omit"
 msgstr ""
 
 msgid "on"
@@ -15810,6 +15861,10 @@ msgstr ""
 #, fuzzy
 msgid "softcams"
 msgstr "Įdiegiama programinė įranga..."
+
+#, fuzzy
+msgid "space"
+msgstr "Spalvų formatas"
 
 msgid "special events"
 msgstr ""
