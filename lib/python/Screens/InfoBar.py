@@ -45,7 +45,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self["actions"] = HelpableActionMap(self, "InfobarActions",
+		self["actions"] = HelpableActionMap(self, ["InfobarActions"],
 			{
 				"showMovies": (self.showMovies, _("Play recorded movies...")),
 				"showRadio": (self.showRadio, _("Show the radio player...")),
@@ -176,7 +176,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 	def __init__(self, session, service, slist=None, lastservice=None, infobar=None):
 		Screen.__init__(self, session)
 
-		self["actions"] = HelpableActionMap(self, "MoviePlayerActions",
+		self["actions"] = HelpableActionMap(self, ["MoviePlayerActions"],
 			{
 				"leavePlayer": (self.leavePlayer, _("leave movie player...")),
 				"leavePlayerOnExit": (self.leavePlayerOnExit, _("leave movie player...")),
@@ -184,7 +184,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 				"channelDown": (self.channelDown, _("when PiPzap enabled zap channel down...")),
 			})
 
-		self["DirectionActions"] = HelpableActionMap(self, "DirectionActions",
+		self["DirectionActions"] = HelpableActionMap(self, ["DirectionActions"],
 			{
 				"left": self.left,
 				"right": self.right
