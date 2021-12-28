@@ -6,7 +6,7 @@ from Components.ActionMap import HelpableActionMap
 from Components.GUIComponent import GUIComponent
 from Components.EpgList import Rect
 from Components.Sources.Event import Event
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest, MultiContentEntryPixmapAlphaBlend
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend
 from Components.TimerList import TimerList
 from Components.Renderer.Picon import getPiconName
 from Components.Sources.ServiceEvent import ServiceEvent
@@ -491,7 +491,7 @@ class EPGList(GUIComponent):
 
 		res = [None]
 		if bgpng is not None:    # bacground for service rect
-			res.append(MultiContentEntryPixmapAlphaTest(
+			res.append(MultiContentEntryPixmapAlphaBlend(
 					pos=(r1.x + self.serviceBorderVerWidth, r1.y + self.serviceBorderHorWidth),
 					size=(r1.w - 2 * self.serviceBorderVerWidth, r1.h - 2 * self.serviceBorderHorWidth),
 					png=bgpng,
@@ -524,7 +524,7 @@ class EPGList(GUIComponent):
 			if picon != "":
 				displayPicon = LoadPixmap(picon)
 			if displayPicon is not None:
-				res.append(MultiContentEntryPixmapAlphaTest(
+				res.append(MultiContentEntryPixmapAlphaBlend(
 					pos=(r1.x + self.serviceBorderVerWidth + self.number_width, r1.y + self.serviceBorderHorWidth),
 					size=(piconWidth, piconHeight),
 					png=displayPicon,
@@ -599,7 +599,7 @@ class EPGList(GUIComponent):
 					bgpng = self.othEvPix
 
 				if bgpng is not None:
-					res.append(MultiContentEntryPixmapAlphaTest(
+					res.append(MultiContentEntryPixmapAlphaBlend(
 						pos=(left + xpos + self.eventBorderVerWidth, top + self.eventBorderHorWidth),
 						size=(ewidth - 2 * self.eventBorderVerWidth, height - 2 * self.eventBorderHorWidth),
 						png=bgpng,
@@ -639,7 +639,7 @@ class EPGList(GUIComponent):
 
 		else:
 			if selected and self.selEvPix:
-				res.append(MultiContentEntryPixmapAlphaTest(
+				res.append(MultiContentEntryPixmapAlphaBlend(
 					pos=(r2.x + self.eventBorderVerWidth, r2.y + self.eventBorderHorWidth),
 					size=(r2.w - 2 * self.eventBorderVerWidth, r2.h - 2 * self.eventBorderHorWidth),
 					png=self.selEvPix,
@@ -840,10 +840,10 @@ class TimelineText(GUIComponent):
 			xpos = 0 # eventLeft
 			for x in range(0, num_lines):
 				res.append(MultiContentEntryText(
-					pos =(service_rect.width() + xpos - tlMove, 0),
+					pos=(service_rect.width() + xpos - tlMove, 0),
 					size=(incWidth, itemHeight),
 					font=0, flags=tlFlags,
-					text =strftime("%H:%M", localtime(time_base + x * timeStepsCalc)),
+					text=strftime("%H:%M", localtime(time_base + x * timeStepsCalc)),
 					color=self.foreColor, color_sel=self.foreColor,
 					backcolor=self.backColor, backcolor_sel=self.backColor))
 				line = time_lines[x]
@@ -1134,7 +1134,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 	def showSetup(self):
 		self.showhideWindow(True)
 		if self.protectContextMenu and config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.context_menus.value:
-			self.session.openWithCallback(self.protectResult, PinInput, pinList=[x.value for x in config.ParentalControl.servicepin], triesEntry=config.ParentalControl.retries.servicepin, title=_("Please enter the correct pin code"), windowTitle=_("Enter pin code"))
+			self.session.openWithCallback(self.protectResult, PinInput, pinList=[x.value for x in config.ParentalControl.servicepin], triesEntry=config.ParentalControl.retries.servicepin, title=_("Please enter the correct PIN code"), windowTitle=_("Enter PIN code"))
 		else:
 			self.protectResult(True)
 
@@ -1143,7 +1143,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			self.session.openWithCallback(self.onSetupClose, GraphMultiEpgSetup)
 			self.protectContextMenu = False
 		elif answer is not None:
-			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
+			self.session.openWithCallback(self.close, MessageBox, _("The PIN code you entered is wrong."), MessageBox.TYPE_ERROR)
 
 	def onSetupClose(self, ignore=-1):
 		l = self["list"]
@@ -1293,7 +1293,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 	def disableTimer(self, timer, state, repeat=False, record=False):
 		if repeat:
 			if record:
-				title_text = _("Repeating event currently recording.\nWhat do you want to do?")
+				title_text = _("A repeating event is currently recording. What would you like to do?")
 				menu = [(_("Stop current event but not coming events"), "stoponlycurrent"), (_("Stop current event and disable coming events"), "stopall")]
 				if not timer.disabled:
 					menu.append((_("Don't stop current event but disable coming events"), "stoponlycoming"))

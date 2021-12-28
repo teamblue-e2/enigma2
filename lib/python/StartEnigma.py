@@ -133,6 +133,7 @@ try:
 		reactor.run(installSignalHandlers=False)
 except ImportError:
 	print "[StartEnigma] Twisted not available"
+
 	def runReactor():
 		enigma.runMainloop()
 
@@ -741,7 +742,7 @@ try:
 	Components.ParentalControl.parentalControl.save()
 except:
 	print '[StartEnigma] EXCEPTION IN PYTHON STARTUP CODE:'
-	print '-'*60
+	print '-' * 60
 	print_exc(file=stdout)
 	enigma.quitMainloop(5)
 	print '-' * 60

@@ -61,7 +61,7 @@ class CIHelper:
 										if not self.CI_ASSIGNMENT_SERVICES_LIST.get(ref, False):
 											self.CI_ASSIGNMENT_SERVICES_LIST[ref] = read_slot
 
-						if read_slot is not False and (read_services or read_providers or usingcaid):
+						if read_slot is not False:
 							self.CI_ASSIGNMENT_LIST.append((int(read_slot), (read_services, read_providers, usingcaid)))
 				except:
 					print "[CI_ASSIGNMENT %d] ERROR parsing xml..." % ci
@@ -80,7 +80,7 @@ class CIHelper:
 	def ciRecordEvent(self, service, event):
 		if event in (iRecordableService.evEnd, iRecordableService.evStart, None):
 			self.CI_RECORDS_LIST = []
-			if NavigationInstance.instance.getRecordings():
+			if NavigationInstance.instance.getRecordings() and hasattr(NavigationInstance.instance, "RecordTimer") and hasattr(NavigationInstance.instance.RecordTimer, "timer_list"):
 				for timer in NavigationInstance.instance.RecordTimer.timer_list:
 					if not timer.justplay and timer.state in (1, 2) and timer.record_service and not (timer.record_ecm and not timer.descramble):
 						if timer.service_ref.ref.flags & eServiceReference.isGroup:

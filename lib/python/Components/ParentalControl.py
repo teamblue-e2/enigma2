@@ -63,7 +63,7 @@ class ParentalControl:
 
 	def serviceMethodWrapper(self, service, method, *args):
 		if TYPE_BOUQUET in service:
-			method( service, TYPE_BOUQUET, *args)
+			method(service, TYPE_BOUQUET, *args)
 			servicelist = self.readServicesFromBouquet(service, "C")
 			for ref in servicelist:
 				sRef = str(ref[0])
@@ -102,7 +102,7 @@ class ParentalControl:
 				return True
 			self.callback = callback
 			service = ref.toCompareString()
-			title = 'FROM BOUQUET "userbouquet.' in service and _("this bouquet is protected by a parental control pin") or _("this service is protected by a parental control pin")
+			title = 'FROM BOUQUET "userbouquet.' in service and _("This bouquet is protected by a parental control PIN") or _("This service is protected by a parental control PIN")
 			if session:
 				Notifications.RemovePopup("Parental control")
 				if self.PinDlg:
@@ -187,7 +187,7 @@ class ParentalControl:
 			self.hideBlacklist()
 			self.callback(ref=service)
 		elif result == False:
-			messageText = _("The pin code you entered is wrong.")
+			messageText = _("The PIN code you entered is wrong.")
 			if self.session:
 				self.session.open(MessageBox, messageText, MessageBox.TYPE_INFO, timeout=5)
 			else:

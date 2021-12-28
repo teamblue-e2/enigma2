@@ -26,7 +26,7 @@ class InputDeviceSelection(Screen, HelpableScreen):
 			<convert type="TemplatedMultiContent">
 			<!--  device, description, devicepng, divpng  -->
 							{"template": [
-									MultiContentEntryPixmapAlphaTest(pos = (2, 8), size = (54, 54), png = 2), # index 3 is the interface pixmap
+									MultiContentEntryPixmapAlphaBlend(pos = (2, 8), size = (54, 54), png = 2), # index 3 is the interface pixmap
 									MultiContentEntryText(pos = (65, 6), size = (450, 54), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_CENTER|RT_WRAP, text = 1), # index 1 is the interfacename
 								],
 							"fonts": [gFont("Regular", 28),gFont("Regular", 20)],
@@ -70,11 +70,7 @@ class InputDeviceSelection(Screen, HelpableScreen):
 		self.list = []
 		self["list"] = List(self.list)
 		self.updateList()
-		self.onLayoutFinish.append(self.layoutFinished)
 		self.onClose.append(self.cleanup)
-
-	def layoutFinished(self):
-		self.setTitle(_("Select input device"))
 
 	def cleanup(self):
 		self.currentIndex = 0
@@ -159,7 +155,6 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 		self.inputDevice = device
 		iInputDevices.currentDevice = self.inputDevice
 		self.onChangedEntry = []
-		self.setup_title = _("Input device setup")
 		self.isStepSlider = None
 		self.enableEntry = None
 		self.repeatEntry = None
@@ -188,7 +183,6 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 		self.onClose.append(self.cleanup)
 
 	def layoutFinished(self):
-		self.setTitle(self.setup_title)
 		listWidth = self["config"].l.getItemSize().width()
 		# use 20% of list width for sliders
 		self["config"].l.setSeperation(int(listWidth * .8))
@@ -207,7 +201,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 		label = _("Delay before key repeat starts:")
 		cmd = "self.delayEntry = getConfigListEntry(label, config.inputDevices." + self.inputDevice + ".delay)"
 		exec cmd
-		label = _("Devicename:")
+		label = _("Device name:")
 		cmd = "self.nameEntry = getConfigListEntry(label, config.inputDevices." + self.inputDevice + ".name)"
 		exec cmd
 		if self.enableEntry:

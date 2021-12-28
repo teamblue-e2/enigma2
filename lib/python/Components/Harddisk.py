@@ -229,8 +229,8 @@ class Harddisk:
 		if cap == 0:
 			return ""
 		if cap < 1000:
-			return _("%03d MB") % cap
-		return _("%d.%03d GB") % (cap / 1000, cap % 1000)
+			return _("%d MB") % cap
+		return _("%.2f GB") % (cap / 1000.0)
 
 	def model(self):
 		try:
@@ -239,7 +239,7 @@ class Harddisk:
 			elif self.device[:2] == "sd":
 				vendor = readFile(self.sysfsPath('device/vendor'))
 				model = readFile(self.sysfsPath('device/model'))
-				return vendor + '(' + model + ')'
+				return vendor + ' (' + model + ')'
 			elif self.device.startswith('mmcblk'):
 				return readFile(self.sysfsPath('device/name'))
 			else:
@@ -369,6 +369,9 @@ class Harddisk:
 			h.write(zero)
 		h.close()
 
+	def createMovieDir(self):
+		os.mkdir(os.path.join(self.mount_path, 'movie'))
+
 	def createInitializeJob(self):
 		job = Task.Job(_("Initializing storage device..."))
 		size = self.diskSize()
@@ -457,6 +460,10 @@ class Harddisk:
 
 		task = Task.ConditionTask(job, _("Waiting for mount"), timeoutCount=20)
 		task.check = self.mountDevice
+		task.weighting = 1
+
+		task = Task.PythonTask(job, _("Create directory") + ": movie")
+		task.work = self.createMovieDir
 		task.weighting = 1
 
 		return job

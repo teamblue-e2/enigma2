@@ -471,7 +471,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 	def checkJobs_TimerCB(self):
 		self.jobs_old = 0
 		for job in job_manager.getPendingJobs():
-			if (job.name.startswith(_('Copy file')) or job.name.startswith(_('Copy folder')) or job.name.startswith(_('move file')) or job.name.startswith(_('move folder'))or job.name.startswith(_('Run script'))):
+			if (job.name.startswith(_('Copy file')) or job.name.startswith(_('Copy folder')) or job.name.startswith(_('move file')) or job.name.startswith(_('move folder')) or job.name.startswith(_('Run script'))):
 				self.jobs_old += 1
 		self.jobs_old -= self.jobs
 		self.onLayout()
@@ -767,7 +767,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				del self.containers[:]
 		if not glob_running and config.plugins.filecommander.showTaskCompleted_message.value:
 			for job in job_manager.getPendingJobs():
-				if (job.name.startswith(_('Copy file')) or job.name.startswith(_('Copy folder')) or job.name.startswith(_('move file')) or job.name.startswith(_('move folder'))or job.name.startswith(_('Run script'))):
+				if (job.name.startswith(_('Copy file')) or job.name.startswith(_('Copy folder')) or job.name.startswith(_('move file')) or job.name.startswith(_('move folder')) or job.name.startswith(_('Run script'))):
 					return
 			# commented out
 			# from Screens.Standby import inStandby

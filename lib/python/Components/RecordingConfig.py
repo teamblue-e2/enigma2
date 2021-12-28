@@ -18,6 +18,7 @@ def InitRecordingConfig():
 		("long", _("Long filenames"))])
 	config.recording.always_ecm = ConfigYesNo(default=False)
 	config.recording.never_decrypt = ConfigYesNo(default=False)
+	config.recording.zap_record_service_in_standby = ConfigYesNo(default=False)
 	config.recording.offline_decode_delay = ConfigNumber(default=1000)
 	config.recording.ecm_data = ConfigSelection(choices=[("normal", _("normal")), ("descrambled+ecm", _("descramble and record ecm")), ("scrambled+ecm", _("don't descramble, record ecm"))], default="normal")
 	config.recording.include_ait = ConfigYesNo(default=False)

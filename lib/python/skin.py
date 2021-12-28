@@ -1,7 +1,7 @@
 import errno
 import xml.etree.cElementTree
 
-from enigma import addFont, eLabel, ePixmap, ePoint, eRect, eSize, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gRGB
+from enigma import addFont, eLabel, ePixmap, ePoint, eRect, eSize, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gRGB, BT_ALPHATEST, BT_ALPHABLEND
 from os.path import basename, dirname, isfile
 
 from Components.config import ConfigSubsection, ConfigText, config
@@ -517,6 +517,8 @@ class AttributeParser:
 		self.guiObject.setItemHeight(parseScale(value))
 
 	def pixmap(self, value):
+		if value.endswith(".svg"): # if graphic is svg force alphatest to "blend"
+			self.guiObject.setAlphatest(BT_ALPHABLEND)
 		self.guiObject.setPixmap(loadPixmap(value, self.desktop, self.guiObject.size().width(), self.guiObject.size().height()))
 
 	def backgroundPixmap(self, value):
@@ -540,9 +542,9 @@ class AttributeParser:
 	def alphatest(self, value):
 		try:
 			self.guiObject.setAlphatest({
-				"on": 1,
+				"on": BT_ALPHATEST,
 				"off": 0,
-				"blend": 2
+				"blend": BT_ALPHABLEND
 			}[value])
 		except KeyError:
 			print("[Skin] Error: Invalid alphatest '%s'!  Must be one of 'on', 'off' or 'blend'." % value)
@@ -777,10 +779,10 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 				parameters["PartnerBoxE2TimerIconRepeat"] = applySkinFactor(510, 30, 20, 20)
 				parameters["PartnerBoxE2TimerState"] = applySkinFactor(150, 50, 150, 20)
 				parameters["PartnerBoxE2TimerTime"] = applySkinFactor(0, 50, 150, 20)
-				parameters["PartnerBoxEntryListName"] = applySkinFactor(5, 0, 150, 20)
-				parameters["PartnerBoxEntryListIP"] = applySkinFactor(120, 0, 150, 20)
-				parameters["PartnerBoxEntryListPort"] = applySkinFactor(270, 0, 100, 20)
-				parameters["PartnerBoxEntryListType"] = applySkinFactor(410, 0, 100, 20)
+				parameters["PartnerBoxEntryListName"] = applySkinFactor(5, 0, 150, 25)
+				parameters["PartnerBoxEntryListIP"] = applySkinFactor(120, 0, 150, 25)
+				parameters["PartnerBoxEntryListPort"] = applySkinFactor(270, 0, 100, 25)
+				parameters["PartnerBoxEntryListType"] = applySkinFactor(410, 0, 100, 25)
 				parameters["PartnerBoxTimerName"] = applySkinFactor(0, 30, 20)
 				parameters["PartnerBoxTimerServicename"] = applySkinFactor(0, 0, 30)
 				parameters["SHOUTcastListItem"] = applySkinFactor(20, 18, 22, 69, 20, 23, 43, 22)

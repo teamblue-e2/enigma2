@@ -1883,8 +1883,6 @@ class InfoBarPVRState:
 	def __init__(self, screen=PVRState, force_show=False):
 		self.onPlayStateChanged.append(self.__playStateChanged)
 		self.pvrStateDialog = self.session.instantiateDialog(screen)
-		if SystemInfo["hasOSDAnimation"]:
-			self.pvrStateDialog.setAnimationMode(0)
 		self.onShow.append(self._mayShow)
 		self.onHide.append(self.pvrStateDialog.hide)
 		self.force_show = force_show
@@ -2631,7 +2629,7 @@ class InfoBarInstantRecord:
 	def __init__(self):
 		self["InstantRecordActions"] = HelpableActionMap(self, "InfobarInstantRecord",
 			{
-				"instantRecord": (self.instantRecord, _("Instant recording...")),
+				"instantRecord": (self.instantRecord, _("Instant recording")),
 			})
 		self.SelectedInstantServiceRef = None
 		if isStandardInfoBar(self):
