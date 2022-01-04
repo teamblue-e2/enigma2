@@ -82,16 +82,14 @@ class FlashOnline(Screen):
 
 	def getImagesList(self):
 
-		def getImages(path, files):
-			for _file in [x for x in files if os.path.splitext(x)[1] == ".zip" and box in x]:
+		def getImages(path, files, folder=None):
+			for _file in [x for x in files if os.path.splitext(x)[1] == ".zip" and model in x]:
 				try:
+					folder = "Fullbackup images" if folder == "imagebackups" else "Downloaded Images"
 					if checkimagefiles([x.split(os.sep)[-1] for x in zipfile.ZipFile(_file).namelist()]):
-						imagetyp = _("Downloaded images")
-						if 'backup' in _file.split(os.sep)[-1]:
-							imagetyp = _("Fullbackup images")
-						if imagetyp not in self.imagesList:
-							self.imagesList[imagetyp] = {}
-						self.imagesList[imagetyp][_file] = {'link': _file, 'name': _file.split(os.sep)[-1]}
+						if folder not in self.imagesList:
+							self.imagesList[folder] = {}
+						self.imagesList[folder][_file] = {'link': _file, 'name': _file.split(os.sep)[-1]}
 				except:
 					pass
 
@@ -105,14 +103,17 @@ class FlashOnline(Screen):
 			self.imagesList = dict(self.jsonlist)
 
 			for media in ['/media/%s' % x for x in os.listdir('/media')] + (['/media/net/%s' % x for x in os.listdir('/media/net')] if os.path.isdir('/media/net') else []):
-				if not(SystemInfo['HasMMC'] and "/mmc" in media) and os.path.isdir(media):
-					getImages(media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and box in x])
-					if "images" in os.listdir(media):
-						media = os.path.join(media, "images")
-						if os.path.isdir(media) and not os.path.islink(media) and not os.path.ismount(media):
-							getImages(media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and box in x])
-							for _dir in [_dir for _dir in [os.path.join(media, _dir) for _dir in os.listdir(media)] if os.path.isdir(_dir) and os.path.splitext(_dir)[1] == ".unzipped"]:
-								shutil.rmtree(_dir)
+				try:
+					getImages(media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and model in x])
+					for folder in ["images", "downloaded_images", "imagebackups"]:
+						if folder in os.listdir(media):
+							media = os.path.join(media, folder)
+							if os.path.isdir(media) and not os.path.islink(media) and not os.path.ismount(media):
+								getImages(media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and model in x], folder)
+								for _dir in [_dir for _dir in [os.path.join(media, _dir) for _dir in os.listdir(media)] if os.path.isdir(_dir) and os.path.splitext(_dir)[1] == ".unzipped"]:
+									shutil.rmtree(_dir)
+				except:
+					pass
 
 		_list = []
 		for catagorie in reversed(sorted(self.imagesList.keys())):

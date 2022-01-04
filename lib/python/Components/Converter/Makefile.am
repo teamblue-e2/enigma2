@@ -8,4 +8,4 @@ install_PYTHON = \
 	ServiceOrbitalPosition.py CryptoInfo.py TextCase.py ExtendedServiceInfo.py STBInfo.py OMMetrixWeather.py \
 	ValueBitTest.py TunerInfo.py ConfigEntryTest.py ClientsStreaming.py OMaclock.py TemplatedMultiContent.py ProgressToText.py \
 	Combine.py SensorToText.py ValueToPixmap.py VfdDisplay.py PliExtraInfo.py genre.py TransponderInfo.py RotorPosition.py AnalogClock.py pstrCnvrt.py \
-	PaxCaidDisplay.py PaxRefString.py PaxWeather.py PaxWeather2.py
+	PaxCaidDisplay.py PaxRefString.py PaxWeather.py PaxWeather2.py HddState.py
