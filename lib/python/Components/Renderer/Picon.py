@@ -3,8 +3,9 @@ from __future__ import absolute_import
 import os
 import re
 import unicodedata
-from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap
+from Components.Renderer.Renderer import Renderer
+from enigma import ePixmap, ePicLoad, eServiceCenter, eServiceReference, iServiceInformation
 from Tools.Alternatives import GetWithAlternative
 from Tools.Directories import pathExists, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, resolveFilename
 from Components.Harddisk import harddiskmanager
@@ -77,9 +78,14 @@ def findPicon(serviceName):
 	return ""
 
 
-def getPiconName(serviceName):
+def getPiconName(serviceRef):
+	service = eServiceReference(serviceRef)
+	if service.getPath().startswith("/") and serviceRef.startswith("1:"):
+		info = eServiceCenter.getInstance().info(eServiceReference(serviceRef))
+		refstr = info and info.getInfoString(service, iServiceInformation.sServiceref)
+		serviceRef = refstr and eServiceReference(refstr).toCompareString()
 	#remove the path and name fields, and replace ':' by '_'
-	fields = GetWithAlternative(serviceName).split(':', 10)[:10]
+	fields = GetWithAlternative(serviceRef).split(':', 10)[:10]
 	if not fields or len(fields) < 10:
 		return ""
 	pngname = findPicon('_'.join(fields))
@@ -96,32 +102,31 @@ def getPiconName(serviceName):
 		fields[2] = '1'
 		pngname = findPicon('_'.join(fields))
 	if not pngname: # picon by channel name
-		try:
-			name = ServiceReference(serviceName).getServiceName()
-			if sys.version_info[0] >= 3:
-				name = six.ensure_str(unicodedata.normalize('NFKD', name).encode('ASCII', 'ignore'))
-			else:
-				# FIXME
-				name = unicodedata.normalize('NFKD', unicode(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
-			#print "[Picon] unicodedata.normalize: ", name
-			name = re.sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
-			#print "[Picon] picon by channel name: ", name
-			if name:
-				pngname = findPicon(name)
-				if not pngname and len(name) > 2 and name.endswith('hd'):
-					pngname = findPicon(name[:-2])
-				if not pngname and len(name) > 6:
-					series = re.sub(r's[0-9]*e[0-9]*$', '', name)
-					pngname = findPicon(series)
-		except:
-			pass
+		name = ServiceReference(serviceRef).getServiceName()
+		if sys.version_info[0] >= 3:
+			name = six.ensure_str(unicodedata.normalize('NFKD', name).encode('ASCII', 'ignore'))
+		else:
+			name = unicodedata.normalize('NFKD', unicode(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
+		name = re.sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
+		if name:
+			pngname = findPicon(name)
+			if not pngname and len(name) > 2 and name.endswith('hd'):
+				pngname = findPicon(name[:-2])
+			if not pngname and len(name) > 6:
+				series = re.sub(r's[0-9]*e[0-9]*$', '', name)
+				pngname = findPicon(series)
 	return pngname
 
 
 class Picon(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
+		self.usePicLoad = False
+		self.PicLoad = ePicLoad()
+		self.PicLoad.PictureData.get().append(self.updatePicon)
+		self.piconsize = (0, 0)
 		self.pngname = ""
+		self.service_text = ""
 		self.lastPath = None
 		pngname = findPicon("picon_default")
 		self.defaultpngname = None
@@ -152,24 +157,48 @@ class Picon(Renderer):
 			elif attrib == "isFrontDisplayPicon":
 				self.showPicon = value == "0"
 				attribs.remove((attrib, value))
+			elif attrib == "usePicLoad":
+				self.usePicLoad = value == "1"
+				attribs.remove((attrib, value))
+			elif attrib == "size":
+				self.piconsize = value
 		self.skinAttributes = attribs
 		return Renderer.applySkin(self, desktop, parent)
 
 	GUI_WIDGET = ePixmap
 
+	def updatePicon(self, picInfo=None):
+		ptr = self.PicLoad.getData()
+		if ptr is not None and self.instance:
+			self.instance.setPixmap(ptr.__deref__())
+			self.instance.show()
+
 	def changed(self, what):
 		if self.instance:
 			if self.showPicon or config.usage.show_picon_in_display.value:
 				pngname = ""
-				if what[0] != self.CHANGED_CLEAR:
+				if what[0] in (self.CHANGED_ALL, self.CHANGED_SPECIFIC):
+					if self.usePicLoad and self.source.text and self.service_text and self.source.text == self.service_text:
+						return
+					self.service_text = self.source.text
 					pngname = getPiconName(self.source.text)
+				else:
+					if what[0] == self.CHANGED_CLEAR:
+						self.service_text = self.pngname = ""
+						if self.visible:
+							self.instance.hide()
+					return
 				if not pngname: # no picon for service found
 					pngname = self.defaultpngname
 				if self.pngname != pngname:
 					if pngname:
-						self.instance.setScale(1)
-						self.instance.setPixmapFromFile(pngname)
-						self.instance.show()
+						if self.usePicLoad:
+							self.PicLoad.setPara((self.piconsize[0], self.piconsize[1], 0, 0, 1, 1, "#FF000000"))
+							self.PicLoad.startDecode(pngname)
+						else:
+							self.instance.setScale(1)
+							self.instance.setPixmapFromFile(pngname)
+							self.instance.show()
 					else:
 						self.instance.hide()
 					self.pngname = pngname
