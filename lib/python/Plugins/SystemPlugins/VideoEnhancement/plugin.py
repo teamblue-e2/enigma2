@@ -324,12 +324,12 @@ class VideoEnhancementPreview(ConfigListScreen, Screen):
 			print("[VideoEnhancement] no max value")
 
 	def keyLeft(self):
-		if self.isStepSlider is True:
+		if self.isStepSlider:
 			self["config"].getCurrent()[1].increment = config.pep.configsteps.value
 		ConfigListScreen.keyLeft(self)
 
 	def keyRight(self):
-		if self.isStepSlider is True:
+		if self.isStepSlider:
 			self["config"].getCurrent()[1].increment = config.pep.configsteps.value
 		ConfigListScreen.keyRight(self)
 

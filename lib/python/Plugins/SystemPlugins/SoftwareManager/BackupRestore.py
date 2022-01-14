@@ -267,10 +267,8 @@ class BackupSelection(Screen):
 	def selectionChanged(self):
 		current = self["checkList"].getCurrent()[0]
 		if len(current) > 2:
-			if current[2] is True:
-				self["key_yellow"].setText(_("Deselect"))
-			else:
-				self["key_yellow"].setText(_("Select"))
+			text = _("Deselect") if current[2] else _("Select")
+			self["key_yellow"].setText(text)
 
 	def up(self):
 		self["checkList"].up()
@@ -363,7 +361,7 @@ class RestoreMenu(Screen):
 		self["filelist"].l.setList(self.flist)
 
 	def KeyOk(self):
-		if (self.exe == False) and (self.entry == True):
+		if not self.exe and self.entry:
 			self.sel = self["filelist"].getCurrent()
 			if self.sel:
 				self.val = self.path + "/" + self.sel
@@ -381,7 +379,7 @@ class RestoreMenu(Screen):
 		self.checkSummary()
 
 	def startRestore(self, ret=False):
-		if ret == True:
+		if ret:
 			self.session.openWithCallback(self.CB_startRestore, MessageBox, _("Do you want to delete the old settings in /etc/enigma2 first?"))
 
 	def CB_startRestore(self, ret=False):
@@ -398,17 +396,17 @@ class RestoreMenu(Screen):
 			self.session.open(Console, title=_("Restoring..."), cmdlist=cmds)
 
 	def deleteFile(self):
-		if (self.exe == False) and (self.entry == True):
+		if not self.exe and self.entry:
 			self.sel = self["filelist"].getCurrent()
 			if self.sel:
 				self.val = self.path + "/" + self.sel
 				self.session.openWithCallback(self.startDelete, MessageBox, _("Are you sure you want to delete\nthe following backup:\n") + self.sel)
 
 	def startDelete(self, ret=False):
-		if (ret == True):
+		if ret:
 			self.exe = True
 			print("removing:", self.val)
-			if (path.exists(self.val) == True):
+			if path.exists(self.val):
 				remove(self.val)
 			self.exe = False
 			self.fill_list()
