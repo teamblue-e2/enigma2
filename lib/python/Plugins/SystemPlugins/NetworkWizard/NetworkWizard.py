@@ -127,11 +127,11 @@ class NetworkWizard(WizardLanguage, Rc):
 
 	def checkOldInterfaceState(self):
 		# disable up interface if it was originally down and config is unchanged.
-		if self.originalInterfaceStateChanged is False:
+		if not self.originalInterfaceStateChanged:
 			for interface in list(self.originalInterfaceState.keys()):
 				if interface == self.selectedInterface:
-					if self.originalInterfaceState[interface]["up"] is False:
-						if iNetwork.checkforInterface(interface) is True:
+					if not self.originalInterfaceState[interface]["up"]:
+						if iNetwork.checkforInterface(interface):
 							enigma.eConsoleAppContainer().execute("ifconfig %s down" % interface)
 
 	def listInterfaces(self):
@@ -168,13 +168,7 @@ class NetworkWizard(WizardLanguage, Rc):
 				self.resetRef = self.session.openWithCallback(self.resetNetworkConfigFinished, MessageBox, _("Please wait while we prepare your network interfaces..."), type=MessageBox.TYPE_INFO, enable_input=False)
 			if iface in iNetwork.getInstalledAdapters():
 				if iface in iNetwork.configuredNetworkAdapters and len(iNetwork.configuredNetworkAdapters) == 1:
-					if iNetwork.getAdapterAttribute(iface, 'up') is True:
-						self.isInterfaceUp = True
-						config.misc.networkenabled.value = True
-					else:
-						self.isInterfaceUp = False
-						config.misc.networkenabled.value = False
-					print("[NetworkWizard] networkenabled value = %s" % config.misc.networkenabled.value)
+					self.isInterfaceUp = iNetwork.getAdapterAttribute(iface, 'up')
 					self.currStep = self.getStepWithID(self.NextStep)
 					self.afterAsyncCode()
 				else:
@@ -185,7 +179,7 @@ class NetworkWizard(WizardLanguage, Rc):
 			self.resetNetworkConfigFinished(False)
 
 	def resetNetworkConfigFinished(self, data):
-		if data is True:
+		if data:
 			self.currStep = self.getStepWithID(self.NextStep)
 			self.afterAsyncCode()
 		else:
@@ -194,25 +188,19 @@ class NetworkWizard(WizardLanguage, Rc):
 
 	def resetNetworkConfigCB(self, callback, iface):
 		if callback is not None:
-			if callback is True:
+			if callback:
 				iNetwork.getInterfaces(self.getInterfacesFinished)
 
 	def getInterfacesFinished(self, data):
-		if data is True:
-			if iNetwork.getAdapterAttribute(self.selectedInterface, 'up') is True:
-				self.isInterfaceUp = True
-				config.misc.networkenabled.value = True
-			else:
-				self.isInterfaceUp = False
-				config.misc.networkenabled.value = False
-			print("[NetworkWizard] networkenabled value = %s" % config.misc.networkenabled.value)
+		if data:
+			self.isInterfaceUp = iNetwork.getAdapterAttribute(self.selectedInterface, 'up')
 			self.resetRef.close(True)
 		else:
 			print("we should never come here!")
 
 	def AdapterSetupEnd(self, iface):
 		self.originalInterfaceStateChanged = True
-		if iNetwork.getAdapterAttribute(iface, "dhcp") is True:
+		if iNetwork.getAdapterAttribute(iface, "dhcp"):
 			iNetwork.checkNetworkState(self.AdapterSetupEndFinished)
 			self.AdapterRef = self.session.openWithCallback(self.AdapterSetupEndCB, MessageBox, _("Please wait while we test your network..."), type=MessageBox.TYPE_INFO, enable_input=False)
 		else:
@@ -220,9 +208,9 @@ class NetworkWizard(WizardLanguage, Rc):
 			self.afterAsyncCode()
 
 	def AdapterSetupEndCB(self, data):
-		if data is True:
+		if data:
 			if iNetwork.isWirelessInterface(self.selectedInterface):
-				if self.WlanPluginInstalled == True:
+				if self.WlanPluginInstalled:
 					from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 					iStatus.getDataForInterface(self.selectedInterface, self.checkWlanStateCB)
 				else:
@@ -241,7 +229,7 @@ class NetworkWizard(WizardLanguage, Rc):
 
 	def checkWlanStateCB(self, data, status):
 		if data is not None:
-			if data is True:
+			if data:
 				if status is not None:
 					text1 = _("Your receiver is now ready to be used.\n\nYour internet connection is working.\n\n")
 					text2 = _('Access point:') + "\t" + str(status[self.selectedInterface]["accesspoint"]) + "\n"
@@ -263,9 +251,9 @@ class NetworkWizard(WizardLanguage, Rc):
 		self.checkRef = self.session.openWithCallback(self.checkNetworkCB, MessageBox, _("Please wait while we test your network..."), type=MessageBox.TYPE_INFO, enable_input=False)
 
 	def checkNetworkCB(self, data):
-		if data is True:
+		if data:
 			if iNetwork.isWirelessInterface(self.selectedInterface):
-				if self.WlanPluginInstalled == True:
+				if self.WlanPluginInstalled:
 					from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 					iStatus.getDataForInterface(self.selectedInterface, self.checkWlanStateCB)
 				else:
@@ -318,7 +306,7 @@ class NetworkWizard(WizardLanguage, Rc):
 
 	def listAccessPoints(self):
 		self.APList = []
-		if self.WlanPluginInstalled is False:
+		if not self.WlanPluginInstalled:
 			self.APList.append((_("No networks found"), None))
 		else:
 			from Plugins.SystemPlugins.WirelessLan.Wlan import iWlan
@@ -366,12 +354,21 @@ class NetworkWizard(WizardLanguage, Rc):
 
 	def listChoices(self):
 		self.stopScan()
+<<<<<<< HEAD
 		_list = []
 		if self.WlanPluginInstalled == True:
 			_list.append((_("Configure your wireless LAN again"), "scanwlan"))
 		_list.append((_("Configure your internal LAN"), "nwconfig"))
 		_list.append((_("Exit network wizard"), "end"))
 		return _list
+=======
+		list = []
+		if self.WlanPluginInstalled:
+			list.append((_("Configure your wireless LAN again"), "scanwlan"))
+		list.append((_("Configure your internal LAN"), "nwconfig"))
+		list.append((_("Exit network wizard"), "end"))
+		return list
+>>>>>>> 57305a3a1... Use boolean checks according to PEP8
 
 	def ChoicesSelectionMade(self, index):
 		self.ChoicesSelect(index)
