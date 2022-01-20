@@ -23,7 +23,7 @@ import requests
 from Components.Converter.Poll import Poll
 from Plugins.Extensions.PaxWeather import ping
 from lxml import etree
-from xml.etree.cElementTree import fromstring
+from xml.etree.ElementTree import fromstring
 import six
 
 WEATHER_DATA = None
