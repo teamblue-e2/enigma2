@@ -15,12 +15,12 @@ from Tools.Directories import resolveFilename, SCOPE_SKIN
 from enigma import eTimer
 import six
 
-import xml.etree.cElementTree
+import xml.etree.ElementTree
 
 from Screens.Setup import Setup, getSetupTitle, getSetupTitleLevel
 
 # read the menu
-mdom = xml.etree.cElementTree.parse(resolveFilename(SCOPE_SKIN, 'menu.xml'))
+mdom = xml.etree.ElementTree.parse(resolveFilename(SCOPE_SKIN, 'menu.xml'))
 
 
 class MenuUpdater:

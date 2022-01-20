@@ -9,8 +9,7 @@ from Components.Sources.StaticText import StaticText
 from Components.Sources.Boolean import Boolean
 from enigma import eEnv
 
-import xml.etree.cElementTree
-import six
+import xml.etree.ElementTree
 
 # FIXME: use resolveFile!
 # read the setupmenu
@@ -20,7 +19,7 @@ try:
 except:
 	# if not found in the current path, we use the global datadir-path
 	setupfile = open(eEnv.resolve('${datadir}/enigma2/setup.xml'), 'r')
-setupdom = xml.etree.cElementTree.parse(setupfile)
+setupdom = xml.etree.ElementTree.parse(setupfile)
 setupfile.close()
 
 
@@ -86,7 +85,7 @@ class Setup(ConfigListScreen, Screen):
 			if x.get("key") != self.setup:
 				continue
 			self.addItems(listItems, x)
-			self.setup_title = six.ensure_str(x.get("title", ""))
+			self.setup_title = x.get("title", "")
 			self.seperation = int(x.get('separation', '0'))
 
 	def __init__(self, session, setup):
@@ -176,8 +175,8 @@ class Setup(ConfigListScreen, Screen):
 				if conditional and not eval(conditional):
 					continue
 
-				item_text = _(six.ensure_str(x.get("text", "??")))
-				item_description = _(six.ensure_str(x.get("description", " ")))
+				item_text = _(x.get("text", "??"))
+				item_description = _(x.get("description", " "))
 				b = eval(x.text or "")
 				if b == "":
 					continue
@@ -196,7 +195,7 @@ def getSetupTitle(_id):
 	xmldata = setupdom.getroot()
 	for x in xmldata.findall("setup"):
 		if x.get("key") == _id:
-			return six.ensure_str(x.get("title", ""))
+			return x.get("title", "")
 	raise SetupError("unknown setup id '%s'!" % repr(_id))
 
 
