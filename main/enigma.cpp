@@ -404,7 +404,7 @@ const char *getGStreamerVersionString()
 void dump_malloc_stats(void)
 {
 #ifdef __GLIBC__
-	struct mallinfo mi = mallinfo();
+	struct mallinfo2 mi = mallinfo2();
 	eDebug("MALLOC: %d total", mi.uordblks);
 #else
 	eDebug("MALLOC: info not exposed");
