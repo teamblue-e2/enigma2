@@ -40,25 +40,19 @@ from ServiceReference import ServiceReference
 from Tools.BoundFunction import boundFunction
 import Tools.Notifications
 from Tools.Alternatives import GetWithAlternative
-from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
+from Tools.Directories import fileExists, resolveFilename, sanitizeFilename, SCOPE_PLUGINS
 from Plugins.Plugin import PluginDescriptor
 from Components.PluginComponent import plugins
 from Components.SystemInfo import SystemInfo
 from Screens.ChoiceBox import ChoiceBox
 from Screens.EventView import EventViewEPGSelect
 import os
-import unicodedata
 from time import time
-import six
-import six
-
 profile("ChannelSelection.py after imports")
 
 FLAG_SERVICE_NEW_FOUND = 64
 FLAG_IS_DEDICATED_3D = 128
 FLAG_CENTER_DVB_SUBS = 2048 #define in lib/dvb/idvb.h as dxNewFound = 64 and dxIsDedicated3D = 128
-
-SIGN = '°' if six.PY3 else str('\xc2\xb0')
 
 
 class BouquetSelector(Screen):
@@ -1035,12 +1029,7 @@ class ChannelSelectionEdit:
 		serviceHandler = eServiceCenter.getInstance()
 		mutableBouquetList = serviceHandler.list(self.bouquet_root).startEdit()
 		if mutableBouquetList:
-			from string import maketrans
-			intab = "None"
-			outtab = '<>:"/\\|?*() '
-			trantab = maketrans(intab, outtab)
-			# FIXME
-			name = unicodedata.normalize('NFKD', str(bName, 'utf_8', errors='ignore')).encode('ASCII', 'ignore').translate(trantab)
+			name = sanitizeFilename(bName)
 			while os.path.isfile((self.mode == MODE_TV and '/etc/enigma2/userbouquet.%s.tv' or '/etc/enigma2/userbouquet.%s.radio') % name):
 				name = name.rsplit('_', 1)
 				name = ('_').join((name[0], len(name) == 2 and name[1].isdigit() and str(int(name[1]) + 1) or '1'))
@@ -1840,9 +1829,8 @@ class ChannelSelectionBase(Screen):
 					self.numberSelectionActions(number)
 			else:
 				unichar = self.numericalTextInput.getKey(number)
-				charstr = six.ensure_str(unichar)
-				if len(charstr) == 1:
-					self.servicelist.moveToChar(charstr[0])
+				if len(unichar) == 1:
+					self.servicelist.moveToChar(unichar[0])
 
 	def numberSelectionActions(self, number):
 		if not (hasattr(self, "movemode") and self.movemode):
@@ -1863,10 +1851,9 @@ class ChannelSelectionBase(Screen):
 		self.selectionNumber = ""
 
 	def keyAsciiCode(self):
-		unichar = six.unichr(getPrevAsciiCode())
-		charstr = six.ensure_str(unichar)
-		if len(charstr) == 1:
-			self.servicelist.moveToChar(charstr[0])
+		unichar = chr(getPrevAsciiCode())
+		if len(unichar) == 1:
+			self.servicelist.moveToChar(unichar[0])
 
 	def getRoot(self):
 		return self.servicelist.getRoot()
@@ -2139,7 +2126,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.revertMode = None
 
 	def togglePipzap(self):
-		assert (self.session.pip)
+		assert(self.session.pip)
 		title = self.instance.getTitle()
 		pos = title.find(" (")
 		if pos != -1:
