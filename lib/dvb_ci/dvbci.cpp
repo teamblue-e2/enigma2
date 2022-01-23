@@ -917,7 +917,7 @@ RESULT eDVBCIInterfaces::setDescrambleRules(int slotid, SWIG_PYOBJECT(ePyObject)
 			PyErr_SetString(PyExc_StandardError, buf);
 			return -1;
 		}
-		char *tmpstr = PyString_AS_STRING(refstr);
+		const char *tmpstr = PyUnicode_AsUTF8(refstr);
 		eServiceReference ref(tmpstr);
 		if (ref.valid())
 			slot->possible_services.insert(ref);
@@ -957,7 +957,7 @@ RESULT eDVBCIInterfaces::setDescrambleRules(int slotid, SWIG_PYOBJECT(ePyObject)
 			PyErr_SetString(PyExc_StandardError, buf);
 			return -1;
 		}
-		char *tmpstr = PyString_AS_STRING(PyTuple_GET_ITEM(tuple, 0));
+		const char *tmpstr = PyUnicode_AsUTF8(PyTuple_GET_ITEM(tuple, 0));
 		uint32_t orbpos = PyLong_AsUnsignedLong(PyTuple_GET_ITEM(tuple, 1));
 		if (strlen(tmpstr))
 			slot->possible_providers.insert(std::pair<std::string, uint32_t>(tmpstr, orbpos));
