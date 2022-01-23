@@ -902,7 +902,7 @@ def createTimer(xml):
 	for l in xml.findall("log"):
 		time = int(l.get("time"))
 		code = int(l.get("code"))
-		msg = six.ensure_str(l.text.strip())
+		msg = l.text.strip()
 		entry.log_entries.append((time, code, msg))
 
 	return entry
