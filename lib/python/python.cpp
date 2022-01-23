@@ -2,15 +2,10 @@
                 /* avoid warnigs :) */
 #undef _POSIX_C_SOURCE
 #define _POSIX_C_SOURCE 200112L
-#if PY_MAJOR_VERSION >= 3
+
 extern "C" PyObject* PyInit__enigma(void);
 extern "C" PyObject* PyInit_eBaseImpl(void);
 extern "C" PyObject* PyInit_eConsoleImpl(void);
-#else
-extern "C" void init_enigma(void);
-extern "C" void eBaseInit(void);
-extern "C" void eConsoleInit(void);
-#endif
 extern void bsodFatal(const char *component);
 extern void quitMainloop(int exitCode);
 
