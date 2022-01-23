@@ -471,7 +471,6 @@ static PyMethodDef module_methods[] = {
 	{NULL, NULL, 0, NULL}   /* Sentinel */
 };
 
-#if PY_MAJOR_VERSION >= 3
 	static struct PyModuleDef moduledef = {
 		PyModuleDef_HEAD_INIT,
 		"socketmmi",											/* m_name */
@@ -484,17 +483,10 @@ static PyMethodDef module_methods[] = {
 		NULL,													/* m_free */
 	};
 
-PyMODINIT_FUNC PyInit_socketmmi(void)
-{
-    return PyModule_Create(&moduledef);
-}
 
-#else
 PyMODINIT_FUNC
 PyInit_socketmmi(void)
 {
-	Py_InitModule3("socketmmi", module_methods,
-		"Module that implements mmi via unix domain socket.");
+	return PyModule_Create(&moduledef);
 }
-#endif
 };
