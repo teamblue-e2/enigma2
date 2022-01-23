@@ -410,7 +410,6 @@ class CommitInfo(Screen):
 						pass
 					else:
 						commitlog += date + ' ' + creator + '\n' + title + 2 * '\n'
-				commitlog = six.ensure_str(commitlog)
 				self.cachedProjects[self.projects[self.project][2]] = commitlog
 			except:
 				commitlog += _("Currently the commit log cannot be retrieved - please try later again")
@@ -428,7 +427,6 @@ class CommitInfo(Screen):
 						pass
 					else:
 						commitlog += date + ' ' + creator + '\n' + title + '\n'
-				commitlog = six.ensure_str(commitlog)
 				self.cachedProjects[self.projects[self.project][2]] = commitlog
 			except:
 				commitlog += _("Currently the commit log cannot be retrieved - please try later again")
