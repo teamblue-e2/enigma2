@@ -19,7 +19,7 @@ class ConfigFilename(ConfigText):
 		if self.text == "":
 			return ("mtext"[1 - selected:], "", 0)
 		cut_len = min(len(self.text), 40)
-		filename = six.ensure_str((self.text.rstrip("/").rsplit("/", 1))[1])[:cut_len] + " "
+		filename = (self.text.rstrip("/").rsplit("/", 1))[1][:cut_len] + " "
 		if self.allmarked:
 			mark = list(range(0, len(filename)))
 		else:
@@ -119,7 +119,7 @@ class Project:
 				self.error = "xml file not found!"
 				#raise AttributeError
 			_file = open(filename, "r")
-			data = _file.read().decode("utf-8").replace('&', "&amp;").encode("ascii", 'xmlcharrefreplace')
+			data = file.read().replace('&', "&amp;").encode("ascii", 'xmlcharrefreplace').decode("utf-8")
 			_file.close()
 			projectfiledom = xml.dom.minidom.parseString(data)
 			for node in projectfiledom.childNodes[0].childNodes:
@@ -155,11 +155,11 @@ class Project:
 				#raise AttributeError
 			while i < node.attributes.length:
 				item = node.attributes.item(i)
-				key = six.ensure_str(item.name)
+				key = item.name
 				try:
 					val = eval(item.nodeValue)
 				except (NameError, SyntaxError):
-					val = six.ensure_str(item.nodeValue)
+					val = item.nodeValue
 				try:
 					print("config[%s].setValue(%s)" % (key, val))
 					config.dict()[key].setValue(val)
@@ -186,7 +186,7 @@ class Project:
 				if subnode.tagName == 'path':
 					print("path:", subnode.firstChild.data)
 					filename = subnode.firstChild.data
-					self.titles[title_idx].addFile(six.ensure_str(filename))
+					self.titles[title_idx].addFile(filename)
 				if subnode.tagName == 'properties':
 					self.xmlAttributesToConfig(node, self.titles[title_idx].properties)
 				if subnode.tagName == 'audiotracks':
