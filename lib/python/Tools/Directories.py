@@ -5,7 +5,6 @@ import os
 from enigma import eEnv
 from re import compile, split
 from stat import S_IMODE
-import six
 from sys import _getframe as getframe
 from unicodedata import normalize
 
@@ -209,9 +208,9 @@ def resolveFilename(scope, base="", path_prefix=None):
 			)
 		path = itemExists(fontsResolveList, base)
 	elif scope == SCOPE_PLUGIN:
-		file = os.path.join(scopePlugins, base)
+		_file = os.path.join(scopePlugins, base)
 		if pathExists(file):
-			path = file
+			path = _file
 	elif scope in (SCOPE_PLUGIN_ABSOLUTE, SCOPE_PLUGIN_RELATIVE):
 		callingCode = os.path.normpath(getframe(1).f_code.co_filename)
 		plugins = os.path.normpath(scopePlugins)
@@ -339,7 +338,7 @@ def fileHas(f, content, mode="r"):
 def getRecordingFilename(basename, dirname=None):
 	# Filter out non-allowed characters.
 	non_allowed_characters = "/.\\:*?<>|\""
-	basename = basename.replace("\x86", "").replace("\x87", "")
+	basename = basename.replace("\xc2\x86", "").replace("\xc2\x87", "")
 	filename = ""
 	for c in basename:
 		if c in non_allowed_characters or ord(c) < 32:
@@ -349,10 +348,7 @@ def getRecordingFilename(basename, dirname=None):
 	# but must not truncate in the middle of a multi-byte utf8 character!
 	# So convert the truncation to unicode and back, ignoring errors, the
 	# result will be valid utf8 and so xml parsing will be OK.
-	if six.PY2:
-		filename = six.ensure_str(six.text_type(filename[:247], "utf8", "ignore"), "utf8", "ignore")
-	else:
-		filename = filename[:247]
+	filename = filename[:247]
 	if dirname is not None:
 		if not dirname.startswith("/"):
 			dirname = os.path.join(defaultRecordingLocation(), dirname)
@@ -602,3 +598,4 @@ def isPluginInstalled(pluginname, pluginfile="plugin"):
 			if os.path.isfile(fullpath):
 				return True
 	return False
+>>>>>>> 2e7479e22 (Allow unicode strings in user bouquet filenames)
