@@ -628,7 +628,7 @@ static void clearRegionHelper(gPainter &painter, eListboxStyle *local_style, con
 {
 	if (pbackColor)
 	{
-		unsigned int color = PyInt_AsUnsignedLongMask(pbackColor);
+		unsigned int color = PyLong_AsUnsignedLongMask(pbackColor);
 		painter.setBackgroundColor(gRGB(color));
 	}
 	else if (local_style)
@@ -654,7 +654,7 @@ static void clearRegionSelectedHelper(gPainter &painter, eListboxStyle *local_st
 {
 	if (pbackColorSelected)
 	{
-		unsigned int color = PyInt_AsUnsignedLongMask(pbackColorSelected);
+		unsigned int color = PyLong_AsUnsignedLongMask(pbackColorSelected);
 		painter.setBackgroundColor(gRGB(color));
 	}
 	else if (local_style)
@@ -714,7 +714,7 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 	{
 		if (pforeColorSelected)
 		{
-			unsigned int color = PyInt_AsUnsignedLongMask(pforeColorSelected);
+			unsigned int color = PyLong_AsUnsignedLongMask(pforeColorSelected);
 			painter.setForegroundColor(gRGB(color));
 		}
 		/* if we have a local foreground color set, use that. */
@@ -725,7 +725,7 @@ static void clearRegion(gPainter &painter, eWindowStyle &style, eListboxStyle *l
 	{
 		if (pforeColor)
 		{
-			unsigned int color = PyInt_AsUnsignedLongMask(pforeColor);
+			unsigned int color = PyLong_AsUnsignedLongMask(pforeColor);
 			painter.setForegroundColor(gRGB(color));
 		}
 		/* if we have a local foreground color set, use that. */
@@ -743,7 +743,7 @@ static ePyObject lookupColor(ePyObject color, ePyObject data)
 	if ((!color) && (!data))
 		return color;
 
-	unsigned int icolor = PyInt_AsUnsignedLongMask(color);
+	unsigned int icolor = PyLong_AsUnsignedLongMask(color);
 
 		/* check if we have the "magic" template color */
 	if (data && (icolor & 0xFF000000) == 0xFF000000)
@@ -955,7 +955,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					painter.clip(rect);
 					if (pborderColor)
 					{
-						unsigned int color = PyInt_AsUnsignedLongMask(pborderColor);
+						unsigned int color = PyLong_AsUnsignedLongMask(pborderColor);
 						painter.setForegroundColor(gRGB(color));
 					}
 
