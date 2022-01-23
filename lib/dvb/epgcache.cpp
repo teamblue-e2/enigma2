@@ -1624,7 +1624,7 @@ int handleEvent(eServiceEvent *ptr, ePyObject dest_list, const char* argstring, 
 PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 {
 	ePyObject convertFuncArgs;
-	int argcount=0;
+	ssize_t argcount=0;
 	const char *argstring=NULL;
 	if (!PyList_Check(list))
 	{
