@@ -129,19 +129,11 @@ ePython::ePython()
 
 //	Py_OptimizeFlag = 1;
 
-#if PY_MAJOR_VERSION >= 3
 	PyImport_AppendInittab("_enigma", PyInit__enigma);
 	PyImport_AppendInittab("eBaseImpl", PyInit_eBaseImpl);
 	PyImport_AppendInittab("eConsoleImpl", PyInit_eConsoleImpl);
-#endif
 
 	Py_Initialize();
-
-#if PY_MAJOR_VERSION < 3
-	init_enigma();
-	eBaseInit();
-	eConsoleInit();
-#endif
 }
 
 ePython::~ePython()
@@ -219,7 +211,7 @@ int ePython::call(ePyObject pFunc, ePyObject pArgs)
 		 	PyErr_Print();
 			ePyObject FuncStr = PyObject_Str(pFunc);
 			ePyObject ArgStr = PyObject_Str(pArgs);
-			eLog(lvlFatal, "[ePyObject] (PyObject_CallObject(%s,%s) failed)", PyString_AS_STRING(FuncStr), PyString_AS_STRING(ArgStr));
+			eLog(lvlFatal, "[ePyObject] (CallObject(%s,%s) failed)", PyUnicode_AsUTF8(FuncStr), PyUnicode_AsUTF8(ArgStr));
 			Py_DECREF(FuncStr);
 			Py_DECREF(ArgStr);
 			/* immediately show BSOD, so we have the actual error at the bottom */
