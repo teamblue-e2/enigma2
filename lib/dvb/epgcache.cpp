@@ -2072,10 +2072,10 @@ void eEPGCache::importEvent(ePyObject serviceReference, ePyObject list)
 void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 {
 	std::vector<eServiceReferenceDVB> refs;
+	const char *refstr;
 
 	if (PyUnicode_Check(serviceReferences))
 	{
-		const char *refstr;
 		refstr = PyUnicode_AsUTF8(serviceReferences);
 		if (!refstr)
 		{
