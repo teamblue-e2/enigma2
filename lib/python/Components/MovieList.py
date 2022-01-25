@@ -1,5 +1,4 @@
 from __future__ import division
-
 from Components.GUIComponent import GUIComponent
 from Tools.FuzzyDate import FuzzyTime
 from ServiceReference import ServiceReference

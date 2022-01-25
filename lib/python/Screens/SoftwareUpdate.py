@@ -1,4 +1,3 @@
-
 from Screens.About import CommitInfo
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox

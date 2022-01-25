@@ -354,21 +354,12 @@ class NetworkWizard(WizardLanguage, Rc):
 
 	def listChoices(self):
 		self.stopScan()
-<<<<<<< HEAD
 		_list = []
-		if self.WlanPluginInstalled == True:
+		if self.WlanPluginInstalled:
 			_list.append((_("Configure your wireless LAN again"), "scanwlan"))
 		_list.append((_("Configure your internal LAN"), "nwconfig"))
 		_list.append((_("Exit network wizard"), "end"))
 		return _list
-=======
-		list = []
-		if self.WlanPluginInstalled:
-			list.append((_("Configure your wireless LAN again"), "scanwlan"))
-		list.append((_("Configure your internal LAN"), "nwconfig"))
-		list.append((_("Exit network wizard"), "end"))
-		return list
->>>>>>> 57305a3a1... Use boolean checks according to PEP8
 
 	def ChoicesSelectionMade(self, index):
 		self.ChoicesSelect(index)

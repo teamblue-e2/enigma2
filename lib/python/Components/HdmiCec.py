@@ -1,4 +1,3 @@
-
 import struct
 import os
 from Components.config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText, ConfigLocations, ConfigDirectory

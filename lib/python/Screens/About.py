@@ -1,4 +1,3 @@
-
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.config import config

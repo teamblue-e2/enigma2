@@ -1,4 +1,3 @@
-
 from Screens.Screen import Screen
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.ChoiceBox import ChoiceBox

@@ -1,4 +1,3 @@
-
 from Plugins.Plugin import PluginDescriptor
 from Components.PluginComponent import plugins
 
