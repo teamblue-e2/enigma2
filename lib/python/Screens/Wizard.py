@@ -1,4 +1,3 @@
-
 from boxbranding import getMachineBrand, getMachineName
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox

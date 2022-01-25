@@ -1,4 +1,3 @@
-
 from Screens.Screen import Screen
 from Screens import ChannelSelection
 import Screens.InfoBar

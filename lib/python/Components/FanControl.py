@@ -1,4 +1,3 @@
-
 import os
 
 from Components.config import config, ConfigSubList, ConfigSubsection, ConfigSlider
