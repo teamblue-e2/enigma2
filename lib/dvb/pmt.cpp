@@ -494,7 +494,7 @@ void eDVBServicePMTHandler::getAITApplications(std::map<int, std::string> &aitli
 
 void eDVBServicePMTHandler::getCaIds(std::vector<int> &caids, std::vector<int> &ecmpids, std::vector<std::string> &ecmdatabytes)
 {
-	program prog;
+	program prog = {};
 
 	if (!getProgramInfo(prog))
 	{
@@ -825,7 +825,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 			vpidtype = videoStream::vtMPEG2;
 		if ( cached_vpid != -1 )
 		{
-			videoStream s;
+			videoStream s = {};
 			s.pid = cached_vpid;
 			s.type = vpidtype;
 			program.videoStreams.push_back(s);
@@ -833,7 +833,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		}
 		if ( cached_apid_ac3 != -1 )
 		{
-			audioStream s;
+			audioStream s = {};
 			s.type = audioStream::atAC3;
 			s.pid = cached_apid_ac3;
 			s.rdsPid = -1;
@@ -842,7 +842,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		}
 		if ( cached_apid_ac4 != -1 )
 		{
-			audioStream s;
+			audioStream s = {};
 			s.type = audioStream::atAC4;
 			s.pid = cached_apid_ac4;
 			s.rdsPid = -1;
@@ -851,7 +851,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		}
 		if ( cached_apid_ddp != -1 )
 		{
-			audioStream s;
+			audioStream s = {};
 			s.type = audioStream::atDDP;
 			s.pid = cached_apid_ddp;
 			s.rdsPid = -1;
@@ -860,7 +860,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		}
 		if ( cached_apid_aache != -1 )
 		{
-			audioStream s;
+			audioStream s = {};
 			s.type = audioStream::atAACHE;
 			s.pid = cached_apid_aache;
 			s.rdsPid = -1;
@@ -869,7 +869,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		}
 		if ( cached_apid_aac != -1 )
 		{
-			audioStream s;
+			audioStream s = {};
 			s.type = audioStream::atAAC;
 			s.pid = cached_apid_aac;
 			s.rdsPid = -1;
@@ -878,7 +878,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		}
 		if ( cached_apid_dra != -1 )
 		{
-			audioStream s;
+			audioStream s = {};
 			s.type = audioStream::atDRA;
 			s.pid = cached_apid_dra;
 			s.rdsPid = -1;
@@ -887,7 +887,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		}
 		if ( cached_apid_mpeg != -1 )
 		{
-			audioStream s;
+			audioStream s = {};
 			s.type = audioStream::atMPEG;
 			s.pid = cached_apid_mpeg;
 			s.rdsPid = -1;
@@ -906,7 +906,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		}
 		if (subpid > 0)
 		{
-			subtitleStream s;
+			subtitleStream s = {};
 			s.pid = (subpid & 0xffff0000) >> 16;
 			if (s.pid != program.textPid)
 			{
@@ -928,7 +928,7 @@ int eDVBServicePMTHandler::getProgramInfo(program &program)
 		CAID_LIST &caids = m_service->m_ca;
 		for (CAID_LIST::iterator it(caids.begin()); it != caids.end(); ++it)
 		{
-			program::capid_pair pair;
+			program::capid_pair pair = {};
 			pair.caid = *it;
 			pair.capid = -1; // not known yet
 			pair.databytes.clear();
@@ -1089,7 +1089,7 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, ePtr<iTsSource> &s
 	{
 		if (!ref.getServiceID().get() /* incorrect sid in meta file or recordings.epl*/ )
 		{
-			eDVBTSTools tstools;
+			eDVBTSTools tstools = {};
 			bool b = source || !tstools.openFile(ref.path.c_str(), 1);
 			eWarning("[eDVBServicePMTHandler] no .meta file found, trying to find PMT pid");
 			if (source)
