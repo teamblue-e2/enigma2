@@ -117,23 +117,9 @@ class Setup(ConfigListScreen, Screen):
 				"menu": self.closeRecursive,
 			}, -2)
 
-		self.changedEntry()
-		self.setTitle(_(self.setup_title))
-
-	def createSetup(self):
-		list = []
-		self.refill(list)
-		self["config"].setList(list)
-		if config.usage.sort_settings.value:
-			self["config"].list.sort()
-		self.moveToItem(self.item)
-
-	def getIndexFromItem(self, item):
-		if item is not None:
-			for x in range(len(self["config"].list)):
-				if self["config"].list[x][0] == item[0]:
-					return x
-		return None
+		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
+		self.createSetupList()
+		self.title = _(self.setup_title)
 
 	def moveToItem(self, item):
 		newIdx = self.getIndexFromItem(item)
