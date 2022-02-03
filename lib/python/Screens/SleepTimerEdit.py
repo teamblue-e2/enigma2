@@ -118,7 +118,6 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 					self.list.append(getConfigListEntry(_("Wakeup time"),
 						config.usage.wakeup_time[i]))
 		self["config"].list = self.list
-		self["config"].l.setList(self.list)
 
 	def ok(self):
 		if self["config"].isChanged():
