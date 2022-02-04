@@ -1,6 +1,6 @@
 from Screen import Screen
 from Components.ActionMap import NumberActionMap
-from Components.config import config, ConfigNothing, ConfigText, ConfigPassword
+from Components.config import config, ConfigNothing, ConfigBoolean, ConfigSelection
 from Components.Label import Label
 from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
@@ -42,7 +42,7 @@ class SetupSummary(Screen):
 
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent=parent)
-		self["SetupTitle"] = StaticText(parent.getTitle())
+		self["SetupTitle"] = StaticText(parent.title)
 		self["SetupEntry"] = StaticText("")
 		self["SetupValue"] = StaticText("")
 		if hasattr(self.parent, "onChangedEntry"):
@@ -71,36 +71,20 @@ class Setup(ConfigListScreen, Screen):
 
 	ALLOW_SUSPEND = True
 
-	def removeNotifier(self):
-		self.onNotifiers.remove(self.levelChanged)
-
-	def levelChanged(self, configElement):
-		list = []
-		self.refill(list)
-		self["config"].setList(list)
-
-	def refill(self, list):
-		xmldata = setupdom.getroot()
-		for x in xmldata.findall("setup"):
-			if x.get("key") != self.setup:
-				continue
-			self.addItems(list, x)
-			self.setup_title = x.get("title", "").encode("UTF-8")
-			self.seperation = int(x.get('separation', '0'))
-
 	def __init__(self, session, setup):
 		Screen.__init__(self, session)
 		# for the skin: first try a setup_<setupID>, then Setup
 		self.skinName = ["setup_" + setup, "Setup"]
-		self.item = None
-		self.onChangedEntry = []
-		self.setup = setup
-		self.setup_title = ''
-		list = []
-		self.onNotifiers = []
-		self.refill(list)
-		ConfigListScreen.__init__(self, list, session=session, on_change=self.changedEntry)
-		self.createSetup()
+		self.list = []
+		self.force_update_list = False
+
+		xmldata = setupdom.getroot()
+		for x in xmldata.findall("setup"):
+			if x.get("key") == setup:
+				self.setup = x
+				break
+
+		self.seperation = int(self.setup.get('separation', '0'))
 
 		#check for list.entries > 0 else self.close
 		self["key_red"] = StaticText(_("Cancel"))
@@ -119,25 +103,12 @@ class Setup(ConfigListScreen, Screen):
 
 		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
 		self.createSetupList()
-		self.title = _(self.setup_title)
+		self.title = _(self.setup.get("title", "").encode("UTF-8"))
 
-	def moveToItem(self, item):
-		newIdx = self.getIndexFromItem(item)
-		if newIdx is None:
-			newIdx = 0
-		self["config"].setCurrentIndex(newIdx)
-
-	# for summary:
-	def changedEntry(self):
-		self.item = self["config"].getCurrent()
-		try:
-			if isinstance(self["config"].getCurrent()[1], ConfigYesNo) or isinstance(self["config"].getCurrent()[1], ConfigSelection):
-				self.createSetup()
-		except:
-			pass
-
-	def addItems(self, list, parentNode):
-		for x in parentNode:
+	def createSetupList(self):
+		currentItem = self["config"].getCurrent()
+		self.list = []
+		for x in self.setup:
 			if not x.tag:
 				continue
 			if x.tag == 'item':
@@ -171,7 +142,31 @@ class Setup(ConfigListScreen, Screen):
 				# the first b is the item itself, ignored by the configList.
 				# the second one is converted to string.
 				if not isinstance(item, ConfigNothing):
-					list.append((item_text, item, item_description))
+					self.list.append((item_text, item, item_description))
+		self["config"].setList(self.list)
+		if config.usage.sort_settings.value:
+			self["config"].list.sort()
+		self.moveToItem(currentItem)
+
+	def moveToItem(self, item):
+		if item != self["config"].getCurrent():
+			self["config"].setCurrentIndex(self.getIndexFromItem(item))
+
+	def getIndexFromItem(self, item):
+		return self["config"].list.index(item) if item in self["config"].list else 0
+
+	def changedEntry(self):
+		if isinstance(self["config"].getCurrent()[1], ConfigBoolean) or isinstance(self["config"].getCurrent()[1], ConfigSelection):
+			self.createSetupList()
+
+	def __onSelectionChanged(self):
+		if self.force_update_list:
+			self["config"].onSelectionChanged.remove(self.__onSelectionChanged)
+			self.createSetupList()
+			self["config"].onSelectionChanged.append(self.__onSelectionChanged)
+			self.force_update_list = False
+		if not (isinstance(self["config"].getCurrent()[1], ConfigBoolean) or isinstance(self["config"].getCurrent()[1], ConfigSelection)):
+			self.force_update_list = True
 
 	def run(self):
 		self.keySave()
