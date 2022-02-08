@@ -95,19 +95,11 @@ class PluginDescriptor:
 
 		self.wakeupfnc = wakeupfnc
 
-		self._fnc = fnc
+		self.fnc = fnc
 
 	def __call__(self, *args, **kwargs):
-		if isinstance(self._fnc, collections.Callable):
-			return self._fnc(*args, **kwargs)
-		else:
-			print("PluginDescriptor called without a function!")
-			return []
-
-	def __getattribute__(self, name):
-		if name == '__call__':
-			return self._fnc is not None and self._fnc or {}
-		return object.__getattribute__(self, name)
+		if callable(self.fnc):
+			return self.fnc(*args, **kwargs)
 
 	def updateIcon(self, path):
 		self.path = path
@@ -124,10 +116,10 @@ class PluginDescriptor:
 			return self._icon
 
 	def __eq__(self, other):
-		return self._fnc == other._fnc
+		return self.fnc == other.fnc
 
 	def __ne__(self, other):
-		return self._fnc != other._fnc
+		return self.fnc != other.fnc
 
 	def __lt__(self, other):
 		if self.weight < other.weight:

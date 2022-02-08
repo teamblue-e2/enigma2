@@ -540,7 +540,7 @@ def runScreenTest():
 			from Plugins.SystemPlugins.SoftwareManager.BackupRestore import RestoreScreen
 			session.open(RestoreScreen, runRestore=True)
 		else:
-			screensToRun = [p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD)]
+			screensToRun = [p.fnc for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD)]
 			screensToRun += wizardManager.getWizards()
 	else:
 		if os.path.exists("/media/hdd/images/config/autorestore"):
