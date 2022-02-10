@@ -102,7 +102,7 @@ def cardnames(caid, prov):
 		return cn
 
 
-class PaxCaidDisplay(Poll, Converter, object):
+class PaxCaidDisplay(Poll, Converter):
 	def __init__(self, type):
 		Poll.__init__(self)
 		Converter.__init__(self, type)

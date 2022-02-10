@@ -4,7 +4,7 @@ import os
 import re
 
 
-class MountPoints():
+class MountPoints:
 	def __init__(self):
 		self.entries = []
 		self.uuids = []

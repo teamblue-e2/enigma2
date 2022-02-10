@@ -6,7 +6,7 @@ from enigma import eServiceCenter, eServiceReference, iServiceInformation
 from xml.etree.cElementTree import parse
 
 
-class ExtendedServiceInfo(Converter, object):
+class ExtendedServiceInfo(Converter):
     SERVICENAME = 0
     SERVICENUMBER = 1
     ORBITALPOSITION = 2

@@ -11,7 +11,7 @@ from base64 import encodebytes
 import six
 
 
-class FallbackTimerList():
+class FallbackTimerList:
 
 	def __init__(self, parent, fallbackFunction, fallbackFunctionNOK=None):
 		self.fallbackFunction = fallbackFunction

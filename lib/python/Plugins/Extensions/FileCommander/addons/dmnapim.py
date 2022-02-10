@@ -16,7 +16,7 @@ from hashlib import md5
 import struct
 
 
-class GetFPS(object):
+class GetFPS:
     def __init__(self, filename):
         self.filename = filename
 

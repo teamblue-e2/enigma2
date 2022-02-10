@@ -142,7 +142,7 @@ def GetBoxName():
 	return box
 
 
-class GetImagelist():
+class GetImagelist:
 	MOUNT = 0
 	UNMOUNT = 1
 
@@ -310,7 +310,7 @@ class boxbranding_reader:  # Many thanks to Huevos for creating this reader - we
 		return "\n".join(out)
 
 
-class EmptySlot():
+class EmptySlot:
 	MOUNT = 0
 	UNMOUNT = 1
 

@@ -109,7 +109,7 @@ class GBAspectRatioSwitchSetup(ConfigListScreen, Screen):
 		self.close()
 
 
-class GBAspectRatioSwitch():
+class GBAspectRatioSwitch:
 
 	def __init__(self):
 		self.reload_enabledaspects()

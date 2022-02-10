@@ -556,7 +556,7 @@ class helpableHotkeyActionMap(HelpableActionMap):
 			return ActionMap.action(self, contexts, action)
 
 
-class InfoBarHotkey():
+class InfoBarHotkey:
 	def __init__(self):
 		if not hotkey.functions:
 			getHotkeyFunctions()
