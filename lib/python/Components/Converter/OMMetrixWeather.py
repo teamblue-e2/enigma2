@@ -25,7 +25,7 @@ from Components.config import config, ConfigText, ConfigNumber, ConfigDateTime
 from Components.Element import cached
 
 
-class OMMetrixWeather(Converter, object):
+class OMMetrixWeather(Converter):
 
 	def __init__(self, type):
 		Converter.__init__(self, type)

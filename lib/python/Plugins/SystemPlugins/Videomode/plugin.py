@@ -290,7 +290,7 @@ class AudioSetup(Screen, ConfigListScreen):
 		return SetupSummary
 
 
-class VideomodeHotplug():
+class VideomodeHotplug:
 	def __init__(self, hw):
 		self.hw = hw
 

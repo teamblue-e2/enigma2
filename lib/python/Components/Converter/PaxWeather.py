@@ -19,7 +19,7 @@ from Components.Converter.Converter import Converter
 from Components.Element import cached
 
 
-class PaxWeather(Converter, object):
+class PaxWeather(Converter):
 	TempNow = 1
 	MeteoNow = 2
 	HighNext = 3

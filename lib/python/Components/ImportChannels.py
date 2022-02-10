@@ -25,7 +25,7 @@ supportfiles = ('lamedb', 'blacklist', 'whitelist', 'alternatives.')
 e2path = resolveFilename(SCOPE_CONFIG)
 
 
-class ImportChannels():
+class ImportChannels:
 
 	def __init__(self):
 		if config.usage.remote_fallback_enabled.value and config.usage.remote_fallback_import.value and config.usage.remote_fallback.value and not "ChannelsImport" in [x.name for x in threading.enumerate()]:

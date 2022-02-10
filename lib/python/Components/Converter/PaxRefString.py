@@ -19,7 +19,7 @@ from Components.Element import cached
 from Screens.InfoBar import InfoBar
 
 
-class PaxRefString(Converter, object):
+class PaxRefString(Converter):
 	CURRENT = 0
 	EVENT = 1
 

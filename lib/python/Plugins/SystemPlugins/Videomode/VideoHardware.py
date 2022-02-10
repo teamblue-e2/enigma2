@@ -14,7 +14,7 @@ import os
 config.av.edid_override = ConfigYesNo(default=True)
 
 
-class VideoHardware():
+class VideoHardware:
 	rates = {} # high-level, use selectable modes.
 
 	modes = {}  # a list of (high-level) modes for a certain port.

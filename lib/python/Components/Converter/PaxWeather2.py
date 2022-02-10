@@ -32,7 +32,7 @@ WEATHER_DATA = None
 WEATHER_LOAD = True
 
 
-class PaxWeather2(Poll, Converter, object):
+class PaxWeather2(Poll, Converter):
 	TempNow = 1
 	MeteoNow = 2
 	HighNext = 3
