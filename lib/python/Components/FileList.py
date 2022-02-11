@@ -195,7 +195,7 @@ class FileList(MenuList):
 			serviceHandler = eServiceCenter.getInstance()
 			_list = serviceHandler.list(root)
 
-			while 1:
+			while True:
 				s = _list.getNext()
 				if not s.valid():
 					del _list
@@ -407,7 +407,7 @@ class MultiFileSelectList(FileList):
 			serviceHandler = eServiceCenter.getInstance()
 			_list = serviceHandler.list(root)
 
-			while 1:
+			while True:
 				s = _list.getNext()
 				if not s.valid():
 					del _list
