@@ -23,7 +23,7 @@ def filescan_open(_list, session, **kwargs):
 	# Recreate List as expected by PicView
 	filelist = [((_file.path, False), None) for _file in _list]
 	from .ui import Pic_Full_View
-	session.open(Pic_Full_View, filelist, 0, _file.path)
+	session.open(Pic_Full_View, filelist, 0, filelist[0][0][0])
 
 
 def filescan(**kwargs):
