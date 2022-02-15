@@ -170,7 +170,7 @@ class Harddisk:
 					break
 			self.card = self.device[:2] == "hd" and "host0" not in self.dev_path
 
-		print("[Harddisk] new device=%s dev_path=%s disk_path=%s removable=%s internal=%s rotational=%s card=%s" % (self.device, self.dev_path, self.disk_path, removable, self.internal, self.rotational, self.carda))
+		print("[Harddisk] new device=%s dev_path=%s disk_path=%s removable=%s internal=%s rotational=%s card=%s" % (self.device, self.dev_path, self.disk_path, removable, self.internal, self.rotational, self.card))
 		if (self.internal or not removable) and not self.card:
 			self.startIdle()
 
