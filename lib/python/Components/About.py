@@ -8,10 +8,10 @@ import re
 import os
 import time
 from Tools.HardwareInfo import HardwareInfo
-from sys import modules, version_info
 from builtins import round
 
 from boxbranding import getBoxType, getMachineBuild, getImageType, getImageVersion
+from sys import maxsize, modules, version_info
 
 
 def getVersionString():
@@ -262,16 +262,7 @@ def getDriverInstalledDate():
 
 
 def getPythonVersionString():
-	try:
-		if version_info[0] >= 3:
-			import subprocess
-			status, output = subprocess.getstatusoutput("python3 -V")
-		else:
-			import commands
-			status, output = commands.getstatusoutput("python -V")
-		return output.split(' ')[1]
-	except:
-		return _("unknown")
+	return "%s.%s.%s" % (version_info.major, version_info.minor, version_info.micro)
 
 
 def GetIPsFromNetworkInterfaces():
@@ -279,8 +270,7 @@ def GetIPsFromNetworkInterfaces():
 	import fcntl
 	import struct
 	import array
-	import sys
-	is_64bits = sys.maxsize > 2**32
+	is_64bits = maxsize > 2**32
 	struct_size = 40 if is_64bits else 32
 	s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 	max_possible = 8 # initial value
