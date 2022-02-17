@@ -26,7 +26,7 @@ class VideoSetup(ConfigListScreen, Screen):
 		self.onHide.append(self.stopHotplug)
 
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.createSetup)
+		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
 
 		from Components.ActionMap import ActionMap
 		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
@@ -120,6 +120,7 @@ class VideoSetup(ConfigListScreen, Screen):
 			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("Configure the sharpness of the video scaling.")))
 
 		self["config"].list = self.list
+		self["config"].l.setList(self.list)
 
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
@@ -154,6 +155,19 @@ class VideoSetup(ConfigListScreen, Screen):
 			self.session.openWithCallback(self.confirm, MessageBox, _("Is this video mode ok?"), MessageBox.TYPE_YESNO, timeout=20, default=False)
 		else:
 			self.keySave()
+
+	# for summary:
+	def getCurrentEntry(self):
+		self.updateDescription()
+		return ConfigListScreen.getCurrentEntry(self)
+
+	def createSummary(self):
+		from Screens.Setup import SetupSummary
+		return SetupSummary
+	###
+
+	def updateDescription(self):
+		self["description"].setText("%s" % self.getCurrentDescription())
 
 
 class AudioSetup(Screen, ConfigListScreen):
