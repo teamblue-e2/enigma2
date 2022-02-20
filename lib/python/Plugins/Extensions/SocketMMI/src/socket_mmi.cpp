@@ -491,7 +491,7 @@ PyMODINIT_FUNC PyInit_socketmmi(void)
 
 #else
 PyMODINIT_FUNC
-initsocketmmi(void)
+PyInit_socketmmi(void)
 {
 	Py_InitModule3("socketmmi", module_methods,
 		"Module that implements mmi via unix domain socket.");
