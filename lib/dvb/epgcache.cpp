@@ -2189,7 +2189,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 	std::deque<uint32_t> descr;
 	int eventid = -1;
 	const char *argstring=0;
-	char *refstr=0;
+	const char *refstr=0;
 	ssize_t argcount=0;
 	int querytype=-1;
 	bool needServiceEvent=false;
