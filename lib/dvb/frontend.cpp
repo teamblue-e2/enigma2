@@ -1267,11 +1267,13 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	{
 		ret = (int)(snr / 43.5);
 	}
-	else if (!strcmp(m_description, "GIGA DVB-S2X NIM (TS3L10)") // dual/single plug&play tuners GB UE/Quad UHD 4K
-		|| !strcmp(m_description, "GIGA DVB-S2X NIM (TS2L08)")
-		|| !strcmp(m_description, "GIGA DVB-S2 NIM (TS3L10)")
-		|| !strcmp(m_description, "GIGA DVB-S2 NIM (TS2L08)")
-		)
+	else if (!strcmp(m_description, "GIGA DVB-S2X NIM (TS3L10)") // dual/single plug & play tuners GB UE/Quad UHD 4K
+		|| !strcmp(m_description, "GIGA DVB-S2X NIM (TS2L08)"))
+	{
+		ret = (int)(snr / 40);
+	}
+	else if (!strcmp(m_description, "GIGA DVB-S2 NIM (TS3L10)")
+		|| !strcmp(m_description, "GIGA DVB-S2 NIM (TS2L08)"))
 	{
 		ret = snr;
 	}
@@ -1368,6 +1370,24 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		ret = snr;
 		if (!strcmp(m_description, "Si2169")) // DVB-T/C Xtrend
 			ret = snr / 10;
+	}
+	else if (!strcmp(m_description, "M1502A(external)")) // DVB-S2X Dual 4K
+	{
+		ret = (int)(snr / 23.2);
+	}
+	else if (!strcmp(m_description, "AVL6762 (external)")) // DVB-C/T2 Dual 4K
+	{
+		int type = -1;
+		oparm.getSystem(type);
+		switch (type)
+		{
+			case feCable:
+				ret = (int)(snr / 15.6);
+				break;
+			case feTerrestrial:
+				ret = (int)(snr / 44);
+				break;
+		}
 	}
 
 	signalqualitydb = ret;

@@ -25,7 +25,7 @@ from time import mktime, localtime, time
 from datetime import datetime
 
 
-class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
+class NimSetup(ConfigListScreen, ServiceStopScreen, Screen):
 	def createSimpleSetup(self, list, mode):
 		nim = self.nimConfig
 
@@ -321,7 +321,6 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.list.append(getConfigListEntry(_("Force legacy signal stats"), self.nimConfig.force_legacy_signal_stats, _("If set to 'yes' signal values (SNR, etc) will be calculated from API V3. This is an old API version that has now been superseded.")))
 
 		self["config"].list = self.list
-		self["config"].l.setList(self.list)
 		self.setTextKeyYellow()
 
 	def newConfig(self):
@@ -625,13 +624,6 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.nimConfig = self.nim.config
 		self.createSetup()
 		self.setTitle(_("Setup") + " " + self.nim.friendly_full_description)
-
-		if not self.selectionChanged in self["config"].onSelectionChanged:
-			self["config"].onSelectionChanged.append(self.selectionChanged)
-		self.selectionChanged()
-
-	def selectionChanged(self):
-		self["description"].setText(self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or "")
 
 	def keyLeft(self):
 		if self.nim.isFBCLink() and self["config"].getCurrent() in (self.advancedLof, self.advancedConnected):

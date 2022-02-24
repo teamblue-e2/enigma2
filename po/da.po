@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-13 14:35+0100\n"
+"POT-Creation-Date: 2022-02-24 20:46+0100\n"
 "PO-Revision-Date: 2017-01-18 16:38+0100\n"
 "Last-Translator: lupine <a_ecklon@hotmail.com>\n"
 "Language-Team: \n"
@@ -1551,7 +1551,7 @@ msgstr ""
 msgid "Artist"
 msgstr "Kunstner"
 
-msgid "Arts/Culture"
+msgid "Arts/Culture (without music)"
 msgstr ""
 
 msgid "Aruba"
@@ -2182,6 +2182,10 @@ msgstr "Kabel"
 msgid "Cable Scan"
 msgstr "Kabelsøgning"
 
+#, python-format
+msgid "Cable scan executable utility not found '%s'!"
+msgstr ""
+
 msgid "Cabo Verde"
 msgstr ""
 
@@ -2555,7 +2559,7 @@ msgid ""
 "DiSEqC port %s for %s"
 msgstr ""
 
-msgid "Children/Youth"
+msgid "Children/Youth/Education/Science"
 msgstr ""
 
 msgid "Chile"
@@ -4094,6 +4098,11 @@ msgstr "vis infoinje"
 msgid "Disk space to reserve for recordings (in GB)"
 msgstr "Plads der skal reseveres til optagelser (I GB)"
 
+#
+#, fuzzy
+msgid "Disk state: "
+msgstr "søge status"
+
 #, python-format
 msgid "Disk temperature: %s"
 msgstr ""
@@ -4438,7 +4447,7 @@ msgstr "Plugins der kan hentes"
 
 #
 #, fuzzy
-msgid "Downloaded images"
+msgid "Downloaded Images"
 msgstr "Henter"
 
 #
@@ -4461,6 +4470,9 @@ msgstr "Henter plugin informationer. Vent venligst..."
 #, fuzzy
 msgid "Downmix"
 msgstr "AC3/DTS nedmix"
+
+msgid "Drama and Films"
+msgstr ""
 
 msgid "Dreambox format data DVD (HDTV compatible)"
 msgstr ""
@@ -4661,9 +4673,6 @@ msgstr "Rediger titel"
 #, fuzzy
 msgid "Edit update source url"
 msgstr "Rediger url for opgraderingskilde."
-
-msgid "Education/Science/..."
-msgstr ""
 
 msgid "Egypt"
 msgstr ""
@@ -5351,13 +5360,6 @@ msgid ""
 "inactive"
 msgstr ""
 
-#, python-format
-msgid "FBC socket %s"
-msgstr ""
-
-msgid "FBC virtual"
-msgstr ""
-
 #
 msgid "FEC"
 msgstr "FEC"
@@ -5708,7 +5710,7 @@ msgstr "Ja, genskab indstillinger nu"
 
 #
 #, fuzzy
-msgid "Flash on the fly your your Receiver software."
+msgid "Flash on the fly your Receiver software."
 msgstr "Styring af din modtagers software"
 
 msgid "Flash, restore settings and user selected plugins"
@@ -5878,7 +5880,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Fullbackup images"
+msgid "Fullbackup Images"
 msgstr "Backup mislykkedes."
 
 #, python-format
@@ -7273,9 +7275,6 @@ msgstr "Venstre"
 msgid "Left from servicename"
 msgstr ""
 
-msgid "Leisure hobbies"
-msgstr ""
-
 msgid "Lesotho"
 msgstr ""
 
@@ -8104,9 +8103,6 @@ msgstr "Placering af film"
 msgid "Movie selection"
 msgstr "Filmvalg"
 
-msgid "Movie/Drama"
-msgstr ""
-
 #
 msgid "Movielist menu"
 msgstr "Filmliste menu"
@@ -8422,7 +8418,7 @@ msgstr ""
 msgid "New password"
 msgstr ""
 
-msgid "News Current Affairs"
+msgid "News/Current Affairs/Social"
 msgstr ""
 
 msgctxt "button label, 'next screen'"
@@ -12156,6 +12152,11 @@ msgstr "Sæt som startkanal"
 msgid "Set blocktimes by weekday"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Set cursor on service from channel history"
+msgstr "forrige sete kanal"
+
 msgid "Set default"
 msgstr ""
 
@@ -12348,9 +12349,6 @@ msgstr "Vis infobjælke ved program skifte"
 #, fuzzy
 msgid "Show EPG..."
 msgstr "vis EPG..."
-
-msgid "Show Games show"
-msgstr ""
 
 msgid "Show HDMIRecord setup..."
 msgstr ""
@@ -12759,6 +12757,9 @@ msgstr ""
 msgid "Show warning when timeshift is stopped"
 msgstr ""
 
+msgid "Show/Game Show/Leisure hobbies"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Show/hide window"
@@ -12985,6 +12986,15 @@ msgstr ""
 msgid "Slot %d"
 msgstr "Slot %d"
 
+#
+#, fuzzy, python-format
+msgid "Slot %s / FBC in %s"
+msgstr "DiSEqC gentagelser"
+
+#, python-format
+msgid "Slot %s / FBC virtual %s"
+msgstr ""
+
 #, python-format
 msgid "Slot %s: %s - Mode %d%s"
 msgstr ""
@@ -13032,9 +13042,6 @@ msgid "Smartcard PIN"
 msgstr ""
 
 msgid "Smooth"
-msgstr ""
-
-msgid "Social/Political/Economics"
 msgstr ""
 
 #
@@ -13290,8 +13297,10 @@ msgstr ""
 msgid "Standard"
 msgstr "normal"
 
-msgid "Standart list"
-msgstr ""
+#
+#, fuzzy
+msgid "Standard list"
+msgstr "normal"
 
 #
 msgid "Standby"
@@ -16155,6 +16164,10 @@ msgstr ""
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr ""
 
+#, fuzzy
+msgid "When enabled, then when changing bouquets, set the cursor on the service from the channel history in the channel selection list."
+msgstr "Vis kanalnumre i kanalvælger"
+
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr ""
 
@@ -16784,6 +16797,11 @@ msgstr "aktiver opsætning for netværksadapter"
 msgid "active"
 msgstr "tilføj alternativer"
 
+#
+#, fuzzy
+msgid "active "
+msgstr "tilføj alternativer"
+
 msgid "active NFS Shares:"
 msgstr ""
 
@@ -16793,8 +16811,10 @@ msgstr ""
 msgid "additional cable of rotor"
 msgstr ""
 
-msgid "adult movie/drama"
-msgstr ""
+#
+#, fuzzy
+msgid "adult movie"
+msgstr "Vælg en film"
 
 #
 msgid "advanced"
@@ -16930,9 +16950,6 @@ msgstr "Bedre"
 msgid "black"
 msgstr "sort"
 
-msgid "black & white"
-msgstr ""
-
 #
 msgid "blacklist"
 msgstr "Sortliste"
@@ -16973,7 +16990,7 @@ msgstr ""
 msgid "chapters"
 msgstr "kapitler"
 
-msgid "childrens's/youth program (general)"
+msgid "childrens's youth program (general)"
 msgstr ""
 
 #
@@ -16997,11 +17014,6 @@ msgstr ""
 
 msgid "comedy"
 msgstr ""
-
-#
-#, fuzzy
-msgid "config menu"
-msgstr "bekræftet"
 
 #
 msgid "confirmed"
@@ -17100,7 +17112,7 @@ msgstr "øst"
 msgid "economics/social advisory"
 msgstr ""
 
-msgid "education/science/factual topics (general)"
+msgid "educational/science/factual topics (general)"
 msgstr ""
 
 msgid "embedded"
@@ -17216,7 +17228,7 @@ msgstr ""
 msgid "fine arts"
 msgstr ""
 
-msgid "fitness & health"
+msgid "fitness and health"
 msgstr ""
 
 #
@@ -17270,9 +17282,6 @@ msgid "further education"
 msgstr ""
 
 msgid "game show/quiz/contest"
-msgstr ""
-
-msgid "gardening"
 msgstr ""
 
 #
@@ -17436,7 +17445,7 @@ msgstr ""
 msgid "literature"
 msgstr ""
 
-msgid "live broadcast"
+msgid "local sports"
 msgstr ""
 
 #
@@ -17510,7 +17519,7 @@ msgstr "flyt op til første indtastning"
 msgid "move up to previous entry"
 msgstr "flyt op til foregående indtastning"
 
-msgid "movie/drama (general)"
+msgid "movie (general)"
 msgstr ""
 
 #
@@ -17718,9 +17727,6 @@ msgstr "Multi-EPG bouquet valg"
 msgid "original"
 msgstr ""
 
-msgid "original language"
-msgstr ""
-
 #
 msgid "pass"
 msgstr "OK"
@@ -17775,6 +17781,9 @@ msgstr ""
 msgid "pre-school children's program"
 msgstr ""
 
+msgid "preserve bookmarks in cuts"
+msgstr ""
+
 msgid "python"
 msgstr ""
 
@@ -17806,6 +17815,11 @@ msgstr "fjern efter denne position"
 #
 msgid "remove before this position"
 msgstr "fjern før denne position"
+
+#
+#, fuzzy
+msgid "remove bookmarks in cuts"
+msgstr "fjern bogmærke"
 
 #
 msgid "remove this mark"
@@ -17878,7 +17892,7 @@ msgstr "vælg meny indgang"
 msgid "serious music/classic music"
 msgstr ""
 
-msgid "serious/classical/religious/historical movie/drama"
+msgid "serious/classical/religious/historical drama"
 msgstr ""
 
 #, fuzzy
@@ -17959,13 +17973,13 @@ msgstr ""
 msgid "slow"
 msgstr ""
 
-msgid "soap/melodram/folkloric"
+msgid "soap/melodrama/folkloric"
 msgstr ""
 
 msgid "social/political issues/economics (general)"
 msgstr ""
 
-msgid "social/spiritual science"
+msgid "social/spiritual sciences"
 msgstr ""
 
 #
@@ -17990,6 +18004,11 @@ msgstr ""
 #
 msgid "standard"
 msgstr "normal"
+
+#
+#, fuzzy
+msgid "standby "
+msgstr "Standby"
 
 #
 msgid "start cut here"
@@ -18029,10 +18048,10 @@ msgstr "Fjerne plugins"
 msgid "talk show"
 msgstr ""
 
-msgid "team sports"
+msgid "team sports/excluding football"
 msgstr ""
 
-msgid "technology/natural science"
+msgid "technology/natural sciences"
 msgstr ""
 
 #
@@ -18132,9 +18151,6 @@ msgid "unpack tar/compressed tar Files"
 msgstr ""
 
 msgid "unpack zip Files"
-msgstr ""
-
-msgid "unpublished"
 msgstr ""
 
 #

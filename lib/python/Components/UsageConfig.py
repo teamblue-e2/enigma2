@@ -5,6 +5,7 @@ from Components.config import ConfigSubsection, ConfigYesNo, config, ConfigSelec
 from Tools.Directories import defaultRecordingLocation
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, eEnv, eDVBDB, Misc_Options, eBackgroundFileEraser, eServiceEvent
 from Components.NimManager import nimmanager
+from Components.Renderer.FrontpanelLed import ledPatterns, PATTERN_ON, PATTERN_OFF, PATTERN_BLINK
 from Components.ServiceList import refreshServiceList
 from Components.SystemInfo import SystemInfo
 
@@ -14,18 +15,6 @@ import time
 
 originalAudioTracks = "orj dos ory org esl qaa und mis mul ORY ORJ Audio_ORJ oth"
 visuallyImpairedCommentary = "NAR qad"
-
-
-def leaveStandby():
-	if not config.usage.powerLED.value:
-		open(SystemInfo["PowerLED"], "w").write("0")
-
-
-def standbyCounterChanged(dummy):
-	from Screens.Standby import inStandby
-	inStandby.onClose.append(leaveStandby)
-	if not config.usage.standbyLED.value:
-		open(SystemInfo["StandbyLED"], "w").write("0")
 
 
 def InitUsageConfig():
@@ -114,6 +103,7 @@ def InitUsageConfig():
 	config.usage.oldstyle_channel_select_controls = ConfigYesNo(default=False)
 	config.usage.zap_with_ch_buttons = ConfigYesNo(default=True)
 	config.usage.ok_is_channelselection = ConfigYesNo(default=False)
+	config.usage.changebouquet_set_history = ConfigYesNo(default=False)
 	config.usage.volume_instead_of_channelselection = ConfigYesNo(default=False)
 	config.usage.channelselection_preview = ConfigYesNo(default=False)
 	config.usage.show_spinner = ConfigYesNo(default=True)
@@ -382,6 +372,8 @@ def InitUsageConfig():
 		def powerLEDChanged(configElement):
 			if "fp" in SystemInfo["PowerLED"]:
 				open(SystemInfo["PowerLED"], "w").write(configElement.value and "1" or "0")
+				patterns = [PATTERN_ON, PATTERN_ON, PATTERN_OFF, PATTERN_OFF] if configElement.value else [PATTERN_OFF, PATTERN_OFF, PATTERN_OFF, PATTERN_OFF]
+				ledPatterns.setLedPatterns(1, patterns)
 			else:
 				open(SystemInfo["PowerLED"], "w").write(configElement.value and "on" or "off")
 		config.usage.powerLED = ConfigYesNo(default=True)
@@ -389,13 +381,13 @@ def InitUsageConfig():
 
 	if SystemInfo["StandbyLED"]:
 		def standbyLEDChanged(configElement):
-			open(SystemInfo["StandbyLED"], "w").write(configElement.value and "on" or "off")
+			if "fp" in SystemInfo["StandbyLED"]:
+				patterns = [PATTERN_OFF, PATTERN_BLINK, PATTERN_ON, PATTERN_BLINK] if configElement.value else [PATTERN_OFF, PATTERN_OFF, PATTERN_OFF, PATTERN_OFF]
+				ledPatterns.setLedPatterns(0, patterns)
+			else:
+				open(SystemInfo["StandbyLED"], "w").write(configElement.value and "on" or "off")
 		config.usage.standbyLED = ConfigYesNo(default=True)
-		if not "fp" in SystemInfo["StandbyLED"]:
-			config.usage.standbyLED.addNotifier(standbyLEDChanged)
-
-	if SystemInfo["PowerLED"] and "fp" in SystemInfo["PowerLED"] and not config.usage.powerLED.value or (SystemInfo["StandbyLED"] and "fp" in SystemInfo["StandbyLED"] and not config.usage.standbyLED.value):
-		config.misc.standbyCounter.addNotifier(standbyCounterChanged, initial_call=False)
+		config.usage.standbyLED.addNotifier(standbyLEDChanged)
 
 	if SystemInfo["SuspendLED"]:
 		def suspendLEDChanged(configElement):

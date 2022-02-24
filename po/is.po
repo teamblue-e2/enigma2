@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-13 14:35+0100\n"
+"POT-Creation-Date: 2022-02-24 20:46+0100\n"
 "PO-Revision-Date: 2011-05-07 12:23+0200\n"
 "Last-Translator: Baldur <bsveinsson@gmail.com>\n"
 "Language-Team: Polar Team/LT Team <baddi@oreind.is>\n"
@@ -1515,7 +1515,7 @@ msgstr ""
 msgid "Artist"
 msgstr "Listamaður"
 
-msgid "Arts/Culture"
+msgid "Arts/Culture (without music)"
 msgstr ""
 
 msgid "Aruba"
@@ -2088,6 +2088,10 @@ msgstr "Kapalkerfi"
 msgid "Cable Scan"
 msgstr ""
 
+#, python-format
+msgid "Cable scan executable utility not found '%s'!"
+msgstr ""
+
 msgid "Cabo Verde"
 msgstr ""
 
@@ -2432,7 +2436,7 @@ msgid ""
 "DiSEqC port %s for %s"
 msgstr ""
 
-msgid "Children/Youth"
+msgid "Children/Youth/Education/Science"
 msgstr ""
 
 msgid "Chile"
@@ -3889,6 +3893,11 @@ msgstr "sýna upplýsingalínu"
 msgid "Disk space to reserve for recordings (in GB)"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Disk state: "
+msgstr "leitar staða"
+
 #, python-format
 msgid "Disk temperature: %s"
 msgstr ""
@@ -4219,7 +4228,7 @@ msgid "Downloadable plugins"
 msgstr "Niðurhalanleg íforrit"
 
 #, fuzzy
-msgid "Downloaded images"
+msgid "Downloaded Images"
 msgstr "Hleð niður"
 
 msgid "Downloading"
@@ -4237,6 +4246,9 @@ msgid "Downloading plugin information. Please wait..."
 msgstr "Hala niður íforrits upplýsingum. Vinsamlega bíðið..."
 
 msgid "Downmix"
+msgstr ""
+
+msgid "Drama and Films"
 msgstr ""
 
 msgid "Dreambox format data DVD (HDTV compatible)"
@@ -4432,9 +4444,6 @@ msgstr "Breyta titili"
 #, fuzzy
 msgid "Edit update source url"
 msgstr "Breyta uppfærslu uppruna slóð."
-
-msgid "Education/Science/..."
-msgstr ""
 
 msgid "Egypt"
 msgstr ""
@@ -5098,13 +5107,6 @@ msgid ""
 "inactive"
 msgstr ""
 
-#, python-format
-msgid "FBC socket %s"
-msgstr ""
-
-msgid "FBC virtual"
-msgstr ""
-
 #
 msgid "FEC"
 msgstr "FEC"
@@ -5444,7 +5446,7 @@ msgstr "Já, settu inn afritið núna"
 
 #
 #, fuzzy
-msgid "Flash on the fly your your Receiver software."
+msgid "Flash on the fly your Receiver software."
 msgstr "Stjórna hugbúnaði móttakarans"
 
 msgid "Flash, restore settings and user selected plugins"
@@ -5610,7 +5612,7 @@ msgid "Full view resolution"
 msgstr ""
 
 #, fuzzy
-msgid "Fullbackup images"
+msgid "Fullbackup Images"
 msgstr "Afritun tókst ekki."
 
 #, python-format
@@ -6997,9 +6999,6 @@ msgstr "Vinstri"
 msgid "Left from servicename"
 msgstr ""
 
-msgid "Leisure hobbies"
-msgstr ""
-
 msgid "Lesotho"
 msgstr ""
 
@@ -7820,9 +7819,6 @@ msgstr "Staðsetning bíómynda"
 msgid "Movie selection"
 msgstr "Staðsetning bíómynda"
 
-msgid "Movie/Drama"
-msgstr ""
-
 #
 msgid "Movielist menu"
 msgstr "Bíómynda valmynd"
@@ -8137,7 +8133,7 @@ msgstr ""
 msgid "New password"
 msgstr ""
 
-msgid "News Current Affairs"
+msgid "News/Current Affairs/Social"
 msgstr ""
 
 msgctxt "button label, 'next screen'"
@@ -11800,6 +11796,11 @@ msgstr "Skipta á rásum"
 msgid "Set blocktimes by weekday"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Set cursor on service from channel history"
+msgstr "fyrri rás í sögu"
+
 msgid "Set default"
 msgstr ""
 
@@ -11989,9 +11990,6 @@ msgstr "Sýna upplýsinga borða við breytingu á atriði"
 #, fuzzy
 msgid "Show EPG..."
 msgstr "sýna EPG"
-
-msgid "Show Games show"
-msgstr ""
 
 msgid "Show HDMIRecord setup..."
 msgstr ""
@@ -12394,6 +12392,9 @@ msgstr ""
 msgid "Show warning when timeshift is stopped"
 msgstr ""
 
+msgid "Show/Game Show/Leisure hobbies"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Show/hide window"
@@ -12619,6 +12620,15 @@ msgstr ""
 msgid "Slot %d"
 msgstr "Sleði %d"
 
+#
+#, fuzzy, python-format
+msgid "Slot %s / FBC in %s"
+msgstr "DiSEqC endurtekning"
+
+#, python-format
+msgid "Slot %s / FBC virtual %s"
+msgstr ""
+
 #, python-format
 msgid "Slot %s: %s - Mode %d%s"
 msgstr ""
@@ -12666,9 +12676,6 @@ msgid "Smartcard PIN"
 msgstr ""
 
 msgid "Smooth"
-msgstr ""
-
-msgid "Social/Political/Economics"
 msgstr ""
 
 #
@@ -12922,8 +12929,10 @@ msgstr ""
 msgid "Standard"
 msgstr "venjulegt"
 
-msgid "Standart list"
-msgstr ""
+#
+#, fuzzy
+msgid "Standard list"
+msgstr "venjulegt"
 
 #
 msgid "Standby"
@@ -15763,6 +15772,9 @@ msgstr ""
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr ""
 
+msgid "When enabled, then when changing bouquets, set the cursor on the service from the channel history in the channel selection list."
+msgstr ""
+
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr ""
 
@@ -16378,6 +16390,11 @@ msgstr "virkja stillingar netkorts"
 msgid "active"
 msgstr "bæta við valkosti"
 
+#
+#, fuzzy
+msgid "active "
+msgstr "bæta við valkosti"
+
 msgid "active NFS Shares:"
 msgstr ""
 
@@ -16387,8 +16404,10 @@ msgstr ""
 msgid "additional cable of rotor"
 msgstr ""
 
-msgid "adult movie/drama"
-msgstr ""
+#
+#, fuzzy
+msgid "adult movie"
+msgstr "Veldu mynd"
 
 #
 msgid "advanced"
@@ -16521,9 +16540,6 @@ msgstr "betra"
 msgid "black"
 msgstr "svartur"
 
-msgid "black & white"
-msgstr ""
-
 #
 msgid "blacklist"
 msgstr "svarti listi"
@@ -16564,7 +16580,7 @@ msgstr ""
 msgid "chapters"
 msgstr "kaflar"
 
-msgid "childrens's/youth program (general)"
+msgid "childrens's youth program (general)"
 msgstr ""
 
 #
@@ -16587,11 +16603,6 @@ msgstr ""
 
 msgid "comedy"
 msgstr ""
-
-#
-#, fuzzy
-msgid "config menu"
-msgstr "staðfest"
 
 #
 msgid "confirmed"
@@ -16689,7 +16700,7 @@ msgstr ""
 msgid "economics/social advisory"
 msgstr ""
 
-msgid "education/science/factual topics (general)"
+msgid "educational/science/factual topics (general)"
 msgstr ""
 
 msgid "embedded"
@@ -16805,7 +16816,7 @@ msgstr ""
 msgid "fine arts"
 msgstr ""
 
-msgid "fitness & health"
+msgid "fitness and health"
 msgstr ""
 
 #
@@ -16860,9 +16871,6 @@ msgid "further education"
 msgstr ""
 
 msgid "game show/quiz/contest"
-msgstr ""
-
-msgid "gardening"
 msgstr ""
 
 #
@@ -17023,7 +17031,7 @@ msgstr ""
 msgid "literature"
 msgstr ""
 
-msgid "live broadcast"
+msgid "local sports"
 msgstr ""
 
 #
@@ -17097,7 +17105,7 @@ msgstr "fara upp í fyrsta atriði"
 msgid "move up to previous entry"
 msgstr "fara upp í næsta atriði"
 
-msgid "movie/drama (general)"
+msgid "movie (general)"
 msgstr ""
 
 #
@@ -17304,9 +17312,6 @@ msgstr "Mörg-EPG rásavanda val"
 msgid "original"
 msgstr ""
 
-msgid "original language"
-msgstr ""
-
 #
 msgid "pass"
 msgstr "í lagi"
@@ -17360,6 +17365,9 @@ msgstr ""
 msgid "pre-school children's program"
 msgstr ""
 
+msgid "preserve bookmarks in cuts"
+msgstr ""
+
 msgid "python"
 msgstr ""
 
@@ -17391,6 +17399,11 @@ msgstr "eyða fyrir aftan þetta"
 #
 msgid "remove before this position"
 msgstr "eyða fyrir framan þetta"
+
+#
+#, fuzzy
+msgid "remove bookmarks in cuts"
+msgstr "eyða bókamerki"
 
 #
 msgid "remove this mark"
@@ -17462,7 +17475,7 @@ msgstr "veldu valmynda atriði"
 msgid "serious music/classic music"
 msgstr ""
 
-msgid "serious/classical/religious/historical movie/drama"
+msgid "serious/classical/religious/historical drama"
 msgstr ""
 
 #, fuzzy
@@ -17542,13 +17555,13 @@ msgstr ""
 msgid "slow"
 msgstr ""
 
-msgid "soap/melodram/folkloric"
+msgid "soap/melodrama/folkloric"
 msgstr ""
 
 msgid "social/political issues/economics (general)"
 msgstr ""
 
-msgid "social/spiritual science"
+msgid "social/spiritual sciences"
 msgstr ""
 
 #, fuzzy
@@ -17571,6 +17584,11 @@ msgstr ""
 #
 msgid "standard"
 msgstr "venjulegt"
+
+#
+#, fuzzy
+msgid "standby "
+msgstr "Biðstaða"
 
 msgid "start cut here"
 msgstr "byrja klippingu hér"
@@ -17607,10 +17625,10 @@ msgstr "Taka út íforrit"
 msgid "talk show"
 msgstr ""
 
-msgid "team sports"
+msgid "team sports/excluding football"
 msgstr ""
 
-msgid "technology/natural science"
+msgid "technology/natural sciences"
 msgstr ""
 
 #
@@ -17711,9 +17729,6 @@ msgid "unpack tar/compressed tar Files"
 msgstr ""
 
 msgid "unpack zip Files"
-msgstr ""
-
-msgid "unpublished"
 msgstr ""
 
 #
