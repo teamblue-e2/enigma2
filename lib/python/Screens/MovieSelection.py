@@ -312,25 +312,6 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 		self["VKeyIcon"] = Boolean(False)
 
 		self.onChangedEntry = []
-		self["config"].onSelectionChanged.append(self.descriptions)
-
-	def descriptions(self):
-		self["description"].setText(self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or "")
-
-	# for summary:
-	def changedEntry(self):
-		for x in self.onChangedEntry:
-			x()
-
-	def getCurrentEntry(self):
-		return self["config"].getCurrent()[0]
-
-	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].getText())
-
-	def createSummary(self):
-		from Screens.Setup import SetupSummary
-		return SetupSummary
 
 	def save(self):
 		self.saveAll()
@@ -942,9 +923,12 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.reloadList()
 
 	def can_delete(self, item):
-		if not item:
+		try:
+			if not item:
+				return False
+			return canDelete(item) or isTrashFolder(item[0])
+		except:
 			return False
-		return canDelete(item) or isTrashFolder(item[0])
 
 	def can_move(self, item):
 		return canMove(item)

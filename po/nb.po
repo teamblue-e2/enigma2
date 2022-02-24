@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-13 14:35+0100\n"
+"POT-Creation-Date: 2022-02-24 20:46+0100\n"
 "PO-Revision-Date: 2019-12-06 15:54+0100\n"
 "Last-Translator: GeirJ <dummy@dummy.com>\n"
 "Language-Team: GeirJ\n"
@@ -1482,8 +1482,9 @@ msgstr ""
 msgid "Artist"
 msgstr ""
 
-msgid "Arts/Culture"
-msgstr "Kunst/Kultur"
+#, fuzzy
+msgid "Arts/Culture (without music)"
+msgstr "kunst/kultur (uten musikk, generelt)"
 
 msgid "Aruba"
 msgstr ""
@@ -2087,6 +2088,10 @@ msgstr "Kabel"
 msgid "Cable Scan"
 msgstr "Kabel-TV søk"
 
+#, python-format
+msgid "Cable scan executable utility not found '%s'!"
+msgstr ""
+
 msgid "Cabo Verde"
 msgstr ""
 
@@ -2452,8 +2457,9 @@ msgstr ""
 "Kontrollerer mottakeren %d\n"
 "DiSEqC port %s for %s"
 
-msgid "Children/Youth"
-msgstr "Barn/Ungdom"
+#, fuzzy
+msgid "Children/Youth/Education/Science"
+msgstr "utdanning/vitenskap/..."
 
 msgid "Chile"
 msgstr ""
@@ -3923,6 +3929,10 @@ msgstr "Vis ansvarsfraskrivelse"
 msgid "Disk space to reserve for recordings (in GB)"
 msgstr "Lagringsplass avsatt til opptak (i GB)"
 
+#, fuzzy
+msgid "Disk state: "
+msgstr "litteratur"
+
 #, fuzzy, python-format
 msgid "Disk temperature: %s"
 msgstr "litteratur"
@@ -4254,7 +4264,7 @@ msgstr "Programtillegg til nedlasting"
 
 #
 #, fuzzy
-msgid "Downloaded images"
+msgid "Downloaded Images"
 msgstr "Laster ned"
 
 #
@@ -4277,6 +4287,9 @@ msgstr "Henter informasjon om programtillegg. Vennligst vent..."
 #, fuzzy
 msgid "Downmix"
 msgstr "DTS nedskalering"
+
+msgid "Drama and Films"
+msgstr ""
 
 #, fuzzy
 msgid "Dreambox format data DVD (HDTV compatible)"
@@ -4462,9 +4475,6 @@ msgstr "Rediger overskrift"
 #, fuzzy
 msgid "Edit update source url"
 msgstr "Rediger kilden til internettadresse."
-
-msgid "Education/Science/..."
-msgstr "utdanning/vitenskap/..."
 
 msgid "Egypt"
 msgstr ""
@@ -5143,13 +5153,6 @@ msgid ""
 "inactive"
 msgstr ""
 
-#, python-format
-msgid "FBC socket %s"
-msgstr ""
-
-msgid "FBC virtual"
-msgstr ""
-
 #
 msgid "FEC"
 msgstr ""
@@ -5494,7 +5497,7 @@ msgid "Flash and restore settings"
 msgstr "Ja, gjenopprett innstillingene nå"
 
 #, fuzzy
-msgid "Flash on the fly your your Receiver software."
+msgid "Flash on the fly your Receiver software."
 msgstr ""
 "\n"
 "Direkteoppdatering av mottakeren"
@@ -5660,7 +5663,7 @@ msgid "Full view resolution"
 msgstr "Fullskjermsoppløsning"
 
 #, fuzzy
-msgid "Fullbackup images"
+msgid "Fullbackup Images"
 msgstr "Ekstern-mottakers URL"
 
 #, python-format
@@ -7011,9 +7014,6 @@ msgstr "Venstre"
 msgid "Left from servicename"
 msgstr "Venstre for kanalnavn"
 
-msgid "Leisure hobbies"
-msgstr "fritidssysler"
-
 msgid "Lesotho"
 msgstr ""
 
@@ -7798,9 +7798,6 @@ msgstr "Plassering av opptak"
 msgid "Movie selection"
 msgstr "Opptaksvalg"
 
-msgid "Movie/Drama"
-msgstr "film/drama"
-
 msgid "Movielist menu"
 msgstr "Opptaksliste meny"
 
@@ -8110,7 +8107,8 @@ msgstr ""
 msgid "New password"
 msgstr ""
 
-msgid "News Current Affairs"
+#, fuzzy
+msgid "News/Current Affairs/Social"
 msgstr "Nyheter aktuelle saker"
 
 msgctxt "button label, 'next screen'"
@@ -11591,6 +11589,11 @@ msgid "Set blocktimes by weekday"
 msgstr ""
 
 #
+#, fuzzy
+msgid "Set cursor on service from channel history"
+msgstr "Gå til forrige kanal i listen"
+
+#
 msgid "Set default"
 msgstr "Sett standard"
 
@@ -11763,9 +11766,6 @@ msgstr "Vis EPG for nåværende kanal..."
 #
 msgid "Show EPG..."
 msgstr "Vis EPG..."
-
-msgid "Show Games show"
-msgstr "Vis Games show"
 
 msgid "Show HDMIRecord setup..."
 msgstr ""
@@ -12150,6 +12150,10 @@ msgstr ""
 msgid "Show warning when timeshift is stopped"
 msgstr "Vis advarsel når tidsskift stoppes"
 
+#, fuzzy
+msgid "Show/Game Show/Leisure hobbies"
+msgstr "fritidssysler"
+
 #
 #, fuzzy
 msgid "Show/hide window"
@@ -12360,6 +12364,14 @@ msgstr "Topp og bunn"
 msgid "Slot %d"
 msgstr "Spor %d"
 
+#, fuzzy, python-format
+msgid "Slot %s / FBC in %s"
+msgstr "DiSEqC port %s: %s"
+
+#, python-format
+msgid "Slot %s / FBC virtual %s"
+msgstr ""
+
 #, python-format
 msgid "Slot %s: %s - Mode %d%s"
 msgstr ""
@@ -12403,9 +12415,6 @@ msgstr ""
 
 msgid "Smooth"
 msgstr ""
-
-msgid "Social/Political/Economics"
-msgstr "sosial/politisk/økonomisk"
 
 #
 #, fuzzy
@@ -12653,7 +12662,8 @@ msgid "Standard"
 msgstr "Standard"
 
 #
-msgid "Standart list"
+#, fuzzy
+msgid "Standard list"
 msgstr "Standard liste"
 
 msgid "Standby"
@@ -15395,6 +15405,10 @@ msgstr "Når aktivert, vil mottakeren bruke AC3 lyd (når tilgjengelig)."
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Når aktivert, vil mottakeren bruke AC3+  lyd (når tilgjengelig)."
 
+#, fuzzy
+msgid "When enabled, then when changing bouquets, set the cursor on the service from the channel history in the channel selection list."
+msgstr "Når aktivert, brukes fjernkontrollens piltaster til å styre lydvolumet i stedet for å få opp kanallisten."
+
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr ""
 
@@ -16017,6 +16031,11 @@ msgstr "aktiver nettverksinnstilling"
 msgid "active"
 msgstr "Alternativ"
 
+#
+#, fuzzy
+msgid "active "
+msgstr "Alternativ"
+
 msgid "active NFS Shares:"
 msgstr ""
 
@@ -16027,7 +16046,8 @@ msgstr "aktuell tid"
 msgid "additional cable of rotor"
 msgstr ""
 
-msgid "adult movie/drama"
+#, fuzzy
+msgid "adult movie"
 msgstr "voksenfilm/drama"
 
 #
@@ -16163,9 +16183,6 @@ msgstr "best"
 msgid "black"
 msgstr "svart"
 
-msgid "black & white"
-msgstr "svart & hvit"
-
 msgid "blacklist"
 msgstr "svarteliste"
 
@@ -16205,7 +16222,8 @@ msgstr "sentrert, brytning"
 msgid "chapters"
 msgstr "kapitler"
 
-msgid "childrens's/youth program (general)"
+#, fuzzy
+msgid "childrens's youth program (general)"
 msgstr "barne/ungdomsprogram (generelt)"
 
 #
@@ -16229,11 +16247,6 @@ msgstr "Videokoding"
 
 msgid "comedy"
 msgstr "komedie"
-
-#
-#, fuzzy
-msgid "config menu"
-msgstr "bekreftet"
 
 #
 msgid "confirmed"
@@ -16329,7 +16342,8 @@ msgstr "øst"
 msgid "economics/social advisory"
 msgstr "økonomi/sosial rådgivende"
 
-msgid "education/science/factual topics (general)"
+#, fuzzy
+msgid "educational/science/factual topics (general)"
 msgstr "utdanning/vitenskap/faktaprogram (generelt)"
 
 msgid "embedded"
@@ -16444,7 +16458,8 @@ msgstr "film/kino"
 msgid "fine arts"
 msgstr "kunst"
 
-msgid "fitness & health"
+#, fuzzy
+msgid "fitness and health"
 msgstr "trening & helse"
 
 #
@@ -16499,9 +16514,6 @@ msgstr "videreutdanning"
 
 msgid "game show/quiz/contest"
 msgstr "game show/spørrekonkurranse"
-
-msgid "gardening"
-msgstr "hagearbeid"
 
 #
 msgid "go to deep standby"
@@ -16658,8 +16670,9 @@ msgstr "Programjustering"
 msgid "literature"
 msgstr "litteratur"
 
-msgid "live broadcast"
-msgstr "direktesending"
+#, fuzzy
+msgid "local sports"
+msgstr "lagidrett"
 
 #
 msgid "locked"
@@ -16733,7 +16746,8 @@ msgstr "gå til til første oppføring"
 msgid "move up to previous entry"
 msgstr "gå til til forrige oppføring"
 
-msgid "movie/drama (general)"
+#, fuzzy
+msgid "movie (general)"
 msgstr "film/drama (generelt)"
 
 #
@@ -16932,9 +16946,6 @@ msgstr "Alle satellitt posisjoner egendefinert valg"
 msgid "original"
 msgstr "original"
 
-msgid "original language"
-msgstr "original språk"
-
 #
 msgid "pass"
 msgstr "klart"
@@ -16988,6 +16999,9 @@ msgstr "populær kultur/tradisjonell kunst"
 msgid "pre-school children's program"
 msgstr "førskolebarn/barneprogram"
 
+msgid "preserve bookmarks in cuts"
+msgstr ""
+
 msgid "python"
 msgstr ""
 
@@ -17017,6 +17031,11 @@ msgstr "slett etter denne posisjon"
 
 msgid "remove before this position"
 msgstr "slett før denne posisjonen"
+
+#
+#, fuzzy
+msgid "remove bookmarks in cuts"
+msgstr "Slett bokmerke"
 
 msgid "remove this mark"
 msgstr "slett markøren"
@@ -17087,7 +17106,8 @@ msgstr "velg meny"
 msgid "serious music/classic music"
 msgstr "seriøs musikk/klassisk musikk"
 
-msgid "serious/classical/religious/historical movie/drama"
+#, fuzzy
+msgid "serious/classical/religious/historical drama"
 msgstr "seriøs/klassisk/religiøs/historisk film/drama"
 
 #, fuzzy
@@ -17164,13 +17184,15 @@ msgstr ""
 msgid "slow"
 msgstr ""
 
-msgid "soap/melodram/folkloric"
+#, fuzzy
+msgid "soap/melodrama/folkloric"
 msgstr "såpe/melodrama/folklore"
 
 msgid "social/political issues/economics (general)"
 msgstr "sosialt/politiske spørsmål/økonomi (generelt)"
 
-msgid "social/spiritual science"
+#, fuzzy
+msgid "social/spiritual sciences"
 msgstr "sosialt/åndsvitenskap"
 
 #
@@ -17195,6 +17217,10 @@ msgstr "sports magasin"
 #
 msgid "standard"
 msgstr "standard"
+
+#, fuzzy
+msgid "standby "
+msgstr "Slå av"
 
 #
 msgid "start cut here"
@@ -17231,10 +17257,11 @@ msgstr "Slett programtillegg"
 msgid "talk show"
 msgstr "talk show"
 
-msgid "team sports"
-msgstr "lagidrett"
+msgid "team sports/excluding football"
+msgstr ""
 
-msgid "technology/natural science"
+#, fuzzy
+msgid "technology/natural sciences"
 msgstr "teknologi/naturvitenskap"
 
 #
@@ -17332,9 +17359,6 @@ msgstr ""
 
 msgid "unpack zip Files"
 msgstr ""
-
-msgid "unpublished"
-msgstr "ikke publisert"
 
 #
 #, fuzzy

@@ -14,7 +14,7 @@ config.misc.installwizard.opkgloaded = ConfigBoolean(default=False)
 config.misc.installwizard.channellistdownloaded = ConfigBoolean(default=False)
 
 
-class InstallWizard(Screen, ConfigListScreen):
+class InstallWizard(ConfigListScreen, Screen):
 
 	STATE_UPDATE = 0
 	STATE_CHOICE_CHANNELLIST = 1
@@ -96,7 +96,6 @@ class InstallWizard(Screen, ConfigListScreen):
 		elif self.index == self.INSTALL_PLUGINS:
 			self.list.append(getConfigListEntry(_("Do you want to install plugins"), self.enabled))
 		self["config"].list = self.list
-		self["config"].l.setList(self.list)
 
 	def keyLeft(self):
 		if self.index == 0:

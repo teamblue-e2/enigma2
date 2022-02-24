@@ -11,7 +11,9 @@ from Components.Sources.StaticText import StaticText
 from Plugins.SystemPlugins.Videomode.VideoHardware import video_hw
 
 config.misc.videowizardenabled = ConfigBoolean(default=True)
-class VideoSetup(Screen, ConfigListScreen):
+
+
+class VideoSetup(ConfigListScreen, Screen):
 
 	def __init__(self, session, hw):
 		Screen.__init__(self, session)

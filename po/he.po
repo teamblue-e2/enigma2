@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-13 14:35+0100\n"
+"POT-Creation-Date: 2022-02-24 20:46+0100\n"
 "PO-Revision-Date: 2012-03-08 10:40+0330\n"
 "Last-Translator: \n"
 "Language-Team: Arabic <moustafagamal@hotmail.com>\n"
@@ -1470,7 +1470,7 @@ msgstr ""
 msgid "Artist"
 msgstr "אומן"
 
-msgid "Arts/Culture"
+msgid "Arts/Culture (without music)"
 msgstr ""
 
 msgid "Aruba"
@@ -2052,6 +2052,10 @@ msgstr "Cable"
 msgid "Cable Scan"
 msgstr ""
 
+#, python-format
+msgid "Cable scan executable utility not found '%s'!"
+msgstr ""
+
 msgid "Cabo Verde"
 msgstr ""
 
@@ -2407,7 +2411,7 @@ msgid ""
 "DiSEqC port %s for %s"
 msgstr ""
 
-msgid "Children/Youth"
+msgid "Children/Youth/Education/Science"
 msgstr ""
 
 msgid "Chile"
@@ -3811,6 +3815,11 @@ msgstr "show Infoline"
 msgid "Disk space to reserve for recordings (in GB)"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Disk state: "
+msgstr "מצב סריקה"
+
 #, python-format
 msgid "Disk temperature: %s"
 msgstr ""
@@ -4110,7 +4119,7 @@ msgid "Downloadable plugins"
 msgstr "פלאגינים להורדה"
 
 #, fuzzy
-msgid "Downloaded images"
+msgid "Downloaded Images"
 msgstr "מוריד"
 
 msgid "Downloading"
@@ -4128,6 +4137,9 @@ msgid "Downloading plugin information. Please wait..."
 msgstr "...מוריד פרטים על הפלאגין, אנא המתן"
 
 msgid "Downmix"
+msgstr ""
+
+msgid "Drama and Films"
 msgstr ""
 
 msgid "Dreambox format data DVD (HDTV compatible)"
@@ -4315,9 +4327,6 @@ msgstr "ערוך כותרת"
 #, fuzzy
 msgid "Edit update source url"
 msgstr "Edit upgrade source url."
-
-msgid "Education/Science/..."
-msgstr ""
 
 msgid "Egypt"
 msgstr ""
@@ -4955,13 +4964,6 @@ msgid ""
 "inactive"
 msgstr ""
 
-#, python-format
-msgid "FBC socket %s"
-msgstr ""
-
-msgid "FBC virtual"
-msgstr ""
-
 msgid "FEC"
 msgstr "FEC"
 
@@ -5286,7 +5288,7 @@ msgstr "Yes, restore the settings now"
 
 #
 #, fuzzy
-msgid "Flash on the fly your your Receiver software."
+msgid "Flash on the fly your Receiver software."
 msgstr "נהל את תוכנת הממיר שלך"
 
 msgid "Flash, restore settings and user selected plugins"
@@ -5444,7 +5446,7 @@ msgid "Full view resolution"
 msgstr ""
 
 #, fuzzy
-msgid "Fullbackup images"
+msgid "Fullbackup Images"
 msgstr ".הגיבוי נכשל"
 
 #, python-format
@@ -6757,9 +6759,6 @@ msgstr "שמאל"
 msgid "Left from servicename"
 msgstr ""
 
-msgid "Leisure hobbies"
-msgstr ""
-
 msgid "Lesotho"
 msgstr ""
 
@@ -7539,9 +7538,6 @@ msgstr "מיקום סרטים"
 msgid "Movie selection"
 msgstr "מיקום סרטים"
 
-msgid "Movie/Drama"
-msgstr ""
-
 msgid "Movielist menu"
 msgstr "תפריט רשימת הסרטים"
 
@@ -7835,7 +7831,7 @@ msgstr ""
 msgid "New password"
 msgstr ""
 
-msgid "News Current Affairs"
+msgid "News/Current Affairs/Social"
 msgstr ""
 
 msgctxt "button label, 'next screen'"
@@ -11208,6 +11204,11 @@ msgstr "שירותים"
 msgid "Set blocktimes by weekday"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Set cursor on service from channel history"
+msgstr "previous channel in history"
+
 msgid "Set default"
 msgstr ""
 
@@ -11389,9 +11390,6 @@ msgstr "Show infobar on event change"
 #, fuzzy
 msgid "Show EPG..."
 msgstr " הראה EPG..."
-
-msgid "Show Games show"
-msgstr ""
 
 msgid "Show HDMIRecord setup..."
 msgstr ""
@@ -11778,6 +11776,9 @@ msgstr ""
 msgid "Show warning when timeshift is stopped"
 msgstr ""
 
+msgid "Show/Game Show/Leisure hobbies"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Show/hide window"
@@ -11994,6 +11995,14 @@ msgstr ""
 msgid "Slot %d"
 msgstr "Slot %d"
 
+#, fuzzy, python-format
+msgid "Slot %s / FBC in %s"
+msgstr "DiSEqC repeats"
+
+#, python-format
+msgid "Slot %s / FBC virtual %s"
+msgstr ""
+
 #, python-format
 msgid "Slot %s: %s - Mode %d%s"
 msgstr ""
@@ -12038,9 +12047,6 @@ msgid "Smartcard PIN"
 msgstr ""
 
 msgid "Smooth"
-msgstr ""
-
-msgid "Social/Political/Economics"
 msgstr ""
 
 #, fuzzy
@@ -12281,8 +12287,9 @@ msgstr ""
 msgid "Standard"
 msgstr "סטנדרטי"
 
-msgid "Standart list"
-msgstr ""
+#, fuzzy
+msgid "Standard list"
+msgstr "סטנדרטי"
 
 msgid "Standby"
 msgstr "המתנה"
@@ -14979,6 +14986,9 @@ msgstr ""
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr ""
 
+msgid "When enabled, then when changing bouquets, set the cursor on the service from the channel history in the channel selection list."
+msgstr ""
+
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr ""
 
@@ -15563,6 +15573,10 @@ msgstr "activate network adapter configuration"
 msgid "active"
 msgstr "add alternatives"
 
+#, fuzzy
+msgid "active "
+msgstr "add alternatives"
+
 msgid "active NFS Shares:"
 msgstr ""
 
@@ -15572,8 +15586,10 @@ msgstr ""
 msgid "additional cable of rotor"
 msgstr ""
 
-msgid "adult movie/drama"
-msgstr ""
+#
+#, fuzzy
+msgid "adult movie"
+msgstr "Select a movie"
 
 msgid "advanced"
 msgstr "מתקדם"
@@ -15699,9 +15715,6 @@ msgstr "better"
 msgid "black"
 msgstr "black"
 
-msgid "black & white"
-msgstr ""
-
 msgid "blacklist"
 msgstr "blacklist"
 
@@ -15739,7 +15752,7 @@ msgstr ""
 msgid "chapters"
 msgstr "chapters"
 
-msgid "childrens's/youth program (general)"
+msgid "childrens's youth program (general)"
 msgstr ""
 
 #
@@ -15762,10 +15775,6 @@ msgstr ""
 
 msgid "comedy"
 msgstr ""
-
-#, fuzzy
-msgid "config menu"
-msgstr "אושר"
 
 msgid "confirmed"
 msgstr "אושר"
@@ -15854,7 +15863,7 @@ msgstr ""
 msgid "economics/social advisory"
 msgstr ""
 
-msgid "education/science/factual topics (general)"
+msgid "educational/science/factual topics (general)"
 msgstr ""
 
 msgid "embedded"
@@ -15959,7 +15968,7 @@ msgstr ""
 msgid "fine arts"
 msgstr ""
 
-msgid "fitness & health"
+msgid "fitness and health"
 msgstr ""
 
 #, fuzzy
@@ -16010,9 +16019,6 @@ msgid "further education"
 msgstr ""
 
 msgid "game show/quiz/contest"
-msgstr ""
-
-msgid "gardening"
 msgstr ""
 
 msgid "go to deep standby"
@@ -16162,7 +16168,7 @@ msgstr ""
 msgid "literature"
 msgstr ""
 
-msgid "live broadcast"
+msgid "local sports"
 msgstr ""
 
 msgid "locked"
@@ -16226,7 +16232,7 @@ msgstr "move up to first entry"
 msgid "move up to previous entry"
 msgstr "move up to previous entry"
 
-msgid "movie/drama (general)"
+msgid "movie (general)"
 msgstr ""
 
 #, fuzzy
@@ -16416,9 +16422,6 @@ msgstr "בחירת תרגום"
 msgid "original"
 msgstr ""
 
-msgid "original language"
-msgstr ""
-
 msgid "pass"
 msgstr "pass"
 
@@ -16467,6 +16470,9 @@ msgstr ""
 msgid "pre-school children's program"
 msgstr ""
 
+msgid "preserve bookmarks in cuts"
+msgstr ""
+
 msgid "python"
 msgstr ""
 
@@ -16495,6 +16501,11 @@ msgstr "remove after this position"
 #
 msgid "remove before this position"
 msgstr "remove before this position"
+
+#
+#, fuzzy
+msgid "remove bookmarks in cuts"
+msgstr "remove bookmark"
 
 msgid "remove this mark"
 msgstr "remove this mark"
@@ -16563,7 +16574,7 @@ msgstr "בחר רשומה בתפריט"
 msgid "serious music/classic music"
 msgstr ""
 
-msgid "serious/classical/religious/historical movie/drama"
+msgid "serious/classical/religious/historical drama"
 msgstr ""
 
 #
@@ -16639,13 +16650,13 @@ msgstr ""
 msgid "slow"
 msgstr ""
 
-msgid "soap/melodram/folkloric"
+msgid "soap/melodrama/folkloric"
 msgstr ""
 
 msgid "social/political issues/economics (general)"
 msgstr ""
 
-msgid "social/spiritual science"
+msgid "social/spiritual sciences"
 msgstr ""
 
 #, fuzzy
@@ -16667,6 +16678,10 @@ msgstr ""
 
 msgid "standard"
 msgstr "סטנדרטי"
+
+#, fuzzy
+msgid "standby "
+msgstr "המתנה"
 
 msgid "start cut here"
 msgstr "התחל גזירה כאן"
@@ -16699,10 +16714,10 @@ msgstr "הסר פלאגינים"
 msgid "talk show"
 msgstr ""
 
-msgid "team sports"
+msgid "team sports/excluding football"
 msgstr ""
 
-msgid "technology/natural science"
+msgid "technology/natural sciences"
 msgstr ""
 
 msgid "template file"
@@ -16797,9 +16812,6 @@ msgid "unpack tar/compressed tar Files"
 msgstr ""
 
 msgid "unpack zip Files"
-msgstr ""
-
-msgid "unpublished"
 msgstr ""
 
 #

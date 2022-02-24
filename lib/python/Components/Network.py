@@ -83,7 +83,10 @@ class Network:
 			data['ip'] = [0, 0, 0, 0]
 			data['netmask'] = [0, 0, 0, 0]
 			data['gateway'] = [0, 0, 0, 0]
-		self.ifaces[iface] = data
+		if iface in self.ifaces:
+			self.ifaces[iface].update(data)
+		else:
+			self.ifaces[iface] = data
 		self.loadNetworkConfig(iface, callback)
 
 	def writeNetworkConfig(self):
@@ -295,8 +298,8 @@ class Network:
 		return list(self.ifaces.keys())
 
 	def getAdapterAttribute(self, iface, attribute):
-		if not self.ifaces[iface]['up']:
-			self.getAddrInet(iface, callback=None)
+		if self.ifaces.get(iface, {}).get('ip') == [0, 0, 0, 0]:
+			self.getAddrInet(iface, None)
 		return self.ifaces.get(iface, {}).get(attribute)
 
 	def setAdapterAttribute(self, iface, attribute, value):

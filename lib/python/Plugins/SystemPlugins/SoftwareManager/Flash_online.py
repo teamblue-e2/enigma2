@@ -82,14 +82,16 @@ class FlashOnline(Screen):
 
 	def getImagesList(self):
 
-		def getImages(path, files, folder=None):
-			for _file in [x for x in files if os.path.splitext(x)[1] == ".zip" and model in x]:
+		def getImages(path, files):
+			for _file in [x for x in files if os.path.splitext(x)[1] == ".zip" and box in x]:
 				try:
-					folder = "Fullbackup images" if folder == "imagebackups" else "Downloaded Images"
 					if checkimagefiles([x.split(os.sep)[-1] for x in zipfile.ZipFile(_file).namelist()]):
-						if folder not in self.imagesList:
-							self.imagesList[folder] = {}
-						self.imagesList[folder][_file] = {'link': _file, 'name': _file.split(os.sep)[-1]}
+						imagetyp = _("Downloaded Images")
+						if 'backup' in _file.split(os.sep)[-1]:
+							imagetyp = _("Fullbackup Images")
+						if imagetyp not in self.imagesList:
+							self.imagesList[imagetyp] = {}
+						self.imagesList[imagetyp][_file] = {'link': _file, 'name': _file.split(os.sep)[-1]}
 				except:
 					pass
 
@@ -104,13 +106,13 @@ class FlashOnline(Screen):
 
 			for media in ['/media/%s' % x for x in os.listdir('/media')] + (['/media/net/%s' % x for x in os.listdir('/media/net')] if os.path.isdir('/media/net') else []):
 				try:
-					getImages(media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and model in x])
+					getImages(media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and box in x])
 					for folder in ["images", "downloaded_images", "imagebackups"]:
 						if folder in os.listdir(media):
-							media = os.path.join(media, folder)
-							if os.path.isdir(media) and not os.path.islink(media) and not os.path.ismount(media):
-								getImages(media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and model in x], folder)
-								for _dir in [_dir for _dir in [os.path.join(media, _dir) for _dir in os.listdir(media)] if os.path.isdir(_dir) and os.path.splitext(_dir)[1] == ".unzipped"]:
+							subfolder = os.path.join(media, folder)
+							if os.path.isdir(subfolder) and not os.path.islink(subfolder) and not os.path.ismount(subfolder):
+								getImages(subfolder, [os.path.join(subfolder, x) for x in os.listdir(subfolder) if os.path.splitext(x)[1] == ".zip" and box in x])
+								for _dir in [_dir for _dir in [os.path.join(subfolder, _dir) for _dir in os.list_dir(subfolder)] if os.path.is_dir(_dir) and os.path.splitext(_dir)[1] == ".unzipped"]:
 									shutil.rmtree(_dir)
 				except:
 					pass

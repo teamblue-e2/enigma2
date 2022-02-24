@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-13 14:35+0100\n"
+"POT-Creation-Date: 2022-02-24 20:46+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: ims <ims21@users.sourceforge.net>\n"
 "Language-Team: PLi <ims@openpli.org>\n"
@@ -1566,8 +1566,9 @@ msgstr ""
 msgid "Artist"
 msgstr "Umělec"
 
-msgid "Arts/Culture"
-msgstr "umění/kultura"
+#, fuzzy
+msgid "Arts/Culture (without music)"
+msgstr "umění/kulura (bez hudby, obecně)"
 
 msgid "Aruba"
 msgstr ""
@@ -2190,6 +2191,10 @@ msgstr "Kabel"
 msgid "Cable Scan"
 msgstr "Prohledání kabelovky"
 
+#, python-format
+msgid "Cable scan executable utility not found '%s'!"
+msgstr ""
+
 msgid "Cabo Verde"
 msgstr ""
 
@@ -2558,8 +2563,9 @@ msgstr ""
 "Kontrola tuneru %d\n"
 "DiSEqC port %s pro %s"
 
-msgid "Children/Youth"
-msgstr "děti/mládež"
+#, fuzzy
+msgid "Children/Youth/Education/Science"
+msgstr "vzdělání/věda..."
 
 msgid "Chile"
 msgstr ""
@@ -4094,6 +4100,10 @@ msgstr "Zobrazit právní omezení"
 msgid "Disk space to reserve for recordings (in GB)"
 msgstr "Rezerva volného místa pro nahrávání (v GB)"
 
+#, fuzzy
+msgid "Disk state: "
+msgstr "literatura"
+
 #, fuzzy, python-format
 msgid "Disk temperature: %s"
 msgstr "literatura"
@@ -4433,7 +4443,7 @@ msgstr "Stažitelné pluginy"
 
 #
 #, fuzzy
-msgid "Downloaded images"
+msgid "Downloaded Images"
 msgstr "Stahuji"
 
 #
@@ -4454,6 +4464,9 @@ msgid "Downloading plugin information. Please wait..."
 msgstr "Stahuji informace o pluginech. Prosím, čekejte..."
 
 msgid "Downmix"
+msgstr ""
+
+msgid "Drama and Films"
 msgstr ""
 
 #, fuzzy
@@ -4658,9 +4671,6 @@ msgstr "Upravit titul"
 #, fuzzy
 msgid "Edit update source url"
 msgstr "Upravit url zdroje aktualizací."
-
-msgid "Education/Science/..."
-msgstr "vzdělání/věda..."
 
 msgid "Egypt"
 msgstr ""
@@ -5353,13 +5363,6 @@ msgid ""
 "inactive"
 msgstr ""
 
-#, python-format
-msgid "FBC socket %s"
-msgstr ""
-
-msgid "FBC virtual"
-msgstr ""
-
 #
 msgid "FEC"
 msgstr "FEC"
@@ -5720,7 +5723,7 @@ msgid "Flash and restore settings"
 msgstr "Ano, nyní obnovit nastavení"
 
 #, fuzzy
-msgid "Flash on the fly your your Receiver software."
+msgid "Flash on the fly your Receiver software."
 msgstr ""
 "\n"
 "Online aktualizace programového vybavení přijímače."
@@ -5891,7 +5894,7 @@ msgid "Full view resolution"
 msgstr "Plné rozlišení"
 
 #, fuzzy
-msgid "Fullbackup images"
+msgid "Fullbackup Images"
 msgstr "Adresa vzdáleného záložního přijímače"
 
 #, python-format
@@ -7273,9 +7276,6 @@ msgstr "Vlevo"
 msgid "Left from servicename"
 msgstr "Nalevo od názvu kanálu"
 
-msgid "Leisure hobbies"
-msgstr "Volný čas, zájmy, koníčky"
-
 msgid "Lesotho"
 msgstr ""
 
@@ -8097,9 +8097,6 @@ msgstr "Umístění souboru"
 msgid "Movie selection"
 msgstr "Výběr filmů"
 
-msgid "Movie/Drama"
-msgstr "film/drama"
-
 #
 msgid "Movielist menu"
 msgstr "Nabídka seznamu filmů"
@@ -8422,7 +8419,8 @@ msgstr ""
 msgid "New password"
 msgstr ""
 
-msgid "News Current Affairs"
+#, fuzzy
+msgid "News/Current Affairs/Social"
 msgstr "zpravodajství, publicistika "
 
 msgctxt "button label, 'next screen'"
@@ -12120,6 +12118,11 @@ msgid "Set blocktimes by weekday"
 msgstr ""
 
 #
+#, fuzzy
+msgid "Set cursor on service from channel history"
+msgstr "Předchozí program v historii"
+
+#
 msgid "Set default"
 msgstr "defaultní"
 
@@ -12299,9 +12302,6 @@ msgstr "Zobrazovat EPG pro aktuální kanál..."
 #
 msgid "Show EPG..."
 msgstr "Zobrazit EPG..."
-
-msgid "Show Games show"
-msgstr "zábava"
 
 msgid "Show HDMIRecord setup..."
 msgstr ""
@@ -12686,6 +12686,10 @@ msgstr ""
 msgid "Show warning when timeshift is stopped"
 msgstr "Zobrazovat upozornění při zastavení timeshiftu"
 
+#, fuzzy
+msgid "Show/Game Show/Leisure hobbies"
+msgstr "Volný čas, zájmy, koníčky"
+
 #
 #, fuzzy
 msgid "Show/hide window"
@@ -12903,6 +12907,15 @@ msgstr ""
 msgid "Slot %d"
 msgstr "Slot  %d"
 
+#
+#, fuzzy, python-format
+msgid "Slot %s / FBC in %s"
+msgstr "DiSEqC port %s: %s"
+
+#, python-format
+msgid "Slot %s / FBC virtual %s"
+msgstr ""
+
 #, python-format
 msgid "Slot %s: %s - Mode %d%s"
 msgstr ""
@@ -12950,9 +12963,6 @@ msgstr ""
 
 msgid "Smooth"
 msgstr ""
-
-msgid "Social/Political/Economics"
-msgstr "sociální/politická ekonomika"
 
 #
 #, fuzzy
@@ -13211,7 +13221,8 @@ msgid "Standard"
 msgstr "Standard"
 
 #
-msgid "Standart list"
+#, fuzzy
+msgid "Standard list"
 msgstr "Standardní seznam"
 
 #
@@ -16031,6 +16042,10 @@ msgstr "Jestliže je povoleno, přijímač bude vybírat AC3 stopu (bude-li dost
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Jestliže je povoleno, přijímač bude vybírat AC3+ stopu (bude-li dostupná)"
 
+#, fuzzy
+msgid "When enabled, then when changing bouquets, set the cursor on the service from the channel history in the channel selection list."
+msgstr "Pokud je povoleno, pak můžete ovládat pomocí tlačítek se šipkami hlasitost namísto přístupu do seznamu kanálů"
+
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr ""
 
@@ -16681,6 +16696,11 @@ msgstr "aktivace nastavení síťového adaptéru"
 msgid "active"
 msgstr "alternativní"
 
+#
+#, fuzzy
+msgid "active "
+msgstr "alternativní"
+
 msgid "active NFS Shares:"
 msgstr ""
 
@@ -16690,7 +16710,8 @@ msgstr ""
 msgid "additional cable of rotor"
 msgstr ""
 
-msgid "adult movie/drama"
+#, fuzzy
+msgid "adult movie"
 msgstr "pro dospělé/drama"
 
 #
@@ -16828,9 +16849,6 @@ msgstr "lepší"
 msgid "black"
 msgstr "černá"
 
-msgid "black & white"
-msgstr "černobílé"
-
 #
 msgid "blacklist"
 msgstr "blacklist"
@@ -16872,7 +16890,8 @@ msgstr "uprostřed, více řádků"
 msgid "chapters"
 msgstr "kapitoly"
 
-msgid "childrens's/youth program (general)"
+#, fuzzy
+msgid "childrens's youth program (general)"
 msgstr "pro děti a mláděž (obecně)"
 
 #
@@ -16897,11 +16916,6 @@ msgstr "Kodek videa"
 
 msgid "comedy"
 msgstr "komedie"
-
-#
-#, fuzzy
-msgid "config menu"
-msgstr "potvrzeno"
 
 #
 msgid "confirmed"
@@ -16999,7 +17013,8 @@ msgstr "východ"
 msgid "economics/social advisory"
 msgstr "ekonomika/sociální poradenství "
 
-msgid "education/science/factual topics (general)"
+#, fuzzy
+msgid "educational/science/factual topics (general)"
 msgstr "vzdělávání/věda/věcná témata (obecně)"
 
 msgid "embedded"
@@ -17117,7 +17132,8 @@ msgstr "film/kino"
 msgid "fine arts"
 msgstr "výtvarné umění "
 
-msgid "fitness & health"
+#, fuzzy
+msgid "fitness and health"
 msgstr "fitness & zdraví"
 
 #
@@ -17172,9 +17188,6 @@ msgstr "další vzdělávání"
 
 msgid "game show/quiz/contest"
 msgstr "hra/kvíz/soutěž"
-
-msgid "gardening"
-msgstr "zahradnictví"
 
 #
 msgid "go to deep standby"
@@ -17339,8 +17352,9 @@ msgstr "Zarovnání událostí"
 msgid "literature"
 msgstr "literatura"
 
-msgid "live broadcast"
-msgstr "živé vysílání"
+#, fuzzy
+msgid "local sports"
+msgstr "týmové sporty"
 
 #
 msgid "locked"
@@ -17413,7 +17427,8 @@ msgstr "přesunout na první záznam"
 msgid "move up to previous entry"
 msgstr "přesunout na předcházející záznam"
 
-msgid "movie/drama (general)"
+#, fuzzy
+msgid "movie (general)"
 msgstr "film/drama (obecně)"
 
 #
@@ -17620,9 +17635,6 @@ msgstr "Multisat vybrat vše"
 msgid "original"
 msgstr "původní"
 
-msgid "original language"
-msgstr "původní jazyk"
-
 #
 msgid "pass"
 msgstr "projít (pass)"
@@ -17678,6 +17690,9 @@ msgstr "lidová kultura/tradiční umění"
 msgid "pre-school children's program"
 msgstr "program pro předškolní děti"
 
+msgid "preserve bookmarks in cuts"
+msgstr ""
+
 msgid "python"
 msgstr ""
 
@@ -17709,6 +17724,11 @@ msgstr "odebrat po této pozici"
 #
 msgid "remove before this position"
 msgstr "odebrat před touto pozicí"
+
+#
+#, fuzzy
+msgid "remove bookmarks in cuts"
+msgstr "Smazat záložku"
 
 #
 msgid "remove this mark"
@@ -17782,7 +17802,8 @@ msgstr "zvolit položku z menu"
 msgid "serious music/classic music"
 msgstr "vážná hudba/klasická muzika"
 
-msgid "serious/classical/religious/historical movie/drama"
+#, fuzzy
+msgid "serious/classical/religious/historical drama"
 msgstr "závažný/klasický/náboženský/historický film/drama"
 
 #, fuzzy
@@ -17865,13 +17886,15 @@ msgstr ""
 msgid "slow"
 msgstr ""
 
-msgid "soap/melodram/folkloric"
+#, fuzzy
+msgid "soap/melodrama/folkloric"
 msgstr "soap/melodrama/folklórní"
 
 msgid "social/political issues/economics (general)"
 msgstr "společensko politické problémy/ekonomie (obecně)"
 
-msgid "social/spiritual science"
+#, fuzzy
+msgid "social/spiritual sciences"
 msgstr "sociální/duchovní vědy"
 
 #
@@ -17896,6 +17919,11 @@ msgstr "sportovní magazín"
 #
 msgid "standard"
 msgstr "standard"
+
+#
+#, fuzzy
+msgid "standby "
+msgstr "Pohotovostní režim"
 
 #
 msgid "start cut here"
@@ -17936,10 +17964,11 @@ msgstr "Odstranit pluginy"
 msgid "talk show"
 msgstr "talk show"
 
-msgid "team sports"
-msgstr "týmové sporty"
+msgid "team sports/excluding football"
+msgstr ""
 
-msgid "technology/natural science"
+#, fuzzy
+msgid "technology/natural sciences"
 msgstr "technologie/přírodní vědy"
 
 #
@@ -18041,9 +18070,6 @@ msgstr ""
 
 msgid "unpack zip Files"
 msgstr ""
-
-msgid "unpublished"
-msgstr "nepublikováno"
 
 #
 #, fuzzy
