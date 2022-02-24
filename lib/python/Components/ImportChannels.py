@@ -50,7 +50,7 @@ class ImportChannels():
 				# network not up yet
 				sleep(5)
 				return self.getUrl(url, timeout)
-			print "[Import Channels] URLError ", e
+			print("[Import Channels] URLError ", e)
 			raise(e)
 		return result
 
