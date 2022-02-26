@@ -2,9 +2,9 @@ name: enigma2 build
 
 on:
   push:
-    branches: [ 7.3, 7.3-dev ]
+    branches: [ 7.3-dev-sigc3 ]
   pull_request:
-    branches: [ 7.3, 7.3-dev ]
+    branches: [ 7.3-dev ]
 
 jobs:
   build:
@@ -33,13 +33,11 @@ jobs:
           sudo apt-get install libgstreamer1.0-dev
           sudo apt-get install libgstreamer-plugins-base1.0-dev
           sudo apt-get install libfreetype6-dev
-          sudo apt-get install libsigc++-2.0-dev
           sudo apt-get install libfribidi-dev
           sudo apt-get install libssl-dev
           sudo apt-get install libavahi-client-dev
           sudo apt-get install libjpeg-turbo8-dev
           sudo apt-get install libgif-dev
-
       - uses: actions/checkout@v3
 
       - uses: actions/setup-python@v2
@@ -76,7 +74,14 @@ jobs:
           make
           sudo make install
           popd
-
+          echo installing libsigc++3
+          cd /tmp
+          git clone --depth 1 https://github.com/libsigcplusplus/libsigcplusplus.git
+          cd libsigcplusplus
+          ./autogen.sh
+          make
+          sudo make install
+          popd
       - name: Build enigma2
         env:
           CC: "gcc-${{ matrix.gcc }}"
