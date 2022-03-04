@@ -82,6 +82,10 @@ def getType(_file):
 
 		if ext == "dat" and _file[-11:-6].lower() == "avseq":
 			return "video/x-vcd"
+
+		if ext == "ipk":
+			return "application/x-debian-package"
+
 	return _type
 
 
