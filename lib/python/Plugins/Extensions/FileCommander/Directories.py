@@ -81,6 +81,7 @@ fallbackPaths = {
 		SCOPE_AUTORECORD: [("/media/hdd/movie", PATH_MOVE)]
 	}
 
+
 def resolveFilename(scope, base="", path_prefix=None):
 	if base.startswith("~/"):
 		# you can only use the ~/ if we have a prefix directory
@@ -306,6 +307,7 @@ def fileCheck(f, mode='r'):
 
 def fileHas(f, content, mode='r'):
 	return fileExists(f, mode) and content in open(f, mode).read()
+
 
 def getRecordingFilename(basename, dirname=None):
 	# filter out non-allowed characters

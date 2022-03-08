@@ -244,6 +244,7 @@ def startAnimationSetup(menuid):
 
 	return [(_("Animations"), animationSetupMain, "animation_setup", 3)]
 
+
 def sessionAnimationSetup(session, reason, **kwargs):
 	setAnimation_current(config.misc.window_animation_default.value)
 	setAnimation_speed(int(config.misc.window_animation_speed.value))

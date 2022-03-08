@@ -45,6 +45,7 @@ config.pluginfilter.codec = ConfigYesNo(default=False)
 config.pluginfilter.dvb = ConfigYesNo(default=False)
 config.pluginfilter.userfeed = ConfigText(default='http://', fixed_size=False)
 
+
 def languageChanged():
 	plugins.clearPluginList()
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))

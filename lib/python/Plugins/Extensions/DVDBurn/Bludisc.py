@@ -18,6 +18,7 @@ VIDEO_RATES = {23976: 1, 24000: 2, 25000: 3, 29970: 4, 50000: 6, 59940: 7}
 AUDIO_CHANNELS = {"reserved": 0, "mono": 1, "dual mono": 2, "stereo": 3, "multi": 6, "combo": 12}
 AUDIO_RATES = {48000: 1, 96000: 4, 192000: 5, 48 / 192: 12, 48 / 96: 14}
 
+
 class BludiscTitle(object):
 	def __init__(self, title):
 		object.__setattr__(self, "_title", title)

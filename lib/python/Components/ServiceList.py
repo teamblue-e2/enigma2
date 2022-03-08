@@ -12,6 +12,7 @@ from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from Components.Renderer.Picon import getPiconName
 from Components.config import config
 
+
 def refreshServiceList(configElement=None):
 	from Screens.InfoBar import InfoBar
 	InfoBarInstance = InfoBar.instance
@@ -144,14 +145,17 @@ class ServiceList(GUIComponent):
 
 		def serviceNameFont(value):
 			self.ServiceNameFont = parseFont(value, ((1, 1), (1, 1)))
+
 		def serviceInfoFont(value):
 			self.ServiceInfoFont = parseFont(value, ((1, 1), (1, 1)))
 			self.ServiceNextInfoFont = parseFont(value, ((5, 6), (1, 1)))
+
 		#def serviceNextInfoFont(value):
 		#	self.ServiceNextInfoFont = parseFont(value, ((1,1),(1,1)))
 
 		def serviceNumberFont(value):
 			self.ServiceNumberFont = parseFont(value, ((1, 1), (1, 1)))
+
 		def progressbarHeight(value):
 			self.l.setProgressbarHeight(parseScale(value))
 

@@ -969,6 +969,7 @@ class HarddiskManager:
 		except Exception as ex:
 			print("[Harddisk] Failed to set %s speed to %s" % (device, speed), ex)
 
+
 class UnmountTask(Components.Task.LoggingTask):
 	def __init__(self, job, hdd):
 		Components.Task.LoggingTask.__init__(self, job, _("Unmount"))
@@ -999,6 +1000,7 @@ class UnmountTask(Components.Task.LoggingTask):
 				os.rmdir(path)
 			except Exception as ex:
 				print("[Harddisk] Failed to remove path '%s':" % path, ex)
+
 
 class MountTask(Components.Task.LoggingTask):
 	def __init__(self, job, hdd):

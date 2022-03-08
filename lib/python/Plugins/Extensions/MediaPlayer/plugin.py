@@ -1193,6 +1193,7 @@ def menu(menuid, **kwargs):
 		return [(_("Media player"), main, "media_player", 45)]
 	return []
 
+
 def filescan_open(_list, session, **kwargs):
 	from enigma import eServiceReference
 
@@ -1248,6 +1249,7 @@ def audioCD_open_mn(session, **kwargs):
 	else:
 		# to do : adding msgbox to inform user about failure of opening audiocd.
 		return False
+
 
 def movielist_open(_list, session, **kwargs):
 	if not _list:

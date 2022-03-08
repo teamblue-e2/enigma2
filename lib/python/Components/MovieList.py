@@ -271,6 +271,7 @@ class MovieList(GUIComponent):
 	def applySkin(self, desktop, parent):
 		def warningWrongSkinParameter(string):
 			print("[MovieList] wrong '%s' skin parameters" % string)
+
 		def fontName(value):
 			self.fontName = value
 

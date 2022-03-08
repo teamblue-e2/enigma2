@@ -40,6 +40,7 @@ def SwapAutostart(reason, session=None, **kwargs):
 			startswap = StartSwap()
 			startswap.start()
 
+
 class StartSwap():
 	def __init__(self):
 		self.Console = Console()

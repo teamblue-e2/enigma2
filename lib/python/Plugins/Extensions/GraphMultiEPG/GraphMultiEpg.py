@@ -230,6 +230,7 @@ class EPGList(GUIComponent):
 
 		def ServiceFont(value):
 			self.serviceFont = parseFont(value, ((1, 1), (1, 1)))
+
 		def ServiceForegroundColor(value):
 			self.foreColorService = parseColor(value).argb()
 

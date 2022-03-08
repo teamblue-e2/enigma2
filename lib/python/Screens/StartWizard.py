@@ -30,6 +30,7 @@ else:
 	config.misc.do_overscanwizard = ConfigBoolean(default=False)
 config.misc.check_developimage = ConfigBoolean(default=True)
 
+
 class StartWizard(WizardLanguage, Rc):
 	def __init__(self, session, silent=True, showSteps=False, neededTag=None):
 		self.xmlfile = ["startwizard.xml"]

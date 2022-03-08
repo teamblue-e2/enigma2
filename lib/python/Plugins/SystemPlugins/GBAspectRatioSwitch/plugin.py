@@ -108,6 +108,7 @@ class GBAspectRatioSwitchSetup(ConfigListScreen, Screen):
 			x[1].cancel()
 		self.close()
 
+
 class GBAspectRatioSwitch():
 
 	def __init__(self):
@@ -198,6 +199,7 @@ def startGBAspectRatioSwitch(menuid):
 	if menuid != "video_menu":
 		return []
 	return [(_("AspectRatio switch"), main, "aspectratio_switch", 99)]
+
 
 def Plugins(**kwargs):
 	return [

@@ -16,6 +16,7 @@ mutex = None
 
 size = None
 
+
 def open(buffersize=16384):
 	global logfile, mutex, size
 	if logfile is None:

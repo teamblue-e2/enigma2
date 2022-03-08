@@ -44,6 +44,7 @@ def InitUsageConfig():
 
 	showrotorpositionChoicesUpdate()
 	config.usage.alternative_number_mode = ConfigYesNo(default=False)
+
 	def alternativeNumberModeChange(configElement):
 		eDVBDB.getInstance().setNumberingMode(configElement.value)
 		refreshServiceList()
@@ -447,6 +448,7 @@ def InitUsageConfig():
 	config.epg.saveepg = ConfigYesNo(default=True)
 	config.epg.opentv = ConfigYesNo(default=False)
 	config.misc.showradiopic = ConfigYesNo(default=True)
+
 	def EpgSettingsChanged(configElement):
 		from enigma import eEPGCache
 		mask = 0xffffffff
@@ -474,6 +476,7 @@ def InitUsageConfig():
 	config.epg.opentv.addNotifier(EpgSettingsChanged)
 
 	config.epg.histminutes = ConfigSelectionNumber(min=0, max=120, stepwidth=15, default=0, wraparound=True)
+
 	def EpgHistorySecondsChanged(configElement):
 		from enigma import eEPGCache
 		eEPGCache.getInstance().setEpgHistorySeconds(config.epg.histminutes.getValue() * 60)
@@ -484,6 +487,7 @@ def InitUsageConfig():
 
 	config.epg.cacheloadsched = ConfigYesNo(default=False)
 	config.epg.cachesavesched = ConfigYesNo(default=False)
+
 	def EpgCacheLoadSchedChanged(configElement):
 		from Components import EpgLoadSave
 		EpgLoadSave.EpgCacheLoadCheck()
@@ -543,6 +547,7 @@ def InitUsageConfig():
 			if p.mountpoint != '/':
 				debugpath.append((d + '/logs/', p.mountpoint))
 	config.crash.debug_path = ConfigSelection(default="/home/root/logs/", choices=debugpath)
+
 	def updatedebug_path(configElement):
 		if not os.path.exists(config.crash.debug_path.getValue()):
 			os.mkdir(config.crash.debug_path.getValue(), 755)
@@ -788,6 +793,7 @@ def InitUsageConfig():
 		(visuallyImpairedCommentary, _("Audio description for the visually impaired"))]
 
 	epg_language_choices = audio_language_choices[:1] + audio_language_choices[2:]
+
 	def setEpgLanguage(configElement):
 		eServiceEvent.setEPGLanguage(configElement.value)
 
@@ -825,6 +831,7 @@ def InitUsageConfig():
 	config.autolanguage.audio_usecache = ConfigYesNo(default=True)
 
 	subtitle_language_choices = audio_language_choices[:1] + audio_language_choices[2:]
+
 	def getselectedsublanguages(range):
 		return [eval("config.autolanguage.subtitle_autoselect%x.value" % x) for x in range]
 

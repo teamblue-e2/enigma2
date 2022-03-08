@@ -211,6 +211,8 @@ class ConfigElement(object):
 		for extra_arg in self.extra_args:
 			if extra_arg[0] == notifier:
 				return extra_arg[1]
+
+
 KEY_LEFT = 0
 KEY_RIGHT = 1
 KEY_OK = 2

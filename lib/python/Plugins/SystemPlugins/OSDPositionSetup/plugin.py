@@ -9,6 +9,7 @@ config.plugins.OSDPositionSetup.dst_width = ConfigInteger(default=720)
 config.plugins.OSDPositionSetup.dst_top = ConfigInteger(default=0)
 config.plugins.OSDPositionSetup.dst_height = ConfigInteger(default=576)
 
+
 def setPosition(dst_left, dst_width, dst_top, dst_height):
 	if dst_left + dst_width > 720:
 		dst_width = 720 - dst_left

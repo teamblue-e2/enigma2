@@ -14,6 +14,7 @@ def menu(menuid, **kwargs):
 		return [(socketHandler.getName(), main, "socket_mmi", 0)]
 	return []
 
+
 def sessionstart(reason, session):
 	global socketHandler
 	if socketHandler is None:

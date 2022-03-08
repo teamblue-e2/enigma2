@@ -193,12 +193,14 @@ class Setup(ConfigListScreen, Screen):
 	def run(self):
 		self.keySave()
 
+
 def getSetupTitle(_id):
 	xmldata = setupdom.getroot()
 	for x in xmldata.findall("setup"):
 		if x.get("key") == _id:
 			return six.ensure_str(x.get("title", ""))
 	raise SetupError("unknown setup id '%s'!" % repr(_id))
+
 
 def getSetupTitleLevel(_id):
 	try:

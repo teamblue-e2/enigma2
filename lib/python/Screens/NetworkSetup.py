@@ -27,6 +27,7 @@ from enigma import eTimer, eConsoleAppContainer
 from boxbranding import getBoxType
 import six
 
+
 class NetworkAdapterSelection(Screen, HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -961,7 +962,6 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.onClose.append(self.cleanup)
 
-
 	def queryWirelessDevice(self, iface):
 		try:
 			from pythonwifi.iwlibs import Wireless
@@ -1766,7 +1766,6 @@ class NetworkPassword(ConfigListScreen, Screen):
 			self["config"].getCurrent()[1].setValue(callback)
 			self["config"].invalidate(self["config"].getCurrent())
 		self.showHelpWindow()
-
 
 	def dataAvail(self, data):
 		data = six.ensure_str(data)

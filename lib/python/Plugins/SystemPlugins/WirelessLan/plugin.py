@@ -172,6 +172,7 @@ class WlanStatus(Screen):
 				self["statuspic"].setPixmapNum(0)
 			self["statuspic"].show()
 
+
 class WlanScan(Screen):
 	skin = """
 		<screen name="WlanScan" position="center,center" size="560,400" title="Select a wireless network" >

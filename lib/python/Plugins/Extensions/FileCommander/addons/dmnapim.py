@@ -140,6 +140,7 @@ def get_subtitle(digest, lang="PL"):
 
     return sub
 
+
 def detect_format(_list):
     """
     Detect the format of input subtitles file.
@@ -196,6 +197,7 @@ def read_mdvd(_list, fps):
             subtitles.append(subt)
     return subtitles
 
+
 def read_mpl2(_list):
     """
     Read mpl2 subtitles
@@ -212,6 +214,7 @@ def read_mpl2(_list):
             subt.extend(m.group(3).strip().split("|"))
             subtitles.append(subt)
     return subtitles
+
 
 def read_sub2(_list):
     """
@@ -238,6 +241,7 @@ def read_sub2(_list):
         sys.stderr.write("Warning: it seems like input file is damaged or too short.\n")
     return subtitles
 
+
 def read_srt(_list):
     """
     Reads srt subtitles.
@@ -263,6 +267,7 @@ def read_srt(_list):
     except IndexError:
         sys.stderr.write("Warning: it seems like input file is damaged or too short.\n")
     return subtitles
+
 
 def read_tmp(_list):
     """
@@ -292,6 +297,7 @@ def read_tmp(_list):
         subt.extend(subs[times[i]])
         subtitles.append(subt)
     return subtitles
+
 
 def to_srt(_list):
     count = 1

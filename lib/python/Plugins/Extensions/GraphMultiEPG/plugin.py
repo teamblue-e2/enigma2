@@ -15,6 +15,7 @@ epg_bouquet = None
 epg = None
 ref = None
 
+
 def zapToService(service, preview=False, zapback=False):
 	if Servicelist.startServiceRef is None:
 		Servicelist.startServiceRef = Session.nav.getCurrentlyPlayingServiceOrGroup()
@@ -103,6 +104,7 @@ def changeBouquetCB(direction, epgcall):
 	else:
 		if epg["list"].getCurrent() and epg["list"].getCurrent()[1]:
 			Session.openWithCallback(onSelectBouquetClose, SimpleChannelSelection, _("Select channel"), True, True, epg["list"].getCurrent()[1].ref)
+
 
 def main(session, servicelist=None, **kwargs):
 	global ref

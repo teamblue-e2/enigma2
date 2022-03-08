@@ -136,6 +136,7 @@ def getImageTypeString():
 	#       return _("undefined")
 	return "%s %s" % (getImageVersion(), getImageType())
 
+
 def getCPUInfoString():
 	if getMachineBuild() in ('gbmv200', ):
 		return "Hisilicon 1,6 GHz 4 Cores"

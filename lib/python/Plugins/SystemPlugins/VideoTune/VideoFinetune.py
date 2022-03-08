@@ -9,8 +9,10 @@ from Components.SystemInfo import SystemInfo
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
 from enigma import gFont, getDesktop, gMainDC, eSize, RT_HALIGN_RIGHT, RT_WRAP
 
+
 def RGB(r, g, b):
 	return (r << 16) | (g << 8) | b
+
 
 class OverscanTestScreen(Screen):
 	def __init__(self, session):

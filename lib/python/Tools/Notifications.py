@@ -8,6 +8,7 @@ notificationAdded = []
 # notifications which are currently on screen (and might be closed by similiar notifications)
 current_notifications = []
 
+
 def __AddNotification(fnc, screen, id, *args, **kwargs):
 	if ".MessageBox'>" in repr(screen):
 		kwargs["simple"] = True
@@ -58,11 +59,13 @@ def RemovePopup(id):
 
 from Screens.MessageBox import MessageBox
 
+
 def AddPopup(text, type, timeout, id=None):
 	if id is not None:
 		RemovePopup(id)
 	print("AddPopup, id =", id)
 	AddNotificationWithID(id, MessageBox, text=text, type=type, timeout=timeout, close_on_any_key=True)
+
 
 def removeCIdialog():
 	import NavigationInstance

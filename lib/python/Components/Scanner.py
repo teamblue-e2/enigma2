@@ -65,6 +65,7 @@ add_type("video/webm", ".webm")
 add_type("video/mpeg", ".pva")
 add_type("video/mpeg", ".wtv")
 
+
 def getType(_file):
 	(_type, _) = guess_type(_file)
 	if _type is None:
@@ -242,6 +243,7 @@ def openList(session, files):
 		return True
 
 	return False
+
 
 def openFile(session, mimetype, _file):
 	return openList(session, [ScanFile(_file, mimetype)])
