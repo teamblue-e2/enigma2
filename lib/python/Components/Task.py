@@ -11,6 +11,7 @@ import six
 
 class Job(object):
 	NOT_STARTED, IN_PROGRESS, FINISHED, FAILED = list(range(4))
+
 	def __init__(self, name):
 		self.tasks = []
 		self.resident_tasks = []
@@ -292,10 +293,12 @@ class PythonTask(Task):
 
 	def work(self):
 		raise NotImplemented("work")
+
 	def abort(self):
 		self.aborted = True
 		if self.callback is None:
 			self.finish(aborted=True)
+
 	def onTimer(self):
 		self.setProgress(self.pos)
 

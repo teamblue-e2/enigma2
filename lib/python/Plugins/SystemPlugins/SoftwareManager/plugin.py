@@ -1199,6 +1199,7 @@ class PluginDetails(Screen, PackageInfoHandler):
 			<widget name="detailtext" position="10,90" size="270,330" zPosition="10" font="Regular;21" transparent="1" halign="left" valign="top"/>
 			<widget name="screenshot" position="290,90" size="300,330" alphatest="on"/>
 		</screen>"""
+
 	def __init__(self, session, plugin_path, packagedata=None):
 		Screen.__init__(self, session)
 		self.skin_path = plugin_path
@@ -2151,6 +2152,7 @@ def filescan(**kwargs):
 			name="Opkg",
 			description=_("Install extensions"),
 			openfnc=filescan_open, )
+
 
 class ShowUpdatePackages(Screen, NumericalTextInput):
 	skin = """

@@ -109,6 +109,7 @@ def GetSTARTUPFile():
 def ReadSTARTUP():
 	return SystemInfo["canMultiBoot"] and open('/tmp/startupmount/%s' % GetSTARTUPFile(), 'r').read()
 
+
 def GetBoxName():
 	box = getBoxType()
 	machinename = getMachineName()

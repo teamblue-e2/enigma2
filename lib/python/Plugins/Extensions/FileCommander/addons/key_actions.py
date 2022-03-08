@@ -135,6 +135,8 @@ class stat_info:
 		# commented out
 		#return time.strftime(config.usage.date.daylong.value + " " + config.usage.time.long.value, time.localtime(t))
 		return time_strftime("%d.%m.%Y - %H:%M:%S", time_localtime(t))
+
+
 task_Stout = []
 task_Sterr = []
 

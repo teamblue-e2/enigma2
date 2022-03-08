@@ -39,11 +39,13 @@ def mountpoint_choosen(option):
 		title=_("The following files were found..."),
 		list=_list)
 
+
 def scan(session):
 	from Screens.ChoiceBox import ChoiceBox
 	parts = [(r.tabbedDescription(), r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False) if os.access(r.mountpoint, os.F_OK | os.R_OK)]
 	parts.append((_("Memory") + "\t/tmp", "/tmp", session))
 	session.openWithCallback(mountpoint_choosen, ChoiceBox, title=_("Please select medium to be scanned"), list=parts)
+
 
 def main(session, **kwargs):
 	scan(session)
@@ -61,6 +63,7 @@ def menuHook(menuid):
 		return []
 	from Tools.BoundFunction import boundFunction
 	return [(("%s (files)") % r.description, boundFunction(menuEntry, r.description, r.mountpoint), "hotplug_%s" % r.mountpoint, None) for r in harddiskmanager.getMountedPartitions(onlyhotplug=True)]
+
 
 global_session = None
 

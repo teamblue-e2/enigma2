@@ -6,6 +6,7 @@ import collections
 
 config.plugins = ConfigSubsection()
 
+
 class PluginDescriptor(object):
 	"""An object to describe a plugin."""
 
@@ -69,8 +70,6 @@ class PluginDescriptor(object):
 	# override internal RecordTimer navigation instance
 	# fnc must return the custom instance or None to skip it
 	WHERE_RECORDTIMER = 16
-
-
 
 	def __init__(self, name="Plugin", where=None, description="", icon=None, fnc=None, wakeupfnc=None, needsRestart=None, internal=False, weight=0):
 		if not where:

@@ -66,6 +66,7 @@ EXTENSIONS = {
 		"wtv": "movie",
 	}
 
+
 def FileEntryComponent(name, absolute=None, isDir=False):
 	res = [(absolute, isDir)]
 	x, y, w, h = parameters.get("FileListName", (35, 1, 600, 20))

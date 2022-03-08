@@ -114,6 +114,7 @@ config.plugins.CableScan.modulation = ConfigSelection(
 	default=str(eDVBFrontendParametersCable.Modulation_QAM256))
 config.plugins.CableScan.auto = ConfigYesNo(default=False)
 
+
 class CableScanScreen(ConfigListScreen, Screen):
 	skin = """
 	<screen position="center,115" size="520,390" title="Cable Scan">

@@ -247,6 +247,7 @@ class Dish(Screen):
 		t = abs(time)
 		return "%s%02d:%02d" % (time < 0 and "- " or "", t / 60 % 60, t % 60)
 
+
 class Dishpip(Dish, Screen):
 	STATE_HIDDEN = 0
 	STATE_SHOWN = 1

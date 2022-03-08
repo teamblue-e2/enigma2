@@ -262,6 +262,7 @@ def buildMovieLocationList(bookmarks):
 			bookmarks.append((p.tabbedDescription(), d))
 		inlist.append(d)
 
+
 class MovieBrowserConfiguration(ConfigListScreen, Screen):
 	def __init__(self, session, args=0):
 		Screen.__init__(self, session)

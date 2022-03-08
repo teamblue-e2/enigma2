@@ -33,6 +33,7 @@ def DVDOverlay(*args, **kwargs):
 	from Screens import DVD
 	return DVD.DVDOverlay(*args, **kwargs)
 
+
 def filescan_open(_list, session, **kwargs):
 	from Screens import DVD
 	if len(_list) == 1 and _list[0].mimetype == "video/x-dvd":

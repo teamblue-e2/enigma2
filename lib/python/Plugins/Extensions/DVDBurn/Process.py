@@ -213,6 +213,7 @@ class MplexTaskPostcondition(Condition):
 
 class MplexTask(Task):
 	ERROR_UNDERRUN, ERROR_UNKNOWN = list(range(2))
+
 	def __init__(self, job, outputfile, inputfiles=None, demux_task=None, weighting=500):
 		Task.__init__(self, job, "Mux ES into PS")
 		self.weighting = weighting
@@ -323,6 +324,7 @@ class BurnTaskPostcondition(Condition):
 
 class BurnTask(Task):
 	ERROR_NOTWRITEABLE, ERROR_LOAD, ERROR_SIZE, ERROR_WRITE_FAILED, ERROR_DVDROM, ERROR_ISOFS, ERROR_FILETOOLARGE, ERROR_ISOTOOLARGE, ERROR_MINUSRWBUG, ERROR_UNKNOWN = list(range(10))
+
 	def __init__(self, job, extra_args=[], tool="growisofs"):
 		Task.__init__(self, job, job.name)
 		self.weighting = 500
@@ -467,6 +469,7 @@ class PreviewTask(Task):
 	def previewProject(self):
 		from Plugins.Extensions.DVDPlayer.plugin import DVDPlayer
 		self.job.project.session.openWithCallback(self.playerClosed, DVDPlayer, dvd_filelist=[self.path])
+
 
 class PreviewTaskPostcondition(Condition):
 	def check(self, task):

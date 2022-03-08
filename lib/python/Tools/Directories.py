@@ -535,6 +535,7 @@ def lsof():
 				pass
 	return lsof
 
+
 def getExtension(_file):
 	filename, extension = os.path.splitext(_file)
 	return extension

@@ -2559,4 +2559,3 @@ class NetworkServicesSummary(Screen):
 		self["title"].text = title
 		self["status_summary"].text = status_summary
 		self["autostartstatus_summary"].text = autostartstatus_summary
-

@@ -222,6 +222,7 @@ def InitLcd():
 
 	config.misc.standbyCounter.addNotifier(standbyCounterChanged, initial_call=False)
 
+
 def setLCDLiveTv(value):
 	if "live_enable" in SystemInfo["LcdLiveTV"]:
 		open(SystemInfo["LcdLiveTV"], "w").write(value and "enable" or "disable")

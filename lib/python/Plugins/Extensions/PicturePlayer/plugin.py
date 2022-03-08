@@ -18,6 +18,7 @@ def main(session, **kwargs):
 	from .ui import picshow
 	session.open(picshow)
 
+
 def filescan_open(_list, session, **kwargs):
 	# Recreate List as expected by PicView
 	filelist = [((_file.path, False), None) for _file in _list]

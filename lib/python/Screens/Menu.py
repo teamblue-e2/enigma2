@@ -357,6 +357,7 @@ class Menu(Screen, ProtectedScreen):
 			self.list.append(('', None, 'dummy', '10', 10))
 		self.list.sort(key=lambda listweight: int(listweight[4]))
 
+
 class MenuSort(Menu):
 	def __init__(self, session, parent):
 		self.somethingChanged = False

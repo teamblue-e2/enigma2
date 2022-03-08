@@ -1007,7 +1007,6 @@ class RecordTimer(timer.Timer):
 			from Screens.MessageBox import MessageBox
 			AddPopup(_("Timer overlap in timers.xml detected!\nPlease recheck it!") + timer_text, type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
 
-
 	def saveTimer(self):
 		#root_element = xml.etree.cElementTree.Element('timers')
 		#root_element.text = "\n"

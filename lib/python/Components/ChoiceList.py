@@ -5,6 +5,7 @@ from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont
 from Tools.LoadPixmap import LoadPixmap
 from skin import applySkinFactor, fonts, parameters
 
+
 def ChoiceEntryComponent(key=None, text=None):
 	text = ["--"] if text is None else text
 	res = [text]

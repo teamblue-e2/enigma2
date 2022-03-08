@@ -69,7 +69,6 @@ class Wlan:
 
 		return ifnames
 
-
 	def setInterface(self, iface=None):
 		self.iface = iface
 
@@ -126,6 +125,7 @@ class Wlan:
 
 
 iWlan = Wlan()
+
 
 class brcmWLConfig:
 	def __init__(self):
@@ -189,6 +189,7 @@ class brcmWLConfig:
 			'key': config.plugins.wlan.psk.value,
 		}
 		return wsconf
+
 
 class wpaSupplicant:
 	def __init__(self):

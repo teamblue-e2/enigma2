@@ -773,7 +773,9 @@ class InfoBarNumberZap:
 		service, bouquet = self.searchNumber(number)
 		self.selectAndStartService(service, bouquet)
 
+
 config.misc.initialchannelselection = ConfigBoolean(default=True)
+
 
 class InfoBarChannelSelection:
 	""" ChannelSelection - handles the channelSelection dialog and the initial
@@ -812,7 +814,6 @@ class InfoBarChannelSelection:
 					break
 		else:
 			self.session.open(MessageBox, _("The Zap-History Browser plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
-
 
 	def openDeviceManager(self):
 		if fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/DeviceManager/plugin.pyo"):
@@ -2428,6 +2429,7 @@ class InfoBarPlugins:
 		else:
 			plugin(session=self.session)
 
+
 from Components.Task import job_manager
 
 
@@ -2710,7 +2712,6 @@ class InfoBarInstantRecord:
 			info["description"] = curEvent[3]
 			info["eventid"] = curEvent[4]
 			info["end"] = curEvent[1]
-
 
 	def startInstantRecording(self, limitEvent=False):
 		begin = int(time())
@@ -3717,6 +3718,7 @@ class InfoBarServiceErrorPopupSupport:
 				self.closeNotificationInstantiateDialog()
 				if hasattr(self, "dishDialog") and not self.dishDialog.dishState():
 					Notifications.AddPopup(text=error, type=MessageBox.TYPE_ERROR, timeout=5, id="ZapError")
+
 
 class InfoBarPowersaver:
 	def __init__(self):

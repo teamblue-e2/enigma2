@@ -25,6 +25,7 @@ from Components.Converter.Poll import Poll
 import datetime
 import six
 
+
 def cardnames(caid, prov):
 		if caid == '098C' and prov == '000000':
 				cn = 'SKY NDS V14'		#19E

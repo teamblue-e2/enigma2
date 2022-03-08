@@ -79,6 +79,7 @@ def FileEntryComponent(name, absolute=None, isDir=False, isLink=False):
 
 	return res
 
+
 def getSortedList(_list, sortBy, _dir=''):
 	sort, reverse = [int(x) for x in sortBy.split('.')]
 	tmplist = []

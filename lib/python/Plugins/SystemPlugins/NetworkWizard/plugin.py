@@ -4,6 +4,7 @@ from Components.config import config, ConfigBoolean
 
 config.misc.firstrun = ConfigBoolean(default=True)
 
+
 def NetworkWizardMain(session, **kwargs):
 	session.open(NetworkWizard)
 

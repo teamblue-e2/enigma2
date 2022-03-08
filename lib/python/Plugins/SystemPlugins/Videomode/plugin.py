@@ -289,6 +289,7 @@ class AudioSetup(Screen, ConfigListScreen):
 		from Screens.Setup import SetupSummary
 		return SetupSummary
 
+
 class VideomodeHotplug():
 	def __init__(self, hw):
 		self.hw = hw
@@ -358,6 +359,7 @@ def startSetup(menuid):
 		return [(_("Basic settings"), audioSetupMain, "audio_setup", 40)]
 
 	return []
+
 
 def VideoWizard(*args, **kwargs):
 	from .VideoWizard import VideoWizard

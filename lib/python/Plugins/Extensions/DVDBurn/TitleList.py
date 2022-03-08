@@ -208,6 +208,7 @@ class TitleList(Screen, HelpableScreen):
 			def doContext(self):
 				print("context menu forbidden inside DVDBurn to prevent calling multiple instances")
 				self.close(current)
+
 			def movieSelected(self):
 				current = self.getCurrent()
 				if current is not None:

@@ -37,6 +37,7 @@ class LabelConditional(Label, ConditionalWidget):
 		ConditionalWidget.__init__(self, withTimer=withTimer)
 		Label.__init__(self, text=text)
 
+
 class BlinkingLabel(Label, BlinkingWidget):
 	def __init__(self, text=""):
 		Label.__init__(self, text=text)

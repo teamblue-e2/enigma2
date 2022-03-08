@@ -77,6 +77,7 @@ def stop():
 	global stopped
 	stopped = True
 
+
 def run(duration=1000):
 	stoptimer = eTimer()
 	stoptimer.start(duration * 1000.0)

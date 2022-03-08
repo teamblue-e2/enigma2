@@ -87,7 +87,9 @@ def InitConfig():
 	config.plugins.configurationbackup.backupdirs_exclude = ConfigLocations(default=[])
 	return config.plugins.configurationbackup
 
+
 config.plugins.configurationbackup = InitConfig()
+
 
 def getBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.getValue()

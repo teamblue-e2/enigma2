@@ -38,6 +38,7 @@ def buildTerTransponder(frequency,
 	parm.plp_id = plp_id
 	return parm
 
+
 def getInitialTransponderList(tlist, pos, feid=None):
 	_list = nimmanager.getTransponders(pos, feid)
 	for x in _list:
@@ -73,6 +74,7 @@ def getInitialCableTransponderList(tlist, nim):
 			parm.inversion = x[5]
 			parm.system = x[6]
 			tlist.append(parm)
+
 
 def getInitialTerrestrialTransponderList(tlist, region, tsystem=eDVBFrontendParametersTerrestrial.System_DVB_T_T2):
 	_list = nimmanager.getTranspondersTerrestrial(region)
