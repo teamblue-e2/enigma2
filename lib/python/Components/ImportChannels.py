@@ -90,7 +90,7 @@ class ImportChannels():
 					try:
 						content = self.getUrl("%s/file?file=/etc/enigma2/%s" % (self.url, quote(file))).readlines()
 					except Exception as e:
-						print "[Import Channels] Exception: %s" % str(e)
+						print("[Import Channels] Exception: %s" % str(e))
 						self.ImportChannelsDone(False, _("ERROR downloading file /etc/enigma2/%s") % file)
 						return
 				else:
@@ -98,7 +98,7 @@ class ImportChannels():
 						content = f.readlines()
 			except Exception as e:
 				# for the moment just log and ignore
-				print "[Import Channels] %s" % str(e)
+				print("[Import Channels] %s" % str(e))
 				continue;
 
 			# check the contents for more bouquet files
