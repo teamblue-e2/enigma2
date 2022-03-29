@@ -19,6 +19,7 @@ supportfiles = ('lamedb', 'blacklist', 'whitelist', 'alternatives.')
 
 e2path = resolveFilename(SCOPE_CONFIG)
 
+
 class ImportChannels():
 
 	def __init__(self):
