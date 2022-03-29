@@ -9,6 +9,7 @@ from enigma import eDVBDB, eEPGCache
 from Screens.MessageBox import MessageBox
 from config import config
 from Tools import Notifications
+from Tools.Directories import resolveFilename, SCOPE_CONFIG
 from base64 import encodestring
 from urllib import quote
 from time import sleep
@@ -16,7 +17,7 @@ import xml.etree.ElementTree as et
 
 supportfiles = ('lamedb', 'blacklist', 'whitelist', 'alternatives.')
 
-e2path = "/etc/enigma2"
+e2path = resolveFilename(SCOPE_CONFIG)
 
 class ImportChannels():
 
@@ -79,20 +80,20 @@ class ImportChannels():
 	"""
 	def ImportGetFilelist(self, remote=False, *files):
 		result = []
-		for file in files:
+		for _file in files:
 			# determine the type of bouquet file
-			type = 1 if file.endswith('.tv') else 2
+			_type = 1 if _file.endswith('.tv') else 2
 			# read the contents of the file
 			try:
 				if remote:
 					try:
-						content = self.getUrl("%s/file?file=%s/%s" % (self.url, e2path, quote(file))).readlines()
+						content = self.getUrl("%s/file?file=%s/%s" % (self.url, e2path, quote(_file))).readlines()
 					except Exception as e:
 						print "[Import Channels] Exception: %s" % str(e)
-						self.ImportChannelsDone(False, _("ERROR downloading file %s/%s") % (e2path, file))
+						self.ImportChannelsDone(False, _("ERROR downloading file %s/%s") % (e2path, _file))
 						return
 				else:
-					with open('%s/%s' % (e2path, file), 'r') as f:
+					with open('%s/%s' % (e2path, _file), 'r') as f:
 						content = f.readlines()
 			except Exception as e:
 				# for the moment just log and ignore
@@ -102,13 +103,13 @@ class ImportChannels():
 			# check the contents for more bouquet files
 			for line in content:
 				# check if it contains another bouquet reference
-				r = re.match('#SERVICE 1:7:%d:0:0:0:0:0:0:0:FROM BOUQUET "(.*)" ORDER BY bouquet' % type, line)
+				r = re.match('#SERVICE 1:7:%d:0:0:0:0:0:0:0:FROM BOUQUET "(.*)" ORDER BY bouquet' % _type, line)
 				if r:
 					# recurse
 					result.extend(self.ImportGetFilelist(remote, r.group(1)))
 
 			# add add the file itself
-			result.append(file)
+			result.append(_file)
 
 		# return the file list
 		return result
