@@ -88,7 +88,7 @@ class Wlan:
 
 		scanresults = list(Cell.all(self.iface, 5))
 		aps = {}
-		if scanresults is not None:
+		if scanresults:
 			for i in list(range(len(scanresults))):
 				bssid = scanresults[i].ssid
 				aps[bssid] = {
@@ -441,7 +441,7 @@ class Status:
 		if ssid != None and ssid != "off":
 			scanresults = list(Cell.all(iface, 5))
 			aps = {}
-			if scanresults is not None:
+			if scanresults:
 				for i in list(range(len(scanresults))):
 					bssid = scanresults[i].ssid
 					aps[bssid] = {
