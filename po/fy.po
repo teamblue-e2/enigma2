@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-06 10:42+0100\n"
+"POT-Creation-Date: 2022-04-05 10:44+0200\n"
 "PO-Revision-Date: 2008-12-29 16:22+0100\n"
 "Last-Translator: gerrit <gerrit@nedlinux.nl>\n"
 "Language-Team: gerrit <fy@li.org>\n"
@@ -1581,7 +1581,7 @@ msgstr ""
 msgid "Artist"
 msgstr "Artyst"
 
-msgid "Arts/Culture"
+msgid "Arts/Culture (without music)"
 msgstr ""
 
 msgid "Aruba"
@@ -2207,6 +2207,10 @@ msgstr "Kabel"
 msgid "Cable Scan"
 msgstr ""
 
+#, python-format
+msgid "Cable scan executable utility not found '%s'!"
+msgstr ""
+
 msgid "Cabo Verde"
 msgstr ""
 
@@ -2578,7 +2582,7 @@ msgid ""
 "DiSEqC port %s for %s"
 msgstr ""
 
-msgid "Children/Youth"
+msgid "Children/Youth/Education/Science"
 msgstr ""
 
 msgid "Chile"
@@ -4074,6 +4078,11 @@ msgid "Disable Animations"
 msgstr ""
 
 #
+#, fuzzy
+msgid "Disable FCC during recordings"
+msgstr "Start opnimmen?"
+
+#
 msgid "Disable Picture in Picture"
 msgstr "PIP utskeakelje"
 
@@ -4104,6 +4113,11 @@ msgstr "Infolyne sjen litte"
 
 msgid "Disk space to reserve for recordings (in GB)"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Disk state: "
+msgstr "sykjen status"
 
 #, python-format
 msgid "Disk temperature: %s"
@@ -4433,7 +4447,7 @@ msgstr "Binnen te heljen ynstekkers"
 
 #
 #, fuzzy
-msgid "Downloaded images"
+msgid "Downloaded Images"
 msgstr "Binnenheljen fan"
 
 #
@@ -4454,6 +4468,9 @@ msgid "Downloading plugin information. Please wait..."
 msgstr "Binnenheljen fan ynstekker ynformaasje..."
 
 msgid "Downmix"
+msgstr ""
+
+msgid "Drama and Films"
 msgstr ""
 
 msgid "Dreambox format data DVD (HDTV compatible)"
@@ -4552,7 +4569,7 @@ msgid "ERROR - failed to scan (%s)!"
 msgstr "Flater - Sykjen mislearre (%s)!"
 
 #, python-format
-msgid "ERROR downloading file %s"
+msgid "ERROR downloading file %s/%s"
 msgstr ""
 
 #
@@ -4654,9 +4671,6 @@ msgstr "Bewukje titel"
 #, fuzzy
 msgid "Edit update source url"
 msgstr "Kies fideo moadus"
-
-msgid "Education/Science/..."
-msgstr ""
 
 msgid "Egypt"
 msgstr ""
@@ -4998,11 +5012,6 @@ msgstr ""
 msgid "Error"
 msgstr "Flater"
 
-#
-#, fuzzy, python-format
-msgid "Error %s"
-msgstr "Flater"
-
 msgid "Error checking disk. The disk may be damaged"
 msgstr ""
 
@@ -5338,12 +5347,15 @@ msgid ""
 "inactive"
 msgstr ""
 
-#, python-format
-msgid "FBC socket %s"
-msgstr ""
+#
+#, fuzzy
+msgid "FCC enabled"
+msgstr "ynskeakele"
 
-msgid "FBC virtual"
-msgstr ""
+#
+#, fuzzy
+msgid "FCCSetup"
+msgstr "Ynstelle"
 
 #
 msgid "FEC"
@@ -5465,6 +5477,15 @@ msgstr ""
 #
 msgid "Fast"
 msgstr "Rap"
+
+msgid "Fast Channel Change"
+msgstr ""
+
+msgid "Fast Channel Change Setup"
+msgstr ""
+
+msgid "Fast Channel Change setup"
+msgstr ""
 
 #
 msgid "Fast DiSEqC"
@@ -5863,7 +5884,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Fullbackup images"
+msgid "Fullbackup Images"
 msgstr "Eftergrûn ôfbylding"
 
 #, python-format
@@ -6357,6 +6378,11 @@ msgstr ""
 #
 msgid "High bitrate support"
 msgstr ""
+
+#
+#, fuzzy
+msgid "History Prev/Next"
+msgstr "Fabryks ynstellingen"
 
 msgid "History back"
 msgstr ""
@@ -7261,9 +7287,6 @@ msgstr "Links"
 msgid "Left from servicename"
 msgstr ""
 
-msgid "Leisure hobbies"
-msgstr ""
-
 msgid "Lesotho"
 msgstr ""
 
@@ -7636,6 +7659,11 @@ msgstr "Lithuaniansk"
 #, fuzzy
 msgid "Mauritius"
 msgstr "Favoryten"
+
+#
+#, fuzzy
+msgid "Max channels"
+msgstr "Kanaal"
 
 msgid "Max memory positions"
 msgstr ""
@@ -8080,9 +8108,6 @@ msgstr ""
 msgid "Movie selection"
 msgstr "Tiidsbarren seleksje"
 
-msgid "Movie/Drama"
-msgstr ""
-
 #
 msgid "Movielist menu"
 msgstr "Filmlyst menu"
@@ -8405,7 +8430,7 @@ msgstr ""
 msgid "New password"
 msgstr ""
 
-msgid "News Current Affairs"
+msgid "News/Current Affairs/Social"
 msgstr ""
 
 msgctxt "button label, 'next screen'"
@@ -10355,6 +10380,9 @@ msgstr "Woa"
 msgid "Recall to previous service"
 msgstr "Werom nei foariche service"
 
+msgid "Receiver or driver does not support FCC"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Reception lists"
@@ -12094,6 +12122,11 @@ msgstr "Kanalen wikselje"
 msgid "Set blocktimes by weekday"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Set cursor on service from channel history"
+msgstr "set foarich kanaal yn skiednis"
+
 msgid "Set default"
 msgstr ""
 
@@ -12283,9 +12316,6 @@ msgstr "Ynfobalke sjen litte by barren wiksel"
 #, fuzzy
 msgid "Show EPG..."
 msgstr "EPG sjen litte..."
-
-msgid "Show Games show"
-msgstr ""
 
 msgid "Show HDMIRecord setup..."
 msgstr ""
@@ -12697,6 +12727,9 @@ msgstr ""
 msgid "Show warning when timeshift is stopped"
 msgstr ""
 
+msgid "Show/Game Show/Leisure hobbies"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Show/hide window"
@@ -12917,6 +12950,15 @@ msgstr ""
 msgid "Slot %d"
 msgstr "Slot %d"
 
+#
+#, fuzzy, python-format
+msgid "Slot %s / FBC in %s"
+msgstr "DiSEqC herhellingen"
+
+#, python-format
+msgid "Slot %s / FBC virtual %s"
+msgstr ""
+
 #, python-format
 msgid "Slot %s: %s - Mode %d%s"
 msgstr ""
@@ -12960,9 +13002,6 @@ msgid "Smartcard PIN"
 msgstr ""
 
 msgid "Smooth"
-msgstr ""
-
-msgid "Social/Political/Economics"
 msgstr ""
 
 #
@@ -13213,8 +13252,10 @@ msgstr ""
 msgid "Standard"
 msgstr "standert"
 
-msgid "Standart list"
-msgstr ""
+#
+#, fuzzy
+msgid "Standard list"
+msgstr "standert"
 
 #
 msgid "Standby"
@@ -16051,6 +16092,9 @@ msgstr ""
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr ""
 
+msgid "When enabled, then when changing bouquets, set the cursor on the service from the channel history in the channel selection list."
+msgstr ""
+
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr ""
 
@@ -16535,6 +16579,9 @@ msgstr ""
 msgid "Zap"
 msgstr ""
 
+msgid "Zap Up/Down"
+msgstr ""
+
 #
 msgid "Zap back to previously tuned service?"
 msgstr ""
@@ -16660,6 +16707,11 @@ msgstr ""
 msgid "active"
 msgstr "alernatief tafoegje"
 
+#
+#, fuzzy
+msgid "active "
+msgstr "alernatief tafoegje"
+
 msgid "active NFS Shares:"
 msgstr ""
 
@@ -16669,8 +16721,10 @@ msgstr ""
 msgid "additional cable of rotor"
 msgstr ""
 
-msgid "adult movie/drama"
-msgstr ""
+#
+#, fuzzy
+msgid "adult movie"
+msgstr "Kies in film"
 
 #
 msgid "advanced"
@@ -16807,9 +16861,6 @@ msgstr "better"
 msgid "black"
 msgstr "swart"
 
-msgid "black & white"
-msgstr ""
-
 #
 msgid "blacklist"
 msgstr "swarte lyst"
@@ -16850,7 +16901,7 @@ msgstr ""
 msgid "chapters"
 msgstr "Haadstikken"
 
-msgid "childrens's/youth program (general)"
+msgid "childrens's youth program (general)"
 msgstr ""
 
 #
@@ -16874,11 +16925,6 @@ msgstr ""
 
 msgid "comedy"
 msgstr ""
-
-#
-#, fuzzy
-msgid "config menu"
-msgstr "befestigt"
 
 #
 msgid "confirmed"
@@ -16975,7 +17021,7 @@ msgstr ""
 msgid "economics/social advisory"
 msgstr ""
 
-msgid "education/science/factual topics (general)"
+msgid "educational/science/factual topics (general)"
 msgstr ""
 
 msgid "embedded"
@@ -17090,7 +17136,7 @@ msgstr ""
 msgid "fine arts"
 msgstr ""
 
-msgid "fitness & health"
+msgid "fitness and health"
 msgstr ""
 
 #
@@ -17145,9 +17191,6 @@ msgid "further education"
 msgstr ""
 
 msgid "game show/quiz/contest"
-msgstr ""
-
-msgid "gardening"
 msgstr ""
 
 #
@@ -17311,7 +17354,7 @@ msgstr ""
 msgid "literature"
 msgstr ""
 
-msgid "live broadcast"
+msgid "local sports"
 msgstr ""
 
 #
@@ -17385,7 +17428,7 @@ msgstr "Neit it earste menu item gean"
 msgid "move up to previous entry"
 msgstr "Nei it foarige menu item "
 
-msgid "movie/drama (general)"
+msgid "movie (general)"
 msgstr ""
 
 #
@@ -17592,9 +17635,6 @@ msgstr "Undertitel seleksje"
 msgid "original"
 msgstr ""
 
-msgid "original language"
-msgstr ""
-
 #
 msgid "pass"
 msgstr "trochgean"
@@ -17648,6 +17688,12 @@ msgstr ""
 msgid "pre-school children's program"
 msgstr ""
 
+msgid "preserve bookmarks in cuts"
+msgstr ""
+
+msgid "priority"
+msgstr ""
+
 msgid "python"
 msgstr ""
 
@@ -17679,6 +17725,11 @@ msgstr "nei dizze posysje alles ferwiderje"
 #
 msgid "remove before this position"
 msgstr "foar dizze posysje alles ferwiderje"
+
+#
+#, fuzzy
+msgid "remove bookmarks in cuts"
+msgstr "boekmerk ferwiderje"
 
 #
 msgid "remove this mark"
@@ -17749,7 +17800,7 @@ msgstr "Kies menu item"
 msgid "serious music/classic music"
 msgstr ""
 
-msgid "serious/classical/religious/historical movie/drama"
+msgid "serious/classical/religious/historical drama"
 msgstr ""
 
 #
@@ -17829,13 +17880,13 @@ msgstr ""
 msgid "slow"
 msgstr ""
 
-msgid "soap/melodram/folkloric"
+msgid "soap/melodrama/folkloric"
 msgstr ""
 
 msgid "social/political issues/economics (general)"
 msgstr ""
 
-msgid "social/spiritual science"
+msgid "social/spiritual sciences"
 msgstr ""
 
 #
@@ -17860,6 +17911,11 @@ msgstr ""
 #
 msgid "standard"
 msgstr "standert"
+
+#
+#, fuzzy
+msgid "standby "
+msgstr "Paraatmode"
 
 #
 msgid "start cut here"
@@ -17898,10 +17954,10 @@ msgstr "Ferwiderje ynstekker"
 msgid "talk show"
 msgstr ""
 
-msgid "team sports"
+msgid "team sports/excluding football"
 msgstr ""
 
-msgid "technology/natural science"
+msgid "technology/natural sciences"
 msgstr ""
 
 #
@@ -18001,9 +18057,6 @@ msgid "unpack tar/compressed tar Files"
 msgstr ""
 
 msgid "unpack zip Files"
-msgstr ""
-
-msgid "unpublished"
 msgstr ""
 
 #
