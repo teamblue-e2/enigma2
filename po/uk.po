@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-06 10:42+0100\n"
+"POT-Creation-Date: 2022-04-05 10:44+0200\n"
 "PO-Revision-Date: 2016-11-17 12:51+0200\n"
 "Last-Translator: vovan43<vovan43@ex.ua>, sety <tim1065@mail.ru>, Irkoff <irkoff@gmail.com>\n"
 "Language-Team: gisclub.tv <http://gisclub.tv/>\n"
@@ -1438,8 +1438,9 @@ msgstr ""
 msgid "Artist"
 msgstr "Артист"
 
-msgid "Arts/Culture"
-msgstr "Мистецтво / Культура"
+#, fuzzy
+msgid "Arts/Culture (without music)"
+msgstr "мистецтво/культура (без музики, загальне)"
 
 msgid "Aruba"
 msgstr ""
@@ -1984,6 +1985,10 @@ msgstr "Кабельне ТБ"
 msgid "Cable Scan"
 msgstr "Кабельне сканування"
 
+#, python-format
+msgid "Cable scan executable utility not found '%s'!"
+msgstr ""
+
 msgid "Cabo Verde"
 msgstr ""
 
@@ -2321,8 +2326,9 @@ msgstr ""
 "Перевірка тюнера %d\n"
 "DiSEqC порт %s для %s"
 
-msgid "Children/Youth"
-msgstr "Діти / Молодь"
+#, fuzzy
+msgid "Children/Youth/Education/Science"
+msgstr "Освіта / Наука /..."
 
 msgid "Chile"
 msgstr "Чилі"
@@ -3664,6 +3670,10 @@ msgstr "Відключити"
 msgid "Disable Animations"
 msgstr ""
 
+#, fuzzy
+msgid "Disable FCC during recordings"
+msgstr "Вмикати AIT в http стрім"
+
 msgid "Disable Picture in Picture"
 msgstr "Відключити картинку в картинці"
 
@@ -3690,6 +3700,10 @@ msgstr "Запустити зберігач екрану через"
 
 msgid "Disk space to reserve for recordings (in GB)"
 msgstr "Резервувати місце на диску для записів (в GB)"
+
+#, fuzzy
+msgid "Disk state: "
+msgstr "література"
 
 #, fuzzy, python-format
 msgid "Disk temperature: %s"
@@ -3982,7 +3996,7 @@ msgid "Downloadable plugins"
 msgstr "Доступні плагіни"
 
 #, fuzzy
-msgid "Downloaded images"
+msgid "Downloaded Images"
 msgstr "Завантаження"
 
 msgid "Downloading"
@@ -4001,6 +4015,9 @@ msgstr "Завантаження інформації про плагіни. ч�
 #, fuzzy
 msgid "Downmix"
 msgstr "AC3/DTS мікшування"
+
+msgid "Drama and Films"
+msgstr ""
 
 #, fuzzy
 msgid "Dreambox format data DVD (HDTV compatible)"
@@ -4089,7 +4106,7 @@ msgid "ERROR - failed to scan (%s)!"
 msgstr "Помилка - неможливе сканування (%s)!"
 
 #, python-format
-msgid "ERROR downloading file %s"
+msgid "ERROR downloading file %s/%s"
 msgstr ""
 
 msgid "East"
@@ -4176,9 +4193,6 @@ msgstr "Редагувати заголовок"
 #, fuzzy
 msgid "Edit update source url"
 msgstr "Змінити URL-адресу джерела оновлення"
-
-msgid "Education/Science/..."
-msgstr "Освіта / Наука /..."
 
 msgid "Egypt"
 msgstr ""
@@ -4485,10 +4499,6 @@ msgstr "Порт стрімінгу"
 msgid "Error"
 msgstr "Помилка"
 
-#, fuzzy, python-format
-msgid "Error %s"
-msgstr "Помилка"
-
 msgid "Error checking disk. The disk may be damaged"
 msgstr ""
 
@@ -4784,12 +4794,13 @@ msgid ""
 "inactive"
 msgstr ""
 
-#, python-format
-msgid "FBC socket %s"
-msgstr ""
+#, fuzzy
+msgid "FCC enabled"
+msgstr "увімкнено"
 
-msgid "FBC virtual"
-msgstr ""
+#, fuzzy
+msgid "FCCSetup"
+msgstr "Налаштування"
 
 msgid "FEC"
 msgstr "FEC"
@@ -4907,6 +4918,15 @@ msgstr "Ірландія"
 
 msgid "Fast"
 msgstr "Швидко"
+
+msgid "Fast Channel Change"
+msgstr ""
+
+msgid "Fast Channel Change Setup"
+msgstr ""
+
+msgid "Fast Channel Change setup"
+msgstr ""
 
 msgid "Fast DiSEqC"
 msgstr "Швидкий DiSEqC"
@@ -5261,7 +5281,7 @@ msgstr "Повна роздільна здатність перегляду"
 
 # plugin HDD 3
 #, fuzzy
-msgid "Fullbackup images"
+msgid "Fullbackup Images"
 msgstr "Повна резервна копія на HDD"
 
 # plugin HDD 3
@@ -5700,6 +5720,10 @@ msgstr "Ієрархія інформації"
 
 msgid "High bitrate support"
 msgstr "Підтримка високого бітрейта"
+
+#, fuzzy
+msgid "History Prev/Next"
+msgstr "Заводські установки"
 
 #, fuzzy
 msgid "History back"
@@ -6495,9 +6519,6 @@ msgstr "Лівий"
 msgid "Left from servicename"
 msgstr "ліворуч від назви сервісу"
 
-msgid "Leisure hobbies"
-msgstr "Хоббі на відпочинку"
-
 msgid "Lesotho"
 msgstr ""
 
@@ -6820,6 +6841,10 @@ msgstr "Литва"
 #, fuzzy
 msgid "Mauritius"
 msgstr "Фаворити"
+
+#, fuzzy
+msgid "Max channels"
+msgstr "Канал"
 
 msgid "Max memory positions"
 msgstr ""
@@ -7212,9 +7237,6 @@ msgstr "Розташування відео"
 msgid "Movie selection"
 msgstr "Вибір відео"
 
-msgid "Movie/Drama"
-msgstr "Фільми / Драма"
-
 msgid "Movielist menu"
 msgstr "Меню списку відео"
 
@@ -7488,7 +7510,8 @@ msgstr ""
 msgid "New password"
 msgstr ""
 
-msgid "News Current Affairs"
+#, fuzzy
+msgid "News/Current Affairs/Social"
 msgstr "Новини поточної події"
 
 msgctxt "button label, 'next screen'"
@@ -9186,6 +9209,9 @@ msgstr "Запис"
 msgid "Recall to previous service"
 msgstr "Повернутися на попередній сервіс"
 
+msgid "Receiver or driver does not support FCC"
+msgstr ""
+
 #, fuzzy
 msgid "Reception lists"
 msgstr "Налаштування колекції"
@@ -10707,6 +10733,10 @@ msgstr "зробити сервіс стартовим"
 msgid "Set blocktimes by weekday"
 msgstr ""
 
+#, fuzzy
+msgid "Set cursor on service from channel history"
+msgstr "Переключити на попередній канал в історії"
+
 msgid "Set default"
 msgstr ""
 
@@ -10873,9 +10903,6 @@ msgstr "Показати EPG поточного каналу..."
 
 msgid "Show EPG..."
 msgstr "Показати EPG..."
-
-msgid "Show Games show"
-msgstr "Показ ігрових шоу"
 
 msgid "Show HDMIRecord setup..."
 msgstr ""
@@ -11234,6 +11261,10 @@ msgid "Show warning when timeshift is stopped"
 msgstr "Показати попередження при зупинці timeshift"
 
 #, fuzzy
+msgid "Show/Game Show/Leisure hobbies"
+msgstr "Хоббі на відпочинку"
+
+#, fuzzy
 msgid "Show/hide window"
 msgstr "Показати інфо"
 
@@ -11416,6 +11447,14 @@ msgstr ""
 msgid "Slot %d"
 msgstr "Слот %d"
 
+#, fuzzy, python-format
+msgid "Slot %s / FBC in %s"
+msgstr "DiSEqC порт %s: %s"
+
+#, python-format
+msgid "Slot %s / FBC virtual %s"
+msgstr ""
+
 #, python-format
 msgid "Slot %s: %s - Mode %d%s"
 msgstr ""
@@ -11453,9 +11492,6 @@ msgstr ""
 
 msgid "Smooth"
 msgstr ""
-
-msgid "Social/Political/Economics"
-msgstr "Соціальне/Політика/Економіка"
 
 #, fuzzy
 msgid "Socket"
@@ -11687,8 +11723,9 @@ msgstr ""
 msgid "Standard"
 msgstr "Cтандарт"
 
-msgid "Standart list"
-msgstr ""
+#, fuzzy
+msgid "Standard list"
+msgstr "Cтандарт"
 
 msgid "Standby"
 msgstr "Режим очікування"
@@ -14242,6 +14279,10 @@ msgstr "Якщо встановлено значення 'так', то реси
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr ""
 
+#, fuzzy
+msgid "When enabled, then when changing bouquets, set the cursor on the service from the channel history in the channel selection list."
+msgstr "Якщо увімкнено, показується номер каналу у вікні вибору каналів."
+
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr ""
 
@@ -14724,6 +14765,10 @@ msgstr ""
 msgid "Zap"
 msgstr "Переключитись"
 
+#, fuzzy
+msgid "Zap Up/Down"
+msgstr "Режими екрана при перемиканні"
+
 msgid "Zap back to previously tuned service?"
 msgstr "Переключитися на попередній сервіс?"
 
@@ -14841,6 +14886,10 @@ msgstr "закрити конфігуратор мережі"
 msgid "active"
 msgstr "Альтернативний DNS"
 
+#, fuzzy
+msgid "active "
+msgstr "Альтернативний DNS"
+
 msgid "active NFS Shares:"
 msgstr ""
 
@@ -14850,7 +14899,8 @@ msgstr ""
 msgid "additional cable of rotor"
 msgstr ""
 
-msgid "adult movie/drama"
+#, fuzzy
+msgid "adult movie"
 msgstr "еротичний фільм/драма"
 
 msgid "advanced"
@@ -14972,9 +15022,6 @@ msgstr "краще"
 msgid "black"
 msgstr "чорний"
 
-msgid "black & white"
-msgstr "чорне & біле"
-
 msgid "blacklist"
 msgstr "чорний список"
 
@@ -15010,7 +15057,8 @@ msgstr "центр, загорнутий"
 msgid "chapters"
 msgstr "розділи"
 
-msgid "childrens's/youth program (general)"
+#, fuzzy
+msgid "childrens's youth program (general)"
 msgstr "дитячі/молодіжні(загальне)"
 
 msgid "circular left"
@@ -15032,10 +15080,6 @@ msgstr "Відеокодек"
 
 msgid "comedy"
 msgstr "комедія"
-
-#, fuzzy
-msgid "config menu"
-msgstr "присвоєно"
 
 msgid "confirmed"
 msgstr "присвоєно"
@@ -15119,7 +15163,8 @@ msgstr "Переміщення на схід"
 msgid "economics/social advisory"
 msgstr "економіка/соціальна консультація"
 
-msgid "education/science/factual topics (general)"
+#, fuzzy
+msgid "educational/science/factual topics (general)"
 msgstr "освіта/наука/факти(загальне)"
 
 msgid "embedded"
@@ -15223,7 +15268,8 @@ msgstr "фільм/кіно"
 msgid "fine arts"
 msgstr "образотворчі мистецтва"
 
-msgid "fitness & health"
+#, fuzzy
+msgid "fitness and health"
 msgstr "фітнес & здоров'я"
 
 msgid "flat alphabetic"
@@ -15270,9 +15316,6 @@ msgstr "дальнейшее образование"
 
 msgid "game show/quiz/contest"
 msgstr "гра шоу/вікторина/конкурс"
-
-msgid "gardening"
-msgstr "садівництво"
 
 msgid "go to deep standby"
 msgstr "перейти в глибокий Режим очікування"
@@ -15410,8 +15453,9 @@ msgstr "Вирівнювання подій"
 msgid "literature"
 msgstr "література"
 
-msgid "live broadcast"
-msgstr "пряма трансляція"
+#, fuzzy
+msgid "local sports"
+msgstr "командні види спорту"
 
 msgid "locked"
 msgstr "захоплено"
@@ -15472,7 +15516,8 @@ msgstr "перемістити вгору до першого запису"
 msgid "move up to previous entry"
 msgstr "перемістити вгору до попереднього запису"
 
-msgid "movie/drama (general)"
+#, fuzzy
+msgid "movie (general)"
 msgstr "фільми/драма (загальне)"
 
 #, fuzzy
@@ -15647,9 +15692,6 @@ msgstr "Багатофайловий режим"
 msgid "original"
 msgstr "орігинал"
 
-msgid "original language"
-msgstr "мова оригіналу"
-
 msgid "pass"
 msgstr "передати"
 
@@ -15699,6 +15741,13 @@ msgstr "популярні культура/традиції мистецтва"
 msgid "pre-school children's program"
 msgstr "дошкільні дитячі програми"
 
+msgid "preserve bookmarks in cuts"
+msgstr ""
+
+#, fuzzy
+msgid "priority"
+msgstr "Черговість"
+
 msgid "python"
 msgstr ""
 
@@ -15725,6 +15774,10 @@ msgstr "видалити після цієї позиції"
 
 msgid "remove before this position"
 msgstr "видалити перед цією позицією"
+
+#, fuzzy
+msgid "remove bookmarks in cuts"
+msgstr "Видалити закладку"
 
 msgid "remove this mark"
 msgstr "видалити мітку"
@@ -15789,7 +15842,8 @@ msgstr "вибрати із меню"
 msgid "serious music/classic music"
 msgstr "класична музика"
 
-msgid "serious/classical/religious/historical movie/drama"
+#, fuzzy
+msgid "serious/classical/religious/historical drama"
 msgstr "серйозний/класичний/релігійний/історичний фільм/драма"
 
 #, fuzzy
@@ -15863,13 +15917,15 @@ msgstr ""
 msgid "slow"
 msgstr ""
 
-msgid "soap/melodram/folkloric"
+#, fuzzy
+msgid "soap/melodrama/folkloric"
 msgstr "мильна опера/мелодрама/фольклор"
 
 msgid "social/political issues/economics (general)"
 msgstr "соціальні/політичні питання/Економіка (загальне)"
 
-msgid "social/spiritual science"
+#, fuzzy
+msgid "social/spiritual sciences"
 msgstr "соціальна/духовна наука"
 
 #, fuzzy
@@ -15891,6 +15947,10 @@ msgstr "спортивний магазин"
 
 msgid "standard"
 msgstr "стандарт"
+
+#, fuzzy
+msgid "standby "
+msgstr "Режим очікування"
 
 msgid "start cut here"
 msgstr "початок редагування"
@@ -15925,10 +15985,11 @@ msgstr "Видалення плагінів"
 msgid "talk show"
 msgstr "шоу бесіда"
 
-msgid "team sports"
-msgstr "командні види спорту"
+msgid "team sports/excluding football"
+msgstr ""
 
-msgid "technology/natural science"
+#, fuzzy
+msgid "technology/natural sciences"
 msgstr "технології/природознавство"
 
 msgid "template file"
@@ -16017,9 +16078,6 @@ msgstr ""
 
 msgid "unpack zip Files"
 msgstr ""
-
-msgid "unpublished"
-msgstr "неопублікований"
 
 #, fuzzy
 msgid "untestable"

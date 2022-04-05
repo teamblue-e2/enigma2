@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-06 10:42+0100\n"
+"POT-Creation-Date: 2022-04-05 10:44+0200\n"
 "PO-Revision-Date: 2015-08-30 09:00+0200\n"
 "Last-Translator: Taykun345 <support@satnigmo.com>\n"
 "Language-Team: Satnigmo <support@satnigmo.com>\n"
@@ -1641,7 +1641,7 @@ msgstr ""
 msgid "Artist"
 msgstr "Izvajalec"
 
-msgid "Arts/Culture"
+msgid "Arts/Culture (without music)"
 msgstr ""
 
 msgid "Aruba"
@@ -2274,6 +2274,10 @@ msgstr "Kabel"
 msgid "Cable Scan"
 msgstr "Iskanje DVBC kanalov"
 
+#, python-format
+msgid "Cable scan executable utility not found '%s'!"
+msgstr ""
+
 msgid "Cabo Verde"
 msgstr ""
 
@@ -2645,7 +2649,7 @@ msgstr ""
 "Poteka preverjanje kanalnika %d\n"
 "DiSEqC vrata %s za %s"
 
-msgid "Children/Youth"
+msgid "Children/Youth/Education/Science"
 msgstr ""
 
 msgid "Chile"
@@ -4144,6 +4148,11 @@ msgid "Disable Animations"
 msgstr "Izklop časovnika"
 
 #
+#, fuzzy
+msgid "Disable FCC during recordings"
+msgstr "Prisotnost AIT podatkov v HTTP toku"
+
+#
 msgid "Disable Picture in Picture"
 msgstr "Izklop Slike v Sliki"
 
@@ -4176,6 +4185,11 @@ msgstr "Prikaz ohranjevalnika zaslona"
 #
 msgid "Disk space to reserve for recordings (in GB)"
 msgstr "Prostor na disku rezerviran za snemanje (v GB)"
+
+#
+#, fuzzy
+msgid "Disk state: "
+msgstr "stanje iskanja"
 
 #, python-format
 msgid "Disk temperature: %s"
@@ -4520,7 +4534,7 @@ msgstr "Razpoložljivi vtičniki"
 
 #
 #, fuzzy
-msgid "Downloaded images"
+msgid "Downloaded Images"
 msgstr "Nalaganje..."
 
 #
@@ -4544,6 +4558,9 @@ msgstr "Poteka pridobivanje seznama vtičnikov... Prosim počakajte!"
 #, fuzzy
 msgid "Downmix"
 msgstr "Pretvorba AC3/DTS zvoka v stereo"
+
+msgid "Drama and Films"
+msgstr ""
 
 msgid "Dreambox format data DVD (HDTV compatible)"
 msgstr ""
@@ -4644,7 +4661,7 @@ msgid "ERROR - failed to scan (%s)!"
 msgstr "NAPAKA - neuspešno iskanje (%s)!"
 
 #, python-format
-msgid "ERROR downloading file %s"
+msgid "ERROR downloading file %s/%s"
 msgstr ""
 
 #
@@ -4750,9 +4767,6 @@ msgstr "Spremenite naslov"
 #, fuzzy
 msgid "Edit update source url"
 msgstr "Uredite povezavo vira za nadgradnjo."
-
-msgid "Education/Science/..."
-msgstr ""
 
 msgid "Egypt"
 msgstr ""
@@ -5108,11 +5122,6 @@ msgstr "Pretok"
 msgid "Error"
 msgstr "Napaka"
 
-#
-#, fuzzy, python-format
-msgid "Error %s"
-msgstr "Napaka"
-
 msgid "Error checking disk. The disk may be damaged"
 msgstr ""
 
@@ -5452,12 +5461,15 @@ msgid ""
 "inactive"
 msgstr ""
 
-#, python-format
-msgid "FBC socket %s"
-msgstr ""
+#
+#, fuzzy
+msgid "FCC enabled"
+msgstr "vključeno"
 
-msgid "FBC virtual"
-msgstr ""
+#
+#, fuzzy
+msgid "FCCSetup"
+msgstr "Nastavitve"
 
 #
 msgid "FEC"
@@ -5580,6 +5592,15 @@ msgstr ""
 #
 msgid "Fast"
 msgstr "Hitro"
+
+msgid "Fast Channel Change"
+msgstr ""
+
+msgid "Fast Channel Change Setup"
+msgstr ""
+
+msgid "Fast Channel Change setup"
+msgstr ""
 
 #
 msgid "Fast DiSEqC"
@@ -5984,7 +6005,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Fullbackup images"
+msgid "Fullbackup Images"
 msgstr "Varnostno kopiranje ni uspelo."
 
 #, python-format
@@ -6481,6 +6502,11 @@ msgstr ""
 #
 msgid "High bitrate support"
 msgstr "Podpora visokim bitnim hitrostim"
+
+#
+#, fuzzy
+msgid "History Prev/Next"
+msgstr "Ponastavitev nastavitev"
 
 #
 #, fuzzy
@@ -7380,9 +7406,6 @@ msgstr "Levo"
 msgid "Left from servicename"
 msgstr "Na levi strani od imena kanala"
 
-msgid "Leisure hobbies"
-msgstr ""
-
 msgid "Lesotho"
 msgstr ""
 
@@ -7759,6 +7782,11 @@ msgstr "Litvansko"
 #, fuzzy
 msgid "Mauritius"
 msgstr "Priljubljene"
+
+#
+#, fuzzy
+msgid "Max channels"
+msgstr "Kanal"
 
 #
 msgid "Max memory positions"
@@ -8199,9 +8227,6 @@ msgstr "Movie lokacija"
 msgid "Movie selection"
 msgstr "Izbirnik posnetkov"
 
-msgid "Movie/Drama"
-msgstr ""
-
 #
 msgid "Movielist menu"
 msgstr "Nastavitve"
@@ -8521,7 +8546,7 @@ msgstr ""
 msgid "New password"
 msgstr ""
 
-msgid "News Current Affairs"
+msgid "News/Current Affairs/Social"
 msgstr ""
 
 msgctxt "button label, 'next screen'"
@@ -10502,6 +10527,9 @@ msgstr "Rec"
 msgid "Recall to previous service"
 msgstr "Nazaj na prejšnji kanal"
 
+msgid "Receiver or driver does not support FCC"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Reception lists"
@@ -12280,6 +12308,11 @@ msgid "Set blocktimes by weekday"
 msgstr ""
 
 #
+#, fuzzy
+msgid "Set cursor on service from channel history"
+msgstr "Preklop na predhodni kanal v zgodovini"
+
+#
 msgid "Set default"
 msgstr "Nastavi kot privzeto"
 
@@ -12469,9 +12502,6 @@ msgstr "Prikaz EPG za trenutni kanal"
 #
 msgid "Show EPG..."
 msgstr "Prikaz EPG"
-
-msgid "Show Games show"
-msgstr ""
 
 msgid "Show HDMIRecord setup..."
 msgstr ""
@@ -12893,6 +12923,9 @@ msgstr ""
 msgid "Show warning when timeshift is stopped"
 msgstr "Prikaz opozorila ob ustavitvi časovnega zamika"
 
+msgid "Show/Game Show/Leisure hobbies"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Show/hide window"
@@ -13112,6 +13145,15 @@ msgstr ""
 msgid "Slot %d"
 msgstr "Slot %d"
 
+#
+#, fuzzy, python-format
+msgid "Slot %s / FBC in %s"
+msgstr "DiSEqC vrata %s: %s"
+
+#, python-format
+msgid "Slot %s / FBC virtual %s"
+msgstr ""
+
 #, python-format
 msgid "Slot %s: %s - Mode %d%s"
 msgstr ""
@@ -13157,9 +13199,6 @@ msgid "Smartcard PIN"
 msgstr ""
 
 msgid "Smooth"
-msgstr ""
-
-msgid "Social/Political/Economics"
 msgstr ""
 
 #
@@ -13415,8 +13454,9 @@ msgid "Standard"
 msgstr "Standardno"
 
 #
-msgid "Standart list"
-msgstr ""
+#, fuzzy
+msgid "Standard list"
+msgstr "Standardno"
 
 #
 msgid "Standby"
@@ -16283,6 +16323,10 @@ msgstr "Če je nastavitev vključena, potem sprejemnik samodejno izbere AC3 zvok
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Če je nastavitev vključena, potem sprejemnik samodejno izbere AC3+ zvok - če je le-ta na voljo."
 
+#, fuzzy
+msgid "When enabled, then when changing bouquets, set the cursor on the service from the channel history in the channel selection list."
+msgstr "Če je nastavitev vključena, potem lahko preklapljate kanale s tipkami CH+/-, B+/- in P+/- in to brez predhodnega odpiranja seznama kanalov."
+
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr ""
 
@@ -16803,6 +16847,11 @@ msgid "Zap"
 msgstr "Preklop"
 
 #
+#, fuzzy
+msgid "Zap Up/Down"
+msgstr "Način preklapljanja"
+
+#
 msgid "Zap back to previously tuned service?"
 msgstr "Prestavim na kanal, ki ste ga gledali pred tem?"
 
@@ -16939,6 +16988,11 @@ msgstr "aktiviranje omrežnih nastavitev"
 msgid "active"
 msgstr "Dodajanje alternativ"
 
+#
+#, fuzzy
+msgid "active "
+msgstr "Dodajanje alternativ"
+
 msgid "active NFS Shares:"
 msgstr ""
 
@@ -16948,8 +17002,10 @@ msgstr ""
 msgid "additional cable of rotor"
 msgstr ""
 
-msgid "adult movie/drama"
-msgstr ""
+#
+#, fuzzy
+msgid "adult movie"
+msgstr "Izberite posnetek"
 
 #
 msgid "advanced"
@@ -17084,9 +17140,6 @@ msgstr "boljše"
 msgid "black"
 msgstr "črno"
 
-msgid "black & white"
-msgstr "črno/belo"
-
 #
 msgid "blacklist"
 msgstr "črni seznam"
@@ -17129,7 +17182,7 @@ msgstr "osredinjeno, objeto"
 msgid "chapters"
 msgstr "poglavja"
 
-msgid "childrens's/youth program (general)"
+msgid "childrens's youth program (general)"
 msgstr ""
 
 #
@@ -17154,11 +17207,6 @@ msgstr "Kodiranje"
 
 msgid "comedy"
 msgstr ""
-
-#
-#, fuzzy
-msgid "config menu"
-msgstr "potrjeno"
 
 #
 msgid "confirmed"
@@ -17255,7 +17303,7 @@ msgstr "vzhod"
 msgid "economics/social advisory"
 msgstr ""
 
-msgid "education/science/factual topics (general)"
+msgid "educational/science/factual topics (general)"
 msgstr ""
 
 msgid "embedded"
@@ -17371,7 +17419,7 @@ msgstr ""
 msgid "fine arts"
 msgstr ""
 
-msgid "fitness & health"
+msgid "fitness and health"
 msgstr ""
 
 #
@@ -17424,9 +17472,6 @@ msgid "further education"
 msgstr ""
 
 msgid "game show/quiz/contest"
-msgstr ""
-
-msgid "gardening"
 msgstr ""
 
 #
@@ -17591,8 +17636,9 @@ msgstr "Poravnava dogodkov"
 msgid "literature"
 msgstr ""
 
-msgid "live broadcast"
-msgstr ""
+#, fuzzy
+msgid "local sports"
+msgstr "vodni športi"
 
 #
 msgid "locked"
@@ -17665,7 +17711,7 @@ msgstr "premik gor, na prvi vnos"
 msgid "move up to previous entry"
 msgstr "premik gor, prejšnji vnos"
 
-msgid "movie/drama (general)"
+msgid "movie (general)"
 msgstr ""
 
 #
@@ -17871,9 +17917,6 @@ msgstr "Multisat"
 msgid "original"
 msgstr "originalno"
 
-msgid "original language"
-msgstr "originalni jezik"
-
 #
 msgid "pass"
 msgstr "Geslo"
@@ -17929,6 +17972,14 @@ msgstr ""
 msgid "pre-school children's program"
 msgstr ""
 
+msgid "preserve bookmarks in cuts"
+msgstr ""
+
+#
+#, fuzzy
+msgid "priority"
+msgstr "Prioriteta"
+
 msgid "python"
 msgstr ""
 
@@ -17960,6 +18011,11 @@ msgstr "izbris za tem položajem"
 #
 msgid "remove before this position"
 msgstr "izbris pred tem položajem"
+
+#
+#, fuzzy
+msgid "remove bookmarks in cuts"
+msgstr "Odstranitev zaznamka"
 
 #
 msgid "remove this mark"
@@ -18031,7 +18087,7 @@ msgstr "izberite vnos"
 msgid "serious music/classic music"
 msgstr ""
 
-msgid "serious/classical/religious/historical movie/drama"
+msgid "serious/classical/religious/historical drama"
 msgstr ""
 
 #, fuzzy
@@ -18113,13 +18169,13 @@ msgstr ""
 msgid "slow"
 msgstr ""
 
-msgid "soap/melodram/folkloric"
+msgid "soap/melodrama/folkloric"
 msgstr ""
 
 msgid "social/political issues/economics (general)"
 msgstr ""
 
-msgid "social/spiritual science"
+msgid "social/spiritual sciences"
 msgstr ""
 
 #
@@ -18144,6 +18200,11 @@ msgstr ""
 #
 msgid "standard"
 msgstr "Standardno"
+
+#
+#, fuzzy
+msgid "standby "
+msgstr "Stanje pripravljenosti"
 
 #
 msgid "start cut here"
@@ -18183,10 +18244,10 @@ msgstr "Odstranitev vtičnikov"
 msgid "talk show"
 msgstr ""
 
-msgid "team sports"
+msgid "team sports/excluding football"
 msgstr ""
 
-msgid "technology/natural science"
+msgid "technology/natural sciences"
 msgstr ""
 
 #
@@ -18285,9 +18346,6 @@ msgid "unpack tar/compressed tar Files"
 msgstr ""
 
 msgid "unpack zip Files"
-msgstr ""
-
-msgid "unpublished"
 msgstr ""
 
 #

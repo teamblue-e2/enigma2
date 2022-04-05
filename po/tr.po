@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue (Apachi70)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-11 22:34+0100\n"
+"POT-Creation-Date: 2022-04-05 10:44+0200\n"
 "PO-Revision-Date: 2021-12-11 23:27+0100\n"
 "Last-Translator: Apachi70 <teamblue@online.de>\n"
 "Language-Team: teamblue@t-online.de\n"
@@ -1351,8 +1351,9 @@ msgstr "Ermenistan"
 msgid "Artist"
 msgstr "Sanatçı"
 
-msgid "Arts/Culture"
-msgstr "GzlSntlr/Kültür"
+#, fuzzy
+msgid "Arts/Culture (without music)"
+msgstr "sanat/kültür (müziksiz, genel)"
 
 msgid "Aruba"
 msgstr "Aruba"
@@ -1852,6 +1853,10 @@ msgstr "Kablo"
 msgid "Cable Scan"
 msgstr "Kablo Arama"
 
+#, python-format
+msgid "Cable scan executable utility not found '%s'!"
+msgstr ""
+
 msgid "Cabo Verde"
 msgstr "Cabo Verde"
 
@@ -2197,8 +2202,9 @@ msgstr ""
 "Tuner kontrolü%s\n"
 "DiSEqC port %s için %s"
 
-msgid "Children/Youth"
-msgstr "Çocuklar/Gençler"
+#, fuzzy
+msgid "Children/Youth/Education/Science"
+msgstr "Eğitim/Bilim/..."
 
 msgid "Chile"
 msgstr "Şili"
@@ -3438,6 +3444,10 @@ msgstr "Pasif"
 msgid "Disable Animations"
 msgstr "Devre Dışı Bırak Animasyonlar"
 
+#, fuzzy
+msgid "Disable FCC during recordings"
+msgstr "AIT'yi kayıtlara dahil et"
+
 msgid "Disable Picture in Picture"
 msgstr "Resim içinde resim (RiR) 'i kapat"
 
@@ -3461,6 +3471,10 @@ msgstr "Vazgeçme"
 
 msgid "Disk space to reserve for recordings (in GB)"
 msgstr "Kayıtlar için ayrılacak disk alanı (GB)"
+
+#, fuzzy
+msgid "Disk state: "
+msgstr "Disk sıcaklığı: %s"
 
 #, python-format
 msgid "Disk temperature: %s"
@@ -3724,7 +3738,8 @@ msgstr "Eklentileri indir"
 msgid "Downloadable plugins"
 msgstr "İndirilebilir eklentiler"
 
-msgid "Downloaded images"
+#, fuzzy
+msgid "Downloaded Images"
 msgstr "İndirilen imageler"
 
 msgid "Downloading"
@@ -3741,6 +3756,9 @@ msgstr "Eklenti bilgileri indiriliyor. Lütfen bekleyin..."
 
 msgid "Downmix"
 msgstr "Downmix"
+
+msgid "Drama and Films"
+msgstr ""
 
 msgid "Dreambox format data DVD (HDTV compatible)"
 msgstr "Dreambox formatında veri DVD (HDTV uyumlu)"
@@ -3819,8 +3837,8 @@ msgstr "EPGRefresh Yapılandırması"
 msgid "ERROR - failed to scan (%s)!"
 msgstr "HATA - arama başarısız (%s)!"
 
-#, python-format
-msgid "ERROR downloading file %s"
+#, fuzzy, python-format
+msgid "ERROR downloading file %s/%s"
 msgstr "HATA dosyası indirilirken %s"
 
 msgid "East"
@@ -3894,9 +3912,6 @@ msgstr "Başlığı düzenle"
 
 msgid "Edit update source url"
 msgstr "Güncelleme kaynağı url'sini düzenleyin"
-
-msgid "Education/Science/..."
-msgstr "Eğitim/Bilim/..."
 
 msgid "Egypt"
 msgstr "Mısır"
@@ -4176,10 +4191,6 @@ msgstr "Eritre"
 
 msgid "Error"
 msgstr "Hata"
-
-#, python-format
-msgid "Error %s"
-msgstr "Hata %s"
 
 msgid "Error checking disk. The disk may be damaged"
 msgstr "Disk denetlenirken hata. Disk bozulmuş olabilir"
@@ -4472,12 +4483,13 @@ msgstr ""
 "FBC otomatik\n"
 "etkisiz"
 
-#, python-format
-msgid "FBC socket %s"
-msgstr "FBC soketi %s"
+#, fuzzy
+msgid "FCC enabled"
+msgstr "etkin"
 
-msgid "FBC virtual"
-msgstr "FBC sanal"
+#, fuzzy
+msgid "FCCSetup"
+msgstr "Kurulum"
 
 msgid "FEC"
 msgstr "FEC"
@@ -4587,6 +4599,15 @@ msgstr "Faroe Adaları"
 
 msgid "Fast"
 msgstr "Hızlı"
+
+msgid "Fast Channel Change"
+msgstr ""
+
+msgid "Fast Channel Change Setup"
+msgstr ""
+
+msgid "Fast Channel Change setup"
+msgstr ""
 
 msgid "Fast DiSEqC"
 msgstr "Hızlı DiSEqC"
@@ -4912,7 +4933,8 @@ msgstr "Tam saydamlık"
 msgid "Full view resolution"
 msgstr "Tam görünüm çözünürlüğü"
 
-msgid "Fullbackup images"
+#, fuzzy
+msgid "Fullbackup Images"
 msgstr "Fullbackup images"
 
 #, python-format
@@ -5311,6 +5333,10 @@ msgstr "Hiyerarşi bilgisi"
 
 msgid "High bitrate support"
 msgstr "Yüksek bit oranı desteği"
+
+#, fuzzy
+msgid "History Prev/Next"
+msgstr "Geçmiş ileri"
 
 msgid "History back"
 msgstr "Geçmiş geri"
@@ -6062,9 +6088,6 @@ msgstr "Sol"
 msgid "Left from servicename"
 msgstr "Kanal adından sola"
 
-msgid "Leisure hobbies"
-msgstr "Eğlence hobiler"
-
 msgid "Lesotho"
 msgstr "Lesotho"
 
@@ -6364,6 +6387,10 @@ msgstr "Moritanya"
 
 msgid "Mauritius"
 msgstr "Mauritius"
+
+#, fuzzy
+msgid "Max channels"
+msgstr "Kanallar"
 
 msgid "Max memory positions"
 msgstr "Azami bellek pozisyonu"
@@ -6722,9 +6749,6 @@ msgstr "Film konumu"
 msgid "Movie selection"
 msgstr "Film Seçimi"
 
-msgid "Movie/Drama"
-msgstr "Film/Dram"
-
 msgid "Movielist menu"
 msgstr "Film Listesi Menüsü"
 
@@ -6968,7 +6992,8 @@ msgstr "Yeni dosya"
 msgid "New password"
 msgstr "Yeni Şifre"
 
-msgid "News Current Affairs"
+#, fuzzy
+msgid "News/Current Affairs/Social"
 msgstr "Haberler Güncel Olaylar"
 
 msgctxt "button label, 'next screen'"
@@ -8524,6 +8549,9 @@ msgstr "Rec"
 msgid "Recall to previous service"
 msgstr "Önceki kanala dön"
 
+msgid "Receiver or driver does not support FCC"
+msgstr ""
+
 msgid "Reception lists"
 msgstr "Resepsiyon listeleri"
 
@@ -9885,6 +9913,10 @@ msgstr "Başlangıç hizmeti olarak ayarla"
 msgid "Set blocktimes by weekday"
 msgstr "Hafta içi günlerine blok zamanlarını ayarla"
 
+#, fuzzy
+msgid "Set cursor on service from channel history"
+msgstr "Geçmisteki önceki kanal"
+
 msgid "Set default"
 msgstr "Varsayılanları ayarla"
 
@@ -10042,9 +10074,6 @@ msgstr "Mevcut kanal için EPG göster..."
 
 msgid "Show EPG..."
 msgstr "EPG Göster..."
-
-msgid "Show Games show"
-msgstr "Gösteri Oyunlarını göster"
 
 msgid "Show HDMIRecord setup..."
 msgstr "HDMIRecord kurulumunu göster ..."
@@ -10359,6 +10388,10 @@ msgstr "Uyarı göster önce 'çatışma Yoksa set"
 msgid "Show warning when timeshift is stopped"
 msgstr "Zaman kaydırma durduğunda uyarı göster"
 
+#, fuzzy
+msgid "Show/Game Show/Leisure hobbies"
+msgstr "Eğlence hobiler"
+
 msgid "Show/hide window"
 msgstr "Göster / gizle penceresini"
 
@@ -10526,6 +10559,14 @@ msgstr "Yukarıdan aşağıya doğru kaydırın"
 msgid "Slot %d"
 msgstr "Yuva (slot) %d"
 
+#, fuzzy, python-format
+msgid "Slot %s / FBC in %s"
+msgstr "Yuva %s: %s%s"
+
+#, fuzzy, python-format
+msgid "Slot %s / FBC virtual %s"
+msgstr "FBC sanal"
+
 #, python-format
 msgid "Slot %s: %s - Mode %d%s"
 msgstr "Yuva %s: %s - Mode %d%s"
@@ -10563,9 +10604,6 @@ msgstr "Smartcard PIN"
 
 msgid "Smooth"
 msgstr "Pürüzsüz"
-
-msgid "Social/Political/Economics"
-msgstr "Sosyal/Politik/Ekonomi"
 
 msgid "Socket"
 msgstr "Soket"
@@ -10784,7 +10822,8 @@ msgstr "Sri Lanka"
 msgid "Standard"
 msgstr "Standart"
 
-msgid "Standart list"
+#, fuzzy
+msgid "Standard list"
 msgstr "Standart liste"
 
 msgid "Standby"
@@ -13217,6 +13256,10 @@ msgstr "AC3 ses izi (varsa) seçilecektir."
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Etkin olduğunda (mevcut), alıcı bir AC3 + parçayı seçmek olacaktır."
 
+#, fuzzy
+msgid "When enabled, then when changing bouquets, set the cursor on the service from the channel history in the channel selection list."
+msgstr "Etkinleştirildiğinde, kanal seçim listesini almak yerine ses seviyesini ok düğmeleriyle kontrol edebilirsiniz"
+
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr "Etkin olduğunda, bu ayar 'kayıtları için tercih edilen tuner' den fazla ağırlığa sahiptir."
 
@@ -13724,6 +13767,10 @@ msgstr "Zambiya"
 msgid "Zap"
 msgstr "Kanal Değiştirme"
 
+#, fuzzy
+msgid "Zap Up/Down"
+msgstr "Zap aşağı"
+
 msgid "Zap back to previously tuned service?"
 msgstr "Ayarlı kanala geri dönmek istiyor musunuz?"
 
@@ -13831,6 +13878,10 @@ msgstr "ağ adaptör ayarlarını etkinleştir"
 msgid "active"
 msgstr "aktif"
 
+#, fuzzy
+msgid "active "
+msgstr "aktif"
+
 msgid "active NFS Shares:"
 msgstr "etkin NFS Paylaşımları:"
 
@@ -13840,7 +13891,8 @@ msgstr "gerçek zaman sadece"
 msgid "additional cable of rotor"
 msgstr "ilave rotor kablosu"
 
-msgid "adult movie/drama"
+#, fuzzy
+msgid "adult movie"
 msgstr "yetişkin film/drama"
 
 msgid "advanced"
@@ -13957,9 +14009,6 @@ msgstr "daha iyi"
 msgid "black"
 msgstr "siyah"
 
-msgid "black & white"
-msgstr "kara & beyaz"
-
 msgid "blacklist"
 msgstr "kara liste"
 
@@ -13994,7 +14043,8 @@ msgstr "merkezli, sarılmış"
 msgid "chapters"
 msgstr "bölümler"
 
-msgid "childrens's/youth program (general)"
+#, fuzzy
+msgid "childrens's youth program (general)"
 msgstr "çocuklar için / gençlik programı (genel)"
 
 msgid "circular left"
@@ -14014,9 +14064,6 @@ msgstr "video çözücü codec"
 
 msgid "comedy"
 msgstr "komedi"
-
-msgid "config menu"
-msgstr "yapılandırma menüsü"
 
 msgid "confirmed"
 msgstr "onaylandı"
@@ -14096,7 +14143,8 @@ msgstr "doğu"
 msgid "economics/social advisory"
 msgstr "ekonomi / sosyal tavsiye"
 
-msgid "education/science/factual topics (general)"
+#, fuzzy
+msgid "educational/science/factual topics (general)"
 msgstr "eğitim / bilim / gerçeklere dayanan konular (genel)"
 
 msgid "embedded"
@@ -14195,7 +14243,8 @@ msgstr "film/sinema"
 msgid "fine arts"
 msgstr "güzel sanatlar"
 
-msgid "fitness & health"
+#, fuzzy
+msgid "fitness and health"
 msgstr "spor ve sağlık"
 
 msgid "flat alphabetic"
@@ -14239,9 +14288,6 @@ msgstr "ileri eğitim"
 
 msgid "game show/quiz/contest"
 msgstr "oyun gösterisi / sınav / yarışma"
-
-msgid "gardening"
-msgstr "bahçivanlık"
 
 msgid "go to deep standby"
 msgstr "derin uyku kipine geç"
@@ -14372,8 +14418,9 @@ msgstr "hotplug olaylarını dinler"
 msgid "literature"
 msgstr "literatur"
 
-msgid "live broadcast"
-msgstr "canlı yayın"
+#, fuzzy
+msgid "local sports"
+msgstr "takım sporları"
 
 msgid "locked"
 msgstr "kilitli"
@@ -14432,7 +14479,8 @@ msgstr "en üste taşı"
 msgid "move up to previous entry"
 msgstr "bir üste taşı"
 
-msgid "movie/drama (general)"
+#, fuzzy
+msgid "movie (general)"
 msgstr "movie/drama (general)"
 
 msgid "multi"
@@ -14593,9 +14641,6 @@ msgstr "openMultiboot Yöneticisi"
 msgid "original"
 msgstr "orjinal"
 
-msgid "original language"
-msgstr "orjinal dil"
-
 msgid "pass"
 msgstr "izin"
 
@@ -14646,6 +14691,13 @@ msgstr "popüler kültür / geleneksel sanatlar"
 msgid "pre-school children's program"
 msgstr "okul öncesi çocuk programı"
 
+msgid "preserve bookmarks in cuts"
+msgstr ""
+
+#, fuzzy
+msgid "priority"
+msgstr "Öncelik"
+
 msgid "python"
 msgstr "python"
 
@@ -14672,6 +14724,10 @@ msgstr "bu noktadan sonrasını kaldır"
 
 msgid "remove before this position"
 msgstr "bu noktadan öncekileri kaldır"
+
+#, fuzzy
+msgid "remove bookmarks in cuts"
+msgstr "Kısayolu kaldır"
 
 msgid "remove this mark"
 msgstr "bu işareti kaldır"
@@ -14733,7 +14789,8 @@ msgstr "menü girişini seç"
 msgid "serious music/classic music"
 msgstr "önemli/klasik müzik"
 
-msgid "serious/classical/religious/historical movie/drama"
+#, fuzzy
+msgid "serious/classical/religious/historical drama"
 msgstr "seri/klasik/dini/tarihi film/dram"
 
 msgid "service off-air"
@@ -14803,13 +14860,15 @@ msgstr "yuvas%s - %s USB Kurtarma"
 msgid "slow"
 msgstr "yavaş"
 
-msgid "soap/melodram/folkloric"
+#, fuzzy
+msgid "soap/melodrama/folkloric"
 msgstr "soap/melodram/folkloric"
 
 msgid "social/political issues/economics (general)"
 msgstr "sosyal/siyasi konular/ekonomi (genel)"
 
-msgid "social/spiritual science"
+#, fuzzy
+msgid "social/spiritual sciences"
 msgstr "sosyal/ruhsal bilim"
 
 msgid "softcams"
@@ -14829,6 +14888,10 @@ msgstr "spor dergisi"
 
 msgid "standard"
 msgstr "standart"
+
+#, fuzzy
+msgid "standby "
+msgstr "Hazırda beklet"
 
 msgid "start cut here"
 msgstr "buradan kes"
@@ -14860,10 +14923,11 @@ msgstr "sistem eklentileri"
 msgid "talk show"
 msgstr "sohbet programı"
 
-msgid "team sports"
-msgstr "takım sporları"
+msgid "team sports/excluding football"
+msgstr ""
 
-msgid "technology/natural science"
+#, fuzzy
+msgid "technology/natural sciences"
 msgstr "teknoloji/doğa bilimleri"
 
 msgid "template file"
@@ -14946,9 +15010,6 @@ msgstr "tar / sıkıştırılmış tar dosyalarını aç"
 
 msgid "unpack zip Files"
 msgstr "zip dosyalarını aç"
-
-msgid "unpublished"
-msgstr "yayınlanmamış"
 
 msgid "untestable"
 msgstr "test edilemeyen"
