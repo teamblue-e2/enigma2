@@ -18,7 +18,7 @@ for cam in os.listdir("/etc/init.d"):
 
 
 def main(session, showExtentionMenuOption=False, **kwargs):
-	import SoftcamStartup
+	from Plugins.SystemPlugins.SoftcamStartup import SoftcamStartup
 	session.open(SoftcamStartup.SoftcamStartup, showExtentionMenuOption)
 
 
