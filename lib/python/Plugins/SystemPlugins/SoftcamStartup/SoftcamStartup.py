@@ -13,7 +13,7 @@ from Components.ScrollLabel import ScrollLabel
 from Tools.Directories import fileExists
 
 import os
-from camcontrol import CamControl
+from Plugins.SystemPlugins.SoftcamStartup.camcontrol import CamControl
 from enigma import eTimer, eDVBCI_UI, eListboxPythonStringContent, eListboxPythonConfigContent
 
 
