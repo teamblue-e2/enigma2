@@ -3,6 +3,7 @@
 #include <lib/base/httpstream.h>
 #include <lib/base/eerror.h>
 #include <lib/base/wrappers.h>
+#include <lib/base/nconfig.h> // access to python config
 
 DEFINE_REF(eHttpStream);
 
@@ -15,11 +16,15 @@ eHttpStream::eHttpStream()
 	partialPktSz = 0;
 	tmpBufSize = 32;
 	tmpBuf = (char*)malloc(tmpBufSize);
-	startDelay = 500000; /* use 0,5sec in general not dependant on config.usage.remote_fallback_enabled */
-/* 	if (eConfigManager::getConfigBoolValue("config.usage.remote_fallback_enabled", false))
+	startDelay = 0;
+	if (eConfigManager::getConfigBoolValue("config.usage.remote_fallback_enabled", false))
 		startDelay = 500000;
 	else
-		startDelay = 0; */
+	{
+		int _startDelay = eConfigManager::getConfigIntValue("config.usage.http_startdelay");
+		if (_startDelay > 0)
+			startDelay = _startDelay * 1000;
+	}
 }
 
 eHttpStream::~eHttpStream()
