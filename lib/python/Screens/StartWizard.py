@@ -22,6 +22,7 @@ config.misc.firstrun = ConfigBoolean(default=True)
 config.misc.languageselected = ConfigBoolean(default=True)
 config.misc.ask_languagedeletion = ConfigBoolean(default=True)
 config.misc.do_deletelanguage = ConfigBoolean(default=False)
+config.misc.networkenabled = ConfigBoolean(default=False)
 
 if OverscanWizard:
 	#config.misc.do_overscanwizard = ConfigBoolean(default = OverscanWizard and config.skin.primary_skin.value == "PLi-FullNightHD/skin.xml")
