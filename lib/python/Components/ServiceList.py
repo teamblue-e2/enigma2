@@ -325,7 +325,7 @@ class ServiceList(GUIComponent):
 		self.l.setRoot(root, justSet)
 		if not justSet:
 			try:
-				sorted(self.l)
+				self.l.sort()
 			except:
 				pass
 		self.selectionChanged()
@@ -333,7 +333,7 @@ class ServiceList(GUIComponent):
 	def resetRoot(self):
 		index = self.instance.getCurrentIndex()
 		self.l.setRoot(self.root, False)
-		sorted(self.l)
+		self.l.sort()
 		self.instance.moveSelectionTo(index)
 
 	def removeCurrent(self):
@@ -344,7 +344,7 @@ class ServiceList(GUIComponent):
 
 	def finishFill(self):
 		self.l.FillFinished()
-		sorted(self.l)
+		self.l.sort()
 
 # stuff for multiple marks (edit mode / later multiepg)
 	def clearMarks(self):
