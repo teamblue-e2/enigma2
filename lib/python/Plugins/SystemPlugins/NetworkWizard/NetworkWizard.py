@@ -3,6 +3,7 @@ from __future__ import absolute_import
 from Screens.WizardLanguage import WizardLanguage
 from Screens.Rc import Rc
 from Screens.MessageBox import MessageBox
+from Components.config import config
 from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
 from Components.Network import iNetwork
@@ -171,8 +172,11 @@ class NetworkWizard(WizardLanguage, Rc):
 				if iface in iNetwork.configuredNetworkAdapters and len(iNetwork.configuredNetworkAdapters) == 1:
 					if iNetwork.getAdapterAttribute(iface, 'up') is True:
 						self.isInterfaceUp = True
+						config.misc.networkenabled.value = True						
 					else:
 						self.isInterfaceUp = False
+						config.misc.networkenabled.value = False
+					print("[NetworkWizard] networkenabled value = %s" % config.misc.networkenabled.value )
 					self.currStep = self.getStepWithID(self.NextStep)
 					self.afterAsyncCode()
 				else:
@@ -199,8 +203,11 @@ class NetworkWizard(WizardLanguage, Rc):
 		if data is True:
 			if iNetwork.getAdapterAttribute(self.selectedInterface, 'up') is True:
 				self.isInterfaceUp = True
+				config.misc.networkenabled.value = True
 			else:
 				self.isInterfaceUp = False
+				config.misc.networkenabled.value = False
+			print("[NetworkWizard] networkenabled value = %s" % config.misc.networkenabled.value )				
 			self.resetRef.close(True)
 		else:
 			print("we should never come here!")
