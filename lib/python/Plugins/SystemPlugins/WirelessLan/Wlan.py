@@ -90,7 +90,7 @@ class Wlan:
 		aps = {}
 		if scanresults:
 			config.misc.networkenabled.value = True
-			print("[NetworkWizard] networkenabled value = %s" % config.misc.networkenabled.value)				
+			print("[NetworkWizard] networkenabled value = %s" % config.misc.networkenabled.value)
 			for i in list(range(len(scanresults))):
 				bssid = scanresults[i].ssid
 				aps[bssid] = {
