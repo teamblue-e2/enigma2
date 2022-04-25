@@ -104,7 +104,7 @@ class ImportChannels:
 			except Exception as e:
 				# for the moment just log and ignore
 				print("[Import Channels] %s" % str(e))
-				continue;
+				continue
 
 			# check the contents for more bouquet files
 			for line in content:
