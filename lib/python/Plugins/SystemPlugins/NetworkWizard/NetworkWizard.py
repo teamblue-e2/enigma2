@@ -172,7 +172,7 @@ class NetworkWizard(WizardLanguage, Rc):
 				if iface in iNetwork.configuredNetworkAdapters and len(iNetwork.configuredNetworkAdapters) == 1:
 					if iNetwork.getAdapterAttribute(iface, 'up') is True:
 						self.isInterfaceUp = True
-						config.misc.networkenabled.value = True						
+						config.misc.networkenabled.value = True
 					else:
 						self.isInterfaceUp = False
 						config.misc.networkenabled.value = False
@@ -207,7 +207,7 @@ class NetworkWizard(WizardLanguage, Rc):
 			else:
 				self.isInterfaceUp = False
 				config.misc.networkenabled.value = False
-			print("[NetworkWizard] networkenabled value = %s" % config.misc.networkenabled.value)				
+			print("[NetworkWizard] networkenabled value = %s" % config.misc.networkenabled.value)
 			self.resetRef.close(True)
 		else:
 			print("we should never come here!")
