@@ -84,6 +84,7 @@ class ImportChannels:
 	"""
 	Enumerate all the files that make up the bouquet system, either local or on a remote machine
 	"""
+
 	def ImportGetFilelist(self, remote=False, radio=False, *files):
 		result = []
 		for _file in files:
