@@ -970,7 +970,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			return False
 		else:
 			try:
-				system("ifconfig "+self.iface+" up")
+				system("ifconfig " + self.iface + " up")
 				wlanresponse = list(Cell.all(iface))
 			except IOError as xxx_todo_changeme:
 				(error_no, error_str) = xxx_todo_changeme.args
