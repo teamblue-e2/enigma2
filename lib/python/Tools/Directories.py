@@ -4,9 +4,10 @@ import errno
 import os
 
 from enigma import eEnv
-from re import compile
+from re import compile, split
 from stat import S_IMODE
 import six
+from unicodedata import normalize
 
 pathExists = os.path.exists
 isMount = os.path.ismount  # Only used in OpenATV /lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py.
@@ -57,33 +58,20 @@ defaultPaths = {
 	SCOPE_PLUGIN: (eEnv.resolve("${libdir}/enigma2/python/Plugins/"), PATH_CREATE),
 	SCOPE_SYSETC: (eEnv.resolve("${sysconfdir}/"), PATH_DONTCREATE),
 	SCOPE_TRANSPONDERDATA: (eEnv.resolve("${sysconfdir}/"), PATH_DONTCREATE),
-	SCOPE_SYSETC: (eEnv.resolve("${sysconfdir}/"), PATH_DONTCREATE),
-	SCOPE_FONTS: (eEnv.resolve("${datadir}/fonts/"), PATH_DONTCREATE),
-	SCOPE_SKIN: (eEnv.resolve("${datadir}/enigma2/"), PATH_DONTCREATE),
-	SCOPE_SKIN_IMAGE: (eEnv.resolve("${datadir}/enigma2/"), PATH_DONTCREATE),
-	SCOPE_USERETC: ("", PATH_DONTCREATE),  # User home directory
 	SCOPE_CONFIG: (eEnv.resolve("${sysconfdir}/enigma2/"), PATH_CREATE),
-	SCOPE_LANGUAGE: (eEnv.resolve("${datadir}/enigma2/po/"), PATH_DONTCREATE),
-	SCOPE_HDD: ("/media/hdd/movie/", PATH_DONTCREATE),
-	SCOPE_PLUGINS: (eEnv.resolve("${libdir}/enigma2/python/Plugins/"), PATH_CREATE),
-	SCOPE_MEDIA: ("/media/", PATH_DONTCREATE),
 	SCOPE_PLAYLIST: (eEnv.resolve("${sysconfdir}/enigma2/playlist/"), PATH_CREATE),
-	SCOPE_CURRENT_SKIN: (eEnv.resolve("${datadir}/enigma2/"), PATH_DONTCREATE),
-	SCOPE_CURRENT_PLUGIN_ABSOLUTE: (eEnv.resolve("${libdir}/enigma2/python/Plugins/"), PATH_DONTCREATE),
-	SCOPE_CURRENT_PLUGIN_RELATIVE: (eEnv.resolve("${libdir}/enigma2/python/Plugins/"), PATH_DONTCREATE),
-	SCOPE_KEYMAPS: (eEnv.resolve("${datadir}/keymaps/"), PATH_CREATE),
-	SCOPE_METADIR: (eEnv.resolve("${datadir}/meta"), PATH_CREATE),
-	SCOPE_CURRENT_PLUGIN: (eEnv.resolve("${libdir}/enigma2/python/Plugins/"), PATH_CREATE),
+	SCOPE_MEDIA: ("/media/", PATH_DONTCREATE),
+	SCOPE_HDD: ("/media/hdd/movie/", PATH_DONTCREATE),
 	SCOPE_TIMESHIFT: ("/media/hdd/timeshift/", PATH_DONTCREATE),
-	SCOPE_ACTIVE_SKIN: (eEnv.resolve("${datadir}/enigma2/"), PATH_DONTCREATE),
-	SCOPE_LCDSKIN: (eEnv.resolve("${datadir}/enigma2/display/"), PATH_DONTCREATE),
-	SCOPE_CURRENT_LCDSKIN: (eEnv.resolve("${datadir}/enigma2/display/"), PATH_DONTCREATE),
-	SCOPE_AUTORECORD: ("/media/hdd/movie/", PATH_DONTCREATE),
 	SCOPE_DEFAULTDIR: (eEnv.resolve("${datadir}/enigma2/defaults/"), PATH_CREATE),
-	SCOPE_DEFAULTPARTITION: ("/dev/mtdblock6", PATH_DONTCREATE),
-	SCOPE_DEFAULTPARTITIONMOUNTDIR: (eEnv.resolve("${datadir}/enigma2/dealer"), PATH_CREATE),
 	SCOPE_LIBDIR: (eEnv.resolve("${libdir}/"), PATH_DONTCREATE)
 }
+
+scopeConfig = defaultPaths[SCOPE_CONFIG][0]
+scopeGUISkin = defaultPaths[SCOPE_GUISKIN][0]
+scopeLCDSkin = defaultPaths[SCOPE_LCDSKIN][0]
+scopeFonts = defaultPaths[SCOPE_FONTS][0]
+scopePlugins = defaultPaths[SCOPE_PLUGINS][0]
 
 
 def addInList(*paths):
@@ -96,30 +84,24 @@ fontsResolveList = []
 
 
 def resolveFilename(scope, base="", path_prefix=None):
-	# You can only use the ~/ if we have a prefix directory.
-	if base.startswith("~/"):
-		assert path_prefix is not None  # Assert only works in debug mode!
+	if str(base).startswith("~%s" % os.sep):  # You can only use the ~/ if we have a prefix directory.
 		if path_prefix:
 			base = os.path.join(path_prefix, base[2:])
 		else:
-			print("[Directories] Warning: resolveFilename called with base starting with '~/' but 'path_prefix' is None!")
-	# Don't further resolve absolute paths.
-	if base.startswith("/"):
+			print("[Directories] Warning: resolveFilename called with base starting with '~%s' but 'path_prefix' is None!" % os.sep)
+	if str(base).startswith(os.sep):  # Don't further resolve absolute paths.
 		return os.path.normpath(base)
-	# If an invalid scope is specified log an error and return None.
-	if scope not in defaultPaths:
-		print("[Directories] Error: Invalid scope=%d provided to resolveFilename!" % scope)
+	if scope not in defaultPaths:  # If an invalid scope is specified log an error and return None.
+		print("[Directories] Error: Invalid scope=%s provided to resolveFilename!" % scope)
 		return None
-	# Ensure that the defaultPaths directories that should exist do exist.
-	path, flag = defaultPaths.get(scope)
+	path, flag = defaultPaths[scope]  # Ensure that the defaultPath directory that should exist for this scope does exist.
 	if flag == PATH_CREATE and not pathExists(path):
 		try:
 			os.makedirs(path)
 		except (IOError, OSError) as err:
-			print("[Directories] Error %d: Couldn't create directory '%s' (%s)" % (err.errno, path, err.strerror))
+			print("[Directories] Error %d: Couldn't create directory '%s'!  (%s)" % (err.errno, path, err.strerror))
 			return None
-	# Remove any suffix data and restore it at the end.
-	suffix = None
+	suffix = None  # Remove any suffix data and restore it at the end.
 	data = base.split(":", 1)
 	if len(data) > 1:
 		base = data[0]
@@ -137,14 +119,12 @@ def resolveFilename(scope, base="", path_prefix=None):
 				_file = os.path.join(item, base)
 				if pathExists(_file):
 					return _file
+		return base
 
-	# If base is "" then set path to the scope.  Otherwise use the scope to resolve the base filename.
-	if base == "":
-		path, flags = defaultPaths.get(scope)
-		# If the scope is SCOPE_CURRENT_SKIN or SCOPE_ACTIVE_SKIN append the current skin to the scope path.
-		if scope in (SCOPE_CURRENT_SKIN, SCOPE_ACTIVE_SKIN):
-			# This import must be here as this module finds the config file as part of the config initialisation.
-			from Components.config import config
+	if base == "":  # If base is "" then set path to the scope.  Otherwise use the scope to resolve the base filename.
+		path, flags = defaultPaths[scope]
+		if scope == SCOPE_GUISKIN:  # If the scope is SCOPE_GUISKIN append the current skin to the scope path.
+			from Components.config import config  # This import must be here as this module finds the config file as part of the config initialisation.
 			skin = os.path.dirname(config.skin.primary_skin.value)
 			path = os.path.join(path, skin)
 	elif scope == SCOPE_GUISKIN:
@@ -202,7 +182,7 @@ def resolveFilename(scope, base="", path_prefix=None):
 		if pathExists(file):
 			path = file
 	else:
-		path, flags = defaultPaths.get(scope)
+		path, flags = defaultPaths[scope]
 		path = os.path.join(path, base)
 	path = os.path.normpath(path)
 	if os.path.isdir(path) and not path.endswith(os.sep):  # If the path is a directory then ensure that it ends with a "/".
@@ -212,14 +192,14 @@ def resolveFilename(scope, base="", path_prefix=None):
 	return path
 
 
-def comparePath(leftPath, rightPath):
+def comparePaths(leftPath, rightPath):
 	if leftPath.endswith(os.sep):
 		leftPath = leftPath[:-1]
 	if rightPath.endswith(os.sep):
 		rightPath = rightPath[:-1]
 	left = leftPath.split(os.sep)
 	right = rightPath.split(os.sep)
-	for segment in list(range(len(left))):
+	for segment in range(len(left)):
 		if left[segment] != right[segment]:
 			return False
 	return True
@@ -487,10 +467,6 @@ def getSize(path, pattern=".*"):
 	return path_size
 
 
-def shellquote(s):
-	return "'" + s.replace("'", "'\\''") + "'"
-
-
 def lsof():
 	lsof = []
 	for pid in os.listdir("/proc"):
@@ -530,3 +506,50 @@ def mediafilesInUse(session):
 
 def shellquote(s):
 	return "'%s'" % s.replace("'", "'\\''")
+
+
+def sanitizeFilename(filename):
+	"""Return a fairly safe version of the filename.
+
+	We don't limit ourselves to ascii, because we want to keep municipality
+	names, etc, but we do want to get rid of anything potentially harmful,
+	and make sure we do not exceed Windows filename length limits.
+	Hence a less safe blacklist, rather than a whitelist.
+	"""
+	blacklist = ["\\", "/", ":", "*", "?", "\"", "<", ">", "|", "\0", "(", ")", " "]
+	reserved = [
+		"CON", "PRN", "AUX", "NUL", "COM1", "COM2", "COM3", "COM4", "COM5",
+		"COM6", "COM7", "COM8", "COM9", "LPT1", "LPT2", "LPT3", "LPT4", "LPT5",
+		"LPT6", "LPT7", "LPT8", "LPT9",
+	]  # Reserved words on Windows
+	filename = "".join(c for c in filename if c not in blacklist)
+	# Remove all charcters below code point 32
+	filename = "".join(c for c in filename if 31 < ord(c))
+	filename = normalize("NFKD", filename)
+	filename = filename.rstrip(". ")  # Windows does not allow these at end
+	filename = filename.strip()
+	if all([x == "." for x in filename]):
+		filename = "__" + filename
+	if filename in reserved:
+		filename = "__" + filename
+	if len(filename) == 0:
+		filename = "__"
+	if len(filename) > 255:
+		parts = split(r"/|\\", filename)[-1].split(".")
+		if len(parts) > 1:
+			ext = "." + parts.pop()
+			filename = filename[:-len(ext)]
+		else:
+			ext = ""
+		if filename == "":
+			filename = "__"
+		if len(ext) > 254:
+			ext = ext[254:]
+		maxl = 255 - len(ext)
+		filename = filename[:maxl]
+		filename = filename + ext
+		# Re-check last character (if there was no extension)
+		filename = filename.rstrip(". ")
+		if len(filename) == 0:
+			filename = "__"
+	return filename
