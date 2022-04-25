@@ -39,7 +39,7 @@ class TemplatedMultiContent(StringList):
 				tmp = []
 				src = self.source.list
 				for x in list(range(len(src))):
-					if type(src[x]) != tuple and type(src[x]) != list:
+					if not isinstance(src[x], tuple) and not isinstance(src[x], list):
 						tmp.append((src[x],))
 					else:
 						tmp.append(src[x])
