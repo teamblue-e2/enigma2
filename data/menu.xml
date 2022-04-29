@@ -88,7 +88,6 @@
 					<id val="ui_menu" />
 					<item weight="0" level="0" entryID="user_interface"><setup id="userinterface" /></item>
 					<item weight="5" level="0" text="Language" entryID="language_setup"><screen module="LanguageSelection" /></item>
-					<item weight="15" level="0" text="HotKey" entryID="hotkey_setup"><screen module="Hotkey" screen="HotkeySetup" /></item>
 					<item weight="15" level="0" text="GUI Skin" entryID="primary_skin_selector"><screen module="SkinSelector" screen="SkinSelector"/></item>
 				</menu>
 
@@ -169,6 +168,7 @@ self.session.openWithCallback(msgClosed, EpgSaveMsg)
 					</menu>
 					<item weight="10" level="1" text="Keyboard"><setup id="keyboard" /></item>
 					<item weight="15" level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
+					<item weight="20" level="0" text="HotKey" entryID="hotkey_setup"><screen module="Hotkey" screen="HotkeySetup" /></item>
 				</menu>
 
 				<!-- Menu / Settings / System / Setup Menu
