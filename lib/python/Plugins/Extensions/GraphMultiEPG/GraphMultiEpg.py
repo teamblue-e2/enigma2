@@ -1,4 +1,3 @@
-from __future__ import print_function
 from __future__ import absolute_import
 from skin import parseColor, parseFont, applySkinFactor
 from Components.config import config, ConfigClock, ConfigInteger, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigSelectionNumber
