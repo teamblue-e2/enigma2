@@ -4,7 +4,6 @@
 # ported from OpenATV to OpenPLi by mrvica April 2019
 #
 
-from __future__ import print_function
 from __future__ import absolute_import
 from Plugins.Plugin import PluginDescriptor
 
