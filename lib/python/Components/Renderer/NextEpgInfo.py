@@ -35,7 +35,7 @@ class NextEpgInfo(Renderer, VariableText):
 						else:
 							self.text = "%s%s:%s%s%s" % (self.labelcolor, pgettext("now/next: 'next' event label", "Next"), spaces, self.foregroundColor, event.getEventName())
 				else:
-					for x in list(range(self.numberOfItems)):
+					for x in range(self.numberOfItems):
 						event = self.epgcache.getNextTimeEntry()
 						if event:
 							self.text += "%s%s%s%s%s\n" % (self.timecolor, strftime("%H:%M", localtime(event.getBeginTime())), spaces, self.foregroundColor, event.getEventName())

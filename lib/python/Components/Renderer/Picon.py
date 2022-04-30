@@ -1,18 +1,12 @@
 import os
 import re
-import unicodedata
-from enigma import ePixmap
 from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap, ePicLoad, eServiceCenter, eServiceReference, iServiceInformation
 from Tools.Alternatives import GetWithAlternative
-from Tools.Directories import pathExists, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, resolveFilename
+from Tools.Directories import pathExists, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, resolveFilename, sanitizeFilename
 from Components.Harddisk import harddiskmanager
 from ServiceReference import ServiceReference
 from Components.config import config
-import six
-import sys
-if sys.version_info.major == 3:
-    unicode = str
 
 searchPaths = []
 lastPiconPath = None
@@ -100,11 +94,7 @@ def getPiconName(serviceRef):
 		fields[2] = '1'
 		pngname = findPicon('_'.join(fields))
 	if not pngname: # picon by channel name
-		name = ServiceReference(serviceRef).getServiceName()
-		if sys.version_info[0] >= 3:
-			name = six.ensure_str(unicodedata.normalize('NFKD', name).encode('ASCII', 'ignore'))
-		else:
-			name = unicodedata.normalize('NFKD', unicode(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
+		name = sanitizeFilename(ServiceReference(serviceRef).getServiceName())
 		name = re.sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
 		if name:
 			pngname = findPicon(name)
@@ -122,7 +112,7 @@ class Picon(Renderer):
 		self.usePicLoad = False
 		self.PicLoad = ePicLoad()
 		self.PicLoad.PictureData.get().append(self.updatePicon)
-		self.piconsize = (0, 0)
+		self.piconsize = (0,0)
 		self.pngname = ""
 		self.service_text = ""
 		self.lastPath = None
