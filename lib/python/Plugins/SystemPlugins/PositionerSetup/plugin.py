@@ -1,5 +1,4 @@
 from __future__ import division
-from __future__ import absolute_import
 
 from Plugins.Plugin import PluginDescriptor
 from Components.NimManager import nimmanager

@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Screens.Screen import Screen
 from Components.config import config, ConfigSubsection, ConfigInteger
 from Plugins.Plugin import PluginDescriptor

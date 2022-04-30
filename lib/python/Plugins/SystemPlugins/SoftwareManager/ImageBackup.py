@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from __future__ import division
 #################################################################################
 # FULL BACKUP UYILITY FOR ENIGMA2, SUPPORTS THE MODELS OE-A 4.4     			#

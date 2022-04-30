@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 import sys
 import os
 from Tools.Profile import profile, profile_final

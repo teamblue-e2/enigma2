@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Screens.InputBox import InputBox as InputBoxBase
 from Components.ActionMap import ActionMap
 

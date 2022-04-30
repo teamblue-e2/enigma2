@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 
 from Screens.About import CommitInfo
 from Screens.ChoiceBox import ChoiceBox

@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Components.config import ConfigOnOff, ConfigSelection, ConfigSubsection, ConfigText, config
 from Components.Keyboard import keyboard
 from Components.Language import language

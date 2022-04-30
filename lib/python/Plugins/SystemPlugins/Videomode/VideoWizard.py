@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from boxbranding import getBoxType
 from Screens.Wizard import WizardSummary
 from Screens.WizardLanguage import WizardLanguage

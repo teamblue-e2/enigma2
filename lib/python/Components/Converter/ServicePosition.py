@@ -1,4 +1,3 @@
-from __future__ import absolute_import, division
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
 from enigma import iPlayableService

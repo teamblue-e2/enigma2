@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 import os
 from enigma import eEPGCache, getBestPlayableServiceReference, eStreamServer, eServiceReference, iRecordableService, quitMainloop, eActionMap, setPreferredTuner
 

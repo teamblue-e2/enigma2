@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Components.Harddisk import harddiskmanager
 from Components.config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, ConfigSelectionNumber, ConfigClock, ConfigSlider, ConfigEnableDisable, ConfigSubDict, ConfigDictionarySet, ConfigInteger, ConfigPassword, ConfigBoolean
 from Tools.Directories import defaultRecordingLocation

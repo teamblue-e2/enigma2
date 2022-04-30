@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
 from ServiceReference import ServiceReference
 from Components.config import config
 from Screens.MessageBox import MessageBox
