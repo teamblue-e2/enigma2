@@ -42,25 +42,25 @@ class MenuList(GUIComponent):
 		self.l.setList(self.list)
 
 	def moveToIndex(self, idx):
-		if self.instance != None:
+		if self.instance is not None:
 			self.instance.moveSelectionTo(idx)
 
 	def pageUp(self):
-		if self.instance != None:
+		if self.instance is not None:
 			self.instance.moveSelection(self.instance.pageUp)
 
 	def pageDown(self):
-		if self.instance != None:
+		if self.instance is not None:
 			self.instance.moveSelection(self.instance.pageDown)
 
 	def up(self):
-		if self.instance != None:
+		if self.instance is not None:
 			self.instance.moveSelection(self.instance.moveUp)
 
 	def down(self):
-		if self.instance != None:
+		if self.instance is not None:
 			self.instance.moveSelection(self.instance.moveDown)
 
 	def selectionEnabled(self, enabled):
-		if self.instance != None:
+		if self.instance is not None:
 			self.instance.setSelectionEnable(enabled)
