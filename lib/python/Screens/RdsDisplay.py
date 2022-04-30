@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from enigma import iPlayableService, iRdsDecoder
 from Screens.Screen import Screen
 from Components.ActionMap import NumberActionMap

@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 # -*- coding: utf-8 -*-
 #
 # Running Text Renderer for Enigma2 (RunningText.py)

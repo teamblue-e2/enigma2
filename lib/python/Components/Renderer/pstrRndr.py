@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # by digiteng...12-2019
 
-from __future__ import absolute_import
 from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap, loadJPG
 import os

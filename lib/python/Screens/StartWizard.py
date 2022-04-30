@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Screens.Wizard import wizardManager
 from Screens.MessageBox import MessageBox
 from Screens.WizardLanguage import WizardLanguage

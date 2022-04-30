@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Screens.Satconfig import NimSelection
 from Screens.Screen import Screen
 from Screens.TextBox import TextBox

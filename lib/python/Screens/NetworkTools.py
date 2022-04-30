@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 import time
 from os import remove, rename, popen, listdir, system
 from Screens.Screen import Screen

@@ -19,7 +19,6 @@
 #
 #
 #######################################################################
-from __future__ import absolute_import
 from Components.Renderer.Renderer import Renderer
 from Components.VariableText import VariableText
 from six.moves.urllib.request import Request, urlopen as urlopen2

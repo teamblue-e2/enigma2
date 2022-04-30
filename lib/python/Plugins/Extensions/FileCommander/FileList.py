@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 import os
 import re
 from Components.FileList import FileList as FileListBase, EXTENSIONS as BASE_EXTENSIONS

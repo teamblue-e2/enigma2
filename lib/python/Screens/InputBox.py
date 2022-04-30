@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from enigma import getPrevAsciiCode
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox

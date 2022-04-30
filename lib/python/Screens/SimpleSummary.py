@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
 

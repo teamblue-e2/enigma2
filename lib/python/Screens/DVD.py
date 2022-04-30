@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 import os
 from enigma import eTimer, iPlayableService, iServiceInformation, eServiceReference, iServiceKeys, getDesktop
 from Screens.Screen import Screen

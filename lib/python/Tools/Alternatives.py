@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from enigma import eServiceCenter, eServiceReference
 from Components.config import config
 from ServiceReference import isPlayableForCur
