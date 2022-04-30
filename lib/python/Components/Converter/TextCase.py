@@ -1,6 +1,5 @@
 from Components.Converter.Converter import Converter
 from Components.Element import cached
-import six
 
 
 class TextCase(Converter):
@@ -20,9 +19,9 @@ class TextCase(Converter):
 	def getText(self):
 		originaltext = self.source.getText()
 		if self.type == self.UPPER:
-			return six.ensure_str(six.ensure_text(originaltext).upper())
+			return originaltext.upper()
 		elif self.type == self.LOWER:
-			return six.ensure_str(six.ensure_text(originaltext).lower())
+			return originaltext.lower()
 		else:
 			return originaltext
 
