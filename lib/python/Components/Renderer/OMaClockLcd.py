@@ -1,5 +1,4 @@
 from __future__ import division
-from __future__ import absolute_import
 from past.utils import old_div
 from builtins import round
 import math

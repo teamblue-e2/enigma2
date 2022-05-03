@@ -1,5 +1,4 @@
 from __future__ import division
-from __future__ import print_function
 # for localized messages
 #from . import _
 
@@ -17,6 +16,7 @@ from Plugins.Plugin import PluginDescriptor
 from os import system, stat as mystat, path, remove, rename
 from enigma import eTimer
 from glob import glob
+import sys
 import stat
 
 config.plugins.swapmanager = ConfigSubsection()
@@ -160,6 +160,8 @@ class SwapManager(Screen):
 		self.swap_place = ''
 		self.swap_active = False
 		self.device = False
+		if sys.version_info >= (3, 0):
+			result = result.decode('utf-8')
 		if result.find('sd') > 0:
 			self['key_green'].setText("")
 			for line in result.split('\n'):

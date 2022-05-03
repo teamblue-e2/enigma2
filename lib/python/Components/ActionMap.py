@@ -1,5 +1,3 @@
-from __future__ import print_function
-from __future__ import absolute_import
 from enigma import eActionMap
 import six
 
@@ -100,7 +98,7 @@ class HelpableActionMap(ActionMap):
 					print("[HelpActionMap] removed duplicity: %s %s" % (context[1], record))
 					return True
 			return False
-		if not type(contexts) is list:
+		if not isinstance(contexts, list):
 			contexts = [contexts]
 		actions = actions or {}
 		self.description = description

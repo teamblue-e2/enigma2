@@ -1,6 +1,4 @@
-from __future__ import print_function
 from __future__ import division
-from __future__ import absolute_import
 
 from Plugins.Plugin import PluginDescriptor
 from Components.NimManager import nimmanager
@@ -18,7 +16,7 @@ def getUsableRotorNims(only_first=False):
 
 
 def PositionerMain(session, **kwargs):
-	from ui import PositionerSetup, RotorNimSelection
+	from .ui import PositionerSetup, RotorNimSelection
 	usableRotorNims = getUsableRotorNims()
 	if len(usableRotorNims) == 1:
 		session.open(PositionerSetup, usableRotorNims[0])

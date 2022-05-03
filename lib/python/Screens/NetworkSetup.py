@@ -1,6 +1,4 @@
-from __future__ import print_function
-from __future__ import absolute_import
-
+import os
 import subprocess
 from os import path, unlink, system
 import string
@@ -964,14 +962,14 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 
 	def queryWirelessDevice(self, iface):
 		try:
-			from pythonwifi.iwlibs import Wireless
+			from wifi.scan import Cell
 			import errno
 		except ImportError:
 			return False
 		else:
 			try:
-				ifobj = Wireless(iface) # a Wireless NIC Object
-				wlanresponse = ifobj.getAPaddr()
+				system("ifconfig " + self.iface + " up")
+				wlanresponse = list(Cell.all(iface))
 			except IOError as xxx_todo_changeme:
 				(error_no, error_str) = xxx_todo_changeme.args
 				if error_no in (errno.EOPNOTSUPP, errno.ENODEV, errno.EPERM):

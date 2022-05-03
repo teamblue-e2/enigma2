@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Components.Element import Element
 
 # this is not a GUI renderer.
@@ -14,7 +13,7 @@ PATTERN_OFF = (20, 0, 0)
 PATTERN_BLINK = (20, 0x55555555, 0xa7fccf7a)
 
 
-class LedPatterns:
+class LedPatterns():
 	def __init__(self):
 		self.__led0_patterns = [PATTERN_OFF, PATTERN_BLINK, PATTERN_ON, PATTERN_BLINK]
 		self.__led1_patterns = [PATTERN_ON, PATTERN_ON, PATTERN_OFF, PATTERN_OFF]

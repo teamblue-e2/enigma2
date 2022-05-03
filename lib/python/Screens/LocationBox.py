@@ -1,7 +1,6 @@
 #
 # Generic Screen to select a path/filename combination
 #
-from __future__ import absolute_import
 
 # GUI (Screens)
 from Screens.Screen import Screen

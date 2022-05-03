@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Components.Sources.Source import Source
 
 
@@ -12,10 +11,6 @@ class StaticText(Source):
 		Source.__init__(self)
 		self.__text = text
 		self.filter = filter
-
-	# fake Source StaticText function
-	def checkSuspend(self):
-		pass
 
 	def handleCommand(self, cmd):
 		self.text = self.filter(cmd)

@@ -1,5 +1,3 @@
-from __future__ import print_function, division
-from __future__ import absolute_import
 from enigma import eTimer, ePoint, eSize, getDesktop
 
 from Screens.Screen import Screen

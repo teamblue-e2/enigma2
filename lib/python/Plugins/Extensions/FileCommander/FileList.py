@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 import os
 import re
 from Components.FileList import FileList as FileListBase, EXTENSIONS as BASE_EXTENSIONS
@@ -156,7 +155,7 @@ class FileList(FileListBase):
 				root.setName(self.additional_extensions)
 			serviceHandler = eServiceCenter.getInstance()
 			_list = serviceHandler.list(root)
-			while 1:
+			while True:
 				s = _list.getNext()
 				if not s.valid():
 					del _list
@@ -374,7 +373,7 @@ class MultiFileSelectList(FileList):
 			serviceHandler = eServiceCenter.getInstance()
 			_list = serviceHandler.list(root)
 
-			while 1:
+			while True:
 				s = _list.getNext()
 				if not s.valid():
 					del _list

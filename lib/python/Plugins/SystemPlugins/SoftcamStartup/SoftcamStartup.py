@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.FileList import FileEntryComponent, FileList
@@ -13,7 +12,7 @@ from Components.ScrollLabel import ScrollLabel
 from Tools.Directories import fileExists
 
 import os
-from camcontrol import CamControl
+from Plugins.SystemPlugins.SoftcamStartup.camcontrol import CamControl
 from enigma import eTimer, eDVBCI_UI, eListboxPythonStringContent, eListboxPythonConfigContent
 
 

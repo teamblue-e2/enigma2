@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Screens.MessageBox import MessageBox
 from Screens.ParentalControlSetup import ProtectedScreen
 from Components.config import config

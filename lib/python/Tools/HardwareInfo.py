@@ -1,4 +1,3 @@
-from __future__ import print_function
 from boxbranding import *
 
 hw_info = None

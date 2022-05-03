@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from __future__ import absolute_import
 from twisted.internet import threads
 from enigma import eDBoxLCD, eTimer, iPlayableService
 import NavigationInstance

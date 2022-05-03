@@ -1,5 +1,3 @@
-from __future__ import print_function
-from __future__ import absolute_import
 from Components.Sources.Source import Source
 from enigma import eServiceCenter, eServiceReference
 
@@ -22,7 +20,7 @@ class ServiceList(Source):
 	def validateReference(self, ref):
 		return ref in self.getServicesAsList("S")
 
-	_list = property(getServicesAsList)
+	list = property(getServicesAsList)
 	lut = {"Reference": 0, "Name": 1}
 
 	def getRoot(self):
