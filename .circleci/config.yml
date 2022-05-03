@@ -46,6 +46,18 @@ jobs:
                   python -V
       - when:
           condition:
+            equal: [ "3.9", << parameters.PYTHON >> ]
+          steps:
+            - run:
+                name: Installing Python 3.9
+                command: |
+                  sudo apt install python3.9-dev python3-pip
+                  sudo unlink /usr/bin/python
+                  sudo ln -s /usr/bin/python3.9 /usr/bin/python
+                  pip3 install --upgrade pip tox six
+                  python -V
+      - when:
+          condition:
             equal: [ "2.7", << parameters.PYTHON >> ]
           steps:
              - run:
