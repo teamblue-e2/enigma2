@@ -1,33 +1,31 @@
-from __future__ import print_function
-from __future__ import absolute_import
-from re import escape as re_escape
-
 from enigma import eTimer, eEnv
-
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap, NumberActionMap
-from Components.Pixmap import MultiPixmap
+from Components.Pixmap import Pixmap, MultiPixmap
+from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.Sources.List import List
 from Components.config import config, ConfigYesNo, NoSave, ConfigSubsection, ConfigText, ConfigSelection, ConfigPassword
 from Components.Network import iNetwork
+from Components.Console import Console
 from Plugins.Plugin import PluginDescriptor
-from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
+from Tools.Directories import resolveFilename, SCOPE_SKIN_IMAGE
 from Tools.LoadPixmap import LoadPixmap
-from .Wlan import iWlan, iStatus, getWlanConfigName
-
+from Plugins.SystemPlugins.WirelessLan.Wlan import iWlan, iStatus, getWlanConfigName
+from time import time
+import re
 
 plugin_path = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/WirelessLan")
 
 
-_list = ["Unencrypted", "WEP", "WPA", "WPA/WPA2", "WPA2"]
+list = ["Unencrypted", "WEP", "WPA", "WPA/WPA2", "WPA2"]
 
 weplist = ["ASCII", "HEX"]
 
 config.plugins.wlan = ConfigSubsection()
 config.plugins.wlan.essid = NoSave(ConfigText(default="", fixed_size=False))
 config.plugins.wlan.hiddenessid = NoSave(ConfigYesNo(default=False))
-config.plugins.wlan.encryption = NoSave(ConfigSelection(_list, default="WPA2"))
+config.plugins.wlan.encryption = NoSave(ConfigSelection(list, default="WPA2"))
 config.plugins.wlan.wepkeytype = NoSave(ConfigSelection(weplist, default="ASCII"))
 config.plugins.wlan.psk = NoSave(ConfigPassword(default="", fixed_size=False))
 
@@ -106,7 +104,7 @@ class WlanStatus(Screen):
 
 	def getInfoCB(self, data, status):
 		if data is not None:
-			if data is True:
+			if data:
 				if status is not None:
 					if status[self.iface]["essid"] == "off":
 						essid = _("No Connection")
@@ -133,7 +131,7 @@ class WlanStatus(Screen):
 					if "bitrate" in self:
 						self["bitrate"].setText(bitrate)
 
-					signal = str(status[self.iface]["signal"])
+					signal = status[self.iface]["signal"]
 					if "signal" in self:
 						self["signal"].setText(signal)
 
@@ -166,7 +164,7 @@ class WlanStatus(Screen):
 
 	def updateStatusLink(self, status):
 		if status is not None:
-			if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or status[self.iface]["accesspoint"] == False:
+			if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or not status[self.iface]["accesspoint"]:
 				self["statuspic"].setPixmapNum(1)
 			else:
 				self["statuspic"].setPixmapNum(0)
@@ -281,7 +279,7 @@ class WlanScan(Screen):
 		currentListEntry = None
 		currentListIndex = None
 
-		for ap in list(self.oldlist.keys()):
+		for ap in self.oldlist.keys():
 			data = self.oldlist[ap]['data']
 			if data is not None:
 				tmpList.append(data)
@@ -334,7 +332,7 @@ class WlanScan(Screen):
 		for entry in self.cleanList:
 			self.APList.append(self.buildEntryComponent(entry[0], entry[1], entry[2], entry[3], entry[4], entry[5]))
 
-		if refresh is False:
+		if not refresh:
 			self['list'].setList(self.APList)
 		self.listLength = len(self.APList)
 		self.setInfo()

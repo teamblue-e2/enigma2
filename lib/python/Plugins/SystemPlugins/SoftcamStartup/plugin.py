@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Plugins.Plugin import PluginDescriptor
 from Components.config import config, ConfigSubsection, ConfigYesNo
 from Tools.BoundFunction import boundFunction
@@ -18,7 +17,7 @@ for cam in os.listdir("/etc/init.d"):
 
 
 def main(session, showExtentionMenuOption=False, **kwargs):
-	import SoftcamStartup
+	from Plugins.SystemPlugins.SoftcamStartup import SoftcamStartup
 	session.open(SoftcamStartup.SoftcamStartup, showExtentionMenuOption)
 
 

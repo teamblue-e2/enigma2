@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
 from Components.Element import cached
@@ -20,7 +19,6 @@ class ClientsStreaming(Converter, Poll):
 	INFO = 7
 	INFO_RESOLVE = 8
 	INFO_RESOLVE_SHORT = 9
-	EXTRA_INFO = 10
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -47,8 +45,6 @@ class ClientsStreaming(Converter, Poll):
 			self.type = self.INFO_RESOLVE
 		elif type == "INFO_RESOLVE_SHORT":
 			self.type = self.INFO_RESOLVE_SHORT
-		elif type == "EXTRA_INFO":
-			self.type = self.EXTRA_INFO
 		else:
 			self.type = self.UNKNOWN
 
@@ -64,7 +60,6 @@ class ClientsStreaming(Converter, Poll):
 		ips = []
 		names = []
 		encoders = []
-		extrainfo = _("ClientIP") + "\t" + _("Transcode") + "\t" + _("Channel") + "\n"
 		info = ""
 
 		for x in self.streamServer.getConnectedClients():
@@ -99,8 +94,6 @@ class ClientsStreaming(Converter, Poll):
 
 			clients.append((ip, service_name, encoder))
 
-			extrainfo += ("%-8s\t%s\t%s") % (ip, encoder, service_name) + "\n"
-
 		if self.type == self.REF:
 			return ' '.join(refs)
 		elif self.type == self.IP:
@@ -111,8 +104,6 @@ class ClientsStreaming(Converter, Poll):
 			return _("Transcoding: ") + ' '.join(encoders)
 		elif self.type == self.NUMBER:
 			return str(len(clients))
-		elif self.type == self.EXTRA_INFO:
-			return extrainfo
 		elif self.type == self.SHORT_ALL:
 			return _("Total clients streaming: ") + "%d (%s)" % (len(clients), ' '.join(names))
 		elif self.type == self.ALL:

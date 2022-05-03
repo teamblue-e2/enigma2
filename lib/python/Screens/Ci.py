@@ -1,5 +1,3 @@
-from __future__ import print_function
-from __future__ import absolute_import
 import Screens.Standby
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.ConfigList import ConfigList, ConfigListScreen

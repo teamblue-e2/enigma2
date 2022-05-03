@@ -1,11 +1,9 @@
-from __future__ import absolute_import
 from Components.Renderer.Renderer import Renderer
 from enigma import eDVBCI_UI, eLabel, iPlayableService
 from skin import parameters
 from Components.SystemInfo import SystemInfo
 from Components.VariableText import VariableText
 from os import popen
-
 
 class CiModuleControl(Renderer, VariableText):
 	def __init__(self):
@@ -39,7 +37,7 @@ class CiModuleControl(Renderer, VariableText):
 			NUM_CI = SystemInfo["CommonInterface"]
 			if NUM_CI and NUM_CI > 0:
 				if self.eDVBCIUIInstance:
-					for slot in list(range(NUM_CI)):
+					for slot in range(NUM_CI):
 						state = self.eDVBCIUIInstance.getState(slot)
 						if state == 1 and self.no_visible_state1:
 							continue

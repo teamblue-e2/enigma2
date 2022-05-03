@@ -1,5 +1,3 @@
-from __future__ import print_function
-from __future__ import absolute_import
 from Components.Converter.StringList import StringList
 
 
@@ -34,20 +32,7 @@ class TemplatedMultiContent(StringList):
 		if what[0] == self.CHANGED_SPECIFIC and what[1] == "style":  # If only template changed, don't reload list.
 			pass
 		elif self.source:
-			try:
-				# make a simple list compatible for this converter
-				tmp = []
-				src = self.source.list
-				for x in list(range(len(src))):
-					if type(src[x]) != tuple and type(src[x]) != list:
-						tmp.append((src[x],))
-					else:
-						tmp.append(src[x])
-			except Exception as error:
-				print('[TemplatedMultiContent] - %s' % error)
-				tmp = self.source.list
-			self.content.setList(tmp)
-
+			self.content.setList(self.source.list)
 		self.setTemplate()
 		self.downstream_elements.changed(what)
 

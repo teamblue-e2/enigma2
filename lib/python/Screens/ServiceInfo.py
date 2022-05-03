@@ -1,5 +1,3 @@
-from __future__ import absolute_import
-from __future__ import print_function
 from Components.GUIComponent import GUIComponent
 from Screens.Screen import Screen
 from Screens.AudioSelection import AudioSelection

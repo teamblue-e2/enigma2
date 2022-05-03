@@ -22,7 +22,6 @@
 #
 #######################################################################
 
-from __future__ import absolute_import
 from Components.VariableText import VariableText
 from enigma import eLabel, eDVBVolumecontrol, eTimer
 from Components.Renderer.Renderer import Renderer

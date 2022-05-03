@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Components.VariableValue import VariableValue
 from Components.Renderer.Renderer import Renderer
 
@@ -22,12 +21,6 @@ class Progress(VariableValue, Renderer):
 		range = self.source.range or 100
 		value = self.source.value
 		if value is None:
-			value = 0
-		if range > 2**31 - 1:
-			range = 2**31 - 1
-		if value > range:
-			value = range
-		if value < 0:
 			value = 0
 		(self.range, self.value) = ((0, range), value)
 

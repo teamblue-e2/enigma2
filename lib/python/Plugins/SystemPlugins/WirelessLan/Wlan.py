@@ -1,5 +1,3 @@
-from __future__ import print_function
-from __future__ import absolute_import
 from os import system, path as os_path
 import sys
 import re
@@ -15,7 +13,7 @@ from Components.Console import Console
 from Components.Network import iNetwork
 from wifi.scan import Cell
 
-
+config.misc.networkenabled.value = False
 liste = ["WPA/WPA2", "WPA2", "WPA", "WEP", "Unencrypted"]
 
 weplist = ["ASCII", "HEX"]
@@ -88,7 +86,9 @@ class Wlan:
 
 		scanresults = list(Cell.all(self.iface, 5))
 		aps = {}
-		if scanresults is not None:
+		if scanresults:
+			config.misc.networkenabled.value = True
+			print("[NetworkWizard] networkenabled value = %s" % config.misc.networkenabled.value)
 			for i in list(range(len(scanresults))):
 				bssid = scanresults[i].ssid
 				aps[bssid] = {
@@ -441,7 +441,7 @@ class Status:
 		if ssid != None and ssid != "off":
 			scanresults = list(Cell.all(iface, 5))
 			aps = {}
-			if scanresults is not None:
+			if scanresults:
 				for i in list(range(len(scanresults))):
 					bssid = scanresults[i].ssid
 					aps[bssid] = {

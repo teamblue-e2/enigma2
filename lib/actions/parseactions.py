@@ -1,5 +1,3 @@
-from __future__ import absolute_import
-from __future__ import print_function
 # takes a header file, outputs action ids
 
 import tokenize

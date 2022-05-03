@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Components.Sources.Source import Source
 from Components.Element import cached
 
@@ -11,6 +10,7 @@ setup the "fonts".
 
 This has been done so another converter could convert the list to a different format, for example
 to generate HTML."""
+
 	def __init__(self, list=[], enableWrapAround=False, item_height=25, fonts=[]):
 		Source.__init__(self)
 		self.__list = list
@@ -101,8 +101,8 @@ to generate HTML."""
 
 	def updateList(self, list):
 		"""Changes the list without changing the selection or emitting changed Events"""
-		max_index = len(list) - 1
-		old_index = min(max_index, self.index)
+		assert len(list) == len(self.__list)
+		old_index = self.index
 		self.disable_callbacks = True
 		self.list = list
 		self.index = old_index

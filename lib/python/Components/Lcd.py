@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from __future__ import division
 from Components.config import config, ConfigSubsection, ConfigSlider, ConfigYesNo, ConfigNothing, ConfigSelection
 from enigma import eDBoxLCD
