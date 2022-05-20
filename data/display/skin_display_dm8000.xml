@@ -41,7 +41,7 @@
 		<widget source="session.Event_Now" render="Progress" position="3,35" size="127,5" borderWidth="1" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		
+
 		<widget source="session.Event_Now" render="Label" position="4,45" size="75,16" font="FdLcD;16" halign="left" noWrap="1">
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">NoSeconds</convert>
@@ -50,7 +50,7 @@
 			<convert type="ClockToText"></convert>
 		</widget>
 	</screen>
-	
+
 <!-- channelselection-->
 	<screen name="ChannelSelection_summary" position="0,0" size="132,64">
 		<widget source="parent.ServiceEvent" render="Label" position="3,1" size="126,16" font="FdLcD;16" halign="left" noWrap="1" >
@@ -68,7 +68,7 @@
 		<widget source="session.RecordState" render="FixedLabel" text="Rec" position="3,52" size="24,12" font="FdLcD;12" zPosition="1" noWrap="1">
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
-	</screen>  
+	</screen>
 
 <!-- menus-->
 	<screen name="MenuSummary" position="fill">
