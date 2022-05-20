@@ -22,7 +22,7 @@ from time import mktime, localtime, time
 from datetime import datetime
 
 
-class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
+class NimSetup(ConfigListScreen, ServiceStopScreen, Screen):
 	def createSimpleSetup(self, list, mode):
 		nim = self.nimConfig
 
@@ -318,7 +318,6 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.list.append(getConfigListEntry(_("Force legacy signal stats"), self.nimConfig.force_legacy_signal_stats, _("If set to 'yes' signal values (SNR, etc) will be calculated from API V3. This is an old API version that has now been superseded.")))
 
 		self["config"].list = self.list
-		self["config"].l.setList(self.list)
 		self.setTextKeyYellow()
 
 	def newConfig(self):
@@ -623,13 +622,6 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.createSetup()
 		self.setTitle(_("Setup") + " " + self.nim.friendly_full_description)
 
-		if not self.selectionChanged in self["config"].onSelectionChanged:
-			self["config"].onSelectionChanged.append(self.selectionChanged)
-		self.selectionChanged()
-
-	def selectionChanged(self):
-		self["description"].setText(self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or "")
-
 	def keyLeft(self):
 		if self.nim.isFBCLink() and self["config"].getCurrent() in (self.advancedLof, self.advancedConnected):
 			return
@@ -790,9 +782,9 @@ class NimSelection(Screen):
 		return "%d.%dE" % (orbpos / 10, orbpos % 10)
 
 	def extraInfo(self):
-		nim = self["nimlist"].getCurrent()
-		nim = nim and nim[3]
-		if config.usage.setup_level.index >= 2 and nim is not None:
+		current = self["nimlist"].getCurrent()
+		nim = current and len(current) > 2 and hasattr(current[3], "slot") and current[3]
+		if config.usage.setup_level.index >= 2 and nim:
 			text = _("Capabilities: ") + eDVBResourceManager.getInstance().getFrontendCapabilities(nim.slot)
 			self.session.open(MessageBox, text, MessageBox.TYPE_INFO, simple=True)
 
@@ -802,9 +794,9 @@ class NimSelection(Screen):
 		if recordings or (next_rec_time and next_rec_time > 0 and (next_rec_time - time()) < 360):
 			self.session.open(MessageBox, _("Recording(s) are in progress or coming up in few seconds!"), MessageBox.TYPE_INFO, timeout=5, enable_input=False)
 		else:
-			nim = self["nimlist"].getCurrent()
-			nim = nim and nim[3]
-			if nim is not None:
+			current = self["nimlist"].getCurrent()
+			nim = current and len(current) > 2 and hasattr(current[3], "slot") and current[3]
+			if nim:
 				nimConfig = nimmanager.getNimConfig(nim.slot)
 				if nim.isFBCLink() and nimConfig.configMode.value == "nothing" and not getLinkedSlotID(nim.slot) == -1:
 					return
@@ -828,7 +820,7 @@ class NimSelection(Screen):
 			if self.showNim(x):
 				fbc_text = ""
 				if x.isFBCTuner():
-					fbc_text = (x.isFBCRoot() and _("FBC socket %s") % x.is_fbc[1] or _("FBC virtual"))
+					fbc_text = (x.isFBCRoot() and _("Slot %s / FBC in %s") % (x.is_fbc[2], x.is_fbc[1])) or _("Slot %s / FBC virtual %s") % (x.is_fbc[2], x.is_fbc[1] - (x.isCompatible("DVB-S") and 2 or 1))
 				if x.isCompatible("DVB-S"):
 					if nimConfig.configMode.value in ("loopthrough", "equal", "satposdepends"):
 						if x.isFBCLink():
@@ -848,8 +840,8 @@ class NimSelection(Screen):
 								text = _("FBC automatic\nconnected to %s") % link
 						else:
 							text = _("Disabled")
-							if fbc_text:
-								text += "\n" + fbc_text
+						if fbc_text:
+							text += "\n" + fbc_text
 					elif nimConfig.configMode.value == "simple":
 						if nimConfig.diseqcMode.value in ("single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
 							text = "%s\n%s: " % ({"single": _("Single"), "toneburst_a_b": _("Toneburst A/B"), "diseqc_a_b": _("DiSEqC A/B"), "diseqc_a_b_c_d": _("DiSEqC A/B/C/D")}[nimConfig.diseqcMode.value],
@@ -986,7 +978,7 @@ class SelectSatsEntryScreen(Screen):
 	def sortBy(self):
 		lst = self["list"].list
 		if len(lst) > 1:
-			menu = [(_("Reverse list"), "2"), (_("Standart list"), "1")]
+			menu = [(_("Reverse list"), "2"), (_("Standard list"), "1")]
 			connected_sat = [x[0][1] for x in lst if x[0][3]]
 			if len(connected_sat) > 0:
 				menu.insert(0, (_("Connected satellites"), "3"))

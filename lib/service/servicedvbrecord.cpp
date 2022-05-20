@@ -265,6 +265,11 @@ int eDVBServiceRecord::doPrepare()
 				f->open(m_ref.path.c_str());
 				source = ePtr<iTsSource>(f);
 			}
+			m_event((iRecordableService*)this, evPvrTuneStart);
+		}
+		else
+		{
+			m_event((iRecordableService*)this, evTuneStart);
 		}
 		return m_service_handler.tuneExt(m_ref, source, m_ref.path.c_str(), 0, m_simulate, NULL, servicetype, m_descramble);
 	}
@@ -416,6 +421,12 @@ int eDVBServiceRecord::doRecord()
 					if (i != program.audioStreams.begin())
 						eDebugNoNewLine(", ");
 					eDebugNoNewLine("%04x", i->pid);
+
+					if (i->rdsPid != -1)
+					{
+						pids_to_record.insert(i->rdsPid);
+						eDebugNoNewLine(", (RDS %04x)", i->rdsPid);
+					}
 				}
 				eDebugNoNewLine(")");
 			}

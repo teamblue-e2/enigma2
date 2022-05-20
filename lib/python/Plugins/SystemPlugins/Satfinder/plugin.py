@@ -292,7 +292,6 @@ class Satfinder(ScanSetup, ServiceScan):
 				self.preDefTransponderAtscEntry = getConfigListEntry(_('Transponder'), self.ATSCTransponders)
 				self.list.append(self.preDefTransponderAtscEntry)
 		self["config"].list = self.list
-		self["config"].l.setList(self.list)
 
 	def createConfig(self, foo):
 		self.tuning_type = ConfigSelection(default="predefined_transponder", choices=[("single_transponder", _("User defined transponder")), ("predefined_transponder", _("Predefined transponder"))])
@@ -325,7 +324,7 @@ class Satfinder(ScanSetup, ServiceScan):
 				continue
 			if n.config_mode in ("loopthrough", "satposdepends", "nothing"):
 				continue
-			if n.isCompatible("DVB-S") and n.config_mode == "advanced" and len(nimmanager.getSatListForNim(n.slot)) < 1:
+			if n.isCompatible("DVB-S") and n.config_mode in ("simple", "equal", "advanced") and len(nimmanager.getSatListForNim(n.slot)) < 1:
 				continue
 			satfinder_nim_list.append((str(n.slot), n.friendly_full_description))
 		self.satfinder_scan_nims = ConfigSelection(choices=satfinder_nim_list)

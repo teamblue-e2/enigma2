@@ -3,11 +3,13 @@ from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, Confi
 from Tools.Directories import defaultRecordingLocation
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, eEnv, eDVBDB, Misc_Options, eBackgroundFileEraser, eServiceEvent
 from Components.NimManager import nimmanager
+from Components.Renderer.FrontpanelLed import ledPatterns, PATTERN_ON, PATTERN_OFF, PATTERN_BLINK
 from Components.ServiceList import refreshServiceList
 from SystemInfo import SystemInfo
 
 import os
 import time
+
 
 originalAudioTracks = "orj dos ory org esl qaa und mis mul ORY ORJ Audio_ORJ oth"
 visuallyImpairedCommentary = "NAR qad"
@@ -102,6 +104,7 @@ def InitUsageConfig():
 	config.usage.oldstyle_channel_select_controls = ConfigYesNo(default=False)
 	config.usage.zap_with_ch_buttons = ConfigYesNo(default=True)
 	config.usage.ok_is_channelselection = ConfigYesNo(default=False)
+	config.usage.changebouquet_set_history = ConfigYesNo(default=False)
 	config.usage.volume_instead_of_channelselection = ConfigYesNo(default=False)
 	config.usage.channelselection_preview = ConfigYesNo(default=False)
 	config.usage.show_spinner = ConfigYesNo(default=True)
@@ -279,6 +282,12 @@ def InitUsageConfig():
 	config.usage.remote_fallback_openwebif_port = ConfigInteger(default=80, limits=(0, 65535))
 	config.usage.remote_fallback_dvbt_region = ConfigText(default="fallback DVB-T/T2 Europe")
 
+	choicelist = [("0", _("Disabled"))]
+	for i in (10, 50, 100, 500, 1000, 2000):
+		choicelist.append(("%d" % i, _("%d ms") % i))
+
+	config.usage.http_startdelay = ConfigSelection(default="0", choices=choicelist)
+
 	config.usage.show_timer_conflict_warning = ConfigYesNo(default=True)
 
 	preferredTunerChoicesUpdate()
@@ -365,19 +374,31 @@ def InitUsageConfig():
 
 	if SystemInfo["PowerLED"]:
 		def powerLEDChanged(configElement):
-			open(SystemInfo["PowerLED"], "w").write(configElement.value and "on" or "off")
+			if "fp" in SystemInfo["PowerLED"]:
+				open(SystemInfo["PowerLED"], "w").write(configElement.value and "1" or "0")
+				patterns = [PATTERN_ON, PATTERN_ON, PATTERN_OFF, PATTERN_OFF] if configElement.value else [PATTERN_OFF, PATTERN_OFF, PATTERN_OFF, PATTERN_OFF]
+				ledPatterns.setLedPatterns(1, patterns)
+			else:
+				open(SystemInfo["PowerLED"], "w").write(configElement.value and "on" or "off")
 		config.usage.powerLED = ConfigYesNo(default=True)
 		config.usage.powerLED.addNotifier(powerLEDChanged)
 
 	if SystemInfo["StandbyLED"]:
 		def standbyLEDChanged(configElement):
-			open(SystemInfo["StandbyLED"], "w").write(configElement.value and "on" or "off")
+			if "fp" in SystemInfo["StandbyLED"]:
+				patterns = [PATTERN_OFF, PATTERN_BLINK, PATTERN_ON, PATTERN_BLINK] if configElement.value else [PATTERN_OFF, PATTERN_OFF, PATTERN_OFF, PATTERN_OFF]
+				ledPatterns.setLedPatterns(0, patterns)
+			else:
+				open(SystemInfo["StandbyLED"], "w").write(configElement.value and "on" or "off")
 		config.usage.standbyLED = ConfigYesNo(default=True)
 		config.usage.standbyLED.addNotifier(standbyLEDChanged)
 
 	if SystemInfo["SuspendLED"]:
 		def suspendLEDChanged(configElement):
-			open(SystemInfo["SuspendLED"], "w").write(configElement.value and "on" or "off")
+			if "fp" in SystemInfo["SuspendLED"]:
+				open(SystemInfo["SuspendLED"], "w").write(configElement.value and "1" or "0")
+			else:
+				open(SystemInfo["SuspendLED"], "w").write(configElement.value and "on" or "off")
 		config.usage.suspendLED = ConfigYesNo(default=True)
 		config.usage.suspendLED.addNotifier(suspendLEDChanged)
 

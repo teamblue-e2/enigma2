@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-06 10:42+0100\n"
+"POT-Creation-Date: 2022-04-05 10:44+0200\n"
 "PO-Revision-Date: 2019-04-03 06:49+0300\n"
 "Last-Translator: \n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas, zeros\\n faas, sateks, valgekotkas, tigekala, rootsikunn\\n kain, i70, mustkass, pelmeen, Scott\\n <digi-tv.ee>\n"
@@ -1424,8 +1424,9 @@ msgstr ""
 msgid "Artist"
 msgstr "Esitaja"
 
-msgid "Arts/Culture"
-msgstr "Kunsti-kultuurimagasin"
+#, fuzzy
+msgid "Arts/Culture (without music)"
+msgstr "Kunst/kultuur (välja arvatud muusika)"
 
 msgid "Aruba"
 msgstr ""
@@ -1970,6 +1971,10 @@ msgstr "Kaabel (DVB-C)"
 msgid "Cable Scan"
 msgstr "Kaabel TV otsing"
 
+#, python-format
+msgid "Cable scan executable utility not found '%s'!"
+msgstr ""
+
 msgid "Cabo Verde"
 msgstr ""
 
@@ -2304,8 +2309,9 @@ msgid ""
 "DiSEqC port %s for %s"
 msgstr ""
 
-msgid "Children/Youth"
-msgstr ""
+#, fuzzy
+msgid "Children/Youth/Education/Science"
+msgstr "Haridus/teadus"
 
 msgid "Chile"
 msgstr ""
@@ -3637,6 +3643,10 @@ msgstr "Keela"
 msgid "Disable Animations"
 msgstr ""
 
+#, fuzzy
+msgid "Disable FCC during recordings"
+msgstr "Kaasa AIT http voogudesse"
+
 msgid "Disable Picture in Picture"
 msgstr "Sulge pilt-pildis"
 
@@ -3663,6 +3673,10 @@ msgstr "Näita ekraanisäästjat"
 
 msgid "Disk space to reserve for recordings (in GB)"
 msgstr "Salvestistele tagatud kettaruum (GB)"
+
+#, fuzzy
+msgid "Disk state: "
+msgstr "kirjandus"
 
 #, fuzzy, python-format
 msgid "Disk temperature: %s"
@@ -3951,7 +3965,7 @@ msgid "Downloadable plugins"
 msgstr "Allalaetavad laiendused"
 
 #, fuzzy
-msgid "Downloaded images"
+msgid "Downloaded Images"
 msgstr "Laetakse alla"
 
 msgid "Downloading"
@@ -3970,6 +3984,9 @@ msgstr "Laeme alla laienduse infot. Palun oota."
 #, fuzzy
 msgid "Downmix"
 msgstr "AC3/DTS > stereo"
+
+msgid "Drama and Films"
+msgstr ""
 
 #, fuzzy
 msgid "Dreambox format data DVD (HDTV compatible)"
@@ -4057,7 +4074,7 @@ msgid "ERROR - failed to scan (%s)!"
 msgstr "VIGA - otsing nurjus (%s)!"
 
 #, python-format
-msgid "ERROR downloading file %s"
+msgid "ERROR downloading file %s/%s"
 msgstr ""
 
 msgid "East"
@@ -4143,9 +4160,6 @@ msgstr "Muuda pealkirja"
 #, fuzzy
 msgid "Edit update source url"
 msgstr "Muuda uuenduste allika url."
-
-msgid "Education/Science/..."
-msgstr "Haridus/teadus"
 
 msgid "Egypt"
 msgstr ""
@@ -4451,10 +4465,6 @@ msgstr ""
 msgid "Error"
 msgstr "Viga"
 
-#, fuzzy, python-format
-msgid "Error %s"
-msgstr "Viga"
-
 msgid "Error checking disk. The disk may be damaged"
 msgstr ""
 
@@ -4748,12 +4758,13 @@ msgid ""
 "inactive"
 msgstr ""
 
-#, python-format
-msgid "FBC socket %s"
-msgstr ""
+#, fuzzy
+msgid "FCC enabled"
+msgstr "lubatud"
 
-msgid "FBC virtual"
-msgstr ""
+#, fuzzy
+msgid "FCCSetup"
+msgstr "Seadistamine"
 
 msgid "FEC"
 msgstr "FEC"
@@ -4866,6 +4877,15 @@ msgstr ""
 
 msgid "Fast"
 msgstr "Kiire"
+
+msgid "Fast Channel Change"
+msgstr ""
+
+msgid "Fast Channel Change Setup"
+msgstr ""
+
+msgid "Fast Channel Change setup"
+msgstr ""
 
 msgid "Fast DiSEqC"
 msgstr "Kiire DiSEqC"
@@ -5069,7 +5089,7 @@ msgid "Flash and restore settings"
 msgstr "Jah, taasta nüüd seaded"
 
 #, fuzzy
-msgid "Flash on the fly your your Receiver software."
+msgid "Flash on the fly your Receiver software."
 msgstr ""
 "\n"
 "Vastuvõtja internetiuuendused."
@@ -5219,7 +5239,7 @@ msgid "Full view resolution"
 msgstr ""
 
 #, fuzzy
-msgid "Fullbackup images"
+msgid "Fullbackup Images"
 msgstr "Varukoopia loomine nurjus."
 
 #, python-format
@@ -5657,6 +5677,10 @@ msgstr "Hierarhia teave"
 
 msgid "High bitrate support"
 msgstr "Kõrge bitrate tugi"
+
+#, fuzzy
+msgid "History Prev/Next"
+msgstr "Algseadistus"
 
 #, fuzzy
 msgid "History back"
@@ -6452,9 +6476,6 @@ msgstr "Vasak"
 msgid "Left from servicename"
 msgstr "Kanalinimest vasakul pool"
 
-msgid "Leisure hobbies"
-msgstr ""
-
 msgid "Lesotho"
 msgstr ""
 
@@ -6777,6 +6798,10 @@ msgstr "Leedu"
 #, fuzzy
 msgid "Mauritius"
 msgstr "Lemmikud"
+
+#, fuzzy
+msgid "Max channels"
+msgstr "Kanal"
 
 msgid "Max memory positions"
 msgstr ""
@@ -7168,9 +7193,6 @@ msgstr "Salvestiste asukoht"
 msgid "Movie selection"
 msgstr "Filmi valik"
 
-msgid "Movie/Drama"
-msgstr ""
-
 msgid "Movielist menu"
 msgstr "Salvestiste menüü"
 
@@ -7443,7 +7465,7 @@ msgstr ""
 msgid "New password"
 msgstr ""
 
-msgid "News Current Affairs"
+msgid "News/Current Affairs/Social"
 msgstr ""
 
 msgctxt "button label, 'next screen'"
@@ -9133,6 +9155,9 @@ msgstr "Salvesta"
 msgid "Recall to previous service"
 msgstr "Tagasi eelmisele kanalile"
 
+msgid "Receiver or driver does not support FCC"
+msgstr ""
+
 #, fuzzy
 msgid "Reception lists"
 msgstr "Vastuvõtu seaded"
@@ -10638,6 +10663,10 @@ msgstr "käivita vastuvõtja sellel kanalil"
 msgid "Set blocktimes by weekday"
 msgstr ""
 
+#, fuzzy
+msgid "Set cursor on service from channel history"
+msgstr "Eelmine kanal ajaloos"
+
 msgid "Set default"
 msgstr ""
 
@@ -10804,9 +10833,6 @@ msgstr "Näita käesoleva saate kava..."
 
 msgid "Show EPG..."
 msgstr "näita saatekava..."
-
-msgid "Show Games show"
-msgstr ""
 
 msgid "Show HDMIRecord setup..."
 msgstr ""
@@ -11164,6 +11190,9 @@ msgstr ""
 msgid "Show warning when timeshift is stopped"
 msgstr "Näita hoiatust kui ajanihe on peatunud"
 
+msgid "Show/Game Show/Leisure hobbies"
+msgstr ""
+
 #, fuzzy
 msgid "Show/hide window"
 msgstr "Näita infot"
@@ -11348,6 +11377,14 @@ msgstr ""
 msgid "Slot %d"
 msgstr "Pesa %d"
 
+#, fuzzy, python-format
+msgid "Slot %s / FBC in %s"
+msgstr "DiSEqC port %s: %s"
+
+#, python-format
+msgid "Slot %s / FBC virtual %s"
+msgstr ""
+
 #, python-format
 msgid "Slot %s: %s - Mode %d%s"
 msgstr ""
@@ -11386,9 +11423,6 @@ msgid "Smartcard PIN"
 msgstr ""
 
 msgid "Smooth"
-msgstr ""
-
-msgid "Social/Political/Economics"
 msgstr ""
 
 #, fuzzy
@@ -11616,8 +11650,9 @@ msgstr ""
 msgid "Standard"
 msgstr "Tavaline"
 
-msgid "Standart list"
-msgstr ""
+#, fuzzy
+msgid "Standard list"
+msgstr "Tavaline"
 
 msgid "Standby"
 msgstr "Ooterežiim"
@@ -14152,6 +14187,10 @@ msgstr "Määrates 'jah', kasutab vastuvõtja (võimaluse korral) AC3 heli."
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr ""
 
+#, fuzzy
+msgid "When enabled, then when changing bouquets, set the cursor on the service from the channel history in the channel selection list."
+msgstr "Määrates 'jah', näidatakse kanalinimekirjas kanalinumbreid."
+
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr ""
 
@@ -14633,6 +14672,9 @@ msgstr ""
 msgid "Zap"
 msgstr "Mine kanalile"
 
+msgid "Zap Up/Down"
+msgstr ""
+
 msgid "Zap back to previously tuned service?"
 msgstr "Tagasi vaadatud kanalile?"
 
@@ -14748,6 +14790,10 @@ msgstr "aktiveeri võrgukaardi seaded"
 msgid "active"
 msgstr "Alternatiivne"
 
+#, fuzzy
+msgid "active "
+msgstr "Alternatiivne"
+
 msgid "active NFS Shares:"
 msgstr ""
 
@@ -14757,7 +14803,8 @@ msgstr ""
 msgid "additional cable of rotor"
 msgstr ""
 
-msgid "adult movie/drama"
+#, fuzzy
+msgid "adult movie"
 msgstr "täiskasvanute film/draama"
 
 msgid "advanced"
@@ -14877,9 +14924,6 @@ msgstr "parem"
 msgid "black"
 msgstr "must"
 
-msgid "black & white"
-msgstr "must-valge"
-
 msgid "blacklist"
 msgstr "keelatud"
 
@@ -14915,7 +14959,8 @@ msgstr ""
 msgid "chapters"
 msgstr "peatükid"
 
-msgid "childrens's/youth program (general)"
+#, fuzzy
+msgid "childrens's youth program (general)"
 msgstr "laste/noortesaade"
 
 msgid "circular left"
@@ -14937,10 +14982,6 @@ msgstr "Videokoodek"
 
 msgid "comedy"
 msgstr "komöödia"
-
-#, fuzzy
-msgid "config menu"
-msgstr "kinnitatud"
 
 msgid "confirmed"
 msgstr "kinnitatud"
@@ -15024,7 +15065,8 @@ msgstr "ida"
 msgid "economics/social advisory"
 msgstr "majandus/hoolekanne"
 
-msgid "education/science/factual topics (general)"
+#, fuzzy
+msgid "educational/science/factual topics (general)"
 msgstr "haridus/teadus"
 
 msgid "embedded"
@@ -15128,7 +15170,7 @@ msgstr "film/kino"
 msgid "fine arts"
 msgstr "kaunid kunstid"
 
-msgid "fitness & health"
+msgid "fitness and health"
 msgstr ""
 
 #, fuzzy
@@ -15177,9 +15219,6 @@ msgstr ""
 
 msgid "game show/quiz/contest"
 msgstr ""
-
-msgid "gardening"
-msgstr "aiandus"
 
 msgid "go to deep standby"
 msgstr "mine sügavootele"
@@ -15316,8 +15355,9 @@ msgstr ""
 msgid "literature"
 msgstr "kirjandus"
 
-msgid "live broadcast"
-msgstr "otsesaade"
+#, fuzzy
+msgid "local sports"
+msgstr "motosport"
 
 msgid "locked"
 msgstr "lukustatud"
@@ -15378,7 +15418,7 @@ msgstr "liigu esimesele reale"
 msgid "move up to previous entry"
 msgstr "liigu eelmisele reale"
 
-msgid "movie/drama (general)"
+msgid "movie (general)"
 msgstr ""
 
 #, fuzzy
@@ -15553,9 +15593,6 @@ msgstr "Lemmiknimekirjade valik kanalite saatekavas"
 msgid "original"
 msgstr "algne"
 
-msgid "original language"
-msgstr "algupärane keel"
-
 msgid "pass"
 msgstr "lubatud"
 
@@ -15605,6 +15642,13 @@ msgstr ""
 msgid "pre-school children's program"
 msgstr "koolieelikute saade"
 
+msgid "preserve bookmarks in cuts"
+msgstr ""
+
+#, fuzzy
+msgid "priority"
+msgstr "Prioriteet"
+
 msgid "python"
 msgstr ""
 
@@ -15631,6 +15675,10 @@ msgstr "kustuta selle koha järel"
 
 msgid "remove before this position"
 msgstr "kustuta kõik enne seda kohta"
+
+#, fuzzy
+msgid "remove bookmarks in cuts"
+msgstr "Kustuta järjehoidja"
 
 msgid "remove this mark"
 msgstr "eemalda see märk"
@@ -15695,7 +15743,7 @@ msgstr "vali menüüpunkt"
 msgid "serious music/classic music"
 msgstr ""
 
-msgid "serious/classical/religious/historical movie/drama"
+msgid "serious/classical/religious/historical drama"
 msgstr ""
 
 #, fuzzy
@@ -15768,13 +15816,13 @@ msgstr ""
 msgid "slow"
 msgstr ""
 
-msgid "soap/melodram/folkloric"
+msgid "soap/melodrama/folkloric"
 msgstr ""
 
 msgid "social/political issues/economics (general)"
 msgstr ""
 
-msgid "social/spiritual science"
+msgid "social/spiritual sciences"
 msgstr ""
 
 #, fuzzy
@@ -15796,6 +15844,10 @@ msgstr ""
 
 msgid "standard"
 msgstr "tavaline"
+
+#, fuzzy
+msgid "standby "
+msgstr "Ooterežiim"
 
 msgid "start cut here"
 msgstr "alusta lõiget siit"
@@ -15829,10 +15881,10 @@ msgstr "Kustuta laiendusi"
 msgid "talk show"
 msgstr "jutusaade"
 
-msgid "team sports"
+msgid "team sports/excluding football"
 msgstr ""
 
-msgid "technology/natural science"
+msgid "technology/natural sciences"
 msgstr ""
 
 msgid "template file"
@@ -15921,9 +15973,6 @@ msgstr ""
 
 msgid "unpack zip Files"
 msgstr ""
-
-msgid "unpublished"
-msgstr "avaldamata"
 
 #, fuzzy
 msgid "untestable"

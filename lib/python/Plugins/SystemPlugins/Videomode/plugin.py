@@ -11,7 +11,7 @@ from VideoHardware import video_hw
 config.misc.videowizardenabled = ConfigBoolean(default=True)
 
 
-class VideoSetup(Screen, ConfigListScreen):
+class VideoSetup(ConfigListScreen, Screen):
 
 	def __init__(self, session, hw):
 		Screen.__init__(self, session)
@@ -157,22 +157,17 @@ class VideoSetup(Screen, ConfigListScreen):
 			self.keySave()
 
 	# for summary:
-	def changedEntry(self):
-		for x in self.onChangedEntry:
-			x()
-
 	def getCurrentEntry(self):
-		return self["config"].getCurrent()[0]
-
-	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].getText())
-
-	def getCurrentDescription(self):
-		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
+		self.updateDescription()
+		return ConfigListScreen.getCurrentEntry(self)
 
 	def createSummary(self):
 		from Screens.Setup import SetupSummary
 		return SetupSummary
+	###
+
+	def updateDescription(self):
+		self["description"].setText("%s" % self.getCurrentDescription())
 
 
 class AudioSetup(Screen, ConfigListScreen):

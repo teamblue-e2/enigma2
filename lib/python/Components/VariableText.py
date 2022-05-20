@@ -7,8 +7,12 @@ class VariableText(object):
 		self.instance = None
 
 	def setText(self, text):
-		self.message = text
-		if self.instance:
+		try:
+			self.message = text
+			if self.instance:
+				self.instance.setText(self.message or "")
+		except:
+			self.message = ""
 			self.instance.setText(self.message or "")
 
 	def setMarkedPos(self, pos):

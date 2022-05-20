@@ -146,7 +146,7 @@ class UpdatePluginMenu(Screen):
 		self.backupdirs = ' '.join(config.plugins.configurationbackup.backupdirs.value)
 		if self.menu == 0:
 			# print "building menu entries"
-			self.list.append(("flash-online", _("Flash Online"), _("Flash on the fly your your Receiver software.") + self.oktext, None))
+			self.list.append(("flash-online", _("Flash Online"), _("Flash on the fly your Receiver software.") + self.oktext, None))
 			self.list.append(("software-restore", _("Software restore"), _("Restore your Receiver with a new firmware.") + self.oktext, None))
 			self.list.append(("backup-image", _("Backup Image"), _("Backup your running Receiver image to HDD or USB.") + self.oktext, None))
 			if SystemInfo["canMultiBoot"]:
@@ -360,7 +360,7 @@ class UpdatePluginMenu(Screen):
 			self.session.open(RestoreScreen, runRestore=True)
 
 
-class SoftwareManagerSetup(Screen, ConfigListScreen):
+class SoftwareManagerSetup(ConfigListScreen, Screen):
 
 	skin = """
 		<screen name="SoftwareManagerSetup" position="center,center" size="560,440" title="SoftwareManager setup">
@@ -496,22 +496,6 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), MessageBox.TYPE_YESNO, timeout=20, default=True)
 		else:
 			self.close()
-
-	# for summary:
-	def changedEntry(self):
-		for x in self.onChangedEntry:
-			x()
-		self.selectionChanged()
-
-	def getCurrentEntry(self):
-		return self["config"].getCurrent()[0]
-
-	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].value)
-
-	def createSummary(self):
-		from Screens.Setup import SetupSummary
-		return SetupSummary
 
 
 class SoftwareManagerInfo(Screen):

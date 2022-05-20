@@ -30,6 +30,8 @@ void eDVBPMTParser::clearProgramInfo(program &program)
 	program.pmtPid = -1;
 	program.textPid = -1;
 	program.aitPid = -1;
+	program.isCached = false;
+	program.pmtVersion = -1;
 	program.dsmccPid = -1;
 	program.serviceId = -1;
 	program.adapterId = -1;
@@ -68,6 +70,7 @@ int eDVBPMTParser::getProgramInfo(program &program)
 		eDVBTableSpec table_spec;
 		ptr->getSpec(table_spec);
 		program.pmtPid = table_spec.pid < 0x1fff ? table_spec.pid : -1;
+		program.pmtVersion = table_spec.version;
 
 		for (const auto i : ptr->getSections())
 		{
@@ -121,6 +124,13 @@ int eDVBPMTParser::getProgramInfo(program &program)
 					if (!isvideo)
 					{
 						video.type = videoStream::vtCAVS;
+						isvideo = 1;
+					}
+					[[fallthrough]];
+				case 0xD2: // AVS2
+					if (!isvideo)
+					{
+						video.type = videoStream::vtAVS2;
 						isvideo = 1;
 					}
 					[[fallthrough]];

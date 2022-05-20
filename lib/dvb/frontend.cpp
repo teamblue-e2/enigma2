@@ -576,7 +576,7 @@ int eDVBFrontend::PriorityOrder=0;
 int eDVBFrontend::PreferredFrontendIndex = -1;
 
 eDVBFrontend::eDVBFrontend(const char *devicenodename, int fe, int &ok, bool simulate, eDVBFrontend *simulate_fe)
-	:m_simulate(simulate), m_enabled(false), m_fbc(false), m_simulate_fe(simulate_fe), m_type(-1), m_dvbid(fe), m_slotid(fe)
+	:m_simulate(simulate), m_enabled(false), m_fbc(false), m_is_usbtuner(false), m_simulate_fe(simulate_fe), m_type(-1), m_dvbid(fe), m_slotid(fe)
 	,m_fd(-1), m_dvbversion(0), m_rotor_mode(false), m_need_rotor_workaround(false), m_multitype(false), m_voltage5_terrestrial(-1)
 	,m_state(stateClosed), m_timeout(0), m_tuneTimer(0)
 {
@@ -1267,8 +1267,13 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	{
 		ret = (int)(snr / 43.5);
 	}
+	else if (!strcmp(m_description, "GIGA DVB-S2X NIM (TS3L10)") // dual/single plug & play tuners GB UE/Quad UHD 4K
+		|| !strcmp(m_description, "GIGA DVB-S2X NIM (TS2L08)"))
+	{
+		ret = (int)(snr / 40);
+	}
 	else if (!strcmp(m_description, "GIGA DVB-S2 NIM (TS3L10)")
-		|| !strcmp(m_description, "GIGA DVB-S2 NIM (TS2L08)")) //GB IP 4K
+		|| !strcmp(m_description, "GIGA DVB-S2 NIM (TS2L08)"))
 	{
 		ret = snr;
 	}
@@ -1365,6 +1370,28 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		ret = snr;
 		if (!strcmp(m_description, "Si2169")) // DVB-T/C Xtrend
 			ret = snr / 10;
+	}
+	else if (!strcmp(m_description, "M1502A(external)")) // DVB-S2X Dual 4K
+	{
+		ret = (int)(snr / 23.2);
+	}
+	else if (!strcmp(m_description, "AVL6762 (external)")) // DVB-C/T2 Dual 4K
+	{
+		int type = -1;
+		oparm.getSystem(type);
+		switch (type)
+		{
+			case feCable:
+				ret = (int)(snr / 15.6);
+				break;
+			case feTerrestrial:
+				ret = (int)(snr / 44);
+				break;
+		}
+	}
+	else if (!strcmp(m_description, "rs6060")) // DVB-S2X Zgemma 4K
+	{
+		ret = (int)(snr / 32.5);
 	}
 
 	signalqualitydb = ret;
@@ -1531,6 +1558,8 @@ int eDVBFrontend::readFrontendData(int type)
 			return !!(readFrontendData(iFrontendInformation_ENUMS::frontendStatus) & FE_HAS_SYNC);
 		case iFrontendInformation_ENUMS::frontendNumber:
 			return m_slotid;
+		case iFrontendInformation_ENUMS::isUsbTuner:
+			return m_is_usbtuner;
 		case iFrontendInformation_ENUMS::frontendStatus:
 		{
 			fe_status_t status;
@@ -1738,7 +1767,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 		if (tmp == -1 && sec_fe != this && !prev->m_inuse) {
 			int state = sec_fe->m_state;
 			// workaround to put the kernel frontend thread into idle state!
-			if (state != eDVBFrontend::stateIdle && state != stateClosed)
+			if (!m_fbc && state != eDVBFrontend::stateIdle && state != stateClosed)
 			{
 				sec_fe->closeFrontend(true);
 				state = sec_fe->m_state;

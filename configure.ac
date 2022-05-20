@@ -480,6 +480,8 @@ lib/python/Plugins/SystemPlugins/DeviceManager/Makefile
 lib/python/Plugins/SystemPlugins/DeviceManager/icons/Makefile
 lib/python/Plugins/SystemPlugins/DiseqcTester/Makefile
 lib/python/Plugins/SystemPlugins/DiseqcTester/meta/Makefile
+lib/python/Plugins/SystemPlugins/FastChannelChange/Makefile
+lib/python/Plugins/SystemPlugins/FastChannelChange/meta/Makefile
 lib/python/Plugins/SystemPlugins/FastScan/Makefile
 lib/python/Plugins/SystemPlugins/GBAspectRatioSwitch/Makefile
 lib/python/Plugins/SystemPlugins/HdmiCEC/Makefile

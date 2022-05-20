@@ -1,4 +1,5 @@
 from Screens.MessageBox import MessageBox
+from enigma import eStreamServer
 
 
 class ServiceStopScreen:
@@ -49,6 +50,8 @@ class ServiceStopScreen:
 					if hasattr(self.session, 'pip'):
 						del self.session.pip
 					self.session.pipshown = False
+			if eStreamServer.getInstance() and eStreamServer.getInstance().getConnectedClients():
+				eStreamServer.getInstance().stopStream()
 
 	def __onClose(self):
 		if self.oldref:

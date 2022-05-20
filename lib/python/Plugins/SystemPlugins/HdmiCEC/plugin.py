@@ -5,7 +5,7 @@ from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 
 
-class HdmiCECSetupScreen(Screen, ConfigListScreen):
+class HdmiCECSetupScreen(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.skinName = "Setup"

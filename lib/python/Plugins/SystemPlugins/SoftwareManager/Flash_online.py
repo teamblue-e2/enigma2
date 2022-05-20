@@ -84,9 +84,9 @@ class FlashOnline(Screen):
 			for file in [x for x in files if os.path.splitext(x)[1] == ".zip" and box in x]:
 				try:
 					if checkimagefiles([x.split(os.sep)[-1] for x in zipfile.ZipFile(file).namelist()]):
-						imagetyp = _("Downloaded images")
+						imagetyp = _("Downloaded Images")
 						if 'backup' in file.split(os.sep)[-1]:
-							imagetyp = _("Fullbackup images")
+							imagetyp = _("Fullbackup Images")
 						if imagetyp not in self.imagesList:
 							self.imagesList[imagetyp] = {}
 						self.imagesList[imagetyp][file] = {'link': file, 'name': file.split(os.sep)[-1]}
@@ -103,14 +103,18 @@ class FlashOnline(Screen):
 			self.imagesList = dict(self.jsonlist)
 
 			for media in ['/media/%s' % x for x in os.listdir('/media')] + (['/media/net/%s' % x for x in os.listdir('/media/net')] if os.path.isdir('/media/net') else []):
-				if not(SystemInfo['HasMMC'] and "/mmc" in media) and os.path.isdir(media):
+				try:
 					getImages(media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and box in x])
-					if "images" in os.listdir(media):
-						media = os.path.join(media, "images")
-						if os.path.isdir(media) and not os.path.islink(media) and not os.path.ismount(media):
-							getImages(media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and box in x])
-							for dir in [dir for dir in [os.path.join(media, dir) for dir in os.listdir(media)] if os.path.isdir(dir) and os.path.splitext(dir)[1] == ".unzipped"]:
-								shutil.rmtree(dir)
+					for folder in ["images", "downloaded_images", "imagebackups"]:
+						print os.listdir(media)
+						if folder in os.listdir(media):
+							subfolder = os.path.join(media, folder)
+							if os.path.isdir(subfolder) and not os.path.islink(subfolder) and not os.path.ismount(subfolder):
+								getImages(subfolder, [os.path.join(subfolder, x) for x in os.listdir(subfolder) if os.path.splitext(x)[1] == ".zip" and box in x])
+								for dir in [dir for dir in [os.path.join(subfolder, dir) for dir in os.listdir(subfolder)] if os.path.isdir(dir) and os.path.splitext(dir)[1] == ".unzipped"]:
+									shutil.rmtree(dir)
+				except:
+					pass
 
 		list = []
 		for catagorie in reversed(sorted(self.imagesList.keys())):

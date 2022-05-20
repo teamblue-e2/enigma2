@@ -960,7 +960,7 @@ class NimManager:
 				entry["supports_blind_scan"] = False
 
 			entry["fbc"] = [0, 0, 0] # not fbc
-			if entry["name"] and ("fbc" in entry["name"].lower() or entry["name"] in SystemInfo["HasFBCtuner"]) and entry["frontend_device"] is not None and os.access("/proc/stb/frontend/%d/fbc_id" % entry["frontend_device"], os.F_OK):
+			if entry["name"] and ("fbc" in entry["name"].lower() or (entry["name"] in SystemInfo["HasFBCtuner"] and entry["frontend_device"] is not None and os.access("/proc/stb/frontend/%d/fbc_id" % entry["frontend_device"], os.F_OK))):
 				fbc_number += 1
 				if fbc_number <= (entry["type"] and "DVB-C" in entry["type"] and 1 or 2):
 					entry["fbc"] = [1, fbc_number, fbc_tuner] # fbc root
@@ -1038,7 +1038,7 @@ class NimManager:
 					slots.append(slot)
 		for testnim in slots[:]:
 			nimConfig = self.getNimConfig(testnim)
-			if "configMode" in nimConfig.content.items and ((nimConfig.configMode.value == "loopthrough" and ((isFBCTuner and self.nim_slots[testnim].isFBCTuner()) or int(nimConfig.connectedTo.value) == slotid)) or nimConfig.configMode.value == "nothing" or (isFBCTuner and self.nim_slots[slot].isFBCRoot() and self.nim_slots[slot].is_fbc[2] == self.nim_slots[slotid].is_fbc[2])):
+			if "configMode" in nimConfig.content.items and ((nimConfig.configMode.value == "loopthrough" and ((isFBCTuner and self.nim_slots[testnim].isFBCTuner()) or int(nimConfig.connectedTo.value) == slotid)) or nimConfig.configMode.value == "nothing" or (isFBCTuner and self.nim_slots[testnim].isFBCRoot() and self.nim_slots[testnim].is_fbc[2] != self.nim_slots[slotid].is_fbc[2])):
 				slots.remove(testnim)
 		return slots
 

@@ -54,6 +54,7 @@ codec_data = {
 	19: "N/A 19",
 	20: "N/A 20",
 	21: "SPARK",
+	40: "AVS2",
 }
 
 
@@ -164,7 +165,7 @@ class PliExtraInfo(Poll, Converter):
 		yres = info.getInfo(iServiceInformation.sVideoHeight)
 		mode = ("i", "p", " ")[info.getInfo(iServiceInformation.sProgressive)]
 		fps = (info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000
-		if not fps:
+		if not fps or fps == -1:
 			try:
 				fps = (int(open("/proc/stb/vmpeg/0/framerate", "r").read()) + 500) / 1000
 			except:
@@ -212,7 +213,7 @@ class PliExtraInfo(Poll, Converter):
 		frequency = feraw.get("frequency")
 		if frequency:
 			if "DVB-T" in feraw.get("tuner_type"):
-				return str(int(frequency / 1000000. + 0.5))
+				return "%d %s" % (int(frequency / 1000000. + 0.5), _("MHz"))
 			else:
 				return str(int(frequency / 1000 + 0.5))
 		return ""

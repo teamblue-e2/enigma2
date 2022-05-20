@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-06 10:42+0100\n"
+"POT-Creation-Date: 2022-04-05 10:44+0200\n"
 "PO-Revision-Date: 2020-03-17 01:28+0100\n"
 "Last-Translator: Jose Juan <jzapater@gmail.com>\n"
 "Language-Team: ANGELODOS  angelo2807@hotmail.com\n"
@@ -1610,8 +1610,9 @@ msgstr ""
 msgid "Artist"
 msgstr "Artista"
 
-msgid "Arts/Culture"
-msgstr "Arte/Cultura"
+#, fuzzy
+msgid "Arts/Culture (without music)"
+msgstr "Artes / Cultura (sin música, en general)"
 
 msgid "Aruba"
 msgstr ""
@@ -2236,6 +2237,10 @@ msgstr "Cable"
 msgid "Cable Scan"
 msgstr "Escaneado de cable"
 
+#, python-format
+msgid "Cable scan executable utility not found '%s'!"
+msgstr ""
+
 msgid "Cabo Verde"
 msgstr ""
 
@@ -2616,8 +2621,9 @@ msgstr ""
 "Comprobando sint. %d\n"
 "DiSEqC puerto %s de %s"
 
-msgid "Children/Youth"
-msgstr "Niños/Jóvenes"
+#, fuzzy
+msgid "Children/Youth/Education/Science"
+msgstr "Educación/Ciencia/..."
 
 msgid "Chile"
 msgstr ""
@@ -4123,6 +4129,10 @@ msgstr "Deshabilitar"
 msgid "Disable Animations"
 msgstr "Desactiva grabación"
 
+#, fuzzy
+msgid "Disable FCC during recordings"
+msgstr "Incluir AIT en secuencias http"
+
 #
 msgid "Disable Picture in Picture"
 msgstr "Desactivar PiP"
@@ -4154,6 +4164,10 @@ msgstr "Mostrar disclaimer"
 
 msgid "Disk space to reserve for recordings (in GB)"
 msgstr "Espacio para reservar a las grabaciones (en GB)"
+
+#, fuzzy
+msgid "Disk state: "
+msgstr "Temperatura del disco: %s"
 
 #, python-format
 msgid "Disk temperature: %s"
@@ -4495,7 +4509,7 @@ msgstr "Plugins descargables"
 
 #
 #, fuzzy
-msgid "Downloaded images"
+msgid "Downloaded Images"
 msgstr "Descargando"
 
 #
@@ -4518,6 +4532,9 @@ msgstr "Descargando información del plugin. Espere..."
 #, fuzzy
 msgid "Downmix"
 msgstr "Mezcla AC3/DTS"
+
+msgid "Drama and Films"
+msgstr ""
 
 msgid "Dreambox format data DVD (HDTV compatible)"
 msgstr "Dreambox formato DVD de datos (HDTV compatible)"
@@ -4619,7 +4636,7 @@ msgid "ERROR - failed to scan (%s)!"
 msgstr "ERROR - ¡falló la búsqueda (%s)!"
 
 #, python-format
-msgid "ERROR downloading file %s"
+msgid "ERROR downloading file %s/%s"
 msgstr ""
 
 #
@@ -4724,9 +4741,6 @@ msgstr "Editar título"
 #, fuzzy
 msgid "Edit update source url"
 msgstr "Editar url de fuente de actualización."
-
-msgid "Education/Science/..."
-msgstr "Educación/Ciencia/..."
 
 msgid "Egypt"
 msgstr ""
@@ -5067,11 +5081,6 @@ msgstr "Stream"
 
 #
 msgid "Error"
-msgstr "Error"
-
-#
-#, fuzzy, python-format
-msgid "Error %s"
 msgstr "Error"
 
 #, fuzzy
@@ -5420,12 +5429,15 @@ msgid ""
 "inactive"
 msgstr ""
 
-#, python-format
-msgid "FBC socket %s"
-msgstr ""
+#
+#, fuzzy
+msgid "FCC enabled"
+msgstr "activado"
 
-msgid "FBC virtual"
-msgstr ""
+#
+#, fuzzy
+msgid "FCCSetup"
+msgstr "Configuración"
 
 #
 msgid "FEC"
@@ -5555,6 +5567,15 @@ msgstr ""
 #
 msgid "Fast"
 msgstr "Rápido"
+
+msgid "Fast Channel Change"
+msgstr ""
+
+msgid "Fast Channel Change Setup"
+msgstr ""
+
+msgid "Fast Channel Change setup"
+msgstr ""
 
 #
 msgid "Fast DiSEqC"
@@ -5791,7 +5812,7 @@ msgstr "Si, restaure la configuración ahora"
 
 #
 #, fuzzy
-msgid "Flash on the fly your your Receiver software."
+msgid "Flash on the fly your Receiver software."
 msgstr ""
 "\n"
 "Flashear en caliente el software del recepto"
@@ -5962,7 +5983,7 @@ msgid "Full view resolution"
 msgstr "Resolución Fulview"
 
 #, fuzzy
-msgid "Fullbackup images"
+msgid "Fullbackup Images"
 msgstr "Receptor remoto suplencia URL"
 
 #, python-format
@@ -6462,6 +6483,10 @@ msgstr "Información de la jerarquía"
 #
 msgid "High bitrate support"
 msgstr "Soporte de bitrate alto"
+
+#, fuzzy
+msgid "History Prev/Next"
+msgstr "Historial siguiente"
 
 #
 msgid "History back"
@@ -7361,9 +7386,6 @@ msgstr "Izda"
 msgid "Left from servicename"
 msgstr "A la izquierda de servicename"
 
-msgid "Leisure hobbies"
-msgstr "Pasatiempos de ocio"
-
 msgid "Lesotho"
 msgstr ""
 
@@ -7744,6 +7766,11 @@ msgstr "Lituano"
 #, fuzzy
 msgid "Mauritius"
 msgstr "Favoritos"
+
+#
+#, fuzzy
+msgid "Max channels"
+msgstr "Canal"
 
 msgid "Max memory positions"
 msgstr "Posiciones de memoria Max"
@@ -8180,9 +8207,6 @@ msgstr "Ubicación de la película"
 msgid "Movie selection"
 msgstr "Selección de películas"
 
-msgid "Movie/Drama"
-msgstr "Película/Drama"
-
 #
 msgid "Movielist menu"
 msgstr "Menú de lista de películas"
@@ -8498,7 +8522,8 @@ msgstr ""
 msgid "New password"
 msgstr ""
 
-msgid "News Current Affairs"
+#, fuzzy
+msgid "News/Current Affairs/Social"
 msgstr "Noticias actualidad"
 
 msgctxt "button label, 'next screen'"
@@ -10447,6 +10472,9 @@ msgstr "Rojo"
 msgid "Recall to previous service"
 msgstr "Volver al canal anterior"
 
+msgid "Receiver or driver does not support FCC"
+msgstr ""
+
 #
 #
 #, fuzzy
@@ -12196,6 +12224,11 @@ msgstr "establecer como servicio de inicio"
 msgid "Set blocktimes by weekday"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Set cursor on service from channel history"
+msgstr "Cambiar al canal anterior en la historia"
+
 msgid "Set default"
 msgstr "Predeterminar"
 
@@ -12379,9 +12412,6 @@ msgstr "Mostrar EPG para el canal actual ..."
 #
 msgid "Show EPG..."
 msgstr "Mostrar EPG ..."
-
-msgid "Show Games show"
-msgstr "Mostrar juegos"
 
 msgid "Show HDMIRecord setup..."
 msgstr ""
@@ -12775,6 +12805,10 @@ msgstr ""
 msgid "Show warning when timeshift is stopped"
 msgstr "Mostrar advertencia cuando se detiene Timeshift"
 
+#, fuzzy
+msgid "Show/Game Show/Leisure hobbies"
+msgstr "Pasatiempos de ocio"
+
 #
 #
 #, fuzzy
@@ -13001,6 +13035,15 @@ msgstr ""
 msgid "Slot %d"
 msgstr "Slot %d"
 
+#
+#, fuzzy, python-format
+msgid "Slot %s / FBC in %s"
+msgstr "DiSEqC Puerto % s: %s"
+
+#, python-format
+msgid "Slot %s / FBC virtual %s"
+msgstr ""
+
 #, python-format
 msgid "Slot %s: %s - Mode %d%s"
 msgstr ""
@@ -13047,9 +13090,6 @@ msgstr ""
 
 msgid "Smooth"
 msgstr "Suave"
-
-msgid "Social/Political/Economics"
-msgstr "Social/Política/Economía"
 
 #
 #, fuzzy
@@ -13312,7 +13352,8 @@ msgstr ""
 msgid "Standard"
 msgstr "Estándar"
 
-msgid "Standart list"
+#, fuzzy
+msgid "Standard list"
 msgstr "Lista estándar"
 
 #
@@ -16178,6 +16219,10 @@ msgstr "Cuando está activado, el receptor seleccionará una pista AC3 (si está
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Cuando está activado, el receptor seleccionará una pista AC3 + (cuando esté disponible)."
 
+#, fuzzy
+msgid "When enabled, then when changing bouquets, set the cursor on the service from the channel history in the channel selection list."
+msgstr "Cuando está activado puede controlar el volumen con los botones de flecha en lugar de la lista de selección de canal"
+
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr ""
 
@@ -16718,6 +16763,10 @@ msgstr ""
 msgid "Zap"
 msgstr ""
 
+#, fuzzy
+msgid "Zap Up/Down"
+msgstr "Zap abajo"
+
 msgid "Zap back to previously tuned service?"
 msgstr "¿Volver al último canal sintonizado?"
 
@@ -16847,6 +16896,11 @@ msgstr "activar configuración del adaptador de red"
 msgid "active"
 msgstr "Inactivo"
 
+#
+#, fuzzy
+msgid "active "
+msgstr "Inactivo"
+
 msgid "active NFS Shares:"
 msgstr ""
 
@@ -16856,7 +16910,8 @@ msgstr ""
 msgid "additional cable of rotor"
 msgstr ""
 
-msgid "adult movie/drama"
+#, fuzzy
+msgid "adult movie"
 msgstr "Película/Drama para adultos"
 
 #
@@ -16996,9 +17051,6 @@ msgstr "mejor"
 msgid "black"
 msgstr "negro"
 
-msgid "black & white"
-msgstr "Blanco y negro"
-
 #
 msgid "blacklist"
 msgstr "lista negra"
@@ -17040,7 +17092,8 @@ msgstr "centrada, envuelto"
 msgid "chapters"
 msgstr "capítulos"
 
-msgid "childrens's/youth program (general)"
+#, fuzzy
+msgid "childrens's youth program (general)"
 msgstr "programa / jóvenes de niños (general)"
 
 #
@@ -17064,11 +17117,6 @@ msgstr ""
 
 msgid "comedy"
 msgstr ""
-
-#
-#, fuzzy
-msgid "config menu"
-msgstr "confirmado"
 
 #
 msgid "confirmed"
@@ -17167,7 +17215,8 @@ msgstr "este"
 msgid "economics/social advisory"
 msgstr "Economía / asesor sociales"
 
-msgid "education/science/factual topics (general)"
+#, fuzzy
+msgid "educational/science/factual topics (general)"
 msgstr "educación / ciencia / temas fácticos (general)"
 
 msgid "embedded"
@@ -17286,7 +17335,8 @@ msgstr "Cine"
 msgid "fine arts"
 msgstr "bellas artes"
 
-msgid "fitness & health"
+#, fuzzy
+msgid "fitness and health"
 msgstr "fitness y salud"
 
 #
@@ -17342,9 +17392,6 @@ msgstr "educación complementaria"
 
 msgid "game show/quiz/contest"
 msgstr "demostración de juego / concurso / concurso"
-
-msgid "gardening"
-msgstr "jardinería"
 
 #
 msgid "go to deep standby"
@@ -17510,8 +17557,9 @@ msgstr "Alineación de eventos"
 msgid "literature"
 msgstr "literatura"
 
-msgid "live broadcast"
-msgstr "transmisión directa"
+#, fuzzy
+msgid "local sports"
+msgstr "Deporte de equipo"
 
 #
 msgid "locked"
@@ -17584,7 +17632,8 @@ msgstr "mover arriba la primera entrada"
 msgid "move up to previous entry"
 msgstr "mover arriba la entrada anterior"
 
-msgid "movie/drama (general)"
+#, fuzzy
+msgid "movie (general)"
 msgstr "cine / teatro (general)"
 
 #
@@ -17790,9 +17839,6 @@ msgstr "Multiboot  seleccione  imagen"
 msgid "original"
 msgstr ""
 
-msgid "original language"
-msgstr "idioma original"
-
 #
 msgid "pass"
 msgstr "clave"
@@ -17845,6 +17891,14 @@ msgstr "cultura popular / artes tradicionales"
 msgid "pre-school children's program"
 msgstr "programa para niños de preescolar"
 
+msgid "preserve bookmarks in cuts"
+msgstr ""
+
+#
+#, fuzzy
+msgid "priority"
+msgstr "Prioridad"
+
 msgid "python"
 msgstr ""
 
@@ -17876,6 +17930,12 @@ msgstr "borrar después de esta posición"
 #
 msgid "remove before this position"
 msgstr "borrar antes de esta posición"
+
+#
+#
+#, fuzzy
+msgid "remove bookmarks in cuts"
+msgstr "borrar marcador"
 
 #
 msgid "remove this mark"
@@ -17948,7 +18008,8 @@ msgstr "seleccionar la entrada de menú"
 msgid "serious music/classic music"
 msgstr "música seria / música clásica"
 
-msgid "serious/classical/religious/historical movie/drama"
+#, fuzzy
+msgid "serious/classical/religious/historical drama"
 msgstr "seria / película / histórica clásica / religioso / teatro"
 
 #, fuzzy
@@ -18029,13 +18090,15 @@ msgstr ""
 msgid "slow"
 msgstr ""
 
-msgid "soap/melodram/folkloric"
+#, fuzzy
+msgid "soap/melodrama/folkloric"
 msgstr "jabón / Melodram / folclórica"
 
 msgid "social/political issues/economics (general)"
 msgstr "social / asuntos políticos / económicos (general)"
 
-msgid "social/spiritual science"
+#, fuzzy
+msgid "social/spiritual sciences"
 msgstr "ciencias sociales / espiritual"
 
 #
@@ -18059,6 +18122,11 @@ msgstr "revista deportiva"
 #
 msgid "standard"
 msgstr "estándar"
+
+#
+#, fuzzy
+msgid "standby "
+msgstr "Reposo"
 
 #
 msgid "start cut here"
@@ -18097,10 +18165,11 @@ msgstr "systemplugins"
 msgid "talk show"
 msgstr "talk show"
 
-msgid "team sports"
-msgstr "Deporte de equipo"
+msgid "team sports/excluding football"
+msgstr ""
 
-msgid "technology/natural science"
+#, fuzzy
+msgid "technology/natural sciences"
 msgstr "tecnología / ciencia natural"
 
 #
@@ -18198,9 +18267,6 @@ msgstr ""
 
 msgid "unpack zip Files"
 msgstr ""
-
-msgid "unpublished"
-msgstr "inédito"
 
 #
 #, fuzzy

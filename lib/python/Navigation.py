@@ -211,6 +211,10 @@ class Navigation:
 			else:
 				playref = ref
 			if self.pnav:
+				if SystemInfo["FCCactive"] and not self.pnav.playService(playref):
+					self.currentlyPlayingServiceReference = playref
+					self.currentlyPlayingServiceOrGroup = ref
+					return 0
 				self.pnav.stopService()
 				self.currentlyPlayingServiceReference = playref
 				self.currentlyPlayingServiceOrGroup = ref
