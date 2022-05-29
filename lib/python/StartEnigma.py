@@ -528,6 +528,7 @@ def runScreenTest():
 	session = Session(desktop=enigma.getDesktop(0), summary_desktop=enigma.getDesktop(1), navigation=nav)
 
 	CiHandler.setSession(session)
+	powerOffTimer.setSession(session)
 
 	profile("wizards")
 	screensToRun = []
@@ -726,6 +727,9 @@ if os.path.exists('/etc/enigma2/ipv6'):
 		fp.close()
 	except:
 		pass
+
+profile("Init:PowerOffTimer")
+from Components.PowerOffTimer import powerOffTimer
 
 #from enigma import dump_malloc_stats
 #t = eTimer()
