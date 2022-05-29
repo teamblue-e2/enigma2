@@ -460,8 +460,10 @@ class CiSelection(Screen):
 		while len(self.list[slotidx]) < 3 or self.list[slotidx][3] != slot:
 			slotidx += 1
 
-		slotidx += 1 # do not change Reset
-		slotidx += 1 # do not change Init
+		if slot > 0:
+			slotidx += 1 #do not change separator
+		slotidx += 1 #do not change Reset
+		slotidx += 1 #do not change Init
 
 		if state == 0:			#no module
 			self.list[slotidx] = (_("no module found"), ConfigNothing(), 2, slot)
