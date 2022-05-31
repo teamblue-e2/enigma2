@@ -595,3 +595,12 @@ def sanitizeFilename(filename):
 		if len(filename) == 0:
 			filename = "__"
 	return filename
+
+def isPluginInstalled(pluginname, pluginfile="plugin"):
+	path, flags = defaultPaths.get(SCOPE_PLUGINS)
+	for plugintype in ["Extensions", "SystemPlugins"]:
+		for fileext in [".py", ".pyc", ".pyo"]:
+			fullpath = os.path.join(path, plugintype, pluginname, pluginfile + fileext)
+			if os.path.isfile(fullpath):
+				return True
+	return False
