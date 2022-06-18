@@ -61,16 +61,7 @@ class eDVBCISlot: public iObject, public sigc::trackable
 	bool user_mapped;
 	void data(int);
 	bool plugged;
-public:
-	enum {stateRemoved, stateInserted, stateInvalid, stateResetted};
-	eDVBCISlot(eMainloop *context, int nr);
-	~eDVBCISlot();
-
-	int send(const unsigned char *data, size_t len);
-
-	void setAppManager( eDVBCIApplicationManagerSession *session );
-	void setMMIManager( eDVBCIMMISession *session );
-	void setCAManager( eDVBCICAManagerSession *session );
+	eMainloop *m_context;
 
 	eDVBCIApplicationManagerSession *getAppManager() { return application_manager; }
 	eDVBCIMMISession *getMMIManager() { return mmi_session; }
@@ -90,7 +81,31 @@ public:
 	int getNumOfServices() { return running_services.size(); }
 	int setSource(const std::string &source);
 	int setClockRate(int);
+<<<<<<< HEAD
 	static std::string getTunerLetter(int tuner_no) { return std::string(1, char(65 + tuner_no)); }
+=======
+	void determineCIVersion();
+	int setEnabled(bool);
+	static std::string getTunerLetter(int tuner_no) { return std::string(1, char(65 + tuner_no)); }
+public:
+	enum {stateRemoved, stateInserted, stateInvalid, stateResetted, stateDisabled};
+	enum {versionUnknown = -1, versionCI = 0, versionCIPlus1 = 1, versionCIPlus2 = 2};
+	eDVBCISlot(eMainloop *context, int nr);
+	~eDVBCISlot();
+	void closeDevice();
+	void openDevice();
+
+	int send(const unsigned char *data, size_t len);
+
+	void setAppManager( eDVBCIApplicationManagerSession *session );
+	void setMMIManager( eDVBCIMMISession *session );
+	void setCAManager( eDVBCICAManagerSession *session );
+	void setCCManager( eDVBCICcSession *session );
+
+	int getSlotID();
+	int getNumOfServices();
+	int getVersion();
+>>>>>>> 0275bee865 (Add support for enabling and disabling CI devices (#2283) (#3432))
 };
 
 struct CIPmtHandler
@@ -151,6 +166,7 @@ public:
 	void ciRemoved(eDVBCISlot *slot);
 	int getSlotState(int slot);
 
+	int setCIEnabled(int slot, bool enabled);
 	int reset(int slot);
 	int initialize(int slot);
 	int startMMI(int slot);
