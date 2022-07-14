@@ -29,6 +29,7 @@ from Components.GUIComponent import GUIComponent
 from skin import applySkinFactor, parameters, parseScale
 
 import os
+import glob
 
 
 class About(Screen):
@@ -106,6 +107,26 @@ class About(Screen):
 		self["AboutHeader"] = StaticText(AboutHeader)
 
 		AboutText = BoxName + " - " + ImageType + serial + "\n"
+		GStreamerVersion = about.getGStreamerVersionString().replace("GStreamer", "")
+		self["GStreamerVersion"] = StaticText(GStreamerVersion)
+
+		ffmpegVersion = about.getffmpegVersionString()
+		self["ffmpegVersion"] = StaticText(ffmpegVersion)
+
+		player = None
+		if cpu.upper().startswith('HI') or os.path.isdir('/proc/hisi'):
+			if os.path.isdir("/usr/lib/hisilicon") and glob.glob("/usr/lib/hisilicon/libavcodec.so.*"):
+				player = _("Media player") + ": ffmpeg, " + _("Hardware Accelerated")
+			elif ffmpegVersion[0].isdigit():
+				player = _("Media player") + ": ffmpeg, " + _("version") + " " + ffmpegVersion
+
+		if player is None:
+			if GStreamerVersion:
+				player = _("Media player") + ": Gstreamer, " + _("version") + " " + GStreamerVersion
+			else:
+				player = _("Media player") + ": " + _("Not Installed")
+
+		AboutText += player + "\n"
 
 		#AboutText += _("Hardware: ") + about.getHardwareTypeString() + "\n"
 		#AboutText += _("CPU: ") + about.getCPUInfoString() + "\n"
@@ -906,11 +927,9 @@ class Troubleshoot(Screen):
 		self.close()
 
 	def getDebugFilesList(self):
-		import glob
 		return [x for x in sorted(glob.glob("%s/Enigma2-debug-*.log" % config.crash.debug_path.value), key=lambda x: os.path.isfile(x) and os.path.getmtime(x))]
 
 	def getLogFilesList(self):
-		import glob
 		home_root = "/home/root/enigma2_crash.log"
 		tmp = "/tmp/enigma2_crash.log"
 		return [x for x in sorted(glob.glob("/mnt/hdd/*.log"), key=lambda x: os.path.isfile(x) and os.path.getmtime(x))] + (os.path.isfile(home_root) and [home_root] or []) + (os.path.isfile(tmp) and [tmp] or [])
