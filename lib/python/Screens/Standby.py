@@ -361,9 +361,12 @@ class TryQuitMainloop(MessageBox):
 			if self.retval == QUIT_SHUTDOWN:
 				config.misc.DeepStandby.value = True
 				if not inStandby:
-					if SystemInfo["HasHDMI-CEC"] and config.hdmicec.enabled.value and config.hdmicec.control_tv_standby.value and config.hdmicec.next_boxes_detect.value:
-						import Components.HdmiCec
-						Components.HdmiCec.hdmi_cec.secondBoxActive()
+					if os.path.exists("/usr/script/standby_enter.sh"):
+						Console().ePopen("/usr/script/standby_enter.sh")
+					if SystemInfo["HasHDMI-CEC"] and config.hdmicec.enabled.value and ((config.hdmicec.control_tv_standby.value and config.hdmicec.next_boxes_detect.value) or config.hdmicec.handle_deepstandby_events.value != "no"):
+						if config.hdmicec.control_tv_standby.value and config.hdmicec.next_boxes_detect.value:
+							import Components.HdmiCec
+							Components.HdmiCec.hdmi_cec.secondBoxActive()
 						self.delay = eTimer()
 						self.delay.timeout.callback.append(self.quitMainloop)
 						self.delay.start(1500, True)
