@@ -113,6 +113,7 @@ class About(Screen):
 		ffmpegVersion = about.getffmpegVersionString()
 		self["ffmpegVersion"] = StaticText(ffmpegVersion)
 
+		cpu = about.getCPUInfoString()
 		player = None
 		if cpu.upper().startswith('HI') or os.path.isdir('/proc/hisi'):
 			if os.path.isdir("/usr/lib/hisilicon") and glob.glob("/usr/lib/hisilicon/libavcodec.so.*"):
@@ -133,7 +134,6 @@ class About(Screen):
 		#AboutText += _("Installed: ") + about.getFlashDateString() + "\n"
 		#AboutText += _("Image: ") + about.getImageTypeString() + "\n"
 
-		cpu = about.getCPUInfoString()
 		CPUinfo = _("CPU: ") + cpu
 		self["CPUinfo"] = StaticText(CPUinfo)
 		AboutText += CPUinfo + "\n"
