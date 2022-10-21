@@ -48,12 +48,12 @@ cmdList = {
 
 config.hdmicec = ConfigSubsection()
 config.hdmicec.enabled = ConfigYesNo(default=False)
-config.hdmicec.control_tv_standby = ConfigYesNo(default=False)
-config.hdmicec.control_tv_wakeup = ConfigYesNo(default=False)
+config.hdmicec.control_tv_standby = ConfigYesNo(default=True)
+config.hdmicec.control_tv_wakeup = ConfigYesNo(default=True)
 config.hdmicec.report_active_source = ConfigYesNo(default=True)
-config.hdmicec.report_active_menu = ConfigYesNo(default=False)
-config.hdmicec.handle_tv_standby = ConfigYesNo(default=False)
-config.hdmicec.handle_tv_wakeup = ConfigYesNo(default=False)
+config.hdmicec.report_active_menu = ConfigYesNo(default=True)
+config.hdmicec.handle_tv_standby = ConfigYesNo(default=True)
+config.hdmicec.handle_tv_wakeup = ConfigYesNo(default=True)
 config.hdmicec.tv_wakeup_detection = ConfigSelection(
 	choices={
 	"wakeup": _("Wakeup"),
@@ -74,12 +74,17 @@ config.hdmicec.tv_wakeup_command = ConfigSelection(
 	default="imageview")
 config.hdmicec.fixed_physical_address = ConfigText(default="0.0.0.0")
 config.hdmicec.volume_forwarding = ConfigYesNo(default=False)
+choicelist = []
+for i in range(1, 31):
+	choicelist.append((str(i), str(i)))
+config.hdmicec.volume_forwarding_repeat = ConfigSelection(default="0", choices=[("0", _("Disabled"))] + choicelist)
+config.hdmicec.volume_forwarding_repeat_empty = ConfigNothing()
 config.hdmicec.control_receiver_wakeup = ConfigYesNo(default=False)
 config.hdmicec.control_receiver_standby = ConfigYesNo(default=False)
-config.hdmicec.handle_deepstandby_events = ConfigYesNo(default=False)
+config.hdmicec.handle_deepstandby_events = ConfigSelection(default="no", choices=[("no", _("No")), ("yes", _("Yes")), ("poweroff", _("Only power off"))])
 choicelist = []
-for i in (10, 50, 100, 150, 250, 500, 750, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000):
-	choicelist.append(("%d" % i, "%d ms" % i))
+for i in (10, 50, 100, 150, 250, 500, 750, 1000):
+	choicelist.append(("%d" % i, _("%d ms") % i))
 config.hdmicec.minimum_send_interval = ConfigSelection(default="0", choices=[("0", _("Disabled"))] + choicelist)
 choicelist = []
 for i in [3] + list(range(5, 65, 5)):
@@ -93,7 +98,6 @@ config.hdmicec.sourceactive_zaptimers = ConfigYesNo(default=False)
 
 
 class HdmiCec:
-	instance = None
 
 	def __init__(self):
 		assert not HdmiCec.instance, "only one HdmiCec instance is allowed!"
@@ -325,7 +329,7 @@ class HdmiCec:
 		self.standbyMessages()
 
 	def onEnterDeepStandby(self, configElement):
-		if config.hdmicec.enabled.value and config.hdmicec.handle_deepstandby_events.value:
+		if config.hdmicec.enabled.value and config.hdmicec.handle_deepstandby_events.value != "no":
 			if config.hdmicec.next_boxes_detect.value:
 				self.delay.start(750, True)
 			else:
@@ -477,6 +481,10 @@ class HdmiCec:
 		if cmd:
 			if config.hdmicec.minimum_send_interval.value != "0":
 				self.queueKeyEvent.append((self.volumeForwardingDestination, cmd, data))
+				repeat = int(config.hdmicec.volume_forwarding_repeat.value)
+				if repeat and self.volumeForwardingDestination:
+					for i in range(repeat):
+						self.queueKeyEvent.append((self.volumeForwardingDestination, cmd, data))
 				if not self.waitKeyEvent.isActive():
 					self.waitKeyEvent.start(int(config.hdmicec.minimum_send_interval.value), True)
 			else:

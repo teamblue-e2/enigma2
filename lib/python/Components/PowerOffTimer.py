@@ -1,9 +1,9 @@
 from RecordTimer import RecordTimerEntry
 from Screens.MessageBox import MessageBox
 from Screens import Standby
-from Tools import Notifications
+from Tools.Notifications import AddNotificationWithID
+from Tools.Directories import mediafilesInUse
 from Components.config import config
-from Components.Harddisk import internalHDDNotSleeping
 from Components.Task import job_manager
 from Components.Converter.ClientsStreaming import ClientsStreaming
 from enigma import eTimer, eDVBLocalTimeHandler
@@ -94,7 +94,7 @@ class PowerOffTimerPoller:
 				if Standby.inStandby is None:
 					if not config.usage.poweroff_force.value:
 						try_poweroff = False
-				elif jobs or self.session.screen["TunerInfo"].tuner_use_mask or internalHDDNotSleeping():
+				elif jobs or self.session.screen["TunerInfo"].tuner_use_mask or mediafilesInUse(self.session):
 					try_poweroff = False
 			if try_poweroff:
 				if Standby.inStandby is None:
@@ -108,6 +108,8 @@ class PowerOffTimerPoller:
 					if self.session.nav.getClientsStreaming():
 						clients = ClientsStreaming("SHORT_ALL")
 						reason += clients.getText() + '\n'
+					if mediafilesInUse(self.session):
+						reason += _("A file from media is in use!") + '\n'
 					self.session.openWithCallback(self.doPowerOffAnswer, MessageBox, reason + _("Really shutdown now?"), type = MessageBox.TYPE_YESNO, timeout = 180)
 				else:
 					self.doPowerOffAnswer(True)
@@ -124,7 +126,7 @@ class PowerOffTimerPoller:
 				if Standby.inStandby:
 					RecordTimerEntry.TryQuitMainloop()
 				else:
-					Notifications.AddNotificationWithID("Shutdown", Standby.TryQuitMainloop, 1)
+					AddNotificationWithID("Shutdown", Standby.TryQuitMainloop, 1)
 					self.powerStateTimerChanged(dont_currentday=dont_currentday)
 		else:
 			print("[PowerOffTimer] Shutdown canceled by the user (dont_currentday=%s)" % dont_currentday)
