@@ -6,6 +6,7 @@ import string
 import re
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler, property_lexical_handler
+
 try:
 	from _xmlplus.sax.saxlib import LexicalHandler
 	no_comments = False

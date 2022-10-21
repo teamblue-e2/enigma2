@@ -278,11 +278,14 @@ class VideoHardware:
 		portlist = self.getPortList()
 		for port in portlist:
 			descr = port
-			if descr == 'DVI' and has_hdmi:
-				descr = 'HDMI'
-			elif descr == 'DVI-PC' and has_hdmi:
-				descr = 'HDMI-PC'
-			lst.append((port, descr))
+			if descr == "DVI" and has_hdmi:
+				descr = "HDMI"
+			elif descr == "DVI-PC" and has_hdmi:
+				descr = "HDMI-PC"
+			if "HDMI" in descr:
+				lst.insert(0, (port, descr))
+			else:
+				lst.append((port, descr))
 
 			# create list of available modes
 			modes = self.getModeList(port)
@@ -291,9 +294,11 @@ class VideoHardware:
 			for (mode, rates) in modes:
 				ratelist = []
 				for rate in rates:
-					if rate in ("auto") and not SystemInfo["Has24hz"]:
-						continue
-					ratelist.append((rate, rate))
+					if rate == "auto":
+						if SystemInfo["Has24hz"]:
+							ratelist.append((rate, mode == "2160p30" and "auto (25Hz/30Hz/24Hz)" or "auto (50Hz/60Hz/24Hz)"))
+					else:
+						ratelist.append((rate, rate == "multi" and (mode == "2160p30" and "multi (25Hz/30Hz)" or "multi (50Hz/60Hz)") or rate))
 				config.av.videorate[mode] = ConfigSelection(choices=ratelist)
 		config.av.videoport = ConfigSelection(choices=lst)
 

@@ -3,6 +3,7 @@ import re
 import netifaces as ni
 from socket import *
 
+from enigma import eTimer
 from Components.Console import Console
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
@@ -43,7 +44,7 @@ class Network:
 		return self.remoteRootFS
 
 	def isBlacklisted(self, iface):
-		return iface in ('lo', 'wifi0', 'wmaster0', 'sit0', 'tun0', 'sys0', 'p2p0')
+		return iface in ('lo', 'wifi0', 'wmaster0', 'sit0', 'tun0', 'sys0', 'p2p0', 'wg0')
 
 	def getInterfaces(self, callback=None):
 		self.configuredInterfaces = []
@@ -64,10 +65,11 @@ class Network:
 		return [int(n) for n in ip.split('.')]
 
 	def getAddrInet(self, iface, callback):
-		data = {'up': False, 'dhcp': False, 'preup': False, 'predown': False}
+		data = {'up': False, 'dhcp': False, 'preup': False, 'predown': False, 'dns-nameserver': []}
 		try:
-			data['up'] = int(open('/sys/class/net/%s/flags' % iface).read().strip(), 16) & 1 == 1
-			if data['up']:
+			if os.path.exists('/sys/class/net/%s/operstate' % iface):
+				data['up'] = int(open('/sys/class/net/%s/flags' % iface).read().strip(), 16) & 1 == 1
+			if data['up'] and iface not in self.configuredInterfaces:
 				self.configuredInterfaces.append(iface)
 			nit = ni.ifaddresses(iface)
 			data['ip'] = self.convertIP(nit[ni.AF_INET][0]['addr']) # ipv4
@@ -101,7 +103,7 @@ class Network:
 				fp.write("iface " + ifacename + " inet static\n")
 				fp.write("  hostname $(hostname)\n")
 				if 'ip' in iface:
-# 					print tuple(iface['ip'])
+# 					print(tuple(iface['ip']))
 					fp.write("	address %d.%d.%d.%d\n" % tuple(iface['ip']))
 					fp.write("	netmask %d.%d.%d.%d\n" % tuple(iface['netmask']))
 					if 'gateway' in iface:
@@ -112,6 +114,9 @@ class Network:
 				fp.write(iface["preup"])
 			if iface["predown"] and "configStrings" not in iface:
 				fp.write(iface["predown"])
+			if iface["dns-nameserver"]:
+				for nameserver in iface["dns-nameserver"]:
+					fp.write("	dns-nameserver %d.%d.%d.%d\n" % tuple(nameserver))
 			fp.write("\n")
 		fp.close()
 		self.configuredNetworkAdapters = self.configuredInterfaces
@@ -143,12 +148,13 @@ class Network:
 			split = i.strip().split(' ')
 			if split[0] == "iface":
 				currif = split[1]
-				ifaces[currif] = {}
-				if len(split) == 4 and split[3] == "dhcp":
-					ifaces[currif]["dhcp"] = True
-				else:
-					ifaces[currif]["dhcp"] = False
 			if currif == iface: #read information only for available interfaces
+				if currif not in ifaces:
+					ifaces[currif] = {}
+					if len(split) == 4 and split[3] == "dhcp":
+						ifaces[currif]["dhcp"] = True
+					else:
+						ifaces[currif]["dhcp"] = False
 				if split[0] == "address":
 					ifaces[currif]["address"] = list(map(int, split[1].split('.')))
 					if "ip" in self.ifaces[currif]:
@@ -170,6 +176,13 @@ class Network:
 				if split[0] in ("pre-down", "post-down"):
 					if "predown" in self.ifaces[currif]:
 						self.ifaces[currif]["predown"] = i
+				if split[0] == "dns-nameserver":
+					if "dns-nameserver" not in self.ifaces[currif]:
+						self.ifaces[currif]["dns-nameserver"] = []
+					dns_ip = self.convertIP(split[1])
+					self.ifaces[currif]["dns-nameserver"].append(dns_ip)
+					if dns_ip not in self.nameservers:
+						self.nameservers.append(dns_ip)
 
 		for ifacename, iface in ifaces.items():
 			if ifacename in self.ifaces:
@@ -296,10 +309,10 @@ class Network:
 		return list(self.ifaces.keys())
 
 	def getAdapterAttribute(self, iface, attribute):
-		if iface in self.ifaces:
-			if attribute in self.ifaces[iface]:
-				return self.ifaces[iface][attribute]
-		return None
+		print("Getting attribute ", attribute, " for adapter", iface)
+		if self.ifaces.get(iface, {}).get('up', False) and self.ifaces.get(iface, {}).get('ip', [0, 0, 0, 0]) == [0, 0, 0, 0]:
+			self.getAddrInet(iface, None)
+		return self.ifaces.get(iface, {}).get(attribute)
 
 	def setAdapterAttribute(self, iface, attribute, value):
 		print("setting for adapter", iface, "attribute", attribute, " to value", value)
@@ -642,5 +655,31 @@ class Network:
 iNetwork = Network()
 
 
+class NetworkCheck:
+	def __init__(self):
+		self.Timer = eTimer()
+		self.Timer.callback.append(self.startCheckNetwork)
+
+	def startCheckNetwork(self):
+		self.Timer.stop()
+		if self.Retry > 0:
+			try:
+				gws = ni.gateways()
+				if 'default' in gws and len(gws['default']) > 0:
+					print("[NetworkCheck] CheckNetwork - Done - Reload interface data")
+					iNetwork.getInterfaces()
+					return
+				self.Retry = self.Retry - 1
+				self.Timer.start(1000, True)
+			except Exception as e:
+				print("[NetworkCheck] CheckNetwork - Error: %s" % str(e))
+
+	def Start(self):
+		self.Retry = 30
+		self.Timer.start(1000, True)
+
+
 def InitNetwork():
-	pass
+	global networkCheck
+	networkCheck = NetworkCheck()
+	networkCheck.Start()
