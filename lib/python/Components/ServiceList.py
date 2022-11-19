@@ -1,4 +1,4 @@
-from GUIComponent import GUIComponent
+from Components.GUIComponent import GUIComponent
 from skin import parseColor, parseFont, parseScale
 
 from enigma import eListboxServiceContent, eListbox, eServiceCenter, eServiceReference, gFont, eRect
@@ -223,6 +223,34 @@ class ServiceList(GUIComponent):
 						return True
 				self.serviceList.enterUserbouquet(revert_radio_root)
 				print "[servicelist] service not found in any userbouquets"
+			print("[servicelist] search for service in userbouquets")
+			isRadio = ref.toString().startswith("1:0:2:") or ref.toString().startswith("1:0:A:")
+			if self.serviceList:
+				revert_mode = config.servicelist.lastmode.value
+				revert_root = self.getRoot()
+				if not isRadio:
+					self.serviceList.setModeTv()
+					revert_tv_root = self.getRoot()
+					bouquets = self.serviceList.getBouquetList()
+					for bouquet in bouquets:
+						self.serviceList.enterUserbouquet(bouquet[1])
+						if self.l.setCurrent(ref):
+							config.servicelist.lastmode.save()
+							self.serviceList.saveChannel(ref)
+							return True
+					self.serviceList.enterUserbouquet(revert_tv_root)
+				else:
+					self.serviceList.setModeRadio()
+					revert_radio_root = self.getRoot()
+					bouquets = self.serviceList.getBouquetList()
+					for bouquet in bouquets:
+						self.serviceList.enterUserbouquet(bouquet[1])
+						if self.l.setCurrent(ref):
+							config.servicelist.lastmode.save()
+							self.serviceList.saveChannel(ref)
+							return True
+					self.serviceList.enterUserbouquet(revert_radio_root)
+				print("[servicelist] service not found in any userbouquets")
 				if revert_mode == "tv":
 					self.serviceList.setModeTv()
 				elif revert_mode == "radio":
@@ -262,7 +290,7 @@ class ServiceList(GUIComponent):
 
 	def moveToChar(self, char):
 		# TODO fill with life
-		print "Next char: "
+		print("Next char: ")
 		index = self.l.getNextBeginningWithChar(char)
 		indexup = self.l.getNextBeginningWithChar(char.upper())
 		if indexup != 0:
@@ -270,7 +298,7 @@ class ServiceList(GUIComponent):
 				index = indexup
 
 		self.instance.moveSelectionTo(index)
-		print "Moving to character " + str(char)
+		print("Moving to character " + str(char))
 
 	def moveToNextMarker(self):
 		idx = self.l.getNextMarkerPos()
@@ -306,7 +334,7 @@ class ServiceList(GUIComponent):
 		list = serviceHandler.list(self.root)
 		dest = []
 		if list is not None:
-			while 1:
+			while True:
 				s = list.getNext()
 				if s.valid():
 					dest.append(s.toString())
