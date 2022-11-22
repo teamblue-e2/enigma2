@@ -480,7 +480,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 
 	def showSecondInfoBar(self):
 		if isStandardInfoBar(self) and config.usage.show_second_infobar.value == "EPG":
-			if not(hasattr(self, "hotkeyGlobal") and self.hotkeyGlobal("info") != 0):
+			if not (hasattr(self, "hotkeyGlobal") and self.hotkeyGlobal("info") != 0):
 				self.showDefaultEPG()
 		elif self.actualSecondInfoBarScreen and config.usage.show_second_infobar.value and not self.actualSecondInfoBarScreen.shown:
 			self.show()
@@ -3250,7 +3250,7 @@ class InfoBarNotifications:
 					reload_whitelist_vbi()
 				if "epg" in config.usage.remote_fallback_import.value:
 					eEPGCache.getInstance().load()
-				if config.misc.initialchannelselection.value or not(config.usage.remote_fallback_import.value and (n[4].endswith("NOK") and config.usage.remote_fallback_nok.value or config.usage.remote_fallback_ok.value)):
+				if config.misc.initialchannelselection.value or not (config.usage.remote_fallback_import.value and (n[4].endswith("NOK") and config.usage.remote_fallback_nok.value or config.usage.remote_fallback_ok.value)):
 					return
 
 			if cb:

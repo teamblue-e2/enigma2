@@ -66,7 +66,7 @@ class MoviePlayer(Movie_Audio_Player):
 		self.leavePlayer(self.de_instance)
 
 	def __onClose(self):
-		if not(self.WithoutStopClose):
+		if not (self.WithoutStopClose):
 			self.session.nav.playService(self.lastservice)
 
 # ### File viewer/line editor ###
