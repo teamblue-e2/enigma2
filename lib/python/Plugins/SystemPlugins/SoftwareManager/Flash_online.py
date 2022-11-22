@@ -152,7 +152,7 @@ class FlashOnline(Screen):
 
 	def keyDelete(self):
 		currentSelected = self["list"].l.getCurrentSelection()[0][1]
-		if not("://" in currentSelected or currentSelected in ["Expander", "Waiter"]):
+		if not ("://" in currentSelected or currentSelected in ["Expander", "Waiter"]):
 			try:
 				os.remove(currentSelected)
 				currentSelected = ".".join([currentSelected[:-4], "unzipped"])
