@@ -29,6 +29,7 @@ from Components.GUIComponent import GUIComponent
 from skin import applySkinFactor, parameters, parseScale
 
 import os
+import glob
 
 
 class About(Screen):
@@ -106,13 +107,33 @@ class About(Screen):
 		self["AboutHeader"] = StaticText(AboutHeader)
 
 		AboutText = BoxName + " - " + ImageType + serial + "\n"
+		GStreamerVersion = about.getGStreamerVersionString().replace("GStreamer", "")
+		self["GStreamerVersion"] = StaticText(GStreamerVersion)
+
+		ffmpegVersion = about.getffmpegVersionString()
+		self["ffmpegVersion"] = StaticText(ffmpegVersion)
+
+		cpu = about.getCPUInfoString()
+		player = None
+		if cpu.upper().startswith('HI') or os.path.isdir('/proc/hisi'):
+			if os.path.isdir("/usr/lib/hisilicon") and glob.glob("/usr/lib/hisilicon/libavcodec.so.*"):
+				player = _("Media player") + ": ffmpeg, " + _("Hardware Accelerated")
+			elif ffmpegVersion and ffmpegVersion[0].isdigit():
+				player = _("Media player") + ": ffmpeg, " + _("version") + " " + ffmpegVersion
+
+		if player is None:
+			if GStreamerVersion:
+				player = _("Media player") + ": Gstreamer, " + _("version") + " " + GStreamerVersion
+			else:
+				player = _("Media player") + ": " + _("Not Installed")
+
+		AboutText += player + "\n"
 
 		#AboutText += _("Hardware: ") + about.getHardwareTypeString() + "\n"
 		#AboutText += _("CPU: ") + about.getCPUInfoString() + "\n"
 		#AboutText += _("Installed: ") + about.getFlashDateString() + "\n"
 		#AboutText += _("Image: ") + about.getImageTypeString() + "\n"
 
-		cpu = about.getCPUInfoString()
 		CPUinfo = _("CPU: ") + cpu
 		self["CPUinfo"] = StaticText(CPUinfo)
 		AboutText += CPUinfo + "\n"
@@ -140,7 +161,7 @@ class About(Screen):
 		fp_version = getFPVersion()
 		if fp_version is None:
 			fp_version = ""
-		else:
+		elif fp_version != 0:
 			fp_version = _("Frontprocessor version: %s") % fp_version
 			#AboutText += fp_version +"\n"
 		self["FPVersion"] = StaticText(fp_version)
@@ -179,10 +200,6 @@ class About(Screen):
 
 		AboutText += _("Python version: ") + about.getPythonVersionString() + "\n"
 		AboutText += _("Enigma2 debug level:\t%d") % eGetEnigmaDebugLvl() + "\n"
-
-		GStreamerVersion = _("GStreamer: ") + about.getGStreamerVersionString(cpu).replace("GStreamer", "")
-		self["GStreamerVersion"] = StaticText(GStreamerVersion)
-		AboutText += GStreamerVersion + "\n"
 
 		twisted = popen('opkg list-installed  |grep -i python-twisted-core').read().strip().split(' - ')[1]
 		AboutText += "Python-Twisted: " + str(twisted) + "\n"
@@ -906,11 +923,9 @@ class Troubleshoot(Screen):
 		self.close()
 
 	def getDebugFilesList(self):
-		import glob
 		return [x for x in sorted(glob.glob("%s/Enigma2-debug-*.log" % config.crash.debug_path.value), key=lambda x: os.path.isfile(x) and os.path.getmtime(x))]
 
 	def getLogFilesList(self):
-		import glob
 		home_root = "/home/root/enigma2_crash.log"
 		tmp = "/tmp/enigma2_crash.log"
 		return [x for x in sorted(glob.glob("/mnt/hdd/*.log"), key=lambda x: os.path.isfile(x) and os.path.getmtime(x))] + (os.path.isfile(home_root) and [home_root] or []) + (os.path.isfile(tmp) and [tmp] or [])

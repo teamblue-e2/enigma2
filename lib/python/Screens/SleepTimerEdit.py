@@ -117,10 +117,38 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 				if config.usage.wakeup_day[i].value:
 					self.list.append(getConfigListEntry(_("Wakeup time"),
 						config.usage.wakeup_time[i]))
+		self.list.append(getConfigListEntry(_("Enable power off timer"),
+			config.usage.poweroff_enabled,
+			_("Automatically power off box to deep standby mode.")))
+		if config.usage.poweroff_enabled.value:
+			for i in range(7):
+				self.list.append(getConfigListEntry([_("Monday"), _("Tuesday"), _("Wednesday"), _("Thursday"), _("Friday"), _("Saturday"), _("Sunday")][i],
+					config.usage.poweroff_day[i]))
+				if config.usage.poweroff_day[i].value:
+					self.list.append(getConfigListEntry(_("Power off time"),
+						config.usage.poweroff_time[i]))
+			self.list.append(getConfigListEntry(_("Next day starts at"),
+				config.usage.poweroff_nextday,
+				_("If the box is supposed to enter deep standby e.g. monday night at 1 AM, it actually is already tuesday. To enable this anyway, differing next day start time can be specified here.")))
+			self.list.append(getConfigListEntry(_("Force power off (even when not in standby)"),
+				config.usage.poweroff_force,
+				_("Forces deep standby, even when not in standby mode. Scheduled recordings remain unaffected.")))
 		self["config"].list = self.list
 
 	def ok(self):
 		if self["config"].isChanged():
+			from Components.PowerOffTimer import powerOffTimer
+			powerOffTimer.powerStateTimerChanged(dont_currentday=powerOffTimer.getDontCurrentday())
+			active_on = active_off = False
+			for i in range(7):
+				if config.usage.wakeup_day[i].value:
+					active_on = True
+				if config.usage.poweroff_day[i].value:
+					active_off = True
+			if not active_on:
+				config.usage.wakeup_enabled.value = "no"
+			if not active_off:
+				config.usage.poweroff_enabled.value = False
 			for x in self["config"].list:
 				x[1].save()
 		if self.getCurrentEntry().startswith(_("Sleeptimer")):
@@ -130,7 +158,7 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 			else:
 				sleepTimer = int(sleepTimer)
 			if sleepTimer or not self.getCurrentEntry().endswith(_("(not activated)")):
-				InfoBar.instance.setSleepTimer(sleepTimer)
+				InfoBar.instance and InfoBar.instance.setSleepTimer(sleepTimer)
 			self.close(True)
 		self.close()
 
@@ -157,8 +185,8 @@ class SleepTimerEdit(ConfigListScreen, Screen):
 		remaining = 0
 		ref = self.session.nav.getCurrentlyPlayingServiceReference()
 		if ref:
-			path = ref.getPath()
-			if path: # Movie
+			refstr = ref.toString()
+			if "%3a//" not in refstr and refstr.rsplit(":", 1)[1].startswith("/"): # Movie
 				service = self.session.nav.getCurrentService()
 				seek = service and service.seek()
 				if seek:
@@ -193,7 +221,7 @@ def isNextWakeupTime(standby_timer=False):
 				return -1
 		wakeup_day, wakeup_time = WakeupDayTimeOfWeek()
 		if wakeup_day == -1:
-				return -1
+			return -1
 		elif wakeup_day == 0:
 			return wakeup_time
 		return wakeup_time + (86400 * wakeup_day)

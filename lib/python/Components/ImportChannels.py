@@ -79,6 +79,7 @@ class ImportChannels():
 	"""
 	Enumerate all the files that make up the bouquet system, either local or on a remote machine
 	"""
+
 	def ImportGetFilelist(self, remote=False, *files):
 		result = []
 		for _file in files:
@@ -135,17 +136,28 @@ class ImportChannels():
 				except:
 					files = [file for file in loads(self.getUrl("%s/file?dir=/" % self.url).read())["files"] if os.path.basename(file).startswith("epg.dat")]
 				epg_location = files[0] if files else None
-			except:
-				self.ImportChannelsDone(False, _("Error while retreiving location of epg.dat on server"))
+			except Exception as e:
+				print("[Import Channels] Exception: %s" % str(e))
+				self.ImportChannelsDone(False, _("Error while retrieving location of epg.dat on the fallback receiver"))
 				return
 			if epg_location:
 				print "[Import Channels] Copy EPG file..."
 				try:
 					open(os.path.join(self.tmp_dir, "epg.dat"), "wb").write(self.getUrl("%s/file?file=%s" % (self.url, epg_location)).read())
+				except Exception as e:
+					print("[Import Channels] Exception: %s" % str(e))
+					self.ImportChannelsDone(False, _("Error while retrieving epg.dat from the fallback receiver"))
+					return
+				try:
 					shutil.move(os.path.join(self.tmp_dir, "epg.dat"), config.misc.epgcache_filename.value)
 				except:
-					self.ImportChannelsDone(False, _("Error while retreiving epg.dat from server"))
-					return
+					# follow same logic as in epgcache.cpp
+					try:
+						shutil.move(os.path.join(self.tmp_dir, "epg.dat"), "/epg.dat")
+					except Exception as e:
+						print("[Import Channels] Exception: %s" % str(e))
+						self.ImportChannelsDone(False, _("Error while moving epg.dat to its destination"))
+						return
 			else:
 				self.ImportChannelsDone(False, _("No epg.dat file found server"))
 

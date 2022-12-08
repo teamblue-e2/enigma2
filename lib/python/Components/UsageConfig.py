@@ -144,6 +144,7 @@ def InitUsageConfig():
 	config.usage.instantrec_path = ConfigText(default="<default>")
 	config.usage.timeshift_path = ConfigText(default="/media/hdd/")
 	config.usage.allowed_timeshift_paths = ConfigLocations(default=["/media/hdd/"])
+	config.usage.timeshift_skipreturntolive = ConfigYesNo(default=False)
 
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
 	config.usage.movielist_trashcan_days = ConfigNumber(default=8)
@@ -183,6 +184,15 @@ def InitUsageConfig():
 	for i in range(7):
 		config.usage.wakeup_day[i] = ConfigEnableDisable(default=False)
 		config.usage.wakeup_time[i] = ConfigClock(default=((6 * 60 + 0) * 60))
+
+	config.usage.poweroff_enabled = ConfigYesNo(default=False)
+	config.usage.poweroff_force = ConfigYesNo(default=False)
+	config.usage.poweroff_nextday = ConfigClock(default = ((6 * 60 + 0) * 60))
+	config.usage.poweroff_day = ConfigSubDict()
+	config.usage.poweroff_time = ConfigSubDict()
+	for i in range(7):
+		config.usage.poweroff_day[i] = ConfigEnableDisable(default=False)
+		config.usage.poweroff_time[i] = ConfigClock(default = ((1 * 60 + 0) * 60))
 
 	choicelist = [("0", _("Disabled"))]
 	for i in range(3600, 21601, 3600):
@@ -841,7 +851,7 @@ def InitUsageConfig():
 		config.autolanguage.subtitle_autoselect3.setChoices([x for x in subtitle_language_choices if x[0] and x[0] not in getselectedsublanguages((1, 2, 4)) or not x[0] and not config.autolanguage.subtitle_autoselect4.value])
 		config.autolanguage.subtitle_autoselect4.setChoices([x for x in subtitle_language_choices if x[0] and x[0] not in getselectedsublanguages((1, 2, 3)) or not x[0]])
 		choicelist = [('0', _("None"))]
-		for y in range(1, 15 if config.autolanguage.subtitle_autoselect4.value else (7 if config.autolanguage.subtitle_autoselect3.value else(4 if config.autolanguage.subtitle_autoselect2.value else (2 if config.autolanguage.subtitle_autoselect1.value else 0)))):
+		for y in range(1, 15 if config.autolanguage.subtitle_autoselect4.value else (7 if config.autolanguage.subtitle_autoselect3.value else (4 if config.autolanguage.subtitle_autoselect2.value else (2 if config.autolanguage.subtitle_autoselect1.value else 0)))):
 			choicelist.append((str(y), ", ".join([eval("config.autolanguage.subtitle_autoselect%x.getText()" % x) for x in (y & 1, y & 2, y & 4 and 3, y & 8 and 4) if x])))
 		if config.autolanguage.subtitle_autoselect3.value:
 			choicelist.append((str(y + 1), "All"))
@@ -861,8 +871,8 @@ def InitUsageConfig():
 	config.autolanguage.subtitle_usecache = ConfigYesNo(default=True)
 
 	config.streaming = ConfigSubsection()
-	config.streaming.stream_ecm = ConfigYesNo(default=False)
-	config.streaming.descramble = ConfigYesNo(default=True)
+	config.streaming.stream_ecm = ConfigYesNo(default=True)
+	config.streaming.descramble = ConfigYesNo(default=False)
 	config.streaming.descramble_client = ConfigYesNo(default=False)
 	config.streaming.stream_eit = ConfigYesNo(default=True)
 	config.streaming.stream_ait = ConfigYesNo(default=True)

@@ -155,7 +155,8 @@ def canCopy(item):
 
 def createMoveList(serviceref, dest):
 	#normpath is to remove the trailing '/' from directories
-	src = isinstance(serviceref, str) and serviceref + ".ts" or os.path.normpath(serviceref.getPath())
+	ext_ts = "%s.ts" % serviceref
+	src = isinstance(serviceref, str) and "%s.ts" % serviceref or os.path.normpath(serviceref.getPath()) if os.path.exists(ext_ts) else isinstance(serviceref, str) and "%s.stream" % serviceref or os.path.normpath(serviceref.getPath())
 	srcPath, srcName = os.path.split(src)
 	if os.path.normpath(srcPath) == dest:
 		# move file to itself is allowed, so we have to check it
@@ -407,7 +408,7 @@ class MovieContextMenu(Screen, ProtectedScreen):
 					if not parentalControl.sessionPinCached:
 						append_to_menu(menu, (_("Unhide parental control services"), csel.unhideParentalServices), key="1")
 				# Plugins expect a valid selection, so only include them if we selected a non-dir
-				if not(service.flags & eServiceReference.mustDescent):
+				if not (service.flags & eServiceReference.mustDescent):
 					for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
 						append_to_menu(menu, (p.description, boundFunction(p, session, service)), key="bullet")
 		if csel.exist_bookmark():
@@ -427,7 +428,7 @@ class MovieContextMenu(Screen, ProtectedScreen):
 
 	def isResetable(self):
 		item = self.csel.getCurrentSelection()
-		return not(item[1] and moviePlayState(item[0].getPath() + ".cuts", item[0], item[1].getLength(item[0])) is None)
+		return not (item[1] and moviePlayState(item[0].getPath() + ".cuts", item[0], item[1].getLength(item[0])) is None)
 
 	def pinEntered(self, answer):
 		if answer:
@@ -592,7 +593,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 
 		self["playbackActions"] = HelpableActionMap(self, "MoviePlayerActions",
 			{
-				"leavePlayer": (self.playbackStop, _("Stop")),
 				"moveNext": (self.playNext, _("Play next")),
 				"movePrev": (self.playPrev, _("Play previous")),
 				"channelUp": (self.moveToFirstOrFirstFile, _("Go to first movie or top of list")),

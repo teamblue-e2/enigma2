@@ -553,8 +553,8 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		self.maxKey = 0
 		self.overwrite = False
 		self.selectedKey = None
-		self.sms = NumericalTextInput(self.smsGotChar)
 		self.smsChar = None
+		self.sms = NumericalTextInput(self.smsGotChar)
 		self.setLocale()
 		self.onExecBegin.append(self.setKeyboardModeAscii)
 		self.onLayoutFinish.append(self.buildVirtualKeyBoard)
@@ -872,7 +872,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		return keyList
 
 	def smsGotChar(self):
-		if self.smsChar and self.selectAsciiKey(self.smsChar):
+		if hasattr(self, "smsChar") and self.smsChar and self.selectAsciiKey(self.smsChar):
 			self.processSelect()
 
 	def setLocale(self):
@@ -1040,7 +1040,8 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		self.close(None)
 
 	def save(self):
-		self.close(self["text"].getText())
+		if not self.sms.timer or not self.sms.timer.isActive():
+			self.close(self["text"].getText())
 
 	def localeMenu(self):
 		languages = []
