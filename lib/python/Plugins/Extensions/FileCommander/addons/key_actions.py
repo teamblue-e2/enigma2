@@ -345,7 +345,7 @@ class key_actions(stat_info):
 
 	@staticmethod
 	def filterSettings():
-		return(
+		return (
 			config.plugins.filecommander.extension.value,
 			config.plugins.filecommander.my_extension.value
 		)

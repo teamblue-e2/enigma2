@@ -142,6 +142,7 @@ def InitUsageConfig():
 	config.usage.instantrec_path = ConfigText(default="<default>")
 	config.usage.timeshift_path = ConfigText(default="/media/hdd/")
 	config.usage.allowed_timeshift_paths = ConfigLocations(default=["/media/hdd/"])
+	config.usage.timeshift_skipreturntolive = ConfigYesNo(default=False)
 
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
 	config.usage.movielist_trashcan_days = ConfigNumber(default=8)
@@ -517,6 +518,11 @@ def InitUsageConfig():
 	choicelist = [("no", _("no")), ("nothing", _("omit")), ("space", _("space")), ("dot", ". "), ("dash", " - "), ("asterisk", " * "), ("hashtag", " # ")]
 	config.epg.replace_newlines = ConfigSelection(default="no", choices=choicelist)
 
+	def correctInvalidEPGDataChange(configElement):
+		eServiceEvent.setUTF8CorrectMode(int(configElement.value))
+	config.epg.correct_invalid_epgdata = ConfigSelection(default="1", choices=[("0", _("Disabled")), ("1", _("Enabled")), ("2", _("Debug"))])
+	config.epg.correct_invalid_epgdata.addNotifier(correctInvalidEPGDataChange)
+
 	def setHDDStandby(configElement):
 		for hdd in harddiskmanager.HDDList():
 			hdd[1].setIdleTime(int(configElement.value))
@@ -854,7 +860,7 @@ def InitUsageConfig():
 		config.autolanguage.subtitle_autoselect3.setChoices([x for x in subtitle_language_choices if x[0] and x[0] not in getselectedsublanguages((1, 2, 4)) or not x[0] and not config.autolanguage.subtitle_autoselect4.value])
 		config.autolanguage.subtitle_autoselect4.setChoices([x for x in subtitle_language_choices if x[0] and x[0] not in getselectedsublanguages((1, 2, 3)) or not x[0]])
 		choicelist = [('0', _("None"))]
-		for y in list(range(1, 15 if config.autolanguage.subtitle_autoselect4.value else (7 if config.autolanguage.subtitle_autoselect3.value else(4 if config.autolanguage.subtitle_autoselect2.value else (2 if config.autolanguage.subtitle_autoselect1.value else 0))))):
+		for y in list(range(1, 15 if config.autolanguage.subtitle_autoselect4.value else (7 if config.autolanguage.subtitle_autoselect3.value else (4 if config.autolanguage.subtitle_autoselect2.value else (2 if config.autolanguage.subtitle_autoselect1.value else 0))))):
 			choicelist.append((str(y), ", ".join([eval("config.autolanguage.subtitle_autoselect%x.getText()" % x) for x in (y & 1, y & 2, y & 4 and 3, y & 8 and 4) if x])))
 		if config.autolanguage.subtitle_autoselect3.value:
 			choicelist.append((str(y + 1), "All"))

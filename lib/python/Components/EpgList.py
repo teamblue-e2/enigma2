@@ -63,7 +63,7 @@ class EPGList(GUIComponent):
 		elif type == EPG_TYPE_MULTI:
 			self.l.setBuildFunc(self.buildMultiEntry)
 		else:
-			assert(type == EPG_TYPE_SIMILAR)
+			assert (type == EPG_TYPE_SIMILAR)
 			self.l.setBuildFunc(self.buildSimilarEntry)
 		self.epgcache = eEPGCache.getInstance()
 		self.clocks = [LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_add.png')),
@@ -364,7 +364,7 @@ class EPGList(GUIComponent):
 			if type == 1:
 				list.sort(key=lambda x: (x[4] and x[4].lower(), x[2]))
 			else:
-				assert(type == 0)
+				assert (type == 0)
 				list.sort(key=lambda x: x[2])
 			self.l.invalidate()
 			self.moveToEventId(event_id)
