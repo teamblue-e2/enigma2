@@ -83,7 +83,7 @@ class ImportChannels:
 	Enumerate all the files that make up the bouquet system, either local or on a remote machine
 	"""
 
-	def ImportGetFilelist(self, remote=False, radio=False, *files):
+	def ImportGetFilelist(self, remote=False, *files):
 		result = []
 		for _file in files:
 			# determine the type of bouquet file
@@ -147,11 +147,20 @@ class ImportChannels:
 				print("[Import Channels] Copy EPG file...")
 				try:
 					open(os.path.join(self.tmp_dir, "epg.dat"), "wb").write(self.getUrl("%s/file?file=%s" % (self.url, epg_location)).read())
-					shutil.move(os.path.join(self.tmp_dir, "epg.dat"), config.misc.epgcache_filename.value)
 				except Exception as e:
 					print("[Import Channels] Exception: %s" % str(e))
 					self.ImportChannelsDone(False, _("Error while retrieving epg.dat from the fallback receiver"))
 					return
+				try:
+					shutil.move(os.path.join(self.tmp_dir, "epg.dat"), config.misc.epgcache_filename.value)
+				except:
+					# follow same logic as in epgcache.cpp
+					try:
+						shutil.move(os.path.join(self.tmp_dir, "epg.dat"), "/epg.dat")
+					except Exception as e:
+						print("[Import Channels] Exception: %s" % str(e))
+						self.ImportChannelsDone(False, _("Error while moving epg.dat to its destination"))
+						return
 			else:
 				self.ImportChannelsDone(False, _("No epg.dat file found server"))
 
