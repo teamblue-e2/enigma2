@@ -1,6 +1,6 @@
 import struct
 import os
-from Components.config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText, ConfigLocations, ConfigDirectory
+from Components.config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText, ConfigLocations, ConfigDirectory, ConfigNothing
 from enigma import eTimer, eHdmiCEC, eActionMap
 from Tools.StbHardware import getFPWasTimerWakeup
 import NavigationInstance

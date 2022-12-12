@@ -203,7 +203,10 @@ class About(Screen):
 		AboutText += _("Python version: ") + about.getPythonVersionString() + "\n"
 		AboutText += _("Enigma2 debug level:\t%d") % eGetEnigmaDebugLvl() + "\n"
 
-		twisted = popen('opkg list-installed  |grep -i python-twisted-core').read().strip().split(' - ')[1]
+		if six.PY2:
+			twisted = popen('opkg list-installed  |grep -i python-twisted-core').read().strip().split(' - ')[1]
+		else:
+			twisted = popen('opkg list-installed  |grep -i python3-twisted-core').read().strip().split(' - ')[1]
 		AboutText += "Python-Twisted: " + str(twisted) + "\n"
 
 		AboutText += "\n"
