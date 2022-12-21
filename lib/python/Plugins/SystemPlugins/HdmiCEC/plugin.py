@@ -34,7 +34,7 @@ class HdmiCECSetupScreen(ConfigListScreen, Screen):
 
 		self.list = []
 		self.logpath_entry = None
-		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.createSetup)
 		self.createSetup()
 		self.updateAddress()
 
@@ -70,29 +70,16 @@ class HdmiCECSetupScreen(ConfigListScreen, Screen):
 			if config.hdmicec.debug.value != "0":
 				self.list.append(self.logpath_entry)
 		self["config"].list = self.list
-		self["config"].l.setList(self.list)
 
-	def changedEntry(self):
-		self.createSetup()
-
-	# for summary:
-	def getCurrentEntry(self):
-		self.updateDescription()
-		return ConfigListScreen.getCurrentEntry(self)
-
-	def createSummary(self):
-		from Screens.Setup import SetupSummary
-		return SetupSummary
-	###
-
-	def updateDescription(self):
-		text = "%s\n%s\n\n%s" % (self.current_address, self.fixed_address, self.getCurrentDescription()) if config.hdmicec.enabled.value else self.getCurrentDescription()
-		self["description"].setText(text)
+	def getCurrentDescription(self):
+		description = self["config"].getCurrent()[2] if len(self["config"].getCurrent()) > 2 else ""
+		return "%s\n%s\n\n%s" % (self.current_address, self.fixed_address, description) if config.hdmicec.enabled.value else description
 
 	def keyGo(self):
 		for x in self["config"].list:
 			x[1].save()
 		self.close()
+
 
 	def keyOk(self):
 		currentry = self["config"].getCurrent()
@@ -118,7 +105,7 @@ class HdmiCECSetupScreen(ConfigListScreen, Screen):
 			self.fixed_address = _("Press yellow button to set CEC address again")
 		else:
 			self.fixed_address = _("Using fixed address") + ":\t" + config.hdmicec.fixed_physical_address.value
-		self.updateDescription()
+		self["description"].text = self.getCurrentDescription()
 
 	def logPath(self, res):
 		if res is not None:
@@ -140,8 +127,8 @@ def main(session, **kwargs):
 
 def startSetup(menuid):
 	# only show in the menu when set to intermediate or higher
-	if menuid == "devices_menu" and config.av.videoport.value == "DVI" and config.usage.setup_level.index >= 1:
-		return [(_("HDMI-CEC"), main, "hdmi_cec_setup", 0)]
+	if menuid == "video" and config.av.videoport.value == "DVI" and config.usage.setup_level.index >= 1:
+		return [(_("HDMI-CEC setup"), main, "hdmi_cec_setup", 0)]
 	return []
 
 
