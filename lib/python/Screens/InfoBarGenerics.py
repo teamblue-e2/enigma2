@@ -2914,11 +2914,16 @@ class InfoBarInstantRecord:
 			return
 
 		if isStandardInfoBar(self):
-			common = ((_("Add recording (stop after current event)"), "event"),)
+			info = {}
+			self.getProgramInfoAndEvent(info, "")
+			event_entry = ((_("Add recording (stop after current event)"), "event"),)
+			common = ((_("Add recording (indefinitely)"), "indefinitely"),
 			if not SystemInfo["hasGBIpboxClient"]:
 				common += ((_("Add recording (indefinitely)"), "indefinitely"),
-				(_("Add recording (enter recording duration)"), "manualduration"),
-				(_("Add recording (enter recording endtime)"), "manualendtime"),)
+					(_("Add recording (enter recording duration)"), "manualduration"),
+					(_("Add recording (enter recording endtime)"), "manualendtime"),)
+			if info["event"]:
+				common = event_entry + common
 		else:
 			common = ()
 
