@@ -83,6 +83,14 @@ jobs:
         make
         ls -la 
         popd
+        pushd .
+        git clone --depth 1 https://github.com/dbus-cxx/libsigc--3.0.git
+        cd libsigc--3.0
+        autoreconf -i
+        ./configure
+        make
+        ls -la 
+        popd
     - name: patch enigma cpp files
       run: |
         sed -i 's/eFatal/eDebug/g' lib/gdi/gfbdc.cpp
