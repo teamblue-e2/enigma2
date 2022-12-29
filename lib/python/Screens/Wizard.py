@@ -14,7 +14,6 @@ from enigma import eTimer, eEnv
 
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
-import collections
 
 
 class WizardSummary(Screen):
@@ -306,7 +305,7 @@ class Wizard(Screen):
 	def getStepWithID(self, id):
 		print("getStepWithID:", id)
 		count = 0
-		for x in list(self.wizard.keys()):
+		for x in self.wizard.keys():
 			if self.wizard[x]["id"] == id:
 				print("result:", count)
 				return count
@@ -368,13 +367,15 @@ class Wizard(Screen):
 				# there was a try/except here, but i can't see a reason
 				# for this. If there is one, please do a more specific check
 				# and/or a comment in which situation there is no run()
-				elif isinstance(getattr(self.configInstance, "runAsync", None), collections.Callable):
+				elif callable(getattr(self.configInstance, "runAsync", None)):
 					if self.updateValues in self.onShown:
 						self.onShown.remove(self.updateValues)
 					self.configInstance.runAsync(self.finished)
 					return
 				else:
 					self.configInstance.run()
+					if hasattr(self.configInstance, "doNextStep") and not self.configInstance.doNextStep:
+						return
 		self.finished()
 
 	def keyNumberGlobal(self, number):
@@ -490,7 +491,7 @@ class Wizard(Screen):
 		self.condition = True
 		exec(self.wizard[self.currStep]["condition"])
 		if not self.condition:
-			print("keys*******************:", list(self.wizard[self.currStep].keys()))
+			print("keys*******************:", self.wizard[self.currStep].keys())
 			if "laststep" in self.wizard[self.currStep]: # exit wizard, if condition of laststep doesn't hold
 				self.markDone()
 				self.exit()
