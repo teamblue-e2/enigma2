@@ -4,20 +4,6 @@ prefix=@prefix@
 exec_prefix=@exec_prefix@
 datarootdir=@datarootdir@
 
-# set TASKSETVALUE to start enigma2
-if [ -f /proc/stb/info/chipset ]; then
-  BOXCHIPSET=$(head /proc/stb/info/chipset)
-else
-  BOXCHIPSET='unknown'
-fi
-
-case "$BOXCHIPSET" in
-bcm7356|bcm7362|bcm73625|bcm7252s|bcm72604 )
-  TASKSETVALUE=2;;
-* )
-  TASKSETVALUE=1;;
-esac
-
 # check for /etc/enigma2 folder
 if [ ! -d /etc/enigma2 ] ; then
 	mkdir -p /etc/enigma2
@@ -48,40 +34,6 @@ if [ ! "$(grep config.misc.firstrun /etc/enigma2/settings)" == "config.misc.firs
 	rm -rf /etc/enigma2/key.pem &
 fi
 
-## update NTP time if NTP Time Enabled
-#if [ "$(grep config.misc.SyncTimeUsing /etc/enigma2/settings)" == "config.misc.SyncTimeUsing=1" ]; then
-#	@sbindir@/ntpdate -s -u pool.ntp.org &
-#fi
-
-# remove annoying WebInterface relicts
-#if [ -d @libdir@/enigma2/python/Plugins/Extensions/WebInterface/ ]; then
-#	rm -rf @libdir@/enigma2/python/Plugins/Extensions/WebInterface/
-#fi
-
-if [ -e /proc/stb/info/boxtype ]; then
-	stbcheck=`cat /proc/stb/info/boxtype`
-	if [ $stbcheck == "gbmv200" ]; then
-		count=`ps -ef |grep libreader |grep -v "grep" |wc -l`
-		if [ 0 == $count ];then
-			libreader 720P_50
-		fi
-	fi
-fi
-if [ -x @bindir@/showiframe ]; then
-	if [ -f @sysconfdir@/enigma2/backdrop.mvi ]; then
-		@bindir@/showiframe @sysconfdir@/enigma2/backdrop.mvi
-	elif [ -f @sysconfdir@/enigma2/bootlogo.mvi ]; then
-		@bindir@/showiframe @sysconfdir@/enigma2/bootlogo.mvi
-	elif [ -f @datadir@/bootlogo.mvi ]; then
-		@bindir@/showiframe @datadir@/bootlogo.mvi
-	fi
-fi
-
-# hook to execute scripts always before enigma2 start
-if [ -x @bindir@/enigma2_pre_start.sh ]; then
-	@bindir@/enigma2_pre_start.sh
-fi
-
 if [ -d /home/root ]; then
 	export HOME=/home/root
 	cd
@@ -90,6 +42,17 @@ fi
 # any debuglevel passed?
 DEBUG_LVL=${ENIGMA_DEBUG_LVL:-4}
 
+
+# LC_ALL available?
+if [ -z $LC_ALL ]; then
+	export LC_ALL="en_US.UTF-8"
+fi
+# init script for sysctl is missing, so manually load /etc/sysctl.conf here
+sysctl -p
+
+#(sleep 2; echo "enigma2 is the main pvr application... adjust oom score!"; PID=$(pidof enigma2); \
+#        [ -e /proc/$PID/oom_score_adj ] && echo "-999" > /proc/$PID/oom_score_adj || echo "-17" > /proc/$PID/oom_adj;) &
+
 #check for sundtek tuner helper lib
 if [ -e /opt/lib/libmediaclient.so ]; then
 	LIBS="/opt/lib/libmediaclient.so @libdir@/libopen.so.0.0.0"
@@ -97,110 +60,193 @@ else
 	LIBS="@libdir@/libopen.so.0.0.0"
 fi
 
-sync
-
-# init script for sysctl is missing, so manually load /etc/sysctl.conf here
-sysctl -p
-
-(sleep 2; echo "enigma2 is the main pvr application... adjust oom score!"; PID=$(pidof enigma2); \
-        [ -e /proc/$PID/oom_score_adj ] && echo "-999" > /proc/$PID/oom_score_adj || echo "-17" > /proc/$PID/oom_adj;) &
-
-export LC_CTYPE="en_US.UTF-8"
-
-if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.enabledebug=true" ]; then
-	RANDOMIZE1970=''
-	time=`date +%Y` ;
-	if [ "$time" = 1970 ]; then
-		RANDOMIZE1970="$(strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 5 | tr -d '\n')"
+# enigma main loop
+while : ; do
+	# set TASKSETVALUE to start enigma2
+	if [ -f /proc/stb/info/chipset ]; then
+	  BOXCHIPSET=$(head /proc/stb/info/chipset)
+	else
+	  BOXCHIPSET='unknown'
 	fi
-	LOGFOLDER="/home/root/logs/"
-	LOGFILE=${LOGFOLDER}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log
-	if [ ! -d $LOGFOLDER ] ; then mkdir -p $LOGFOLDER; fi
-	if [ "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" != "" -a -d "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" ]; then
-		LOGFOLDER=$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')
-	fi
-	ln -sf ${LOGFILE} ${LOGFOLDER}currlog
-	LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL @bindir@/enigma2 2>&1 | tee -a ${LOGFOLDER}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log
-	ret=${PIPESTATUS[0]}
-	ln -sf ${LOGFILE} ${LOGFOLDER}lastlog
-else
-	LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL @bindir@/enigma2
-	ret=$?
-fi
 
-# enigma2 exit codes:
-#
-# 1 - halt
-# 2 - reboot
-# 3 - restart enigma
-#
-# >128 signal
+	case "$BOXCHIPSET" in
+	bcm7356|bcm7362|bcm73625|bcm7252s|bcm72604 )
+	  TASKSETVALUE=2;;
+	* )
+	  TASKSETVALUE=1;;
+	esac
 
-if [ "$ret" -ne "1" ]; then
 	if [ -e /proc/stb/info/boxtype ]; then
 		stbcheck=`cat /proc/stb/info/boxtype`
-		if [ $stbcheck == "gbmv200" ] ; then
-			killall -9 libreader; sleep 5
+		if [ $stbcheck == "gbmv200" ]; then
+			count=`ps -ef |grep libreader |grep -v "grep" |wc -l`
+			if [ 0 == $count ];then
+				libreader 720P_50
+			fi
 		fi
 	fi
-fi
-case $ret in
-	1)
-		/sbin/halt
-		;;
-	2)
-		/sbin/reboot
-		;;
-	3)
-		;;
-	4)
-		/sbin/rmmod lcd
-		@sbindir@/fpupgrade --upgrade 2>&1 | tee /home/root/fpupgrade.log
-		sleep 1;
-		/sbin/rmmod fp
-		/sbin/modprobe fp
-		/sbin/reboot
-		;;
-	16)
-		if [ -e /dev/block/by-name/bootoptions ]; then
-			mkdir -p /tmp/bootoptions
-			mount /dev/block/by-name/bootoptions /tmp/bootoptions
-			cp -f /tmp/bootoptions/STARTUP_RECOVERY /tmp/bootoptions/STARTUP_ONCE
-		else
-			echo "rescue" > /proc/stb/fp/boot_mode
+
+	# show bootlogo on enigma2 start
+	if [ -x @bindir@/showiframe ]; then
+		if [ -f @sysconfdir@/enigma2/backdrop.mvi ]; then
+			@bindir@/showiframe @sysconfdir@/enigma2/backdrop.mvi
+		elif [ -f @sysconfdir@/enigma2/bootlogo.mvi ]; then
+			@bindir@/showiframe @sysconfdir@/enigma2/bootlogo.mvi
+		elif [ -f @datadir@/bootlogo.mvi ]; then
+			@bindir@/showiframe @datadir@/bootlogo.mvi
 		fi
-		[[ -e /etc/enigma2/.deep ]] && rm /etc/enigma2/.deep
-		/sbin/reboot
-		;;
-	42)
-		df -P | grep -v "tmpfs " | awk '{print $6}' | tail -n +3 > /tmp/upgrade_mountpoints.txt
-		while read line; do
-			if [  -f $line/var/lib/opkg/status ]; then
-			DESTS=$DESTS" --add-dest "$line":"$line
+	fi
+
+	# hook to execute scripts always before enigma2 start
+	if [ -x @bindir@/enigma2_pre_start.sh ]; then
+		@bindir@/enigma2_pre_start.sh
+	fi
+
+	# start enigma
+	sync
+	if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.enabledebug=true" ]; then
+		RANDOMIZE1970=''
+		time=`date +%Y` ;
+		if [ "$time" = 1970 ]; then
+			RANDOMIZE1970="$(strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 5 | tr -d '\n')"
 		fi
-		done < /tmp/upgrade_mountpoints.txt
-		# bind the console (when available)
-		[ -f /sys/class/vtconsole/vtcon1/bind ] && echo 1 > /sys/class/vtconsole/vtcon1/bind
-		prevupd=0
-		currupd=999
-		opkg update 2>&1 | tee /home/root/opkgupgrade.log
-		# check if we need to upgrade busybox first
-		if [ "$(opkg list-upgradable busybox)" != "" ]; then
-			opkg update busybox 2>&1 | tee -a /home/root/opkgupgrade.log
+		LOGFOLDER="/home/root/logs/"
+		LOGFILE=${LOGFOLDER}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log
+		if [ ! -d $LOGFOLDER ] ; then mkdir -p $LOGFOLDER; fi
+		if [ "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" != "" -a -d "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" ]; then
+			LOGFOLDER=$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')
 		fi
-		# update all other packages
-		while [ $currupd -gt 0 -a $currupd -ne $prevupd ]; do
-			opkg upgrade $DESTS 2>&1 | tee -a /home/root/opkgupgrade.log
-			prevupd=$currupd
-			currupd=`opkg list-upgradable | wc -l`
-			echo "===> $currupd PACKAGE(S) REMAINING" >> /home/root/ipkupgrade.log
-		done
-		/sbin/reboot
-		;;
-	44)
-		echo "    " > /dev/lcd0
-		@bindir@/gigablue_wol
-		;;
-	*)
-		;;
-esac
+		ln -sf ${LOGFILE} ${LOGFOLDER}currlog
+		LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL @bindir@/enigma2 2>&1 | tee -a ${LOGFOLDER}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log
+		ret=${PIPESTATUS[0]}
+		ln -sf ${LOGFILE} ${LOGFOLDER}lastlog
+	else
+		LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL @bindir@/enigma2
+		ret=$?
+	fi
+
+
+	# enigma2 exit codes:
+	#
+	#  1 - halt
+	#  2 - reboot
+	#  3 - restart enigma in normal mode
+	#  4 - front processor upgrade
+	#  5 - install new settings
+	#  6 - restart enigma in debug mode
+	#  7 - manufacturer reset
+	# 16 - tbd
+	# 42 - offline update
+	# 43 - restart for autoinstall
+	# 44 -  tbd wol
+	#
+	# >128 signal
+
+	ret=$?
+	if [ "$ret" -ne "1" ]; then
+		if [ -e /proc/stb/info/boxtype ]; then
+			stbcheck=`cat /proc/stb/info/boxtype`
+			if [ $stbcheck == "gbmv200" ] ; then
+				killall -9 libreader; sleep 5
+	case $ret in
+		1)
+			/sbin/halt
+			;;
+		2)
+			/sbin/reboot
+			;;
+		3)
+			DEBUG_LVL=3
+			;;
+		4)
+			/sbin/rmmod lcd
+			/usr/sbin/fpupgrade --upgrade 2>&1 | tee /home/root/fpupgrade.log
+			sleep 1;
+			/sbin/rmmod fp
+			/sbin/modprobe fp
+			/sbin/reboot
+			;;
+		5)
+			if ! grep -q config.misc.RestartUI /etc/enigma2/settings; then
+				echo "config.misc.RestartUI=true" >>/etc/enigma2/settings
+			fi
+			;;
+		6)
+			DEBUG_LVL=4
+			;;
+		7)
+			rm -R /etc/enigma2
+			;;
+		16)
+			if [ -e /dev/block/by-name/bootoptions ]; then
+				mkdir -p /tmp/bootoptions
+				mount /dev/block/by-name/bootoptions /tmp/bootoptions
+				cp -f /tmp/bootoptions/STARTUP_RECOVERY /tmp/bootoptions/STARTUP_ONCE
+			else
+				echo "rescue" > /proc/stb/fp/boot_mode
+			fi
+			[[ -e /etc/enigma2/.deep ]] && rm /etc/enigma2/.deep
+			/sbin/reboot
+			;;
+		42)
+			df -P | grep -v "tmpfs " | awk '{print $6}' | tail -n +3 > /tmp/upgrade_mountpoints.txt
+			while read line; do
+				if [  -f $line/var/lib/opkg/status ]; then
+				DESTS=$DESTS" --add-dest "$line":"$line
+			fi
+			done < /tmp/upgrade_mountpoints.txt
+			# bind the console (when available)
+			[ -f /sys/class/vtconsole/vtcon1/bind ] && echo 1 > /sys/class/vtconsole/vtcon1/bind
+			prevupd=0
+			currupd=999
+			opkg update 2>&1 | tee /home/root/opkgupgrade.log
+			# check if we need to upgrade busybox first
+			if [ "$(opkg list-upgradable busybox)" != "" ]; then
+				opkg update busybox 2>&1 | tee -a /home/root/opkgupgrade.log
+			fi
+			# update all other packages
+			while [ $currupd -gt 0 -a $currupd -ne $prevupd ]; do
+				opkg upgrade $DESTS 2>&1 | tee -a /home/root/opkgupgrade.log
+				prevupd=$currupd
+				currupd=`opkg list-upgradable | wc -l`
+				echo "===> $currupd PACKAGE(S) REMAINING" >> /home/root/opkgupgrade.log
+			done
+			/sbin/reboot
+			;;
+		43)
+			#auto install and autobackup
+			[ -f /sys/class/vtconsole/vtcon1/bind ] && echo 1 > /sys/class/vtconsole/vtcon1/bind
+			/etc/init.d/settings-restore.sh
+			/etc/init.d/avahi-daemon stop
+			ifdown eth1
+			ip addr flush dev eth1 scope global
+			ifdown eth0
+			ip addr flush dev eth0 scope global
+			/etc/init.d/networking stop
+			killall -9 udhcpc
+			rm /var/run/udhcpc*
+			/etc/init.d/dbus-1 reload
+			/etc/init.d/networking start
+			/etc/init.d/avahi-daemon start
+			# wait until we have a network again
+			echo "**** Waiting for network ****"
+			for i in {1..30}; do
+				gw=`netstat -rn | grep UG | awk '{print $2}'`
+				if [ ! -z "$gw" ]; then
+					echo "> Online !"
+					break
+				fi
+				sleep 1
+			done
+			break
+			;;
+		44)
+			echo "    " > /dev/lcd0
+			@bindir@/gigablue_wol
+			;;
+		*)
+			break
+			;;
+	esac
+
+done
