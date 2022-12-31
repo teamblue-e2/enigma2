@@ -11,8 +11,7 @@ except:
 	OverscanWizard = None
 
 
-from boxbranding import getBoxType
-from Components.About import about
+from Components.Network import iNetwork, NetworkCheck
 from Components.Pixmap import Pixmap
 from Components.ProgressBar import ProgressBar
 from Components.Label import Label
@@ -59,6 +58,7 @@ class StartWizard(WizardLanguage, Rc):
 
 
 def checkForDevelopImage():
+    from Components.About import about
 	if "DEV" in about.getImageTypeString() or "beta" in about.getImageTypeString():
 		return config.misc.check_developimage.value
 	elif not config.misc.check_developimage.value:
@@ -101,6 +101,12 @@ class AutoRestoreWizard(MessageBox):
 				os.unlink("/etc/.doNotAutoInstall")
 				MessageBox.close(self, 43)
 			else:
+				# restore network config first, we need it to autoinstall
+				self.console = eConsoleAppContainer()
+				self.console.execute('/etc/init.d/settings-restore.sh network')
+				iNetwork.restartNetwork()
+				networkCheck = NetworkCheck()
+				networkCheck.Start(10)
 				self.session.open(AutoInstall)
 		MessageBox.close(self)
 
