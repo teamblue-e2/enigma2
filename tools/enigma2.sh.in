@@ -172,8 +172,7 @@ while : ; do
 	# 16 - tbd
 	# 42 - restart for unattended update
 	# 43 - restart for autobackup restore
-	# 44 - restart for autobackup network restore
-	# 45 -  tbd wol
+	# 44 -  tbd wol
 	#
 	# >128 signal
 
@@ -257,14 +256,6 @@ while : ; do
 			break
 			;;
 		44)
-			# restore network settings from the backup
-			[ -f /sys/class/vtconsole/vtcon1/bind ] && echo 1 > /sys/class/vtconsole/vtcon1/bind
-			/etc/init.d/settings-restore.sh network
-			restartNetwork
-			[ -f /etc/init.d/softcam ] && /etc/init.d/softcam restart
-			break
-			;;
-		45)
 			echo "    " > /dev/lcd0
 			@bindir@/gigablue_wol
 			;;
