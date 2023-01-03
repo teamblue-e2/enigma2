@@ -652,7 +652,7 @@ class Network:
 				pass
 
 
-def waitForNetwork(self, timeout=15):
+def waitForNetwork(timeout=15):
 	while timeout > 0:
 		gws = ni.gateways()
 		if 'default' in gws and len(gws['default']) > 0:
