@@ -124,7 +124,7 @@ def getCpuCoresString():
 						cores = 2
 					else:
 						cores = 1
-		file.close()
+		_file.close()
 		return cores
 	except IOError:
 		return "unavailable"
