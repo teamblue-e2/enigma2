@@ -21,7 +21,7 @@ from Components.MenuList import MenuList
 from Components.Sources.List import List
 from Components.Slider import Slider
 from Components.Harddisk import harddiskmanager
-from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigText, ConfigLocations, ConfigYesNo, ConfigSelection
+from Components.config import config, ConfigSubsection, ConfigText, ConfigLocations, ConfigYesNo, ConfigSelection
 from Components.ConfigList import ConfigListScreen
 from Components.Console import Console
 from Components.SelectionList import SelectionList
@@ -415,19 +415,19 @@ class SoftwareManagerSetup(ConfigListScreen, Screen):
 
 	def createSetup(self):
 		self.list = []
-		self.overwriteConfigfilesEntry = getConfigListEntry(_("Overwrite configuration files?"), config.plugins.softwaremanager.overwriteConfigFiles)
-		self.overwriteSettingsfilesEntry = getConfigListEntry(_("Overwrite Setting Files ?"), config.plugins.softwaremanager.overwriteSettingsFiles)
-		self.overwriteDriversfilesEntry = getConfigListEntry(_("Overwrite Driver Files ?"), config.plugins.softwaremanager.overwriteDriversFiles)
-		self.overwriteEmusfilesEntry = getConfigListEntry(_("Overwrite Emu Files ?"), config.plugins.softwaremanager.overwriteEmusFiles)
-		self.overwritePiconsfilesEntry = getConfigListEntry(_("Overwrite Picon Files ?"), config.plugins.softwaremanager.overwritePiconsFiles)
-		self.overwriteBootlogofilesEntry = getConfigListEntry(_("Overwrite Bootlogo Files ?"), config.plugins.softwaremanager.overwriteBootlogoFiles)
-		self.overwriteSpinnerfilesEntry = getConfigListEntry(_("Overwrite Spinner Files ?"), config.plugins.softwaremanager.overwriteSpinnerFiles)
-		self.restoremodeEntry = getConfigListEntry(_("Mode for autorestore"), config.plugins.softwaremanager.restoremode)
-		self.updatetypeEntry = getConfigListEntry(_("Select Software Update"), config.plugins.softwaremanager.updatetype)
+		self.overwriteConfigfilesEntry = (_("Overwrite configuration files?"), config.plugins.softwaremanager.overwriteConfigFiles)
+		self.overwriteSettingsfilesEntry = (_("Overwrite Setting Files ?"), config.plugins.softwaremanager.overwriteSettingsFiles)
+		self.overwriteDriversfilesEntry = (_("Overwrite Driver Files ?"), config.plugins.softwaremanager.overwriteDriversFiles)
+		self.overwriteEmusfilesEntry = (_("Overwrite Emu Files ?"), config.plugins.softwaremanager.overwriteEmusFiles)
+		self.overwritePiconsfilesEntry = (_("Overwrite Picon Files ?"), config.plugins.softwaremanager.overwritePiconsFiles)
+		self.overwriteBootlogofilesEntry = (_("Overwrite Bootlogo Files ?"), config.plugins.softwaremanager.overwriteBootlogoFiles)
+		self.overwriteSpinnerfilesEntry = (_("Overwrite Spinner Files ?"), config.plugins.softwaremanager.overwriteSpinnerFiles)
+		self.restoremodeEntry = (_("Mode for autorestore"), config.plugins.softwaremanager.restoremode)
+		self.updatetypeEntry = (_("Select Software Update"), config.plugins.softwaremanager.updatetype)
 		self.list.append(self.overwriteConfigfilesEntry)
-		self.list.append(getConfigListEntry(_("show softwaremanager in setup menu"), config.plugins.softwaremanager.onSetupMenu))
-		self.list.append(getConfigListEntry(_("show softwaremanager on blue button"), config.plugins.softwaremanager.onBlueButton))
-		self.list.append(getConfigListEntry(_("backup EPG cache"), config.plugins.softwaremanager.epgcache))
+		self.list.append((_("show softwaremanager in setup menu"), config.plugins.softwaremanager.onSetupMenu))
+		self.list.append((_("show softwaremanager on blue button"), config.plugins.softwaremanager.onBlueButton))
+		self.list.append((_("backup EPG cache"), config.plugins.softwaremanager.epgcache))
 		self.list.append(self.overwriteSettingsfilesEntry)
 		self.list.append(self.overwriteDriversfilesEntry)
 		self.list.append(self.overwriteEmusfilesEntry)

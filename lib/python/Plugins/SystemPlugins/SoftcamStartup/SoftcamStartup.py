@@ -5,7 +5,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Button import Button
 from Components.Label import Label
-from Components.config import config, ConfigElement, ConfigSubsection, ConfigSelection, ConfigSubList, getConfigListEntry, KEY_LEFT, KEY_RIGHT, KEY_OK
+from Components.config import config, ConfigElement, ConfigSubsection, ConfigSelection, ConfigSubList, KEY_LEFT, KEY_RIGHT, KEY_OK
 from Components.ConfigList import ConfigList
 from Components.Pixmap import Pixmap
 from Components.ScrollLabel import ScrollLabel
@@ -69,14 +69,14 @@ class SoftcamStartup(Screen, ConfigListScreen):
 		self.softcamlistsecondary = ConfigSelection(choices=softcamlistsecondary)
 		self.softcamlistsecondary.value = self.softcam2.current()
 
-		self.list.append(getConfigListEntry(_("Select primary softcam"), self.softcamlistprimary))
-		self.list.append(getConfigListEntry(_("Select secondary softcam"), self.softcamlistsecondary))
-		self.list.append(getConfigListEntry(_("Restart primary softcam"), ConfigAction(self.restart, "s")))
-		self.list.append(getConfigListEntry(_("Restart secondary softcam"), ConfigAction(self.restart, "c")))
-		self.list.append(getConfigListEntry(_("Restart both"), ConfigAction(self.restart, "sc")))
+		self.list.append((_("Select primary softcam"), self.softcamlistprimary))
+		self.list.append((_("Select secondary softcam"), self.softcamlistsecondary))
+		self.list.append((_("Restart primary softcam"), ConfigAction(self.restart, "s")))
+		self.list.append((_("Restart secondary softcam"), ConfigAction(self.restart, "c")))
+		self.list.append((_("Restart both"), ConfigAction(self.restart, "sc")))
 
 		if showExtentionMenuOption:
-			self.list.append(getConfigListEntry(_("Show softcam startup in extensions menu"), config.misc.softcam_startup.extension_menu))
+			self.list.append((_("Show softcam startup in extensions menu"), config.misc.softcam_startup.extension_menu))
 
 		self["key_red"] = Label(_("Cancel"))
 		self["key_green"] = Label(_("OK"))

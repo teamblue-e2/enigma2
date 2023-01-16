@@ -7,7 +7,7 @@
 from Plugins.Plugin import PluginDescriptor
 
 # Components
-from Components.config import config, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigDirectory, ConfigSelection, ConfigSet, NoSave, ConfigNothing, ConfigLocations, ConfigSelectionNumber, getConfigListEntry
+from Components.config import config, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigDirectory, ConfigSelection, ConfigSet, NoSave, ConfigNothing, ConfigLocations, ConfigSelectionNumber 
 from Components.Label import Label
 # commented out
 # from Components.FileTransfer import FileTransferJob, ALL_MOVIE_EXTENSIONS
@@ -162,27 +162,27 @@ class FileCommanderSetup(ConfigListScreen, Screen):
 		self.session = session
 		Screen.__init__(self, session)
 		self.list = []
-		self.list.append(getConfigListEntry(_("Add plugin to main menu*"), config.plugins.filecommander.add_mainmenu_entry))
-		self.list.append(getConfigListEntry(_("Add plugin to Extensions menu*"), config.plugins.filecommander.add_extensionmenu_entry))
-		self.list.append(getConfigListEntry(_("Save left folder on exit"), config.plugins.filecommander.savedir_left))
-		self.list.append(getConfigListEntry(_("Save right folder on exit"), config.plugins.filecommander.savedir_right))
-		self.list.append(getConfigListEntry(_("Show directories first"), config.plugins.filecommander.firstDirs))
-		self.list.append(getConfigListEntry(_("Show Task's completed message"), config.plugins.filecommander.showTaskCompleted_message))
-		self.list.append(getConfigListEntry(_("Show Script completed message"), config.plugins.filecommander.showScriptCompleted_message))
-		self.list.append(getConfigListEntry(_("Number of lines in script messages"), config.plugins.filecommander.script_messagelen))
-		self.list.append(getConfigListEntry(_("Show unknown extension as text"), config.plugins.filecommander.unknown_extension_as_text))
-		self.list.append(getConfigListEntry(_("Edit position is the line end"), config.plugins.filecommander.editposition_lineend))
-		self.list.append(getConfigListEntry(_("Change buttons for list navigation"), config.plugins.filecommander.change_navbutton))
-		self.list.append(getConfigListEntry(_("Default file sorting left"), config.plugins.filecommander.sortFiles_left))
-		self.list.append(getConfigListEntry(_("Default file sorting right"), config.plugins.filecommander.sortFiles_right))
-		self.list.append(getConfigListEntry(_("Default directory sorting"), config.plugins.filecommander.sortDirs))
-		self.list.append(getConfigListEntry(_("Default folder"), config.plugins.filecommander.path_default))
-		self.list.append(getConfigListEntry(_("My extension"), config.plugins.filecommander.my_extension))
-		self.list.append(getConfigListEntry(_("Filter extension, (*) appears in title"), config.plugins.filecommander.extension))
-		self.list.append(getConfigListEntry(_("CPU priority for script execution"), config.plugins.filecommander.script_priority_nice))
-		self.list.append(getConfigListEntry(_("I/O priority for script execution"), config.plugins.filecommander.script_priority_ionice))
-		self.list.append(getConfigListEntry(_("File checksums/hashes"), config.plugins.filecommander.hashes))
-		self.list.append(getConfigListEntry(_("Time for Slideshow"), config.plugins.filecommander.diashow))
+		self.list.append((_("Add plugin to main menu*"), config.plugins.filecommander.add_mainmenu_entry))
+		self.list.append((_("Add plugin to Extensions menu*"), config.plugins.filecommander.add_extensionmenu_entry))
+		self.list.append((_("Save left folder on exit"), config.plugins.filecommander.savedir_left))
+		self.list.append((_("Save right folder on exit"), config.plugins.filecommander.savedir_right))
+		self.list.append((_("Show directories first"), config.plugins.filecommander.firstDirs))
+		self.list.append((_("Show Task's completed message"), config.plugins.filecommander.showTaskCompleted_message))
+		self.list.append((_("Show Script completed message"), config.plugins.filecommander.showScriptCompleted_message))
+		self.list.append((_("Number of lines in script messages"), config.plugins.filecommander.script_messagelen))
+		self.list.append((_("Show unknown extension as text"), config.plugins.filecommander.unknown_extension_as_text))
+		self.list.append((_("Edit position is the line end"), config.plugins.filecommander.editposition_lineend))
+		self.list.append((_("Change buttons for list navigation"), config.plugins.filecommander.change_navbutton))
+		self.list.append((_("Default file sorting left"), config.plugins.filecommander.sortFiles_left))
+		self.list.append((_("Default file sorting right"), config.plugins.filecommander.sortFiles_right))
+		self.list.append((_("Default directory sorting"), config.plugins.filecommander.sortDirs))
+		self.list.append((_("Default folder"), config.plugins.filecommander.path_default))
+		self.list.append((_("My extension"), config.plugins.filecommander.my_extension))
+		self.list.append((_("Filter extension, (*) appears in title"), config.plugins.filecommander.extension))
+		self.list.append((_("CPU priority for script execution"), config.plugins.filecommander.script_priority_nice))
+		self.list.append((_("I/O priority for script execution"), config.plugins.filecommander.script_priority_ionice))
+		self.list.append((_("File checksums/hashes"), config.plugins.filecommander.hashes))
+		self.list.append((_("Time for Slideshow"), config.plugins.filecommander.diashow))
 
 		ConfigListScreen.__init__(self, self.list, session=session)
 		self["help"] = Label(_("Select your personal settings:"))

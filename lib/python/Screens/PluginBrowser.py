@@ -13,7 +13,7 @@ from Components.ServiceList import refreshServiceList
 from Components.Harddisk import harddiskmanager
 from Components.Sources.StaticText import StaticText
 from Components import Opkg
-from Components.config import config, ConfigSubsection, ConfigYesNo, getConfigListEntry, configfile, ConfigText
+from Components.config import config, ConfigSubsection, ConfigYesNo, configfile, ConfigText
 from Components.ConfigList import ConfigListScreen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
@@ -767,20 +767,20 @@ class PluginFilter(ConfigListScreen, Screen):
 	def createSetup(self):
 		self.editListEntry = None
 		self.list = []
-		self.list.append(getConfigListEntry(_("codec"), config.pluginfilter.codec, _("This allows you to show codecs in downloads")))
-		self.list.append(getConfigListEntry(_("drivers"), config.pluginfilter.drivers, _("This allows you to show drivers modules in downloads")))
-		self.list.append(getConfigListEntry(_("dvb"), config.pluginfilter.dvb, _("This allows you to show dvb modules in downloads")))
-		self.list.append(getConfigListEntry(_("extensions"), config.pluginfilter.extensions, _("This allows you to show extensions modules in downloads")))
-		self.list.append(getConfigListEntry(_("languages"), config.pluginfilter.e2_locales, _("This allows you to show enigma2 languages in downloads")))
-		self.list.append(getConfigListEntry(_("picons"), config.pluginfilter.picons, _("This allows you to show picons modules in downloads")))
-		self.list.append(getConfigListEntry(_("settings"), config.pluginfilter.settings, _("This allows you to show settings modules in downloads")))
-		self.list.append(getConfigListEntry(_("security"), config.pluginfilter.security, _("This allows you to show security modules in downloads")))
-		self.list.append(getConfigListEntry(_("skins"), config.pluginfilter.skins, _("This allows you to show skins modules in downloads")))
-		self.list.append(getConfigListEntry(_("skincomponents"), config.pluginfilter.skincomponents, _("This allows you to show skin components in downloads")))
+		self.list.append((_("codec"), config.pluginfilter.codec, _("This allows you to show codecs in downloads")))
+		self.list.append((_("drivers"), config.pluginfilter.drivers, _("This allows you to show drivers modules in downloads")))
+		self.list.append((_("dvb"), config.pluginfilter.dvb, _("This allows you to show dvb modules in downloads")))
+		self.list.append((_("extensions"), config.pluginfilter.extensions, _("This allows you to show extensions modules in downloads")))
+		self.list.append((_("languages"), config.pluginfilter.e2_locales, _("This allows you to show enigma2 languages in downloads")))
+		self.list.append((_("picons"), config.pluginfilter.picons, _("This allows you to show picons modules in downloads")))
+		self.list.append((_("settings"), config.pluginfilter.settings, _("This allows you to show settings modules in downloads")))
+		self.list.append((_("security"), config.pluginfilter.security, _("This allows you to show security modules in downloads")))
+		self.list.append((_("skins"), config.pluginfilter.skins, _("This allows you to show skins modules in downloads")))
+		self.list.append((_("skincomponents"), config.pluginfilter.skincomponents, _("This allows you to show skin components in downloads")))
 		if checksoftcam():
-			self.list.append(getConfigListEntry(_("softcams"), config.pluginfilter.softcams, _("This allows you to show softcams modules in downloads")))
-		self.list.append(getConfigListEntry(_("systemplugins"), config.pluginfilter.systemplugins, _("This allows you to show systemplugins modules in downloads")))
-		self.list.append(getConfigListEntry(_("User Feed URL"), config.pluginfilter.userfeed, _("Please enter your personal feed URL")))
+			self.list.append((_("softcams"), config.pluginfilter.softcams, _("This allows you to show softcams modules in downloads")))
+		self.list.append((_("systemplugins"), config.pluginfilter.systemplugins, _("This allows you to show systemplugins modules in downloads")))
+		self.list.append((_("User Feed URL"), config.pluginfilter.userfeed, _("Please enter your personal feed URL")))
 
 		self["config"].list = self.list
 		self["config"].setList(self.list)

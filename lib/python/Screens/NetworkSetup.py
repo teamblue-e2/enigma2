@@ -13,7 +13,7 @@ from Components.SystemInfo import SystemInfo
 from Components.Label import Label, MultiColorLabel
 from Components.Pixmap import Pixmap, MultiPixmap
 from Components.MenuList import MenuList
-from Components.config import config, ConfigYesNo, ConfigIP, NoSave, ConfigText, ConfigPassword, ConfigSelection, getConfigListEntry, ConfigMacText
+from Components.config import config, ConfigYesNo, ConfigIP, NoSave, ConfigText, ConfigPassword, ConfigSelection, ConfigMacText
 from Components.ConfigList import ConfigListScreen
 from Components.PluginComponent import plugins
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
@@ -260,7 +260,7 @@ class NameserverSetup(ConfigListScreen, HelpableScreen, Screen):
 
 		i = 1
 		for x in self.nameserverEntries:
-			self.list.append(getConfigListEntry(_("Nameserver %d") % (i), x))
+			self.list.append((_("Nameserver %d") % (i), x))
 			i += 1
 
 		self["config"].list = self.list
@@ -341,7 +341,7 @@ class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 
 	def createSetup(self):
 		self.list = []
-		self.list.append(getConfigListEntry(_("MAC-adress"), self.getConfigMac))
+		self.list.append((_("MAC-adress"), self.getConfigMac))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
 
@@ -408,7 +408,7 @@ class IPv6Setup(Screen, ConfigListScreen, HelpableScreen):
 
 	def createSetup(self):
 		self.list = []
-		self.IPv6Entry = getConfigListEntry(_("IPv6 support"), self.IPv6ConfigEntry)
+		self.IPv6Entry = (_("IPv6 support"), self.IPv6ConfigEntry)
 		self.list.append(self.IPv6Entry)
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
@@ -648,25 +648,25 @@ class AdapterSetup(ConfigListScreen, HelpableScreen, Screen):
 		if SystemInfo["WakeOnLAN"]:
 			self.wolstartvalue = config.network.wol.value
 		self.list = []
-		self.InterfaceEntry = getConfigListEntry(_("Use interface"), self.activateInterfaceEntry)
+		self.InterfaceEntry = (_("Use interface"), self.activateInterfaceEntry)
 
 		self.list.append(self.InterfaceEntry)
 		if self.activateInterfaceEntry.value:
-			self.dhcpEntry = getConfigListEntry(_("Use DHCP"), self.dhcpConfigEntry)
+			self.dhcpEntry = (_("Use DHCP"), self.dhcpConfigEntry)
 			self.list.append(self.dhcpEntry)
 			if not self.dhcpConfigEntry.value:
-				self.list.append(getConfigListEntry(_('IP address'), self.ipConfigEntry))
-				self.list.append(getConfigListEntry(_('Netmask'), self.netmaskConfigEntry))
-				self.gatewayEntry = getConfigListEntry(_('Use a gateway'), self.hasGatewayConfigEntry)
+				self.list.append((_('IP address'), self.ipConfigEntry))
+				self.list.append((_('Netmask'), self.netmaskConfigEntry))
+				self.gatewayEntry = (_('Use a gateway'), self.hasGatewayConfigEntry)
 				self.list.append(self.gatewayEntry)
 				if self.hasGatewayConfigEntry.value:
-					self.list.append(getConfigListEntry(_('Gateway'), self.gatewayConfigEntry))
+					self.list.append((_('Gateway'), self.gatewayConfigEntry))
 
 			havewol = False
 			if SystemInfo["WakeOnLAN"] and getBoxType() in ('gbquadplus', 'quadbox2400'):
 				havewol = True
 			if havewol and self.iface == 'eth0':
-				self.list.append(getConfigListEntry(_('Enable Wake On LAN'), config.network.wol))
+				self.list.append((_('Enable Wake On LAN'), config.network.wol))
 
 			self.extended = None
 			self.configStrings = None
@@ -679,15 +679,15 @@ class AdapterSetup(ConfigListScreen, HelpableScreen, Screen):
 							self.configStrings = p.__call__["configStrings"]
 						isExistBcmWifi = path.exists("/tmp/bcm/" + self.iface)
 						if not isExistBcmWifi:
-							self.hiddenSSID = getConfigListEntry(_("Hidden network"), config.plugins.wlan.hiddenessid)
+							self.hiddenSSID = (_("Hidden network"), config.plugins.wlan.hiddenessid)
 							self.list.append(self.hiddenSSID)
-						self.wlanSSID = getConfigListEntry(_("Network name (SSID)"), config.plugins.wlan.essid)
+						self.wlanSSID = (_("Network name (SSID)"), config.plugins.wlan.essid)
 						self.list.append(self.wlanSSID)
-						self.encryption = getConfigListEntry(_("Encryption"), config.plugins.wlan.encryption)
+						self.encryption = (_("Encryption"), config.plugins.wlan.encryption)
 						self.list.append(self.encryption)
 						if not isExistBcmWifi:
-							self.encryptionType = getConfigListEntry(_("Encryption key type"), config.plugins.wlan.wepkeytype)
-						self.encryptionKey = getConfigListEntry(_("Encryption key"), config.plugins.wlan.psk)
+							self.encryptionType = (_("Encryption key type"), config.plugins.wlan.wepkeytype)
+						self.encryptionKey = (_("Encryption key"), config.plugins.wlan.psk)
 
 						if config.plugins.wlan.encryption.value != "Unencrypted":
 							if config.plugins.wlan.encryption.value == 'WEP':
@@ -1710,7 +1710,7 @@ class NetworkPassword(ConfigListScreen, Screen):
 		self.password = NoSave(ConfigPassword(default=""))
 		instructions = _("You must set a root password in order to be able to use network services,"
 						" such as FTP, telnet or ssh.")
-		self.list.append(getConfigListEntry(_('New password'), self.password, instructions))
+		self.list.append((_('New password'), self.password, instructions))
 		self['config'].list = self.list
 		self['config'].l.setList(self.list)
 
