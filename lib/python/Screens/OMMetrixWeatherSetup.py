@@ -22,7 +22,7 @@
 from Screens.Screen import Screen
 from Components.Renderer import OMMetrixWeatherWidget
 from Components.Label import Label
-from Components.config import ConfigSelection, getConfigListEntry, config, configfile, ConfigSubsection, ConfigNumber, ConfigSelectionNumber, ConfigYesNo, ConfigText
+from Components.config import ConfigSelection, config, configfile, ConfigSubsection, ConfigNumber, ConfigSelectionNumber, ConfigYesNo, ConfigText
 from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
@@ -59,9 +59,9 @@ class OMMetrixWeatherSetup(Screen, ConfigListScreen):
 
 	def initConfigList(self):
 		self.list = []
-		self.list.append(getConfigListEntry(_("Show Weather Widget"), config.plugins.MetrixWeather.enabled))
-		self.list.append(getConfigListEntry(_("MSN Weather City Name"), config.plugins.MetrixWeather.weathercity))
-		self.list.append(getConfigListEntry(_("Unit"), config.plugins.MetrixWeather.tempUnit))
+		self.list.append((_("Show Weather Widget"), config.plugins.MetrixWeather.enabled))
+		self.list.append((_("MSN Weather City Name"), config.plugins.MetrixWeather.weathercity))
+		self.list.append((_("Unit"), config.plugins.MetrixWeather.tempUnit))
 		self["config"].setList(self.list)
 
 	def exit(self):

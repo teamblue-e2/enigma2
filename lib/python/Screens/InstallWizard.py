@@ -2,7 +2,7 @@ from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen, ConfigList
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
-from Components.config import config, ConfigSubsection, ConfigBoolean, getConfigListEntry, ConfigSelection, ConfigYesNo, ConfigIP
+from Components.config import config, ConfigSubsection, ConfigBoolean, ConfigSelection, ConfigYesNo, ConfigIP
 from Components.Network import iNetwork
 from Components.Opkg import OpkgComponent
 from enigma import eDVBDB
@@ -83,17 +83,17 @@ class InstallWizard(ConfigListScreen, Screen):
 		if self.index == self.STATE_UPDATE:
 			if config.misc.installwizard.hasnetwork.value:
 				ip = ".".join([str(x) for x in iNetwork.getAdapterAttribute(self.adapter, "ip")])
-				self.list.append(getConfigListEntry(_("Your internet connection is working (IP address: %s)") % ip, self.enabled))
+				self.list.append((_("Your internet connection is working (IP address: %s)") % ip, self.enabled))
 			else:
-				self.list.append(getConfigListEntry(_("Your receiver does not have an internet connection"), self.enabled))
+				self.list.append((_("Your receiver does not have an internet connection"), self.enabled))
 		elif self.index == self.STATE_CHOICE_CHANNELLIST:
-			self.list.append(getConfigListEntry(_("Install channel list"), self.enabled))
+			self.list.append((_("Install channel list"), self.enabled))
 			if self.enabled.value:
-				self.list.append(getConfigListEntry(_("Channel list type"), self.channellist_type))
+				self.list.append((_("Channel list type"), self.channellist_type))
 #		elif self.index == self.STATE_CHOICE_SOFTCAM:
-#			self.list.append(getConfigListEntry(_("Install softcam support"), self.enabled))
+#			self.list.append((_("Install softcam support"), self.enabled))
 		elif self.index == self.INSTALL_PLUGINS:
-			self.list.append(getConfigListEntry(_("Do you want to install plugins"), self.enabled))
+			self.list.append((_("Do you want to install plugins"), self.enabled))
 		self["config"].list = self.list
 
 	def keyLeft(self):

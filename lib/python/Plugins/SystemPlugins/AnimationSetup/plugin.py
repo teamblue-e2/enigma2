@@ -4,7 +4,7 @@ from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList
 from Components.Sources.StaticText import StaticText
-from Components.config import config, ConfigNumber, ConfigSelectionNumber, getConfigListEntry
+from Components.config import config, ConfigNumber, ConfigSelectionNumber
 from Plugins.Plugin import PluginDescriptor
 
 from enigma import setAnimation_current, setAnimation_speed
@@ -86,7 +86,7 @@ class AnimationSetupConfig(ConfigListScreen, Screen):
 	def makeConfigList(self):
 		self.entrylist = []
 
-		entrySpeed = getConfigListEntry(_("Animation Speed"), config.misc.window_animation_speed)
+		entrySpeed = (_("Animation Speed"), config.misc.window_animation_speed)
 		self.entrylist.append(entrySpeed)
 		self["config"].list = self.entrylist
 		self["config"].l.setList(self.entrylist)

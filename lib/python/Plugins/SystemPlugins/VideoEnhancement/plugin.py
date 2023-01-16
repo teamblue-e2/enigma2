@@ -1,7 +1,7 @@
 import os
 from Plugins.Plugin import PluginDescriptor
 from Components.ConfigList import ConfigListScreen
-from Components.config import getConfigListEntry, config, ConfigNothing
+from Components.config import config, ConfigNothing
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.Pixmap import Pixmap
@@ -83,7 +83,7 @@ class VideoEnhancementSetup(ConfigListScreen, Screen):
 	def addToConfigList(self, description, configEntry, hinttext, add_to_xtdlist=False):
 		if isinstance(configEntry, ConfigNothing):
 			return None
-		entry = getConfigListEntry(description, configEntry, hinttext)
+		entry = (description, configEntry, hinttext)
 		self.list.append(entry)
 		if add_to_xtdlist:
 			self.xtdlist.append(entry)
@@ -298,7 +298,7 @@ class VideoEnhancementPreview(ConfigListScreen, Screen):
 	def createSetup(self):
 		self.list = []
 		if self.maxValue == 255:
-			self.configStepsEntry = getConfigListEntry(_("Change step size"), config.pep.configsteps)
+			self.configStepsEntry = (_("Change step size"), config.pep.configsteps)
 
 		if self.configEntry is not None:
 			self.list = self.configEntry

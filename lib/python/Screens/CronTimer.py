@@ -1,5 +1,5 @@
 from Components.ActionMap import ActionMap
-from Components.config import getConfigListEntry, config, ConfigSubsection, ConfigText, ConfigSelection, ConfigInteger, ConfigClock, NoSave
+from Components.config import config, ConfigSubsection, ConfigText, ConfigSelection, ConfigInteger, ConfigClock, NoSave
 from Components.ConfigList import ConfigListScreen
 from Components.Console import Console
 from Components.Label import Label
@@ -389,18 +389,18 @@ class CronTimersConfig(Screen, ConfigListScreen):
 		self.editListEntry = None
 
 		self.list = []
-		self.list.append(getConfigListEntry(_("Run how often ?"), config.crontimers.runwhen))
+		self.list.append((_("Run how often ?"), config.crontimers.runwhen))
 		if config.crontimers.runwhen.value != 'Hourly':
-			self.list.append(getConfigListEntry(_("Time to execute command or script"), config.crontimers.cmdtime))
+			self.list.append((_("Time to execute command or script"), config.crontimers.cmdtime))
 		if config.crontimers.runwhen.value == 'Weekly':
-			self.list.append(getConfigListEntry(_("What Day of week ?"), config.crontimers.dayofweek))
+			self.list.append((_("What Day of week ?"), config.crontimers.dayofweek))
 		if config.crontimers.runwhen.value == 'Monthly':
-			self.list.append(getConfigListEntry(_("What Day of month ?"), config.crontimers.dayofmonth))
-		self.list.append(getConfigListEntry(_("Command type"), config.crontimers.commandtype))
+			self.list.append((_("What Day of month ?"), config.crontimers.dayofmonth))
+		self.list.append((_("Command type"), config.crontimers.commandtype))
 		if config.crontimers.commandtype.value == 'custom':
-			self.list.append(getConfigListEntry(_("Command To Run"), config.crontimers.user_command))
+			self.list.append((_("Command To Run"), config.crontimers.user_command))
 		else:
-			self.list.append(getConfigListEntry(_("Command To Run"), config.crontimers.predefined_command))
+			self.list.append((_("Command To Run"), config.crontimers.predefined_command))
 		self["config"].list = self.list
 		self["config"].setList(self.list)
 
