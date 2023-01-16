@@ -95,8 +95,8 @@ def getCPUString():
 	else:
 		try:
 			system = "unknown"
-			file = open('/proc/cpuinfo', 'r')
-			lines = file.readlines()
+			_file = open('/proc/cpuinfo', 'r')
+			lines = _file.readlines()
 			for x in lines:
 				splitted = x.split(': ')
 				if len(splitted) > 1:
@@ -105,7 +105,7 @@ def getCPUString():
 						system = splitted[1].split(' ')[0]
 					elif splitted[0].startswith("Processor"):
 						system = splitted[1].split(' ')[0]
-			file.close()
+			_file.close()
 			return system
 		except IOError:
 			return "unavailable"
@@ -198,8 +198,8 @@ def getCPUSpeedString():
 		return "1,6 GHz"
 	mhz = "unavailable"
 	try:
-		file = open('/proc/cpuinfo', 'r')
-		lines = file.readlines()
+		_file = open('/proc/cpuinfo', 'r')
+		lines = _file.readlines()
 		for x in lines:
 			splitted = x.split(': ')
 			if len(splitted) > 1:
@@ -210,7 +210,7 @@ def getCPUSpeedString():
 						mhz = "%s GHz" % str(round(mhz / 1000, 1))
 					else:
 						mhz = "%s MHz" % str(round(mhz, 1))
-		file.close()
+		_file.close()
 		return mhz
 	except IOError:
 		return "unavailable"
