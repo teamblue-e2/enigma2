@@ -1049,8 +1049,8 @@ class PositionerSetup(Screen):
 			print>>log, (_("Lock ratio") + "     %5.1f" + chr(176) + "   : %6.2f") % (pos, lock)
 
 		def optimise(readings):
-			xi = [*readings]
-			yi = list(map(lambda x: x[0], readings.values()))
+			xi = readings.keys()
+			yi = map(lambda (x, y): x, readings.values())
 			x0 = sum(map(mul, xi, yi)) / sum(yi)
 			xm = xi[yi.index(max(yi))]
 			return (x0, xm)
@@ -1184,8 +1184,8 @@ class PositionerSetup(Screen):
 			print>>log, (_("Lock ratio") + " [%2d]       : %6.2f") % (pos, lock)
 
 		def optimise(readings):
-			xi = [*readings]
-			yi = list(map(lambda x: x[0], readings.values()))
+			xi = readings.keys()
+			yi = map(lambda (x, y): x, readings.values())
 			x0 = int(round(sum(map(mul, xi, yi)) / sum(yi)))
 			xm = xi[yi.index(max(yi))]
 			return (x0, xm)
