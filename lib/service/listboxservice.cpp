@@ -910,7 +910,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						{
 							if (PyString_Check(pRet))
 							{
-								std::string piconFilename = PyUnicode_AsUTF8(pRet);
+								std::string piconFilename = PyString_AS_STRING(pRet);
 								if (!piconFilename.empty())
 									loadImage(piconPixmap, piconFilename.c_str());
 							}
