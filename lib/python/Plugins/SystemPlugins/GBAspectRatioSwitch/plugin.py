@@ -12,7 +12,7 @@ from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Components.ActionMap import ActionMap
-from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigSubDict, ConfigEnableDisable, ConfigYesNo, ConfigSelection
+from Components.config import config, ConfigSubsection, ConfigSubDict, ConfigEnableDisable, ConfigYesNo, ConfigSelection
 from Components.ConfigList import ConfigListScreen
 from Components.AVSwitch import AVSwitch
 from GlobalActions import globalActionMap
@@ -57,11 +57,11 @@ class GBAspectRatioSwitchSetup(ConfigListScreen, Screen):
 		Screen.__init__(self, session)
 
 		self.list = []
-		self.list.append(getConfigListEntry(_("Quick switching via remote control"), config.plugins.GBAspectRatioSwitch.enabled))
-		self.list.append(getConfigListEntry(_("Key mapping"), config.plugins.GBAspectRatioSwitch.keymap))
-		self.list.append(getConfigListEntry(_("Show current mode"), config.plugins.GBAspectRatioSwitch.showmsg))
+		self.list.append((_("Quick switching via remote control"), config.plugins.GBAspectRatioSwitch.enabled))
+		self.list.append((_("Key mapping"), config.plugins.GBAspectRatioSwitch.keymap))
+		self.list.append((_("Show current mode"), config.plugins.GBAspectRatioSwitch.showmsg))
 		for aspect in ASPECT:
-			self.list.append(getConfigListEntry(_("Include %s") % ASPECTMSG[aspect], config.plugins.GBAspectRatioSwitch.modes[aspect]))
+			self.list.append((_("Include %s") % ASPECTMSG[aspect], config.plugins.GBAspectRatioSwitch.modes[aspect]))
 		ConfigListScreen.__init__(self, self.list)
 
 		self["label"] = Label(_("ENABLE DISABLE PLUGIN IF U WANT IT"))
