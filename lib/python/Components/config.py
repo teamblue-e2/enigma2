@@ -8,7 +8,6 @@ import copy
 import os
 from time import localtime, strftime
 import six
-import collections
 
 # ConfigElement, the base class of all ConfigElements.
 
