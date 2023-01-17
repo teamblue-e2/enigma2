@@ -598,4 +598,3 @@ def isPluginInstalled(pluginname, pluginfile="plugin"):
 			if os.path.isfile(fullpath):
 				return True
 	return False
->>>>>>> 2e7479e22 (Allow unicode strings in user bouquet filenames)

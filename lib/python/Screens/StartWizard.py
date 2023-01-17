@@ -57,7 +57,7 @@ class StartWizard(WizardLanguage, Rc):
 
 
 def checkForDevelopImage():
-    from Components.About import about
+	from Components.About import about
 	if "DEV" in about.getImageTypeString() or "beta" in about.getImageTypeString():
 		return config.misc.check_developimage.value
 	elif not config.misc.check_developimage.value:
