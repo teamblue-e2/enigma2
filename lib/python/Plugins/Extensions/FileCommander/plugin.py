@@ -60,7 +60,6 @@ from .FileTransfer import FileTransferJob, ALL_MOVIE_EXTENSIONS
 from .addons.key_actions import key_actions, stat_info
 from .addons.type_utils import vEditor
 import six
-import collections
 
 MOVIEEXTENSIONS = {"cuts": "movieparts", "meta": "movieparts", "ap": "movieparts", "sc": "movieparts", "eit": "movieparts"}
 
@@ -1228,7 +1227,7 @@ class FileCommanderContextMenu(Screen):
 		for item in list:
 			button = item[0]
 			text = item[1]
-			if isinstance(text, collections.Callable):
+			if callable(text):
 				text = text()
 			if text:
 				action = item[2] if len(item) > 2 else button

@@ -12,7 +12,6 @@ from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.config import config
 from Tools.Directories import pathExists, fileExists
 from Components.Harddisk import harddiskmanager
-import collections
 
 lastpath = ""
 
@@ -59,7 +58,7 @@ class ChapterZap(Screen):
 
 	def keyOK(self):
 		self.Timer.stop()
-		self.close(int(self["number"].getText()))
+		self.close(self.field and int(self.field))
 
 	def keyNumberGlobal(self, number):
 		self.Timer.start(3000, True)
@@ -313,7 +312,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		service = self.service
 		if service:
 			attr = getattr(service, iface, None)
-			if isinstance(attr, collections.Callable):
+			if callable(attr):
 				return attr()
 		return None
 
@@ -538,7 +537,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 			self.session.openWithCallback(self.playPhysicalCB, MessageBox, text=_("Do you want to play DVD in drive?"), timeout=5)
 
 	def playPhysicalCB(self, answer):
-		if answer == True:
+		if answer:
 			harddiskmanager.setDVDSpeed(harddiskmanager.getCD(), 1)
 			self.FileBrowserClosed(harddiskmanager.getAutofsMountpoint(harddiskmanager.getCD()))
 
@@ -645,7 +644,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 	def playLastCB(self, answer): # overwrite infobar cuesheet function
 		print("[DVD] playLastCB", answer, self.resume_point)
 		if self.service:
-			if answer == True:
+			if answer:
 				self.resumeDvd()
 				seekable = self.getSeek()
 				if seekable:

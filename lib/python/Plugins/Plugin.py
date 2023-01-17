@@ -1,6 +1,5 @@
 from Components.config import ConfigSubsection, config
 import os
-import collections
 
 config.plugins = ConfigSubsection()
 
