@@ -209,7 +209,7 @@ def resolveFilename(scope, base="", path_prefix=None):
 		path = itemExists(fontsResolveList, base)
 	elif scope == SCOPE_PLUGIN:
 		_file = os.path.join(scopePlugins, base)
-		if pathExists(file):
+		if pathExists(_file):
 			path = _file
 	elif scope in (SCOPE_PLUGIN_ABSOLUTE, SCOPE_PLUGIN_RELATIVE):
 		callingCode = os.path.normpath(getframe(1).f_code.co_filename)
