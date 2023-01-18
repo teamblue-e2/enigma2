@@ -1,5 +1,6 @@
 from Components.Sources.Source import Source
 from enigma import eDVBResourceManager
+from Components.NimManager import nimmanager
 
 
 class TunerInfo(Source):
@@ -20,6 +21,9 @@ class TunerInfo(Source):
 
 	def getTunerUseMask(self):
 		return self.tuner_use_mask
+
+	def getTunerAmount(self):
+		return len(nimmanager.nim_slots)
 
 	def destroy(self):
 		res_mgr = eDVBResourceManager.getInstance()
