@@ -27,8 +27,8 @@ class TunerInfo(Converter):
 	def getValue(self):
 		if self.type == TunerInfoSource.FE_USE_MASK:
 			return self.source.getTunerUseMask()
-        if self.type == TunerInfoSource.TUNER_AVAILABLE:
-            return self.source.getTunerAmount()
+		if self.type == TunerInfoSource.TUNER_AVAILABLE:
+			return self.source.getTunerAmount()
 		return -1
 	value = property(getValue)
 
