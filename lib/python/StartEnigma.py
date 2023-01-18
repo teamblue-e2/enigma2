@@ -544,8 +544,8 @@ def runScreenTest():
 	else:
 		if os.path.exists("/media/hdd/images/config/autorestore"):
 			os.system('rm -f /media/hdd/images/config/autorestore')
-		screensToRun += wizardManager.getWizards()
 		screensToRun = [p.fnc for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD)]
+		screensToRun += wizardManager.getWizards()
 
 	screensToRun.append((100, InfoBar.InfoBar))
 	screensToRun = sorted(screensToRun, key=lambda x: x[0])
