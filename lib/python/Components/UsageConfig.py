@@ -522,6 +522,23 @@ def InitUsageConfig():
 		eServiceEvent.setUTF8CorrectMode(int(configElement.value))
 	config.epg.correct_invalid_epgdata = ConfigSelection(default="1", choices=[("0", _("Disabled")), ("1", _("Enabled")), ("2", _("Debug"))])
 	config.epg.correct_invalid_epgdata.addNotifier(correctInvalidEPGDataChange)
+    # Compatibility for KravenHD
+	config.epgselection = ConfigSubsection()
+	config.epgselection.sort = ConfigSelection(default="0", choices=[
+		("0", _("Time")),
+		("1", _("Alphanumeric"))
+	])
+	config.epgselection.graph_type_mode = ConfigSelection(default="text", choices=[
+		("graphics", _("Graphics")),
+		("text", _("Text"))
+	])
+	config.usage.servicelistpreview_mode = ConfigYesNo(default=False)
+	config.usage.servicelist_mode = ConfigSelection(default="standard", choices=[
+		("standard", _("Standard")),
+		("simple", _("Simple"))
+	])
+	config.epgselection.graph_pig = ConfigYesNo(default=False)
+    # / Compatibility for KravenHD
 
 	def setHDDStandby(configElement):
 		for hdd in harddiskmanager.HDDList():
