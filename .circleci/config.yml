@@ -12,7 +12,7 @@ jobs:
       CXX: g++-<< parameters.CC >>
       PY: << parameters.PYTHON >>
     docker:
-      - image: cimg/base:stable-18.04
+      - image: cimg/base:stable-22.04
     resource_class: small
     steps:
       - run:
@@ -34,25 +34,27 @@ jobs:
             libgif-dev
       - when:
           condition:
-            equal: [ "3.8", << parameters.PYTHON >> ]
+            equal: [ "3.10", << parameters.PYTHON >> ]
           steps:
             - run:
-                name: Installing Python 3.8
+                name: Installing Python 3.10
                 command: |
-                  sudo apt install python3.8-dev python3-pip
+                  sudo apt install python3.10-dev python3-pip
                   sudo unlink /usr/bin/python
-                  sudo ln -s /usr/bin/python3.8 /usr/bin/python
+                  sudo ln -s /usr/bin/python3.10 /usr/bin/python
                   pip3 install --upgrade pip tox six
                   python -V
       - when:
           condition:
-            equal: [ "2.7", << parameters.PYTHON >> ]
+            equal: [ "3.11", << parameters.PYTHON >> ]
           steps:
-             - run:
-                name: Installing Python 2.7
+            - run:
+                name: Installing Python 3.11
                 command: |
-                  sudo apt install python2.7-dev python-pip
-                  pip install --upgrade pip tox six
+                  sudo apt install python3.11-dev python3-pip
+                  sudo unlink /usr/bin/python
+                  sudo ln -s /usr/bin/python3.11 /usr/bin/python
+                  pip3 install --upgrade pip tox six
                   python -V
       - run:
           name: Getting gstreamer
@@ -107,5 +109,5 @@ workflows:
       - build:
           matrix:
             parameters:
-              CC: ["8", "10"]
-              PYTHON: ["3.8"]
+              CC: ["11"]
+              PYTHON: ["3.10", "3.11"]
