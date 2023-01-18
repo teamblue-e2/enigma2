@@ -1,12 +1,12 @@
 ## Our buildserver is currently running on: ##
 
-> Ubuntu 18.04.3 LTS (GNU/Linux 4.15.0-65-generic x86_64)
+> Ubuntu 22.04 LTS (GNU/Linux 4.15.0-65-generic x86_64)
 
-## teamBlue 6.5 (based on openPLi) is build using oe-alliance build-environment "4.5" and several git repositories: ##
+## teamBlue 7.2 (based on openPLi) is build using oe-alliance build-environment "7.2" and several git repositories: ##
 
-> [https://github.com/oe-alliance/oe-alliance-core/tree/4.5](https://github.com/oe-alliance/oe-alliance-core/tree/4.5 "OE-Alliance")
+> [https://github.com/oe-alliance/oe-alliance-core/tree/5.2](https://github.com/oe-alliance/oe-alliance-core/tree/5.2 "OE-Alliance")
 >
-> [https://github.com/teamblue-e2/enigma2/tree/6.5](https://github.com/teamblue-e2/enigma2/tree/6.5 "teamBlue E2")
+> [https://github.com/teamblue-e2/enigma2/tree/5.2](https://github.com/teamblue-e2/enigma2/tree/5.2 "teamBlue E2")
 >
 > [https://github.com/teamblue-e2/skin/tree/master](https://github.com/teamblue-e2/skin/tree/master "teamBlue Skin")
 
@@ -17,83 +17,118 @@
 
 # Building Instructions #
 
-1 - Install packages on your buildserver
+1. Install required packages
 
-    sudo apt-get install -y autoconf automake bison bzip2 chrpath coreutils cpio curl cvs debianutils default-jre default-jre-headless diffstat flex g++ gawk gcc gcc-8 gettext git git-core gzip help2man info iputils-ping java-common libc6-dev libegl1-mesa libglib2.0-dev libncurses5-dev libperl4-corelibs-perl libproc-processtable-perl libsdl1.2-dev libserf-dev libtool libxml2-utils make ncurses-bin patch perl pkg-config psmisc python3 python3-git python3-jinja2 python3-pexpect python3-pip python-setuptools qemu quilt socat sshpass subversion tar texi2html texinfo unzip wget xsltproc xterm xz-utils zip zlib1g-dev
+    ```sh
+    sudo apt-get install -y autoconf automake bison bzip2 chrpath coreutils cpio curl cvs debianutils default-jre default-jre-headless diffstat flex g++ gawk gcc gcc-12 gcc-multilib g++-multilib gettext git git-core gzip help2man info iputils-ping java-common libc6-dev libegl1-mesa libglib2.0-dev libncurses5-dev libperl4-corelibs-perl libproc-processtable-perl libsdl1.2-dev libserf-dev libtool libxml2-utils make ncurses-bin patch perl pkg-config psmisc python3 python3-git python3-jinja2 python3-pexpect python3-pip python-setuptools qemu quilt socat sshpass subversion tar texi2html texinfo unzip wget xsltproc xterm xz-utils zip zlib1g-dev zstd fakeroot lz4
+    ```
 
-----------
-2 - Set your shell to /bin/bash
+1. Set `python3` as preferred provider for `python`
 
+    ```sh
+    sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 1
+
+    sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 2
+
+    sudo update-alternatives --config python
+    ↳ Select python3
+    ```
+
+1. Set your shell to `/bin/bash`
+
+    ```sh
     sudo dpkg-reconfigure dash
-    When asked: Install dash as /bin/sh?
-    select "NO"
+    ↳ Select "NO" when asked "Install dash as /bin/sh?"
+    ```
 
-----------
-3 - Use update-alternatives for having gcc redirected automatically to gcc-8
+1. Modify `max_user_watches`
 
-    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 700 --slave /usr/bin/g++ g++ /usr/bin/g++-7
-    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 800 --slave /usr/bin/g++ g++ /usr/bin/g++-8
-
-----------
-4 - Repair g++ after gcc8 installation
-
-    sudo apt-get remove -y  g++
-    sudo apt-get install -y  g++
-
-----------
-5 - modify max_user_watches
-
+    ```sh
     echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
-    sysctl -n -w fs.inotify.max_user_watches=524288
 
-----------
-6 - Add user teambluebuilder
+    sudo sysctl -n -w fs.inotify.max_user_watches=524288
+    ```
 
-    sudo adduser teambluebuilder
+1. Add new user `openatvbuilder`
 
-----------
-7 - Switch to user teambluebuilder
+    ```sh
+    sudo adduser openatvbuilder
+    ```
 
-    su teambluebuilder
+1. Switch to new user `openatvbuilder`
 
-----------
-8 - Switch to home of teambluebuilder
+    ```sh
+    su - openatvbuilder
+    ```
 
-    cd ~
+1. Create folder openatv7.2
 
-----------
-9 - Create folder teamblue
+    ```sh
+    mkdir -p openatv7.2
+    ```
 
-    mkdir -p ~/teamblue
+1. Switch to folder openatv7.2
 
-----------
-10 - Switch to folder teamblue
+    ```sh
+    cd openatv7.2
+    ```
 
-    cd teamblue
+1. Clone oe-alliance repository
 
-----------
-11 - Clone oe-alliance git
+    ```sh
+    git clone https://github.com/oe-alliance/build-enviroment.git -b 5.2
+    ```
 
-    git clone git://github.com/oe-alliance/build-enviroment.git -b 4.5
+1. Switch to folder build-enviroment
 
-----------
-12 - Switch to folder build-enviroment
-
+    ```sh
     cd build-enviroment
+    ```
 
-----------
-13 - Update build-enviroment
+1. Update build-enviroment
 
+    ```sh
     make update
+    ```
 
-----------
-14 - Finally you can start building a image
+1. Finally, you can either:
 
-    MACHINE=gbquad4k DISTRO=teamblue make image
+* Build an image with feed (build time 5-12h)
+
+    ```sh
+    MACHINE=zgemmah9combo DISTRO=openatv DISTRO_TYPE=release make image
+    ```
+
+* Build an image without feed (build time 1-2h)
+
+    ```sh
+    MACHINE=zgemmah9combo DISTRO=openatv DISTRO_TYPE=release make enigma2-image
+    ```
+
+* Build the feeds
+
+    ```sh
+    MACHINE=zgemmah9combo DISTRO=openatv DISTRO_TYPE=release make feeds
+    ```
+
+* Build specific packages
+
+    ```sh
+    MACHINE=zgemmah9combo DISTRO=openatv DISTRO_TYPE=release make init
+
+    cd builds/openatv/release/zgemmah9combo/
+
+    source env.source
+
+    bitbake nfs-utils rcpbind ...
+    ```
+
+
+
 
 
 Build Status - branch master: [![Build Status](https://travis-ci.org/teamblue-e2/enigma2.svg?branch=master)](https://travis-ci.org/teamblue-e2/enigma2)
 
-Build Status - branch 6.5:    [![Build Status](https://travis-ci.org/teamblue-e2/enigma2.svg?branch=6.5)](https://travis-ci.org/teamblue-e2/enigma2)
+Build Status - branch 5.2:    [![Build Status](https://travis-ci.org/teamblue-e2/enigma2.svg?branch=5.2)](https://travis-ci.org/teamblue-e2/enigma2)
 
-Build Status - branch python3-old:    [![Build Status](https://circleci.com/gh/teamblue-e2/enigma2.svg?style=shield&branch=python3-old)]()
+Build Status - branch 5.2:    [![Build Status](https://circleci.com/gh/teamblue-e2/enigma2.svg?style=shield&branch=5.2)]()
