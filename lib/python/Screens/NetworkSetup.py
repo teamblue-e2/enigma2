@@ -1763,8 +1763,8 @@ class NetworkPassword(ConfigListScreen, Screen):
 			self.output_line = self.output_line[i + 1:]
 
 	def processOutputLine(self, line):
-		if line.find('password: '):
-			self.container.write("%s\n" % self.password.value)
+		print("[NetworkPassword %s]" % self.password.value, line[:-1])
+		pass
 
 	def runFinished(self, retval):
 		del self.container.dataAvail[:]
