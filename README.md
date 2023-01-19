@@ -1,12 +1,12 @@
 ## Our buildserver is currently running on: ##
 
-> Ubuntu 22.04 LTS (GNU/Linux 4.15.0-65-generic x86_64)
+> Ubuntu 22.04 LTS 
 
 ## teamBlue 7.1 (based on openPLi) is build using oe-alliance build-environment "7.1" and several git repositories: ##
 
 > [https://github.com/oe-alliance/oe-alliance-core/tree/5.1](https://github.com/oe-alliance/oe-alliance-core/tree/5.1 "OE-Alliance")
 >
-> [https://github.com/teamblue-e2/enigma2/tree/5.1](https://github.com/teamblue-e2/enigma2/tree/5.1 "teamBlue E2")
+> [https://github.com/teamblue-e2/enigma2/tree/7.1](https://github.com/teamblue-e2/enigma2/tree/7.1 "teamBlue E2")
 >
 > [https://github.com/teamblue-e2/skin/tree/master](https://github.com/teamblue-e2/skin/tree/master "teamBlue Skin")
 
