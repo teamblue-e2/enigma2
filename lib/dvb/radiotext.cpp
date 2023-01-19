@@ -4,6 +4,7 @@
 #include <lib/dvb/idemux.h>
 #include <lib/dvb/decoder.h>
 #include <lib/gdi/gpixmap.h>
+#include <array>
 
 DEFINE_REF(eDVBRdsDecoder);
 
