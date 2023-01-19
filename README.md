@@ -49,28 +49,28 @@
     sudo sysctl -n -w fs.inotify.max_user_watches=524288
     ```
 
-1. Add new user `openatvbuilder`
+1. Add new user `teambluebuilder`
 
     ```sh
-    sudo adduser openatvbuilder
+    sudo adduser teambluebuilder
     ```
 
-1. Switch to new user `openatvbuilder`
+1. Switch to new user `teambluebuilder`
 
     ```sh
-    su - openatvbuilder
+    su - teambluebuilder
     ```
 
-1. Create folder openatv7.2
+1. Create folder teamblue7.2
 
     ```sh
-    mkdir -p openatv7.2
+    mkdir -p teamblue7.2
     ```
 
-1. Switch to folder openatv7.2
+1. Switch to folder teamblue7.2
 
     ```sh
-    cd openatv7.2
+    cd teamblue7.2
     ```
 
 1. Clone oe-alliance repository
@@ -96,27 +96,27 @@
 * Build an image with feed (build time 5-12h)
 
     ```sh
-    MACHINE=zgemmah9combo DISTRO=openatv DISTRO_TYPE=release make image
+    MACHINE=gbquad4k DISTRO=teamblue DISTRO_TYPE=release make image
     ```
 
 * Build an image without feed (build time 1-2h)
 
     ```sh
-    MACHINE=zgemmah9combo DISTRO=openatv DISTRO_TYPE=release make enigma2-image
+    MACHINE=gbquad4k DISTRO=teamblue DISTRO_TYPE=release make enigma2-image
     ```
 
 * Build the feeds
 
     ```sh
-    MACHINE=zgemmah9combo DISTRO=openatv DISTRO_TYPE=release make feeds
+    MACHINE=gbquad4k DISTRO=teamblue DISTRO_TYPE=release make feeds
     ```
 
 * Build specific packages
 
     ```sh
-    MACHINE=zgemmah9combo DISTRO=openatv DISTRO_TYPE=release make init
+    MACHINE=gbquad4k DISTRO=teamblue DISTRO_TYPE=release make init
 
-    cd builds/openatv/release/zgemmah9combo/
+    cd builds/teamblue/release/gb7252/
 
     source env.source
 
@@ -127,8 +127,6 @@
 
 
 
-Build Status - branch master: [![Build Status](https://travis-ci.org/teamblue-e2/enigma2.svg?branch=master)](https://travis-ci.org/teamblue-e2/enigma2)
+Build Status - branch 7.2:    [![Build Status](https://travis-ci.org/teamblue-e2/enigma2.svg?branch=7.2)](https://travis-ci.org/teamblue-e2/enigma2)
 
-Build Status - branch 5.2:    [![Build Status](https://travis-ci.org/teamblue-e2/enigma2.svg?branch=5.2)](https://travis-ci.org/teamblue-e2/enigma2)
-
-Build Status - branch 5.2:    [![Build Status](https://circleci.com/gh/teamblue-e2/enigma2.svg?style=shield&branch=5.2)]()
+Build Status - branch 7.2:    [![Build Status](https://circleci.com/gh/teamblue-e2/enigma2.svg?style=shield&branch=7.2)]()
