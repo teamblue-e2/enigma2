@@ -42,6 +42,7 @@ jobs:
                   sudo apt install python3.10-dev python3-pip
                   sudo unlink /usr/bin/python3
                   sudo ln -s /usr/bin/python3.10 /usr/bin/python3
+                  sudo ln -s /usr/bin/python3.10 /usr/bin/python
                   pip3 install --upgrade pip tox six
                   python -V
       - when:
@@ -54,6 +55,7 @@ jobs:
                   sudo apt install python3.11-dev python3-pip
                   sudo unlink /usr/bin/python3
                   sudo ln -s /usr/bin/python3.11 /usr/bin/python3
+                  sudo ln -s /usr/bin/python3.11 /usr/bin/python
                   pip3 install --upgrade pip tox six
                   python -V
       - run:
