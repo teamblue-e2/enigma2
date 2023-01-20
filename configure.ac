@@ -1,4 +1,4 @@
-AC_INIT([enigma2],[7.1],[http://teamblue.tech])
+AC_INIT([enigma2],[7.2],[http://teamblue.tech])
 AM_INIT_AUTOMAKE([dist-bzip2 no-define tar-pax -Wno-portability])
 AC_CONFIG_HEADERS([enigma2_config.h])
 
