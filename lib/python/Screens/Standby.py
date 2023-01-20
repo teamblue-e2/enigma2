@@ -304,7 +304,8 @@ def getReasons(session, retvalue=QUIT_SHUTDOWN):
 			reasons.append((ngettext("%d job is running in the background!", "%d jobs are running in the background!", jobs) % jobs))
 	if checkTimeshiftRunning():
 		reasons.append(_("You seem to be in timeshift!"))
-	if eStreamServer.getInstance().getConnectedClients() or StreamServiceList:
+	connectedClients = eStreamServer.getInstance().getConnectedClients()
+	if (connectedClients and len(connectedClients) > [(element).count('127.0.0.1') for element in connectedClients].count(1)) or StreamServiceList:
 		reasons.append(_("Client is streaming from this box!"))
 	if not reasons and mediafilesInUse(session) and retvalue in (QUIT_SHUTDOWN, QUIT_REBOOT, QUIT_UPGRADE_FP, QUIT_UPGRADE_PROGRAM, GB_ENTER_WOL):
 		reasons.append(_("A file from media is in use!"))
