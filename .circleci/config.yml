@@ -40,8 +40,8 @@ jobs:
                 name: Installing Python 3.10
                 command: |
                   sudo apt install python3.10-dev python3-pip
-                  sudo unlink /usr/bin/python
-                  sudo ln -s /usr/bin/python3.10 /usr/bin/python
+                  sudo unlink /usr/bin/python3
+                  sudo ln -s /usr/bin/python3.10 /usr/bin/python3
                   pip3 install --upgrade pip tox six
                   python -V
       - when:
@@ -52,8 +52,8 @@ jobs:
                 name: Installing Python 3.11
                 command: |
                   sudo apt install python3.11-dev python3-pip
-                  sudo unlink /usr/bin/python
-                  sudo ln -s /usr/bin/python3.11 /usr/bin/python
+                  sudo unlink /usr/bin/python3
+                  sudo ln -s /usr/bin/python3.11 /usr/bin/python3
                   pip3 install --upgrade pip tox six
                   python -V
       - run:
