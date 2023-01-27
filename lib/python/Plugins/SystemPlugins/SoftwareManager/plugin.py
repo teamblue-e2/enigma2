@@ -1668,7 +1668,7 @@ class OPKGSource(Screen):
 		text = ""
 		if self.configfile:
 			try:
-				fp = open(configfile, 'r')
+				fp = open(self.configfile, 'r')
 				sources = fp.readlines()
 				if sources:
 					text = sources[0]
@@ -1719,11 +1719,10 @@ class OPKGSource(Screen):
 
 	def go(self):
 		text = self["text"].getText()
-		if text:
-			fp = open(self.configfile, 'w')
-			fp.write(text)
-			fp.write("\n")
-			fp.close()
+		if text and self.configfile:
+			with open(self.configfile, 'w') as fp:
+				fp.write(text)
+				fp.write("\n")
 		self.close()
 
 	def keyLeft(self):
@@ -1776,7 +1775,7 @@ class PacketManager(Screen, NumericalTextInput):
 		self.setTitle(_("Packet manager"))
 		self.skin_path = plugin_path
 
-		self.setUseableChars(u'1234567890abcdefghijklmnopqrstuvwxyz')
+		self.setUseableChars('1234567890abcdefghijklmnopqrstuvwxyz')
 
 		self["shortcuts"] = NumberActionMap(["ShortcutActions", "WizardActions", "NumberActions", "InputActions", "InputAsciiActions", "KeyboardInputActions"],
 		{
@@ -1830,7 +1829,7 @@ class PacketManager(Screen, NumericalTextInput):
 				self.setNextIdx(keyvalue[0])
 
 	def keyGotAscii(self):
-		keyvalue = six.unichr(getPrevAsciiCode()).encode("utf-8")
+		keyvalue = chr(getPrevAsciiCode()).encode("utf-8")
 		if len(keyvalue) == 1:
 			self.setNextIdx(keyvalue[0])
 
@@ -1965,8 +1964,6 @@ class PacketManager(Screen, NumericalTextInput):
 
 	def OpkgList_Finished(self, result, retval, extra_args=None):
 		if result:
-			result = six.ensure_str(result)
-			result = result.replace('\n ', ' - ')
 			self.packetlist = []
 			last_name = ""
 			for x in result.splitlines():
@@ -1995,7 +1992,6 @@ class PacketManager(Screen, NumericalTextInput):
 
 	def OpkgListInstalled_Finished(self, result, retval, extra_args=None):
 		if result:
-			result = six.ensure_str(result)
 			self.installed_packetlist = {}
 			for x in result.splitlines():
 				tokens = x.split(' - ')
@@ -2011,7 +2007,6 @@ class PacketManager(Screen, NumericalTextInput):
 
 	def OpkgListUpgradeable_Finished(self, result, retval, extra_args=None):
 		if result:
-			result = six.ensure_str(result)
 			self.upgradeable_packages = {}
 			for x in result.splitlines():
 				tokens = x.split(' - ')
@@ -2028,13 +2023,13 @@ class PacketManager(Screen, NumericalTextInput):
 			description = "No description available."
 		if state == 'installed':
 			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
-			return ((name, version, _(description), state, installedpng, divpng))
+			return((name, version, _(description), state, installedpng, divpng))
 		elif state == 'upgradeable':
 			upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgradeable.png"))
-			return ((name, version, _(description), state, upgradeablepng, divpng))
+			return((name, version, _(description), state, upgradeablepng, divpng))
 		else:
 			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
-			return ((name, version, _(description), state, installablepng, divpng))
+			return((name, version, _(description), state, installablepng, divpng))
 
 	def buildPacketList(self):
 		self.list = []
@@ -2096,11 +2091,11 @@ class OpkgInstaller(Screen):
 		if len(list):
 			p = list[0].rfind("/")
 			title = list[0][:p]
-			self.title = ("Install extensions")
+			self.title = ("%s %s %s") % (_("Install extensions"), _("from"), title)
 
-		for listindex in list(range(len(list))):
+		for listindex in range(len(list)):
 			self.list.addSelection(list[listindex][p + 1:], list[listindex], listindex, False)
-		sorted(self.list)
+		self.list.sort()
 
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Install"))
@@ -2135,7 +2130,7 @@ def filescan(**kwargs):
 	return \
 		Scanner(mimetypes=["application/x-debian-package"],
 			paths_to_scan=[
-					ScanPath(path="opk", with_subdirs=True),
+					ScanPath(path="ipk", with_subdirs=True),
 					ScanPath(path="", with_subdirs=False),
 				],
 			name="Opkg",
