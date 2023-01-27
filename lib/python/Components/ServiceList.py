@@ -292,7 +292,7 @@ class ServiceList(GUIComponent):
 		# TODO fill with life
 		print("Next char: ")
 		index = self.l.getNextBeginningWithChar(char)
-		indexup = self.l.getNextBeginningWithChar(chr(char).upper())
+		indexup = self.l.getNextBeginningWithChar(char.upper())
 		if indexup != 0:
 			if index > indexup or index == 0:
 				index = indexup
