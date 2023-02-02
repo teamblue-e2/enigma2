@@ -130,10 +130,6 @@ class Screen(dict):
 			if isinstance(val, GUIComponent) or isinstance(val, Source):
 				val.onShow()
 
-	def setAnimationMode(self, mode):
-		if self.instance:
-			self.instance.setAnimationMode(mode)
-
 	def hide(self):
 		if not self.shown or not self.instance:
 			return
@@ -202,10 +198,6 @@ class Screen(dict):
 
 	def setDesktop(self, desktop):
 		self.desktop = desktop
-
-	def setAnimationMode(self, mode):
-		if self.instance:
-			self.instance.setAnimationMode(mode)
 
 	def getRelatedScreen(self, name):
 		if name == "session":

@@ -210,8 +210,6 @@ def hasActiveSubservicesForCurrentChannel(service):
 class InfoBarDish:
 	def __init__(self):
 		self.dishDialog = self.session.instantiateDialog(Dish)
-		if SystemInfo["hasOSDAnimation"]:
-			self.dishDialog.setAnimationMode(0)
 
 
 class InfoBarLongKeyDetection:
@@ -230,8 +228,6 @@ class InfoBarLongKeyDetection:
 class InfoBarUnhandledKey:
 	def __init__(self):
 		self.unhandledKeyDialog = self.session.instantiateDialog(UnhandledKey)
-		if SystemInfo["hasOSDAnimation"]:
-			self.unhandledKeyDialog.setAnimationMode(0)
 		self.hideUnhandledKeySymbolTimer = eTimer()
 		self.hideUnhandledKeySymbolTimer.callback.append(self.unhandledKeyDialog.hide)
 		self.checkUnusedTimer = eTimer()
@@ -1446,8 +1442,6 @@ class InfoBarRdsDecoder:
 
 	def __init__(self):
 		self.rds_display = self.session.instantiateDialog(RdsInfoDisplay)
-		if SystemInfo["hasOSDAnimation"]:
-			self.rds_display.setAnimationMode(0)
 		self.session.instantiateSummaryDialog(self.rds_display)
 		self.rass_interactive = None
 
@@ -2549,8 +2543,6 @@ class InfoBarPiP:
 				self.ScreenSaverTimerStart()
 		else:
 			self.session.pip = self.session.instantiateDialog(PictureInPicture)
-			if SystemInfo["hasOSDAnimation"]:
-				self.session.pip.setAnimationMode(0)
 			self.session.pip.show()
 			newservice = self.lastPiPService or self.session.nav.getCurrentlyPlayingServiceOrGroup() or (slist and slist.servicelist.getCurrent())
 			if self.session.pip.playService(newservice):
@@ -3608,8 +3600,6 @@ class InfoBarSubtitleSupport:
 
 		if isStandardInfoBar(self):
 			self.subtitle_window = self.session.instantiateDialog(SubtitleDisplay)
-			if SystemInfo["hasOSDAnimation"]:
-				self.subtitle_window.setAnimationMode(0)
 		else:
 			from Screens.InfoBar import InfoBar
 			self.subtitle_window = InfoBar.instance.subtitle_window

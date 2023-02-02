@@ -64,12 +64,6 @@ struct gOpcode
 		shutdown,
 
 		setCompositing,
-
-#ifdef HAVE_OSDANIMATION
-		sendShow,
-		sendHide,
-#endif
-
 	} opcode;
 
 	gDC *dc;
@@ -150,14 +144,6 @@ struct gOpcode
 		} *setOffset;
 
 		gCompositingData *setCompositing;
-
-#ifdef HAVE_OSDANIMATION
-		struct psetShowHideInfo {
-			ePoint point;
-			eSize size;
-		} *setShowHideInfo;
-#endif
-
 	} parm;
 };
 
@@ -292,12 +278,6 @@ public:
 	void setCompositing(gCompositingData *comp);
 
 	void flush();
-
-#ifdef HAVE_OSDANIMATION
-	void sendShow(ePoint point, eSize size);
-	void sendHide(ePoint point, eSize size);
-#endif
-
 };
 
 class gDC: public iObject
