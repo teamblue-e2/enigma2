@@ -7,9 +7,5 @@ SUBDIRS = SoftwareManager PositionerSetup Satfinder \
 	VideoEnhancement WirelessLan NetworkWizard DeviceManager FastChannelChange \
 	SwapManager SoftcamStartup
 
-if HAVE_OSDANIMATION
-SUBDIRS += AnimationSetup
-endif
-
 install_PYTHON =	\
 	__init__.py

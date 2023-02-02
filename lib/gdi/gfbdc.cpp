@@ -7,10 +7,6 @@
 
 #include <time.h>
 
-#ifdef HAVE_OSDANIMATION
-#include <lib/base/cfile.h>
-#endif
-
 #if defined(CONFIG_HISILICON_FB)
 #include <lib/gdi/grc.h>
 
@@ -171,16 +167,6 @@ void gFBDC::exec(const gOpcode *o)
 		}
 #endif
 		break;
-
-#ifdef HAVE_OSDANIMATION
-	case gOpcode::sendShow:
-		CFile::writeIntHex("/proc/stb/fb/animation_mode", 0x01);
-		break;
-	case gOpcode::sendHide:
-		CFile::writeIntHex("/proc/stb/fb/animation_mode", 0x10);
-		break;
-#endif
-
 	default:
 		gDC::exec(o);
 		break;
@@ -292,59 +278,3 @@ void gFBDC::reloadSettings()
 }
 
 eAutoInitPtr<gFBDC> init_gFBDC(eAutoInitNumbers::graphic-1, "GFBDC");
-
-#ifdef HAVE_OSDANIMATION
-void setAnimation_current(int a) {
-	switch (a) {
-		case 1:
-			CFile::writeStr("/proc/stb/fb/animation_current", "simplefade");
-			break;
-		case 2:
-			CFile::writeStr("/proc/stb/fb/animation_current", "simplezoom");
-			break;
-		case 3:
-			CFile::writeStr("/proc/stb/fb/animation_current", "growdrop");
-			break;
-		case 4:
-			CFile::writeStr("/proc/stb/fb/animation_current", "growfromleft");
-			break;
-		case 5:
-			CFile::writeStr("/proc/stb/fb/animation_current", "extrudefromleft");
-			break;
-		case 6:
-			CFile::writeStr("/proc/stb/fb/animation_current", "popup");
-			break;
-		case 7:
-			CFile::writeStr("/proc/stb/fb/animation_current", "slidedrop");
-			break;
-		case 8:
-			CFile::writeStr("/proc/stb/fb/animation_current", "slidefromleft");
-			break;
-		case 9:
-			CFile::writeStr("/proc/stb/fb/animation_current", "slidelefttoright");
-			break;
-		case 10:
-			CFile::writeStr("/proc/stb/fb/animation_current", "sliderighttoleft");
-			break;
-		case 11:
-			CFile::writeStr("/proc/stb/fb/animation_current", "slidetoptobottom");
-			break;
-		case 12:
-			CFile::writeStr("/proc/stb/fb/animation_current", "zoomfromleft");
-			break;
-		case 13:
-			CFile::writeStr("/proc/stb/fb/animation_current", "zoomfromright");
-			break;
-		case 14:
-			CFile::writeStr("/proc/stb/fb/animation_current", "stripes");
-			break;
-		default:
-			CFile::writeStr("/proc/stb/fb/animation_current", "disable");
-			break;
-	}
-}
-
-void setAnimation_speed(int speed) {
-	CFile::writeInt("/proc/stb/fb/animation_speed", speed);
-}
-#endif

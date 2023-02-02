@@ -36,9 +36,5 @@ public:
 	int islocked() const { return fb->islocked(); }
 };
 #endif
-#ifdef HAVE_OSDANIMATION
-void setAnimation_current(int a);
-void setAnimation_speed(int speed);
-#endif
 
 #endif

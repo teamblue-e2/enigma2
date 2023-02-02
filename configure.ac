@@ -106,16 +106,6 @@ if test `echo "$BOXTYPE" | cut -b 1-2` == "dm"; then
 	AC_DEFINE(KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE, 1,[define when rc sends a KEY_PLAY event for its KEY_PLAYPAUSE key])
 fi
 
-AC_ARG_WITH(osdanimation,
-	AC_HELP_STRING([--with-osdanimation], [use osd animation, yes or no]),
-	[[withosdanimation=$withval]],
-	[[withosdanimation=no]]
-)
-if test x"$withosdanimation" != xno ; then
-	AC_DEFINE(HAVE_OSDANIMATION, 1,[Define if driver supports animation of osd])
-fi
-AM_CONDITIONAL(HAVE_OSDANIMATION, test x"$withosdanimation" != xno)
-
 AC_ARG_WITH(textlcd,
 	AC_HELP_STRING([--with-textlcd], [use ascii based lcd, yes or no]),
 	[[withtextlcd=$withval]],
@@ -468,7 +458,6 @@ lib/python/Plugins/Extensions/SocketMMI/meta/Makefile
 lib/python/Plugins/Extensions/SocketMMI/src/Makefile
 lib/python/Plugins/PLi/Makefile
 lib/python/Plugins/SystemPlugins/Makefile
-lib/python/Plugins/SystemPlugins/AnimationSetup/Makefile
 lib/python/Plugins/SystemPlugins/CableScan/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/Makefile
 lib/python/Plugins/SystemPlugins/CommonInterfaceAssignment/meta/Makefile
