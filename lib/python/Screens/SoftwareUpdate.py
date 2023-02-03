@@ -78,18 +78,18 @@ class UpdatePlugin(Screen, ProtectedScreen):
 		message = ""
 		picon = None
 		default = True
-		url = "http://images.teamblue.tech/status/%s-%s/" % (getImageVersion(), getImageType())
-		# print "[SoftwareUpdate] url status: ", url
+		url = "https://images.teamblue.tech/status/%s-%s/" % (getImageVersion(), getImageType())
+		#print("[SoftwareUpdate] url status: ", url)
 		try:
 			# TODO: Use Twisted's URL fetcher, urlopen is evil. And it can
 			# run in parallel to the package update.
 			try:
-				status = urlopen(url, timeout=5).read().split('!', 1)
+				status = urlopen(url, timeout=5).read().decode('utf-8').split('!', 1)
 				print(status)
 			except:
 				# bypass the certificate check
 				from ssl import _create_unverified_context
-				status = urlopen(url, timeout=5, context=_create_unverified_context()).read().split('!', 1)
+				status = urlopen(url, timeout=5, context=_create_unverified_context()).read().decode('utf-8').split('!', 1)
 				print(status)
 			# prefer getMachineBuild
 			if getMachineBuild() in status[0].split(','):
@@ -117,7 +117,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 is not anymore working as expected. Therefore it is recommended to create backups. If something went wrong you can easily and quickly restore. \
 If you discover 'bugs' please keep them reported on www.teamblue.tech.\n\nDo you understand this?")
 			_list = not justShow and [(_("no"), False), (_("yes"), True), (_("yes") + " " + _("and never show this message again"), "never")] or []
-			self.session.openWithCallback(boundFunction(self.disclaimerCallback, justShow), MessageBox, message, list=list, title=_("Disclaimer"))
+			self.session.openWithCallback(boundFunction(self.disclaimerCallback, justShow), MessageBox, message, list=_list, title=_("Disclaimer"))
 		else:
 			self.startActualUpdate(True)
 
