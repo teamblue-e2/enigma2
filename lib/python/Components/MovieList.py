@@ -1,4 +1,3 @@
-from __future__ import division
 from Components.GUIComponent import GUIComponent
 from Tools.FuzzyDate import FuzzyTime
 from ServiceReference import ServiceReference
@@ -195,7 +194,7 @@ class MovieList(GUIComponent):
 
 		self.onSelectionChanged = []
 		self.iconPart = []
-		for part in list(range(5)):
+		for part in range(5):
 			self.iconPart.append(LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/part_%d_4.png" % part)))
 		self.iconMovieRec = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/part_new.png"))
 		self.iconMoviePlay = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/movie_play.png"))
@@ -273,22 +272,22 @@ class MovieList(GUIComponent):
 			self.fontName = value
 
 		def fontSizesOriginal(value):
-			self.fontSizesOriginal = list(map(int, value.split(",")))
+			self.fontSizesOriginal = list(map(parseScale, value.split(",")))
 			if len(self.fontSizesOriginal) != 3:
 				warningWrongSkinParameter(attrib)
 
 		def fontSizesCompact(value):
-			self.fontSizesCompact = list(map(int, value.split(",")))
+			self.fontSizesCompact = list(map(parseScale, value.split(",")))
 			if len(self.fontSizesCompact) != 2:
 				warningWrongSkinParameter(attrib)
 
 		def fontSizesMinimal(value):
-			self.fontSizesMinimal = list(map(int, value.split(",")))
+			self.fontSizesMinimal = list(map(parseScale, value.split(",")))
 			if len(self.fontSizesMinimal) != 2:
 				warningWrongSkinParameter(attrib)
 
 		def itemHeights(value):
-			self.itemHeights = list(map(int, value.split(",")))
+			self.itemHeights = list(map(parseScale, value.split(",")))
 			if len(self.itemHeights) != 3:
 				warningWrongSkinParameter(attrib)
 
@@ -326,12 +325,12 @@ class MovieList(GUIComponent):
 			self.spaceRight = parseScale(value)
 
 		def columnsOriginal(value):
-			self.columnsOriginal = list(map(int, value.split(",")))
+			self.columnsOriginal = list(map(parseScale, value.split(",")))
 			if len(self.columnsOriginal) != 2:
 				warningWrongSkinParameter(attrib)
 
 		def columnsCompactDescription(value):
-			self.columnsCompactDescription = list(map(int, value.split(",")))
+			self.columnsCompactDescription = list(map(parseScale, value.split(",")))
 			if len(self.columnsCompactDescription) != 3:
 				warningWrongSkinParameter(attrib)
 
@@ -351,15 +350,15 @@ class MovieList(GUIComponent):
 
 	def redrawList(self):
 		if self.list_type == MovieList.LISTTYPE_ORIGINAL:
-			for i in list(range(3)):
+			for i in range(3):
 				self.l.setFont(i, gFont(self.fontName, self.fontSizesOriginal[i]))
 			self.itemHeight = self.itemHeights[0]
 		elif self.list_type == MovieList.LISTTYPE_COMPACT_DESCRIPTION or self.list_type == MovieList.LISTTYPE_COMPACT:
-			for i in list(range(2)):
+			for i in range(2):
 				self.l.setFont(i, gFont(self.fontName, self.fontSizesCompact[i]))
 			self.itemHeight = self.itemHeights[1]
 		else:
-			for i in list(range(2)):
+			for i in range(2):
 				self.l.setFont(i, gFont(self.fontName, self.fontSizesMinimal[i]))
 			self.itemHeight = self.itemHeights[2]
 		self.l.setItemHeight(self.itemHeight)
@@ -745,7 +744,7 @@ class MovieList(GUIComponent):
 
 		# reverse the dictionary to see which unique movie each tag now references
 		rautotags = {}
-		for tag, movies in list(autotags.items()):
+		for tag, movies in autotags.items():
 			if (len(movies) > 1):
 				movies = tuple(movies) # a tuple can be hashed, but a list not
 				item = rautotags.get(movies, [])
@@ -753,7 +752,7 @@ class MovieList(GUIComponent):
 					rautotags[movies] = item
 				item.append(tag)
 		self.tags = {}
-		for movies, tags in list(rautotags.items()):
+		for movies, tags in rautotags.items():
 			movie = movies[0]
 			# format the tag lists so that they are in 'original' order
 			tags.sort(key=movie.find)
@@ -810,13 +809,13 @@ class MovieList(GUIComponent):
 	def buildBeginTimeSortKey(self, x):
 		ref = x[0]
 		if ref.flags & eServiceReference.mustDescent:
-			return (0, x[1] and x[1].getName(ref).lower() or "")
-		return (1, -x[2])
+			return (0, "", -x[2])
+		return (1, "", -x[2])
 
 	def buildGroupwiseSortkey(self, x):
 		# Sort recordings by date, sort MP3 and stuff by name
 		ref = x[0]
-		if ref.type >= eServiceReference.idUser:
+		if ref.type >= eServiceReference.idUser or ref.flags & eServiceReference.mustDescent:
 			return self.buildAlphaNumericSortKey(x)
 		else:
 			return self.buildBeginTimeSortKey(x)

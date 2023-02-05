@@ -26,7 +26,7 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.InputBox import PinInput
 import Screens.InfoBar
 
-from Tools import NumericalTextInput
+from Tools.NumericalTextInput import NumericalTextInput, MAP_SEARCH_UPCASE
 from Tools.Directories import resolveFilename, SCOPE_HDD
 from Tools.BoundFunction import boundFunction
 import Tools.Trashcan
@@ -36,8 +36,7 @@ import RecordTimer
 from enigma import eServiceReference, eServiceCenter, eTimer, eSize, iPlayableService, iServiceInformation, getPrevAsciiCode, eRCInput
 import os
 import time
-from six.moves import cPickle as pickle
-import six
+import pickle
 
 config.movielist = ConfigSubsection()
 config.movielist.moviesort = ConfigInteger(default=MovieList.SORT_GROUPWISE)
@@ -83,8 +82,8 @@ except Exception as e:
 
 
 def defaultMoviePath():
-	from Tools import Directories
-	return Directories.defaultRecordingLocation(config.usage.default_path.value)
+	from Tools.Directories import defaultRecordingLocation
+	return defaultRecordingLocation(config.usage.default_path.value)
 
 
 def setPreferredTagEditor(te):
@@ -191,12 +190,12 @@ def moveServiceFiles(serviceref, dest, name=None, allowCopy=True):
 		except OSError as e:
 			if e.errno == 18 and allowCopy:
 				print("[MovieSelection] cannot rename across devices, trying slow move")
-				from Screens import CopyFiles
+				from Screens.CopyFiles import moveFiles
 				# start with the smaller files, do the big one later.
 				moveList.reverse()
 				if name is None:
 					name = os.path.split(moveList[-1][0])[1]
-				CopyFiles.moveFiles(moveList, name)
+				moveFiles(moveList, name)
 				print("[MovieSelection] Moving in background...")
 			else:
 				raise
@@ -230,12 +229,12 @@ def copyServiceFiles(serviceref, dest, name=None):
 			except:
 				print("[MovieSelection] Failed to undo copy:", item)
 	#Link failed, really copy.
-	from Screens import CopyFiles
+	from Screens.CopyFiles import copyFiles
 	# start with the smaller files, do the big one later.
 	moveList.reverse()
 	if name is None:
 		name = os.path.split(moveList[-1][0])[1]
-	CopyFiles.copyFiles(moveList, name)
+	copyFiles(moveList, name)
 	print("[MovieSelection] Copying in background...")
 
 # Appends possible destinations to the bookmarks object. Appends tuples
@@ -530,7 +529,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.feedbackTimer = None
 		self.pathselectEnabled = False
 
-		self.numericalTextInput = NumericalTextInput.NumericalTextInput(mapping=NumericalTextInput.MAP_SEARCH_UPCASE)
+		self.numericalTextInput = NumericalTextInput(mapping=MAP_SEARCH_UPCASE)
 		self["chosenletter"] = Label("")
 		self["chosenletter"].visible = False
 
@@ -592,25 +591,25 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				"9": self.keyNumberGlobal
 			})
 
-		self["playbackActions"] = HelpableActionMap(self, "MoviePlayerActions",
+		self["playbackActions"] = HelpableActionMap(self, ["MoviePlayerActions"],
 			{
 				"moveNext": (self.playNext, _("Play next")),
 				"movePrev": (self.playPrev, _("Play previous")),
 				"channelUp": (self.moveToFirstOrFirstFile, _("Go to first movie or top of list")),
 				"channelDown": (self.moveToLastOrFirstFile, _("Go to first movie or last item")),
 			})
-		self["MovieSelectionActions"] = HelpableActionMap(self, "MovieSelectionActions",
+		self["MovieSelectionActions"] = HelpableActionMap(self, ["MovieSelectionActions"],
 			{
 				"contextMenu": (self.doContext, _("Menu")),
 				"showEventInfo": (self.showEventInformation, _("Show event details")),
 			})
 
-		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
+		self["OkCancelActions"] = HelpableActionMap(self, ["OkCancelActions"],
 			{
 				"cancel": (self.abort, _("Exit movie list")),
 				"ok": (self.itemSelected, _("Select movie")),
 			})
-		self["DirectionActions"] = HelpableActionMap(self, "DirectionActions",
+		self["DirectionActions"] = HelpableActionMap(self, ["DirectionActions"],
 			{
 				"up": (self.keyUp, _("Go up the list")),
 				"down": (self.keyDown, _("Go down the list"))
@@ -619,7 +618,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		def getinitUserDefinedActionsDescription(key):
 			return _(userDefinedActions.get(eval("config.movielist.%s.value" % key), _("Not defined")))
 
-		self["InfobarActions"] = HelpableActionMap(self, "InfobarActions",
+		self["InfobarActions"] = HelpableActionMap(self, ["InfobarActions"],
 			{
 				"showMovies": (self.doPathSelect, _("Select the movie path")),
 				"showRadio": (self.btn_radio, boundFunction(getinitUserDefinedActionsDescription, "btn_radio")),
@@ -627,14 +626,14 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				"toggleTvRadio": (self.btn_tv, boundFunction(getinitUserDefinedActionsDescription, "btn_tv")),
 				"showText": (self.btn_text, boundFunction(getinitUserDefinedActionsDescription, "btn_text")),
 			})
-		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
+		self["ColorActions"] = HelpableActionMap(self, ["ColorActions"],
 			{
 				"red": (self.btn_red, boundFunction(getinitUserDefinedActionsDescription, "btn_red")),
 				"green": (self.btn_green, boundFunction(getinitUserDefinedActionsDescription, "btn_green")),
 				"yellow": (self.btn_yellow, boundFunction(getinitUserDefinedActionsDescription, "btn_yellow")),
 				"blue": (self.btn_blue, boundFunction(getinitUserDefinedActionsDescription, "btn_blue")),
 			})
-		self["FunctionKeyActions"] = HelpableActionMap(self, "FunctionKeyActions",
+		self["FunctionKeyActions"] = HelpableActionMap(self, ["FunctionKeyActions"],
 			{
 				"f1": (self.btn_F1, boundFunction(getinitUserDefinedActionsDescription, "btn_F1")),
 				"f2": (self.btn_F2, boundFunction(getinitUserDefinedActionsDescription, "btn_F2")),
@@ -648,7 +647,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		ssfwd = lambda: self.seekRelative(1, config.seek.selfdefined_79.value * 90000)
 		sback = lambda: self.seekRelative(-1, config.seek.selfdefined_46.value * 90000)
 		ssback = lambda: self.seekRelative(-1, config.seek.selfdefined_79.value * 90000)
-		self["SeekActions"] = HelpableActionMap(self, "InfobarSeekActions",
+		self["SeekActions"] = HelpableActionMap(self, ["InfobarSeekActions"],
 			{
 				"playpauseService": (self.preview, _("Preview")),
 				"unPauseService": (self.preview, _("Preview")),
@@ -919,12 +918,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.reloadList()
 
 	def can_delete(self, item):
-		try:
-			if not item:
-				return False
-			return canDelete(item) or isTrashFolder(item[0])
-		except:
+		if not item:
 			return False
+		return canDelete(item) or isTrashFolder(item[0])
 
 	def can_move(self, item):
 		return canMove(item)
@@ -1492,7 +1488,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 
 	def showTagsMenu(self, tagele):
 		self.selected_tags_ele = tagele
-		lst = [(_("show all tags"), None)] + [(tag, self.getTagDescription(tag)) for tag in self.tags]
+		lst = [(_("show all tags"), None)] + [(tag, self.getTagDescription(tag)) for tag in sorted(self.tags)]
 		self.session.openWithCallback(self.tagChosen, ChoiceBox, title=_("Please select tag to filter..."), list=lst)
 
 	def showTagWarning(self):
