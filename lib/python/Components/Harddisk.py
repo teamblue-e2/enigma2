@@ -465,7 +465,7 @@ class Harddisk:
 		task.check = self.mountDevice
 		task.weighting = 1
 
-		task = Task.PythonTask(job, _("Create directory") + ": movie")
+		task = Components.Task.PythonTask(job, _("Create directory") + ": movie")
 		task.work = self.createMovieDir
 		task.weighting = 1
 
