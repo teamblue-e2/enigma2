@@ -40,7 +40,7 @@ from ServiceReference import ServiceReference
 from Tools.BoundFunction import boundFunction
 import Tools.Notifications
 from Tools.Alternatives import GetWithAlternative
-from Tools.Directories import fileExists, resolveFilename, sanitizeFilename, SCOPE_PLUGINS
+from Tools.Directories import resolveFilename, sanitizeFilename, SCOPE_PLUGINS, isPluginInstalled
 from Plugins.Plugin import PluginDescriptor
 from Components.PluginComponent import plugins
 from Components.SystemInfo import SystemInfo
@@ -187,7 +187,7 @@ class ChannelContextMenu(Screen):
 								append_when_current_valid(current, menu, (_("Remove from parental protection"), boundFunction(self.removeParentalProtection, current)), level=0)
 						if self.parentalControl.blacklist and config.ParentalControl.hideBlacklist.value and not self.parentalControl.sessionPinCached and config.ParentalControl.storeservicepin.value != "never":
 							append_when_current_valid(current, menu, (_("Unhide parental control services"), self.unhideParentalServices), level=0, key="1")
-					if SystemInfo["3DMode"] and fileExists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/OSD3DSetup/plugin.pyo")):
+					if SystemInfo["3DMode"] and isPluginInstalled("OSD3DSetup"):
 						if eDVBDB.getInstance().getFlag(eServiceReference(current.toString())) & FLAG_IS_DEDICATED_3D:
 							append_when_current_valid(current, menu, (_("Unmark service as dedicated 3D service"), self.removeDedicated3DFlag), level=0)
 						else:

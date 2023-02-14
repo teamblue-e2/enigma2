@@ -16,6 +16,7 @@ import skin
 LOCAL_EXTENSIONS = {
 	"py": "py",
 	"pyo": "py",
+	"pyc": "py",
 	"sh": "sh",
 	"html": "html",
 	"xml": "xml",
