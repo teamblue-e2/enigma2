@@ -368,7 +368,7 @@ class key_actions(stat_info):
 		if self.commando.endswith('.sh'):
 			stxt = _('shell')
 		askList = [(_("Cancel"), "NO"), (_("View or edit this %s script") % stxt, "VIEW"), (_("Run script"), "YES"), (_("Run script in background"), "YES_BG")]
-		if self.commando.endswith('.pyo'):
+		if self.commando.endswith('.pyo') or self.commando.endswith('.pyc'):
 			askList.remove((_("View or edit this %s script") % stxt, "VIEW"))
 		if self.parameter:
 			askList.append((_("Run script with optional parameter"), "PAR"))
@@ -696,7 +696,7 @@ class key_actions(stat_info):
 					self.SOURCELIST.getCurrentDirectory(),
 					filename
 				)
-		elif filetype in (".sh", ".py", ".pyo"):
+		elif filetype in (".sh", ".py", ".pyo", ".pyc"):
 			self.run_script(self.SOURCELIST, self.TARGETLIST)
 		elif filetype == ".mvi":
 			self.file_name = longname

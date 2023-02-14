@@ -39,7 +39,7 @@ from Screens.UnhandledKey import UnhandledKey
 from ServiceReference import ServiceReference, isPlayableForCur
 
 from Tools import Notifications, ASCIItranslit
-from Tools.Directories import fileExists, getRecordingFilename, moveFiles
+from Tools.Directories import fileExists, getRecordingFilename, moveFiles, isPluginInstalled
 
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, getDesktop, eDVBDB
 
@@ -812,7 +812,7 @@ class InfoBarChannelSelection:
 			})
 
 	def openHistoryBrowser(self):
-		if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/ZapHistoryBrowser/plugin.pyo"):
+		if isPluginInstalled("ZapHistoryBrowser"):
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
 				if plugin.name == _("Zap-Historie Browser") or plugin.name == _("Zap-History Browser"):
 					self.runPlugin(plugin)
@@ -821,7 +821,7 @@ class InfoBarChannelSelection:
 			self.session.open(MessageBox, _("The Zap-History Browser plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def openDeviceManager(self):
-		if fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/DeviceManager/plugin.pyo"):
+		if isPluginInstalled("DeviceManager"):
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
 				if plugin.name == _("Device Manager - Fast Mounted Remove"):
 					self.runPlugin(plugin)
@@ -830,7 +830,7 @@ class InfoBarChannelSelection:
 			self.session.open(MessageBox, _("The Device Manager plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def openAroraPlugins(self):
-		if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/WebBrowser/plugin.pyo"):
+		if isPluginInstalled("WebBrowser"):
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EVENTINFO]):
 				if plugin.name == _("Web Browser"):
 					self.runPlugin(plugin)
