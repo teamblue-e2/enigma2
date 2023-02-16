@@ -1119,7 +1119,7 @@ class RecordTimer(timer.Timer):
 
 		_file = open(self.Filename + ".writing", "w")
 		for x in _list:
-			_file.write(x)
+			_file.write(x.encode('utf-8', 'ignore').decode('utf-8'))
 		_file.flush()
 
 		os.fsync(_file.fileno())
