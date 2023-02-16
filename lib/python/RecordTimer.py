@@ -17,7 +17,7 @@ from Tools.Alternatives import ResolveCiAlternative
 from Tools.CIHelper import cihelper
 
 import timer
-import xml.etree.ElementTree
+import xml.etree.cElementTree
 import NavigationInstance
 from ServiceReference import ServiceReference, isPlayableForCur
 
@@ -985,7 +985,7 @@ class RecordTimer(timer.Timer):
 
 	def loadTimer(self):
 		try:
-			doc = xml.etree.ElementTree.parse(self.Filename)
+			doc = xml.etree.cElementTree.parse(self.Filename)
 		except SyntaxError:
 			from Tools.Notifications import AddPopup
 			from Screens.MessageBox import MessageBox
@@ -1019,7 +1019,7 @@ class RecordTimer(timer.Timer):
 			AddPopup(_("Timer overlap in timers.xml detected!\nPlease recheck it!") + timer_text, type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
 
 	def saveTimer(self):
-		#root_element = xml.etree.ElementTree.Element('timers')
+		#root_element = xml.etree.cElementTree.Element('timers')
 		#root_element.text = "\n"
 
 		#for timer in self.timer_list + self.processed_timers:
@@ -1027,7 +1027,7 @@ class RecordTimer(timer.Timer):
 			# skip them
 			#if timer.dontSave:
 				#continue
-			#t = xml.etree.ElementTree.SubElement(root_element, 'timers')
+			#t = xml.etree.cElementTree.SubElement(root_element, 'timers')
 			#t.set("begin", str(int(timer.begin)))
 			#t.set("end", str(int(timer.end)))
 			#t.set("serviceref", str(timer.service_ref))
@@ -1049,13 +1049,13 @@ class RecordTimer(timer.Timer):
 			#t.tail = "\n"
 
 			#for time, code, msg in timer.log_entries:
-				#l = xml.etree.ElementTree.SubElement(t, 'log')
+				#l = xml.etree.cElementTree.SubElement(t, 'log')
 				#l.set("time", str(time))
 				#l.set("code", str(code))
 				#l.text = str(msg)
 				#l.tail = "\n"
 
-		#doc = xml.etree.ElementTree.ElementTree(root_element)
+		#doc = xml.etree.cElementTree.ElementTree(root_element)
 		#doc.write(self.Filename)
 
 		_list = []
@@ -1117,9 +1117,9 @@ class RecordTimer(timer.Timer):
 
 		_list.append('</timers>\n')
 
-		_file = open(self.Filename + ".writing", "w")
+		_file = open(self.Filename + ".writing", "w", encoding='utf-8')
 		for x in _list:
-			_file.write(x.encode('utf-8', 'ignore').decode('utf-8'))
+			_file.write(x)
 		_file.flush()
 
 		os.fsync(_file.fileno())
