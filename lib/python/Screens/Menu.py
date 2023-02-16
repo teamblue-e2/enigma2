@@ -13,7 +13,6 @@ from Tools.BoundFunction import boundFunction
 from Plugins.Plugin import PluginDescriptor
 from Tools.Directories import resolveFilename, SCOPE_SKIN
 from enigma import eTimer
-import six
 
 import xml.etree.ElementTree
 
@@ -92,7 +91,7 @@ class Menu(Screen, ProtectedScreen):
 					return
 			elif not SystemInfo.get(requires, False):
 				return
-		MenuTitle = _(six.ensure_str(node.get("text", "??")))
+		MenuTitle = _(node.get("text", "??"))
 		entryID = node.get("entryID", "undefined")
 		weight = node.get("weight", 50)
 		x = node.get("flushConfigOnClose")
@@ -126,7 +125,7 @@ class Menu(Screen, ProtectedScreen):
 		conditional = node.get("conditional")
 		if conditional and not eval(conditional):
 			return
-		item_text = six.ensure_str(node.get("text", ""))
+		item_text = node.get("text", "")
 		entryID = node.get("entryID", "undefined")
 		weight = node.get("weight", 50)
 		for x in node:
@@ -171,6 +170,7 @@ class Menu(Screen, ProtectedScreen):
 	def __init__(self, session, parent):
 		self.parentmenu = parent
 		Screen.__init__(self, session)
+		self.menulength = 0
 		self["key_blue"] = StaticText("")
 		self["menu"] = List([])
 		self["menu"].enableWrapAround = True
@@ -203,8 +203,8 @@ class Menu(Screen, ProtectedScreen):
 				"displayHelp": self.showHelp,
 				"blue": self.keyBlue,
 			})
-		title = six.ensure_str(parent.get("title", "")) or None
-		title = title and _(title) or _(six.ensure_str(parent.get("text", "")))
+		title = parent.get("title", "") or None
+		title = title and _(title) or _(parent.get("text", ""))
 		title = self.__class__.__name__ == "MenuSort" and _("Menusort (%s)") % title or title
 		self["title"] = StaticText(title)
 		self.setTitle(title)
@@ -296,6 +296,10 @@ class Menu(Screen, ProtectedScreen):
 
 		if config.usage.menu_show_numbers.value in ("menu&plugins", "menu") or showNumericHelp:
 			self.list = [(str(x[0] + 1) + " " + x[1][0], x[1][1], x[1][2]) for x in enumerate(self.list)]
+
+		if self.menulength != len(self.list): # updateList must only be used on a list of the same length. If length is different we call setList.
+			self["menu"].setList(self.list)
+			self.menulength = len(self.list)
 
 		self["menu"].updateList(self.list)
 
