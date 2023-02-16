@@ -78,7 +78,6 @@ class FallbackTimerList():
 			root = fromstring(data)
 		except Exception as e:
 			self.fallback(e)
-		]
 		print("[FallbackTimer] read %s timers from fallback tuner" % len(self.list))
 		self.parent.session.nav.RecordTimer.setFallbackTimerList(self.list)
 
