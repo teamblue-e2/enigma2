@@ -68,9 +68,7 @@ class PluginDescriptor:
 	# fnc must return the custom instance or None to skip it
 	WHERE_RECORDTIMER = 16
 
-	def __init__(self, name="Plugin", where=None, description="", icon=None, fnc=None, wakeupfnc=None, needsRestart=None, internal=False, weight=0):
-		if not where:
-			where = []
+	def __init__(self, name="Plugin", where=[], description="", icon=None, fnc=None, wakeupfnc=None, needsRestart=None, internal=False, weight=0):
 		self.name = name
 		self.internal = internal
 		self.needsRestart = needsRestart
@@ -97,6 +95,14 @@ class PluginDescriptor:
 	def __call__(self, *args, **kwargs):
 		if callable(self.fnc):
 			return self.fnc(*args, **kwargs)
+		else:
+			print("[Plugin] Error: PluginDescriptor called without a function!")
+			return []
+
+	def __getattribute__(self, name):
+		if name == '__call__':
+			return self.fnc is not None and self.fnc or {}
+		return object.__getattribute__(self, name)
 
 	def updateIcon(self, path):
 		self.path = path
