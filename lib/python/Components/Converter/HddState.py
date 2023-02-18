@@ -82,7 +82,7 @@ class HddState(Converter):
 				if self.allVisible:
 					if self.notDiskLetterName:
 						string = "\c%08x" % self.colors[0]
-						string += _("standby ")
+						string += _("standby")
 				self.isActive = False
 				idle = self.standby_time
 			else:
