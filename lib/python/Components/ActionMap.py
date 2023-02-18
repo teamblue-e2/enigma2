@@ -1,5 +1,4 @@
 from enigma import eActionMap
-import six
 
 from Tools.KeyBindings import queryKeyBinding
 
@@ -14,13 +13,13 @@ class ActionMap:
 		self.exec_active = False
 		self.enabled = True
 		unknown = list(self.actions.keys())
-		for action in unknown:
+		for action in unknown[:]:
 			for context in self.contexts:
 				if queryKeyBinding(context, action):
 					unknown.remove(action)
 					break
 		if unknown:
-			print("[ActionMap] Keymap(s) '%s' -> Undefined action(s) '%s'." % (", ".join(contexts), ", ".join(unknown)))
+			print("[ActionMap] Keymap(s) '%s' -> Undefined action(s) '%s'." % (", ".join(self.contexts), ", ".join(unknown)))
 
 	def setEnabled(self, enabled):
 		self.enabled = enabled
@@ -54,7 +53,7 @@ class ActionMap:
 
 	def action(self, context, action):
 		if action in self.actions:
-			print("[ActionMap] Keymap '%s' -> Action = '%s'" % (context, action))
+			print("[ActionMap] Keymap '%s' -> Action = '%s'." % (context, action))
 			res = self.actions[action]()
 			if res is not None:
 				return res
@@ -98,14 +97,15 @@ class HelpableActionMap(ActionMap):
 					print("[HelpActionMap] removed duplicity: %s %s" % (context[1], record))
 					return True
 			return False
-		if not isinstance(contexts, list):
+
+		if isinstance(contexts, str):
 			contexts = [contexts]
 		actions = actions or {}
 		self.description = description
 		adict = {}
 		for context in contexts:
 			alist = []
-			for (action, funchelp) in six.iteritems(actions):
+			for (action, funchelp) in actions.items():
 				# Check if this is a tuple.
 				if isinstance(funchelp, tuple):
 					if queryKeyBinding(context, action):
