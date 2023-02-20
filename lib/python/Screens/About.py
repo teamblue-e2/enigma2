@@ -18,7 +18,6 @@ from Components.SystemInfo import SystemInfo
 from Components.Label import Label
 from Components.ProgressBar import ProgressBar
 from os import popen
-from sys import version_info
 from Tools.StbHardware import getFPVersion
 
 from boxbranding import getBoxType, getMachineBuild, getImageVersion, getImageType
@@ -203,10 +202,7 @@ class About(Screen):
 		AboutText += _("Python version: ") + about.getPythonVersionString() + "\n"
 		AboutText += _("Enigma2 debug level:\t%d") % eGetEnigmaDebugLvl() + "\n"
 
-		if six.PY2:
-			twisted = popen('opkg list-installed  |grep -i python-twisted-core').read().strip().split(' - ')[1]
-		else:
-			twisted = popen('opkg list-installed  |grep -i python3-twisted-core').read().strip().split(' - ')[1]
+		twisted = popen('opkg list-installed  |grep -i python3-twisted-core').read().strip().split(' - ')[1]
 		AboutText += "Python-Twisted: " + str(twisted) + "\n"
 
 		AboutText += "\n"
