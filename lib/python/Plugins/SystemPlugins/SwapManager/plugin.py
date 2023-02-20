@@ -160,8 +160,7 @@ class SwapManager(Screen):
 		self.swap_place = ''
 		self.swap_active = False
 		self.device = False
-		if sys.version_info >= (3, 0):
-			result = result.decode('utf-8')
+		result = result.decode('utf-8')
 		if result.find('sd') > 0:
 			self['key_green'].setText("")
 			for line in result.split('\n'):

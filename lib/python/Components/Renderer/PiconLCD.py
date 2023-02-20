@@ -8,7 +8,6 @@ from Tools.Directories import pathExists, SCOPE_ACTIVE_SKIN, resolveFilename
 from Components.Harddisk import harddiskmanager
 from ServiceReference import ServiceReference
 from boxbranding import getBoxType
-import six
 
 searchPaths = []
 lastLcdPiconPath = None
@@ -101,10 +100,7 @@ def getLcdPiconName(serviceName):
 		pngname = findLcdPicon('_'.join(fields))
 	if not pngname: # picon by channel name
 		name = ServiceReference(serviceName).getServiceName()
-		if six.PY3:
-			name = unicodedata.normalize('NFKD', name)
-		else:
-			name = unicodedata.normalize('NFKD', six.text_type(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
+		name = unicodedata.normalize('NFKD', name)
 		name = re.sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
 		if name:
 			pngname = findLcdPicon(name)

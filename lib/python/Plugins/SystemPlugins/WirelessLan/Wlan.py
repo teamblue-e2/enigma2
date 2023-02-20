@@ -3,9 +3,6 @@ import sys
 import re
 import six
 
-if sys.version_info[0] < 3:
-	from string import maketrans, strip
-
 from enigma import eConsoleAppContainer
 
 from Components.config import config, ConfigYesNo, NoSave, ConfigSubsection, ConfigText, ConfigSelection, ConfigPassword
@@ -46,10 +43,7 @@ class Wlan:
 				b += ' '
 			else:
 				b += chr(i)
-		if sys.version_info[0] >= 3:
-			self.asciitrans = str.maketrans(a, b)
-		else:
-			self.asciitrans = maketrans(a, b)
+		self.asciitrans = str.maketrans(a, b)
 
 	def asciify(self, str):
 		return str.translate(self.asciitrans)
