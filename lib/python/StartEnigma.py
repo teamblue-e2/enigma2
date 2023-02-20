@@ -69,7 +69,6 @@ config.misc.prev_wakeup_time = ConfigInteger(default=0)
 config.misc.prev_wakeup_time_type = ConfigInteger(default=0)
 # 0 = RecordTimer, 1 = ZapTimer, 2 = Plugins, 3 = WakeupTimer
 config.misc.epgcache_filename = ConfigText(default='/etc/enigma2/epg.dat', fixed_size=False)
-config.misc.isNextRecordTimerAfterEventActionAuto = ConfigYesNo(default=False)
 config.misc.SyncTimeUsing = ConfigSelection(default="0", choices=[("0", "Transponder Time"), ("1", _("NTP"))])
 config.misc.NTPserver = ConfigText(default='pool.ntp.org', fixed_size=False)
 config.misc.useNTPminutes = ConfigSelection(default="30", choices=[("30", "30" + " " + _("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
@@ -93,11 +92,11 @@ def setEPGCachePath(configElement):
 
 def useSyncUsingChanged(configelement):
 	if config.misc.SyncTimeUsing.value == "0":
-		print("[mytest] Time by Transponder")
+		print("[StartEnigma] Time by Transponder")
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(True)
 		enigma.eEPGCache.getInstance().timeUpdated()
 	else:
-		print("[mytest] Time by NTP")
+		print("[StartEnigma] Time by NTP")
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(False)
 		enigma.eEPGCache.getInstance().timeUpdated()
 
@@ -108,7 +107,7 @@ config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged, immediate_feedback=Tr
 def NTPserverChanged(configelement):
 	if config.misc.NTPserver.value == "pool.ntp.org":
 		return
-	print("[mytest] save /etc/default/ntpdate")
+	print("[StartEnigma] save /etc/default/ntpdate")
 	f = open("/etc/default/ntpdate", "w")
 	f.write('NTPSERVERS="' + config.misc.NTPserver.value + '"')
 	f.close()
@@ -234,7 +233,7 @@ class Session:
 			try:
 				p(reason=0, session=self)
 			except:
-				print("[mytest] Plugin raised exception at WHERE_SESSIONSTART")
+				print("[StartEnigma] Plugin raised exception at WHERE_SESSIONSTART")
 				import traceback
 				traceback.print_exc()
 
@@ -409,13 +408,13 @@ class PowerKey:
 				f.close()
 				wasRecTimerWakeup = int(_file) and True or False
 			if self.session.nav.RecordTimer.isRecTimerWakeup() or wasRecTimerWakeup:
-				print("[mytest] PowerOff (timer wakewup) - Recording in progress or a timer about to activate, entering standby!")
+				print("[StartEnigma] PowerOff (timer wakewup) - Recording in progress or a timer about to activate, entering standby!")
 				self.standby()
 			else:
-				print("[mytest] PowerOff - Now!")
+				print("[StartEnigma] PowerOff - Now!")
 				self.session.open(Screens.Standby.TryQuitMainloop, 1)
 		elif not Screens.Standby.inTryQuitMainloop and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND:
-			print("[mytest] PowerOff - Now!")
+			print("[StartEnigma] PowerOff - Now!")
 			self.session.open(Screens.Standby.TryQuitMainloop, 1)
 		else:
 			return 0
@@ -440,7 +439,7 @@ class PowerKey:
 					exec("from " + selected[1] + " import *")
 					exec("self.session.open(" + ",".join(selected[2:]) + ")")
 				except:
-					print("[mytest] error during executing module %s, screen %s" % (selected[1], selected[2]))
+					print("[StartEnigma] error during executing module %s, screen %s" % (selected[1], selected[2]))
 			elif selected[0] == "Menu":
 				from Screens.Menu import MainMenu, mdom
 				root = mdom.getroot()
@@ -477,7 +476,7 @@ class AutoScartControl:
 		self.VCRSbChanged(self.current_vcr_sb)
 
 	def VCRSbChanged(self, value):
-		#print("[mytest] vcr sb changed to", value)
+		#print("[StartEnigma] vcr sb changed to", value)
 		self.current_vcr_sb = value
 		if config.av.vcrswitch.value or value > 2:
 			if value:
@@ -491,9 +490,6 @@ from Screens.Ci import CiHandler
 
 profile("Load:VolumeControl")
 from Components.VolumeControl import VolumeControl
-
-
-from Tools.StbHardware import setFPWakeuptime, setRTCtime
 
 
 def autorestoreLoop():
@@ -524,7 +520,7 @@ def runScreenTest():
 	enigma.resumeInit()
 
 	profile("Init:Session")
-	nav = Navigation(config.misc.isNextRecordTimerAfterEventActionAuto.getValue())
+	nav = Navigation()
 	session = Session(desktop=enigma.getDesktop(0), summary_desktop=enigma.getDesktop(1), navigation=nav)
 
 	CiHandler.setSession(session)
@@ -604,7 +600,7 @@ def runScreenTest():
 		from Plugins.SystemPlugins.VFDControl.plugin import SetTime
 		SetTime()
 	except:
-		print("[mytest] Failed SetTime from VFDControl !!")
+		print("[StartEnigma] Failed SetTime from VFDControl !!")
 
 	from time import time, strftime, localtime
 	from Tools.StbHardware import setFPWakeuptime, setRTCtime
@@ -612,14 +608,13 @@ def runScreenTest():
 	#get currentTime
 	nowTime = time()
 	wakeupList = [
-		x for x in ((session.nav.RecordTimer.getNextRecordingTime(), 0, session.nav.RecordTimer.isNextRecordAfterEventActionAuto()),
-					(session.nav.RecordTimer.getNextZapTime(), 1),
+		x for x in ((session.nav.RecordTimer.getNextRecordingTime(), 0),
+					(session.nav.RecordTimer.getNextZapTime(isWakeup=True), 1),
 					(plugins.getNextWakeupTime(), 2),
 					(isNextWakeupTime(), 3))
 		if x[0] != -1
 	]
 	sorted(wakeupList)
-	recordTimerWakeupAuto = False
 	if wakeupList:
 		from time import strftime
 		startTime = wakeupList[0]
@@ -628,20 +623,16 @@ def runScreenTest():
 		else:
 			wptime = startTime[0] - 120
 		if not config.misc.useTransponderTime.value:
-			print("dvb time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime)))
+			print("[StartEnigma] DVB time sync disabled... so set RTC now to current linux time!", strftime("%Y/%m/%d %H:%M", localtime(nowTime)))
 			setRTCtime(nowTime)
-		print("[mytest] set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime)))
+		print("[StartEnigma] Set wakeup time to", strftime("%Y/%m/%d %H:%M", localtime(wptime)))
 		setFPWakeuptime(wptime)
-		recordTimerWakeupAuto = startTime[1] == 0 and startTime[2]
-		print("[mytest] recordTimerWakeupAuto',recordTimerWakeupAuto")
-		config.misc.prev_wakeup_time.value = startTime[0]
+		config.misc.prev_wakeup_time.value = int(startTime[0])
 		config.misc.prev_wakeup_time_type.value = startTime[1]
 		config.misc.prev_wakeup_time_type.save()
 	else:
 		config.misc.prev_wakeup_time.value = 0
 	config.misc.prev_wakeup_time.save()
-	config.misc.isNextRecordTimerAfterEventActionAuto.value = recordTimerWakeupAuto
-	config.misc.isNextRecordTimerAfterEventActionAuto.save()
 
 	profile("stopService")
 	session.nav.stopService()
