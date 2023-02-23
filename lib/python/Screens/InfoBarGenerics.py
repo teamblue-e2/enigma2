@@ -38,8 +38,9 @@ from Screens.TimeDateInput import TimeDateInput
 from Screens.UnhandledKey import UnhandledKey
 from ServiceReference import ServiceReference, isPlayableForCur
 
-from Tools import Notifications, ASCIItranslit
+from Tools.ASCIItranslit import legacyEncode
 from Tools.Directories import fileExists, getRecordingFilename, moveFiles, isPluginInstalled
+from Tools.Notifications import AddPopup, AddNotificationWithCallback, current_notifications, lock, notificationAdded, notifications, RemovePopup
 
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, getDesktop, eDVBDB
 
@@ -2195,7 +2196,7 @@ class InfoBarTimeshift:
 			filename += " - " + info["name"] # standard
 
 		if config.recording.ascii_filenames.value:
-			filename = ASCIItranslit.legacyEncode(filename)
+			filename = legacyEncode(filename)
 
 		print("New timeshift filename: ", filename)
 		return filename
@@ -2909,8 +2910,7 @@ class InfoBarInstantRecord:
 			info = {}
 			self.getProgramInfoAndEvent(info, "")
 			event_entry = ((_("Add recording (stop after current event)"), "event"),)
-			if not SystemInfo["hasGBIpboxClient"]:
-				common = ((_("Add recording (indefinitely)"), "indefinitely"),
+			common = ((_("Add recording (indefinitely)"), "indefinitely"),
 					(_("Add recording (enter recording duration)"), "manualduration"),
 					(_("Add recording (enter recording endtime)"), "manualendtime"),)
 			if info["event"]:
@@ -2920,14 +2920,10 @@ class InfoBarInstantRecord:
 
 		if self.isInstantRecordRunning():
 			title = _("A recording is currently running.\nWhat do you want to do?")
-			if not SystemInfo["hasGBIpboxClient"]:
-				_list = common + \
-					((_("Change recording (duration)"), "changeduration"),
-					(_("Change recording (add time)"), "addrecordingtime"),
-					(_("Change recording (endtime)"), "changeendtime"),)
-			else:
-				_list = common
-
+			_list = common + \
+				((_("Change recording (duration)"), "changeduration"),
+				(_("Change recording (add time)"), "addrecordingtime"),
+				(_("Change recording (endtime)"), "changeendtime"),)
 			_list += ((_("Stop recording"), "stop"),)
 			if config.usage.movielist_trashcan.value:
 				_list += ((_("Stop and delete recording"), "stopdelete"),)
@@ -3216,23 +3212,23 @@ class InfoBarAdditionalInfo:
 class InfoBarNotifications:
 	def __init__(self):
 		self.onExecBegin.append(self.checkNotifications)
-		Notifications.notificationAdded.append(self.checkNotificationsIfExecing)
+		notificationAdded.append(self.checkNotificationsIfExecing)
 		self.onClose.append(self.__removeNotification)
 
 	def __removeNotification(self):
-		Notifications.notificationAdded.remove(self.checkNotificationsIfExecing)
+		notificationAdded.remove(self.checkNotificationsIfExecing)
 
 	def checkNotificationsIfExecing(self):
 		if self.execing:
 			self.checkNotifications()
 
 	def checkNotifications(self):
-		Notifications.lock.acquire(True)
-		notifications = Notifications.notifications
-		n = notifications and notifications[0]
+		lock.acquire(True)
+		my_notifications = notifications
+		n = my_notifications and my_notifications[0]
 		if n:
-			del notifications[0]
-		Notifications.lock.release()
+			del my_notifications[0]
+		lock.release()
 		if n:
 			cb = n[0]
 
@@ -3255,7 +3251,7 @@ class InfoBarNotifications:
 
 			if cb:
 				dlg = self.session.openWithCallback(cb, n[1], *n[2], **n[3])
-			elif not Notifications.current_notifications and n[4] == "ZapError":
+			elif not current_notifications and n[4] == "ZapError":
 				if "timeout" in n[3]:
 					del n[3]["timeout"]
 				n[3]["enable_input"] = False
@@ -3269,7 +3265,7 @@ class InfoBarNotifications:
 
 			# remember that this notification is currently active
 			d = (n[4], dlg)
-			Notifications.current_notifications.append(d)
+			current_notifications.append(d)
 			dlg.onClose.append(boundFunction(self.__notificationClosed, d))
 
 	def closeNotificationInstantiateDialog(self):
@@ -3283,7 +3279,7 @@ class InfoBarNotifications:
 			self.closeNotificationInstantiateDialog()
 
 	def __notificationClosed(self, d):
-		Notifications.current_notifications.remove(d)
+		current_notifications.remove(d)
 
 
 class InfoBarServiceNotifications:
@@ -3309,7 +3305,7 @@ class InfoBarCueSheetSupport:
 
 	ENABLE_RESUME_SUPPORT = False
 
-	def __init__(self, actionmap="InfobarCueSheetActions"):
+	def __init__(self, actionmap=["InfobarCueSheetActions"]):
 		self["CueSheetActions"] = HelpableActionMap(self, actionmap,
 			{
 				"jumpPreviousMark": (self.jumpPreviousMark, _("Jump to previous marked position")),
@@ -3351,7 +3347,7 @@ class InfoBarCueSheetSupport:
 				self.resume_point = last
 				l = last / 90000
 				if "ask" in config.usage.on_movie_start.value:
-					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (l / 3600, l % 3600 / 60, l % 60))), timeout=10, default="yes" in config.usage.on_movie_start.value)
+					AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (l / 3600, l % 3600 / 60, l % 60))), timeout=10, default="yes" in config.usage.on_movie_start.value)
 				elif config.usage.on_movie_start.value == "resume":
 # TRANSLATORS: The string "Resuming playback" flashes for a moment
 # TRANSLATORS: at the start of a movie, when the user has selected
@@ -3360,7 +3356,7 @@ class InfoBarCueSheetSupport:
 # TRANSLATORS: in the middle somewhere and not from the beginning.
 # TRANSLATORS: (Some translators seem to have interpreted it as a
 # TRANSLATORS: question or a choice, but it is a statement.)
-					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Resuming playback"), timeout=2, type=MessageBox.TYPE_INFO)
+					AddNotificationWithCallback(self.playLastCB, MessageBox, _("Resuming playback"), timeout=2, type=MessageBox.TYPE_INFO)
 
 	def playLastCB(self, answer):
 		if answer == True:
@@ -3691,7 +3687,7 @@ class InfoBarServiceErrorPopupSupport:
 		self.closeNotificationInstantiateDialog()
 		self.last_error = None
 		if not config.usage.hide_zap_errors.value:
-			Notifications.RemovePopup(id="ZapError")
+			RemovePopup(id="ZapError")
 
 	def __tuneFailed(self):
 		if not config.usage.hide_zap_errors.value or not config.usage.remote_fallback_enabled.value:
@@ -3723,7 +3719,7 @@ class InfoBarServiceErrorPopupSupport:
 			if error and not config.usage.hide_zap_errors.value:
 				self.closeNotificationInstantiateDialog()
 				if hasattr(self, "dishDialog") and not self.dishDialog.dishState():
-					Notifications.AddPopup(text=error, type=MessageBox.TYPE_ERROR, timeout=5, id="ZapError")
+					AddPopup(text=error, type=MessageBox.TYPE_ERROR, timeout=5, id="ZapError")
 
 
 class InfoBarPowersaver:
@@ -3805,7 +3801,7 @@ class InfoBarPowersaver:
 		else:
 			message = _("The sleep timer has been disabled.")
 			self.sleepTimer.stop()
-		Notifications.AddPopup(message, type=MessageBox.TYPE_INFO, timeout=5)
+		AddPopup(message, type=MessageBox.TYPE_INFO, timeout=5)
 
 	def sleepTimerTimeout(self):
 		if not Screens.Standby.inStandby:
