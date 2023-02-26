@@ -116,13 +116,13 @@ class RecordTimerEntry(timer.TimerEntry):
 	@staticmethod
 	def setWasInDeepStandby():
 		RecordTimerEntry.wasInDeepStandby = True
-		eActionMap.getInstance().bindAction('', -maxint - 1, RecordTimerEntry.keypress)
+		eActionMap.getInstance().bindAction('', -maxsize - 1, RecordTimerEntry.keypress)
 
 	@staticmethod
 	def setWasInStandby():
 		if not RecordTimerEntry.wasInStandby:
 			if not RecordTimerEntry.wasInDeepStandby:
-				eActionMap.getInstance().bindAction('', -maxint - 1, RecordTimerEntry.keypress)
+				eActionMap.getInstance().bindAction('', -maxsize - 1, RecordTimerEntry.keypress)
 			RecordTimerEntry.wasInDeepStandby = False
 			RecordTimerEntry.wasInStandby = True
 
@@ -353,7 +353,7 @@ class RecordTimerEntry(timer.TimerEntry):
 			description = self.description
 			if self.repeated:
 				epgcache = eEPGCache.getInstance()
-				queryTime = self.begin + (self.end - self.begin) / 2
+				queryTime = self.begin + (self.end - self.begin) // 2
 				evt = epgcache.lookupEventTime(rec_ref, queryTime)
 				if evt:
 					if self.rename_repeat:
