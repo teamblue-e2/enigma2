@@ -104,7 +104,7 @@ while : ; do
 
 	# start enigma
 	sync
-	if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.enabledebug=true" ]; then
+	if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.enabledebug=true" ] || [ `grep "imagetype=DEV" /etc/image-version` ]; then
 		RANDOMIZE1970=''
 		time=`date +%Y` ;
 		if [ "$time" = 1970 ]; then
