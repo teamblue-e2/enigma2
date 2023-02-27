@@ -86,7 +86,7 @@ class CopyFileTask(Components.Task.PythonTask):
 								src.close()
 								dst.close()
 								break
-							dst.write(buffer(d, 0, l))
+							dst.write(memoryview(d, 0, l))
 						else:
 							dst.write(d)
 						self.pos += l
