@@ -203,304 +203,6 @@ class NetworkAdapterSelection(Screen, HelpableScreen):
 					self.session.openWithCallback(self.AdapterSetupClosed, NetworkWizard, selection[0])
 
 
-class NameserverSetup(ConfigListScreen, HelpableScreen, Screen):
-	def __init__(self, session, iface=None):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
-		self.setTitle(_("Configure nameservers"))
-		self.iface = iface
-		self.backupNameserverList = iNetwork.getNameserverList(iface=self.iface)
-		print("[NameserverSetup] backup-list:", self.backupNameserverList)
-
-		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("Add"))
-		self["key_yellow"] = StaticText(_("Delete"))
-
-		self["introduction"] = StaticText(_("Press OK to activate the settings."))
-		self.createConfig()
-
-		self["OkCancelActions"] = HelpableActionMap(self, ["OkCancelActions"],
-		{
-			"cancel": (self.cancel, _("Exit nameserver configuration")),
-			"ok": (self.ok, _("Activate current configuration")),
-		})
-
-		self["ColorActions"] = HelpableActionMap(self, ["ColorActions"],
-		{
-			"red": (self.cancel, _("Exit nameserver configuration")),
-			"green": (self.add, _("Add a nameserver entry")),
-			"yellow": (self.remove, _("Remove a nameserver entry")),
-		})
-
-		self["actions"] = NumberActionMap(["SetupActions"],
-		{
-			"ok": self.ok,
-		}, -2)
-
-		self.list = []
-		ConfigListScreen.__init__(self, self.list)
-		self.createSetup()
-
-	def createConfig(self, update=False):
-		if not update or not self.iface:
-			self.nameservers = iNetwork.getNameserverList(iface=self.iface)[0:4]
-		self.nameserverEntries = [NoSave(ConfigIP(default=nameserver)) for nameserver in self.nameservers]
-
-	def createSetup(self):
-		self.list = []
-		for i, x in enumerate(self.nameserverEntries):
-			self.list.append((_("Nameserver %d") % (i + 1), x))
-		self["config"].list = self.list
-
-	def ok(self):
-		if self.iface:
-			dns = []
-			for nameserver in self.nameserverEntries:
-				if nameserver.value != [0, 0, 0, 0]:
-					dns.append(nameserver.value)
-			iNetwork.setAdapterAttribute(self.iface, "dns-nameservers", dns)
-			iNetwork.writeNetworkConfig()
-		else:
-			iNetwork.clearNameservers()
-			for nameserver in self.nameserverEntries:
-				if nameserver.value != [0, 0, 0, 0]:
-					iNetwork.addNameserver(nameserver.value)
-		self.close()
-
-	def run(self):
-		self.ok()
-
-	def cancel(self):
-		if self.iface:
-			iNetwork.setAdapterAttribute(self.iface, "dns-nameservers", self.backupNameserverList)
-		else:
-			iNetwork.clearNameservers()
-			for nameserver in self.backupNameserverList:
-				if nameserver != [0, 0, 0, 0]:
-					iNetwork.addNameserver(nameserver)
-		print("NameserverSetup] restore backup-list:", self.backupNameserverList)
-		self.close()
-
-	def add(self):
-		if self.iface:
-			self.nameservers = []
-			for nameserver in self.nameserverEntries:
-				self.nameservers.append(nameserver.value)
-			self.nameservers.append([0, 0, 0, 0])
-		else:
-			iNetwork.addNameserver([0, 0, 0, 0])
-		self.createConfig(update=True)
-		self.createSetup()
-
-	def remove(self):
-		index = self["config"].getCurrentIndex()
-		if index < len(self.nameservers):
-			if self.iface:
-				self.nameservers.pop(index)
-			else:
-				iNetwork.removeNameserverIndex(index)
-			self.createConfig(update=True)
-			self.createSetup()
-
-
-class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
-		Screen.setTitle(self, _("MAC-adress settings"))
-		self.curMac = self.getmac('eth0')
-		self.getConfigMac = NoSave(ConfigMacText(default=self.curMac))
-
-		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("Save"))
-
-		self["introduction"] = StaticText(_("Press OK to set the MAC-adress."))
-
-		self["OkCancelActions"] = HelpableActionMap(self, ["OkCancelActions"],
-			{
-			"cancel": (self.cancel, _("Exit nameserver configuration")),
-			"ok": (self.ok, _("Activate current configuration")),
-			})
-
-		self["ColorActions"] = HelpableActionMap(self, ["ColorActions"],
-			{
-			"red": (self.cancel, _("Exit MAC-adress configuration")),
-			"green": (self.ok, _("Activate MAC-adress configuration")),
-			})
-
-		self["actions"] = NumberActionMap(["SetupActions"],
-		{
-			"ok": self.ok,
-		}, -2)
-
-		self.list = []
-		ConfigListScreen.__init__(self, self.list)
-		self.createSetup()
-
-	def getmac(self, iface):
-		mac = (0, 0, 0, 0, 0, 0)
-		ifconfig = subprocess.getoutput("ifconfig " + iface + "| grep HWaddr | awk '{ print $5 }'").strip()
-		if len(ifconfig) == 0:
-			mac = "00:00:00:00:00:00"
-		else:
-			mac = ifconfig[:17]
-		return mac
-
-	def createSetup(self):
-		self.list = []
-		self.list.append((_("MAC-adress"), self.getConfigMac))
-		self["config"].list = self.list
-		self["config"].l.setList(self.list)
-
-	def ok(self):
-		MAC = self.getConfigMac.getValue()
-		f = open('/etc/enigma2/hwmac', 'w')
-		f.write(MAC)
-		f.close()
-		route = subprocess.getoutput("route -n |grep UG | awk '{print $2}'")
-		system('ifconfig eth0 down')
-		system('ifconfig eth0 hw ether %s up' % MAC)
-		system('route add default gw %s eth0' % route)
-		self.close()
-
-	def run(self):
-		self.ok()
-
-	def cancel(self):
-		self.close()
-
-
-class IPv6Setup(Screen, ConfigListScreen, HelpableScreen):
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
-		Screen.setTitle(self, _("IPv6 support"))
-
-		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("Save"))
-		self["key_blue"] = StaticText(_("Restore inetd"))
-
-		self["introduction"] = StaticText(_("Enable or disable Ipv6."))
-
-		self["OkCancelActions"] = HelpableActionMap(self, ["OkCancelActions"],
-			{
-			"cancel": (self.cancel, _("Exit IPv6 configuration")),
-			"ok": (self.ok, _("Activate IPv6 configuration")),
-			})
-
-		self["ColorActions"] = HelpableActionMap(self, ["ColorActions"],
-			{
-			"red": (self.cancel, _("Exit IPv6 configuration")),
-			"green": (self.ok, _("Activate IPv6 configuration")),
-			"blue": (self.restoreinetdData, _("Restore inetd.conf")),
-			})
-
-		self["actions"] = NumberActionMap(["SetupActions"],
-		{
-			"ok": self.ok,
-		}, -2)
-
-		self.list = []
-		ConfigListScreen.__init__(self, self.list)
-
-		fp = open('/proc/sys/net/ipv6/conf/all/disable_ipv6', 'r')
-		old_ipv6 = fp.read()
-		fp.close()
-		if int(old_ipv6) == 1:
-			self.ipv6 = False
-		else:
-			self.ipv6 = True
-		self.IPv6ConfigEntry = NoSave(ConfigYesNo(default=self.ipv6 or False))
-		self.createSetup()
-
-	def createSetup(self):
-		self.list = []
-		self.IPv6Entry = (_("IPv6 support"), self.IPv6ConfigEntry)
-		self.list.append(self.IPv6Entry)
-		self["config"].list = self.list
-		self["config"].l.setList(self.list)
-
-	def restoreinetdData(self):
-		inetdData = "# /etc/inetd.conf:  see inetd(music) for further informations.\n"
-		inetdData += "#\n"
-		inetdData += "# Internet server configuration database\n"
-		inetdData += "#\n"
-		inetdData += "# If you want to disable an entry so it isn't touched during\n"
-		inetdData += "# package updates just comment it out with a single '#' character.\n"
-		inetdData += "#\n"
-		inetdData += "# <service_name> <sock_type> <proto> <flags> <user> <server_path> <args>\n"
-		inetdData += "#\n"
-		inetdData += "#:INTERNAL: Internal services\n"
-		inetdData += "#echo	stream	tcp	nowait	root	internal\n"
-		inetdData += "#echo	dgram	udp	wait	root	internal\n"
-		inetdData += "#chargen	stream	tcp	nowait	root	internal\n"
-		inetdData += "#chargen	dgram	udp	wait	root	internal\n"
-		inetdData += "#discard	stream	tcp	nowait	root	internal\n"
-		inetdData += "#discard	dgram	udp	wait	root	internal\n"
-		inetdData += "#daytime	stream	tcp	nowait	root	internal\n"
-		inetdData += "#daytime	dgram	udp	wait	root	internal\n"
-		inetdData += "#time	stream	tcp	nowait	root	internal\n"
-		inetdData += "#time	dgram	udp	wait	root	internal\n"
-		if self.IPv6ConfigEntry.value == True:
-			inetdData += "#ftp	stream	tcp6	nowait	root	/usr/sbin/vsftpd	vsftpd\n"
-		else:
-			inetdData += "#ftp	stream	tcp	nowait	root	/usr/sbin/vsftpd	vsftpd\n"
-		inetdData += "#ftp	stream	tcp	nowait	root	ftpd	ftpd -w /\n"
-		if self.IPv6ConfigEntry.value == True:
-			inetdData += "#telnet	stream	tcp6	nowait	root	/usr/sbin/telnetd	telnetd\n"
-		else:
-			inetdData += "#telnet	stream	tcp	nowait	root	/usr/sbin/telnetd	telnetd\n"
-		if fileExists('/usr/sbin/smbd') and self.IPv6ConfigEntry.value == True:
-			inetdData += "#microsoft-ds	stream	tcp6	nowait	root	/usr/sbin/smbd	smbd\n"
-		elif fileExists('/usr/sbin/smbd') and self.IPv6ConfigEntry.value == False:
-			inetdData += "#microsoft-ds	stream	tcp	nowait	root	/usr/sbin/smbd	smbd\n"
-		else:
-			pass
-		if fileExists('/usr/sbin/nmbd') and self.IPv6ConfigEntry.value == True:
-			inetdData += "#netbios-ns	dgram	udp6	wait	root	/usr/sbin/nmbd	nmbd\n"
-		elif fileExists('/usr/sbin/nmbd') and self.IPv6ConfigEntry.value == False:
-			inetdData += "#netbios-ns	dgram	udp	wait	root	/usr/sbin/nmbd	nmbd\n"
-		else:
-			pass
-		if fileExists('/usr/bin/streamproxy') and self.IPv6ConfigEntry.value == True:
-			inetdData += "#8001	stream	tcp6	nowait	root	/usr/bin/streamproxy	streamproxy\n"
-		elif fileExists('/usr/bin/streamproxy') and self.IPv6ConfigEntry.value == False:
-			inetdData += "#8001	stream	tcp	nowait	root	/usr/bin/streamproxy	streamproxy\n"
-		else:
-			pass
-		if fileExists('/usr/bin/transtreamproxy') and self.IPv6ConfigEntry.value == True:
-			inetdData += "8002	stream	tcp6	nowait	root	/usr/bin/transtreamproxy	transtreamproxy\n"
-		elif fileExists('/usr/bin/transtreamproxy') and self.IPv6ConfigEntry.value == False:
-			inetdData += "8002	stream	tcp	nowait	root	/usr/bin/transtreamproxy	transtreamproxy\n"
-		else:
-			pass
-		fd = open("/etc/inetd.conf", 'w')
-		fd.write(inetdData)
-		fd.close()
-		self.session.open(MessageBox, _("Successfully restored /etc/inetd.conf!"), type=MessageBox.TYPE_INFO, timeout=10)
-
-	def ok(self):
-		ipv6 = '/etc/enigma2/ipv6'
-		fp = open('/proc/sys/net/ipv6/conf/all/disable_ipv6', 'w')
-		if self.IPv6ConfigEntry.value == False:
-			fp.write("1")
-			f = open(ipv6, 'w')
-			f.write("1")
-			f.close()
-		else:
-			fp.write("0")
-			system("rm -R " + ipv6)
-		fp.close()
-		self.restoreinetdData()
-		self.close()
-
-	def run(self):
-		self.ok()
-
-	def cancel(self):
-		self.close()
-
-
 class AdapterSetup(ConfigListScreen, HelpableScreen, Screen):
 	def __init__(self, session, networkinfo, essid=None):
 		Screen.__init__(self, session)
@@ -531,7 +233,6 @@ class AdapterSetup(ConfigListScreen, HelpableScreen, Screen):
 		{
 			"red": (self.keyCancel, _("exit network adapter configuration")),
 			"green": (self.keySave, _("activate network adapter configuration")),
-			"blue": (self.KeyBlue, _("open nameserver configuration")),
 		})
 
 		self["actions"] = NumberActionMap(["SetupActions"],
@@ -564,81 +265,63 @@ class AdapterSetup(ConfigListScreen, HelpableScreen, Screen):
 		self["introduction2"] = StaticText(_("Press OK to activate the settings."))
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
-		self["key_blue"] = StaticText(_("Edit DNS"))
 
 		self["VKeyIcon"] = Boolean(False)
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 
+	def set_text(self, text):
+		if not text or text == "0.0.0.0":
+			return _("N/A")
+		return text
+
 	def layoutFinished(self):
-		self["DNS1"].setText(self.primaryDNS.getText())
-		self["DNS2"].setText(self.secondaryDNS.getText())
-		if self.ipConfigEntry.getText() is not None:
-			if self.ipConfigEntry.getText() == "0.0.0.0":
-				self["IP"].setText(_("N/A"))
-			else:
-				self["IP"].setText(self.ipConfigEntry.getText())
-		else:
-			self["IP"].setText(_("N/A"))
-		if self.netmaskConfigEntry.getText() is not None:
-			if self.netmaskConfigEntry.getText() == "0.0.0.0":
-				self["Mask"].setText(_("N/A"))
-			else:
-				self["Mask"].setText(self.netmaskConfigEntry.getText())
-		else:
-			self["IP"].setText(_("N/A"))
+		nameserver = (iNetwork.getNameservers() + [[0, 0, 0, 0]] * 2)[:2]
+		self["DNS1"].setText(".".join(str(i) for i in nameserver[0]))
+		self["DNS2"].setText(".".join(str(i) for i in nameserver[1]))
+		self["IP"].setText(self.set_text(self.ipConfigEntry.getText()))
+		self["Mask"].setText(self.set_text(self.netmaskConfigEntry.getText()))
+
 		if iNetwork.getAdapterAttribute(self.iface, "gateway"):
-			if self.gatewayConfigEntry.getText() == "0.0.0.0":
-				self["Gatewaytext"].setText(_("Gateway"))
-				self["Gateway"].setText(_("N/A"))
-			else:
-				self["Gatewaytext"].setText(_("Gateway"))
-				self["Gateway"].setText(self.gatewayConfigEntry.getText())
+			self["Gatewaytext"].setText(_("Gateway"))
+			self["Gateway"].setText(self.set_text(self.gatewayConfigEntry.getText()))
 		else:
 			self["Gateway"].setText("")
 			self["Gatewaytext"].setText("")
 		self["Adapter"].setText(iNetwork.getFriendlyAdapterName(self.iface))
 
 	def createConfig(self):
-		self.InterfaceEntry = None
-		self.dhcpEntry = None
-		self.gatewayEntry = None
-		self.hiddenSSID = None
 		self.wlanSSID = None
-		self.encryption = None
-		self.encryptionType = None
 		self.encryptionKey = None
-		self.encryptionlist = None
-		self.weplist = None
-		self.wsconfig = None
-		self.default = None
 
 		if iNetwork.isWirelessInterface(self.iface):
 			from Plugins.SystemPlugins.WirelessLan.Wlan import wpaSupplicant
 			self.ws = wpaSupplicant()
-			self.encryptionlist = []
-			self.encryptionlist.append(("Unencrypted", _("Unencrypted")))
-			self.encryptionlist.append(("WEP", "WEP"))
-			self.encryptionlist.append(("WPA", "WPA"))
-			if not path.exists("/tmp/bcm/" + self.iface):
-				self.encryptionlist.append(("WPA/WPA2", "WPA/WPA2"))
-			self.encryptionlist.append(("WPA2", "WPA2"))
-			self.weplist = []
-			self.weplist.append("ASCII")
-			self.weplist.append("HEX")
+			encryptionlist = [
+				("Unencrypted", _("Unencrypted")),
+				("WEP", "WEP"),
+				("WPA", "WPA")
+			]
+			if not os.path.exists("/tmp/bcm/" + self.iface):
+				encryptionlist.append(("WPA/WPA2", "WPA/WPA2"))
+			encryptionlist.append(("WPA2", "WPA2"))
+			weplist = ["ASCII", "HEX"]
 
-			self.wsconfig = self.ws.loadConfig(self.iface)
+			wsconfig = self.ws.loadConfig(self.iface)
 			if self.essid is None:
-				self.essid = self.wsconfig['ssid']
+				self.essid = wsconfig['ssid']
 
-			config.plugins.wlan.hiddenessid = NoSave(ConfigYesNo(default=self.wsconfig['hiddenessid']))
+			config.plugins.wlan.hiddenessid = NoSave(ConfigYesNo(default=wsconfig['hiddenessid']))
 			config.plugins.wlan.essid = NoSave(ConfigText(default=self.essid, visible_width=50, fixed_size=False))
-			config.plugins.wlan.encryption = NoSave(ConfigSelection(self.encryptionlist, default=self.wsconfig['encryption']))
-			config.plugins.wlan.wepkeytype = NoSave(ConfigSelection(self.weplist, default=self.wsconfig['wepkeytype']))
-			config.plugins.wlan.psk = NoSave(ConfigPassword(default=self.wsconfig['key'], visible_width=50, fixed_size=False))
+			config.plugins.wlan.encryption = NoSave(ConfigSelection(encryptionlist, default=wsconfig['encryption']))
+			config.plugins.wlan.encryption.addNotifier(self.createSetup, initial_call=False)
+			config.plugins.wlan.wepkeytype = NoSave(ConfigSelection(weplist, default=wsconfig['wepkeytype']))
+			config.plugins.wlan.psk = NoSave(ConfigPassword(default=wsconfig['key'], visible_width=50, fixed_size=False))
 
 		self.activateInterfaceEntry = NoSave(ConfigYesNo(default=iNetwork.getAdapterAttribute(self.iface, "up") or False))
+		self.activateInterfaceEntry.addNotifier(self.createSetup, initial_call=False)
 		self.dhcpConfigEntry = NoSave(ConfigYesNo(default=iNetwork.getAdapterAttribute(self.iface, "dhcp") or False))
+		self.dhcpConfigEntry.addNotifier(self.createSetup, initial_call=False)
 		self.ipConfigEntry = NoSave(ConfigIP(default=iNetwork.getAdapterAttribute(self.iface, "ip")) or [0, 0, 0, 0])
 		self.netmaskConfigEntry = NoSave(ConfigIP(default=iNetwork.getAdapterAttribute(self.iface, "netmask") or [255, 0, 0, 0]))
 		if iNetwork.getAdapterAttribute(self.iface, "gateway"):
@@ -646,26 +329,24 @@ class AdapterSetup(ConfigListScreen, HelpableScreen, Screen):
 		else:
 			self.dhcpdefault = False
 		self.hasGatewayConfigEntry = NoSave(ConfigYesNo(default=self.dhcpdefault or False))
+		self.hasGatewayConfigEntry.addNotifier(self.createSetup, initial_call=False)
 		self.gatewayConfigEntry = NoSave(ConfigIP(default=iNetwork.getAdapterAttribute(self.iface, "gateway") or [0, 0, 0, 0]))
-		nameserver = (iNetwork.getNameserverList(iface=self.iface))[0:2]
+		nameserver = (iNetwork.getIfaceNameservers(self.iface) + [[0, 0, 0, 0]] * 2)[:2]
 		self.primaryDNS = NoSave(ConfigIP(default=nameserver[0]))
 		self.secondaryDNS = NoSave(ConfigIP(default=nameserver[1]))
 
-	def createSetup(self):
+	def createSetup(self, element=None):
 		if SystemInfo["WakeOnLAN"]:
 			self.wolstartvalue = config.network.wol.value
-		self.list = []
-		self.InterfaceEntry = (_("Use interface"), self.activateInterfaceEntry)
-
-		self.list.append(self.InterfaceEntry)
+		self.list = [(_("Use interface"), self.activateInterfaceEntry)]
 		if self.activateInterfaceEntry.value:
-			self.dhcpEntry = (_("Use DHCP"), self.dhcpConfigEntry)
-			self.list.append(self.dhcpEntry)
+			self.list.append((_("Use DHCP"), self.dhcpConfigEntry))
 			if not self.dhcpConfigEntry.value:
-				self.list.append((_('IP address'), self.ipConfigEntry))
-				self.list.append((_('Netmask'), self.netmaskConfigEntry))
-				self.gatewayEntry = (_('Use a gateway'), self.hasGatewayConfigEntry)
-				self.list.append(self.gatewayEntry)
+				self.list.extend((
+					(_('IP address'), self.ipConfigEntry),
+					(_('Netmask'), self.netmaskConfigEntry)
+				))
+				self.list.append((_('Use a gateway'), self.hasGatewayConfigEntry))
 				if self.hasGatewayConfigEntry.value:
 					self.list.append((_('Gateway'), self.gatewayConfigEntry))
 
@@ -678,52 +359,33 @@ class AdapterSetup(ConfigListScreen, HelpableScreen, Screen):
 			self.extended = None
 			self.configStrings = None
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_NETWORKSETUP):
-				callFnc = p.fnc["ifaceSupported"](self.iface)
-				if callFnc is not None:
+				call_fnc = p.fnc["ifaceSupported"](self.iface)
+				if call_fnc is not None:
 					if "WlanPluginEntry" in p.fnc:  # internally used only for WLAN Plugin
-						self.extended = callFnc
+						self.extended = call_fnc
 						if "configStrings" in p.fnc:
 							self.configStrings = p.fnc["configStrings"]
 						isExistBcmWifi = os.path.exists("/tmp/bcm/" + self.iface)
 						if not isExistBcmWifi:
-							self.hiddenSSID = (_("Hidden network"), config.plugins.wlan.hiddenessid)
-							self.list.append(self.hiddenSSID)
+							self.list.append((_("Hidden network"), config.plugins.wlan.hiddenessid))
 						self.wlanSSID = (_("Network name (SSID)"), config.plugins.wlan.essid)
-						self.list.append(self.wlanSSID)
-						self.encryption = (_("Encryption"), config.plugins.wlan.encryption)
-						self.list.append(self.encryption)
-						if not isExistBcmWifi:
-							self.encryptionType = (_("Encryption key type"), config.plugins.wlan.wepkeytype)
+						self.list.extend((
+							self.wlanSSID,
+							(_("Encryption"), config.plugins.wlan.encryption)
+						))
 						self.encryptionKey = (_("Encryption key"), config.plugins.wlan.psk)
 
 						if config.plugins.wlan.encryption.value != "Unencrypted":
 							if config.plugins.wlan.encryption.value == 'WEP':
 								if not isExistBcmWifi:
-									self.list.append(self.encryptionType)
+									self.list.append((_("Encryption key type"), config.plugins.wlan.wepkeytype))
 							self.list.append(self.encryptionKey)
+			if not self.dhcpConfigEntry.value:
+				self.list.extend((
+					(_("Primary DNS"), self.primaryDNS),
+					(_("Secondary DNS"), self.secondaryDNS)
+				))
 		self["config"].list = self.list
-
-	def KeyBlue(self):
-		self.session.openWithCallback(self.NameserverSetupClosed, NameserverSetup, iface=self.iface)
-
-	def newConfig(self):
-		if self["config"].getCurrent() == self.InterfaceEntry:
-			self.createSetup()
-		if self["config"].getCurrent() == self.dhcpEntry:
-			self.createSetup()
-		if self["config"].getCurrent() == self.gatewayEntry:
-			self.createSetup()
-		if iNetwork.isWirelessInterface(self.iface):
-			if self["config"].getCurrent() == self.encryption:
-				self.createSetup()
-
-	def keyLeft(self):
-		ConfigListScreen.keyLeft(self)
-		self.newConfig()
-
-	def keyRight(self):
-		ConfigListScreen.keyRight(self)
-		self.newConfig()
 
 	def keySave(self):
 		self.hideInputHelp()
@@ -815,21 +477,26 @@ class AdapterSetup(ConfigListScreen, HelpableScreen, Screen):
 			else:
 				iNetwork.removeAdapterAttribute(self.iface, "gateway")
 
+			dns = []
+			if self.primaryDNS.value != [0, 0, 0, 0]:
+				dns.append(self.primaryDNS.value)
+			if self.secondaryDNS.value != [0, 0, 0, 0]:
+				dns.append(self.secondaryDNS.value)
+			if dns:
+				iNetwork.setAdapterAttribute(self.iface, "dns-nameservers", dns)
 			if self.extended is not None and self.configStrings is not None:
 				iNetwork.setAdapterAttribute(self.iface, "configStrings", self.configStrings(self.iface))
 				self.ws.writeConfig(self.iface)
 
 			if not self.activateInterfaceEntry.value:
 				iNetwork.deactivateInterface(self.iface, self.deactivateInterfaceCB)
-				iNetwork.writeNetworkConfig()
-				self.applyConfigRef = self.session.openWithCallback(self.applyConfigfinishedCB, MessageBox, _("Please wait for activation of your network configuration..."), type=MessageBox.TYPE_INFO, enable_input=False)
 			else:
 				if not self.oldInterfaceState:
 					iNetwork.activateInterface(self.iface, self.deactivateInterfaceCB)
 				else:
 					iNetwork.deactivateInterface(self.iface, self.activateInterfaceCB)
-				iNetwork.writeNetworkConfig()
-				self.applyConfigRef = self.session.openWithCallback(self.applyConfigfinishedCB, MessageBox, _("Please wait for activation of your network configuration..."), type=MessageBox.TYPE_INFO, enable_input=False)
+			iNetwork.writeNetworkConfig()
+			self.applyConfigRef = self.session.openWithCallback(self.applyConfigfinishedCB, MessageBox, _("Please wait for activation of your network configuration..."), type=MessageBox.TYPE_INFO, enable_input=False)
 		else:
 			self.keyCancel()
 
@@ -878,31 +545,19 @@ class AdapterSetup(ConfigListScreen, HelpableScreen, Screen):
 			self.close('cancel')
 
 	def keyCancelCB(self, data):
-		if data is not None:
-			if data:
-				self.close('cancel')
+		if data:
+			self.close('cancel')
 
 	def runAsync(self, finished_cb):
 		self.finished_cb = finished_cb
 		self.keySave()
-
-	def NameserverSetupClosed(self, *ret):
-		iNetwork.loadNameserverConfig()
-		nameserver = (iNetwork.getNameserverList(iface=self.iface))[0:2]
-		self.primaryDNS = NoSave(ConfigIP(default=nameserver[0]))
-		self.secondaryDNS = NoSave(ConfigIP(default=nameserver[1]))
-		self.createSetup()
-		self.layoutFinished()
 
 	def cleanup(self):
 		iNetwork.stopLinkStateConsole()
 
 	def hideInputHelp(self):
 		current = self["config"].getCurrent()
-		if current == self.wlanSSID:
-			if current[1].help_window.instance is not None:
-				current[1].help_window.instance.hide()
-		elif current == self.encryptionKey and config.plugins.wlan.encryption.value != "Unencrypted":
+		if current == self.wlanSSID or (current == self.encryptionKey and config.plugins.wlan.encryption.value != "Unencrypted"):
 			if current[1].help_window.instance is not None:
 				current[1].help_window.instance.hide()
 
@@ -1001,8 +656,6 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 				self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, self.iface)
 		if self["menulist"].getCurrent()[1] == 'test':
 			self.session.open(NetworkAdapterTest, self.iface)
-		if self["menulist"].getCurrent()[1] == 'dns':
-			self.session.open(NameserverSetup, iface=self.iface)
 		if self["menulist"].getCurrent()[1] == 'mac':
 			self.session.open(NetworkMacSetup)
 		if self["menulist"].getCurrent()[1] == 'ipv6':
@@ -1103,7 +756,6 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 	def genMainMenu(self):
 		menu = [
 			(_("Adapter settings"), "edit"),
-			(_("Nameserver settings"), "dns"),
 			(_("Network test"), "test"),
 			(_("Restart network"), "lanrestart")
 		]
