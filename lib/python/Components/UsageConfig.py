@@ -773,8 +773,8 @@ def InitUsageConfig():
 		("twn hkn", _("Chinese - Traditional")),
 		("ces cze", _("Czech")),
 		("dan", _("Danish")),
-		("dut ndl nld", _("Dutch")),
-		("eng", _("English")),
+		("dut ndl nld Dutch", _("Dutch")),
+		("eng Englisch", _("English")),
 		("est", _("Estonian")),
 		("fin", _("Finnish")),
 		("fra fre", _("French")),
@@ -872,7 +872,7 @@ def InitUsageConfig():
 
 	config.streaming = ConfigSubsection()
 	config.streaming.stream_ecm = ConfigYesNo(default=True)
-	config.streaming.descramble = ConfigYesNo(default=False)
+	config.streaming.descramble = ConfigYesNo(default=True)
 	config.streaming.descramble_client = ConfigYesNo(default=False)
 	config.streaming.stream_eit = ConfigYesNo(default=True)
 	config.streaming.stream_ait = ConfigYesNo(default=True)

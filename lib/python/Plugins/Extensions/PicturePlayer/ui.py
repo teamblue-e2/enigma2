@@ -11,7 +11,7 @@ from Components.AVSwitch import AVSwitch
 from Components.Sources.List import List
 from Components.ConfigList import ConfigList, ConfigListScreen
 
-from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigText, ConfigYesNo, KEY_LEFT, KEY_RIGHT, getConfigListEntry
+from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigText, ConfigYesNo, KEY_LEFT, KEY_RIGHT
 from skin import applySkinFactor, parameters
 
 
@@ -161,15 +161,15 @@ class Pic_Setup(ConfigListScreen, Screen):
 		self["key_green"] = StaticText(_("Save"))
 
 		setup_list = [
-			getConfigListEntry(_("Slide show interval (sec.)"), config.pic.slidetime),
-			getConfigListEntry(_("Scaling mode"), config.pic.resize),
-			getConfigListEntry(_("Cache thumbnails"), config.pic.cache),
-			getConfigListEntry(_("Show info line"), config.pic.infoline),
-			getConfigListEntry(_("Frame size in full view"), config.pic.framesize),
-			getConfigListEntry(_("Slide picture in loop"), config.pic.loop),
-			getConfigListEntry(_("Background color"), config.pic.bgcolor),
-			getConfigListEntry(_("Text color"), config.pic.textcolor),
-			getConfigListEntry(_("Full view resolution"), config.usage.pic_resolution),
+			(_("Slide show interval (sec.)"), config.pic.slidetime),
+			(_("Scaling mode"), config.pic.resize),
+			(_("Cache thumbnails"), config.pic.cache),
+			(_("Show info line"), config.pic.infoline),
+			(_("Frame size in full view"), config.pic.framesize),
+			(_("Slide picture in loop"), config.pic.loop),
+			(_("Background color"), config.pic.bgcolor),
+			(_("Text color"), config.pic.textcolor),
+			(_("Full view resolution"), config.usage.pic_resolution),
 		]
 		ConfigListScreen.__init__(self, setup_list, session)
 

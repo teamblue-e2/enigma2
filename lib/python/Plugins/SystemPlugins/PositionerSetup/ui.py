@@ -14,7 +14,7 @@ from Components.ActionMap import NumberActionMap, ActionMap
 from Components.NimManager import nimmanager
 from Components.MenuList import MenuList
 from Components.ScrollLabel import ScrollLabel
-from Components.config import config, ConfigSatlist, ConfigNothing, ConfigSelection, ConfigSubsection, ConfigInteger, ConfigFloat, KEY_LEFT, KEY_RIGHT, KEY_0, getConfigListEntry, NoSave
+from Components.config import config, ConfigSatlist, ConfigNothing, ConfigSelection, ConfigSubsection, ConfigInteger, ConfigFloat, KEY_LEFT, KEY_RIGHT, KEY_0, NoSave
 from Components.TuneTest import Tuner
 from Components.Pixmap import Pixmap
 from Tools.Transponder import ConvertToHumanReadable
@@ -90,7 +90,7 @@ class PositionerSetup(Screen):
 			self.advancedsats = self.advancedconfig.sat
 		else:
 			self.advanced = False
-		self.availablesats = map(lambda x: x[0], nimmanager.getRotorSatListForNim(self.feid))
+		self.availablesats = list(map(lambda x: x[0], nimmanager.getRotorSatListForNim(self.feid)))
 
 		cur = {}
 		if not self.openFrontend():
@@ -156,8 +156,8 @@ class PositionerSetup(Screen):
 		# True means we dont like that the normal sec stuff sends commands to the rotor!
 		self.tuner = Tuner(self.frontend, ignore_rotor=True)
 
-		tp = (cur.get("frequency", 0) / 1000,
-			cur.get("symbol_rate", 0) / 1000,
+		tp = (cur.get("frequency", 0) // 1000,
+			cur.get("symbol_rate", 0) // 1000,
 			cur.get("polarization", eDVBFrontendParametersSatellite.Polarisation_Horizontal),
 			cur.get("fec_inner", eDVBFrontendParametersSatellite.FEC_Auto),
 			cur.get("inversion", eDVBFrontendParametersSatellite.Inversion_Unknown),
@@ -285,8 +285,8 @@ class PositionerSetup(Screen):
 	def OrbToStr(self, orbpos):
 		if orbpos > 1800:
 			orbpos = 3600 - orbpos
-			return "%d.%d\xc2\xb0 W" % (orbpos / 10, orbpos % 10)
-		return "%d.%d\xc2\xb0 E" % (orbpos / 10, orbpos % 10)
+			return "%d.%d\xb0 W" % (orbpos / 10, orbpos % 10)
+		return "%d.%d\xb0 E" % (orbpos / 10, orbpos % 10)
 
 	def setDishOrbosValue(self):
 		if self.getRotorMovingState():
@@ -533,13 +533,13 @@ class PositionerSetup(Screen):
 			self.blue.setText(_("Limits on"))
 		elif entry == "storage":
 			self.red.setText("")
-			if self.getUsals() is False:
+			if not self.getUsals():
 				self.green.setText(_("Store position"))
 				self.yellow.setText(_("Goto position"))
 			else:
 				self.green.setText("")
 				self.yellow.setText("")
-			if self.advanced and self.getUsals() is False:
+			if self.advanced and not self.getUsals():
 				self.blue.setText(_("Allocate"))
 			else:
 				self.blue.setText("")
@@ -568,7 +568,7 @@ class PositionerSetup(Screen):
 	def stepCourse(self, steps):
 		def dots(s):
 			s = abs(s)
-			return (s / 10) * '.' if s < 100 else 10 * '.'
+			return int(s / 10) * '.' if s < 100 else 10 * '.'
 
 		dx = 4 * " "
 		if steps > 0:
@@ -634,7 +634,7 @@ class PositionerSetup(Screen):
 			self.diseqccommand("moveWest", 0xFF) # one step
 			self.statusMsg(_("Stepped west") + self.stepCourse(self.finesteps), timeout=self.STATUS_MSG_TIMEOUT)
 		elif entry == "storage":
-			if self.getUsals() is False:
+			if not self.getUsals():
 				menu = [(_("yes"), "yes"), (_("no"), "no")]
 				available_orbos = False
 				orbos = None
@@ -691,7 +691,7 @@ class PositionerSetup(Screen):
 			self.diseqccommand("moveEast", 0xFF) # one step
 			self.statusMsg(_("Stepped east") + self.stepCourse(self.finesteps), timeout=self.STATUS_MSG_TIMEOUT)
 		elif entry == "storage":
-			if self.getUsals() is False:
+			if not self.getUsals():
 				self.printMsg(_("Goto index position"))
 				index = int(self.positioner_storage.value)
 				self.diseqccommand("moveTo", index)
@@ -738,7 +738,7 @@ class PositionerSetup(Screen):
 			# Start (re-)calculate
 			self.session.openWithCallback(self.recalcConfirmed, MessageBox, _("This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\nAre you sure?"), MessageBox.TYPE_YESNO, default=False, timeout=10)
 		elif entry == "storage":
-			if self.advanced and self.getUsals() is False:
+			if self.advanced and not self.getUsals():
 				self.printMsg(_("Allocate unused memory index"))
 				while True:
 					if not len(self.allocatedIndices):
@@ -946,12 +946,12 @@ class PositionerSetup(Screen):
 		frequency_text = ""
 		frequency = transponderdata.get("frequency")
 		if frequency:
-			frequency_text = str(frequency / 1000) + polarization_text
+			frequency_text = str(frequency // 1000) + polarization_text
 		self["frequency_value"].setText(frequency_text)
 		symbolrate_text = ""
 		symbolrate = transponderdata.get("symbol_rate")
 		if symbolrate:
-			symbolrate_text = str(symbolrate / 1000)
+			symbolrate_text = str(symbolrate // 1000)
 		self["symbolrate_value"].setText(symbolrate_text)
 		fec_text = ""
 		fec_inner = transponderdata.get("fec_inner")
@@ -969,7 +969,7 @@ class PositionerSetup(Screen):
 		def azimuth2Rotorcode(angle):
 			gotoXtable = (0x00, 0x02, 0x03, 0x05, 0x06, 0x08, 0x0A, 0x0B, 0x0D, 0x0E)
 			a = int(round(abs(angle) * 10.0))
-			return ((a / 10) << 4) + gotoXtable[a % 10]
+			return ((a // 10) << 4) + gotoXtable[a % 10]
 
 		satHourAngle = rotor_calc.calcSatHourangle(satlon, sitelat, sitelon)
 		if sitelat >= 0: # Northern Hemisphere
@@ -1354,7 +1354,7 @@ class PositionerSetupLog(Screen):
 			f.write(log.getvalue())
 			f.close()
 			self.session.open(MessageBox, _("Write to /tmp/positionersetup.log"), MessageBox.TYPE_INFO, timeout=5)
-		except Exception, e:
+		except Exception as e:
 			self["list"].setText(_("Failed to write /tmp/positionersetup.log: ") + str(e))
 		self.close(True)
 
@@ -1362,7 +1362,7 @@ class PositionerSetupLog(Screen):
 		self.close(False)
 
 	def clear(self):
-		log.logfile.reset()
+		log.logfile.seek(0)
 		log.logfile.truncate()
 		self.close(False)
 
@@ -1400,8 +1400,8 @@ class ONIDTSIDScreen(ConfigListScreen, Screen):
 
 	def createSetup(self):
 		self.list = []
-		self.list.append(getConfigListEntry(_("ONID"), self.transponderOnid))
-		self.list.append(getConfigListEntry(_("TSID"), self.transponderTsid))
+		self.list.append((_("ONID"), self.transponderOnid))
+		self.list.append((_("TSID"), self.transponderTsid))
 		self["config"].list = self.list
 
 	def keyGo(self):
@@ -1484,9 +1484,9 @@ class TunerScreen(ConfigListScreen, Screen):
 		if frontendData is not None:
 			ttype = frontendData.get("tuner_type", "UNKNOWN")
 			defaultSat["system"] = frontendData.get("system", eDVBFrontendParametersSatellite.System_DVB_S)
-			defaultSat["frequency"] = frontendData.get("frequency", 0) / 1000
+			defaultSat["frequency"] = frontendData.get("frequency", 0) // 1000
 			defaultSat["inversion"] = frontendData.get("inversion", eDVBFrontendParametersSatellite.Inversion_Unknown)
-			defaultSat["symbolrate"] = frontendData.get("symbol_rate", 0) / 1000
+			defaultSat["symbolrate"] = frontendData.get("symbol_rate", 0) // 1000
 			defaultSat["polarization"] = frontendData.get("polarization", eDVBFrontendParametersSatellite.Polarisation_Horizontal)
 			if defaultSat["system"] == eDVBFrontendParametersSatellite.System_DVB_S2:
 				defaultSat["fec_s2"] = frontendData.get("fec_inner", eDVBFrontendParametersSatellite.FEC_Auto)
@@ -1567,38 +1567,38 @@ class TunerScreen(ConfigListScreen, Screen):
 
 	def createSetup(self):
 		self.list = []
-		self.list.append(getConfigListEntry(_('Tune'), self.tuning.type))
-		self.list.append(getConfigListEntry(_('Satellite'), self.tuning.sat))
+		self.list.append((_('Tune'), self.tuning.type))
+		self.list.append((_('Satellite'), self.tuning.sat))
 		nim = nimmanager.nim_slots[self.feid]
 
 		if self.tuning.type.value == "manual_transponder":
 			if nim.isCompatible("DVB-S2"):
-				self.list.append(getConfigListEntry(_('System'), self.scan_sat.system))
+				self.list.append((_('System'), self.scan_sat.system))
 			else:
 				# downgrade to dvb-s, in case a -s2 config was active
 				self.scan_sat.system.value = eDVBFrontendParametersSatellite.System_DVB_S
-			self.list.append(getConfigListEntry(_('Frequency'), self.scan_sat.frequency))
-			self.list.append(getConfigListEntry(_("Polarisation"), self.scan_sat.polarization))
-			self.list.append(getConfigListEntry(_('Symbol rate'), self.scan_sat.symbolrate))
+			self.list.append((_('Frequency'), self.scan_sat.frequency))
+			self.list.append((_("Polarisation"), self.scan_sat.polarization))
+			self.list.append((_('Symbol rate'), self.scan_sat.symbolrate))
 			if self.scan_sat.system.value == eDVBFrontendParametersSatellite.System_DVB_S:
-				self.list.append(getConfigListEntry(_("FEC"), self.scan_sat.fec))
-				self.list.append(getConfigListEntry(_('Inversion'), self.scan_sat.inversion))
+				self.list.append((_("FEC"), self.scan_sat.fec))
+				self.list.append((_('Inversion'), self.scan_sat.inversion))
 			elif self.scan_sat.system.value == eDVBFrontendParametersSatellite.System_DVB_S2:
-				self.list.append(getConfigListEntry(_("FEC"), self.scan_sat.fec_s2))
-				self.list.append(getConfigListEntry(_('Inversion'), self.scan_sat.inversion))
-				self.modulationEntry = getConfigListEntry(_('Modulation'), self.scan_sat.modulation)
+				self.list.append((_("FEC"), self.scan_sat.fec_s2))
+				self.list.append((_('Inversion'), self.scan_sat.inversion))
+				self.modulationEntry = (_('Modulation'), self.scan_sat.modulation)
 				self.list.append(self.modulationEntry)
-				self.list.append(getConfigListEntry(_('Roll-off'), self.scan_sat.rolloff))
-				self.list.append(getConfigListEntry(_('Pilot'), self.scan_sat.pilot))
+				self.list.append((_('Roll-off'), self.scan_sat.rolloff))
+				self.list.append((_('Pilot'), self.scan_sat.pilot))
 				if nim.isMultistream():
-					self.list.append(getConfigListEntry(_('Input Stream ID'), self.scan_sat.is_id))
-					self.list.append(getConfigListEntry(_('PLS Mode'), self.scan_sat.pls_mode))
-					self.list.append(getConfigListEntry(_('PLS Code'), self.scan_sat.pls_code))
+					self.list.append((_('Input Stream ID'), self.scan_sat.is_id))
+					self.list.append((_('PLS Mode'), self.scan_sat.pls_mode))
+					self.list.append((_('PLS Code'), self.scan_sat.pls_code))
 				if nim.isT2MI():
-					self.list.append(getConfigListEntry(_('T2MI PLP ID'), self.scan_sat.t2mi_plp_id))
-					self.list.append(getConfigListEntry(_('T2MI PID'), self.scan_sat.t2mi_pid))
+					self.list.append((_('T2MI PLP ID'), self.scan_sat.t2mi_plp_id))
+					self.list.append((_('T2MI PID'), self.scan_sat.t2mi_pid))
 		else: # "predefined_transponder"
-			self.list.append(getConfigListEntry(_("Transponder"), self.tuning.transponder))
+			self.list.append((_("Transponder"), self.tuning.transponder))
 			currtp = self.transponderToString([None, self.scan_sat.frequency.value, self.scan_sat.symbolrate.value, self.scan_sat.polarization.value])
 			self.tuning.transponder.setValue(currtp)
 		self["config"].list = self.list
@@ -1624,7 +1624,7 @@ class TunerScreen(ConfigListScreen, Screen):
 			pol = "CR"
 		else:
 			pol = "??"
-		return str(tr[1] / scale) + "," + pol + "," + str(tr[2] / scale)
+		return str(tr[1] // scale) + "," + pol + "," + str(tr[2] // scale)
 
 	def updateTransponders(self):
 		if len(self.tuning.sat.choices):
@@ -1666,7 +1666,7 @@ class TunerScreen(ConfigListScreen, Screen):
 				self.scan_sat.t2mi_pid.value)
 		elif self.tuning.type.value == "predefined_transponder":
 			transponder = nimmanager.getTransponders(satpos)[self.tuning.transponder.index]
-			returnvalue = (transponder[1] / 1000, transponder[2] / 1000,
+			returnvalue = (transponder[1] // 1000, transponder[2] // 1000,
 				transponder[3], transponder[4], 2, satpos, transponder[5], transponder[6], transponder[8], transponder[9], transponder[10], transponder[11], transponder[12], transponder[13], transponder[14])
 		self.close(returnvalue)
 

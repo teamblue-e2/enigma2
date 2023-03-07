@@ -5,7 +5,7 @@ from Components.ActionMap import ActionMap, NumberActionMap
 from Components.Pixmap import Pixmap
 from Components.Label import Label
 from Components.MenuList import MenuList
-from Components.config import ConfigSelection, ConfigSubsection, KEY_LEFT, KEY_RIGHT, KEY_0, getConfigListEntry
+from Components.config import ConfigSelection, ConfigSubsection, KEY_LEFT, KEY_RIGHT, KEY_0
 from Components.ConfigList import ConfigList
 from Plugins.Plugin import PluginDescriptor
 
@@ -106,8 +106,8 @@ class BackupSetup(Screen):
 		self.backup = ConfigSubsection()
 		self.backup.type = ConfigSelection(choices=[("settings", _("enigma2 and network")), ("var", _("/var directory")), ("skin", _("/usr/share/enigma2 directory"))], default="settings")
 		self.backup.location = ConfigSelection(choices=[("hdd", _("Harddisk")), ("usb", _("USB Stick")), ("cf", _("CF Drive"))])
-		self.list.append(getConfigListEntry(_("Backup Mode"), self.backup.type))
-		self.list.append(getConfigListEntry(_("Backup Location"), self.backup.location))
+		self.list.append((_("Backup Mode"), self.backup.type))
+		self.list.append((_("Backup Location"), self.backup.location))
 
 	def createBackupfolders(self):
 		self.path = BackupPath[self.backup.location.value]

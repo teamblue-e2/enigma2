@@ -13,7 +13,7 @@ from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixm
 from Components.Button import Button
 from Components.Label import Label
 from Components.ConfigList import ConfigListScreen
-from Components.config import ConfigSelection, getConfigListEntry, config
+from Components.config import ConfigSelection, config
 
 import os
 import sys
@@ -45,7 +45,7 @@ class HddInfo(ConfigListScreen, Screen):
 		Screen.__init__(self, session)
 		self.device = device
 		self.list = []
-		self.list.append(getConfigListEntry(_("Harddisk standby after"), config.usage.hdd_standby))
+		self.list.append((_("Harddisk standby after"), config.usage.hdd_standby))
 
 		ConfigListScreen.__init__(self, self.list)
 

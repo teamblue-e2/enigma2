@@ -3,7 +3,7 @@ from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from enigma import ePicLoad
-from Components.config import config, getConfigListEntry, ConfigInteger
+from Components.config import config, ConfigInteger
 from Components.ConfigList import ConfigListScreen
 from Components.AVSwitch import AVSwitch
 import Title
@@ -66,25 +66,25 @@ class TitleProperties(Screen, ConfigListScreen):
 			self.properties.position = ConfigInteger(default=self.title_idx + 1, limits=(1, len(self.project.titles)))
 			title = self.project.titles[self.title_idx]
 			self.list = []
-			self.list.append(getConfigListEntry("DVD " + _("Track"), self.properties.position))
-			self.list.append(getConfigListEntry("DVD " + _("Title"), self.properties.menutitle))
-			self.list.append(getConfigListEntry("DVD " + _("Description"), self.properties.menusubtitle))
+			self.list.append(("DVD " + _("Track"), self.properties.position))
+			self.list.append(("DVD " + _("Title"), self.properties.menutitle))
+			self.list.append(("DVD " + _("Description"), self.properties.menusubtitle))
 			if config.usage.setup_level.index >= 2: # expert+
 				for audiotrack in self.properties.audiotracks:
 					DVB_aud = audiotrack.DVB_lang.getValue() or audiotrack.pid.getValue()
-					self.list.append(getConfigListEntry(_("burn audio track (%s)") % DVB_aud, audiotrack.active))
+					self.list.append((_("Burn audio track (%s)") % DVB_aud, audiotrack.active))
 					if audiotrack.active.getValue():
-						self.list.append(getConfigListEntry(_("audio track (%s) format") % DVB_aud, audiotrack.format))
-						self.list.append(getConfigListEntry(_("audio track (%s) language") % DVB_aud, audiotrack.language))
+						self.list.append((_("Audio track (%s) format") % DVB_aud, audiotrack.format))
+						self.list.append((_("Audio track (%s) language") % DVB_aud, audiotrack.language))
 
-				self.list.append(getConfigListEntry("DVD " + _("Aspect Ratio"), self.properties.aspect))
+				self.list.append(("DVD " + _("Aspect ratio"), self.properties.aspect))
 				if self.properties.aspect.getValue() == "16:9":
-					self.list.append(getConfigListEntry("DVD " + "widescreen", self.properties.widescreen))
+					self.list.append(("DVD " + "widescreen", self.properties.widescreen))
 				else:
-					self.list.append(getConfigListEntry("DVD " + "widescreen", self.properties.crop))
+					self.list.append(("DVD " + "widescreen", self.properties.crop))
 			if len(title.chaptermarks) == 0:
-				self.list.append(getConfigListEntry(_("Auto chapter split every ? minutes (0=never)"), self.properties.autochapter))
-			infotext = "DVB " + _("Title") + ': ' + title.DVBname + "\n" + _("Description") + ': ' + title.DVBdescr + "\n" + _("Channel") + ': ' + title.DVBchannel + '\n' + _("Begin time") + title.formatDVDmenuText(": $D.$M.$Y, $T\n", self.title_idx + 1)
+				self.list.append((_("Auto chapter split every ? minutes (0=never)"), self.properties.autochapter))
+			infotext = "DVB " + _("Title") + ': ' + title.DVBname + "\n" + _("Description") + ': ' + title.DVBdescr + "\n" + _("Channel") + ': ' + title.DVBchannel + '\n' + _("Start time") + title.formatDVDmenuText(": $D.$M.$Y, $T\n", self.title_idx + 1)
 			chaptermarks = title.getChapterMarks(template="$h:$m:$s")
 			chapters_count = len(chaptermarks)
 			if chapters_count >= 1:

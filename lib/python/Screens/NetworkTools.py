@@ -11,7 +11,7 @@ from Components.Input import Input
 from Screens.InputBox import InputBox
 from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap, MultiPixmap
-from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigIP, ConfigText, ConfigPassword, ConfigSelection, getConfigListEntry, ConfigNumber, ConfigLocations, NoSave, ConfigMacText
+from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigIP, ConfigText, ConfigPassword, ConfigSelection, ConfigNumber, ConfigLocations, NoSave, ConfigMacText
 from Components.Pixmap import Pixmap, MultiPixmap
 from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import ActionMap, HelpableActionMap
@@ -1293,23 +1293,23 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 				if line.startswith('username '):
 					line = line[9:]
 					self.ina_user.value = line
-					ina_user1 = getConfigListEntry(_("Username") + ":", self.ina_user)
+					ina_user1 = (_("Username") + ":", self.ina_user)
 					self.list.append(ina_user1)
 				elif line.startswith('password '):
 					line = line[9:]
 					self.ina_pass.value = line
-					ina_pass1 = getConfigListEntry(_("Password") + ":", self.ina_pass)
+					ina_pass1 = (_("Password") + ":", self.ina_pass)
 					self.list.append(ina_pass1)
 				elif line.startswith('alias '):
 					line = line[6:]
 					self.ina_alias.value = line
-					ina_alias1 = getConfigListEntry(_("Alias") + ":", self.ina_alias)
+					ina_alias1 = (_("Alias") + ":", self.ina_alias)
 					self.list.append(ina_alias1)
 				elif line.startswith('update_period_sec '):
 					line = line[18:]
 					line = (int(line) / 60)
 					self.ina_period.value = line
-					ina_period1 = getConfigListEntry(_("Time Update in Minutes") + ":", self.ina_period)
+					ina_period1 = (_("Time Update in Minutes") + ":", self.ina_period)
 					self.list.append(ina_period1)
 				elif line.startswith('dyndns_system ') or line.startswith('#dyndns_system '):
 					if not line.startswith('#'):
@@ -1318,10 +1318,10 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 					else:
 						self.ina_sysactive.value = False
 						line = line[15:]
-					ina_sysactive1 = getConfigListEntry(_("Set System") + ":", self.ina_sysactive)
+					ina_sysactive1 = (_("Set System") + ":", self.ina_sysactive)
 					self.list.append(ina_sysactive1)
 					self.ina_value = line
-					ina_system1 = getConfigListEntry(_("System") + ":", self.ina_system)
+					ina_system1 = (_("System") + ":", self.ina_system)
 					self.list.append(ina_system1)
 
 			f.close()
@@ -1680,50 +1680,50 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 				if line.startswith('USHARE_NAME='):
 					line = line[12:]
 					self.ushare_user.value = line
-					ushare_user1 = getConfigListEntry(_("uShare Name") + ":", self.ushare_user)
+					ushare_user1 = (_("uShare Name") + ":", self.ushare_user)
 					self.list.append(ushare_user1)
 				elif line.startswith('USHARE_IFACE='):
 					line = line[13:]
 					self.ushare_iface.value = line
-					ushare_iface1 = getConfigListEntry(_("Interface") + ":", self.ushare_iface)
+					ushare_iface1 = (_("Interface") + ":", self.ushare_iface)
 					self.list.append(ushare_iface1)
 				elif line.startswith('USHARE_PORT='):
 					line = line[12:]
 					self.ushare_port.value = line
-					ushare_port1 = getConfigListEntry(_("uShare Port") + ":", self.ushare_port)
+					ushare_port1 = (_("uShare Port") + ":", self.ushare_port)
 					self.list.append(ushare_port1)
 				elif line.startswith('USHARE_TELNET_PORT='):
 					line = line[19:]
 					self.ushare_telnetport.value = line
-					ushare_telnetport1 = getConfigListEntry(_("Telnet Port") + ":", self.ushare_telnetport)
+					ushare_telnetport1 = (_("Telnet Port") + ":", self.ushare_telnetport)
 					self.list.append(ushare_telnetport1)
 				elif line.startswith('ENABLE_WEB='):
 					if line[11:] == 'no':
 						self.ushare_web.value = False
 					else:
 						self.ushare_web.value = True
-					ushare_web1 = getConfigListEntry(_("Web Interface") + ":", self.ushare_web)
+					ushare_web1 = (_("Web Interface") + ":", self.ushare_web)
 					self.list.append(ushare_web1)
 				elif line.startswith('ENABLE_TELNET='):
 					if line[14:] == 'no':
 						self.ushare_telnet.value = False
 					else:
 						self.ushare_telnet.value = True
-					ushare_telnet1 = getConfigListEntry(_("Telnet Interface") + ":", self.ushare_telnet)
+					ushare_telnet1 = (_("Telnet Interface") + ":", self.ushare_telnet)
 					self.list.append(ushare_telnet1)
 				elif line.startswith('ENABLE_XBOX='):
 					if line[12:] == 'no':
 						self.ushare_xbox.value = False
 					else:
 						self.ushare_xbox.value = True
-					ushare_xbox1 = getConfigListEntry(_("XBox 360 support") + ":", self.ushare_xbox)
+					ushare_xbox1 = (_("XBox 360 support") + ":", self.ushare_xbox)
 					self.list.append(ushare_xbox1)
 				elif line.startswith('ENABLE_DLNA='):
 					if line[12:] == 'no':
 						self.ushare_ps3.value = False
 					else:
 						self.ushare_ps3.value = True
-					ushare_ps31 = getConfigListEntry(_("DLNA support") + ":", self.ushare_ps3)
+					ushare_ps31 = (_("DLNA support") + ":", self.ushare_ps3)
 					self.list.append(ushare_ps31)
 			f.close()
 		self['config'].list = self.list
@@ -2172,43 +2172,43 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 				if line.startswith('friendly_name='):
 					line = line[14:]
 					self.minidlna_name.value = line
-					minidlna_name1 = getConfigListEntry(_("Name") + ":", self.minidlna_name)
+					minidlna_name1 = (_("Name") + ":", self.minidlna_name)
 					self.list.append(minidlna_name1)
 				elif line.startswith('network_interface='):
 					line = line[18:]
 					self.minidlna_iface.value = line
-					minidlna_iface1 = getConfigListEntry(_("Interface") + ":", self.minidlna_iface)
+					minidlna_iface1 = (_("Interface") + ":", self.minidlna_iface)
 					self.list.append(minidlna_iface1)
 				elif line.startswith('port='):
 					line = line[5:]
 					self.minidlna_port.value = line
-					minidlna_port1 = getConfigListEntry(_("Port") + ":", self.minidlna_port)
+					minidlna_port1 = (_("Port") + ":", self.minidlna_port)
 					self.list.append(minidlna_port1)
 				elif line.startswith('serial='):
 					line = line[7:]
 					self.minidlna_serialno.value = line
-					minidlna_serialno1 = getConfigListEntry(_("Serial No") + ":", self.minidlna_serialno)
+					minidlna_serialno1 = (_("Serial No") + ":", self.minidlna_serialno)
 					self.list.append(minidlna_serialno1)
 				elif line.startswith('inotify='):
 					if line[8:] == 'no':
 						self.minidlna_inotify.value = False
 					else:
 						self.minidlna_inotify.value = True
-					minidlna_inotify1 = getConfigListEntry(_("Inotify Monitoring") + ":", self.minidlna_inotify)
+					minidlna_inotify1 = (_("Inotify Monitoring") + ":", self.minidlna_inotify)
 					self.list.append(minidlna_inotify1)
 				elif line.startswith('enable_tivo='):
 					if line[12:] == 'no':
 						self.minidlna_tivo.value = False
 					else:
 						self.minidlna_tivo.value = True
-					minidlna_tivo1 = getConfigListEntry(_("TiVo support") + ":", self.minidlna_tivo)
+					minidlna_tivo1 = (_("TiVo support") + ":", self.minidlna_tivo)
 					self.list.append(minidlna_tivo1)
 				elif line.startswith('strict_dlna='):
 					if line[12:] == 'no':
 						self.minidlna_strictdlna.value = False
 					else:
 						self.minidlna_strictdlna.value = True
-					minidlna_strictdlna1 = getConfigListEntry(_("Strict DLNA") + ":", self.minidlna_strictdlna)
+					minidlna_strictdlna1 = (_("Strict DLNA") + ":", self.minidlna_strictdlna)
 					self.list.append(minidlna_strictdlna1)
 			f.close()
 		self['config'].list = self.list
