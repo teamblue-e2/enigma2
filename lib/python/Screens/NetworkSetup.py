@@ -203,6 +203,137 @@ class NetworkAdapterSelection(Screen, HelpableScreen):
 					self.session.openWithCallback(self.AdapterSetupClosed, NetworkWizard, selection[0])
 
 
+class IPv6Setup(Screen, ConfigListScreen, HelpableScreen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		HelpableScreen.__init__(self)
+		Screen.setTitle(self, _("IPv6 support"))
+
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("Save"))
+		self["key_blue"] = StaticText(_("Restore inetd"))
+
+		self["introduction"] = StaticText(_("Enable or disable Ipv6."))
+
+		self["OkCancelActions"] = HelpableActionMap(self, ["OkCancelActions"],
+			{
+			"cancel": (self.cancel, _("Exit IPv6 configuration")),
+			"ok": (self.ok, _("Activate IPv6 configuration")),
+			})
+
+		self["ColorActions"] = HelpableActionMap(self, ["ColorActions"],
+			{
+			"red": (self.cancel, _("Exit IPv6 configuration")),
+			"green": (self.ok, _("Activate IPv6 configuration")),
+			"blue": (self.restoreinetdData, _("Restore inetd.conf")),
+			})
+
+		self["actions"] = NumberActionMap(["SetupActions"],
+		{
+			"ok": self.ok,
+		}, -2)
+
+		self.list = []
+		ConfigListScreen.__init__(self, self.list)
+
+		fp = open('/proc/sys/net/ipv6/conf/all/disable_ipv6', 'r')
+		old_ipv6 = fp.read()
+		fp.close()
+		if int(old_ipv6) == 1:
+			self.ipv6 = False
+		else:
+			self.ipv6 = True
+		self.IPv6ConfigEntry = NoSave(ConfigYesNo(default=self.ipv6 or False))
+		self.createSetup()
+
+	def createSetup(self):
+		self.list = []
+		self.IPv6Entry = (_("IPv6 support"), self.IPv6ConfigEntry)
+		self.list.append(self.IPv6Entry)
+		self["config"].list = self.list
+		self["config"].l.setList(self.list)
+
+	def restoreinetdData(self):
+		inetdData = "# /etc/inetd.conf:  see inetd(music) for further informations.\n"
+		inetdData += "#\n"
+		inetdData += "# Internet server configuration database\n"
+		inetdData += "#\n"
+		inetdData += "# If you want to disable an entry so it isn't touched during\n"
+		inetdData += "# package updates just comment it out with a single '#' character.\n"
+		inetdData += "#\n"
+		inetdData += "# <service_name> <sock_type> <proto> <flags> <user> <server_path> <args>\n"
+		inetdData += "#\n"
+		inetdData += "#:INTERNAL: Internal services\n"
+		inetdData += "#echo	stream	tcp	nowait	root	internal\n"
+		inetdData += "#echo	dgram	udp	wait	root	internal\n"
+		inetdData += "#chargen	stream	tcp	nowait	root	internal\n"
+		inetdData += "#chargen	dgram	udp	wait	root	internal\n"
+		inetdData += "#discard	stream	tcp	nowait	root	internal\n"
+		inetdData += "#discard	dgram	udp	wait	root	internal\n"
+		inetdData += "#daytime	stream	tcp	nowait	root	internal\n"
+		inetdData += "#daytime	dgram	udp	wait	root	internal\n"
+		inetdData += "#time	stream	tcp	nowait	root	internal\n"
+		inetdData += "#time	dgram	udp	wait	root	internal\n"
+		if self.IPv6ConfigEntry.value == True:
+			inetdData += "#ftp	stream	tcp6	nowait	root	/usr/sbin/vsftpd	vsftpd\n"
+		else:
+			inetdData += "#ftp	stream	tcp	nowait	root	/usr/sbin/vsftpd	vsftpd\n"
+		inetdData += "#ftp	stream	tcp	nowait	root	ftpd	ftpd -w /\n"
+		if self.IPv6ConfigEntry.value == True:
+			inetdData += "#telnet	stream	tcp6	nowait	root	/usr/sbin/telnetd	telnetd\n"
+		else:
+			inetdData += "#telnet	stream	tcp	nowait	root	/usr/sbin/telnetd	telnetd\n"
+		if fileExists('/usr/sbin/smbd') and self.IPv6ConfigEntry.value == True:
+			inetdData += "#microsoft-ds	stream	tcp6	nowait	root	/usr/sbin/smbd	smbd\n"
+		elif fileExists('/usr/sbin/smbd') and self.IPv6ConfigEntry.value == False:
+			inetdData += "#microsoft-ds	stream	tcp	nowait	root	/usr/sbin/smbd	smbd\n"
+		else:
+			pass
+		if fileExists('/usr/sbin/nmbd') and self.IPv6ConfigEntry.value == True:
+			inetdData += "#netbios-ns	dgram	udp6	wait	root	/usr/sbin/nmbd	nmbd\n"
+		elif fileExists('/usr/sbin/nmbd') and self.IPv6ConfigEntry.value == False:
+			inetdData += "#netbios-ns	dgram	udp	wait	root	/usr/sbin/nmbd	nmbd\n"
+		else:
+			pass
+		if fileExists('/usr/bin/streamproxy') and self.IPv6ConfigEntry.value == True:
+			inetdData += "#8001	stream	tcp6	nowait	root	/usr/bin/streamproxy	streamproxy\n"
+		elif fileExists('/usr/bin/streamproxy') and self.IPv6ConfigEntry.value == False:
+			inetdData += "#8001	stream	tcp	nowait	root	/usr/bin/streamproxy	streamproxy\n"
+		else:
+			pass
+		if fileExists('/usr/bin/transtreamproxy') and self.IPv6ConfigEntry.value == True:
+			inetdData += "8002	stream	tcp6	nowait	root	/usr/bin/transtreamproxy	transtreamproxy\n"
+		elif fileExists('/usr/bin/transtreamproxy') and self.IPv6ConfigEntry.value == False:
+			inetdData += "8002	stream	tcp	nowait	root	/usr/bin/transtreamproxy	transtreamproxy\n"
+		else:
+			pass
+		fd = open("/etc/inetd.conf", 'w')
+		fd.write(inetdData)
+		fd.close()
+		self.session.open(MessageBox, _("Successfully restored /etc/inetd.conf!"), type=MessageBox.TYPE_INFO, timeout=10)
+
+	def ok(self):
+		ipv6 = '/etc/enigma2/ipv6'
+		fp = open('/proc/sys/net/ipv6/conf/all/disable_ipv6', 'w')
+		if self.IPv6ConfigEntry.value == False:
+			fp.write("1")
+			f = open(ipv6, 'w')
+			f.write("1")
+			f.close()
+		else:
+			fp.write("0")
+			system("rm -R " + ipv6)
+		fp.close()
+		self.restoreinetdData()
+		self.close()
+
+	def run(self):
+		self.ok()
+
+	def cancel(self):
+		self.close()
+
+
 class AdapterSetup(ConfigListScreen, HelpableScreen, Screen):
 	def __init__(self, session, networkinfo, essid=None):
 		Screen.__init__(self, session)
