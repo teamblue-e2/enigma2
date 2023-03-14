@@ -1223,10 +1223,10 @@ def readSkin(screen, skin, names, desktop):
 				addonClass = my_import(".".join(("Components", "Addons", wclass))).__dict__.get(wclass)
 			except ImportError:
 				raise SkinError("GUI Addon '%s' not found" % wclass)
-			
+
 			if not wconnection:
 				raise SkinError("The widget is from addon type: %s , but no connection is specified." % wclass)
-			
+
 			wclassname = name + "_" + wclass + "_" + wconnection #form a name for the GUI Addon so to be possible to be inited in screen
 
 			usedComponents.add(wclassname)
