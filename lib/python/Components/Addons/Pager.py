@@ -83,7 +83,7 @@ class Pager(GUIAddon):
 		if hasattr(self.source, 'content'):
 			return self.source.content.getItemSize().height()
 		return self.source.l.getItemSize().height()
-	
+
 	def initPager(self):
 		if self.source.__class__.__name__ == "ScrollLabel":
 			currentPageIndex = self.source.curPos//self.source.pageHeight
