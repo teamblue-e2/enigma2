@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-18 20:42+0100\n"
+"POT-Creation-Date: 2023-04-16 12:09+0200\n"
 "PO-Revision-Date: 2023-02-18 21:47+0100\n"
 "Last-Translator: Teamblue teamblue@online.de <teamblue-e2@online.de>\n"
 "Language-Team: Teamblue teamblue@online.de\n"
@@ -319,6 +319,7 @@ msgstr[1] "%d Minuten"
 msgid "%d minutes"
 msgstr "%d Minuten"
 
+#, python-format
 msgid "%d ms"
 msgstr "%d ms"
 
@@ -413,6 +414,10 @@ msgid "%s (%s)"
 msgstr "%s (%s)"
 
 #, python-format
+msgid "%s (files)"
+msgstr "%s (Dateien)"
+
+#, python-format
 msgid "%s - extraction errors."
 msgstr "%s - entpack Fehler."
 
@@ -423,6 +428,10 @@ msgstr "%s KSymb/s"
 #, python-format
 msgid "%s MHz"
 msgstr "%s MHz"
+
+#, python-format
+msgid "%s connected successfully."
+msgstr "%s erfolgreich verbunden."
 
 #, python-format
 msgid "%s imported from fallback tuner"
@@ -846,9 +855,6 @@ msgstr "Hinzufügen"
 
 msgid "Add a mark"
 msgstr "Marker hinzufügen"
-
-msgid "Add a nameserver entry"
-msgstr "DNS-Servereintrag hinzufügen"
 
 msgid "Add a new title"
 msgstr "Neuen Titel hinzufügen"
@@ -1300,9 +1306,6 @@ msgstr "Ton PID"
 msgid "Audio PID%s, codec & lang"
 msgstr "Audio PID%s, Codec & Sprache"
 
-msgid "Audio PID, codec & lang"
-msgstr "Audio PID, Codec & Sprache"
-
 msgid "Audio auto volume level"
 msgstr "Audio Auto Lautstärkeregelung"
 
@@ -1391,6 +1394,7 @@ msgstr "AutoTimer-Übersicht"
 msgid "AutoTimer Settings"
 msgstr "AutoTimer Einstellungen"
 
+#, python-format
 msgid "Autoinstalling %s"
 msgstr "Automatische Installation %s"
 
@@ -2219,6 +2223,9 @@ msgstr "Empfangsrate HP"
 msgid "Code rate LP"
 msgstr "Empfangsrate LP"
 
+msgid "Codec & lang"
+msgstr "Codec & Sprache"
+
 msgid "Collapse"
 msgstr "Reduzieren"
 
@@ -2372,9 +2379,6 @@ msgstr "Konfiguriere, ob Untertitel zwischen normal, kursiv, fett und fettkursiv
 
 msgid "Configure interface"
 msgstr "Netzwerkkarte konfigurieren"
-
-msgid "Configure nameservers"
-msgstr "DNS-Server konfigurieren"
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Einstellung der Geräte bei denen die Hintergrund-Löschung aktiviert werden soll."
@@ -3790,9 +3794,6 @@ msgstr "AutoTimer-Filter bearbeiten"
 
 msgid "Edit AutoTimer Services"
 msgstr "AutoTimer-Sender bearbeiten"
-
-msgid "Edit DNS"
-msgstr "Bearbeite DNS"
 
 msgid "Edit Title"
 msgstr "Titel ändern"
@@ -6826,16 +6827,6 @@ msgstr "Name absteigend"
 msgid "Nameserver"
 msgstr "Nameserver"
 
-#, python-format
-msgid "Nameserver %d"
-msgstr "Nameserver %d"
-
-msgid "Nameserver settings"
-msgstr "DNS-Einstellungen"
-
-msgid "Nameserver setup"
-msgstr "Namensserver-Einstellung"
-
 msgid "Namespace & Orbital pos."
 msgstr "Namespace & Orbital pos."
 
@@ -7741,13 +7732,6 @@ msgstr "Schauen Sie bitte in das Handbuch Ihres Receivers"
 
 msgid "Please choose an extension..."
 msgstr "Bitte eine Erweiterung auswählen..."
-
-msgid ""
-"Please configure or verify your Nameservers by filling out the required values.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"Konfigurieren Sie Ihre DNS-Server durch Ausfüllen der entsprechenden Werte.\n"
-"Drücken Sie OK zum Fortfahren."
 
 msgid "Please configure the fallback tuner setup?"
 msgstr "Die Reserve-Tuner-Einstellung konfigurieren?"
@@ -8669,9 +8653,6 @@ msgstr "Dienst entfernen"
 
 msgid "Remove a mark"
 msgstr "Markierung entfernen"
-
-msgid "Remove a nameserver entry"
-msgstr "DNS-Servereintrag entfernen"
 
 msgid "Remove all alternatives"
 msgstr "Entferne alle Alternativen"
@@ -10927,6 +10908,9 @@ msgstr "Nicht mehr als Anschaltkanal nutzen"
 msgid "Stopped"
 msgstr "Gestoppt"
 
+msgid "Storage device not available or not initialized."
+msgstr ""
+
 msgid "Storage devices"
 msgstr "Speichergeräte"
 
@@ -11825,13 +11809,14 @@ msgstr ""
 "- Wurde keine gültige IP-Adresse gefunden.\n"
 "- Überprüfen Sie Ihr DHCP, Ihre Verkabelung und Ihre Adapter-Konfiguration"
 
+#, fuzzy
 msgid ""
 "This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
 "If you get a \"disabled\" message:\n"
-" - then your LAN adapter is configured for manual IP setup\n"
+"- then your LAN adapter is configured for manual IP setup\n"
 "- verify thay you have entered the correct IP information in the adapter setup dialog.\n"
 "If you get an \"enabeld\" message:\n"
-"-verify that you have a configured and working DHCP server in your network."
+"- verify that you have a configured and working DHCP server in your network."
 msgstr ""
 "Dieser Test überprüft, ob Ihr Netzwerkadapter für automatische IP-Adressen-Konfiguration über DHCP eingerichtet ist.\n"
 "Wenn Sie eine \"Deaktiviert\"-Meldung erhalten:\n"
@@ -14573,9 +14558,6 @@ msgstr "Bouquet Liste öffnen"
 
 msgid "open history browser"
 msgstr "Historien Browser öffnen"
-
-msgid "open nameserver configuration"
-msgstr "DNS-Server Konfiguration öffnen"
 
 msgid "openMultiboot Manager"
 msgstr "openMultiBoot Manager"
