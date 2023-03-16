@@ -360,6 +360,11 @@ class AdapterSetup(ConfigListScreen, HelpableScreen, Screen):
 			"ok": (self.keySave, _("activate network adapter configuration")),
 		})
 
+		self["VirtualKeyboardActions"] = ActionMap(["VirtualKeyboardActions"],
+			{
+			"showVirtualKeyboard": self.KeyText,
+			})
+
 		self["ColorActions"] = HelpableActionMap(self, ["ColorActions"],
 		{
 			"red": (self.keyCancel, _("exit network adapter configuration")),
@@ -693,6 +698,29 @@ class AdapterSetup(ConfigListScreen, HelpableScreen, Screen):
 		if current == self.wlanSSID or (current == self.encryptionKey and config.plugins.wlan.encryption.value != "Unencrypted"):
 			if current[1].help_window.instance is not None:
 				current[1].help_window.instance.hide()
+
+	def KeyText(self):
+		if self['config'].getCurrent() and isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+			if self["config"].getCurrent()[1].help_window.instance is not None:
+				self["config"].getCurrent()[1].help_window.hide()
+			from Screens.VirtualKeyBoard import VirtualKeyBoard
+			self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title=self["config"].getCurrent()[0], text=self["config"].getCurrent()[1].value)
+
+	def VirtualKeyBoardCallback(self, callback=None):
+		if callback is not None and len(callback):
+			self["config"].getCurrent()[1].setValue(callback)
+			self["config"].invalidate(self["config"].getCurrent())
+		self.showHelpWindow()
+
+	def showHelpWindow(self, ret=None):
+		if self['config'].getCurrent() and isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+			if self["config"].getCurrent()[1].help_window.instance is not None:
+				self["config"].getCurrent()[1].help_window.show()
+
+	def hideHelpWindow(self):
+		if self['config'].getCurrent() and isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
+			if self["config"].getCurrent()[1].help_window.instance is not None:
+				self["config"].getCurrent()[1].help_window.hide()
 
 
 class AdapterSetupConfiguration(Screen, HelpableScreen):
