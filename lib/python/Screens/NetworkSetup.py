@@ -203,6 +203,73 @@ class NetworkAdapterSelection(Screen, HelpableScreen):
 					self.session.openWithCallback(self.AdapterSetupClosed, NetworkWizard, selection[0])
 
 
+class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		HelpableScreen.__init__(self)
+		Screen.setTitle(self, _("MAC-adress settings"))
+		self.curMac = self.getmac('eth0')
+		self.getConfigMac = NoSave(ConfigMacText(default=self.curMac))
+
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("Save"))
+
+		self["introduction"] = StaticText(_("Press OK to set the MAC-adress."))
+
+		self["OkCancelActions"] = HelpableActionMap(self, ["OkCancelActions"],
+			{
+			"cancel": (self.cancel, _("Exit nameserver configuration")),
+			"ok": (self.ok, _("Activate current configuration")),
+			})
+
+		self["ColorActions"] = HelpableActionMap(self, ["ColorActions"],
+			{
+			"red": (self.cancel, _("Exit MAC-adress configuration")),
+			"green": (self.ok, _("Activate MAC-adress configuration")),
+			})
+
+		self["actions"] = NumberActionMap(["SetupActions"],
+		{
+			"ok": self.ok,
+		}, -2)
+
+		self.list = []
+		ConfigListScreen.__init__(self, self.list)
+		self.createSetup()
+
+	def getmac(self, iface):
+		mac = (0, 0, 0, 0, 0, 0)
+		ifconfig = subprocess.getoutput("ifconfig " + iface + "| grep HWaddr | awk '{ print $5 }'").strip()
+		if len(ifconfig) == 0:
+			mac = "00:00:00:00:00:00"
+		else:
+			mac = ifconfig[:17]
+		return mac
+
+	def createSetup(self):
+		self.list = []
+		self.list.append((_("MAC-adress"), self.getConfigMac))
+		self["config"].list = self.list
+		self["config"].l.setList(self.list)
+
+	def ok(self):
+		MAC = self.getConfigMac.getValue()
+		f = open('/etc/enigma2/hwmac', 'w')
+		f.write(MAC)
+		f.close()
+		route = subprocess.getoutput("route -n |grep UG | awk '{print $2}'")
+		system('ifconfig eth0 down')
+		system('ifconfig eth0 hw ether %s up' % MAC)
+		system('route add default gw %s eth0' % route)
+		self.close()
+
+	def run(self):
+		self.ok()
+
+	def cancel(self):
+		self.close()
+
+
 class IPv6Setup(Screen, ConfigListScreen, HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
