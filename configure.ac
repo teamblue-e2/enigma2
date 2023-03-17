@@ -209,6 +209,7 @@ if test "$BOXTYPE" == "gbmv200"; then
 	AC_DEFINE(CONFIG_HISILICON_FB, 1,[define add HISILICON framebuffer blit])
 	AC_DEFINE(FORCE_ALPHABLENDING_ACCELERATION, 1,[define when the framebuffer acceleration has alphablending support, but detection slow down all])
 	AC_DEFINE(VMSG_TYPE2, 1,[define vtuner_message type 2])
+	AC_DEFINE(HAVE_TEXTLCD, 1,[Define when using an ascii based lcd device])
 fi
 
 AC_ARG_WITH(libsdl,
