@@ -18,10 +18,6 @@ if HAVE_BWLCD255
 SUBDIRS = vfd255
 endif
 
-if HAVE_TEXTLCD
-SUBDIRS = displaytext
-endif
-
 dist_install_DATA = skin_display.xml
 
 # Use box-specific XML if it exists, otherwise get the default
