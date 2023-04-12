@@ -20,6 +20,7 @@ public:
 	void setPixmap(ePtr<gPixmap> &pixmap);
 	void setBackgroundPixmap(gPixmap *pixmap);
 	void setBackgroundPixmap(ePtr<gPixmap> &pixmap);
+	void setAlphatest(int alphatest);
 	void setSliderBorderWidth(int pixel);
 	void setSliderBorderColor(const gRGB &color);
 	void setSliderForegroundColor(const gRGB &color);
