@@ -754,7 +754,6 @@ class SystemNetworkInfo(Screen):
 			self.iStatus.getDataForInterface(self.iface, self.getInfoCB)
 
 	def getInfoCB(self, data, status):
-		data = six.ensure_str(data)
 		self.LinkState = None
 		if data is not None:
 			if data is True:
@@ -787,7 +786,7 @@ class SystemNetworkInfo(Screen):
 
 						signal = status[self.iface]["signal"]
 						if "signal" in self:
-							self.AboutText += _('Signal Strength:') + signal + '\n'
+							self.AboutText += _('Signal Strength: %d \n' % signal)
 
 						if status[self.iface]["encryption"] == "off":
 							if accesspoint == "Not-Associated":
