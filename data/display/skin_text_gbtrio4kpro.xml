@@ -43,9 +43,6 @@
 
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="1,1">
-		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
-			<convert type="VfdDisplay">Clock</convert>
-		</widget>
 		<widget source="session.RecordState" render="Label" text="REC" position="0,0" size="1,1">
 			<convert type="ConditionalShowHide">Blink,4000,1000</convert>
 		</widget>
