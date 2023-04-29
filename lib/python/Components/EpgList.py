@@ -15,6 +15,7 @@ from skin import applySkinFactor, parseFont, parseScale
 EPG_TYPE_SINGLE = 0
 EPG_TYPE_MULTI = 1
 EPG_TYPE_SIMILAR = 2
+EPG_TYPE_PARTIAL = 3
 
 
 class Rect:
@@ -65,47 +66,24 @@ class EPGList(GUIComponent):
 			assert (type == EPG_TYPE_SIMILAR)
 			self.l.setBuildFunc(self.buildSimilarEntry)
 		self.epgcache = eEPGCache.getInstance()
-		self.clocks = [LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_add.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_pre.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_prepost.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_post.png')),
 
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/zapclock_add.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/zapclock_pre.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/zapclock.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/zapclock_prepost.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/zapclock_post.png')),
-
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/zaprecclock_add.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/zaprecclock_pre.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/zaprecclock.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/zaprecclock_prepost.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/zaprecclock_post.png')),
-
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/repepgclock_add.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/repepgclock_pre.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/repepgclock.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/repepgclock_prepost.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/repepgclock_post.png')),
-
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/repzapclock_add.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/repzapclock_pre.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/repzapclock.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/repzapclock_prepost.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/repzapclock_post.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/repzaprecclock_add.png')),
-
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/repzaprecclock_pre.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/repzaprecclock.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/repzaprecclock_prepost.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/repzaprecclock_post.png')),
-
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/pipclock_add.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/pipclock_pre.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/pipclock.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/pipclock_prepost.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/pipclock_post.png'))]
+		main_icons = (
+			"epgclock",
+			"zapclock",
+			"zaprecclock",
+			"repepgclock",
+			"repzapclock",
+			"repzaprecclock",
+			"pipclock"
+		)
+		add_icons = (
+			"_add",
+			"_pre",
+			"",
+			"_prepost",
+			"_post"
+		)
+		self.clocks = tuple(LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/%s%s.png" % (m, a))) for m in main_icons for a in add_icons)
 
 	def getEventFromId(self, service, eventid):
 		event = None
@@ -394,18 +372,24 @@ class EPGList(GUIComponent):
 			index += 1
 
 	def fillSimilarList(self, refstr, event_id):
-		t = int(time())
+		# t = int(time())
 		# search similar broadcastings
-		if event_id is None:
-			return
-		l = self.epgcache.search(('RIBND', 1024, eEPGCache.SIMILAR_BROADCASTINGS_SEARCH, refstr, event_id))
-		if l and len(l):
-			l.sort(key=lambda x: x[2])
-		self.l.setList(l)
+		if event_id:
+			self.fill_list(self.epgcache.search(('RIBND', 1024, eEPGCache.SIMILAR_BROADCASTINGS_SEARCH, refstr, event_id)))
+		# print(int(time() - t))
+
+	def fill_partial_list(self, event):
+		if event:
+			self.fill_list(self.epgcache.search(('RIBND', 1024, eEPGCache.PARTIAL_TITLE_SEARCH, event, eEPGCache.NO_CASE_CHECK)))
+
+	def fill_list(self, event_list):
+		if event_list and len(event_list):
+			event_list.sort(key=lambda x: x[2])
+		self.l.setList(event_list)
 		self.selectionChanged()
-		print(int(time() - t))
 
 	def applySkin(self, desktop, parent):
+
 		def warningWrongSkinParameter(string):
 			print("[EPGList] wrong '%s' skin parameters" % string)
 
@@ -425,7 +409,7 @@ class EPGList(GUIComponent):
 			self.tw = parseScale(value)
 
 		def setColWidths(value):
-			self.col = list(map(int, value.split(',')))
+			self.col = [parseScale(x) for x in value.split(",")]
 			if len(self.col) == 2:
 				self.skinColumns = True
 			else:
@@ -433,12 +417,15 @@ class EPGList(GUIComponent):
 
 		def setColGap(value):
 			self.colGap = parseScale(value)
+
 		for (attrib, value) in self.skinAttributes[:]:
 			try:
 				locals().get(attrib)(value)
+			except (TypeError, ValueError, NameError) as er:
+				print("[EPGList] error in set skin parameters", er)
+			else:
 				self.skinAttributes.remove((attrib, value))
-			except:
-				pass
+
 		self.l.setFont(0, self.eventItemFont)
 		self.l.setFont(1, self.eventTimeFont)
 		return GUIComponent.applySkin(self, desktop, parent)
