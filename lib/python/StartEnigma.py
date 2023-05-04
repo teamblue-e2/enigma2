@@ -367,8 +367,8 @@ class Session:
 	def pushSummary(self):
 		if self.summary:
 			self.summary.hide()
-		self.summary_stack.append(self.summary)
-		self.summary = None
+			self.summary_stack.append(self.summary)
+			self.summary = None
 
 	def popSummary(self):
 		if self.summary:
