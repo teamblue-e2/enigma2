@@ -2,7 +2,6 @@ from __future__ import division
 import errno
 import xml.etree.ElementTree
 
-import six
 from enigma import addFont, eLabel, ePixmap, ePoint, eRect, eSize, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gRGB, BT_ALPHATEST, BT_ALPHABLEND
 from os.path import basename, dirname, isfile
 
@@ -45,6 +44,7 @@ parameters = {}  # Dictionary of skin parameters used to modify code behavior.
 setups = {}  # Dictionary of images associated with setup menus.
 switchPixmap = {}  # Dictionary of switch images.
 windowStyles = {}  # Dictionary of window styles for each screen ID.
+constantWidgets = {}
 
 config.skin = ConfigSubsection()
 skin = resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)
@@ -433,14 +433,14 @@ def collectAttributes(skinAttributes, node, context, skinPath=None, ignore=(), f
 			# listbox; when the scrollbar setting is applied after the size, a scrollbar
 			# will not be shown until the selection moves for the first time.
 			if attrib == "size":
-				size = six.ensure_str(value)
+				size = value
 			elif attrib == "position":
-				pos = six.ensure_str(value)
+				pos = value
 			elif attrib == "font":
-				font = six.ensure_str(value)
+				font = value
 				skinAttributes.append((attrib, font))
 			else:
-				skinAttributes.append((attrib, six.ensure_str(value)))
+				skinAttributes.append((attrib, value))
 	if pos != None:
 		pos, size = context.parse(pos, size, font)
 		skinAttributes.append(("position", pos))
@@ -728,7 +728,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 	global colors, fonts, menus, parameters, setups, switchPixmap
 	for tag in domSkin.findall("output"):
 		scrnID = int(tag.attrib.get("id", GUI_SKIN_ID))
-		if screenID == GUI_SKIN_ID:
+		if scrnID == GUI_SKIN_ID:
 			for res in tag.findall("resolution"):
 				xres = res.attrib.get("xres")
 				xres = int(xres) if xres else 720
@@ -884,6 +884,11 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 				# print("[Skin] DEBUG: Setup key='%s', image='%s'." % (key, image))
 			else:
 				raise SkinError("Tag setup needs key and image, got key='%s' and image='%s'" % (key, image))
+	for tag in domSkin.findall("constant-widgets"):
+		for constant_widget in tag.findall("constant-widget"):
+			name = constant_widget.attrib.get("name")
+			if name:
+				constantWidgets[name] = constant_widget
 	for tag in domSkin.findall("subtitles"):
 		from enigma import eSubtitleWidget
 		scale = ((1, 1), (1, 1))
@@ -1269,9 +1274,10 @@ def readSkin(screen, skin, names, desktop):
 		screen.additionalWidgets.append(w)
 
 	def processScreen(widget, context):
-		for w in widget.findall('constant-widget'):
+		widgets = widget
+		for w in widgets.findall('constant-widget'):
 			processConstant(w, context)
-		for w in widget:
+		for w in widgets:
 			conditional = w.attrib.get("conditional")
 			if conditional and not [i for i in conditional.split(",") if i in screen.keys()]:
 				continue
@@ -1306,6 +1312,7 @@ def readSkin(screen, skin, names, desktop):
 
 	processors = {
 		None: processNone,
+		"constant-widget": processConstant,
 		"widget": processWidget,
 		"applet": processApplet,
 		"eLabel": processLabel,
