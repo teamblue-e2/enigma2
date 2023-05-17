@@ -72,7 +72,9 @@ class UpdatePlugin(Screen, ProtectedScreen):
 	def checkTraficLight(self):
 		self.activityTimer.callback.remove(self.checkTraficLight)
 		self.activityTimer.start(100, False)
+		status = None
 		message = ""
+		abort = False
 		picon = None
 		default = True
 		url = "https://images.teamblue.tech/status/%s-%s/" % (getImageVersion(), getImageType())
