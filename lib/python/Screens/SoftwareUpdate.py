@@ -147,12 +147,7 @@ If you discover 'bugs' please keep them reported on www.teamblue.tech.\n\nDo you
 
 	def getLatestImageTimestamp(self):
 		url = "http://images.teamblue.tech/status/%s-%s/buildtimestamp-%s" % (getImageVersion(), getImageType(), getBoxType())
-		# print "[SoftwareUpdate] url buildtimestamp: ", url
-		try:
-			# TODO: Use Twisted's URL fetcher, urlopen is evil. And it can
-			# run in parallel to the package update.
-			from time import strftime
-			from datetime import datetime
+		def gettime(url):
 			try:
 				return strftime("%Y-%m-%d %H:%M:%S", gmtime(timegm(urlopen("%s/Packages.gz" % url).info().getdate('Last-Modified')) - altzone))
 			except Exception as er:
