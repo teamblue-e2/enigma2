@@ -60,6 +60,7 @@ else
 	LIBS="@libdir@/libopen.so.0.0.0"
 fi
 
+stbcheck=`cat /proc/stb/info/boxtype`
 # enigma main loop
 while : ; do
 	# set TASKSETVALUE to start enigma2
@@ -76,13 +77,10 @@ while : ; do
 	  TASKSETVALUE=1;;
 	esac
 
-	if [ -e /proc/stb/info/boxtype ]; then
-		stbcheck=`cat /proc/stb/info/boxtype`
-		if [ $stbcheck == "gbmv200" ]; then
-			count=`ps -ef |grep libreader |grep -v "grep" |wc -l`
-			if [ 0 == $count ];then
-				libreader 720P_50
-			fi
+	if [ $stbcheck == "gbmv200" ]; then
+		count=`ps -ef |grep libreader |grep -v "grep" |wc -l`
+		if [ 0 == $count ];then
+			libreader 720P_50
 		fi
 	fi
 
@@ -143,11 +141,8 @@ while : ; do
 	# >128 signal
 
 	if [ "$ret" -ne "1" ]; then
-		if [ -e /proc/stb/info/boxtype ]; then
-			stbcheck=`cat /proc/stb/info/boxtype`
-			if [ $stbcheck == "gbmv200" ] ; then
-				killall -9 libreader; sleep 5
-			fi
+		if [ $stbcheck == "gbmv200" ] ; then
+			killall -9 libreader; sleep 5
 		fi
 	fi
 
@@ -185,6 +180,8 @@ while : ; do
 				mkdir -p /tmp/bootoptions
 				mount /dev/block/by-name/bootoptions /tmp/bootoptions
 				cp -f /tmp/bootoptions/STARTUP_RECOVERY /tmp/bootoptions/STARTUP_ONCE
+			elif [ $stbcheck == "gbtrio4kpro" ]; then
+				cp -f /boot/STARTUP_RECOVERY /boot/STARTUP_ONCE
 			else
 				echo "rescue" > /proc/stb/fp/boot_mode
 			fi
