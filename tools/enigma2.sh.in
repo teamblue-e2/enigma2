@@ -57,9 +57,7 @@ else
 	LIBS="@libdir@/libopen.so.0.0.0"
 fi
 
-if [ -e /proc/stb/info/boxtype ]; then
-	stbcheck=`cat /proc/stb/info/boxtype`
-fi
+stbcheck=`cat /proc/stb/info/boxtype`
 # enigma main loop
 while : ; do
 	# set TASKSETVALUE to start enigma2
