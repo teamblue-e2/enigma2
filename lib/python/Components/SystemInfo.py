@@ -1,3 +1,4 @@
+import re
 from enigma import Misc_Options, eDVBCIInterfaces, eDVBResourceManager
 from Tools.Directories import SCOPE_PLUGINS, SCOPE_SKIN, fileCheck, fileExists, fileHas, pathExists, resolveFilename, isPluginInstalled
 from Tools.HardwareInfo import HardwareInfo
@@ -6,9 +7,14 @@ from boxbranding import getBoxType, getMachineBuild, getBrandOEM, getMachineMtdR
 SystemInfo = {}
 SystemInfo["HasRootSubdir"] = False	# This needs to be here so it can be reset by getMultibootslots!
 SystemInfo["RecoveryMode"] = False or fileCheck("/proc/stb/fp/boot_mode")	# This needs to be here so it can be reset by getMultibootslots!
-from Tools.Multiboot import getMBbootdevice, getMultibootslots  # This import needs to be here to avoid a SystemInfo load loop!
 
+from Tools.Multiboot import getMultibootStartupDevice, getMultibootslots  # This import needs to be here to avoid a SystemInfo load loop!
 
+# Parse the boot commandline.
+#
+with open("/proc/cmdline", "r") as fd:
+	cmdline = fd.read()
+cmdline = {k: v.strip('"') for k, v in re.findall(r'(\S+)=(".*?"|\S+)', cmdline)}
 def getNumVideoDecoders():
 	number_of_video_decoders = 0
 	while fileExists("/dev/dvb/adapter0/video%d" % (number_of_video_decoders), 'f'):
@@ -107,6 +113,13 @@ SystemInfo["HasYPbPr"] = getMachineBuild() in ('gb7356', 'gb7325') or model in (
 SystemInfo["HasScart"] = getMachineBuild() in ('gb7325', )
 SystemInfo["HasSVideo"] = getMachineBuild() in ('dummy', )
 SystemInfo["HasComposite"] = getMachineBuild() in ('gb7356', 'gb7358', 'gb7325') or model in ('gbultraue', 'gbultraueh')
+SystemInfo["hasKexec"] = fileHas("/proc/cmdline", "kexec=1")
+SystemInfo["canKexec"] = model in ("vusolo4k", "vuduo4k", "vuduo4kse", "vuultimo4k", "vuuno4k", "vuuno4kse", "vuzero4k") and not SystemInfo["hasKexec"] and fileExists("/usr/bin/kernel_auto.bin") and fileExists("/usr/bin/STARTUP.cpio.gz")
+SystemInfo["MultibootStartupDevice"] = getMultibootStartupDevice()
+SystemInfo["canMode12"] = "%s_4.boxmode" % model in cmdline and cmdline["%s_4.boxmode" % model] in ("1", "12") and "192M"
+SystemInfo["canMultiBoot"] = getMultibootslots()
+SystemInfo["canDualBoot"] = fileExists("/dev/block/by-name/flag")
+SystemInfo["canFlashWithOfgwrite"] = not(model.startswith("dm"))
 SystemInfo["HasAutoVolume"] = fileExists("/proc/stb/audio/avl_choices") and fileCheck("/proc/stb/audio/avl")
 SystemInfo["HasAutoVolumeLevel"] = fileExists("/proc/stb/audio/autovolumelevel_choices") and fileCheck("/proc/stb/audio/autovolumelevel")
 SystemInfo["Has3DSurround"] = fileExists("/proc/stb/audio/3d_surround_choices") and fileCheck("/proc/stb/audio/3d_surround")
@@ -125,8 +138,6 @@ SystemInfo["CanDownmixDTSHD"] = fileHas("/proc/stb/audio/dtshd_choices", "downmi
 SystemInfo["CanDownmixAAC"] = fileHas("/proc/stb/audio/aac_choices", "downmix")
 SystemInfo["CanDownmixAACPlus"] = fileHas("/proc/stb/audio/aacplus_choices", "downmix")
 SystemInfo["HDMIAudioSource"] = fileCheck("/proc/stb/hdmi/audio_source")
-SystemInfo["MBbootdevice"] = getMBbootdevice()
-SystemInfo["canMultiBoot"] = getMultibootslots()
 SystemInfo["canDualBoot"] = fileExists("/dev/block/by-name/flag")
 SystemInfo["canMode12"] = getMachineBuild() in ('hd51', 'vs1500', 'h7') and ('brcm_cma=440M@328M brcm_cma=192M@768M', 'brcm_cma=520M@248M brcm_cma=200M@768M')
 SystemInfo["HAScmdline"] = fileCheck("/boot/cmdline.txt")
@@ -141,4 +152,3 @@ SystemInfo["HasPhysicalLoopthrough"] = ["Vuplus DVB-S NIM(AVL2108)", "GIGA DVB-S
 SystemInfo["HasFBCtuner"] = ["Vuplus DVB-C NIM(BCM3158)", "Vuplus DVB-C NIM(BCM3148)", "Vuplus DVB-S NIM(7376 FBC)", "Vuplus DVB-S NIM(45308X FBC)", "Vuplus DVB-S NIM(45208 FBC)", "DVB-S2 NIM(45208 FBC)", "DVB-S2X NIM(45308X FBC)", "DVB-S2 NIM(45308 FBC)", "DVB-C NIM(3128 FBC)", "BCM45208", "BCM45308X", "BCM3158"]
 SystemInfo["HasHiSi"] = pathExists("/proc/hisi")
 SystemInfo["FCCactive"] = False
-SystemInfo["Autoresolution_proc_videomode"] = model in ("gbue4k", "gbquad4k") and "/proc/stb/video/videomode_50hz" or "/proc/stb/video/videomode"

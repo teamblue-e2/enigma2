@@ -1,10 +1,3 @@
-from __future__ import division
-#################################################################################
-# FULL BACKUP UYILITY FOR ENIGMA2, SUPPORTS THE MODELS OE-A 4.4     			#
-#	                         						                            #
-#					MAKES A FULLBACK-UP READY FOR FLASHING.						#
-#																				#
-#################################################################################
 from enigma import getEnigmaVersionString
 from Screens.Screen import Screen
 from Components.Sources.StaticText import StaticText
@@ -19,7 +12,8 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from time import time, strftime, localtime
 from Tools.BoundFunction import boundFunction
-from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, GetCurrentKern, GetCurrentRoot, GetBoxName
+from Tools.Multiboot import getImagelist, getCurrentImage, getCurrentImageMode
+from Tools.HardwareInfo import HardwareInfo
 import os
 import sys
 import datetime
@@ -82,12 +76,12 @@ class ImageBackup(Screen):
 		self.setTitle(self.title)
 
 	def startit(self):
-		self.getImageList = GetImagelist(self.ImageList)
+		self.getImageList = self.ImageList(getImagelist())
 
 	def ImageList(self, imagedict):
 		self.saveImageList = imagedict
 		_list = []
-		currentimageslot = GetCurrentImage() or 1
+		currentimageslot = getCurrentImage() or 1
 		print("[Image Backup] Current Image Slot %s, Imagelist %s" % (currentimageslot, imagedict))
 		if imagedict:
 			for x in sorted(imagedict.keys()):
@@ -144,7 +138,7 @@ class ImageBackup(Screen):
 						self.session.open(MessageBox, _("Cannot create backup directory"), MessageBox.TYPE_ERROR, timeout=10)
 						return
 				self.SLOT = answer[1]
-				self.MODEL = GetBoxName()
+				self.MODEL = HardwareInfo().get_machine_name()
 				self.OEM = getBrandOEM()
 				self.MACHINEBUILD = getMachineBuild()
 				self.MACHINENAME = getMachineName()
