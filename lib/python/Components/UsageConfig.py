@@ -562,6 +562,7 @@ def InitUsageConfig():
 		keytranslation = eEnv.resolve("${datadir}/enigma2/keytranslation.xml")
 	config.usage.keytrans = ConfigText(default=keytranslation)
 	config.usage.timerlist_finished_timer_position = ConfigSelection(default="end", choices=[("beginning", _("At beginning")), ("end", _("At end"))])
+	config.usage.alternative_imagefeed = ConfigText(default="", fixed_size=False)
 
 	config.seek = ConfigSubsection()
 	config.seek.selfdefined_13 = ConfigNumber(default=15)

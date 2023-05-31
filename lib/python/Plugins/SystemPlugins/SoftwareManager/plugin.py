@@ -37,9 +37,7 @@ from enigma import eTimer, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMulti
 from twisted.web import client
 from twisted.internet import reactor
 from .ImageBackup import ImageBackup
-from .Flash_online import FlashOnline
 from .ImageWizard import ImageWizard
-from .Multibootmgr import MultiBootWizard
 from .BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename
 from .BackupRestore import InitConfig as BackupRestore_InitConfig
 from .SoftwareTools import iSoftwareTools
@@ -152,11 +150,8 @@ class UpdatePluginMenu(Screen):
 		self.backupdirs = ' '.join(config.plugins.configurationbackup.backupdirs.value)
 		if self.menu == 0:
 			# print("building menu entries")
-			self.list.append(("flash-online", _("Flash Online"), _("Flash on the fly your Receiver software.") + self.oktext, None))
 			self.list.append(("software-restore", _("Software restore"), _("Restore your Receiver with a new firmware.") + self.oktext, None))
 			self.list.append(("backup-image", _("Backup Image"), _("Backup your running Receiver image to HDD or USB.") + self.oktext, None))
-			if SystemInfo["canMultiBoot"]:
-				self.list.append(("multiboot-manager", _("MultiBoot Manager"), _("\nMaintain your multiboot device.") + self.oktext, None))
 			self.list.append(("system-backup", _("Backup system settings"), _("Backup your Receiver settings.") + self.oktext + "\n\n" + self.infotext, None))
 			self.list.append(("system-restore", _("Restore system settings"), _("Restore your Receiver settings.") + self.oktext, None))
 			self.list.append(("opkg-install", _("Install local extension"), _("Scan for local extensions and install them.") + self.oktext, None))
@@ -286,10 +281,6 @@ class UpdatePluginMenu(Screen):
 					self.session.open(ImageWizard)
 				elif (currentEntry == "install-extensions"):
 					self.session.open(PluginManager, self.skin_path)
-				elif (currentEntry == "flash-online"):
-					self.session.open(FlashOnline)
-				elif (currentEntry == "multiboot-manager"):
-					self.session.open(MultiBootWizard)
 				elif (currentEntry == "backup-image"):
 					self.session.open(ImageBackup)
 				elif (currentEntry == "system-backup"):

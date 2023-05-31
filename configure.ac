@@ -410,6 +410,7 @@ data/fonts/Makefile
 data/countries/Makefile
 data/extensions/Makefile
 data/gbipbox/Makefile
+data/hw_info/Makefile
 data/keymaps/Makefile
 data/display/Makefile
 data/display/lcd220/Makefile
