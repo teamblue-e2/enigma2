@@ -76,21 +76,21 @@ class SelectImage(Screen):
 	def getImagesList(self):
 
 		def getImages(path, files):
-			for file in files:
+			for imageFile in files:
 				try:
-					if checkimagefiles([x.split(os.sep)[-1] for x in zipfile.ZipFile(file).namelist()]):
+					if checkimagefiles([x.split(os.sep)[-1] for x in zipfile.ZipFile(imageFile).namelist()]):
 						imagetyp = _("Downloaded Images")
-						if 'backup' in file.split(os.sep)[-1]:
+						if 'backup' in imageFile.split(os.sep)[-1]:
 							imagetyp = _("Fullbackup Images")
 						if imagetyp not in self.imagesList:
 							self.imagesList[imagetyp] = {}
-						self.imagesList[imagetyp][file] = {'link': file, 'name': file.split(os.sep)[-1]}
+						self.imagesList[imagetyp][imageFile] = {'link': imageFile, 'name': imageFile.split(os.sep)[-1]}
 				except:
 					pass
 
-		def checkModels(file):
+		def checkModels(imageFile):
 			for model in self.models:
-				if '-%s-' % model in file:
+				if '-%s-' % model in imageFile:
 					return True
 			return False
 
@@ -128,7 +128,6 @@ class SelectImage(Screen):
 							print("[FlashImage] getImagesList Error: Unable to load json data from alternative URL '%s'!" % url)
 
 			self.imagesList = dict(self.jsonlist)
-			print("self.imagesList:" ,self.imagesList)
 
 			for media in ['/media/%s' % x for x in os.listdir('/media')] + (['/media/net/%s' % x for x in os.listdir('/media/net')] if os.path.isdir('/media/net') else []):
 				try:
@@ -397,7 +396,6 @@ class FlashImage(Screen):
 		self.show()
 		if reply:
 			if "://" in self.source:
-				from Tools.Downloader import downloadWithProgress
 				self["header"].setText(_("Downloading Image"))
 				self["info"].setText(self.imagename)
 				self.downloader = downloadWithProgress(self.source, self.zippedimage)
