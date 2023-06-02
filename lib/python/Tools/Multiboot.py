@@ -38,15 +38,18 @@ def getMultibootslots():
 	bootslots = {}
 	mode12found = False
 	if SystemInfo["MultibootStartupDevice"]:
-		for file in glob.glob(os.path.join(tmp.dir, 'STARTUP_*')):
-			if 'MODE_' in file:
+		for _file in glob.glob(os.path.join(tmp.dir, 'STARTUP_*')):
+			if "STARTUP_RECOVERY" in _file:
+				SystemInfo["RecoveryMode"] = True
+				print("[multiboot] [getMultibootslots] RecoveryMode is set to:%s" % SystemInfo["RecoveryMode"])
+			if 'MODE_' in _file:
 				mode12found = True
-				slotnumber = file.rsplit('_', 3)[1]
+				slotnumber = _file.rsplit('_', 3)[1]
 			else:
-				slotnumber = file.rsplit('_', 1)[1]
+				slotnumber = _file.rsplit('_', 1)[1]
 			if slotnumber.isdigit() and slotnumber not in bootslots:
 				slot = {}
-				for line in open(file).readlines():
+				for line in open(_file).readlines():
 					if 'root=' in line:
 						device = getparam(line, 'root')
 						if "UUID=" in device:
@@ -55,7 +58,7 @@ def getMultibootslots():
 								device = slotx
 						if os.path.exists(device) or device == 'ubi0:ubifs':
 							slot['device'] = device
-							slot['startupfile'] = os.path.basename(file)
+							slot['startupfile'] = os.path.basename(_file)
 							if "sda" in line:
 								slot["kernel"] = "/dev/sda%s" % line.split("sda", 1)[1].split(" ", 1)[0]
 								slot["rootsubdir"] = None

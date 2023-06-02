@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-24 20:46+0100\n"
+"POT-Creation-Date: 2023-06-02 16:41+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Budiarno\n"
 "Language-Team: \n"
@@ -32,11 +32,6 @@ msgid ""
 msgstr ""
 "\n"
 "Setelah tekan OK, silakan tunggu!"
-
-msgid ""
-"\n"
-"Maintain your multiboot device."
-msgstr ""
 
 msgid ""
 "\n"
@@ -162,6 +157,10 @@ msgstr ""
 msgid " - folder exist! Overwrite"
 msgstr ""
 
+#, fuzzy
+msgid " - information"
+msgstr "Informasi"
+
 msgid " Warning: the selected tuner should not use SCR Unicable type for LNBs because each tuner need a own SCR number."
 msgstr ""
 
@@ -219,9 +218,6 @@ msgstr "%A %e %B %Y"
 
 msgid "%H:%M"
 msgstr "%H:%M"
-
-msgid "%Y-%m-%d %H:%M"
-msgstr "%Y-%m-%d %H:%M"
 
 #, fuzzy
 msgid "%Y-%m-%d %H:%M:%S"
@@ -304,6 +300,10 @@ msgid "%d minutes"
 msgstr "%d menit"
 
 #, fuzzy, python-format
+msgid "%d ms"
+msgstr "%d mnt"
+
+#, fuzzy, python-format
 msgid "%d package selected."
 msgid_plural "%d packages selected."
 msgstr[0] " paket yang dipilih."
@@ -367,6 +367,13 @@ msgstr "%k:%M %e/%m"
 msgid "%s"
 msgstr "bc%s"
 
+#, fuzzy, python-format
+msgid ""
+"%s\n"
+"Do you still want to flash image\n"
+"%s?"
+msgstr "Anda menginginkan ini?"
+
 #, python-format
 msgid ""
 "%s\n"
@@ -390,6 +397,10 @@ msgstr "%s (%s)\n"
 msgid "%s (%s)"
 msgstr "%s (%s)\n"
 
+#, fuzzy, python-format
+msgid "%s (files)"
+msgstr "%d berkas"
+
 #, python-format
 msgid "%s - extraction errors."
 msgstr ""
@@ -401,6 +412,10 @@ msgstr ""
 #, python-format
 msgid "%s MHz"
 msgstr ""
+
+#, fuzzy, python-format
+msgid "%s connected successfully."
+msgstr "The PIN code has been changed successfully."
 
 #, python-format
 msgid "%s imported from fallback tuner"
@@ -433,6 +448,9 @@ msgstr "%s/%s: %s"
 msgid "'%s' not installed and no known package"
 msgstr ""
 
+msgid "'Minimum send interval' needs to be enabled to use this option."
+msgstr ""
+
 #, python-format
 msgid "(%d jobs)"
 msgstr ""
@@ -443,6 +461,9 @@ msgstr ""
 #, fuzzy
 msgid "(Selectmode)"
 msgstr "Pilih film"
+
+msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
+msgstr ""
 
 msgid "(ZAP as PiP)"
 msgstr ""
@@ -456,6 +477,10 @@ msgstr "(diaktifkan +%d mnt)"
 
 #, fuzzy
 msgid "(current image)"
+msgstr "Aktifkan setelan saat ini"
+
+#, fuzzy
+msgid "(current)"
 msgstr "Aktifkan setelan saat ini"
 
 msgid "(empty)"
@@ -473,10 +498,6 @@ msgstr "tidak dikenal"
 
 msgid "* Only available if more than one interface is active."
 msgstr "* Hanya tersedia jika lebih dari satu antarmuka yang aktif."
-
-#, fuzzy
-msgid "* current animation"
-msgstr "Aktifkan setelan saat ini"
 
 msgid "-NO SERVICE\n"
 msgstr ""
@@ -506,16 +527,7 @@ msgstr "start directory"
 msgid "0"
 msgstr ""
 
-msgid "0,24,1147,20"
-msgstr ""
-
 msgid "1"
-msgstr ""
-
-msgid "120,2,30"
-msgstr ""
-
-msgid "120,28,26"
 msgstr ""
 
 msgid "128 MB (recommended for this chipset)"
@@ -539,19 +551,12 @@ msgstr "Kotaksurat 16:9"
 msgid "16:9 always"
 msgstr "selalu 16:9"
 
-#, fuzzy
-msgid "19"
-msgstr "16:9"
-
 msgid "2"
 msgstr ""
 
 #, fuzzy
 msgid "2 new lines"
 msgstr "Tampilkan baris info"
-
-msgid "2,0,80,50"
-msgstr ""
 
 msgid "2048 MB (maximum)"
 msgstr ""
@@ -568,12 +573,6 @@ msgstr ""
 msgid "256 MB (recommended for this chipset)"
 msgstr ""
 
-msgid "26,1,559,28"
-msgstr ""
-
-msgid "265,1,300,23"
-msgstr ""
-
 msgid "29.97"
 msgstr ""
 
@@ -581,22 +580,7 @@ msgstr ""
 msgid "3"
 msgstr "3"
 
-msgid "3,0,25,25"
-msgstr ""
-
-msgid "3,5,100,40"
-msgstr ""
-
 msgid "30"
-msgstr ""
-
-msgid "33,1,694,24"
-msgstr ""
-
-msgid "33,3,22,22"
-msgstr ""
-
-msgid "36,1,694,23"
 msgstr ""
 
 #, fuzzy
@@ -618,15 +602,6 @@ msgstr "Mode 3d"
 msgid "4"
 msgstr "4"
 
-msgid "400"
-msgstr ""
-
-msgid "47,1,1147,24"
-msgstr ""
-
-msgid "47,1,685,24"
-msgstr ""
-
 msgid "4:3 Letterbox"
 msgstr "Kotaksurat 4:3"
 
@@ -636,54 +611,18 @@ msgstr "PanScan 4:3"
 msgid "5"
 msgstr "5"
 
-msgid "5,1,250,23"
-msgstr ""
-
-msgid "5,1,520,23"
-msgstr ""
-
-msgid "5,1,530,28"
-msgstr ""
-
-msgid "5,1,630,23"
-msgstr ""
-
-msgid "5,25,630,23"
-msgstr ""
-
-msgid "5,28,530,23"
-msgstr ""
-
-msgid "5,7,16,16"
-msgstr ""
-
 msgid "512 MB (recommended for this chipset)"
-msgstr ""
-
-msgid "535,1,100,23"
 msgstr ""
 
 msgid "6"
 msgstr ""
 
-msgid "63,1,661,24"
-msgstr ""
-
 msgid "7"
-msgstr ""
-
-msgid "7,0,40,25"
 msgstr ""
 
 #, fuzzy
 msgid "8"
 msgstr "8"
-
-msgid "83,2,30"
-msgstr ""
-
-msgid "83,28,26"
-msgstr ""
 
 msgid "9"
 msgstr ""
@@ -933,9 +872,6 @@ msgstr "Tambah"
 msgid "Add a mark"
 msgstr "Tambah penanda"
 
-msgid "Add a nameserver entry"
-msgstr "Tambah entri namaserver"
-
 msgid "Add a new title"
 msgstr "Tambah judul baru"
 
@@ -1179,6 +1115,10 @@ msgstr ""
 msgid "Alpha"
 msgstr "Alfa"
 
+#, fuzzy
+msgid "Alphanumeric"
+msgstr "berdasarkan abjad"
+
 msgid "Also import at reboot/restart enigma2"
 msgstr ""
 
@@ -1252,22 +1192,6 @@ msgstr ""
 msgid "Anguilla"
 msgstr ""
 
-#, fuzzy
-msgid "Animation Settings"
-msgstr "Atur Posisioner"
-
-#, fuzzy
-msgid "Animation Setup"
-msgstr "Atur Posisioner"
-
-#, fuzzy
-msgid "Animation Speed"
-msgstr "Kecepatan gerak lambat"
-
-#, fuzzy
-msgid "Animations"
-msgstr "Informasi"
-
 msgid "Antarctica"
 msgstr ""
 
@@ -1281,8 +1205,18 @@ msgid "Arabic"
 msgstr "Arab"
 
 #, fuzzy
+msgid "Are you sure to delete image:"
+msgstr ""
+"Anda yakin ingin menghapus\n"
+"berkas cadangan berikut:\n"
+
+#, fuzzy
 msgid "Are you sure to purge all deleted user bouquets?"
 msgstr "Anda yakin ingin membersihkan semua buket pengguna yg dihapus?"
+
+#, fuzzy
+msgid "Are you sure to reboot to"
+msgstr "Anda yakin ingin menghapus entri ini?"
 
 #. TRANSLATORS: The user is asked to delete all satellite services from a specific orbital position after a configuration change
 #, python-format
@@ -1298,6 +1232,10 @@ msgstr "Anda yakin ingin menghapus semua layanan teresterial?"
 msgid "Are you sure to remove this entry?"
 msgstr "Anda yakin ingin menghapus entri ini?"
 
+#, fuzzy
+msgid "Are you sure to restore all deleted images"
+msgstr "Anda yakin ingin menghapus semua layanan kabel?"
+
 msgid ""
 "Are you sure you want to activate this network configuration?\n"
 "\n"
@@ -1312,17 +1250,17 @@ msgstr ""
 "Anda yakin ingin menghapus\n"
 "berkas cadangan berikut:\n"
 
-#, fuzzy, python-format
-msgid "Are you sure you want to delete image slot %s ?"
-msgstr ""
-"Anda yakin ingin menghapus\n"
-"berkas cadangan berikut:\n"
-
 #, fuzzy
 msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr ""
 "Anda yakin ingin menghapus\n"
 "berkas cadangan berikut:\n"
+
+#, fuzzy
+msgid ""
+"Are you sure you want to delete this:\n"
+" "
+msgstr "Anda yakin ingin keluar dari wizard ini?"
 
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Anda yakin ingin keluar dari wizard ini?"
@@ -1406,6 +1344,11 @@ msgstr "Di awal"
 msgid "At end"
 msgstr "Di akhir"
 
+msgid ""
+"Attention - forced loading recovery image!\n"
+"Create an empty STARTUP_RECOVERY file at the root of your HDD/USB drive and hold the Power button for more than 12 seconds for reboot receiver!"
+msgstr ""
+
 msgid "Attention, this is repeated timer!\n"
 msgstr "Perhatian, ini pewaktu berulang!\n"
 
@@ -1424,9 +1367,6 @@ msgstr "PID Audio"
 
 #, python-format
 msgid "Audio PID%s, codec & lang"
-msgstr ""
-
-msgid "Audio PID, codec & lang"
 msgstr ""
 
 msgid "Audio auto volume level"
@@ -1527,6 +1467,17 @@ msgstr "Timer overview"
 msgid "AutoTimer Settings"
 msgstr "Penyetelan adapter"
 
+#, fuzzy, python-format
+msgid "Autoinstalling %s"
+msgstr "Installing"
+
+#, fuzzy
+msgid "Autoinstalling Completed"
+msgstr "Installation has completed."
+
+msgid "Autoinstalling please wait for packages being updated"
+msgstr ""
+
 msgid "Automatic Scan"
 msgstr "Pelacakan Otomatis"
 
@@ -1536,6 +1487,9 @@ msgstr "Pelacakan Otomatis"
 
 msgid "Automatic scan"
 msgstr "Pelacakan otomatis"
+
+msgid "Automatically power off box to deep standby mode."
+msgstr ""
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr ""
@@ -1606,6 +1560,10 @@ msgstr "Pilihan hapus latar"
 msgid "Background delete speed"
 msgstr "Kecepatan hapus latar"
 
+#, fuzzy, python-format
+msgid "Backing up to: %s"
+msgstr "Berkas cadangan gagal."
+
 #, fuzzy
 msgid "Backup"
 msgstr "Kembali"
@@ -1626,10 +1584,6 @@ msgstr "Pilih lokasi backup"
 msgid "Backup Mode"
 msgstr "Berkas cadangan selesai."
 
-#, fuzzy
-msgid "Backup Settings"
-msgstr "Buat berkas cadangan penyetelan sistem"
-
 msgid "Backup completed."
 msgstr "Berkas cadangan selesai."
 
@@ -1643,6 +1597,10 @@ msgid ""
 "Backup plugins found\n"
 "do you want to install now?"
 msgstr ""
+
+#, fuzzy
+msgid "Backup settings"
+msgstr "Buat berkas cadangan penyetelan sistem"
 
 msgid "Backup system settings"
 msgstr "Buat berkas cadangan penyetelan sistem"
@@ -1683,6 +1641,10 @@ msgstr ""
 
 msgid "Basic PID info"
 msgstr ""
+
+#, fuzzy
+msgid "Basic info"
+msgstr "Buat berkas cadangan penyetelan sistem"
 
 #, fuzzy
 msgid "Basic settings"
@@ -1785,6 +1747,17 @@ msgstr ""
 #, fuzzy
 msgid "Boost green"
 msgstr "green"
+
+#, fuzzy
+msgid "Boot to Android image"
+msgstr "Switch to filelist"
+
+#, python-format
+msgid "Boot to Recovery image - slot0 %s"
+msgstr ""
+
+msgid "Boot to Recovery menu"
+msgstr ""
 
 #, fuzzy
 msgid "Bootup time"
@@ -1969,7 +1942,7 @@ msgid ""
 "%s may be in a plugin that is not installed."
 msgstr ""
 
-msgid "Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternatively you can mount the network drive after the flash and perform a manufacturer reset to autorestore"
+msgid "Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternativaly you can mount the network drive after the flash and perform a manufacurer reset to autorestore"
 msgstr ""
 
 #, python-format
@@ -2018,7 +1991,7 @@ msgstr "Tak bisa menentukan"
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Tidak menemukan sinyal..., batalkan!"
 
-msgid "Cannot find images - please try later"
+msgid "Cannot find images - please try later or select an alternate image"
 msgstr ""
 
 msgid ""
@@ -2279,6 +2252,9 @@ msgstr "Pilih buket"
 msgid "Choose the location for crash and debuglogs."
 msgstr ""
 
+msgid "Choose the option to correct invalid EPG data."
+msgstr ""
+
 #, fuzzy
 msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
 msgstr "Atur apakah jalur suara kanal banyak ingin diturunkan ke stereo."
@@ -2304,6 +2280,9 @@ msgstr "Kiri sirkular"
 msgid "Circular right"
 msgstr "Kanan sirkular"
 
+msgid "Clean (Just flash and start clean)"
+msgstr ""
+
 #, fuzzy
 msgid "Clean image"
 msgstr "Bersihkan tetap"
@@ -2327,9 +2306,6 @@ msgid "Clear playlist"
 msgstr "Bersihkan daftarputar"
 
 msgid "Client is streaming from this box!"
-msgstr ""
-
-msgid "ClientIP"
 msgstr ""
 
 #, fuzzy
@@ -2361,7 +2337,8 @@ msgstr "Code rate HP"
 msgid "Code rate LP"
 msgstr "Code rate LP"
 
-msgid "Collapse"
+#, python-format
+msgid "Codec & lang%s"
 msgstr ""
 
 msgid "Collection name"
@@ -2389,6 +2366,10 @@ msgid "Combo"
 msgstr ""
 
 #, fuzzy
+msgid "Command To Run"
+msgstr "Urutan perintah"
+
+#, fuzzy
 msgid "Command execution..."
 msgstr "Pilihan Kanal"
 
@@ -2397,6 +2378,10 @@ msgstr "Urutan perintah"
 
 msgid "Command the TV to switch to the correct HDMI input when zap timers activate."
 msgstr ""
+
+#, fuzzy
+msgid "Command type"
+msgstr "Urutan perintah"
 
 #, fuzzy
 msgid "Commit info"
@@ -2422,6 +2407,10 @@ msgstr "Rumit (izinkan mencampur jalur audio dan aspek)"
 
 msgid "Composition of the recording filenames"
 msgstr "Komposisi nama berkas hasil rekaman"
+
+#, fuzzy
+msgid "Compress"
+msgstr "Selesai"
 
 msgid "Config Scan Details"
 msgstr "Detil Setelan Pelacakan"
@@ -2521,9 +2510,6 @@ msgstr "Atur apakah teks film bisa bertukar jenis huruf antara normal, miring, t
 
 msgid "Configure interface"
 msgstr "Atur antarmuka"
-
-msgid "Configure nameservers"
-msgstr "Atur nameserver"
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Atur di perangkat mana pilihan hapus latar seharusnya digunakan."
@@ -2946,6 +2932,9 @@ msgstr "salin ke buket"
 msgid "Cores: %s"
 msgstr "%s/%s: %s"
 
+msgid "Correct invalid EPG data"
+msgstr ""
+
 msgid "Costa Rica"
 msgstr ""
 
@@ -2955,7 +2944,7 @@ msgstr ""
 msgid "Could not find installed channel list."
 msgstr "Daftar kanal terpasang tidak ditemukan."
 
-msgid "Could not find suitable media - Please remove some downloaded images or insert a media (e.g. USB stick) with sufficient free space and try again!"
+msgid "Could not find suitable media - Please remove some downloaded images or insert a media (e.g. USB stick) with sufficiant free space and try again!"
 msgstr ""
 
 #, fuzzy
@@ -3036,6 +3025,14 @@ msgstr "Kroasia"
 msgid "Croatian"
 msgstr "Kroasia"
 
+#, fuzzy
+msgid "Cron Manager"
+msgstr "Rename"
+
+#, fuzzy
+msgid "Cron timers"
+msgstr "Ubah pewaktu"
+
 msgid "Cuba"
 msgstr ""
 
@@ -3084,6 +3081,10 @@ msgstr "Nilai saat ini: "
 
 msgid "Currently the commit log cannot be retrieved - please try later again"
 msgstr "Saat ini log pengerjaan tidak bisa didapatkan - coba lagi nanti"
+
+#, fuzzy
+msgid "Custom"
+msgstr "Ubahsuai"
 
 msgid "Custom skip time for '1'/'3' buttons"
 msgstr "Ubahsuai waktu lompat pada tombol '1'/'3'"
@@ -3204,6 +3205,10 @@ msgstr "Daftar judul DVD"
 msgid "DVDPlayer"
 msgstr "Pemutar DVD"
 
+#, fuzzy
+msgid "Daily"
+msgstr "harian"
+
 msgid "Danish"
 msgstr "Denmark"
 
@@ -3220,6 +3225,9 @@ msgstr "Tanggal/waktu input"
 #, fuzzy
 msgid "Deactivate"
 msgstr "(tidak diaktifkan)"
+
+msgid "Debug"
+msgstr ""
 
 #, fuzzy
 msgid "Debug to file"
@@ -3246,6 +3254,10 @@ msgstr "Pelacak Layanan Bawaan"
 
 #, fuzzy
 msgid "Default directory sorting"
+msgstr "Pengaturan bawaan"
+
+#, fuzzy, python-format
+msgid "Default duration: %d mins"
 msgstr "Pengaturan bawaan"
 
 #, fuzzy
@@ -3293,6 +3305,9 @@ msgstr "Recording type"
 #, fuzzy
 msgid "Default+Picon"
 msgstr "Pengaturan bawaan"
+
+msgid "Define additional delay in milliseconds before start of http(s) streams, e.g. to connect a remote tuner, you use a complex system of DiSEqC."
+msgstr ""
 
 msgid "Delay after change voltage before switch command"
 msgstr "Tunda setelah perubahan voltase sebelum perintah switch"
@@ -3372,6 +3387,10 @@ msgid "Delete 1 element"
 msgstr "Hapus entri"
 
 #, fuzzy
+msgid "Delete Image"
+msgstr "Hapus pewaktu"
+
+#, fuzzy
 msgid "Delete all the text"
 msgstr "Hapus entri daftar putar"
 
@@ -3419,6 +3438,10 @@ msgstr "Hapus pewaktu"
 
 msgid "Deleted"
 msgstr "Dihapus"
+
+#, fuzzy
+msgid "Deleted image"
+msgstr "Hapus pewaktu"
 
 msgid "Deleted items"
 msgstr "Item dihapus"
@@ -3566,8 +3589,8 @@ msgid "Disable"
 msgstr "Matikan"
 
 #, fuzzy
-msgid "Disable Animations"
-msgstr "Matikan pewaktu"
+msgid "Disable FCC during recordings"
+msgstr "Selalu sertakan ECM dalam merekam"
 
 msgid "Disable Picture in Picture"
 msgstr "Matikan Picture in Picture"
@@ -3654,6 +3677,10 @@ msgstr ""
 msgid "Do not change"
 msgstr "Jangan ubah"
 
+#, fuzzy
+msgid "Do not flash image"
+msgstr "Tidak, jangan lakukan."
+
 msgid "Do not record"
 msgstr "Jangan rekam"
 
@@ -3739,6 +3766,10 @@ msgid ""
 "Do you want to also install samba client?\n"
 "This allows you to mount your windows shares on this device."
 msgstr ""
+
+#, fuzzy
+msgid "Do you want to autorestore settings?"
+msgstr "Anda ingin mengembalikan pengaturan anda?"
 
 #, fuzzy
 msgid ""
@@ -3879,6 +3910,12 @@ msgstr[1] "Selesai - Terpasang, dinaiktingkatkan atau dihapus %d paket (%s)"
 msgid "Download Movie Info"
 msgstr "Mengunduh"
 
+#, python-format
+msgid ""
+"Download Successsful\n"
+"%s"
+msgstr ""
+
 msgid "Download plugins"
 msgstr "Unduh plugin"
 
@@ -3996,7 +4033,7 @@ msgid "ERROR - failed to scan (%s)!"
 msgstr "Kesalahan - gagal melacak (%s)!"
 
 #, python-format
-msgid "ERROR downloading file %s"
+msgid "ERROR downloading file %s/%s"
 msgstr ""
 
 msgid "East"
@@ -4022,9 +4059,6 @@ msgstr "Ubah pewaktu"
 #, fuzzy
 msgid "Edit AutoTimer Services"
 msgstr "Go to first service"
-
-msgid "Edit DNS"
-msgstr "Ubah DNS"
 
 #, fuzzy
 msgid "Edit Title"
@@ -4211,6 +4245,10 @@ msgstr "Aktifkan pelacakan kabel otomatis"
 msgid "Enable parental protection"
 msgstr "Aktifkan perlindungan orangtua"
 
+#, fuzzy
+msgid "Enable power off timer"
+msgstr "aktifkan mode pindahkan"
+
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 msgstr "Aktifkan rx enigma2 dari jauh untuk mencoba menala layanan yang tidak bisa ditala secara lokal (misalnya penala sedang digunakan atau tipe layanan tidak tersedia pada penala lokal. Tentukan URL lengkap termasuk http:// dan nomor port (biasanya ...:8001), misalnya http://box_kedua:8001."
 
@@ -4377,18 +4415,11 @@ msgstr "Sama dgn"
 msgid "Equatorial Guinea"
 msgstr ""
 
-msgid "Erase"
-msgstr ""
-
 #, fuzzy
 msgid "Eritrea"
 msgstr "Stream"
 
 msgid "Error"
-msgstr "Kesalahan"
-
-#, fuzzy, python-format
-msgid "Error %s"
 msgstr "Kesalahan"
 
 msgid "Error checking disk. The disk may be damaged"
@@ -4442,19 +4473,27 @@ msgid "Error when writing epg.dat on server"
 msgstr ""
 
 #, fuzzy
-msgid "Error while retreiving epg.dat from server"
+msgid "Error while moving epg.dat to its destination"
 msgstr ""
 "Kesalahan ketika mengambil informasi pewaktu mundur\n"
 "%s"
 
-#, python-format
+#, fuzzy
+msgid "Error while retrieving epg.dat from the fallback receiver"
+msgstr ""
+"Kesalahan ketika mengambil informasi pewaktu mundur\n"
+"%s"
+
+#, fuzzy, python-format
 msgid ""
-"Error while retreiving fallback timer information\n"
+"Error while retrieving fallback timer information\n"
 "%s"
 msgstr ""
+"Kesalahan ketika mengambil informasi pewaktu mundur\n"
+"%s"
 
 #, fuzzy
-msgid "Error while retreiving location of epg.dat on server"
+msgid "Error while retrieving location of epg.dat on the fallback receiver"
 msgstr ""
 "Kesalahan ketika mengambil informasi pewaktu mundur\n"
 "%s"
@@ -4598,6 +4637,10 @@ msgstr "Extended Software"
 msgid "Extended Software Plugin"
 msgstr "Extended Software Plugin"
 
+#, fuzzy
+msgid "Extended info"
+msgstr "Ubah pengaturan"
+
 msgid "Extended network setup plugin..."
 msgstr "Extended network setup plugin..."
 
@@ -4649,9 +4692,6 @@ msgstr ""
 msgid "Extra start time to ignore inactivity sleeptimer"
 msgstr ""
 
-msgid "Extrude from left"
-msgstr ""
-
 msgid "F1/F3/F4/F4-TURBO"
 msgstr ""
 
@@ -4679,6 +4719,14 @@ msgid ""
 "FBC automatic\n"
 "inactive"
 msgstr ""
+
+#, fuzzy
+msgid "FCC enabled"
+msgstr "aktifkan"
+
+#, fuzzy
+msgid "FCCSetup"
+msgstr "Pengaturan"
 
 msgid "FEC"
 msgstr "FEC"
@@ -4738,6 +4786,9 @@ msgstr ""
 msgid "Falkland Islands (Malvinas)"
 msgstr ""
 
+msgid "Fallback API did not return a valid result."
+msgstr ""
+
 msgid "Fallback Timer"
 msgstr ""
 
@@ -4795,6 +4846,15 @@ msgstr ""
 
 msgid "Fast"
 msgstr "Cepat"
+
+msgid "Fast Channel Change"
+msgstr ""
+
+msgid "Fast Channel Change Setup"
+msgstr ""
+
+msgid "Fast Channel Change setup"
+msgstr ""
 
 msgid "Fast DiSEqC"
 msgstr "DiSEqC Cepat"
@@ -4985,22 +5045,17 @@ msgstr ""
 msgid "Flash Image"
 msgstr "Flash"
 
-msgid "Flash On the Fly"
-msgstr ""
-
-#, fuzzy
-msgid "Flash Online"
-msgstr "Flash"
-
 #, fuzzy
 msgid "Flash and restore settings"
 msgstr "Yes, pulihkan setelah sekarang"
 
 #, fuzzy
-msgid "Flash on the fly your Receiver software."
-msgstr ""
-"\n"
-"Pembaruan daring perangkat lunak Rx anda."
+msgid "Flash image"
+msgstr "Flash"
+
+#, fuzzy, python-format
+msgid "Flash your %s %s and reboot now?"
+msgstr "Really upgrade your settop box and reboot now?"
 
 msgid "Flash, restore settings and user selected plugins"
 msgstr ""
@@ -5032,7 +5087,13 @@ msgstr "Following tasks will be done after you press OK!"
 msgid "Force legacy signal stats"
 msgstr ""
 
+msgid "Force power off (even when not in standby)"
+msgstr ""
+
 msgid "Force zap to recording service in standby"
+msgstr ""
+
+msgid "Forces deep standby, even when not in standby mode. Scheduled recordings remain unaffected."
 msgstr ""
 
 msgid "Format"
@@ -5060,6 +5121,10 @@ msgid "Formatting partition %d"
 msgstr "Membuat partisi"
 
 msgid "Forward volume keys"
+msgstr "Forward volume keys"
+
+#, fuzzy
+msgid "Forwarded volume step size"
 msgstr "Forward volume keys"
 
 #, python-format
@@ -5170,10 +5235,6 @@ msgstr "RGB"
 #, fuzzy
 msgid "GBAspectRatioSwitchSetup"
 msgstr "Aspek rasio"
-
-#, fuzzy
-msgid "GStreamer: "
-msgstr "Kernel version: "
 
 #, fuzzy
 msgid "GUI Build: "
@@ -5341,6 +5402,9 @@ msgstr "GraphMultiEpg Settings"
 msgid "Graphical Multi EPG"
 msgstr "Graphical Multi EPG"
 
+msgid "Graphics"
+msgstr ""
+
 #, fuzzy
 msgid "Greece"
 msgstr "Yunani"
@@ -5358,12 +5422,6 @@ msgid "Grenada"
 msgstr ""
 
 msgid "Group:"
-msgstr ""
-
-msgid "Grow drop"
-msgstr ""
-
-msgid "Grow from left"
 msgstr ""
 
 msgid "Guadeloupe"
@@ -5388,6 +5446,9 @@ msgid "Guinea-Bissau"
 msgstr ""
 
 msgid "Guyana"
+msgstr ""
+
+msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr ""
 
 msgid "HD list"
@@ -5511,6 +5572,9 @@ msgstr ""
 msgid "Harddisk standby after"
 msgstr "Hard disk standby after"
 
+msgid "Hardware Accelerated"
+msgstr ""
+
 #, fuzzy
 msgid "HddMount"
 msgstr "Mount"
@@ -5568,6 +5632,10 @@ msgstr "Info hirarki"
 
 msgid "High bitrate support"
 msgstr "Dukungan bitrate tinggi"
+
+#, fuzzy
+msgid "History Prev/Next"
+msgstr "Parameter Pabrik"
 
 msgid "History back"
 msgstr ""
@@ -5631,12 +5699,18 @@ msgstr "Unduh plugin"
 msgid "Hour"
 msgstr ""
 
+msgid "Hourly"
+msgstr ""
+
 #, fuzzy
 msgid "How many minutes do you want add to the recording?"
 msgstr "How many minutes do you want to record?"
 
 msgid "How many minutes do you want to record?"
 msgstr "How many minutes do you want to record?"
+
+msgid "Http(s) stream start delay"
+msgstr ""
 
 msgid "Hue"
 msgstr "Hue"
@@ -5723,6 +5797,12 @@ msgid "If set to 'yes' signal values (SNR, etc) will be calculated from API V3. 
 msgstr ""
 
 msgid "If set to 'yes' the same commands will be sent to the TV for deep standby events, as are sent during regular standby events."
+msgstr ""
+
+msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
+msgstr ""
+
+msgid "If the box is supposed to enter deep standby e.g. monday night at 1 AM, it actually is already tuesday. To enable this anyway, differing next day start time can be specified here."
 msgstr ""
 
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
@@ -5937,6 +6017,10 @@ msgid "Initialize"
 msgstr "Format"
 
 #, fuzzy
+msgid "Initialize Multiboot"
+msgstr "Initialization"
+
+#, fuzzy
 msgid "Initialize disk"
 msgstr "Format"
 
@@ -6051,6 +6135,10 @@ msgstr "Pasang picon pada"
 #, fuzzy
 msgid "Installing software..."
 msgstr "Installing"
+
+#, fuzzy
+msgid "Instant record"
+msgstr "Perekaman segera"
 
 msgid "Instant recording"
 msgstr "Perekaman segera"
@@ -6238,6 +6326,20 @@ msgstr "Kernel version: "
 #, fuzzy, python-format
 msgid "Kernel: %s"
 msgstr "Kernel version: "
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr ""
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+
+#, fuzzy
+msgid "Kexec MultiBoot Manager"
+msgstr "Banyak satelit dipilih semua"
 
 msgid "Key Events"
 msgstr ""
@@ -6684,6 +6786,10 @@ msgstr "Lituania"
 msgid "Mauritius"
 msgstr "Favorit"
 
+#, fuzzy
+msgid "Max channels"
+msgstr "Kanal"
+
 msgid "Max memory positions"
 msgstr ""
 
@@ -6857,6 +6963,10 @@ msgstr ""
 
 msgid "Montenegro"
 msgstr ""
+
+#, fuzzy
+msgid "Monthly"
+msgstr "bulan"
 
 msgid "Montserrat"
 msgstr ""
@@ -7112,10 +7222,6 @@ msgid "MultiBoot Image Selector"
 msgstr "Banyak satelit dipilih semua"
 
 #, fuzzy
-msgid "MultiBoot Manager"
-msgstr "Banyak satelit dipilih semua"
-
-#, fuzzy
 msgid "MultiBoot Selector"
 msgstr "Banyak satelit dipilih semua"
 
@@ -7130,6 +7236,10 @@ msgstr "Multimedia"
 #, python-format
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr ""
+
+#, fuzzy
+msgid "Multiboot image selector"
+msgstr "Banyak satelit dipilih semua"
 
 msgid "Multichannel PCM"
 msgstr ""
@@ -7214,17 +7324,6 @@ msgstr "Nameserver"
 
 msgid "Nameserver"
 msgstr "Nameserver"
-
-#, python-format
-msgid "Nameserver %d"
-msgstr "Nameserver %d"
-
-msgid "Nameserver settings"
-msgstr "Nameserver settings"
-
-#, fuzzy
-msgid "Nameserver setup"
-msgstr "Nameserver settings"
 
 msgid "Namespace & Orbital pos."
 msgstr ""
@@ -7325,9 +7424,6 @@ msgstr "Baru"
 msgid "New Caledonia"
 msgstr ""
 
-msgid "New Packages"
-msgstr ""
-
 msgid "New Zealand"
 msgstr ""
 
@@ -7348,6 +7444,9 @@ msgstr "Lanjut"
 msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Berikutnya"
+
+msgid "Next day starts at"
+msgstr ""
 
 msgid "Nicaragua"
 msgstr ""
@@ -7528,7 +7627,7 @@ msgid "No, do not backup an image"
 msgstr "Tidak, jangan lakukan."
 
 #, fuzzy
-msgid "No, do not flash an image"
+msgid "No, do not flash image"
 msgstr "Tidak, jangan lakukan."
 
 msgid "No, do nothing."
@@ -7543,6 +7642,9 @@ msgstr "Tidak, start saja rx saya"
 
 msgid "No, never"
 msgstr "Tidak, jangan pernah"
+
+msgid "No, only download"
+msgstr ""
 
 msgid "No, scan later manually"
 msgstr ""
@@ -7584,9 +7686,6 @@ msgstr "Norwegia"
 msgid "Not Installed"
 msgstr "Pasang"
 
-msgid "Not Required"
-msgstr ""
-
 msgid "Not allowed with folders"
 msgstr ""
 
@@ -7607,9 +7706,6 @@ msgstr ""
 #, fuzzy
 msgid "Not-Associated"
 msgstr "Not associated"
-
-msgid "Note: slot list does not show current image or empty slots."
-msgstr ""
 
 msgid "Note: when enabled, and you do want standby mode after wake up, set option 'Startup to Standby' as 'No, except Wakeup timer'."
 msgstr ""
@@ -7728,6 +7824,10 @@ msgstr "Satu"
 msgid "One partition"
 msgstr "Membuat partisi"
 
+#, fuzzy
+msgid "Only Flash Backup Image"
+msgstr "Berkas cadangan gagal."
+
 msgid "Only change this setting if you are using a SCR device that has been reprogrammed with a custom programmer. For further information check with the person that reprogrammed the device."
 msgstr ""
 
@@ -7744,6 +7844,9 @@ msgid "Only move the dish quickly before this hour."
 msgstr ""
 
 msgid "Only on startup"
+msgstr ""
+
+msgid "Only power off"
 msgstr ""
 
 msgid "Only select 'yes' if you are using a multiswich that requires a DiSEqC Port-A command signal. For all other setups select 'no'."
@@ -7794,7 +7897,7 @@ msgstr ""
 msgid "Operating LED status in standby mode"
 msgstr ""
 
-msgid "Operating LED status while running."
+msgid "Operating LED status while running"
 msgstr ""
 
 msgid "Opkg"
@@ -7805,6 +7908,13 @@ msgstr ""
 
 msgid "Orbital position"
 msgstr "Posisi orbit"
+
+#, fuzzy
+msgid "Order by modes"
+msgstr "reverse by date"
+
+msgid "Order by slots"
+msgstr ""
 
 msgid "Ordinary"
 msgstr ""
@@ -7821,6 +7931,10 @@ msgstr ""
 
 msgid "Other"
 msgstr "Lainnya"
+
+#, fuzzy
+msgid "Other Images"
+msgstr "Flash"
 
 msgid "Other Subtitles & lang"
 msgstr ""
@@ -8001,6 +8115,13 @@ msgstr "Atur pengawasan orangtua"
 
 msgid "Parental control setup"
 msgstr "Atur pengawasan orangtua"
+
+msgid "Partial"
+msgstr ""
+
+#, fuzzy
+msgid "Partial EPG"
+msgstr "Multi EPG"
 
 #, fuzzy
 msgid "Partitioner"
@@ -8192,13 +8313,6 @@ msgstr "Please enter name of the new directory"
 msgid "Please choose an extension..."
 msgstr "Silakan pilih ekstensi..."
 
-msgid ""
-"Please configure or verify your Nameservers by filling out the required values.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"Please configure or verify your Nameservers by filling out the required values.\n"
-"When you are ready press OK to continue."
-
 #, fuzzy
 msgid "Please configure the fallback tuner setup?"
 msgstr "URL penggunaan rx dari jauh"
@@ -8332,9 +8446,7 @@ msgstr ""
 "\n"
 "Please press OK to continue."
 
-msgid ""
-"Please select what to do after flashing the image:\n"
-"(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+msgid "Please select what to do after flash of the following image:"
 msgstr ""
 
 #, fuzzy
@@ -8430,6 +8542,10 @@ msgid "Please wait while your network is restarting..."
 msgstr "Silakan tunggu sementara jaringan anda restart..."
 
 #, fuzzy
+msgid "Please wait whilst feeds state is checked."
+msgstr "Silakan tunggu sementara kami memeriksa jaringan anda..."
+
+#, fuzzy
 msgid "Please wait, Loading image."
 msgstr "Mohon tunggu... Memuat daftar..."
 
@@ -8495,9 +8611,6 @@ msgstr "Polarisasi"
 msgid "Polish"
 msgstr "Polandia"
 
-msgid "Popup"
-msgstr ""
-
 #, fuzzy
 msgid "Port"
 msgstr "Port A"
@@ -8556,6 +8669,13 @@ msgstr ""
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr ""
 
+#, fuzzy
+msgid "Power off time"
+msgstr "Pilah waktu"
+
+msgid "Power off timer"
+msgstr ""
+
 msgid "Power on display"
 msgstr ""
 
@@ -8567,6 +8687,10 @@ msgstr ""
 
 msgid "PowerMenu"
 msgstr ""
+
+#, fuzzy
+msgid "Predefined"
+msgstr "undefined"
 
 msgid "Predefined transponder"
 msgstr "TP yang telah ditetapkan"
@@ -8636,6 +8760,14 @@ msgid "Press 'OK' for remove item or 'CH+/-' for toggle to list of features."
 msgstr ""
 
 msgid "Press 'OK' for remove item or < > for change order or 'CH+/-' for toggle to list of features."
+msgstr ""
+
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
 msgstr ""
 
 msgid "Press INFO on your remote control for additional information."
@@ -8919,7 +9051,15 @@ msgid "Read speed: %s"
 msgstr "Kecepatan mundur cepat"
 
 #, fuzzy, python-format
+msgid "Ready to install \"%s\" ?"
+msgstr "Kembali ke daftar film"
+
+#, fuzzy, python-format
 msgid "Ready to install %s ?"
+msgstr "Kembali ke daftar film"
+
+#, fuzzy, python-format
+msgid "Ready to remove \"%s\" ?"
 msgstr "Kembali ke daftar film"
 
 #, fuzzy, python-format
@@ -8939,17 +9079,23 @@ msgstr "Really delete done timers?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Really exit the subservices quickzap?"
 
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+
 #, fuzzy, python-format
 msgid "Really reboot your %s %s now?"
 msgstr "Yakin ingin reboot sekarang?"
 
 #, fuzzy, python-format
-msgid "Really reflash your %s %s and reboot now?"
-msgstr "Really upgrade your settop box and reboot now?"
-
-#, fuzzy, python-format
 msgid "Really restart your %s %s now?"
 msgstr "Yakin ingin restart sekarang?"
+
+#, fuzzy
+msgid "Really shutdown now?"
+msgstr "Yakin ingin mematikan rx sekarang?"
 
 #, fuzzy, python-format
 msgid "Really shutdown your %s %s now?"
@@ -8977,6 +9123,9 @@ msgstr "Rekam"
 msgid "Recall to previous service"
 msgstr ""
 
+msgid "Receiver or driver does not support FCC"
+msgstr ""
+
 #, fuzzy
 msgid "Reception lists"
 msgstr "Pengaturan Penerimaan"
@@ -9002,6 +9151,11 @@ msgstr "Recorded files..."
 msgid "Recording"
 msgstr "Recording"
 
+msgid ""
+"Recording IPTV with ServiceApp player enabled, timer ended!\n"
+"Please recheck it!"
+msgstr ""
+
 msgid "Recording Setup"
 msgstr ""
 
@@ -9010,6 +9164,10 @@ msgstr "Recording in progress"
 
 msgid "Recording paths"
 msgstr "Alokasi Rekaman"
+
+#, fuzzy
+msgid "Recording time has been set."
+msgstr "The sleep timer has been disabled."
 
 msgid "Recording type"
 msgstr "Recording type"
@@ -9073,18 +9231,6 @@ msgstr ""
 msgid "Regular file"
 msgstr "template file"
 
-#, fuzzy
-msgid "Regular;18"
-msgstr "template file"
-
-#, fuzzy
-msgid "Regular;19"
-msgstr "template file"
-
-#, fuzzy
-msgid "Regular;20"
-msgstr "template file"
-
 msgid "Relative"
 msgstr "Relatif"
 
@@ -9124,12 +9270,12 @@ msgstr "Remote control type"
 msgid "Removal has completed."
 msgstr "Removal has completed."
 
-#, python-format
-msgid "Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?"
-msgstr ""
-
 msgid "Remove"
 msgstr "Remove"
+
+#, fuzzy
+msgid "Remove Confirmation"
+msgstr "Movie list configuration"
 
 #, fuzzy
 msgid "Remove Service"
@@ -9137,9 +9283,6 @@ msgstr "Remove title"
 
 msgid "Remove a mark"
 msgstr "Remove a mark"
-
-msgid "Remove a nameserver entry"
-msgstr "Remove a nameserver entry"
 
 #, fuzzy
 msgid "Remove all alternatives"
@@ -9166,10 +9309,6 @@ msgstr "Remove title"
 msgid "Remove completed timers after (days)"
 msgstr "Hapus pewaktu yg sudah selesai setelah (hari)"
 
-#, fuzzy
-msgid "Remove confirmation"
-msgstr "Movie list configuration"
-
 msgid "Remove current folder from bookmarks"
 msgstr ""
 
@@ -9183,6 +9322,10 @@ msgstr "remove directory"
 #, fuzzy
 msgid "Remove entry"
 msgstr "remove entry"
+
+#, fuzzy
+msgid "Remove forever"
+msgstr "[move mode]"
 
 #, fuzzy
 msgid "Remove from parental protection"
@@ -9378,6 +9521,10 @@ msgid "Restore defaults"
 msgstr "Restore backups"
 
 #, fuzzy
+msgid "Restore deleted images"
+msgstr "Anda yakin ingin membersihkan semua buket pengguna yg dihapus?"
+
+#, fuzzy
 msgid "Restore deleted user bouquets"
 msgstr "Anda yakin ingin membersihkan semua buket pengguna yg dihapus?"
 
@@ -9506,6 +9653,9 @@ msgstr "Round start time on"
 
 #, python-format
 msgid "Run '%s' command"
+msgstr ""
+
+msgid "Run how often ?"
 msgstr ""
 
 msgid "Run script"
@@ -10030,6 +10180,10 @@ msgstr ""
 msgid "Select all"
 msgstr ""
 
+#, fuzzy
+msgid "Select an image brand"
+msgstr "Pilih film"
+
 msgid "Select audio track"
 msgstr "Pilih jalur suara"
 
@@ -10092,6 +10246,10 @@ msgstr ""
 #, fuzzy
 msgid "Select how your box will upgrade."
 msgstr "Penyedia ATSC"
+
+#, fuzzy
+msgid "Select image"
+msgstr "Hapus pewaktu"
 
 msgid "Select in which resolution pictures are displayed with picture viewer or movie player."
 msgstr "Atur resolusi gambar yang ditampilkan menggunakan Penampil Gambar dan Pemutar Film."
@@ -10398,6 +10556,9 @@ msgstr "Pelacakan kanal"
 
 msgid "Service title mode"
 msgstr "Service title mode"
+
+msgid "Service type 4097 incorrect for PiP!"
+msgstr ""
 
 msgid ""
 "Service unavailable!\n"
@@ -10990,6 +11151,10 @@ msgstr "Sinyal OK, lanjutkan"
 msgid "Signal Strength:"
 msgstr "Kekuatan sinyal:"
 
+#, fuzzy, python-format
+msgid "Signal Strength: %d \n"
+msgstr "Kekuatan sinyal:"
+
 #, fuzzy
 msgid "Signal finder"
 msgstr "Pelacak Satelit"
@@ -11015,16 +11180,8 @@ msgstr "Siaran serupa:"
 msgid "Simple"
 msgstr "Mudah"
 
-#, fuzzy
-msgid "Simple fade"
-msgstr "Mudah"
-
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Simple titleset (compatibility for legacy players)"
-
-#, fuzzy
-msgid "Simple zoom"
-msgstr "Mudah"
 
 #, fuzzy
 msgid "Singapore"
@@ -11094,6 +11251,9 @@ msgstr "Lewatkan layanan kosong"
 msgid "Skip internet connection check (disables automatic package installation)"
 msgstr "Lewatkan pemeriksaan koneksi internet (matikan instalasi paket otomatis)"
 
+msgid "Skip jumping to live TV while timeshifting with plugins"
+msgstr ""
+
 #, fuzzy
 msgid "Skip selection"
 msgstr "Pemilihan EPG"
@@ -11112,27 +11272,11 @@ msgstr ""
 msgid "Sleeptimer edit"
 msgstr ""
 
-msgid "Slide drop"
-msgstr ""
-
-msgid "Slide from left"
-msgstr ""
-
-msgid "Slide left to right"
-msgstr ""
-
 msgid "Slide picture in loop"
 msgstr "Slide picture in loop"
 
-msgid "Slide right to left"
-msgstr ""
-
 msgid "Slide show interval (sec.)"
 msgstr "Slide show interval (sec.)"
-
-#, fuzzy
-msgid "Slide top to bottom"
-msgstr "Top and bottom"
 
 #, python-format
 msgid "Slot %d"
@@ -11451,6 +11595,10 @@ msgstr ""
 msgid "Start offline decode"
 msgstr "Start offline decode"
 
+#, fuzzy
+msgid "Start recording current event"
+msgstr "Tambah rekaman (berhenti setelah acara saat ini)"
+
 msgid "Start recording?"
 msgstr "Mulai merekam?"
 
@@ -11584,6 +11732,9 @@ msgstr "stop using as startup service"
 msgid "Stopped"
 msgstr "Terhenti"
 
+msgid "Storage device not available or not initialized."
+msgstr ""
+
 #, fuzzy
 msgid "Storage devices"
 msgstr "List of storage devices"
@@ -11611,9 +11762,6 @@ msgid "Streaming clients info"
 msgstr ""
 
 msgid "Strict DLNA"
-msgstr ""
-
-msgid "Stripes"
 msgstr ""
 
 msgid "Strongest position"
@@ -11781,7 +11929,7 @@ msgstr ""
 msgid "Switch on the display during Suspend Mode"
 msgstr ""
 
-msgid "Switch on the display during operation."
+msgid "Switch on the display during operation"
 msgstr ""
 
 #, fuzzy
@@ -11971,6 +12119,9 @@ msgstr "Tes Layar"
 msgid "Testscreens that are helpfull to fine-tune your display"
 msgstr ""
 
+msgid "Text"
+msgstr ""
+
 msgid "Text View On"
 msgstr ""
 
@@ -12074,7 +12225,7 @@ msgstr ""
 
 #, fuzzy, python-format
 msgid ""
-"The current software might not be stable.\n"
+"The current image might not be stable.\n"
 "For more information see %s."
 msgstr ""
 "The current beta image might not be stable.\n"
@@ -12111,6 +12262,9 @@ msgid ""
 msgstr ""
 "The network wizard extension is not installed!\n"
 "Please install it."
+
+msgid "The number of steps to change the volume on the device the keys are forwarded to."
+msgstr ""
 
 msgid ""
 "The overscan wizard has been completed.\n"
@@ -12164,10 +12318,6 @@ msgid ""
 msgstr ""
 "The software management extension is not installed!\n"
 "Please install it."
-
-#, fuzzy, python-format
-msgid "The status of the current software could not be checked because %s can not be reached."
-msgstr "The status of the current beta image could not be checked because %s can not be reached."
 
 msgid "The stored EPG data will be read every (hours)"
 msgstr ""
@@ -12232,10 +12382,6 @@ msgid ""
 msgstr ""
 "There might not be enough Space on the selected Partition.\n"
 "Do you really want to continue?"
-
-#, fuzzy
-msgid "There was an error downloading the updatelist. Please try again."
-msgstr "Kesalahan terjadi saat unduh daftar paket. Silakan coba lagi"
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
@@ -12487,10 +12633,10 @@ msgstr ""
 msgid ""
 "This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
 "If you get a \"disabled\" message:\n"
-" - then your LAN adapter is configured for manual IP setup\n"
+"- then your LAN adapter is configured for manual IP setup\n"
 "- verify thay you have entered the correct IP information in the adapter setup dialog.\n"
 "If you get an \"enabeld\" message:\n"
-"-verify that you have a configured and working DHCP server in your network."
+"- verify that you have a configured and working DHCP server in your network."
 msgstr ""
 "This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
 "If you get a \"disabled\" message:\n"
@@ -12556,6 +12702,9 @@ msgstr ""
 
 msgid "Time scale"
 msgstr "Rentang waktu"
+
+msgid "Time to execute command or script"
+msgstr ""
 
 #, fuzzy
 msgid "Time zone settings"
@@ -12728,10 +12877,6 @@ msgid "Track"
 msgstr "Track"
 
 #, fuzzy
-msgid "Transcode"
-msgstr "Transponder"
-
-#, fuzzy
 msgid "Transcoding Setup"
 msgstr "Transponder"
 
@@ -12775,10 +12920,6 @@ msgstr ""
 
 msgid "True"
 msgstr ""
-
-#, fuzzy
-msgid "Trying to download a new updatelist. Please wait..."
-msgstr "Mencoba unduh daftar paket yg baru. Mohon tunggu..."
 
 msgid "Tue"
 msgstr "Sel"
@@ -12946,6 +13087,9 @@ msgstr "Ukraina"
 msgid "Unable to change password"
 msgstr ""
 
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr ""
+
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr ""
 
@@ -12981,7 +13125,7 @@ msgstr "Undo uninstall"
 msgid "Unencrypted"
 msgstr "Unencrypted"
 
-msgid "Unexpected error while retreiving fallback tuner's timer information"
+msgid "Unexpected error while retrieving fallback tuner's timer information"
 msgstr ""
 
 msgid "UnhandledKey"
@@ -13206,9 +13350,6 @@ msgstr "Gunakan posisi teleteks asli"
 
 msgid "Use power measurement"
 msgstr "Use power measurement"
-
-msgid "Use the cursor keys to select an installed image and then Erase button."
-msgstr ""
 
 msgid "Use the cursor keys to select an installed image and then Reboot button."
 msgstr ""
@@ -13652,6 +13793,10 @@ msgstr "Rabu"
 msgid "Weekday"
 msgstr "Sepekan"
 
+#, fuzzy
+msgid "Weekly"
+msgstr "per pekan"
+
 msgid "Weighted position"
 msgstr "Weighted position"
 
@@ -13721,6 +13866,12 @@ msgid "West limit set"
 msgstr "West limit set"
 
 msgid "Western Sahara"
+msgstr ""
+
+msgid "What Day of month ?"
+msgstr ""
+
+msgid "What Day of week ?"
 msgstr ""
 
 #, fuzzy
@@ -14233,6 +14384,9 @@ msgstr ""
 msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
 msgstr ""
 
+msgid "You must set at least one Command"
+msgstr ""
+
 #, python-format
 msgid "You must switch to the service %s (%s - '%s')!\n"
 msgstr "Anda harus beralih ke layanan %s (%s - '%s')!\n"
@@ -14421,6 +14575,9 @@ msgstr ""
 msgid "Zap"
 msgstr "Zap"
 
+msgid "Zap Up/Down"
+msgstr ""
+
 msgid "Zap back to previously tuned service?"
 msgstr "Zap back to previously tuned service?"
 
@@ -14488,12 +14645,6 @@ msgid "Zgemma Star S/2S/H1/H2"
 msgstr ""
 
 msgid "Zimbabwe"
-msgstr ""
-
-msgid "Zoom from left"
-msgstr ""
-
-msgid "Zoom from right"
 msgstr ""
 
 #, fuzzy
@@ -14946,6 +15097,9 @@ msgstr "Suara"
 msgid "free"
 msgstr "free"
 
+msgid "from"
+msgstr ""
+
 msgid "from dir"
 msgstr ""
 
@@ -15124,6 +15278,10 @@ msgstr "mnt"
 
 msgid "minutes"
 msgstr "menit"
+
+#, fuzzy
+msgid "module disabled"
+msgstr "dimatikan"
 
 msgid "month"
 msgstr "bulan"
@@ -15314,9 +15472,6 @@ msgstr "akhiri ubah buket"
 msgid "open history browser"
 msgstr "Perambah direktori"
 
-msgid "open nameserver configuration"
-msgstr "open nameserver configuration"
-
 #, fuzzy
 msgid "openMultiboot Manager"
 msgstr "Banyak satelit dipilih semua"
@@ -15375,6 +15530,10 @@ msgstr "acara anak prasekolah"
 
 msgid "preserve bookmarks in cuts"
 msgstr ""
+
+#, fuzzy
+msgid "priority"
+msgstr "Prioritas"
 
 msgid "python"
 msgstr ""
@@ -15530,16 +15689,28 @@ msgid "slot%s - %s"
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s "
-msgstr ""
-
-#, python-format
 msgid "slot%s - %s (current image)"
 msgstr ""
 
 #, python-format
 msgid "slot%s - %s as USB Recovery"
 msgstr ""
+
+#, python-format
+msgid "slot%s - %s mode 1"
+msgstr ""
+
+#, fuzzy, python-format
+msgid "slot%s - %s mode 1 (current image)"
+msgstr "Aktifkan setelan saat ini"
+
+#, python-format
+msgid "slot%s - %s mode 12"
+msgstr ""
+
+#, fuzzy, python-format
+msgid "slot%s - %s mode 12 (current image)"
+msgstr "Aktifkan setelan saat ini"
 
 msgid "slow"
 msgstr ""
@@ -15644,6 +15815,10 @@ msgstr "toggle time, chapter, audio, subtitle info"
 msgid "top"
 msgstr "top"
 
+#, python-format
+msgid "total conflict (%d)"
+msgstr ""
+
 msgid "tourism/travel"
 msgstr "tourism/travel"
 
@@ -15722,6 +15897,10 @@ msgstr "ditentukan pengguna"
 
 msgid "variety show"
 msgstr "variety show"
+
+#, fuzzy
+msgid "version"
+msgstr "Inversi"
 
 msgid "vertical"
 msgstr "vertical"
