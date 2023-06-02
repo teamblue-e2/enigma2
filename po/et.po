@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-24 20:46+0100\n"
+"POT-Creation-Date: 2023-06-02 16:41+0200\n"
 "PO-Revision-Date: 2019-04-03 06:49+0300\n"
 "Last-Translator: \n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas, zeros\\n faas, sateks, valgekotkas, tigekala, rootsikunn\\n kain, i70, mustkass, pelmeen, Scott\\n <digi-tv.ee>\n"
@@ -38,11 +38,6 @@ msgid ""
 msgstr ""
 "\n"
 "Vajuta OK ja oota!"
-
-msgid ""
-"\n"
-"Maintain your multiboot device."
-msgstr ""
 
 msgid ""
 "\n"
@@ -169,6 +164,10 @@ msgstr ""
 msgid " - folder exist! Overwrite"
 msgstr ""
 
+#, fuzzy
+msgid " - information"
+msgstr "Info"
+
 msgid " Warning: the selected tuner should not use SCR Unicable type for LNBs because each tuner need a own SCR number."
 msgstr ""
 
@@ -226,10 +225,6 @@ msgstr "%A %e %B %Y"
 
 msgid "%H:%M"
 msgstr "%H:%M"
-
-#, fuzzy
-msgid "%Y-%m-%d %H:%M"
-msgstr "%d-%b-%Y %-H:%M"
 
 #, fuzzy
 msgid "%Y-%m-%d %H:%M:%S"
@@ -312,6 +307,10 @@ msgid "%d minutes"
 msgstr "%d minutit"
 
 #, fuzzy, python-format
+msgid "%d ms"
+msgstr "%d min"
+
+#, fuzzy, python-format
 msgid "%d package selected."
 msgid_plural "%d packages selected."
 msgstr[0] " paketti valitud."
@@ -375,6 +374,13 @@ msgstr "%k:%M %e/%m"
 msgid "%s"
 msgstr ""
 
+#, fuzzy, python-format
+msgid ""
+"%s\n"
+"Do you still want to flash image\n"
+"%s?"
+msgstr "Kas uuendad paketti:\n"
+
 #, python-format
 msgid ""
 "%s\n"
@@ -398,6 +404,10 @@ msgstr "%s (%s)\n"
 msgid "%s (%s)"
 msgstr "%s (%s)\n"
 
+#, fuzzy, python-format
+msgid "%s (files)"
+msgstr "%s (%s)\n"
+
 #, python-format
 msgid "%s - extraction errors."
 msgstr ""
@@ -409,6 +419,10 @@ msgstr ""
 #, python-format
 msgid "%s MHz"
 msgstr ""
+
+#, fuzzy, python-format
+msgid "%s connected successfully."
+msgstr "PIN kood on muudetud."
 
 #, python-format
 msgid "%s imported from fallback tuner"
@@ -441,6 +455,9 @@ msgstr "%s/%s: %s"
 msgid "'%s' not installed and no known package"
 msgstr ""
 
+msgid "'Minimum send interval' needs to be enabled to use this option."
+msgstr ""
+
 #, python-format
 msgid "(%d jobs)"
 msgstr ""
@@ -451,6 +468,9 @@ msgstr ""
 #, fuzzy
 msgid "(Selectmode)"
 msgstr "Vali film"
+
+msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
+msgstr ""
 
 msgid "(ZAP as PiP)"
 msgstr ""
@@ -464,6 +484,10 @@ msgstr ""
 
 #, fuzzy
 msgid "(current image)"
+msgstr "Jõusta praegused seaded"
+
+#, fuzzy
+msgid "(current)"
 msgstr "Jõusta praegused seaded"
 
 msgid "(empty)"
@@ -482,10 +506,6 @@ msgstr "tundmatu"
 
 msgid "* Only available if more than one interface is active."
 msgstr "* Enam kui ühe aktiivse liidese puhul."
-
-#, fuzzy
-msgid "* current animation"
-msgstr "Jõusta praegused seaded"
 
 msgid "-NO SERVICE\n"
 msgstr ""
@@ -516,16 +536,7 @@ msgstr "juur kaust"
 msgid "0"
 msgstr "30"
 
-msgid "0,24,1147,20"
-msgstr ""
-
 msgid "1"
-msgstr ""
-
-msgid "120,2,30"
-msgstr ""
-
-msgid "120,28,26"
 msgstr ""
 
 msgid "128 MB (recommended for this chipset)"
@@ -550,19 +561,12 @@ msgid "16:9 always"
 msgstr "16:9 alati"
 
 #, fuzzy
-msgid "19"
-msgstr "16:9"
-
-#, fuzzy
 msgid "2"
 msgstr "24"
 
 #, fuzzy
 msgid "2 new lines"
 msgstr " Näita infot"
-
-msgid "2,0,80,50"
-msgstr ""
 
 msgid "2048 MB (maximum)"
 msgstr ""
@@ -579,12 +583,6 @@ msgstr "25"
 msgid "256 MB (recommended for this chipset)"
 msgstr ""
 
-msgid "26,1,559,28"
-msgstr ""
-
-msgid "265,1,300,23"
-msgstr ""
-
 msgid "29.97"
 msgstr "29.97"
 
@@ -592,23 +590,8 @@ msgstr "29.97"
 msgid "3"
 msgstr "30"
 
-msgid "3,0,25,25"
-msgstr ""
-
-msgid "3,5,100,40"
-msgstr ""
-
 msgid "30"
 msgstr "30"
-
-msgid "33,1,694,24"
-msgstr ""
-
-msgid "33,3,22,22"
-msgstr ""
-
-msgid "36,1,694,23"
-msgstr ""
 
 #, fuzzy
 msgid "3D"
@@ -630,15 +613,6 @@ msgstr "3d režiim"
 msgid "4"
 msgstr "4"
 
-msgid "400"
-msgstr ""
-
-msgid "47,1,1147,24"
-msgstr ""
-
-msgid "47,1,685,24"
-msgstr ""
-
 msgid "4:3 Letterbox"
 msgstr "4:3 letterbox"
 
@@ -648,54 +622,18 @@ msgstr "4:3 PanScan"
 msgid "5"
 msgstr "5"
 
-msgid "5,1,250,23"
-msgstr ""
-
-msgid "5,1,520,23"
-msgstr ""
-
-msgid "5,1,530,28"
-msgstr ""
-
-msgid "5,1,630,23"
-msgstr ""
-
-msgid "5,25,630,23"
-msgstr ""
-
-msgid "5,28,530,23"
-msgstr ""
-
-msgid "5,7,16,16"
-msgstr ""
-
 msgid "512 MB (recommended for this chipset)"
-msgstr ""
-
-msgid "535,1,100,23"
 msgstr ""
 
 msgid "6"
 msgstr ""
 
-msgid "63,1,661,24"
-msgstr ""
-
 msgid "7"
-msgstr ""
-
-msgid "7,0,40,25"
 msgstr ""
 
 #, fuzzy
 msgid "8"
 msgstr "8"
-
-msgid "83,2,30"
-msgstr ""
-
-msgid "83,28,26"
-msgstr ""
 
 msgid "9"
 msgstr ""
@@ -950,9 +888,6 @@ msgstr "Lisa"
 msgid "Add a mark"
 msgstr "Lisa marker"
 
-msgid "Add a nameserver entry"
-msgstr "Lisa nimeserver"
-
 msgid "Add a new title"
 msgstr "Lisa uus pealkiri"
 
@@ -1197,6 +1132,10 @@ msgstr ""
 msgid "Alpha"
 msgstr "Alfa"
 
+#, fuzzy
+msgid "Alphanumeric"
+msgstr "tähestikujärjekord"
+
 msgid "Also import at reboot/restart enigma2"
 msgstr ""
 
@@ -1270,22 +1209,6 @@ msgstr ""
 msgid "Anguilla"
 msgstr ""
 
-#, fuzzy
-msgid "Animation Settings"
-msgstr "Positsioneeri seadistus"
-
-#, fuzzy
-msgid "Animation Setup"
-msgstr "Positsioneeri seadistus"
-
-#, fuzzy
-msgid "Animation Speed"
-msgstr "Aeglustuskiirused"
-
-#, fuzzy
-msgid "Animations"
-msgstr "Info"
-
 msgid "Antarctica"
 msgstr ""
 
@@ -1298,8 +1221,18 @@ msgstr "Iga tegevus"
 msgid "Arabic"
 msgstr "Araabia"
 
+#, fuzzy
+msgid "Are you sure to delete image:"
+msgstr ""
+"Kas soovid kustutada\n"
+"selle varukoopia:\n"
+
 msgid "Are you sure to purge all deleted user bouquets?"
 msgstr ""
+
+#, fuzzy
+msgid "Are you sure to reboot to"
+msgstr "Kas kindlasti eemaldada kõik %s teenused?"
 
 #. TRANSLATORS: The user is asked to delete all satellite services from a specific orbital position after a configuration change
 #, python-format
@@ -1315,6 +1248,10 @@ msgstr ""
 msgid "Are you sure to remove this entry?"
 msgstr ""
 
+#, fuzzy
+msgid "Are you sure to restore all deleted images"
+msgstr "Kas kindlasti eemaldada kõik %s teenused?"
+
 msgid ""
 "Are you sure you want to activate this network configuration?\n"
 "\n"
@@ -1329,17 +1266,17 @@ msgstr ""
 "Kas soovid kustutada\n"
 "selle varukoopia:\n"
 
-#, fuzzy, python-format
-msgid "Are you sure you want to delete image slot %s ?"
-msgstr ""
-"Kas soovid kustutada\n"
-"selle varukoopia:\n"
-
 #, fuzzy
 msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr ""
 "Kas soovid kustutada\n"
 "selle varukoopia:\n"
+
+#, fuzzy
+msgid ""
+"Are you sure you want to delete this:\n"
+" "
+msgstr "Kas soovid väljuda seadistusabist?"
 
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Kas soovid väljuda seadistusabist?"
@@ -1423,6 +1360,11 @@ msgstr "Alguses"
 msgid "At end"
 msgstr "Lõpus"
 
+msgid ""
+"Attention - forced loading recovery image!\n"
+"Create an empty STARTUP_RECOVERY file at the root of your HDD/USB drive and hold the Power button for more than 12 seconds for reboot receiver!"
+msgstr ""
+
 msgid "Attention, this is repeated timer!\n"
 msgstr ""
 
@@ -1442,9 +1384,6 @@ msgstr "Audio PID"
 
 #, python-format
 msgid "Audio PID%s, codec & lang"
-msgstr ""
-
-msgid "Audio PID, codec & lang"
 msgstr ""
 
 msgid "Audio auto volume level"
@@ -1545,6 +1484,17 @@ msgstr "Taimeri ülevaade"
 msgid "AutoTimer Settings"
 msgstr "Subtiitrite seadistus"
 
+#, fuzzy, python-format
+msgid "Autoinstalling %s"
+msgstr "Paigaldamine"
+
+#, fuzzy
+msgid "Autoinstalling Completed"
+msgstr "Paigaldamine lõppenud."
+
+msgid "Autoinstalling please wait for packages being updated"
+msgstr ""
+
 #, fuzzy
 msgid "Automatic Scan"
 msgstr "Automaatotsing"
@@ -1555,6 +1505,9 @@ msgstr "Automaatotsing"
 
 msgid "Automatic scan"
 msgstr "Automaatotsing"
+
+msgid "Automatically power off box to deep standby mode."
+msgstr ""
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr ""
@@ -1625,6 +1578,10 @@ msgstr "Taustal kustutamise valikud"
 msgid "Background delete speed"
 msgstr "Taustal kustutamise kiirus"
 
+#, fuzzy, python-format
+msgid "Backing up to: %s"
+msgstr "Varukoopia loomine nurjus."
+
 #, fuzzy
 msgid "Backup"
 msgstr "Tagasi"
@@ -1645,10 +1602,6 @@ msgstr "Varukoopia asukoht"
 msgid "Backup Mode"
 msgstr "Varukoopia loomine valmis."
 
-#, fuzzy
-msgid "Backup Settings"
-msgstr "Muuda seadeid"
-
 msgid "Backup completed."
 msgstr "Varukoopia loomine valmis."
 
@@ -1662,6 +1615,10 @@ msgid ""
 "Backup plugins found\n"
 "do you want to install now?"
 msgstr ""
+
+#, fuzzy
+msgid "Backup settings"
+msgstr "Muuda seadeid"
 
 msgid "Backup system settings"
 msgstr "Loo varukoopia"
@@ -1702,6 +1659,10 @@ msgstr ""
 
 msgid "Basic PID info"
 msgstr ""
+
+#, fuzzy
+msgid "Basic info"
+msgstr "Muuda seadeid"
 
 #, fuzzy
 msgid "Basic settings"
@@ -1804,6 +1765,17 @@ msgstr ""
 #, fuzzy
 msgid "Boost green"
 msgstr "roheline"
+
+#, fuzzy
+msgid "Boot to Android image"
+msgstr "Mine faililoendisse"
+
+#, python-format
+msgid "Boot to Recovery image - slot0 %s"
+msgstr ""
+
+msgid "Boot to Recovery menu"
+msgstr ""
 
 #, fuzzy
 msgid "Bootup time"
@@ -1992,7 +1964,7 @@ msgid ""
 "%s may be in a plugin that is not installed."
 msgstr ""
 
-msgid "Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternatively you can mount the network drive after the flash and perform a manufacturer reset to autorestore"
+msgid "Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternativaly you can mount the network drive after the flash and perform a manufacurer reset to autorestore"
 msgstr ""
 
 #, python-format
@@ -2041,7 +2013,7 @@ msgstr "Ei saa määrata"
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Mingit signaali8 ei leita..., katkestame!"
 
-msgid "Cannot find images - please try later"
+msgid "Cannot find images - please try later or select an alternate image"
 msgstr ""
 
 msgid ""
@@ -2305,6 +2277,9 @@ msgstr "Lemmiknimekirjad"
 msgid "Choose the location for crash and debuglogs."
 msgstr ""
 
+msgid "Choose the option to correct invalid EPG data."
+msgstr ""
+
 #, fuzzy
 msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
 msgstr "Määra, kas mitmekanaline heli tuleks taandada stereoks."
@@ -2331,6 +2306,9 @@ msgstr "Ringpolarisatsioon vasak"
 msgid "Circular right"
 msgstr "Ringpolarisatsioon parem"
 
+msgid "Clean (Just flash and start clean)"
+msgstr ""
+
 #, fuzzy
 msgid "Clean image"
 msgstr "Eemalda püsiaadress"
@@ -2354,9 +2332,6 @@ msgid "Clear playlist"
 msgstr "Tühjenda esitusloend"
 
 msgid "Client is streaming from this box!"
-msgstr ""
-
-msgid "ClientIP"
 msgstr ""
 
 #, fuzzy
@@ -2388,7 +2363,8 @@ msgstr "Code rate HP"
 msgid "Code rate LP"
 msgstr "Code rate LP"
 
-msgid "Collapse"
+#, python-format
+msgid "Codec & lang%s"
 msgstr ""
 
 msgid "Collection name"
@@ -2416,6 +2392,10 @@ msgid "Combo"
 msgstr ""
 
 #, fuzzy
+msgid "Command To Run"
+msgstr "Käskude järjekord"
+
+#, fuzzy
 msgid "Command execution..."
 msgstr "Kanalid"
 
@@ -2424,6 +2404,10 @@ msgstr "Käskude järjekord"
 
 msgid "Command the TV to switch to the correct HDMI input when zap timers activate."
 msgstr ""
+
+#, fuzzy
+msgid "Command type"
+msgstr "Käskude järjekord"
 
 #, fuzzy
 msgid "Commit info"
@@ -2449,6 +2433,10 @@ msgstr "Täielik ( lubab audio radade miksimist )"
 
 msgid "Composition of the recording filenames"
 msgstr "Salvestuse nimede komponeerimine"
+
+#, fuzzy
+msgid "Compress"
+msgstr "Valmis"
 
 #, fuzzy
 msgid "Config Scan Details"
@@ -2552,9 +2540,6 @@ msgstr ""
 
 msgid "Configure interface"
 msgstr "Seadista liides"
-
-msgid "Configure nameservers"
-msgstr "Seadista nimeserverid"
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Määra, millisel andmekandjal kasutatakse taustal kustutamise võimalust."
@@ -2979,6 +2964,9 @@ msgstr "kopeeri nimekirjadesse"
 msgid "Cores: %s"
 msgstr "Tagasikerimise kiirused"
 
+msgid "Correct invalid EPG data"
+msgstr ""
+
 msgid "Costa Rica"
 msgstr ""
 
@@ -2988,7 +2976,7 @@ msgstr ""
 msgid "Could not find installed channel list."
 msgstr "Paigaldatud kanalinimekirja ei leitud."
 
-msgid "Could not find suitable media - Please remove some downloaded images or insert a media (e.g. USB stick) with sufficient free space and try again!"
+msgid "Could not find suitable media - Please remove some downloaded images or insert a media (e.g. USB stick) with sufficiant free space and try again!"
 msgstr ""
 
 #, fuzzy
@@ -3068,6 +3056,14 @@ msgstr "Horvaatia"
 msgid "Croatian"
 msgstr "Horvaatia"
 
+#, fuzzy
+msgid "Cron Manager"
+msgstr "Muuda nimi"
+
+#, fuzzy
+msgid "Cron timers"
+msgstr "Lõpetamise aeg"
+
 msgid "Cuba"
 msgstr ""
 
@@ -3115,6 +3111,10 @@ msgstr "Praegune väärtus: "
 
 msgid "Currently the commit log cannot be retrieved - please try later again"
 msgstr ""
+
+#, fuzzy
+msgid "Custom"
+msgstr "Kohandamine"
 
 msgid "Custom skip time for '1'/'3' buttons"
 msgstr "'1'/'3'-nuppude hüppe kohandatud pikkus"
@@ -3237,6 +3237,10 @@ msgstr "DVD nimekiri"
 msgid "DVDPlayer"
 msgstr "DVD mängija"
 
+#, fuzzy
+msgid "Daily"
+msgstr "iga päev"
+
 msgid "Danish"
 msgstr "Taani"
 
@@ -3253,6 +3257,9 @@ msgstr "Aeg/kuupäev"
 #, fuzzy
 msgid "Deactivate"
 msgstr "Ava pilt-pildis"
+
+msgid "Debug"
+msgstr ""
 
 #, fuzzy
 msgid "Debug to file"
@@ -3280,6 +3287,10 @@ msgstr "Salvestuste tavaasukoht"
 
 #, fuzzy
 msgid "Default directory sorting"
+msgstr "Vaikeväärtused"
+
+#, fuzzy, python-format
+msgid "Default duration: %d mins"
 msgstr "Vaikeväärtused"
 
 #, fuzzy
@@ -3327,6 +3338,9 @@ msgstr "Salvestuse liik"
 #, fuzzy
 msgid "Default+Picon"
 msgstr "Vaikeväärtused"
+
+msgid "Define additional delay in milliseconds before start of http(s) streams, e.g. to connect a remote tuner, you use a complex system of DiSEqC."
+msgstr ""
 
 msgid "Delay after change voltage before switch command"
 msgstr ""
@@ -3407,6 +3421,10 @@ msgid "Delete 1 element"
 msgstr "Kustuta valik"
 
 #, fuzzy
+msgid "Delete Image"
+msgstr "Kustuta fail"
+
+#, fuzzy
 msgid "Delete all the text"
 msgstr "Kustuta esitusloendi kirje"
 
@@ -3454,6 +3472,10 @@ msgstr ""
 
 msgid "Deleted"
 msgstr "Kustutati"
+
+#, fuzzy
+msgid "Deleted image"
+msgstr "Kustuta fail"
 
 msgid "Deleted items"
 msgstr "Prügikast"
@@ -3599,8 +3621,9 @@ msgstr "Kataloog sisaldab %(file)s ja %(subdir)s."
 msgid "Disable"
 msgstr "Keela"
 
-msgid "Disable Animations"
-msgstr ""
+#, fuzzy
+msgid "Disable FCC during recordings"
+msgstr "Kaasa AIT http voogudesse"
 
 msgid "Disable Picture in Picture"
 msgstr "Sulge pilt-pildis"
@@ -3689,6 +3712,10 @@ msgstr ""
 msgid "Do not change"
 msgstr "Ära muuda"
 
+#, fuzzy
+msgid "Do not flash image"
+msgstr "Ei, ära tee midagi."
+
 msgid "Do not record"
 msgstr "Ära salvesta"
 
@@ -3773,6 +3800,10 @@ msgid ""
 "Do you want to also install samba client?\n"
 "This allows you to mount your windows shares on this device."
 msgstr ""
+
+#, fuzzy
+msgid "Do you want to autorestore settings?"
+msgstr "Kas soovid taastada oma seaded?"
 
 #, fuzzy
 msgid ""
@@ -3913,6 +3944,12 @@ msgstr[1] "Valmis - paigaldatud või uuendatud %d , %d veaga"
 msgid "Download Movie Info"
 msgstr "Laetakse alla"
 
+#, python-format
+msgid ""
+"Download Successsful\n"
+"%s"
+msgstr ""
+
 msgid "Download plugins"
 msgstr "Paigalda laiendusi"
 
@@ -4029,7 +4066,7 @@ msgid "ERROR - failed to scan (%s)!"
 msgstr "VIGA - otsing nurjus (%s)!"
 
 #, python-format
-msgid "ERROR downloading file %s"
+msgid "ERROR downloading file %s/%s"
 msgstr ""
 
 msgid "East"
@@ -4054,9 +4091,6 @@ msgstr ""
 #, fuzzy
 msgid "Edit AutoTimer Services"
 msgstr "Mine esimesele kanalile"
-
-msgid "Edit DNS"
-msgstr "Muuda DNS"
 
 #, fuzzy
 msgid "Edit Title"
@@ -4242,6 +4276,10 @@ msgstr "Luba EIT EPG"
 msgid "Enable parental protection"
 msgstr "lisa lapselukk"
 
+#, fuzzy
+msgid "Enable power off timer"
+msgstr "luba liigutamine menüüdes"
+
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 msgstr ""
 
@@ -4411,17 +4449,10 @@ msgstr ""
 msgid "Equatorial Guinea"
 msgstr ""
 
-msgid "Erase"
-msgstr ""
-
 msgid "Eritrea"
 msgstr ""
 
 msgid "Error"
-msgstr "Viga"
-
-#, fuzzy, python-format
-msgid "Error %s"
 msgstr "Viga"
 
 msgid "Error checking disk. The disk may be damaged"
@@ -4474,16 +4505,19 @@ msgstr ""
 msgid "Error when writing epg.dat on server"
 msgstr ""
 
-msgid "Error while retreiving epg.dat from server"
+msgid "Error while moving epg.dat to its destination"
+msgstr ""
+
+msgid "Error while retrieving epg.dat from the fallback receiver"
 msgstr ""
 
 #, python-format
 msgid ""
-"Error while retreiving fallback timer information\n"
+"Error while retrieving fallback timer information\n"
 "%s"
 msgstr ""
 
-msgid "Error while retreiving location of epg.dat on server"
+msgid "Error while retrieving location of epg.dat on the fallback receiver"
 msgstr ""
 
 #, fuzzy
@@ -4629,6 +4663,10 @@ msgstr "Laiendatud tarkvara"
 msgid "Extended Software Plugin"
 msgstr "Laiendatud tarkvara"
 
+#, fuzzy
+msgid "Extended info"
+msgstr "Muuda seadeid"
+
 msgid "Extended network setup plugin..."
 msgstr "Laiendatud võrguseaded"
 
@@ -4683,9 +4721,6 @@ msgstr ""
 msgid "Extra start time to ignore inactivity sleeptimer"
 msgstr ""
 
-msgid "Extrude from left"
-msgstr ""
-
 msgid "F1/F3/F4/F4-TURBO"
 msgstr ""
 
@@ -4716,6 +4751,14 @@ msgid ""
 "FBC automatic\n"
 "inactive"
 msgstr ""
+
+#, fuzzy
+msgid "FCC enabled"
+msgstr "lubatud"
+
+#, fuzzy
+msgid "FCCSetup"
+msgstr "Seadistamine"
 
 msgid "FEC"
 msgstr "FEC"
@@ -4776,6 +4819,9 @@ msgstr "Nurjus"
 msgid "Falkland Islands (Malvinas)"
 msgstr ""
 
+msgid "Fallback API did not return a valid result."
+msgstr ""
+
 msgid "Fallback Timer"
 msgstr ""
 
@@ -4825,6 +4871,15 @@ msgstr ""
 
 msgid "Fast"
 msgstr "Kiire"
+
+msgid "Fast Channel Change"
+msgstr ""
+
+msgid "Fast Channel Change Setup"
+msgstr ""
+
+msgid "Fast Channel Change setup"
+msgstr ""
 
 msgid "Fast DiSEqC"
 msgstr "Kiire DiSEqC"
@@ -5017,21 +5072,17 @@ msgstr ""
 msgid "Flash Image"
 msgstr "Flash"
 
-msgid "Flash On the Fly"
-msgstr ""
-
-msgid "Flash Online"
-msgstr ""
-
 #, fuzzy
 msgid "Flash and restore settings"
 msgstr "Jah, taasta nüüd seaded"
 
 #, fuzzy
-msgid "Flash on the fly your Receiver software."
-msgstr ""
-"\n"
-"Vastuvõtja internetiuuendused."
+msgid "Flash image"
+msgstr "Flash"
+
+#, fuzzy, python-format
+msgid "Flash your %s %s and reboot now?"
+msgstr "Uuendad ja taaskäivitad vastuvõtja?"
 
 msgid "Flash, restore settings and user selected plugins"
 msgstr ""
@@ -5063,7 +5114,13 @@ msgstr "Järgmised toimingud tehakse pärast OK vajutamist!"
 msgid "Force legacy signal stats"
 msgstr ""
 
+msgid "Force power off (even when not in standby)"
+msgstr ""
+
 msgid "Force zap to recording service in standby"
+msgstr ""
+
+msgid "Forces deep standby, even when not in standby mode. Scheduled recordings remain unaffected."
 msgstr ""
 
 msgid "Format"
@@ -5091,6 +5148,10 @@ msgid "Formatting partition %d"
 msgstr "Partitsiooni loomine"
 
 msgid "Forward volume keys"
+msgstr "Kasuta helitugevuse nuppe"
+
+#, fuzzy
+msgid "Forwarded volume step size"
 msgstr "Kasuta helitugevuse nuppe"
 
 #, python-format
@@ -5201,9 +5262,6 @@ msgstr "RGB"
 #, fuzzy
 msgid "GBAspectRatioSwitchSetup"
 msgstr "Pildisuhe"
-
-msgid "GStreamer: "
-msgstr ""
 
 msgid "GUI Build: "
 msgstr ""
@@ -5374,6 +5432,9 @@ msgstr "Graafilise MultiEpg seaded"
 msgid "Graphical Multi EPG"
 msgstr "Graafiline Multi EPG"
 
+msgid "Graphics"
+msgstr ""
+
 #, fuzzy
 msgid "Greece"
 msgstr "Kreeka"
@@ -5393,12 +5454,6 @@ msgid "Grenada"
 msgstr ""
 
 msgid "Group:"
-msgstr ""
-
-msgid "Grow drop"
-msgstr ""
-
-msgid "Grow from left"
 msgstr ""
 
 msgid "Guadeloupe"
@@ -5423,6 +5478,9 @@ msgid "Guinea-Bissau"
 msgstr ""
 
 msgid "Guyana"
+msgstr ""
+
+msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr ""
 
 msgid "HD list"
@@ -5547,6 +5605,9 @@ msgstr "Kõvaketta seaded"
 msgid "Harddisk standby after"
 msgstr "Kõvaketta välja lülitamine peale"
 
+msgid "Hardware Accelerated"
+msgstr ""
+
 #, fuzzy
 msgid "HddMount"
 msgstr "Haagi lahti"
@@ -5605,6 +5666,10 @@ msgstr "Hierarhia teave"
 
 msgid "High bitrate support"
 msgstr "Kõrge bitrate tugi"
+
+#, fuzzy
+msgid "History Prev/Next"
+msgstr "Algseadistus"
 
 #, fuzzy
 msgid "History back"
@@ -5672,12 +5737,18 @@ msgstr "Paigalda laiendusi"
 msgid "Hour"
 msgstr ""
 
+msgid "Hourly"
+msgstr ""
+
 #, fuzzy
 msgid "How many minutes do you want add to the recording?"
 msgstr "Mitu minutit soovid salvestada?"
 
 msgid "How many minutes do you want to record?"
 msgstr "Mitu minutit soovid salvestada?"
+
+msgid "Http(s) stream start delay"
+msgstr ""
 
 msgid "Hue"
 msgstr "Värvitoon"
@@ -5762,6 +5833,12 @@ msgid "If set to 'yes' signal values (SNR, etc) will be calculated from API V3. 
 msgstr ""
 
 msgid "If set to 'yes' the same commands will be sent to the TV for deep standby events, as are sent during regular standby events."
+msgstr ""
+
+msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
+msgstr ""
+
+msgid "If the box is supposed to enter deep standby e.g. monday night at 1 AM, it actually is already tuesday. To enable this anyway, differing next day start time can be specified here."
 msgstr ""
 
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
@@ -5974,6 +6051,10 @@ msgid "Initialize"
 msgstr "Vorminda"
 
 #, fuzzy
+msgid "Initialize Multiboot"
+msgstr "Vorminda"
+
+#, fuzzy
 msgid "Initialize disk"
 msgstr "Vorminda"
 
@@ -6088,6 +6169,10 @@ msgstr "Paigalda kanalilogod"
 #, fuzzy
 msgid "Installing software..."
 msgstr "Paigaldamine"
+
+#, fuzzy
+msgid "Instant record"
+msgstr "Kohene salvestamine"
 
 msgid "Instant recording"
 msgstr "Kohene salvestamine"
@@ -6275,6 +6360,20 @@ msgstr "Kernel: "
 #, fuzzy, python-format
 msgid "Kernel: %s"
 msgstr "Signaal: "
+
+msgid "Kexec MultiBoot Initialisation - will reboot after 10 seconds."
+msgstr ""
+
+msgid ""
+"Kexec MultiBoot Initialisation in progress!\n"
+"\n"
+"Will reboot after restoring any eMMC slots.\n"
+"This can take from 1 -> 5 minutes per slot."
+msgstr ""
+
+#, fuzzy
+msgid "Kexec MultiBoot Manager"
+msgstr "Lemmiknimekirjade valik kanalite saatekavas"
 
 msgid "Key Events"
 msgstr ""
@@ -6723,6 +6822,10 @@ msgstr "Leedu"
 msgid "Mauritius"
 msgstr "Lemmikud"
 
+#, fuzzy
+msgid "Max channels"
+msgstr "Kanal"
+
 msgid "Max memory positions"
 msgstr ""
 
@@ -6899,6 +7002,10 @@ msgstr ""
 
 msgid "Montenegro"
 msgstr ""
+
+#, fuzzy
+msgid "Monthly"
+msgstr "kuu"
 
 msgid "Montserrat"
 msgstr ""
@@ -7155,10 +7262,6 @@ msgid "MultiBoot Image Selector"
 msgstr "Lemmiknimekirjade valik kanalite saatekavas"
 
 #, fuzzy
-msgid "MultiBoot Manager"
-msgstr "Lemmiknimekirjade valik kanalite saatekavas"
-
-#, fuzzy
 msgid "MultiBoot Selector"
 msgstr "Lemmiknimekirjade valik kanalite saatekavas"
 
@@ -7173,6 +7276,10 @@ msgstr "Multimeedia"
 #, python-format
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr ""
+
+#, fuzzy
+msgid "Multiboot image selector"
+msgstr "Lemmiknimekirjade valik kanalite saatekavas"
 
 #, fuzzy
 msgid "Multichannel PCM"
@@ -7260,17 +7367,6 @@ msgstr "Nimeserver"
 
 msgid "Nameserver"
 msgstr "Nimeserver"
-
-#, python-format
-msgid "Nameserver %d"
-msgstr "Nimeserver %d"
-
-msgid "Nameserver settings"
-msgstr "Nimeserveri seaded"
-
-#, fuzzy
-msgid "Nameserver setup"
-msgstr "Nimeserveri seaded"
 
 msgid "Namespace & Orbital pos."
 msgstr ""
@@ -7373,9 +7469,6 @@ msgstr "Uus"
 msgid "New Caledonia"
 msgstr ""
 
-msgid "New Packages"
-msgstr ""
-
 msgid "New Zealand"
 msgstr ""
 
@@ -7395,6 +7488,9 @@ msgstr "Järgmine"
 msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Järgmine"
+
+msgid "Next day starts at"
+msgstr ""
 
 msgid "Nicaragua"
 msgstr ""
@@ -7577,7 +7673,7 @@ msgid "No, do not backup an image"
 msgstr "Ei, ära tee midagi."
 
 #, fuzzy
-msgid "No, do not flash an image"
+msgid "No, do not flash image"
 msgstr "Ei, ära tee midagi."
 
 msgid "No, do nothing."
@@ -7592,6 +7688,9 @@ msgstr "Ei, käivita vastuvõtja"
 
 msgid "No, never"
 msgstr "Ei, mitte kunagi"
+
+msgid "No, only download"
+msgstr ""
 
 msgid "No, scan later manually"
 msgstr ""
@@ -7634,10 +7733,6 @@ msgstr "Norra"
 msgid "Not Installed"
 msgstr "Paigalda"
 
-#, fuzzy
-msgid "Not Required"
-msgstr "Kasutaja määratud"
-
 msgid "Not allowed with folders"
 msgstr ""
 
@@ -7659,9 +7754,6 @@ msgstr "Võrgu test: "
 #, fuzzy
 msgid "Not-Associated"
 msgstr "Määramata"
-
-msgid "Note: slot list does not show current image or empty slots."
-msgstr ""
 
 msgid "Note: when enabled, and you do want standby mode after wake up, set option 'Startup to Standby' as 'No, except Wakeup timer'."
 msgstr ""
@@ -7783,6 +7875,10 @@ msgstr "Üks"
 msgid "One partition"
 msgstr "Partitsiooni loomine"
 
+#, fuzzy
+msgid "Only Flash Backup Image"
+msgstr "Varukoopia loomine nurjus."
+
 msgid "Only change this setting if you are using a SCR device that has been reprogrammed with a custom programmer. For further information check with the person that reprogrammed the device."
 msgstr ""
 
@@ -7799,6 +7895,9 @@ msgid "Only move the dish quickly before this hour."
 msgstr ""
 
 msgid "Only on startup"
+msgstr ""
+
+msgid "Only power off"
 msgstr ""
 
 msgid "Only select 'yes' if you are using a multiswich that requires a DiSEqC Port-A command signal. For all other setups select 'no'."
@@ -7854,7 +7953,7 @@ msgstr ""
 msgid "Operating LED status in standby mode"
 msgstr ""
 
-msgid "Operating LED status while running."
+msgid "Operating LED status while running"
 msgstr ""
 
 msgid "Opkg"
@@ -7865,6 +7964,13 @@ msgstr ""
 
 msgid "Orbital position"
 msgstr "Orbitaalpositioon"
+
+#, fuzzy
+msgid "Order by modes"
+msgstr "tagurpidi kuupäevajärj."
+
+msgid "Order by slots"
+msgstr ""
 
 msgid "Ordinary"
 msgstr ""
@@ -7881,6 +7987,10 @@ msgstr ""
 
 msgid "Other"
 msgstr "Miski muu"
+
+#, fuzzy
+msgid "Other Images"
+msgstr "Flash"
 
 #, fuzzy
 msgid "Other Subtitles & lang"
@@ -8065,6 +8175,13 @@ msgstr "Lapseluku kanali muutmine"
 
 msgid "Parental control setup"
 msgstr "Lapseluku seaded"
+
+msgid "Partial"
+msgstr ""
+
+#, fuzzy
+msgid "Partial EPG"
+msgstr "Kanalite saatekava"
 
 #, fuzzy
 msgid "Partitioner"
@@ -8257,13 +8374,6 @@ msgstr "Palun sisesta uue kausta nimi"
 msgid "Please choose an extension..."
 msgstr "Vali laiendus"
 
-msgid ""
-"Please configure or verify your Nameservers by filling out the required values.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"Kontrolli ja täida nimeserveri nõutavad väljad.\n"
-"Kui oled valmis, vajuta jätkamiseks OK."
-
 msgid "Please configure the fallback tuner setup?"
 msgstr ""
 
@@ -8399,9 +8509,7 @@ msgstr ""
 "\n"
 "Jätkamiseks vajuta OK."
 
-msgid ""
-"Please select what to do after flashing the image:\n"
-"(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
+msgid "Please select what to do after flash of the following image:"
 msgstr ""
 
 #, fuzzy
@@ -8503,6 +8611,10 @@ msgid "Please wait while your network is restarting..."
 msgstr "Oota kuni võrk taaskäivitub."
 
 #, fuzzy
+msgid "Please wait whilst feeds state is checked."
+msgstr "Oota, testin võrku."
+
+#, fuzzy
 msgid "Please wait, Loading image."
 msgstr "Oota. Sisu laetakse."
 
@@ -8568,9 +8680,6 @@ msgstr "Polarisatsioon"
 msgid "Polish"
 msgstr "Poola"
 
-msgid "Popup"
-msgstr ""
-
 #, fuzzy
 msgid "Port"
 msgstr "Port A"
@@ -8630,6 +8739,13 @@ msgstr ""
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr ""
 
+#, fuzzy
+msgid "Power off time"
+msgstr "Aja järgi"
+
+msgid "Power off timer"
+msgstr ""
+
 msgid "Power on display"
 msgstr ""
 
@@ -8642,6 +8758,10 @@ msgstr ""
 #, fuzzy
 msgid "PowerMenu"
 msgstr "Menüü"
+
+#, fuzzy
+msgid "Predefined"
+msgstr "määramata"
 
 msgid "Predefined transponder"
 msgstr "Eelmääratud transponder"
@@ -8716,6 +8836,14 @@ msgid "Press 'OK' for remove item or 'CH+/-' for toggle to list of features."
 msgstr ""
 
 msgid "Press 'OK' for remove item or < > for change order or 'CH+/-' for toggle to list of features."
+msgstr ""
+
+msgid ""
+"Press Green key to enable MultiBoot!\n"
+"\n"
+"Will reboot within 10 seconds,\n"
+"unless you have eMMC slots to restore.\n"
+"Restoring eMMC slots can take from 1 -> 5 minutes per slot."
 msgstr ""
 
 msgid "Press INFO on your remote control for additional information."
@@ -9013,7 +9141,15 @@ msgid "Read speed: %s"
 msgstr "Tagasikerimise kiirused"
 
 #, fuzzy, python-format
+msgid "Ready to install \"%s\" ?"
+msgstr "Tagasi salvestiste nimekirja"
+
+#, fuzzy, python-format
 msgid "Ready to install %s ?"
+msgstr "Tagasi salvestiste nimekirja"
+
+#, fuzzy, python-format
+msgid "Ready to remove \"%s\" ?"
 msgstr "Tagasi salvestiste nimekirja"
 
 #, fuzzy, python-format
@@ -9033,17 +9169,23 @@ msgstr "Kustutame möödunud taimerid?"
 msgid "Really exit the subservices quickzap?"
 msgstr "Väljuda alamteenuste valikust?"
 
+#, python-format
+msgid ""
+"Really permanently delete MultiBoot files?\n"
+"%s"
+msgstr ""
+
 #, fuzzy, python-format
 msgid "Really reboot your %s %s now?"
 msgstr "Teeme taaskäivituse?"
 
 #, fuzzy, python-format
-msgid "Really reflash your %s %s and reboot now?"
-msgstr "Uuendad ja taaskäivitad vastuvõtja?"
-
-#, fuzzy, python-format
 msgid "Really restart your %s %s now?"
 msgstr "Teeme taaskäivituse kohe?"
+
+#, fuzzy
+msgid "Really shutdown now?"
+msgstr "Lülitame välja?"
 
 #, fuzzy, python-format
 msgid "Really shutdown your %s %s now?"
@@ -9072,6 +9214,9 @@ msgstr "Salvesta"
 msgid "Recall to previous service"
 msgstr "Tagasi eelmisele kanalile"
 
+msgid "Receiver or driver does not support FCC"
+msgstr ""
+
 #, fuzzy
 msgid "Reception lists"
 msgstr "Vastuvõtu seaded"
@@ -9097,6 +9242,11 @@ msgstr "Salvestised"
 msgid "Recording"
 msgstr "Salvestus"
 
+msgid ""
+"Recording IPTV with ServiceApp player enabled, timer ended!\n"
+"Please recheck it!"
+msgstr ""
+
 #, fuzzy
 msgid "Recording Setup"
 msgstr "Salvestuse liik"
@@ -9106,6 +9256,10 @@ msgstr "Toimub salvestamine"
 
 msgid "Recording paths"
 msgstr "Salvestuskaustad"
+
+#, fuzzy
+msgid "Recording time has been set."
+msgstr "Unetaimer välja lülitatud."
 
 msgid "Recording type"
 msgstr "Salvestuse liik"
@@ -9174,18 +9328,6 @@ msgstr "religioon"
 msgid "Regular file"
 msgstr "Eemalda püsiaadress"
 
-#, fuzzy
-msgid "Regular;18"
-msgstr "Eemalda püsiaadress"
-
-#, fuzzy
-msgid "Regular;19"
-msgstr "Eemalda püsiaadress"
-
-#, fuzzy
-msgid "Regular;20"
-msgstr "Eemalda püsiaadress"
-
 msgid "Relative"
 msgstr "Suhteline"
 
@@ -9226,12 +9368,12 @@ msgstr "Puldi tüüp"
 msgid "Removal has completed."
 msgstr "Eemaldamine on tehtud."
 
-#, python-format
-msgid "Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?"
-msgstr ""
-
 msgid "Remove"
 msgstr "Eemalda"
+
+#, fuzzy
+msgid "Remove Confirmation"
+msgstr "Võrgu seadistamine..."
 
 #, fuzzy
 msgid "Remove Service"
@@ -9239,9 +9381,6 @@ msgstr "Eemalda pealkiri"
 
 msgid "Remove a mark"
 msgstr "Kustuta märk"
-
-msgid "Remove a nameserver entry"
-msgstr "Kustuta kirje nimeserverist"
 
 #, fuzzy
 msgid "Remove all alternatives"
@@ -9269,10 +9408,6 @@ msgstr "Kanalite kaitse"
 msgid "Remove completed timers after (days)"
 msgstr "Lõpetatud taimerite eemaldamine pärast (päeva)"
 
-#, fuzzy
-msgid "Remove confirmation"
-msgstr "Võrgu seadistamine..."
-
 msgid "Remove current folder from bookmarks"
 msgstr ""
 
@@ -9286,6 +9421,10 @@ msgstr "kustuta kataloog"
 #, fuzzy
 msgid "Remove entry"
 msgstr "kustuta"
+
+#, fuzzy
+msgid "Remove forever"
+msgstr "[liigutamine]"
 
 #, fuzzy
 msgid "Remove from parental protection"
@@ -9481,6 +9620,10 @@ msgid "Restore defaults"
 msgstr "Taasta varukoopia"
 
 #, fuzzy
+msgid "Restore deleted images"
+msgstr "Luba lemmiknimekirjad"
+
+#, fuzzy
 msgid "Restore deleted user bouquets"
 msgstr "Luba lemmiknimekirjad"
 
@@ -9611,6 +9754,9 @@ msgstr ""
 
 #, python-format
 msgid "Run '%s' command"
+msgstr ""
+
+msgid "Run how often ?"
 msgstr ""
 
 msgid "Run script"
@@ -10144,6 +10290,10 @@ msgstr "Vali asukoht:"
 msgid "Select all"
 msgstr ""
 
+#, fuzzy
+msgid "Select an image brand"
+msgstr "Vali film"
+
 msgid "Select audio track"
 msgstr "Vali helikanal"
 
@@ -10207,6 +10357,10 @@ msgstr ""
 
 msgid "Select how your box will upgrade."
 msgstr ""
+
+#, fuzzy
+msgid "Select image"
+msgstr "Kustuta fail"
 
 msgid "Select in which resolution pictures are displayed with picture viewer or movie player."
 msgstr "Seadista, millise eraldusega näidatakse pilte pildivaatajas ja filmimängijas."
@@ -10514,6 +10668,9 @@ msgstr "Kanali otsing"
 
 msgid "Service title mode"
 msgstr "Kanalinime kuju"
+
+msgid "Service type 4097 incorrect for PiP!"
+msgstr ""
 
 msgid ""
 "Service unavailable!\n"
@@ -11130,6 +11287,10 @@ msgstr "Signaal OK, jätkame"
 msgid "Signal Strength:"
 msgstr "Signaali tugevus:"
 
+#, fuzzy, python-format
+msgid "Signal Strength: %d \n"
+msgstr "Signaali tugevus:"
+
 #, fuzzy
 msgid "Signal finder"
 msgstr "Signaal: "
@@ -11156,16 +11317,8 @@ msgstr "Sarnased saated:"
 msgid "Simple"
 msgstr "Lihtne"
 
-#, fuzzy
-msgid "Simple fade"
-msgstr "Lihtne"
-
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Lihtne pealkiri (vanemate pleieritega ühilduv)"
-
-#, fuzzy
-msgid "Simple zoom"
-msgstr "Lihtne"
 
 #, fuzzy
 msgid "Singapore"
@@ -11235,6 +11388,9 @@ msgstr "Tühje kanaleid ei näidata"
 msgid "Skip internet connection check (disables automatic package installation)"
 msgstr "Jäta netiühenduse kontroll vahele (automaatne pakettide paigaldamine keelatakse)"
 
+msgid "Skip jumping to live TV while timeshifting with plugins"
+msgstr ""
+
 #, fuzzy
 msgid "Skip selection"
 msgstr "Saatekava"
@@ -11254,26 +11410,11 @@ msgstr ""
 msgid "Sleeptimer edit"
 msgstr "Unetaimer"
 
-msgid "Slide drop"
-msgstr ""
-
-msgid "Slide from left"
-msgstr ""
-
-msgid "Slide left to right"
-msgstr ""
-
 msgid "Slide picture in loop"
 msgstr "Vaata pilte tsüklis"
 
-msgid "Slide right to left"
-msgstr ""
-
 msgid "Slide show interval (sec.)"
 msgstr "Piltide näitamise aeg (sekundit)"
-
-msgid "Slide top to bottom"
-msgstr ""
 
 #, python-format
 msgid "Slot %d"
@@ -11590,6 +11731,10 @@ msgstr "Kas alustan salvestust?"
 msgid "Start offline decode"
 msgstr "Alusta võrguta dekodeerimist"
 
+#, fuzzy
+msgid "Start recording current event"
+msgstr "Salvesta (lõpeta peale praegust saadet)"
+
 msgid "Start recording?"
 msgstr "Kas alustan salvestust?"
 
@@ -11730,6 +11875,9 @@ msgstr "ära kasuta käivituskanalina"
 msgid "Stopped"
 msgstr "Peatunud"
 
+msgid "Storage device not available or not initialized."
+msgstr ""
+
 #, fuzzy
 msgid "Storage devices"
 msgstr "Andmekandjate loetelu"
@@ -11757,9 +11905,6 @@ msgid "Streaming clients info"
 msgstr ""
 
 msgid "Strict DLNA"
-msgstr ""
-
-msgid "Stripes"
 msgstr ""
 
 msgid "Strongest position"
@@ -11930,7 +12075,7 @@ msgstr ""
 msgid "Switch on the display during Suspend Mode"
 msgstr ""
 
-msgid "Switch on the display during operation."
+msgid "Switch on the display during operation"
 msgstr ""
 
 #, fuzzy
@@ -12127,6 +12272,9 @@ msgstr ""
 msgid "Testscreens that are helpfull to fine-tune your display"
 msgstr ""
 
+msgid "Text"
+msgstr ""
+
 msgid "Text View On"
 msgstr ""
 
@@ -12231,7 +12379,7 @@ msgstr ""
 
 #, fuzzy, python-format
 msgid ""
-"The current software might not be stable.\n"
+"The current image might not be stable.\n"
 "For more information see %s."
 msgstr ""
 "Praegune beta image ei pruugi olla stabiilne.\n"
@@ -12268,6 +12416,9 @@ msgid ""
 msgstr ""
 "NetworkWizard laiendus ei ole paigaldatud! \n"
 "Paigalda see."
+
+msgid "The number of steps to change the volume on the device the keys are forwarded to."
+msgstr ""
 
 msgid ""
 "The overscan wizard has been completed.\n"
@@ -12321,10 +12472,6 @@ msgid ""
 msgstr ""
 "Softwaremanagement laiendus ei ole paigaldatud! \n"
 "Paigalda see."
-
-#, fuzzy, python-format
-msgid "The status of the current software could not be checked because %s can not be reached."
-msgstr "Praeguse beta image olekut ei õnnestunud kontrollida,  %s ei vasta"
 
 msgid "The stored EPG data will be read every (hours)"
 msgstr ""
@@ -12389,10 +12536,6 @@ msgid ""
 msgstr ""
 "Kõvakettal pole piisavalt vaba ruumi.\n"
 "Kas soovid kindlasti jätkata?"
-
-#, fuzzy
-msgid "There was an error downloading the updatelist. Please try again."
-msgstr "Viga nimekirja allalaadimisel. Proovi uuesti."
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "DVD RW ketas on formaaditud.Uuesti formaatimisel kustutatakse kõik, mis plaadile kirjutatud."
@@ -12644,10 +12787,10 @@ msgstr ""
 msgid ""
 "This test checks whether your LAN adapter is set up for automatic IP address configuration with DHCP.\n"
 "If you get a \"disabled\" message:\n"
-" - then your LAN adapter is configured for manual IP setup\n"
+"- then your LAN adapter is configured for manual IP setup\n"
 "- verify thay you have entered the correct IP information in the adapter setup dialog.\n"
 "If you get an \"enabeld\" message:\n"
-"-verify that you have a configured and working DHCP server in your network."
+"- verify that you have a configured and working DHCP server in your network."
 msgstr ""
 "See test kontrollib,kas LAN adapter on seadistatud automaatse IP aadressi jaoks DHCP-d kasutades.\n"
 "Kui näed \"keelatud\" teadet:\n"
@@ -12711,6 +12854,9 @@ msgstr ""
 
 msgid "Time scale"
 msgstr "Ajaskaala"
+
+msgid "Time to execute command or script"
+msgstr ""
 
 #, fuzzy
 msgid "Time zone settings"
@@ -12884,10 +13030,6 @@ msgid "Track"
 msgstr "Rada"
 
 #, fuzzy
-msgid "Transcode"
-msgstr "Transponder"
-
-#, fuzzy
 msgid "Transcoding Setup"
 msgstr "Tõlge:"
 
@@ -12932,10 +13074,6 @@ msgstr ""
 
 msgid "True"
 msgstr ""
-
-#, fuzzy
-msgid "Trying to download a new updatelist. Please wait..."
-msgstr "Üritan laadida alla uut nimekirja. Oota."
 
 msgid "Tue"
 msgstr "T"
@@ -13106,6 +13244,9 @@ msgstr ""
 msgid "Unable to change password"
 msgstr ""
 
+msgid "Unable to complete - Kexec Multiboot files missing!"
+msgstr ""
+
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr ""
 
@@ -13141,7 +13282,7 @@ msgstr "Tühista eemaldamine"
 msgid "Unencrypted"
 msgstr "Koodivaba"
 
-msgid "Unexpected error while retreiving fallback tuner's timer information"
+msgid "Unexpected error while retrieving fallback tuner's timer information"
 msgstr ""
 
 msgid "UnhandledKey"
@@ -13366,9 +13507,6 @@ msgstr "Kasuta algset teleteksti asukohta"
 
 msgid "Use power measurement"
 msgstr "Kasuta võimsuse mõõtmist"
-
-msgid "Use the cursor keys to select an installed image and then Erase button."
-msgstr ""
 
 msgid "Use the cursor keys to select an installed image and then Reboot button."
 msgstr ""
@@ -13820,6 +13958,10 @@ msgstr "Kolmapäev"
 msgid "Weekday"
 msgstr "Nädalapäev"
 
+#, fuzzy
+msgid "Weekly"
+msgstr "iga nädal"
+
 msgid "Weighted position"
 msgstr "Korrigeeritud asukoht"
 
@@ -13889,6 +14031,12 @@ msgid "West limit set"
 msgstr "Lääne piir on määrarud"
 
 msgid "Western Sahara"
+msgstr ""
+
+msgid "What Day of month ?"
+msgstr ""
+
+msgid "What Day of week ?"
 msgstr ""
 
 #, fuzzy
@@ -14384,6 +14532,9 @@ msgstr ""
 msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
 msgstr ""
 
+msgid "You must set at least one Command"
+msgstr ""
+
 #, python-format
 msgid "You must switch to the service %s (%s - '%s')!\n"
 msgstr ""
@@ -14571,6 +14722,9 @@ msgstr ""
 msgid "Zap"
 msgstr "Mine kanalile"
 
+msgid "Zap Up/Down"
+msgstr ""
+
 msgid "Zap back to previously tuned service?"
 msgstr "Tagasi vaadatud kanalile?"
 
@@ -14638,12 +14792,6 @@ msgid "Zgemma Star S/2S/H1/H2"
 msgstr ""
 
 msgid "Zimbabwe"
-msgstr ""
-
-msgid "Zoom from left"
-msgstr ""
-
-msgid "Zoom from right"
 msgstr ""
 
 #, fuzzy
@@ -15103,6 +15251,9 @@ msgstr "Heli"
 msgid "free"
 msgstr "vaba"
 
+msgid "from"
+msgstr ""
+
 msgid "from dir"
 msgstr ""
 
@@ -15280,6 +15431,10 @@ msgstr "min"
 
 msgid "minutes"
 msgstr "minutid"
+
+#, fuzzy
+msgid "module disabled"
+msgstr "keelatud"
 
 msgid "month"
 msgstr "kuu"
@@ -15475,9 +15630,6 @@ msgstr "salvesta muudatused ja välju"
 msgid "open history browser"
 msgstr "Kataloogi brauser"
 
-msgid "open nameserver configuration"
-msgstr "nimeserveri seaded"
-
 #, fuzzy
 msgid "openMultiboot Manager"
 msgstr "Lemmiknimekirjade valik kanalite saatekavas"
@@ -15536,6 +15688,10 @@ msgstr "koolieelikute saade"
 
 msgid "preserve bookmarks in cuts"
 msgstr ""
+
+#, fuzzy
+msgid "priority"
+msgstr "Prioriteet"
 
 msgid "python"
 msgstr ""
@@ -15690,16 +15846,28 @@ msgid "slot%s - %s"
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s "
-msgstr ""
-
-#, python-format
 msgid "slot%s - %s (current image)"
 msgstr ""
 
 #, python-format
 msgid "slot%s - %s as USB Recovery"
 msgstr ""
+
+#, python-format
+msgid "slot%s - %s mode 1"
+msgstr ""
+
+#, fuzzy, python-format
+msgid "slot%s - %s mode 1 (current image)"
+msgstr "Jõusta praegused seaded"
+
+#, python-format
+msgid "slot%s - %s mode 12"
+msgstr ""
+
+#, fuzzy, python-format
+msgid "slot%s - %s mode 12 (current image)"
+msgstr "Jõusta praegused seaded"
 
 msgid "slow"
 msgstr ""
@@ -15801,6 +15969,10 @@ msgstr "vaheta aja, salvestuse, heli, subtiitri info"
 msgid "top"
 msgstr "ülal"
 
+#, python-format
+msgid "total conflict (%d)"
+msgstr ""
+
 msgid "tourism/travel"
 msgstr ""
 
@@ -15881,6 +16053,10 @@ msgstr "kasutaja määratud"
 
 msgid "variety show"
 msgstr ""
+
+#, fuzzy
+msgid "version"
+msgstr "Inversioon"
 
 msgid "vertical"
 msgstr "vertikaal"
