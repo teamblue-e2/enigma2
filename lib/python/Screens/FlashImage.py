@@ -28,6 +28,7 @@ import tempfile
 import struct
 
 from enigma import eEPGCache
+from boxbranding import getImageDistro
 
 def checkimagefiles(files):
 	return len([x for x in files if 'kernel' in x and '.bin' in x or x in ('uImage', 'rootfs.bin', 'root_cfe_auto.bin', 'root_cfe_auto.jffs2', 'oe_rootfs.bin', 'e2jffs2.img', 'rootfs.tar.bz2', 'rootfs.ubi')]) == 2
@@ -85,8 +86,8 @@ class SelectImage(Screen):
 						if imagetyp not in self.imagesList:
 							self.imagesList[imagetyp] = {}
 						self.imagesList[imagetyp][imageFile] = {'link': imageFile, 'name': imageFile.split(os.sep)[-1]}
-				except:
-					pass
+				except Exception:
+					print("[FlashImage] getImagesList Error: Unable to extract file list from Zip file '%s'!" % imageFile)
 
 		def checkModels(imageFile):
 			for model in self.models:
@@ -289,15 +290,13 @@ class FlashImage(Screen):
 			choices = []
 			slotdict = {k: v for k, v in SystemInfo["canMultiBoot"].items() if not v['device'].startswith('/dev/sda')}
 			for x in range(1, len(slotdict) + 1):
-				choices.append(((_("slot%s - %s (current image) with, backup") if x == currentimageslot else _("slot%s - %s, with backup")) % (x, imagesList[x]['imagename']), (x, "with backup")))
-			for x in range(1, len(slotdict) + 1):
-				choices.append(((_("slot%s - %s (current image), without backup") if x == currentimageslot else _("slot%s - %s, without backup")) % (x, imagesList[x]['imagename']), (x, "without backup")))
+				choices.append(((_("slot%s - %s (current image)") if x == currentimageslot else _("slot%s - %s")) % (x, imagesList[x]['imagename']), (x, "with backup") if getImageDistro() in self.imagename else (x, "without backup")))
 			if "://" in self.source:
 				choices.append((_("No, only download"), (1, "only download")))
 			choices.append((_("No, do not flash image"), False))
 			self.session.openWithCallback(self.checkMedia, MessageBox, self.message, list=choices, default=currentimageslot, simple=True)
 		else:
-			choices = [(_("Yes, with backup"), "with backup"), (_("Yes, without backup"), "without backup")]
+			choices = [(_("Yes"), "with backup")]
 			if "://" in self.source:
 				choices.append((_("No, only download"), "only download"))
 			choices.append((_("No, do not flash image"), False))
@@ -373,24 +372,16 @@ class FlashImage(Screen):
 
 	def startBackupsettings(self, retval):
 		if retval:
-			if os.path.isfile(self.BACKUP_SCRIPT):
+			self["info"].setText(_("Backing up to: %s") % self.destination)
+			eEPGCache.getInstance().save()
+			if retval == "backup" or retval is True:
 				self["info"].setText(_("Backing up to: %s") % self.destination)
-				configfile.save()
-				if config.plugins.autobackup.epgcache.value:
-					eEPGCache.getInstance().save()
-				self.containerbackup = Console()
-				self.containerbackup.ePopen("%s%s'%s' %s" % (self.BACKUP_SCRIPT, config.plugins.autobackup.autoinstall.value and " -a " or " ", self.destination, int(config.plugins.autobackup.prevbackup.value)), self.backupsettingsDone)
+				eEPGCache.getInstance().save()
+				self.session.openWithCallback(self.flashPostAction, BackupScreen, runBackup=True)
 			else:
-				self.session.openWithCallback(self.startDownload, MessageBox, _("Unable to backup settings as the AutoBackup plugin is missing, do you want to continue?"), default=False, simple=True)
+				self.flashPostAction()
 		else:
 			self.abort()
-
-	def backupsettingsDone(self, data, retval, extra_args):
-		self.containerbackup = None
-		if retval == 0:
-			self.startDownload()
-		else:
-			self.session.openWithCallback(self.abort, MessageBox, _("Error during backup settings\n%s") % retval, type=MessageBox.TYPE_ERROR, simple=True)
 
 	def startDownload(self, reply=True):
 		self.show()
@@ -476,6 +467,109 @@ class FlashImage(Screen):
 		else:
 			return 0
 
+	def flashPostAction(self, retVal=True):
+		if retVal:
+			self.recordCheck = False
+			text = _("Please select what to do after flash of the following image:")
+			text = "%s\n%s" % (text, self.imagename)
+			if getImageDistro() in self.imagename:
+				if os.path.exists("/media/hdd/images/config/myrestore.sh"):
+					text = "%s\n%s" % (text, _("(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"))
+				choices = [
+					(_("Upgrade (Backup, Flash & Restore All)"), "restoresettingsandallplugins"),
+					(_("Clean image"), "wizard"),
+					(_("Flash and restore settings"), "restoresettingsnoplugin"),
+					(_("Flash, restore settings and user selected plugins"), "restoresettings"),
+					(_("Abort"), "abort")
+				]
+				default = self.selectPrevPostFlashAction()
+				if "backup" in self.imagename:
+					choices = [
+						(_("Only Flash Backup Image"), "nothing"),
+						(_("Do not flash image"), "abort")
+					]
+					default = 0
+			else:
+				choices = [
+					(_("Clean (Just flash and start clean)"), "wizard"),
+					(_("Do not flash image"), "abort")
+				]
+				default = 0
+			self.session.openWithCallback(self.postFlashActionCallback, MessageBox, text, list=choices, default=default)
+		else:
+			self.abort()
+
+	def selectPrevPostFlashAction(self):
+		index = 1
+		if os.path.exists("/media/hdd/images/config/settings"):
+			index = 3
+			if os.path.exists("/media/hdd/images/config/noplugins"):
+				index = 2
+			if os.path.exists("/media/hdd/images/config/plugins"):
+				index = 0
+		return index
+
+	def postFlashActionCallback(self, choice):
+		if choice:
+			rootFolder = "/media/hdd/images/config"
+			if choice != "abort" and not self.recordCheck:
+				self.recordCheck = True
+				recording = self.session.nav.RecordTimer.isRecording()
+				nextRecordingTime = self.session.nav.RecordTimer.getNextRecordingTime()
+				if recording or (nextRecordingTime > 0 and (nextRecordingTime - time()) < 360):
+					self.choice = choice
+					self.session.openWithCallback(self.recordWarning, MessageBox, "%s\n\n%s" % (_("Recording(s) are in progress or coming up in few seconds!"), _("Flash your %s %s and reboot now?") % getBoxDisplayName()), default=False)
+					return
+			restoreSettings = ("restoresettings" in choice)
+			restoreSettingsnoPlugin = (choice == "restoresettingsnoplugin")
+			restoreAllPlugins = (choice == "restoresettingsandallplugins")
+			if restoreSettings:
+				self.saveEPG()
+			if choice != "abort":
+				filesToCreate = []
+				try:
+					if not os.path.exists(rootFolder):
+						os.makedirs(rootFolder)
+				except OSError as err:
+					print("[FlashImage] postFlashActionCallback Error %d: Failed to create '%s' folder!  (%s)" % (err.errno, rootFolder, err.strerror))
+				if restoreSettings:
+					filesToCreate.append("settings")
+				if restoreAllPlugins:
+					filesToCreate.append("plugins")
+				if restoreSettingsnoPlugin:
+					filesToCreate.append("noplugins")
+				for fileName in ["settings", "plugins", "noplugins"]:
+					path = os.path.join(rootFolder, fileName)
+					if fileName in filesToCreate:
+						try:
+							open(path, "w").close()
+						except OSError as err:
+							print("[FlashImage] postFlashActionCallback Error %d: failed to create %s! (%s)" % (err.errno, path, err.strerror))
+					else:
+						if os.path.exists(path):
+							os.unlink(path)
+				if restoreSettings:
+					if config.plugins.softwaremanager.restoremode.value is not None:
+						try:
+							for fileName in ["slow", "fast", "turbo"]:
+								path = os.path.join(rootFolder, fileName)
+								if fileName == config.plugins.softwaremanager.restoremode.value:
+									if not os.path.exists(path):
+										open(path, "w").close()
+								else:
+									if os.path.exists(path):
+										unlink(path)
+						except OSError as err:
+							print("[FlashImage] postFlashActionCallback Error %d: Failed to create restore mode flag file '%s'!  (%s)" % (err.errno, path, err.strerror))
+				self.startDownload()
+			else:
+				self.abort()
+		else:
+			self.abort()
+
+	def saveEPG(self):
+		epgCache = eEPGCache.getInstance()
+		epgCache.save()
 
 class MultibootSelection(SelectImage):
 	def __init__(self, session, *args):
