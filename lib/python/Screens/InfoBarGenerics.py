@@ -2773,7 +2773,7 @@ class InfoBarInstantRecord:
 				else:
 					message = _("Could not record due to conflicting timer %s") % name
 					if count > 2:
-						message +=  "\n" +_("total conflict (%d)") % (count - 1)
+						message += "\n" + _("total conflict (%d)") % (count - 1)
 			else:
 				ref = "\n'%s'" % serviceref
 				message = _("Could not record due to invalid service %s") % ref

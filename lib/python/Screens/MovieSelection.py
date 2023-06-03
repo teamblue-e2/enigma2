@@ -1745,7 +1745,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			resetMoviePlayState(current.getPath() + ".cuts", current)
 			self["list"].invalidateCurrentItem()
 			idx = self["list"].getCurrentIndex()
-			self["list"].moveToIndex(idx-1)
+			self["list"].moveToIndex(idx - 1)
 			self["list"].moveToIndex(idx)
 
 	def do_move(self):
