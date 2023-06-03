@@ -1,8 +1,6 @@
-from __future__ import division
 import errno
 import xml.etree.ElementTree
 
-import six
 from enigma import addFont, eLabel, ePixmap, ePoint, eRect, eSize, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gRGB, BT_ALPHATEST, BT_ALPHABLEND
 from os.path import basename, dirname, isfile
 
@@ -346,21 +344,21 @@ def parseFont(s, scale=((1, 1), (1, 1))):
 				size = int(eval(size))
 			except Exception as err:
 				print("[Skin] %s '%s': font size formula '%s', processed to '%s', cannot be evaluated!" % (type(err).__name__, err, orig, s))
-				size = None
+				size = 0
 	else:
 		name = s
-		size = None
+		size = 0
 	try:
 		f = fonts[name]
 		name = f[0]
-		size = f[1] if size is None else size
+		size = f[1] if size == 0 else size
 	except KeyError:
 		if name not in getFontFaces():
 			f = fonts["Body"]
 			print("[Skin] Error: Font '%s' (in '%s') is not defined!  Using 'Body' font ('%s') instead." % (name, s, f[0]))
 			name = f[0]
-			size = f[1] if size is None else size
-	return gFont(name, int(size) * scale[0][0] // scale[0][1])
+			size = f[1] if size == 0 else size
+	return gFont(name, size * scale[0][0] // scale[0][1])
 
 
 def parseColor(s):
@@ -433,18 +431,18 @@ def collectAttributes(skinAttributes, node, context, skinPath=None, ignore=(), f
 			# listbox; when the scrollbar setting is applied after the size, a scrollbar
 			# will not be shown until the selection moves for the first time.
 			if attrib == "size":
-				size = six.ensure_str(value)
+				size = value
 			elif attrib == "position":
-				pos = six.ensure_str(value)
+				pos = value
 			elif attrib == "font":
-				font = six.ensure_str(value)
+				font = value
 				skinAttributes.append((attrib, font))
 			else:
-				skinAttributes.append((attrib, six.ensure_str(value)))
-	if pos != None:
+				skinAttributes.append((attrib, value))
+	if pos is not None:
 		pos, size = context.parse(pos, size, font)
 		skinAttributes.append(("position", pos))
-	if size != None:
+	if size is not None:
 		skinAttributes.append(("size", size))
 
 
@@ -728,7 +726,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 	global colors, fonts, menus, parameters, setups, switchPixmap
 	for tag in domSkin.findall("output"):
 		scrnID = int(tag.attrib.get("id", GUI_SKIN_ID))
-		if screenID == GUI_SKIN_ID:
+		if scrnID == GUI_SKIN_ID:
 			for res in tag.findall("resolution"):
 				xres = res.attrib.get("xres")
 				xres = int(xres) if xres else 720
@@ -987,10 +985,10 @@ class SkinContext:
 				self.x, self.y = pos
 				self.w, self.h = size
 			else:
-				self.x = None
-				self.y = None
-				self.w = None
-				self.h = None
+				self.x = 0
+				self.y = 0
+				self.w = 0
+				self.h = 0
 
 	def __str__(self):
 		return "Context (%s,%s)+(%s,%s) " % (self.x, self.y, self.w, self.h)
