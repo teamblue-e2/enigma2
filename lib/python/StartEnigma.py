@@ -723,7 +723,7 @@ profile("Init:PowerOffTimer")
 from Components.PowerOffTimer import powerOffTimer
 
 from Components.SystemInfo import SystemInfo
-with open("/tmp/SystemInfo","w") as f:
+with open("/tmp/SystemInfo", "w") as f:
 	for key, value in sorted(SystemInfo.items()):
 		f.write("%s %s %s\n" % (key, int(35 - len(key)) * ' ', value))
 
