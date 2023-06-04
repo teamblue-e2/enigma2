@@ -367,31 +367,31 @@ AX_CHECK_COMPILE_FLAG([-Wattribute-alias=1], [CXXFLAGS="$CXXFLAGS -Wattribute-al
 
 if test "$PYTHON_VERSION"; then
     case $PYTHON_VERSION in
-        2.*)
-          PY_VERSION_CFLAGS="-Werror -Wno-error=cast-align=strict -Wno-error=cast-function-type -Wno-error=cast-function-type -Wno-error=stringop-truncation"
-        ;;
-        3.*)
-          PY_VERSION_CFLAGS="-Wno-error=unsafe-loop-optimizations"
-        ;;
+	2.*)
+	  PY_VERSION_CFLAGS="-Werror -Wno-error=cast-align=strict -Wno-error=cast-function-type -Wno-error=cast-function-type -Wno-error=stringop-truncation"
+	;;
+	3.*)
+	  PY_VERSION_CFLAGS="-Wno-error=unsafe-loop-optimizations"
+	;;
     esac
 fi
 
 CPPFLAGS="$CPPFLAGS $PYTHON_CPPFLAGS"
 CFLAGS="$CFLAGS -Wall"
 CXXFLAGS="$CXXFLAGS -Wall -Wextra \
-        -Wformat=2 -Wformat-overflow=2 -Wformat-nonliteral -Wformat-security \
-        -Wimplicit-fallthrough=5 -Wduplicated-branches -Wtrampolines \
-        -Wdangling-else -Wshift-overflow=2 -Wswitch \
-        -Wunused-but-set-parameter -Wunused-const-variable=1 -Wuninitialized \
-        -Wstringop-overflow=3 -Woverlength-strings \
-        -Wunsafe-loop-optimizations -Wpointer-arith \
-        -Wfloat-equal -Wlogical-op \
-        $PY_VERSION_CFLAGS \
-        -Wno-error=ignored-qualifiers \
-        -Wno-error=shadow -Wno-error=cast-qual \
-        -Wno-error=aggregate-return -Wno-error=missing-field-initializers \
-        -Wno-error=packed -Wno-error=vla -Wno-error=clobbered -Wno-error=unused-parameter \
-        $BASE_CFLAGS $ENIGMA2_CFLAGS $PTHREAD_CFLAGS $OPENMP_CFLAGS $ALSA_CFLAGS"
+	-Wformat=2 -Wformat-overflow=2 -Wformat-nonliteral -Wformat-security \
+	-Wimplicit-fallthrough=5 -Wduplicated-branches -Wtrampolines \
+	-Wdangling-else -Wshift-overflow=2 -Wswitch \
+	-Wunused-but-set-parameter -Wunused-const-variable=1 -Wuninitialized \
+	-Wstringop-overflow=3 -Woverlength-strings \
+	-Wunsafe-loop-optimizations -Wpointer-arith \
+	-Wfloat-equal -Wlogical-op \
+	$PY_VERSION_CFLAGS \
+	-Wno-error=ignored-qualifiers \
+	-Wno-error=shadow -Wno-error=cast-qual \
+	-Wno-error=aggregate-return -Wno-error=missing-field-initializers \
+	-Wno-error=packed -Wno-error=vla -Wno-error=clobbered -Wno-error=unused-parameter \
+	$BASE_CFLAGS $ENIGMA2_CFLAGS $PTHREAD_CFLAGS $OPENMP_CFLAGS $ALSA_CFLAGS"
 
 ARFLAGS="cr"
 AC_SUBST(ARFLAGS)
@@ -408,16 +408,16 @@ Makefile
 data/Makefile
 data/fonts/Makefile
 data/countries/Makefile
-data/extensions/Makefile
-data/gbipbox/Makefile
-data/hw_info/Makefile
-data/keymaps/Makefile
 data/display/Makefile
 data/display/lcd220/Makefile
 data/display/lcd400/Makefile
 data/display/lcd_skin220/Makefile
 data/display/lcd_skin400/Makefile
 data/display/vfd255/Makefile
+data/extensions/Makefile
+data/gbipbox/Makefile
+data/hw_info/Makefile
+data/keymaps/Makefile
 data/skin_default/Makefile
 data/skin_default/menu/Makefile
 data/skin_default/icons/Makefile
