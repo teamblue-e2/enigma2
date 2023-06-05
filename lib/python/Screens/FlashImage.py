@@ -283,8 +283,9 @@ class FlashImage(Screen):
 		if self.reasons:
 			self.message = _("%s\nDo you still want to flash image\n%s?") % (self.reasons, self.imagename)
 		else:
-			self.message = _("Do you want to flash image\n%s") % self.imagename
+			self.message = _("Do you want to flash image\n%s?") % self.imagename
 		if SystemInfo["canMultiBoot"]:
+			self.message = _("Where do you want to flash image\n%s to?") % self.imagename
 			imagesList = getImagelist()
 			currentimageslot = getCurrentImage()
 			choices = []
@@ -362,7 +363,7 @@ class FlashImage(Screen):
 						else:
 							self.session.openWithCallback(self.startBackupsettings, MessageBox, _("Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternativaly you can mount the network drive after the flash and perform a manufacurer reset to autorestore"), simple=True)
 					else:
-						self.startDownload()
+						self.startBackupsettings(retval[1])
 				except:
 					self.session.openWithCallback(self.abort, MessageBox, _("Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"), type=MessageBox.TYPE_ERROR, simple=True)
 			else:
@@ -470,17 +471,17 @@ class FlashImage(Screen):
 	def flashPostAction(self, retVal=True):
 		if retVal:
 			self.recordCheck = False
-			text = _("Please select what to do after flash of the following image:")
+			text = _("What should happen when you start it for the first time?")
 			text = "%s\n%s" % (text, self.imagename)
 			if getImageDistro() in self.imagename:
 				if os.path.exists("/media/hdd/images/config/myrestore.sh"):
 					text = "%s\n%s" % (text, _("(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"))
 				choices = [
 					(_("Upgrade (Backup, Flash & Restore All)"), "restoresettingsandallplugins"),
-					(_("Clean image"), "wizard"),
+					(_("Normal start"), "wizard"),
 					(_("Flash and restore settings"), "restoresettingsnoplugin"),
 					(_("Flash, restore settings and user selected plugins"), "restoresettings"),
-					(_("Abort"), "abort")
+					(_("Do not flash image"), "abort")
 				]
 				default = self.selectPrevPostFlashAction()
 				if "backup" in self.imagename:
@@ -491,7 +492,7 @@ class FlashImage(Screen):
 					default = 0
 			else:
 				choices = [
-					(_("Clean (Just flash and start clean)"), "wizard"),
+					(_("Normal Start"), "wizard"),
 					(_("Do not flash image"), "abort")
 				]
 				default = 0

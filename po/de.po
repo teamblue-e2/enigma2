@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-05 13:46+0200\n"
-"PO-Revision-Date: 2023-06-02 17:10+0200\n"
+"POT-Creation-Date: 2023-06-05 22:01+0200\n"
+"PO-Revision-Date: 2023-06-05 22:02+0200\n"
 "Last-Translator: Teamblue teamblue@online.de <teamblue-e2@online.de>\n"
 "Language-Team: Teamblue teamblue@online.de\n"
 "Language: de\n"
@@ -1109,7 +1109,7 @@ msgid "Alternative 2"
 msgstr "Alternative 2"
 
 msgid "Alternative URL for images listed on FlashImage"
-msgstr ""
+msgstr "Alternative URL für auf FlashImage aufgeführte Images"
 
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "Alternative URLs für DVB-T/C oder ATSC"
@@ -1195,7 +1195,7 @@ msgid "Are you sure to remove this entry?"
 msgstr "Soll dieser Eintrag wirklich gelöscht werden?"
 
 msgid "Are you sure to restore all deleted images"
-msgstr "Sind Sie sicher alle gelöschten Images wiederherzustellen?"
+msgstr "Sind Sie sicher alle gelöschten Images wiederherzustellen"
 
 msgid ""
 "Are you sure you want to activate this network configuration?\n"
@@ -2200,12 +2200,6 @@ msgstr "Links-Zirkular"
 
 msgid "Circular right"
 msgstr "Rechts-Zirkular"
-
-msgid "Clean (Just flash and start clean)"
-msgstr "Sauber (Einfach flashen und sauber starten)"
-
-msgid "Clean image"
-msgstr "Sauberes Image"
 
 msgid "Cleanup"
 msgstr "Aufräumen"
@@ -3607,10 +3601,10 @@ msgstr "Wollen Sie einen weiteren manuellen Suchlauf durchführen?"
 #, python-format
 msgid ""
 "Do you want to flash image\n"
-"%s"
+"%s?"
 msgstr ""
 "Wollen Sie das Image %s\n"
-"flashen"
+"flashen?"
 
 msgid "Do you want to install a channel list?"
 msgstr "Wollen Sie eine Kanalliste installieren?"
@@ -4122,8 +4116,8 @@ msgstr "PIN-Code eingeben"
 msgid "Enter URL"
 msgstr "URL eingeben"
 
-msgid "Enter an URL where alternative images could be listed for FlashImage. Enter text 'all' for automatic access of many images."
-msgstr ""
+msgid "Enter an URL where alternative images could be listed for FlashImage."
+msgstr "Geben Sie eine URL ein, unter der alternative Images für FlashImage abgerufen werden könnten."
 
 msgid "Enter if you are in the east or west hemisphere."
 msgstr "Geben Sie an, ob Sie sich in der östlichen oder westlichen Hemisphäre befinden."
@@ -6802,7 +6796,6 @@ msgstr "MultiType"
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Multiboot Image erstellt: %s/%s-%s-%s-backup-%s_usb.zip"
 
-#, fuzzy
 msgid "Multiboot image selector"
 msgstr "MultiBoot Image Auswahl"
 
@@ -7212,8 +7205,14 @@ msgstr "Nicht linear"
 msgid "Norfolk Island"
 msgstr "Norfolk Island"
 
+msgid "Normal Start"
+msgstr "Normaler Start"
+
 msgid "Normal mode"
 msgstr "Normal Modus"
+
+msgid "Normal start"
+msgstr "Normaler Start"
 
 msgid "North"
 msgstr "Nord"
@@ -7928,9 +7927,6 @@ msgstr ""
 "Bitte wählen Sie das Funk-Netzwerk, zu dem Sie sich verbinden möchten.\n"
 "\n"
 "Drücken Sie OK zum Fortfahren."
-
-msgid "Please select what to do after flash of the following image:"
-msgstr "Bitte wählen Sie aus, was nach dem Flashen des folgenden Images geschehen soll:"
 
 msgid "Please select your preferred configuration."
 msgstr "Stellen Sie die gewünschte Einstellung ein."
@@ -13082,6 +13078,9 @@ msgstr "Was möchten Sie wiedergeben?\n"
 msgid "What do you want to scan?"
 msgstr "Was wollen Sie suchen?"
 
+msgid "What should happen when you start it for the first time?"
+msgstr "Was soll beim ersten start geschehen?"
+
 msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are updated"
 msgstr "Wenn aktiviert, werden auch nicht verlinkte Bouquets geladen. D.h. Userbouquets die vorhanden sind aber nicht in der bouquets.tv oder bouquets.radio hinterlegt wurden, werden geladen. Damit kann eine eigene Bouquetliste behalten werden, während sich die Senderlisten aktualisieren"
 
@@ -13300,6 +13299,14 @@ msgstr "Wenn der Receiver aus dem Standby-Modus oder dem tiefen Standby-Modus er
 
 msgid "Where do you want to backup your settings?"
 msgstr "Wohin möchten Sie die Einstellungen sichern?"
+
+#, python-format
+msgid ""
+"Where do you want to flash image\n"
+"%s to?"
+msgstr ""
+"Wohin wollen Sie das Image %s\n"
+"flashen?"
 
 msgid "Where to save temporary timeshift recordings?"
 msgstr "Wo wollen Sie temporäre Timeshift Aufnahmen speichern?"
