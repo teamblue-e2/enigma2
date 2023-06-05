@@ -1384,7 +1384,7 @@ class ChannelSelectionBase(Screen):
 				"9": self.keyNumberGlobal,
 				"0": self.keyNumber0
 			}, -2)
-		self.maintitle = _("Channel selection")
+		self.maintitle = ""
 		self.modetitle = ""
 		self.servicetitle = ""
 		self.functiontitle = ""
@@ -1467,7 +1467,7 @@ class ChannelSelectionBase(Screen):
 	def getServiceName(self, ref):
 		str = self.removeModeStr(ServiceReference(ref).getServiceName())
 		if 'bouquets' in str.lower():
-			return _("User bouquets")
+			return ""
 		if not str:
 			pathstr = ref.getPath()
 			if 'FROM PROVIDERS' in pathstr:
