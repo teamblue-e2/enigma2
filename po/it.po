@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-05 13:46+0200\n"
+"POT-Creation-Date: 2023-06-05 22:01+0200\n"
 "PO-Revision-Date: 2021-11-30 12:39+0100\n"
 "Last-Translator: teamblue-e2 <teamblue-e2@online.de>\n"
 "Language-Team: www.linsat.net <spaeleus@croci.org>\n"
@@ -2477,12 +2477,6 @@ msgstr "Circolare a sinistra"
 msgid "Circular right"
 msgstr "Circolare a destra"
 
-msgid "Clean (Just flash and start clean)"
-msgstr ""
-
-msgid "Clean image"
-msgstr "Immagine pulita"
-
 #
 msgid "Cleanup"
 msgstr "Ripulire"
@@ -4075,10 +4069,10 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Effettuare un'altra ricerca canali manuale?"
 
 #
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Do you want to flash image\n"
-"%s"
+"%s?"
 msgstr ""
 "Volete flashare l'immagine\n"
 "%s"
@@ -4668,7 +4662,7 @@ msgstr "Inserire il codice PIN"
 msgid "Enter URL"
 msgstr "Inserisci URL"
 
-msgid "Enter an URL where alternative images could be listed for FlashImage. Enter text 'all' for automatic access of many images."
+msgid "Enter an URL where alternative images could be listed for FlashImage."
 msgstr ""
 
 msgid "Enter if you are in the east or west hemisphere."
@@ -8168,7 +8162,15 @@ msgstr "Non lineare"
 msgid "Norfolk Island"
 msgstr "Isola Norfolk"
 
+#, fuzzy
+msgid "Normal Start"
+msgstr "Modalità normale"
+
 msgid "Normal mode"
+msgstr "Modalità normale"
+
+#, fuzzy
+msgid "Normal start"
 msgstr "Modalità normale"
 
 #
@@ -8986,9 +8988,6 @@ msgstr ""
 "Selezionare la rete wireless a cui connettersi.\n"
 "\n"
 "Premere OK per continuare."
-
-msgid "Please select what to do after flash of the following image:"
-msgstr ""
 
 #
 msgid "Please select your preferred configuration."
@@ -14862,6 +14861,9 @@ msgstr "A cosa vuoi giocare?\n"
 msgid "What do you want to scan?"
 msgstr "Cosa si intende cercare?"
 
+msgid "What should happen when you start it for the first time?"
+msgstr ""
+
 msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are updated"
 msgstr "Quando abilitato enigma2 caricherà gli userbouquet non collegati. Questo significa che gli userbouquet che sono disponibili, ma non inclusi nei file bouquets.tv o bouquets.radio, saranno comunque caricati. Questo ti permette per esempio di mantenere il tuo bouquet utente mentre le impostazioni installate vengono aggiornate"
 
@@ -15084,6 +15086,15 @@ msgstr "Quando il ricevitore si sveglia dallo standby o dallo standby profondo, 
 #
 msgid "Where do you want to backup your settings?"
 msgstr "Destinazione backup configurazione:"
+
+#
+#, fuzzy, python-format
+msgid ""
+"Where do you want to flash image\n"
+"%s to?"
+msgstr ""
+"Volete flashare l'immagine\n"
+"%s"
 
 #
 msgid "Where to save temporary timeshift recordings?"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-05 13:46+0200\n"
+"POT-Creation-Date: 2023-06-05 22:01+0200\n"
 "PO-Revision-Date: 2019-12-03 20:02+0100\n"
 "Last-Translator: blzr <blzr@o2.pl>\n"
 "Language-Team: \n"
@@ -2619,14 +2619,6 @@ msgstr "Kołowa lewa"
 msgid "Circular right"
 msgstr "Kołowa prawa"
 
-msgid "Clean (Just flash and start clean)"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Clean image"
-msgstr "Wyczyść stały"
-
 #
 msgid "Cleanup"
 msgstr "Czyszczenie"
@@ -4350,7 +4342,7 @@ msgstr "Czy chcesz wykonać kolejne ręczne skanowanie?"
 #, fuzzy, python-format
 msgid ""
 "Do you want to flash image\n"
-"%s"
+"%s?"
 msgstr "Czy tego chcesz?"
 
 #
@@ -5019,7 +5011,7 @@ msgstr "Wpisz PIN"
 msgid "Enter URL"
 msgstr "Wpisz ponownie nowy PIN"
 
-msgid "Enter an URL where alternative images could be listed for FlashImage. Enter text 'all' for automatic access of many images."
+msgid "Enter an URL where alternative images could be listed for FlashImage."
 msgstr ""
 
 msgid "Enter if you are in the east or west hemisphere."
@@ -8779,7 +8771,15 @@ msgstr "Nielinearny"
 msgid "Norfolk Island"
 msgstr ""
 
+#, fuzzy
+msgid "Normal Start"
+msgstr "Tryb standardowy"
+
 msgid "Normal mode"
+msgstr "Tryb standardowy"
+
+#, fuzzy
+msgid "Normal start"
 msgstr "Tryb standardowy"
 
 #
@@ -9710,9 +9710,6 @@ msgstr ""
 "Wybierz sieć WiFi z którą chcesz się połączyć.\n"
 "\n"
 "Wcisnij OK aby kontynuować."
-
-msgid "Please select what to do after flash of the following image:"
-msgstr ""
 
 #
 #, fuzzy
@@ -16121,6 +16118,9 @@ msgstr "Co chcesz skanować?"
 msgid "What do you want to scan?"
 msgstr "Co chcesz skanować?"
 
+msgid "What should happen when you start it for the first time?"
+msgstr ""
+
 msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are updated"
 msgstr ""
 
@@ -16354,6 +16354,12 @@ msgstr ""
 #
 msgid "Where do you want to backup your settings?"
 msgstr "Gdzie chcesz umieścić kopie zapasową ustawień?"
+
+#, fuzzy, python-format
+msgid ""
+"Where do you want to flash image\n"
+"%s to?"
+msgstr "Czy tego chcesz?"
 
 #
 msgid "Where to save temporary timeshift recordings?"

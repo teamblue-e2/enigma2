@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-05 13:46+0200\n"
+"POT-Creation-Date: 2023-06-05 22:01+0200\n"
 "PO-Revision-Date: 2019-12-06 15:54+0100\n"
 "Last-Translator: GeirJ <dummy@dummy.com>\n"
 "Language-Team: GeirJ\n"
@@ -2492,13 +2492,6 @@ msgstr "Sirkulær venstre"
 msgid "Circular right"
 msgstr "Sirkulær høyre"
 
-msgid "Clean (Just flash and start clean)"
-msgstr ""
-
-#, fuzzy
-msgid "Clean image"
-msgstr "Slett faste elementer"
-
 msgid "Cleanup"
 msgstr "Tøm"
 
@@ -4162,7 +4155,7 @@ msgstr "Vil du gjøre enda et manuelt kanal søk?"
 #, fuzzy, python-format
 msgid ""
 "Do you want to flash image\n"
-"%s"
+"%s?"
 msgstr "Vil du dette?"
 
 #
@@ -4797,7 +4790,7 @@ msgstr "Tast inn PIN kode"
 msgid "Enter URL"
 msgstr "Endre PIN"
 
-msgid "Enter an URL where alternative images could be listed for FlashImage. Enter text 'all' for automatic access of many images."
+msgid "Enter an URL where alternative images could be listed for FlashImage."
 msgstr ""
 
 msgid "Enter if you are in the east or west hemisphere."
@@ -8456,7 +8449,15 @@ msgstr "Ikke lineær"
 msgid "Norfolk Island"
 msgstr ""
 
+#, fuzzy
+msgid "Normal Start"
+msgstr "Normal modus"
+
 msgid "Normal mode"
+msgstr "Normal modus"
+
+#, fuzzy
+msgid "Normal start"
 msgstr "Normal modus"
 
 #
@@ -9326,9 +9327,6 @@ msgstr ""
 "Still inn trådløst nettverkskort som skal brukes til oppkobling.\n"
 "\n"
 "Trykk OK for å fortsette"
-
-msgid "Please select what to do after flash of the following image:"
-msgstr ""
 
 #
 #, fuzzy
@@ -15341,6 +15339,9 @@ msgstr "Hva vil du skanne?"
 msgid "What do you want to scan?"
 msgstr "Hva vil du skanne?"
 
+msgid "What should happen when you start it for the first time?"
+msgstr ""
+
 #, fuzzy
 msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are updated"
 msgstr "Når aktivert vil enigma2 laste kanallister som ikke er tilknyttet mottakeren. Dette kan være kanallister som er tilgjengelig, men ikke tilknyttet radio eller tv kanallistene for mottakeren. Dette tillater at du f.eks. kan holde på egne favoritt kanallister under oppgradering av instillinger"
@@ -15571,6 +15572,13 @@ msgstr ""
 #
 msgid "Where do you want to backup your settings?"
 msgstr "Hvor vil du sikkerhetskopiere dine innstillinger?"
+
+#
+#, fuzzy, python-format
+msgid ""
+"Where do you want to flash image\n"
+"%s to?"
+msgstr "Vil du dette?"
 
 msgid "Where to save temporary timeshift recordings?"
 msgstr "Hvor skal midlertidige tidsskift opptak lagres?"

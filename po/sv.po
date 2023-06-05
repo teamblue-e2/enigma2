@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-05 13:46+0200\n"
+"POT-Creation-Date: 2023-06-05 22:01+0200\n"
 "PO-Revision-Date: 2017-03-05 13:24+0100\n"
 "Last-Translator: Magnus Nilsson <mag_nilsson@hotmail.com>\n"
 "Language-Team: \n"
@@ -2554,13 +2554,6 @@ msgstr "Cirkulär vänster"
 msgid "Circular right"
 msgstr "Cirkulär höger"
 
-msgid "Clean (Just flash and start clean)"
-msgstr ""
-
-#, fuzzy
-msgid "Clean image"
-msgstr "Rensning klar"
-
 #
 msgid "Cleanup"
 msgstr "Rensa"
@@ -4255,7 +4248,7 @@ msgstr "Vill du göra en ny manuell kanalsökning?"
 #, fuzzy, python-format
 msgid ""
 "Do you want to flash image\n"
-"%s"
+"%s?"
 msgstr "Vill du göra detta?"
 
 #
@@ -4905,7 +4898,7 @@ msgstr "Ange PIN-kod"
 msgid "Enter URL"
 msgstr "Ange den nya PIN-koden igen"
 
-msgid "Enter an URL where alternative images could be listed for FlashImage. Enter text 'all' for automatic access of many images."
+msgid "Enter an URL where alternative images could be listed for FlashImage."
 msgstr ""
 
 msgid "Enter if you are in the east or west hemisphere."
@@ -8593,7 +8586,15 @@ msgstr "Ej linjär"
 msgid "Norfolk Island"
 msgstr ""
 
+#, fuzzy
+msgid "Normal Start"
+msgstr "Normalt läge"
+
 msgid "Normal mode"
+msgstr "Normalt läge"
+
+#, fuzzy
+msgid "Normal start"
 msgstr "Normalt läge"
 
 #
@@ -9491,9 +9492,6 @@ msgstr ""
 "Vänligen välj det trådlösa nätverk du vill ansluta till.\n"
 "\n"
 "Vänligen tryck OK för att forsätta."
-
-msgid "Please select what to do after flash of the following image:"
-msgstr ""
 
 #
 #, fuzzy
@@ -15752,6 +15750,9 @@ msgstr "Vad vill du söka efter?"
 msgid "What do you want to scan?"
 msgstr "Vad vill du söka efter?"
 
+msgid "What should happen when you start it for the first time?"
+msgstr ""
+
 msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are updated"
 msgstr ""
 
@@ -15985,6 +15986,12 @@ msgstr ""
 #
 msgid "Where do you want to backup your settings?"
 msgstr "Var vill du spara dina inställningar?"
+
+#, fuzzy, python-format
+msgid ""
+"Where do you want to flash image\n"
+"%s to?"
+msgstr "Vill du göra detta?"
 
 #
 msgid "Where to save temporary timeshift recordings?"
