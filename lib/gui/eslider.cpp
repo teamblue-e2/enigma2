@@ -30,6 +30,11 @@ void eSlider::setBackgroundPixmap(gPixmap *pixmap)
 	invalidate();
 }
 
+void eSlider::setAlphatest(int alphatest)
+{
+	setTransparent(alphatest);
+}
+
 void eSlider::setBorderWidth(int pixel)
 {
 	m_border_width=pixel;
@@ -91,12 +96,6 @@ void eSlider::setSliderForegroundColor(const gRGB &color)
 	m_sliderforeground_color = color;
 	m_have_sliderforeground_color = true;
 	invalidate();
-}
-
-void eSlider::setAlphatest(int alphatest)
-{
-	m_alphatest = alphatest;
-	setTransparent(alphatest);
 }
 
 int eSlider::event(int event, void *data, void *data2)

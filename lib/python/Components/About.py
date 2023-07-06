@@ -52,7 +52,7 @@ def getGStreamerVersionString():
 	try:
 		from glob import glob
 		gst = [x.split("Version: ") for x in open(glob("/var/lib/opkg/info/gstreamer[0-9].[0-9].control")[0], "r") if x.startswith("Version:")][0]
-		return "%s" % gst[1].split("+")[0].replace("\n", "")
+		return "%s" % gst[1].split("+")[0].split("-")[0].replace("\n", "")
 	except:
 		return ""
 
@@ -165,11 +165,11 @@ def getCPUInfoString():
 
 		if not cpu_speed:
 			try:
-				cpu_speed = int(open("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq").read()) / 1000
+				cpu_speed = int(open("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq").read()) // 1000
 			except:
 				try:
 					import binascii
-					cpu_speed = int(int(binascii.hexlify(open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb').read()), 16) / 100000000) * 100
+					cpu_speed = int(int(binascii.hexlify(open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb').read()), 16) // 100000000) * 100
 				except:
 					cpu_speed = "-"
 
@@ -179,7 +179,7 @@ def getCPUInfoString():
 			temperature = open("/proc/stb/fp/temp_sensor_avs").readline().replace('\n', '')
 		if os.path.isfile("/sys/devices/virtual/thermal/thermal_zone0/temp"):
 			try:
-				temperature = int(open("/sys/devices/virtual/thermal/thermal_zone0/temp").read().strip()) / 1000
+				temperature = int(open("/sys/devices/virtual/thermal/thermal_zone0/temp").read().strip()) // 1000
 			except:
 				pass
 		elif os.path.isfile("/proc/hisi/msp/pm_cpu"):
@@ -308,7 +308,7 @@ def GetIPsFromNetworkInterfaces():
 def getBoxUptime():
 	try:
 		time = ''
-		f = open("/proc/uptime", "rb")
+		f = open("/proc/uptime", "r")
 		secs = int(f.readline().split('.')[0])
 		f.close()
 		if secs > 86400:
