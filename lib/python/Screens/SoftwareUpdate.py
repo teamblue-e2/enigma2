@@ -1,39 +1,36 @@
-from Screens.About import CommitInfo
+from calendar import timegm
+from datetime import datetime
+from json import load
+from os import listdir
+from time import altzone, gmtime, strftime
+from urllib.request import urlopen
+
+from enigma import eTimer, eDVBDB
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
 from Screens.TextBox import TextBox
+from Screens.About import CommitInfo
 from Components.config import config
 from Components.ActionMap import ActionMap
 from Components.Opkg import OpkgComponent
 from Components.Sources.StaticText import StaticText
 from Components.Slider import Slider
 from Tools.BoundFunction import boundFunction
-from enigma import eTimer, eDVBDB
 from boxbranding import getBoxType, getImageVersion, getMachineBuild, getImageType
 from Tools.Directories import fileExists
-from urllib.request import urlopen
+from Tools.HardwareInfo import HardwareInfo
 
 
 class UpdatePlugin(Screen, ProtectedScreen):
-	skin = """
-		<screen name="UpdatePlugin" position="center,center" size="550,300">
-			<widget name="activityslider" position="0,0" size="550,5"  />
-			<widget name="slider" position="0,150" size="550,30"  />
-			<widget source="package" render="Label" position="10,30" size="540,20" font="Regular;18" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
-			<widget source="status" render="Label" position="10,180" size="540,100" font="Regular;20" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
-		</screen>"""
-
 	def __init__(self, session, *args):
 		Screen.__init__(self, session)
 		ProtectedScreen.__init__(self)
 
-		self.sliderPackages = {"gigablue-": 1, "enigma2": 2, "teamblue-": 3}
-
-		self.setTitle(_("Software update"))
-		self.slider = Slider(0, 4)
+		self.title = _("Software update")
+		self.slider = Slider(0, 100)
 		self["slider"] = self.slider
 		self.activityslider = Slider(0, 100)
 		self["activityslider"] = self.activityslider
@@ -41,12 +38,12 @@ class UpdatePlugin(Screen, ProtectedScreen):
 		self["status"] = self.status
 		self.package = StaticText(_("Package list update"))
 		self["package"] = self.package
-		self.oktext = _("Press OK on your remote control to continue.")
 
 		self.packages = 0
 		self.error = 0
 		self.processed_packages = []
-		self.total_packages = None
+		self.total_packages = 0
+		self.update_step = 0
 
 		self.channellist_only = 0
 		self.channellist_name = ''
@@ -75,38 +72,58 @@ class UpdatePlugin(Screen, ProtectedScreen):
 	def checkTraficLight(self):
 		self.activityTimer.callback.remove(self.checkTraficLight)
 		self.activityTimer.start(100, False)
+		status = None
 		message = ""
+		abort = False
 		picon = None
 		default = True
 		url = "https://images.teamblue.tech/status/%s-%s/" % (getImageVersion(), getImageType())
 		#print("[SoftwareUpdate] url status: ", url)
 		try:
-			# TODO: Use Twisted's URL fetcher, urlopen is evil. And it can
-			# run in parallel to the package update.
+			status = dict(load(urlopen(url, timeout=5)))
+			print("[SoftwareUpdate] status is: ", status)
+		except Exception as er:
+			print('[UpdatePlugin] Error in get status', er)
+
+		# process the status fetched
+		if status is not None:
+
 			try:
-				status = urlopen(url, timeout=5).read().decode('utf-8').split('!', 1)
-				print(status)
-			except:
-				# bypass the certificate check
-				from ssl import _create_unverified_context
-				status = urlopen(url, timeout=5, context=_create_unverified_context()).read().decode('utf-8').split('!', 1)
-				print(status)
-			# prefer getMachineBuild
-			if getMachineBuild() in status[0].split(','):
-				message = len(status) > 1 and status[1] or _("The current software might not be stable.\nFor more information see %s.") % ("http://images.teamblue.tech")
-				picon = MessageBox.TYPE_ERROR
-				default = False
-			# only use getBoxType if no getMachineBuild
-			elif getBoxType() in status[0].split(','):
-				message = len(status) > 1 and status[1] or _("The current software might not be stable.\nFor more information see %s.") % ("http://images.teamblue.tech")
-				picon = MessageBox.TYPE_ERROR
-				default = False
-		except:
-			message = _("The status of the current software could not be checked because %s can not be reached.") % ("http://images.teamblue.tech")
-			picon = MessageBox.TYPE_ERROR
-			default = False
-		if default:
-			self.showDisclaimer()
+				# get image version and machine name
+				machine = HardwareInfo().get_machine_name()
+				version = open("/etc/issue").readlines()[-2].split()[1]
+
+				# do we have an entry for this version
+				if (version in status or 'all' in status) and (machine in status[version]['machines'] or 'all' in status[version]['machines']):
+					if 'abort' in status[version]:
+						abort = status[version]['abort']
+					if 'from' in status[version]:
+						starttime = datetime.strptime(status[version]['from'], '%Y%m%d%H%M%S')
+					else:
+						starttime = 0
+					if 'to' in status[version]:
+						endtime = datetime.strptime(status[version]['to'], '%Y%m%d%H%M%S')
+					else:
+						endtime = datetime.now() + 1
+					if 'message' in status[version]:
+						if (starttime <= datetime.now() and endtime >= datetime.now()):
+							message = status[version]['message']
+
+				# check if we have per-language messages
+				if isinstance(message, dict):
+					lang = language.getLanguage()
+					if lang in message:
+						message = message[lang]
+					elif 'en_EN' in message:
+						message = message['en_EN']
+					else:
+						message = _("The current image might not be stable.\nFor more information see %s.") % ("https://forums.openpli.org")
+
+			except Exception as er:
+				print("[UpdatePlugin] status error", er)
+				message = _("The current image might not be stable.\nFor more information see %s.") % ("https://forums.openpli.org")
+
+		# or display a generic warning if fetching failed
 		else:
 			message += "\n" + _("Do you want to update your receiver?")
 			self.session.openWithCallback(self.startActualUpdate, MessageBox, message, default=default, picon=picon)
@@ -132,22 +149,13 @@ If you discover 'bugs' please keep them reported on www.teamblue.tech.\n\nDo you
 
 	def getLatestImageTimestamp(self):
 		url = "http://images.teamblue.tech/status/%s-%s/buildtimestamp-%s" % (getImageVersion(), getImageType(), getBoxType())
-		# print "[SoftwareUpdate] url buildtimestamp: ", url
-		try:
-			# TODO: Use Twisted's URL fetcher, urlopen is evil. And it can
-			# run in parallel to the package update.
-			from time import strftime
-			from datetime import datetime
+		def gettime(url):
 			try:
-				latestImageTimestamp = datetime.fromtimestamp(int(urlopen(url, timeout=5).read())).strftime(_("%Y-%m-%d %H:%M"))
-			except:
-				# bypass the certificate check
-				from ssl import _create_unverified_context
-				latestImageTimestamp = datetime.fromtimestamp(int(urlopen(url, timeout=5, context=_create_unverified_context()).read())).strftime(_("%Y-%m-%d %H:%M"))
-		except:
-			latestImageTimestamp = ""
-		print("[SoftwareUpdate] latestImageTimestamp:", latestImageTimestamp)
-		return latestImageTimestamp
+				return strftime("%Y-%m-%d %H:%M:%S", gmtime(timegm(urlopen("%s/Packages.gz" % url).info().getdate('Last-Modified')) - altzone))
+			except Exception as er:
+				print('[UpdatePlugin] Error in get timestamp', er)
+				return ""
+		return sorted([gettime(open("/etc/opkg/%s" % file, "r").readlines()[0].split()[2]) for file in listdir("/etc/opkg") if not file.startswith("3rdparty") and file not in ("arch.conf", "opkg.conf", "picons-feed.conf")], reverse=True)[0]
 
 	def startActualUpdate(self, answer):
 		if answer:
@@ -160,37 +168,36 @@ If you discover 'bugs' please keep them reported on www.teamblue.tech.\n\nDo you
 		self.activity += 1
 		if self.activity == 100:
 			self.activity = 0
-		self.activityslider.setValue(self.activity)
+		self.activityslider.value = self.activity
 
 	def showUpdateCompletedMessage(self):
 		self.setEndMessage(ngettext("Update completed, %d package was installed.", "Update completed, %d packages were installed.", self.packages) % self.packages)
 
 	def opkgCallback(self, event, param):
 		if event == OpkgComponent.EVENT_DOWNLOAD:
-			self.status.setText(_("Downloading"))
+			self.status.text = _("Downloading")
 		elif event == OpkgComponent.EVENT_UPGRADE:
-			if param in self.sliderPackages:
-				self.slider.setValue(self.sliderPackages[param])
-			self.package.setText(param)
-			self.status.setText(_("Updating") + ": %s/%s" % (self.packages, self.total_packages))
-			if not param in self.processed_packages:
+			self.package.text = param
+			self.status.text = _("Updating") + ": %s/%s" % (self.packages, self.total_packages)
+			if param not in self.processed_packages:
 				self.processed_packages.append(param)
 				self.packages += 1
+			self.slider.value = int(self.update_step * self.packages)
 		elif event == OpkgComponent.EVENT_INSTALL:
-			self.package.setText(param)
-			self.status.setText(_("Installing"))
-			if not param in self.processed_packages:
+			self.package.text = param
+			self.status.text = _("Installing")
+			if param not in self.processed_packages:
 				self.processed_packages.append(param)
 				self.packages += 1
 		elif event == OpkgComponent.EVENT_REMOVE:
-			self.package.setText(param)
-			self.status.setText(_("Removing"))
-			if not param in self.processed_packages:
+			self.package.text = param
+			self.status.text = _("Removing")
+			if param not in self.processed_packages:
 				self.processed_packages.append(param)
 				self.packages += 1
 		elif event == OpkgComponent.EVENT_CONFIGURING:
-			self.package.setText(param)
-			self.status.setText(_("Configuring"))
+			self.package.text = param
+			self.status.text = _("Configuring")
 		elif event == OpkgComponent.EVENT_MODIFIED:
 			if config.plugins.softwaremanager.overwriteConfigFiles.value in ("N", "Y"):
 				self.opkg.write(True and config.plugins.softwaremanager.overwriteConfigFiles.value)
@@ -209,6 +216,7 @@ If you discover 'bugs' please keep them reported on www.teamblue.tech.\n\nDo you
 			elif self.opkg.currentCommand == OpkgComponent.CMD_UPGRADE_LIST:
 				self.total_packages = len(self.opkg.getFetchedList())
 				if self.total_packages:
+					self.update_step = 100 / self.total_packages
 					latestImageTimestamp = self.getLatestImageTimestamp()
 					if latestImageTimestamp:
 						message = _("Latest available teamBlue %s build is from: %s") % (getImageVersion(), self.getLatestImageTimestamp()) + "\n"
@@ -236,11 +244,11 @@ If you discover 'bugs' please keep them reported on www.teamblue.tech.\n\nDo you
 				if self.channellist_only == 1:
 					self.setEndMessage(_("Could not find installed channel list."))
 				elif self.channellist_only == 2:
-					self.slider.setValue(2)
+					self.slider.value = 50
 					self.opkg.startCmd(OpkgComponent.CMD_REMOVE, {'package': self.channellist_name})
 					self.channellist_only += 1
 				elif self.channellist_only == 3:
-					self.slider.setValue(3)
+					self.slider.value = 75
 					self.opkg.startCmd(OpkgComponent.CMD_INSTALL, {'package': self.channellist_name})
 					self.channellist_only += 1
 				elif self.channellist_only == 4:
@@ -251,26 +259,24 @@ If you discover 'bugs' please keep them reported on www.teamblue.tech.\n\nDo you
 				self.showUpdateCompletedMessage()
 			else:
 				self.activityTimer.stop()
-				self.activityslider.setValue(0)
+				self.activityslider.value = 0
 				error = _("Your receiver might be unusable now. Please consult the manual for further assistance before rebooting your receiver.")
 				if self.packages == 0:
 					error = _("No updates available. Please try again later.")
 				if self.updating:
 					error = _("Update failed. Your receiver does not have a working internet connection.")
-				self.status.setText(_("Error") + " - " + error)
+				self.status.text = _("Error") + " - " + error
 		elif event == OpkgComponent.EVENT_LISTITEM:
 			if 'enigma2-plugin-settings-' in param[0] and self.channellist_only > 0:
 				self.channellist_name = param[0]
 				self.channellist_only = 2
-		#print event, "-", param
-		pass
 
 	def setEndMessage(self, txt):
-		self.slider.setValue(4)
+		self.slider.value = 100
 		self.activityTimer.stop()
-		self.activityslider.setValue(0)
-		self.package.setText(txt)
-		self.status.setText(self.oktext)
+		self.activityslider.value = 0
+		self.package.text = txt
+		self.status.text = _("Press OK on your remote control to continue.")
 
 	def startActualUpgrade(self, answer):
 		if not answer or not answer[1]:
@@ -281,7 +287,7 @@ If you discover 'bugs' please keep them reported on www.teamblue.tech.\n\nDo you
 			self.close()
 		elif answer[1] == "channels":
 			self.channellist_only = 1
-			self.slider.setValue(1)
+			self.slider.value = 25
 			self.opkg.startCmd(OpkgComponent.CMD_LIST, args={'installed_only': True})
 		elif answer[1] == "commits":
 			self.session.openWithCallback(boundFunction(self.opkgCallback, OpkgComponent.EVENT_DONE, None), CommitInfo)

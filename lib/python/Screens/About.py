@@ -118,16 +118,17 @@ class About(Screen):
 
 		cpu = about.getCPUInfoString()
 		player = None
-		if cpu.upper().startswith('HI') or os.path.isdir('/proc/hisi'):
+
+		if os.path.isfile('/var/lib/opkg/info/enigma2-plugin-systemplugins-servicemp3.list'):
+			if GStreamerVersion:
+				player = _("Media player") + ": Gstreamer, " + _("version") + " " + GStreamerVersion
+		if os.path.isfile('/var/lib/opkg/info/enigma2-plugin-systemplugins-servicehisilicon.list'):
 			if os.path.isdir("/usr/lib/hisilicon") and glob.glob("/usr/lib/hisilicon/libavcodec.so.*"):
 				player = _("Media player") + ": ffmpeg, " + _("Hardware Accelerated")
 			elif ffmpegVersion and ffmpegVersion[0].isdigit():
 				player = _("Media player") + ": ffmpeg, " + _("version") + " " + ffmpegVersion
 
 		if player is None:
-			if GStreamerVersion:
-				player = _("Media player") + ": Gstreamer, " + _("version") + " " + GStreamerVersion
-			else:
 				player = _("Media player") + ": " + _("Not Installed")
 
 		AboutText += player + "\n"
@@ -162,9 +163,7 @@ class About(Screen):
 		AboutText += _("Enigma (re)starts: %d\n") % config.misc.startCounter.value
 
 		fp_version = getFPVersion()
-		if fp_version is None:
-			fp_version = ""
-		elif fp_version != 0:
+		if fp_version != None and fp_version not in (0, "0"):
 			fp_version = _("Frontprocessor version: %s") % fp_version
 			#AboutText += fp_version +"\n"
 		self["FPVersion"] = StaticText(fp_version)

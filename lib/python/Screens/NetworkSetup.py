@@ -432,6 +432,11 @@ class AdapterSetup(ConfigListScreen, HelpableScreen, Screen):
 			"showVirtualKeyboard": self.KeyText,
 			})
 
+		self["VirtualKeyboardActions"] = ActionMap(["VirtualKeyboardActions"],
+			{
+			"showVirtualKeyboard": self.KeyText,
+			})
+
 		self["ColorActions"] = HelpableActionMap(self, ["ColorActions"],
 		{
 			"red": (self.keyCancel, _("exit network adapter configuration")),

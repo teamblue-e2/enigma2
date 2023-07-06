@@ -185,12 +185,12 @@ def InitUsageConfig():
 
 	config.usage.poweroff_enabled = ConfigYesNo(default=False)
 	config.usage.poweroff_force = ConfigYesNo(default=False)
-	config.usage.poweroff_nextday = ConfigClock(default = ((6 * 60 + 0) * 60))
+	config.usage.poweroff_nextday = ConfigClock(default=((6 * 60 + 0) * 60))
 	config.usage.poweroff_day = ConfigSubDict()
 	config.usage.poweroff_time = ConfigSubDict()
 	for i in range(7):
 		config.usage.poweroff_day[i] = ConfigEnableDisable(default=False)
-		config.usage.poweroff_time[i] = ConfigClock(default = ((1 * 60 + 0) * 60))
+		config.usage.poweroff_time[i] = ConfigClock(default=((1 * 60 + 0) * 60))
 
 	choicelist = [("0", _("Disabled"))]
 	for i in list(range(3600, 21601, 3600)):
@@ -562,6 +562,7 @@ def InitUsageConfig():
 		keytranslation = eEnv.resolve("${datadir}/enigma2/keytranslation.xml")
 	config.usage.keytrans = ConfigText(default=keytranslation)
 	config.usage.timerlist_finished_timer_position = ConfigSelection(default="end", choices=[("beginning", _("At beginning")), ("end", _("At end"))])
+	config.usage.alternative_imagefeed = ConfigText(default="", fixed_size=False)
 
 	config.seek = ConfigSubsection()
 	config.seek.selfdefined_13 = ConfigNumber(default=15)

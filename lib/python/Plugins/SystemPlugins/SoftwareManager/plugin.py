@@ -37,9 +37,7 @@ from enigma import eTimer, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMulti
 from twisted.web import client
 from twisted.internet import reactor
 from .ImageBackup import ImageBackup
-from .Flash_online import FlashOnline
 from .ImageWizard import ImageWizard
-from .Multibootmgr import MultiBootWizard
 from .BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename
 from .BackupRestore import InitConfig as BackupRestore_InitConfig
 from .SoftwareTools import iSoftwareTools
@@ -152,11 +150,8 @@ class UpdatePluginMenu(Screen):
 		self.backupdirs = ' '.join(config.plugins.configurationbackup.backupdirs.value)
 		if self.menu == 0:
 			# print("building menu entries")
-			self.list.append(("flash-online", _("Flash Online"), _("Flash on the fly your Receiver software.") + self.oktext, None))
 			self.list.append(("software-restore", _("Software restore"), _("Restore your Receiver with a new firmware.") + self.oktext, None))
 			self.list.append(("backup-image", _("Backup Image"), _("Backup your running Receiver image to HDD or USB.") + self.oktext, None))
-			if SystemInfo["canMultiBoot"]:
-				self.list.append(("multiboot-manager", _("MultiBoot Manager"), _("\nMaintain your multiboot device.") + self.oktext, None))
 			self.list.append(("system-backup", _("Backup system settings"), _("Backup your Receiver settings.") + self.oktext + "\n\n" + self.infotext, None))
 			self.list.append(("system-restore", _("Restore system settings"), _("Restore your Receiver settings.") + self.oktext, None))
 			self.list.append(("opkg-install", _("Install local extension"), _("Scan for local extensions and install them.") + self.oktext, None))
@@ -286,10 +281,6 @@ class UpdatePluginMenu(Screen):
 					self.session.open(ImageWizard)
 				elif (currentEntry == "install-extensions"):
 					self.session.open(PluginManager, self.skin_path)
-				elif (currentEntry == "flash-online"):
-					self.session.open(FlashOnline)
-				elif (currentEntry == "multiboot-manager"):
-					self.session.open(MultiBootWizard)
 				elif (currentEntry == "backup-image"):
 					self.session.open(ImageBackup)
 				elif (currentEntry == "system-backup"):
@@ -2023,13 +2014,13 @@ class PacketManager(Screen, NumericalTextInput):
 			description = "No description available."
 		if state == 'installed':
 			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
-			return((name, version, _(description), state, installedpng, divpng))
+			return ((name, version, _(description), state, installedpng, divpng))
 		elif state == 'upgradeable':
 			upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgradeable.png"))
-			return((name, version, _(description), state, upgradeablepng, divpng))
+			return ((name, version, _(description), state, upgradeablepng, divpng))
 		else:
 			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
-			return((name, version, _(description), state, installablepng, divpng))
+			return ((name, version, _(description), state, installablepng, divpng))
 
 	def buildPacketList(self):
 		self.list = []
@@ -2064,240 +2055,6 @@ class PacketManager(Screen, NumericalTextInput):
 	def reloadPluginlist(self):
 		plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 
-
-class OpkgInstaller(Screen):
-	skin = """
-		<screen name="OpkgInstaller" position="center,center" size="550,450" title="Install extensions" >
-			<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="buttons/blue.png" position="420,0" size="140,40" alphatest="on" />
-			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget source="key_yellow" render="Label" position="280,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" />
-			<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" />
-			<widget name="list" position="5,50" size="540,360" />
-			<ePixmap pixmap="div-h.png" position="0,410" zPosition="10" size="560,2" transparent="1" alphatest="on" />
-			<widget source="introduction" render="Label" position="5,420" zPosition="10" size="550,30" halign="center" valign="center" font="Regular;22" transparent="1" shadowColor="black" shadowOffset="-1,-1" />
-		</screen>"""
-
-	def __init__(self, session, list):
-		Screen.__init__(self, session)
-
-		self.list = SelectionList()
-		self["list"] = self.list
-
-		p = 0
-		if len(list):
-			p = list[0].rfind("/")
-			title = list[0][:p]
-			self.title = ("%s %s %s") % (_("Install extensions"), _("from"), title)
-
-		for listindex in range(len(list)):
-			self.list.addSelection(list[listindex][p + 1:], list[listindex], listindex, False)
-		self.list.sort()
-
-		self["key_red"] = StaticText(_("Close"))
-		self["key_green"] = StaticText(_("Install"))
-		self["key_yellow"] = StaticText()
-		self["key_blue"] = StaticText(_("Invert"))
-		self["introduction"] = StaticText(_("Press OK to toggle the selection."))
-
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
-		{
-			"ok": self.list.toggleSelection,
-			"cancel": self.close,
-			"red": self.close,
-			"green": self.install,
-			"blue": self.list.toggleAllSelection
-		}, -1)
-
-	def install(self):
-		list = self.list.getSelectionsList()
-		cmdList = []
-		for item in list:
-			cmdList.append((OpkgComponent.CMD_INSTALL, {"package": item[1]}))
-		self.session.open(Opkg, cmdList=cmdList)
-
-
-def filescan_open(list, session, **kwargs):
-	filelist = [x.path for x in list]
-	session.open(OpkgInstaller, filelist) # list
-
-
-def filescan(**kwargs):
-	from Components.Scanner import Scanner, ScanPath
-	return \
-		Scanner(mimetypes=["application/x-debian-package"],
-			paths_to_scan=[
-					ScanPath(path="ipk", with_subdirs=True),
-					ScanPath(path="", with_subdirs=False),
-				],
-			name="Opkg",
-			description=_("Install extensions"),
-			openfnc=filescan_open, )
-
-
-class ShowUpdatePackages(Screen, NumericalTextInput):
-	skin = """
-		<screen name="ShowUpdatePackages" position="center,center" size="530,420" title="New Packages" >
-			<ePixmap pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="buttons/green.png" position="140,0" size="140,40" alphatest="on" />
-			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
-			<widget source="key_green" render="Label" position="140,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
-			<widget source="list" render="Listbox" position="5,50" size="520,365" scrollbarMode="showOnDemand">
-				<convert type="TemplatedMultiContent">
-					{"template": [
-							MultiContentEntryText(pos = (5, 1), size = (440, 28), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the name
-							MultiContentEntryText(pos = (5, 26), size = (440, 20), font=1, flags = RT_HALIGN_LEFT, text = 2), # index 2 is the description
-							MultiContentEntryPixmapAlphaTest(pos = (445, 2), size = (48, 48), png = 4), # index 4 is the status pixmap
-							MultiContentEntryPixmapAlphaTest(pos = (5, 50), size = (510, 2), png = 5), # index 4 is the div pixmap
-						],
-					"fonts": [gFont("Regular", 22),gFont("Regular", 14)],
-					"itemHeight": 52
-					}
-				</convert>
-			</widget>
-		</screen>"""
-
-	def __init__(self, session, plugin_path, args=None):
-		Screen.__init__(self, session)
-		NumericalTextInput.__init__(self)
-		self.session = session
-		self.skin_path = plugin_path
-
-		self.setUseableChars(u'1234567890abcdefghijklmnopqrstuvwxyz')
-
-		self["shortcuts"] = NumberActionMap(["ShortcutActions", "WizardActions", "NumberActions", "InputActions", "InputAsciiActions", "KeyboardInputActions"],
-		{
-			"back": self.exit,
-			"red": self.exit,
-			"ok": self.exit,
-			"green": self.rebuildList,
-			"gotAsciiCode": self.keyGotAscii,
-			"1": self.keyNumberGlobal,
-			"2": self.keyNumberGlobal,
-			"3": self.keyNumberGlobal,
-			"4": self.keyNumberGlobal,
-			"5": self.keyNumberGlobal,
-			"6": self.keyNumberGlobal,
-			"7": self.keyNumberGlobal,
-			"8": self.keyNumberGlobal,
-			"9": self.keyNumberGlobal,
-			"0": self.keyNumberGlobal
-		}, -1)
-
-		self.list = []
-		self.statuslist = []
-		self["list"] = List(self.list)
-		self["key_red"] = StaticText(_("Close"))
-		self["key_green"] = StaticText(_("Reload"))
-
-		self.opkg = OpkgComponent()
-		self.opkg.addCallback(self.opkgCallback)
-		self.onShown.append(self.setWindowTitle)
-		self.onLayoutFinish.append(self.rebuildList)
-
-		rcinput = eRCInput.getInstance()
-		rcinput.setKeyboardMode(rcinput.kmAscii)
-
-	def keyNumberGlobal(self, val):
-		key = self.getKey(val)
-		if key is not None:
-			keyvalue = key.encode("utf-8")
-			if len(keyvalue) == 1:
-				self.setNextIdx(keyvalue[0])
-
-	def keyGotAscii(self):
-		keyvalue = six.unichr(getPrevAsciiCode()).encode("utf-8")
-		if len(keyvalue) == 1:
-			self.setNextIdx(keyvalue[0])
-
-	def setNextIdx(self, char):
-		if char in ("0", "1", "a"):
-			self["list"].setIndex(0)
-		else:
-			idx = self.getNextIdx(char)
-			if idx and idx <= self["list"].count:
-				self["list"].setIndex(idx)
-
-	def getNextIdx(self, char):
-		for idx, i in enumerate(self["list"].list):
-			if i[0] and (i[0][0] == char):
-				return idx
-
-	def exit(self):
-		self.opkg.stop()
-		rcinput = eRCInput.getInstance()
-		rcinput.setKeyboardMode(rcinput.kmNone)
-		self.close()
-
-	def setWindowTitle(self):
-		self.setTitle(_("New Packages"))
-
-	def setStatus(self, status=None):
-		if status:
-			self.statuslist = []
-			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "div-h.png"))
-			if status == 'update':
-				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
-				self.statuslist.append((_("Package list update"), '', _("Trying to download a new updatelist. Please wait..."), '', statuspng, divpng))
-				self['list'].setList(self.statuslist)
-			elif status == 'error':
-				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
-				self.statuslist.append((_("Error"), '', _("There was an error downloading the updatelist. Please try again."), '', statuspng, divpng))
-				self['list'].setList(self.statuslist)
-
-	def rebuildList(self):
-		self.setStatus('update')
-		self.opkg.startCmd(OpkgComponent.CMD_UPGRADE_LIST)
-
-	def opkgCallback(self, event, param):
-		if event == OpkgComponent.EVENT_ERROR:
-			self.setStatus('error')
-		elif event == OpkgComponent.EVENT_DONE:
-			self.buildPacketList()
-
-		pass
-
-	def buildEntryComponent(self, name, version, description, state):
-		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "div-h.png"))
-		if not description:
-			description = "No description available."
-		if state == 'installed':
-			installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
-			return ((name, version, _(description), state, installedpng, divpng))
-		elif state == 'upgradeable':
-			upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgradeable.png"))
-			return ((name, version, _(description), state, upgradeablepng, divpng))
-		else:
-			installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
-			return ((name, version, _(description), state, installablepng, divpng))
-
-	def buildPacketList(self):
-		self.list = []
-		fetchedList = self.opkg.getFetchedList()
-		excludeList = self.opkg.getExcludeList()
-
-		if len(fetchedList) > 0:
-			for x in fetchedList:
-				try:
-					self.list.append(self.buildEntryComponent(x[0], x[1], x[2], "upgradeable"))
-				except:
-					self.list.append(self.buildEntryComponent(x[0], '', 'no valid architecture, ignoring !!', "installable"))
-			if len(excludeList) > 0:
-				for x in excludeList:
-					try:
-						self.list.append(self.buildEntryComponent(x[0], x[1], x[2], "installable"))
-					except:
-						self.list.append(self.buildEntryComponent(x[0], '', 'no valid architecture, ignoring !!', "installable"))
-
-			self['list'].setList(self.list)
-
-		else:
-			self.setStatus('error')
-
-
 def UpgradeMain(session, **kwargs):
 	session.open(UpdatePluginMenu)
 
@@ -2312,8 +2069,7 @@ def Plugins(path, **kwargs):
 	global plugin_path
 	plugin_path = path
 	_list = [
-		PluginDescriptor(name=_("Software management"), description=_("Manage your receiver's software"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=startSetup),
-		PluginDescriptor(name=_("Opkg"), where=PluginDescriptor.WHERE_FILESCAN, needsRestart=False, fnc=filescan)
+		PluginDescriptor(name=_("Software management"), description=_("Manage your receiver's software"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=startSetup)
 	]
 	if not config.plugins.softwaremanager.onSetupMenu.value and not config.plugins.softwaremanager.onBlueButton.value:
 		_list.append(PluginDescriptor(name=_("Software management"), description=_("Manage your receiver's software"), where=PluginDescriptor.WHERE_PLUGINMENU, needsRestart=False, fnc=UpgradeMain))
