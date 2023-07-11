@@ -27,8 +27,10 @@
 static int root2gold(int root)
 {
 	int x, g;
+
 	if (root < 0 || root > 0x3ffff)
 		return 0;
+
 	for (g = 0, x = 1; g < 0x3ffff; g++)
 	{
 		if (root == x)
@@ -1080,7 +1082,7 @@ void eDVBDB::loadBouquet(const char *path)
 			}
 			else
 			{
-				eDebug("[eDVBDB] can't load bouquet %s",path);
+				eDebug("can't load bouquet %s",path);
 				return;
 			}
 		}
@@ -1302,43 +1304,34 @@ PyObject *eDVBDB::readSatellites(ePyObject sat_list, ePyObject sat_dict, ePyObje
 	if (!PyDict_Check(tp_dict)) {
 		PyErr_SetString(PyExc_Exception,
 			"type error");
-			eDebug("[eDVBDB] arg 2 (tp_dict) is not a python dict");
-		Py_INCREF(Py_False);
-		return Py_False;
+			eDebug("[eDVBDB] readSatellites arg 2 is not a python dict");
+		return NULL;
 	}
 	else if (!PyDict_Check(sat_dict))
 	{
 		PyErr_SetString(PyExc_Exception,
 			"type error");
-			eDebug("[eDVBDB] arg 1 (sat_dict) is not a python dict");
-		Py_INCREF(Py_False);
-		return Py_False;
+			eDebug("[eDVBDB] readSatellites arg 1 is not a python dict");
+		return NULL;
 	}
 	else if (!PyList_Check(sat_list))
 	{
 		PyErr_SetString(PyExc_Exception,
 			"type error");
-			eDebug("[eDVBDB] arg 0 (sat_list) is not a python list");
-		Py_INCREF(Py_False);
-		return Py_False;
+			eDebug("[eDVBDB] readSatellites arg 0 is not a python list");
+		return NULL;
 	}
-	std::string satellitesFilename = eEnv::resolve("${sysconfdir}/enigma2/satellites.xml");
-	if (::access(satellitesFilename.c_str(), R_OK) < 0)
+
+	const char* satellitesFilename = "/etc/enigma2/satellites.xml";
+	if (::access(satellitesFilename, R_OK) < 0)
 	{
-		satellitesFilename = eEnv::resolve("${sysconfdir}/tuxbox/satellites.xml");
-		if (::access(satellitesFilename.c_str(), R_OK) < 0)
-		{
-			eDebug("[eDVBDB] satellites.xml not found");
-			Py_INCREF(Py_False);
-			return Py_False;
-		}
+		satellitesFilename = "/etc/tuxbox/satellites.xml";
 	}
 
-	xmlDoc *doc = xmlReadFile(satellitesFilename.c_str(), NULL, 0);
-
+	xmlDoc *doc = xmlReadFile(satellitesFilename, NULL, 0);
 	if (!doc)
 	{
-		eDebug("[eDVBDB] couldn't open satellites.xml - maybe corrupted!!");
+		eDebug("[eDVBDB] couldn't open %s!!", satellitesFilename);
 		Py_INCREF(Py_False);
 		return Py_False;
 	}

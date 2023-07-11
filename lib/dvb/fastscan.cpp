@@ -241,7 +241,7 @@ uint8_t FastScanTransportStream::getModulation(void) const
 	return 0;
 }
 
-int32_t FastScanTransportStream::getSymbolRate(void) const
+uint32_t FastScanTransportStream::getSymbolRate(void) const
 {
 	if (deliverySystem) return deliverySystem->getSymbolRate();
 	return 0;

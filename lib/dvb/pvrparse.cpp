@@ -756,13 +756,8 @@ int eMPEGStreamInformationWriter::PendingWrite::wait()
 {
 	//eDebug("[eMPEGStreamInformationWriter] PendingWrite waiting for IO completion");
 	struct aiocb* aio = &m_aio;
-	int res;
-	while (1)
+	while (aio_error(aio) == EINPROGRESS)
 	{
-		res = aio_error(aio);
-		if (res != EINPROGRESS)
-			break;
-
 		eDebug("[eMPEGStreamInformationWriter] Waiting for I/O to complete");
 		int r = aio_suspend(&aio, 1, NULL);
 		if (r < 0)
@@ -771,46 +766,27 @@ int eMPEGStreamInformationWriter::PendingWrite::wait()
 			return -1;
 		}
 	}
-	if (res == 0 || res == ECANCELED)
+	int r = aio_return(aio);
+	if (r < 0)
 	{
-		__ssize_t r = aio_return(aio);
-		if (r < 0)
-		{
-			eDebug("[eMPEGStreamInformationWriter] aio_return returned failure: %m");
-		}
-		return r;
+		eDebug("[eMPEGStreamInformationWriter] aio_return returned failure: %m");
 	}
-	else if (res > 0)
-	{
-		eDebug("[eMPEGStreamInformationWriter] aio_error returned failure: %m");
-		return -res;
-	}
-	return 0;
+	return r;
 }
 
 bool eMPEGStreamInformationWriter::PendingWrite::poll()
 {
 	if (m_buffer == NULL)
 		return true; // Nothing pending
-
-	int res = aio_error(&m_aio);
-	if (res == EINPROGRESS)
+	if (aio_error(&m_aio) == EINPROGRESS)
 	{
 		return false; // still busy
 	}
-	if (res == 0 || res == ECANCELED)
+	int r = aio_return(&m_aio);
+	if (r < 0)
 	{
-		__ssize_t r = aio_return(&m_aio);
-		if (r < 0)
-		{
-			eDebug("[eMPEGStreamInformationWriter] aio_return returned failure: %m");
-		}
+		eDebug("[eMPEGStreamInformationWriter] aio_return returned failure: %m");
 	}
-	else //res > 0
-	{
-		eDebug("[eMPEGStreamInformationWriter] aio_error returned failure: %m");
-	}
-	m_aio.aio_buf = NULL;
 	free(m_buffer);
 	m_buffer = NULL;
 	return true;
@@ -898,7 +874,7 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 		/* scrambled stream, we cannot parse pts, extrapolate with measured stream time instead */
 		if (pusi && m_enable_accesspoints)
 		{
-			timespec now, diff;
+			timespec now = {}, diff = {};
 			clock_gettime(CLOCK_MONOTONIC, &now);
 			diff = now - m_last_access_point;
 			/* limit the number of extrapolated access points to one per second */
@@ -1216,7 +1192,7 @@ void eMPEGStreamParserTS::parseData(off_t offset, const void *data, unsigned int
 
 void eMPEGStreamParserTS::addAccessPoint(off_t offset, pts_t pts, bool streamtime)
 {
-	timespec now;
+	timespec now = {};
 	clock_gettime(CLOCK_MONOTONIC, &now);
 	addAccessPoint(offset, pts, now, streamtime);
 	m_has_accesspoints = true;
