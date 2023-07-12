@@ -85,8 +85,8 @@ void eFilePushThread::thread()
 			if (maxread && !m_sof)
 			{
 #ifdef SHOW_WRITE_TIME
-				struct timeval starttime;
-				struct timeval now;
+				struct timeval starttime = {};
+				struct timeval now = {};
 				gettimeofday(&starttime, NULL);
 #endif
 				buf_end = m_source->read(m_current_position, m_buffer, maxread);
@@ -125,7 +125,7 @@ void eFilePushThread::thread()
 				/* on EOF, try COMMITting once. */
 				if (m_send_pvr_commit)
 				{
-					struct pollfd pfd;
+					struct pollfd pfd = {};
 					pfd.fd = m_fd_dest;
 					pfd.events = POLLIN;
 					switch (poll(&pfd, 1, 250)) // wait for 250ms
@@ -241,7 +241,7 @@ void eFilePushThread::start(ePtr<iTsSource> &source, int fd_dest)
 	 * NOTE: signal options and handlers (except for a block mask) are
 	 * global for the process, so install the handler here and not
 	 * in the thread. */
-	struct sigaction act;
+	struct sigaction act = {};
 	act.sa_handler = signal_handler;
 	act.sa_flags = 0;
 	sigaction(SIGUSR1, &act, nullptr);
@@ -354,7 +354,6 @@ eFilePushThreadRecorder::eFilePushThreadRecorder(unsigned char* buffer, size_t b
 	m_stop(1),
 	m_messagepump(eApp, 0)
 {
-	m_protocol = m_stream_id = m_session_id = m_packet_no = 0;
 	CONNECT(m_messagepump.recv_msg, eFilePushThreadRecorder::recvEvent);
 }
 
@@ -499,7 +498,7 @@ void eFilePushThreadRecorder::thread()
 {
 	ssize_t bytes;
 	int rv;
-	struct pollfd pfd;
+	struct pollfd pfd = {};
 	sigset_t sigmask;
 
 	eDebug("[eFilePushThreadRecorder] THREAD START");
@@ -514,13 +513,7 @@ void eFilePushThreadRecorder::thread()
 	pthread_sigmask(SIG_SETMASK, &sigmask, nullptr);
 
 	hasStarted();
-	if(m_protocol == _PROTO_RTSP_TCP)
-	{
-		int flags = fcntl(m_fd_source, F_GETFL, 0);
-		flags |= O_NONBLOCK;
-		if(fcntl(m_fd_source, F_SETFL, flags) == -1)
-			eDebug("failed setting DMX handle %d in non-blocking mode, error %d: %s", m_fd_source, errno, strerror(errno));
-	}
+
 	/* m_stop must be evaluated after each syscall. */
 	while (!m_stop)
 	{
@@ -605,8 +598,8 @@ void eFilePushThreadRecorder::thread()
 		}
 
 #ifdef SHOW_WRITE_TIME
-		struct timeval starttime;
-		struct timeval now;
+		struct timeval starttime = {};
+		struct timeval now = {};
 		gettimeofday(&starttime, NULL);
 #endif
 		int w = writeData(bytes);
@@ -641,7 +634,7 @@ void eFilePushThreadRecorder::start(int fd)
 	 * NOTE: signal options and handlers (except for a block mask) are
 	 * global for the process, so install the handler here and not
 	 * in the thread. */
-	struct sigaction act;
+	struct sigaction act = {};
 	act.sa_handler = signal_handler;
 	act.sa_flags = 0;
 	sigaction(SIGUSR1, &act, nullptr);

@@ -122,7 +122,7 @@ public:
 	uint8_t getRollOff(void) const;
 	uint8_t getModulationSystem(void) const;
 	uint8_t getModulation(void) const;
-	int32_t getSymbolRate(void) const;
+	uint32_t getSymbolRate(void) const;
 	uint8_t getFecInner(void) const;
 
 	const ServiceListItemList *getServiceList(void) const;
