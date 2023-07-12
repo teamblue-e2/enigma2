@@ -40,6 +40,12 @@ def getHasTuners():
 	return False
 
 
+def getBootdevice():
+	dev = ("root" in cmdline and cmdline["root"].startswith("/dev/")) and cmdline["root"][5:]
+	while dev and not fileExists("/sys/block/%s" % dev):
+		dev = dev[:-1]
+	return dev
+
 model = getBoxType()
 SystemInfo["CommonInterface"] = eDVBCIInterfaces.getInstance().getNumOfSlots()
 SystemInfo["CommonInterfaceCIDelay"] = fileCheck("/proc/stb/tsmux/rmx_delay")
