@@ -13,54 +13,15 @@
 
 #define TIME_UPDATE_INTERVAL (15*60*1000)
 
-static char mybox[20];
-
-int fileExist(const char* filename){
-	struct stat buffer;
-	int exist = stat(filename,&buffer);
-	if(exist == 0)
-	    return 1;
-	else // -1
-	    return 0;
-}
-
-void noRTC()
-{
-	mybox[0] = 0;
-	if(fileExist("/proc/stb/info/gbmodel"))
-	{
-		FILE *fb = fopen("/proc/stb/info/gbmodel","r");
-		if (fb)
-		{
-			char buf[20];
-			if (!fgets(buf, 20, fb))
-			{
-				eDebug("[eDVBLocalTimerHandler] unable to read from filestream");
-			}
-			strncpy(mybox, buf, 20);
-			fclose(fb);
-			strtok(mybox, "\n");
-			eDebug("[eDVBLocalTimerHandler] Boxtype = [%s]", mybox);
-		}
-	}
-}
-
 static time_t prev_time;
 
 void setRTC(time_t time)
 {
-	eDebug("[eDVBLocalTimerHandler] set RTC Time");
-	noRTC();
 	FILE *f = fopen("/proc/stb/fp/rtc", "w");
 	if (f)
 	{
 		if (fprintf(f, "%u", (unsigned int)time))
-		{
-			//if (strncmp(mybox,"gb800solo", sizeof(mybox)) == 0 || strncmp(mybox,"gb800se", sizeof(mybox)) == 0 || strncmp(mybox,"gb800ue", sizeof(mybox)) == 0)
-			//	prev_time = 0; //sorry no RTC
-			//else
 			prev_time = time;
-		}
 		else
 			eDebug("[eDVBLocalTimeHandler] write /proc/stb/fp/rtc failed: %m");
 		fclose(f);
@@ -81,7 +42,6 @@ void setRTC(time_t time)
 
 time_t getRTC()
 {
-	noRTC();
 	time_t rtc_time=0;
 	FILE *f = fopen("/proc/stb/fp/rtc", "r");
 	if (f)
@@ -91,9 +51,6 @@ time_t getRTC()
 		if (fscanf(f, "%u", &tmp) != 1)
 			eDebug("[eDVBLocalTimeHandler] read /proc/stb/fp/rtc failed: %m");
 		else
-			//if (strncmp(mybox,"gb800solo", sizeof(mybox)) == 0 || strncmp(mybox,"gb800se", sizeof(mybox)) == 0 || strncmp(mybox,"gb800ue", sizeof(mybox)) == 0)
-			//	rtc_time=0; // sorry no RTC
-			//else
 			rtc_time=tmp;
 		fclose(f);
 	}
@@ -203,7 +160,7 @@ TDT::TDT(eDVBChannel *chan, int update_count)
 
 int TDT::createTable(unsigned int nr, const uint8_t *data, unsigned int max)
 {
-	if ( data && (data[0] == TID_TDT || data[0] == TID_TOT ))
+	if ( data && (data[0] == 0x70 || data[0] == 0x73 ))
 	{
 		int length = ((data[1] & 0x0F) << 8) | data[2];
 		if ( length >= 5 )
@@ -221,7 +178,6 @@ int TDT::createTable(unsigned int nr, const uint8_t *data, unsigned int max)
 void TDT::start()
 {
 	eDVBTableSpec spec;
-	memset(&spec, 0, sizeof(spec));
 	spec.pid = TimeAndDateSection::PID;
 	spec.tid = TimeAndDateSection::TID;
 	spec.tid_mask = 0xFC;
@@ -267,7 +223,15 @@ eDVBLocalTimeHandler::eDVBLocalTimeHandler()
 	else
 	{
 		res_mgr->connectChannelAdded(sigc::mem_fun(*this,&eDVBLocalTimeHandler::DVBChannelAdded), m_chanAddedConn);
-		eDebug("[eDVBLocalTimeHandler] RTC not ready... wait for transponder time");
+		time_t now = time(0);
+		if ( now < 1072224000 ) // 01.01.2004
+			eDebug("[eDVBLocalTimeHandler] RTC not ready... wait for transponder time");
+		else // inform all who's waiting for valid system time..
+		{
+			eDebug("[eDVBLocalTimeHandler] Use valid Linux Time :) (RTC?)");
+			m_time_ready = true;
+			/*emit*/ m_timeUpdated();
+		}
 	}
 	CONNECT(m_updateNonTunedTimer->timeout, eDVBLocalTimeHandler::updateNonTuned);
 }
@@ -278,9 +242,6 @@ eDVBLocalTimeHandler::~eDVBLocalTimeHandler()
 	if (ready())
 	{
 		eDebug("[eDVBLocalTimeHandler] set RTC to previous valid time");
-		//if (strncmp(mybox,"gb800solo", sizeof(mybox)) == 0 || strncmp(mybox,"gb800se", sizeof(mybox)) == 0 || strncmp(mybox,"gb800ue", sizeof(mybox)) == 0)
-		//	eDebug("Dont set RTC to previous valid time, giga box");
-		//else
 		setRTC(::time(0));
 	}
 }
@@ -329,9 +290,9 @@ void eDVBLocalTimeHandler::setUseDVBTime(bool b)
 			{
 				eDebug("[eDVBLocalTimeHandler] invalid system time, refuse to disable transponder time sync");
 				return;
-			} else {
-				m_time_ready = true;
 			}
+			else
+				m_time_ready = true;
 		}
 		if (m_use_dvb_time) {
 			eDebug("[eDVBLocalTimeHandler] disable sync local time with transponder time!");
@@ -420,45 +381,60 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan, int up
 	else if (tp_time == -1)
 	{
 		restart_tdt = true;
-		/*if ( eSystemInfo::getInstance()->getHwType() == eSystemInfo::DM7020 ||
-		( eSystemInfo::getInstance()->getHwType() == eSystemInfo::DM7000
-			&& eSystemInfo::getInstance()->hasStandbyWakeupTimer() ) )     TODO !!!!!!! */
+
+		eDebug("[eDVBLocalTimerHandler] no transponder tuned... or no TDT/TOT avail .. try to use RTC :)");
+		time_t rtc_time = getRTC();
+		if (rtc_time) // RTC Ready?
 		{
-			eDebug("[eDVBLocalTimerHandler] no transponder tuned... or no TDT/TOT avail .. try to use RTC :)");
-			time_t rtc_time = getRTC();
-			if ( rtc_time ) // RTC Ready?
+			tm now;
+
+			localtime_r(&rtc_time, &now);
+			eDebug("[eDVBLocalTimerHandler] RTC time is %02d:%02d:%02d", now.tm_hour, now.tm_min, now.tm_sec);
+			time_t linuxTime=time(0);
+			localtime_r(&linuxTime, &now);
+			eDebug("[eDVBLocalTimerHandler] Receiver time is %02d:%02d:%02d", now.tm_hour, now.tm_min, now.tm_sec);
+			time_difference = rtc_time - linuxTime;
+			eDebug("[eDVBLocalTimerHandler] RTC to Receiver time difference is %ld seconds", linuxTime - rtc_time );
+
+			if (time_difference)
 			{
-				tm now;
-				localtime_r(&rtc_time, &now);
-				eDebug("[eDVBLocalTimerHandler] RTC time is %02d:%02d:%02d",
-					now.tm_hour,
-					now.tm_min,
-					now.tm_sec);
-				time_t linuxTime=time(0);
-				localtime_r(&linuxTime, &now);
-				eDebug("[eDVBLocalTimerHandler] Receiver time is %02d:%02d:%02d",
-					now.tm_hour,
-					now.tm_min,
-					now.tm_sec);
-				time_difference = rtc_time - linuxTime;
-				eDebug("[eDVBLocalTimerHandler] RTC to Receiver time difference is %ld seconds", linuxTime - rtc_time );
-				if ( time_difference )
+				if ((time_difference >= -15) && (time_difference <= 15))
 				{
-					eDebug("[eDVBLocalTimerHandler] set Linux Time to RTC Time");
-					timeval tnow;
-					gettimeofday(&tnow,0);
-					tnow.tv_sec=rtc_time;
-					settimeofday(&tnow,0);
+					timeval tdelta, tolddelta;
+
+					// Slew small diffs ...
+					// Even good transponders can differ by 0-5 sec, if we would step these
+					// the system clock would permanentely jump around when zapping.
+
+					tdelta.tv_sec = time_difference;
+
+					if(adjtime(&tdelta, &tolddelta) == 0)
+						eDebug("[eDVBLocalTimerHandler] slewing Linux Time by %03d seconds", time_difference);
+					else
+						eDebug("[eDVBLocalTimerHandler] slewing Linux Time by %03d seconds FAILED", time_difference);
 				}
-				else if ( !time_difference )
-					eDebug("[eDVBLocalTimerHandler] no change needed");
 				else
-					eDebug("[eDVBLocalTimerHandler] set to RTC time");
-				/*emit*/ m_timeUpdated();
+				{
+					timeval tnow;
+
+					// ... only step larger diffs
+
+					gettimeofday(&tnow, 0);
+					tnow.tv_sec = rtc_time;
+					settimeofday(&tnow, 0);
+					linuxTime = time(0);
+					localtime_r(&linuxTime, &now);
+					eDebug("[eDVBLocalTimerHandler] stepped Linux Time to %02d:%02d:%02d", now.tm_hour, now.tm_min, now.tm_sec);
+				}
 			}
+			else if ( !time_difference )
+				eDebug("[eDVBLocalTimerHandler] no change needed");
 			else
-				eDebug("[eDVBLocalTimerHandler]    getRTC returned time=0. RTC problem?");
+				eDebug("[eDVBLocalTimerHandler] set to RTC time");
+			/*emit*/ m_timeUpdated();
 		}
+		else
+			eDebug("[eDVBLocalTimerHandler]    getRTC returned time=0. RTC problem?");
 	}
 	else
 	{
@@ -466,18 +442,7 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan, int up
 
 // current linux time
 		time_t linuxTime = time(0);
-#ifdef DEBUG
-// current transponder time
-		tm tp_now;
-		localtime_r(&tp_time, &tp_now);
-		eDebug("[eDVBLocalTimerHandler] Transponder time is %02d.%02d.%04d %02d:%02d:%02d",
-			tp_now.tm_mday,
-			tp_now.tm_mon + 1,
-			tp_now.tm_year + 1900,
-			tp_now.tm_hour,
-			tp_now.tm_min,
-			tp_now.tm_sec);
-#endif
+
 	// difference between current enigma time and transponder time
 		int enigma_diff = tp_time-linuxTime;
 
@@ -587,32 +552,13 @@ void eDVBLocalTimeHandler::updateTime( time_t tp_time, eDVBChannel *chan, int up
 		time_difference = t - linuxTime;   // calc our new linux_time -> enigma_time correction
 		eDebug("[eDVBLocalTimerHandler] m_time_difference is %d", time_difference );
 
-		if ( time_difference ) {
-			if ( (time_difference >= -15) && (time_difference <= 15) ) {
-				// Slew small diffs ...
-				// Even good transponders can differ by 0-5 sec, if we would step these
-				// the system clock would permanentely jump around when zapping.
-				timeval tdelta, tolddelta;
-				tdelta.tv_sec=time_difference;
-				int rc=adjtime(&tdelta,&tolddelta);
-				if(rc==0) {
-					eDebug("[eDVBLocalTimerHandler] slewing Linux Time by %03d seconds", time_difference);
-				} else {
-					eDebug("[eDVBLocalTimerHandler] slewing Linux Time by %03d seconds FAILED", time_difference);
-				}
-			} else {
-				// ... only step larger diffs
-				timeval tnow;
-				gettimeofday(&tnow,0);
-				tnow.tv_sec=t;
-				settimeofday(&tnow,0);
-				linuxTime=time(0);
-				localtime_r(&linuxTime, &now);
-				eDebug("[eDVBLocalTimerHandler] stepped Linux Time to %02d:%02d:%02d",
-				now.tm_hour,
-				now.tm_min,
-				now.tm_sec);
-			}
+		if ( time_difference )
+		{
+			eDebug("[eDVBLocalTimerHandler] set Linux Time");
+			timeval tnow;
+			gettimeofday(&tnow,0);
+			tnow.tv_sec=t;
+			settimeofday(&tnow,0);
 		}
 
  		 /*emit*/ m_timeUpdated();

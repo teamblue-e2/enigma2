@@ -2078,17 +2078,17 @@ class Config(ConfigSubsection):
 		text = self.pickle()
 		try:
 			import os
-			f = open(filename + ".writing", "w")
-			f.write(text)
-			f.flush()
-			os.fsync(f.fileno())
-			f.close()
-			os.rename(filename + ".writing", filename)
-		except IOError:
-			print("Config: Couldn't write %s" % filename)
+			with open("%s.writing" % filename, "w", encoding="UTF-8") as fd:
+				fd.write(text)
+				fd.flush()
+				os.fsync(fd.fileno())
+			os.rename("%s.writing" % filename, filename)
+		except OSError as err:
+			print("[Config] Error %d: Couldn't write '%s'!  (%s)" % (err.errno, filename, err.strerror))
 
 	def loadFromFile(self, filename, base_file=True):
-		self.unpickle(open(filename, "r"), base_file)
+		with open(filename, "r", encoding="UTF-8") as fd:
+			self.unpickle(fd, base_file)
 
 
 config = Config()

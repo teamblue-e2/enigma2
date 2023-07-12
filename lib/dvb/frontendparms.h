@@ -68,7 +68,7 @@ public:
 	};
 
 	bool no_rotor_command_on_tune;
-	int frequency, symbol_rate;
+	unsigned int frequency, symbol_rate;
 	int polarisation, fec, inversion, orbital_position, system, modulation, rolloff, pilot, is_id, pls_mode, pls_code, t2mi_plp_id, t2mi_pid;
 };
 SWIG_ALLOW_OUTPUT_SIMPLE(eDVBFrontendParametersSatellite);
@@ -99,7 +99,7 @@ public:
 		Modulation_Auto, Modulation_QAM16, Modulation_QAM32, Modulation_QAM64, Modulation_QAM128, Modulation_QAM256
 	};
 
-	int frequency, symbol_rate;
+	unsigned int frequency, symbol_rate;
 	int modulation, inversion, fec_inner, system;
 };
 SWIG_ALLOW_OUTPUT_SIMPLE(eDVBFrontendParametersCable);
@@ -148,7 +148,7 @@ public:
 		Inversion_Off, Inversion_On, Inversion_Unknown
 	};
 
-	int frequency;
+	unsigned int frequency;
 	int bandwidth;
 	int code_rate_HP, code_rate_LP;
 	int modulation;
@@ -176,7 +176,7 @@ public:
 		Modulation_Auto, Modulation_QAM16, Modulation_QAM32, Modulation_QAM64, Modulation_QAM128, Modulation_QAM256, Modulation_VSB_8, Modulation_VSB_16
 	};
 
-	int frequency;
+	unsigned int frequency;
 	int modulation, inversion, system;
 };
 SWIG_ALLOW_OUTPUT_SIMPLE(eDVBFrontendParametersATSC);
@@ -215,8 +215,8 @@ public:
 	eDVBTransponderData(struct dtv_property *dtvproperties, unsigned int propertycount, bool original);
 
 	int getInversion() const;
-	int getFrequency() const;
-	int getSymbolRate() const;
+	unsigned int getFrequency() const;
+	unsigned int getSymbolRate() const;
 	int getOrbitalPosition() const;
 	int getFecInner() const;
 	int getModulation() const;
@@ -251,8 +251,8 @@ public:
 
 	std::string getTunerType() const;
 	int getInversion() const;
-	int getFrequency() const;
-	int getSymbolRate() const;
+	unsigned int getFrequency() const;
+	unsigned int getSymbolRate() const;
 	int getOrbitalPosition() const;
 	int getFecInner() const;
 	int getModulation() const;
@@ -278,8 +278,8 @@ public:
 
 	std::string getTunerType() const;
 	int getInversion() const;
-	int getFrequency() const;
-	int getSymbolRate() const;
+	unsigned int getFrequency() const;
+	unsigned int getSymbolRate() const;
 	int getFecInner() const;
 	int getModulation() const;
 	int getSystem() const;
@@ -296,7 +296,7 @@ public:
 
 	std::string getTunerType() const;
 	int getInversion() const;
-	int getFrequency() const;
+	unsigned int getFrequency() const;
 	int getBandwidth() const;
 	int getCodeRateLp() const;
 	int getCodeRateHp() const;
@@ -319,7 +319,7 @@ public:
 
 	std::string getTunerType() const;
 	int getInversion() const;
-	int getFrequency() const;
+	unsigned int getFrequency() const;
 	int getModulation() const;
 	int getSystem() const;
 };
