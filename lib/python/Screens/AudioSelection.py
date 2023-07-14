@@ -17,7 +17,7 @@ from Tools.ISO639 import LanguageCodes
 
 from enigma import iPlayableService, eTimer, eSize, eDVBDB, eServiceReference, eServiceCenter, iServiceInformation
 
-FOCUS_CONFIG, FOCUS_STREAMS = list(range(2))
+FOCUS_CONFIG, FOCUS_STREAMS = range(2)
 [PAGE_AUDIO, PAGE_SUBTITLES] = ["audio", "subtitles"]
 
 
@@ -93,10 +93,18 @@ class AudioSelection(ConfigListScreen, Screen):
 			self.audioTracks = audio = service and service.audioTracks()
 			n = audio and audio.getNumberOfTracks() or 0
 			if SystemInfo["CanDownmixAC3"]:
-				self.settings.downmix = ConfigOnOff(default=config.av.downmix_ac3.value)
-				self.settings.downmix.addNotifier(self.changeAC3Downmix, initial_call=False)
-				conflist.append((_("Multi channel downmix"), self.settings.downmix))
-				self["key_red"].setBoolean(True)
+				downmix_ac3_value = config.av.downmix_ac3.value
+				if downmix_ac3_value in ("downmix", "passthrough"):
+					self.settings.downmix = ConfigSelection(choices=[("downmix", _("Downmix")), ("passthrough", _("Passthrough"))], default=downmix_ac3_value)
+					self.settings.downmix.addNotifier(self.changeAC3Downmix, initial_call=False)
+					extra_text = " - AC3"
+					if SystemInfo["CanDownmixDTS"]:
+						extra_text += ",DTS"
+					if SystemInfo["CanDownmixAAC"]:
+						extra_text += ",AAC"
+					conflist.append((_("Multi channel downmix") + extra_text, self.settings.downmix))
+					self["key_red"].setBoolean(True)
+
 			if n > 0:
 				self.audioChannel = service.audioChannel()
 				if self.audioChannel:
@@ -109,7 +117,7 @@ class AudioSelection(ConfigListScreen, Screen):
 					conflist.append(('',))
 					self["key_green"].setBoolean(False)
 				selectedAudio = self.audioTracks.getCurrentTrack()
-				for x in list(range(n)):
+				for x in range(n):
 					number = str(x + 1)
 					i = audio.getTrackInfo(x)
 					languages = i.getLanguage().split('/')
@@ -248,23 +256,15 @@ class AudioSelection(ConfigListScreen, Screen):
 			subtitlelist.append(self.selectedSubtitle)
 		return subtitlelist
 
-	def changeAC3Downmix(self, downmix):
-		config.av.downmix_ac3.value = downmix.getValue() == True
+	def changeAC3Downmix(self, configElement):
+		config.av.downmix_ac3.value = configElement.value
 		config.av.downmix_ac3.save()
 		if SystemInfo["CanDownmixDTS"]:
-			config.av.downmix_dts.value = config.av.downmix_ac3.value
+			config.av.downmix_dts.value = configElement.value
 			config.av.downmix_dts.save()
 		if SystemInfo["CanDownmixAAC"]:
-			config.av.downmix_aac.value = config.av.downmix_ac3.value
+			config.av.downmix_aac.value = configElement.value
 			config.av.downmix_aac.save()
-
-	def setAC3plusTranscode(self, transcode):
-		config.av.transcode_ac3plus.setValue(transcode)
-		config.av.transcode_ac3plus.save()
-
-	def setAACTranscode(self, transcode):
-		config.av.transcode_aac.setValue(transcode)
-		config.av.transcode_aac.save()
 
 	def changeMode(self, mode):
 		if mode is not None and self.audioChannel:
@@ -284,7 +284,7 @@ class AudioSelection(ConfigListScreen, Screen):
 
 	def keyRight(self, config=False):
 		if config or self.focus == FOCUS_CONFIG:
-			if self["config"].getCurrentIndex() < 3 or self["config"].getCurrentIndex() >= 4:
+			if self["config"].getCurrentIndex() < 3:
 				ConfigListScreen.keyRight(self)
 			elif self["config"].getCurrentIndex() == 3:
 				if self.settings.menupage.getValue() == PAGE_AUDIO and hasattr(self, "plugincallfunc"):
