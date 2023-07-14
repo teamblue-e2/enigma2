@@ -113,45 +113,6 @@ class VideoSetup(ConfigListScreen, Screen):
 				if SystemInfo["ScartSwitch"]:
 					self.list.append((_("Auto scart switching"), config.av.vcrswitch, _("When enabled, your receiver will detect activity on the VCR SCART input.")))
 
-		if level >= 1:
-			self.list.append((_("Audio volume step size"), config.av.volume_stepsize, _("Configure the general audio volume step size (limit 1-10).")))
-			if SystemInfo["CanDownmixAC3"]:
-				self.list.append((_("AC3 downmix"), config.av.downmix_ac3, _("Configure whether multi channel sound tracks should be downmixed to stereo.")))
-			if SystemInfo["CanDownmixDTS"]:
-				self.list.append((_("DTS downmix"), config.av.downmix_dts, _("Configure whether multi channel sound tracks should be downmixed to stereo.")))
-			if SystemInfo["CanDownmixAAC"]:
-				self.list.append((_("AAC downmix"), config.av.downmix_aac, _("Configure whether multi channel sound tracks should be downmixed to stereo.")))
-			if SystemInfo["CanDownmixAACPlus"]:
-				self.list.append((_("AAC+ downmix"), config.av.downmix_aacplus, _("Choose whether multi channel aac+ sound tracks should be downmixed to stereo.")))
-			if SystemInfo["CanAC3Transcode"]:
-				self.list.append((_("AC3 transcoding"), config.av.transcodeac3plus, _("Choose whether AC3 sound tracks should be transcoded.")))
-			if SystemInfo["CanAACTranscode"]:
-				self.list.append((_("AAC transcoding"), config.av.transcodeaac, _("Choose whether AAC sound tracks should be transcoded.")))
-			if SystemInfo["CanDTSHD"]:
-				self.list.append((_("DTS-HD(HR/MA) downmix"), config.av.dtshd, _("Choose whether multi channel DTS-HD(HR/MA) sound tracks should be downmixed or transcoded.")))
-			if SystemInfo["CanWMAPRO"]:
-				self.list.append((_("WMA Pro downmix"), config.av.wmapro, _("Choose whether WMA Pro sound tracks should be downmixed.")))
-			if SystemInfo["HasMultichannelPCM"]:
-				self.list.append((_("Multichannel PCM"), config.av.multichannel_pcm, _("Configure whether multi channel PCM sound should be enabled.")))
-			self.list.extend((
-				(_("General AC3 delay"), config.av.generalAC3delay, _("Configure the general audio delay of Dolby Digital sound tracks.")),
-				(_("General PCM delay"), config.av.generalPCMdelay, _("Configure the general audio delay of stereo sound tracks."))
-			))
-			if SystemInfo["CanBTAudio"]:
-				self.list.append((_("Enable bluetooth audio"), config.av.btaudio, _("This option allows you to switch audio to bluetooth speakers.")))
-			if SystemInfo["CanBTAudioDelay"]:
-				self.list.append((_("General bluetooth audio delay"), config.av.btaudiodelay, _("This option configures the general audio delay for bluetooth speakers.")))
-			if SystemInfo["HasAutoVolume"] or SystemInfo["HasAutoVolumeLevel"]:
-				self.list.append((_("Audio auto volume level"), SystemInfo["HasAutoVolume"] and config.av.autovolume or config.av.autovolumelevel, _("This option allows you can to set the auto volume level.")))
-			if SystemInfo["Has3DSurround"]:
-				self.list.append((_("3D surround"), config.av.surround_3d, _("This option allows you to enable 3D surround sound.")))
-				if SystemInfo["Has3DSpeaker"] and config.av.surround_3d.value != "none":
-					self.list.append((_("3D surround speaker position"), config.av.speaker_3d, _("This option allows you to change the virtuell loadspeaker position.")))
-			if SystemInfo["Has3DSurroundSpeaker"]:
-				self.list.append((_("3D surround speaker position"), config.av.surround_3d_speaker, _("This option allows you to disable or change the virtuell loadspeaker position.")))
-				if SystemInfo["Has3DSurroundSoftLimiter"] and config.av.surround_3d_speaker.value != "disabled":
-					self.list.append((_("3D surround softlimiter"), config.av.surround_softlimiter_3d, _("This option allows you to enable 3D surround softlimiter.")))
-
 		if SystemInfo["CanChangeOsdAlpha"]:
 			self.list.append((_("OSD transparency"), config.av.osd_alpha, _("Configure the transparency of the OSD.")))
 
@@ -254,31 +215,34 @@ class AudioSetup(Screen, ConfigListScreen):
 		level = config.usage.setup_level.index
 
 		self.list = []
-		if SystemInfo["CanDownmixAC3"]:
-			self.list.append((_("AC3 downmix"), config.av.downmix_ac3, _("Configure whether multi channel sound tracks should be downmixed to stereo.")))
-		if SystemInfo["CanDownmixDTS"]:
-			self.list.append((_("DTS downmix"), config.av.downmix_dts, _("Configure whether multi channel sound tracks should be downmixed to stereo.")))
 		if level >= 1:
+			self.list.append((_("Audio volume step size"), config.av.volume_stepsize, _("Configure the general audio volume step size (limit 1-10).")))
+			if SystemInfo["CanDownmixAC3"]:
+				self.list.append((_("AC3 downmix"), config.av.downmix_ac3, _("Configure whether multi channel sound tracks should be downmixed to stereo.")))
+			if SystemInfo["CanDownmixDTS"]:
+				self.list.append((_("DTS downmix"), config.av.downmix_dts, _("Configure whether multi channel sound tracks should be downmixed to stereo.")))
+			if SystemInfo["CanDownmixAAC"]:
+				self.list.append((_("AAC downmix"), config.av.downmix_aac, _("Configure whether multi channel sound tracks should be downmixed to stereo.")))
+			if SystemInfo["CanDownmixAACPlus"]:
+				self.list.append((_("AAC+ downmix"), config.av.downmix_aacplus, _("Choose whether multi channel aac+ sound tracks should be downmixed to stereo.")))
+			if SystemInfo["CanAC3Transcode"]:
+				self.list.append((_("AC3 transcoding"), config.av.transcodeac3plus, _("Choose whether AC3 sound tracks should be transcoded.")))
+			if SystemInfo["CanAACTranscode"]:
+				self.list.append((_("AAC transcoding"), config.av.transcodeaac, _("Choose whether AAC sound tracks should be transcoded.")))
+			if SystemInfo["CanDTSHD"]:
+				self.list.append((_("DTS-HD(HR/MA) downmix"), config.av.dtshd, _("Choose whether multi channel DTS-HD(HR/MA) sound tracks should be downmixed or transcoded.")))
+			if SystemInfo["CanWMAPRO"]:
+				self.list.append((_("WMA Pro downmix"), config.av.wmapro, _("Choose whether WMA Pro sound tracks should be downmixed.")))
+			if SystemInfo["HasMultichannelPCM"]:
+				self.list.append((_("Multichannel PCM"), config.av.multichannel_pcm, _("Configure whether multi channel PCM sound should be enabled.")))
 			self.list.extend((
 				(_("General AC3 delay"), config.av.generalAC3delay, _("Configure the general audio delay of Dolby Digital sound tracks.")),
 				(_("General PCM delay"), config.av.generalPCMdelay, _("Configure the general audio delay of stereo sound tracks."))
 			))
-			if SystemInfo["CanDownmixAAC"]:
-				self.list.append((_("AAC downmix"), config.av.downmix_aac, _("Configure whether multi channel sound tracks should be downmixed to stereo.")))
-			if SystemInfo["CanDownmixAACPlus"]:
-				self.list.append((_("AAC plus downmix"), config.av.downmix_aacplus, _("Configure whether multi channel sound tracks should be downmixed to stereo.")))
-			if SystemInfo["CanDownmixAC3Plus"]:
-				self.list.append((_("AC3 plus downmix"), config.av.downmix_ac3plus, _("Configure whether multi channel sound tracks should be downmixed to stereo.")))
-			if SystemInfo["CanDownmixDTSHD"]:
-				self.list.append((_("DTS HD downmix"), config.av.downmix_dtshd, _("Configure whether DTS-HD channel sound tracks should be downmixed or transcoded.")))
-			if SystemInfo["CanDownmixWMApro"]:
-				self.list.append((_("WMA pro downmix"), config.av.downmix_wmapro, _("Configure whether WMA pro channel sound tracks should be downmixed or transcoded.")))
-			if SystemInfo["HDMIAudioSource"]:
-				self.list.append((_("HDMI audio source"), config.av.hdmi_audio_source, _("Choose whether multi channel sound tracks should be convert to PCM or SPDIF.")))
-			if SystemInfo["CanAACTranscode"]:
-				self.list.append((_("AAC transcoding"), config.av.transcode_aac, _("Configure whether AAC sound tracks should be transcoded.")))
-			if SystemInfo["HasMultichannelPCM"]:
-				self.list.append((_("Multichannel PCM"), config.av.multichannel_pcm, _("Configure whether multi channel PCM sound should be enabled.")))
+			if SystemInfo["CanBTAudio"]:
+				self.list.append((_("Enable bluetooth audio"), config.av.btaudio, _("This option allows you to switch audio to bluetooth speakers.")))
+			if SystemInfo["CanBTAudioDelay"]:
+				self.list.append((_("General bluetooth audio delay"), config.av.btaudiodelay, _("This option configures the general audio delay for bluetooth speakers.")))
 			if SystemInfo["HasAutoVolume"] or SystemInfo["HasAutoVolumeLevel"]:
 				self.list.append((_("Audio auto volume level"), SystemInfo["HasAutoVolume"] and config.av.autovolume or config.av.autovolumelevel, _("This option allows you can to set the auto volume level.")))
 			if SystemInfo["Has3DSurround"]:
