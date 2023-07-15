@@ -1,6 +1,7 @@
 import enigma
 import ctypes
 import os
+from os import waitpid
 
 
 class ConsoleItem:
