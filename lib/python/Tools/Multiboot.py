@@ -156,7 +156,7 @@ def getImagelist():
 					date = _("Unknown")
 				imagelist[slot] = {'imagename': "%s (%s)" % (open(os.path.join(imagedir, "etc/issue")).readlines()[-2].capitalize().strip()[:-6], date)}
 				if os.path.exists(os.path.join(imagedir, "etc/image-version")):
-					with open(r'/etc/image-version', 'r') as fp:
+					with open(os.path.join(imagedir, "etc/image-version"), 'r') as fp:
 						lines = fp.readlines()
 						for row in lines:
 							word = 'imagetype'
