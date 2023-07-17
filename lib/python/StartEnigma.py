@@ -89,36 +89,6 @@ def setEPGCachePath(configElement):
 #config.misc.standbyCounter.addNotifier(standbyCountChanged, initial_call = False)
 ####################################################
 
-
-def useSyncUsingChanged(configelement):
-	if config.misc.SyncTimeUsing.value == "0":
-		print("[StartEnigma] Time by Transponder")
-		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(True)
-		enigma.eEPGCache.getInstance().timeUpdated()
-	else:
-		print("[StartEnigma] Time by NTP")
-		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(False)
-		enigma.eEPGCache.getInstance().timeUpdated()
-
-
-config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged, immediate_feedback=True)
-
-
-def NTPserverChanged(configelement):
-	if config.misc.NTPserver.value == "pool.ntp.org":
-		return
-	print("[StartEnigma] save /etc/default/ntpdate")
-	f = open("/etc/default/ntpdate", "w")
-	f.write('NTPSERVERS="' + config.misc.NTPserver.value + '"')
-	f.close()
-	os.chmod("/etc/default/ntpdate", 0o755)
-	from Components.Console import Console
-	Console = Console()
-	Console.ePopen('/usr/bin/ntpdate-sync')
-
-
-config.misc.NTPserver.addNotifier(NTPserverChanged, immediate_feedback=True)
-
 profile("Twisted")
 try:
 	import twisted.python.runtime
