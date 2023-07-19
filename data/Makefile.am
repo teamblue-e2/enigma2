@@ -1,4 +1,4 @@
-SUBDIRS = countries display fonts extensions keymaps skin_default
+SUBDIRS = countries display fonts extensions keymaps skin_default hw_info
 
 dist_pkgdata_DATA = \
 	encoding.conf \
@@ -28,4 +28,4 @@ dist_pkgdata_DATA += startwizard.xml
 endif
 
 iso-639-3.pck: $(srcdir)/iso-639-3.tab
-	python $(srcdir)/convert-iso-639-3.py $< $@
+	python3 $(srcdir)/convert-iso-639-3.py $< $@

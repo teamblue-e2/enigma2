@@ -34,8 +34,7 @@ class NTPSyncPoller:
 
 	def timecheck(self):
 		if config.misc.SyncTimeUsing.value == "1":
-			print('[NTP]: Updating')
-			self.Console.ePopen('/usr/bin/ntpdate-sync', self.update_schedule)
+			self.Console.ePopen(["/usr/sbin/ntpd", "/usr/sbin/ntpd", "-nq", "-p", config.misc.NTPserver.value], self.update_schedule)
 		else:
 			self.update_schedule()
 
@@ -43,8 +42,8 @@ class NTPSyncPoller:
 		nowTime = time()
 		nowTimereal = ctime(nowTime)
 		if nowTime > 10000:
-			print(('[NTP]: setting E2 unixtime:', nowTime))
-			print(('[NTP]: setting E2 realtime:', nowTimereal))
+			print('[NTP]: setting E2 unixtime:', nowTime)
+			print('[NTP]: setting E2 realtime:', nowTimereal)
 			setRTCtime(nowTime)
 			if config.misc.SyncTimeUsing.value == "1":
 				eDVBLocalTimeHandler.getInstance().setUseDVBTime(False)
@@ -53,5 +52,5 @@ class NTPSyncPoller:
 			eEPGCache.getInstance().timeUpdated()
 			self.timer.startLongTimer(int(config.misc.useNTPminutes.value) * 60)
 		else:
-			print('NO TIME SET')
+			print("[NetworkTime] System time not yet available.")
 			self.timer.startLongTimer(10)

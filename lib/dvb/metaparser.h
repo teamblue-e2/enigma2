@@ -3,7 +3,6 @@
 
 #include <string>
 #include <lib/dvb/idvb.h>
-#include <lib/dvb/tstools.h>
 
 class eDVBMetaParser
 {

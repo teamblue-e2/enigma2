@@ -5,7 +5,6 @@
 
 class eSlider: public eWidget
 {
-	int m_alphatest;
 public:
 	eSlider(eWidget *parent);
 	void setValue(int val);
@@ -20,6 +19,7 @@ public:
 	void setPixmap(ePtr<gPixmap> &pixmap);
 	void setBackgroundPixmap(gPixmap *pixmap);
 	void setBackgroundPixmap(ePtr<gPixmap> &pixmap);
+	void setAlphatest(int alphatest);
 	void setSliderBorderWidth(int pixel);
 	void setSliderBorderColor(const gRGB &color);
 	void setSliderForegroundColor(const gRGB &color);
@@ -27,7 +27,6 @@ public:
 	void setScrollbarSliderPicture(ePtr<gPixmap> &pixmap);
 	void setScrollbarBackgroundPicture(gPixmap *pixmap);
 	void setScrollbarBackgroundPicture(ePtr<gPixmap> &pixmap);
-	void setAlphatest(int alphatest); /* 1 for alphatest, 2 for alphablend */
 protected:
 	int event(int event, void *data=0, void *data2=0);
 private:

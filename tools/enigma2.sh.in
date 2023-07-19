@@ -42,11 +42,8 @@ fi
 # any debuglevel passed?
 DEBUG_LVL=${ENIGMA_DEBUG_LVL:-4}
 
+export LC_CTYPE="en_US.UTF-8"
 
-# LC_ALL available?
-if [ -z $LC_ALL ]; then
-	export LC_ALL="en_US.UTF-8"
-fi
 # init script for sysctl is missing, so manually load /etc/sysctl.conf here
 sysctl -p
 
@@ -60,9 +57,7 @@ else
 	LIBS="@libdir@/libopen.so.0.0.0"
 fi
 
-if [ -e /proc/stb/info/boxtype ]; then
-	stbcheck=`cat /proc/stb/info/boxtype`
-fi
+stbcheck=`cat /proc/stb/info/boxtype`
 # enigma main loop
 while : ; do
 	# set TASKSETVALUE to start enigma2
@@ -111,13 +106,13 @@ while : ; do
 			RANDOMIZE1970="$(strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 5 | tr -d '\n')"
 		fi
 		LOGFOLDER="/home/root/logs/"
-		LOGFILE=${LOGFOLDER}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log
-		if [ ! -d $LOGFOLDER ] ; then mkdir -p $LOGFOLDER; fi
 		if [ "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" != "" -a -d "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" ]; then
 			LOGFOLDER=$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')
 		fi
+		if [ ! -d $LOGFOLDER ] ; then mkdir -p $LOGFOLDER; fi
+		LOGFILE=${LOGFOLDER}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log
 		ln -sf ${LOGFILE} ${LOGFOLDER}currlog
-		LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL @bindir@/enigma2 2>&1 | tee -a ${LOGFOLDER}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log
+		LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL @bindir@/enigma2 2>&1 | tee -a ${LOGFILE}
 		ret=${PIPESTATUS[0]}
 		ln -sf ${LOGFILE} ${LOGFOLDER}lastlog
 	else

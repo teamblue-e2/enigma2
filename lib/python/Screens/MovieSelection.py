@@ -1349,9 +1349,9 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self["list"].setSortType(type)
 
 	def setCurrentRef(self, path):
-		self.current_ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + path)
+		self.current_ref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + path.replace(':', '%3a'))
 		# Magic: this sets extra things to show
-		# self.current_ref.setName('16384:jpg 16384:png 16384:gif 16384:bmp')
+		# self.current_ref.setName('16384:jpg 16384:jpeg 16384:png 16384:gif 16384:bmp 16384:svg')
 
 	def reloadList(self, sel=None, home=False):
 		self.reload_sel = sel
@@ -1443,7 +1443,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				if selItem:
 					self.reloadList(home=True, sel=selItem)
 				else:
-					self.reloadList(home=True, sel=eServiceReference("2:0:1:0:0:0:0:0:0:0:" + currentDir))
+					self.reloadList(home=True, sel=eServiceReference("2:0:1:0:0:0:0:0:0:0:" + currentDir.replace(':', '%3a')))
 			else:
 				self.session.open(MessageBox, _("Directory %s does not exist.") % (res), type=MessageBox.TYPE_ERROR, timeout=5)
 
@@ -1743,7 +1743,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		current = self.getCurrent()
 		if current:
 			resetMoviePlayState(current.getPath() + ".cuts", current)
-			self["list"].invalidateCurrentItem() # trigger repaint
+			self["list"].invalidateCurrentItem()
+			idx = self["list"].getCurrentIndex()
+			self["list"].moveToIndex(idx - 1)
+			self["list"].moveToIndex(idx)
 
 	def do_move(self):
 		item = self.getCurrentSelection()

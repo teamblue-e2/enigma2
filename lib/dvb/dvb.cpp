@@ -265,11 +265,13 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 : eDVBAdapterLinux(nr)
 {
 	int file;
-	char type[8];
-	struct dvb_frontend_info fe_info;
+	char type[8] = {};
+	struct dvb_frontend_info fe_info = {};
+	struct dtv_properties props = {};
+	struct dtv_property prop[1] = {};
 	int frontend = -1;
-	char filename[256];
-	char name[128] = {0};
+	char filename[256] = {};
+	char name[128] = {};
 	int vtunerid = nr - 1;
 
 	pumpThread = 0;
@@ -324,9 +326,6 @@ eDVBUsbAdapter::eDVBUsbAdapter(int nr)
 		frontend = -1;
 		goto error;
 	}
-
-	struct dtv_properties props;
-	struct dtv_property prop[1];
 
 	prop[0].cmd = DTV_ENUM_DELSYS;
 	memset(prop[0].u.buffer.data, 0, sizeof(prop[0].u.buffer.data));
@@ -537,7 +536,7 @@ void *eDVBUsbAdapter::vtunerPump()
 		{
 			if (FD_ISSET(vtunerFd, &xset))
 			{
-				struct vtuner_message message;
+				struct vtuner_message message = {};
 				memset(message.pidlist, 0xff, sizeof(message.pidlist));
 				::ioctl(vtunerFd, VTUNER_GET_MESSAGE, &message);
 
@@ -579,7 +578,7 @@ void *eDVBUsbAdapter::vtunerPump()
 						}
 						else
 						{
-							struct dmx_pes_filter_params filter;
+							struct dmx_pes_filter_params filter = {};
 							filter.input = DMX_IN_FRONTEND;
 							filter.flags = 0;
 							filter.pid = message.pidlist[i];
@@ -1759,24 +1758,6 @@ void eDVBChannel::pvrEvent(int event)
 		eDebug("[eDVBChannel] End of file!");
 		m_event(this, evtEOF);
 		break;
-	case eFilePushThread::evtReadError:
-		eDebug("eDVBChannel: Read error!");
-		if (m_source->isStream()) {
-			eDebug("eDVBChannel: We are in stream mode, trying to reconnect it!");
-			ePtr<iTsSource> source = m_source;
-			stop();
-			source->reconnect();
-			playSource(source, m_streaminfo_file.c_str());
-		}
-		else {
-			stop();
-		}
-		break;
-	case eFilePushThread::evtFlush:
-		eDebug("eDVBChannel: pvrEvent evtFlush");
-		if (m_decoder_demux)
-			m_decoder_demux->get().flush();
-		break;
 	case eFilePushThread::evtUser: /* start */
 		eDebug("[eDVBChannel] SOF");
 		m_event(this, evtSOF);
@@ -2331,7 +2312,6 @@ RESULT eDVBChannel::playSource(ePtr<iTsSource> &source, const char *streaminfo_f
 	}
 
 	m_source = source;
-	m_streaminfo_file = std::string(streaminfo_file);
 	m_tstools.setSource(m_source, streaminfo_file);
 
 	if (m_pvr_fd_dst < 0)
