@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-27 08:37+0200\n"
-"PO-Revision-Date: 2023-06-05 22:02+0200\n"
+"POT-Creation-Date: 2023-07-22 07:44+0200\n"
+"PO-Revision-Date: 2023-07-22 07:56+0200\n"
 "Last-Translator: Teamblue teamblue@online.de <teamblue-e2@online.de>\n"
 "Language-Team: Teamblue teamblue@online.de\n"
 "Language: de\n"
@@ -748,11 +748,11 @@ msgstr ""
 msgid "AAC downmix"
 msgstr "AAC heruntermischen"
 
-msgid "AAC plus downmix"
-msgstr "AAC plus heruntermischen"
-
 msgid "AAC transcoding"
 msgstr "AAC transkodieren"
+
+msgid "AAC+ downmix"
+msgstr "AAC+ heruntermischen"
 
 msgid "AC3"
 msgstr "AC3"
@@ -760,8 +760,8 @@ msgstr "AC3"
 msgid "AC3 downmix"
 msgstr "AC3 heruntermischen"
 
-msgid "AC3 plus downmix"
-msgstr "AC3 plus heruntermischen"
+msgid "AC3 transcoding"
+msgstr "AA3 transkodieren"
 
 msgid "ACQUIRING TSID/ONID"
 msgstr "Hole TSID/ONID"
@@ -1069,6 +1069,9 @@ msgstr "Erlaube Untertitel der Toneinstellung entsprechend"
 msgid "Allow subtitles for hearing impaired"
 msgstr "Erlaube Untertitel für Hörgeschädigte"
 
+msgid "Allow unsupported modes"
+msgstr "Erlaube nicht unterstützte Modi"
+
 msgid "Allows the TV remote to be used to control the receiver."
 msgstr "Ermöglicht die Verwendung der TV-Fernbedienung zur Steuerung des Receivers."
 
@@ -1353,6 +1356,9 @@ msgstr "Audio Erweiterungen"
 
 msgid "Audio settings"
 msgstr "Audio Einstellungen"
+
+msgid "Audio volume step size"
+msgstr "Lautstärketasten Schrittweite"
 
 msgid "Australia"
 msgstr "Australien"
@@ -1748,6 +1754,9 @@ msgstr "Standardmässig wird SNR in Dezibel angezeigt (falls vom Tuner unterstü
 
 msgid "By teamblue Image Team"
 msgstr "Vom teamblue Image Team"
+
+msgid "Bypass HDMI EDID checking"
+msgstr "HDMI EDID Check umgehen"
 
 msgid "C"
 msgstr "C"
@@ -2177,8 +2186,20 @@ msgstr "Speicherort für Crash- und Debuglogs auswählen."
 msgid "Choose the option to correct invalid EPG data."
 msgstr "Wähle die Option ungültige EPG-Daten zu korrigieren."
 
-msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
-msgstr "Wählen Sie, ob Multikanal Ton zu PCM oder SPDIF konvertiert werden sollen."
+msgid "Choose whether AAC sound tracks should be transcoded."
+msgstr "Wähle, ob AAC-Tonspuren transkodiert werden sollen."
+
+msgid "Choose whether AC3 sound tracks should be transcoded."
+msgstr "Wähle, ob AC3-Tonspuren transkodiert werden sollen."
+
+msgid "Choose whether WMA Pro sound tracks should be downmixed."
+msgstr "Wähle, ob WMA Pro-Tonspuren heruntergemischt werden sollen."
+
+msgid "Choose whether multi channel DTS-HD(HR/MA) sound tracks should be downmixed or transcoded."
+msgstr "Wähle, ob Mehrkanal-DTS-HD-(HR/MA)-Tonspuren heruntergemischt oder transkodiert werden sollen."
+
+msgid "Choose whether multi channel aac+ sound tracks should be downmixed to stereo."
+msgstr "Wähle, ob Mehrkanal-AAC+-Tonspuren auf Stereo heruntergemischt werden sollen."
 
 msgid "Choose whether to scan a single transponder, one satellite or multiple satellites."
 msgstr "Wählen Sie, ob ein einzelner Transponder, ein Satellit oder mehrere Satelliten gescannt werden sollen."
@@ -2357,13 +2378,13 @@ msgid "Configure default type for new timers."
 msgstr "Konfiguriere Standardtyp von neuen Timern."
 
 msgid "Configure for how long the infobar will remain visible after activation."
-msgstr "Konfigurieren Sie wie lange die Infoleiste nach Einblendung sichtbar bleibt."
+msgstr "Konfiguriere wie lange die Infoleiste nach Einblendung sichtbar bleibt."
 
 msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
-msgstr "Konfigurieren Sie wie viele Minuten eine abgeschlossene Sendung in der EPG sichtbar bleiben soll. Nützlich wenn Sie Informationen zu einer Sendung benötigen, die bereits abgeschlossen war bzw. eine Sendung länger dauerte."
+msgstr "Konfiguriere wie viele Minuten eine abgeschlossene Sendung in der EPG sichtbar bleiben soll. Nützlich wenn Sie Informationen zu einer Sendung benötigen, die bereits abgeschlossen war bzw. eine Sendung länger dauerte."
 
 msgid "Configure how many channels are shown in the selection list."
-msgstr "Konfigurieren Sie wieviele Kanäle in der Kanalliste angezeigt werden."
+msgstr "Konfiguriere wieviele Kanäle in der Kanalliste angezeigt werden."
 
 msgid "Configure how recording filenames are constructed."
 msgstr "Namensaufbau für Aufnahme konfigurieren."
@@ -2497,6 +2518,9 @@ msgstr "Generelle Audio-Verzögerung von Dolby Digital Tonspuren konfigurieren."
 msgid "Configure the general audio delay of stereo sound tracks."
 msgstr "Generelle Audio-Verzögerung von Stereo Tonspuren konfigurieren."
 
+msgid "Configure the general audio volume step size (limit 1-10)."
+msgstr "Konfiguriere die allgemeine Schrittgröße der Lautstärke (Limit 1–10)."
+
 msgid "Configure the hard disk drive to go to standby after the specified idle time."
 msgstr "Standby der Festplatte nach einer gewissen Zeit."
 
@@ -2626,15 +2650,6 @@ msgstr "Speicherplatz epg.dat konfigurieren."
 msgid "Configure whether (and for how long) a second infobar will be shown when OK is pressed twice. The second infobar contains additional information about the current channel."
 msgstr "Anpassung, ob (und wie lange) eine zweite Infoleiste bei erneuter Betätigung der OK Taste angezeigt werden soll. Diese zeigt zusätzliche Informationen über den Kanal an."
 
-msgid "Configure whether AAC sound tracks should be transcoded."
-msgstr "Konfiguriere, ob ACC Tonspuren transkodiert werden sollen."
-
-msgid "Configure whether DTS-HD channel sound tracks should be downmixed or transcoded."
-msgstr "Konfiguriere, ob DTS-HD Tonspuren heruntergerechnet oder transkodiert werden sollen."
-
-msgid "Configure whether WMA pro channel sound tracks should be downmixed or transcoded."
-msgstr "Konfiguriere, ob WMA pro Tonspuren heruntergerechnet oder transkodiert werden sollen."
-
 msgid "Configure whether a simple second infobar will be shown instead of the regular one."
 msgstr "Konfigurieren, ob ein einfache zweite Infoanzeige angezeigt wird, statt der normalen."
 
@@ -2711,7 +2726,7 @@ msgid "Connected satellites"
 msgstr "Angeschlossene Satelliten"
 
 msgid "Connected through another tuner"
-msgstr ""
+msgstr "Verbunden durch einen anderen Tuner"
 
 msgid "Connected to"
 msgstr "Verbunden mit"
@@ -2995,6 +3010,9 @@ msgstr "Czechia"
 msgid "D"
 msgstr "D"
 
+msgid "DAC"
+msgstr "DAC"
+
 msgid "DHCP"
 msgstr "DHCP"
 
@@ -3013,11 +3031,11 @@ msgstr "DMM normal"
 msgid "DTS"
 msgstr "DTS"
 
-msgid "DTS HD downmix"
-msgstr "DTS HD heruntermischen"
-
 msgid "DTS downmix"
 msgstr "DTS heruntermischen"
+
+msgid "DTS-HD(HR/MA) downmix"
+msgstr "DTS-HD(HR/MA)-Downmix"
 
 msgid "DUAL LAYER DVD"
 msgstr "Doppelschicht DVD (DUAL LAYER)"
@@ -3966,6 +3984,9 @@ msgstr "Automatischen schnellen Suchlauf aktivieren"
 #, python-format
 msgid "Enable auto fastscan for %s"
 msgstr "Automatischen schnellen Suchlauf für %s aktivieren"
+
+msgid "Enable bluetooth audio"
+msgstr "Aktiviere Bluetooth-Audio"
 
 msgid "Enable bouquet edit"
 msgstr "Bouquet Bearbeitung anschalten"
@@ -4976,6 +4997,9 @@ msgstr "Allgemeine AC3 Verzögerung"
 msgid "General PCM delay"
 msgstr "Allgemeine PCM Verzögerung"
 
+msgid "General bluetooth audio delay"
+msgstr "Allgemeine Bluetooth-Audio-Verzögerung"
+
 msgid "Generator"
 msgstr "Generator"
 
@@ -5162,6 +5186,9 @@ msgstr "HD2400"
 msgid "HDD Info"
 msgstr "Festplatten Info"
 
+msgid "HDMI"
+msgstr "HDMI"
+
 msgid "HDMI CEC setup"
 msgstr "HDMI-CEC Einstellungen"
 
@@ -5179,18 +5206,6 @@ msgstr "HDMI HDR Typ"
 
 msgid "HDMI Recording"
 msgstr "HDMI Aufnahme"
-
-msgid "HDMI allow unsupported modes"
-msgstr "HDMI nicht unterstützte Modi zulassen"
-
-msgid "HDMI audio source"
-msgstr "HDMI Audio Quelle"
-
-msgid "HDMI bypass EDID checking"
-msgstr "HDMI EDID Check umgehen"
-
-msgid "HDMI use pre-emphasis"
-msgstr "HDMI pre-emphasis benutzen"
 
 msgid "HDMI-CEC"
 msgstr "HDMI-CEC"
@@ -9117,6 +9132,9 @@ msgstr "SNR"
 msgid "SNR:"
 msgstr "SNR:"
 
+msgid "SPDIF"
+msgstr "SPDIF"
+
 msgid "SRT file"
 msgstr "SRT Datei"
 
@@ -11718,9 +11736,6 @@ msgstr "Dies ist keine valide ONID/TSID"
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr "Diese Option erlaubt es Block-Rauschen im Bild zu reduzieren. Diese Option geht auf Kosten der Bildschärfe."
 
-msgid "This option allows to select video modes even if they are not reported as supported from HDMI-EDID."
-msgstr "Mit dieser Option können Videomodi ausgewählt werden, auch wenn sie nicht als von HDMI-EDID unterstützt gemeldet werden."
-
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Diese Option erlaubt es den Wert für den dynamischen Kontrast des Bildes zu setzen."
 
@@ -11790,11 +11805,17 @@ msgstr "Mit dieser Option können Sie Menüschnellnavigationsnummern anzeigen."
 msgid "This option allows you to show the full screen path leading to the current screen."
 msgstr "Mit dieser Option können Sie den kompletten Pfad vor dem Bildschirmnamen anzeigen lassen."
 
+msgid "This option allows you to switch audio to bluetooth speakers."
+msgstr "Mit dieser Option kannst du den Ton auf Bluetooth-Lautsprecher umschalten."
+
 msgid "This option allows you to view the old and new settings side by side."
 msgstr "Diese Option erlaubt es das Bild mit den alten und neuen Werten nebeneinander anzeigen zu lassen."
 
 msgid "This option can be useful for long HDMI cables."
 msgstr "Diese Option kann für lange HDMI-Kabel nützlich sein."
+
+msgid "This option configures the general audio delay for bluetooth speakers."
+msgstr "Diese Option konfiguriert die allgemeine Audioverzögerung für Bluetooth-Lautsprecher."
 
 msgid "This option set the level of surpression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr "Diese Option bestimmt die Stufe der Unterdrückung von Mosquito Rauschen. Mosquito Rauschen ist eine zufällige Abtaststörung durch zu hohe Kompression. Es geht auf Kosten von Bildeinzelheiten."
@@ -12514,6 +12535,9 @@ msgstr "Verwende EIT EPG Information falls vorhanden."
 msgid "Use FreeSat EPG information when it is available."
 msgstr "Verwende FreeSat EPG Information falls vorhanden."
 
+msgid "Use HDMI pre-emphasis"
+msgstr "HDMI-Preemphasis verwenden"
+
 msgid "Use MHW EPG information when it is available."
 msgstr "Verwende MHW EPG Information falls vorhanden."
 
@@ -12875,7 +12899,7 @@ msgstr "WARNUNG!"
 msgid "WLAN connection"
 msgstr "WLAN Verbindung"
 
-msgid "WMA pro downmix"
+msgid "WMA Pro downmix"
 msgstr "WMA pro heruntermischen"
 
 msgid "WOL standby"
@@ -13287,6 +13311,9 @@ msgstr "Aufnahme später stoppen, als Endzeit die EPG zur Verfügung stellt (fal
 
 msgid "When receiver wakes from standby, it will command the TV to switch to the HDMI input the receiver is connected to."
 msgstr "Wenn der Receiver aus dem Standby-Modus erwacht, befiehlt er dem Fernsehgerät, auf den HDMI-Eingang umzuschalten, an den der Receiver angeschlossen ist."
+
+msgid "When selected this allows video modes to be selected even if they are not reported as supported."
+msgstr "Wenn diese Option aktiviert ist, können Videomodi ausgewählt werden, auch wenn sie nicht als unterstützt gemeldet werden."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Skalieren/Strecken wenn Inhalt ein Bildformat von 16:9 aufweist."
@@ -14076,7 +14103,13 @@ msgstr "Verbunden"
 msgid "controlled by HDMI"
 msgstr "HDMI gesteuert"
 
-msgid "convert to multi channel PCM"
+msgid "convert to AC3"
+msgstr "in AC3 konvertieren"
+
+msgid "convert to DTS"
+msgstr "in DTS konvertieren"
+
+msgid "convert to multi-channel PCM"
 msgstr "Konvertiere zu Mehrkanal-PCM"
 
 msgid "cooking"
@@ -15026,14 +15059,17 @@ msgstr "nicht prüfbar"
 msgid "until standby/restart"
 msgstr "Bis zum Standby/Neustart"
 
-msgid "use best, controlled by HDMI"
-msgstr "am besten, HDMI-gesteuert"
+msgid "use HDMI cacenter"
+msgstr "HDMI cacenter verwenden"
+
+msgid "use best / controlled by HDMI"
+msgstr "am besten/ HDMI-gesteuert"
 
 msgid "user defined"
-msgstr "Benutzerdefiniert"
+msgstr "benutzerdefiniert"
 
 msgid "user defined hidden"
-msgstr "Benutzerdefiniert versteckt"
+msgstr "benutzerdefiniert versteckt"
 
 msgid "variety show"
 msgstr "Abwechslungsreiche Sendung"

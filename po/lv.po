@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-27 08:37+0200\n"
+"POT-Creation-Date: 2023-07-22 07:44+0200\n"
 "PO-Revision-Date: 2014-11-12 00:49+0200\n"
 "Last-Translator: Taapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -773,12 +773,12 @@ msgid "AAC downmix"
 msgstr "AC3/DTS pārveidošana"
 
 #, fuzzy
-msgid "AAC plus downmix"
-msgstr "AC3/DTS pārveidošana"
-
-#, fuzzy
 msgid "AAC transcoding"
 msgstr "Tulkojums:"
+
+#, fuzzy
+msgid "AAC+ downmix"
+msgstr "AC3/DTS pārveidošana"
 
 msgid "AC3"
 msgstr ""
@@ -788,8 +788,8 @@ msgid "AC3 downmix"
 msgstr "AC3/DTS pārveidošana"
 
 #, fuzzy
-msgid "AC3 plus downmix"
-msgstr "AC3/DTS pārveidošana"
+msgid "AC3 transcoding"
+msgstr "Tulkojums:"
 
 msgid "ACQUIRING TSID/ONID"
 msgstr ""
@@ -1128,6 +1128,10 @@ msgstr "Atļaut subtitru valodu vienādu ar audio valodu"
 msgid "Allow subtitles for hearing impaired"
 msgstr "Atļaut subtitrus dzirdes traucējumiem"
 
+#, fuzzy
+msgid "Allow unsupported modes"
+msgstr "nav atbalstīts"
+
 msgid "Allows the TV remote to be used to control the receiver."
 msgstr ""
 
@@ -1436,6 +1440,10 @@ msgstr "Lejuplādēt spraudņus"
 #, fuzzy
 msgid "Audio settings"
 msgstr "Rediģēt iestatījumus"
+
+#, fuzzy
+msgid "Audio volume step size"
+msgstr "Pāradresēt skaļuma taustiņus"
 
 #, fuzzy
 msgid "Australia"
@@ -1870,6 +1878,9 @@ msgstr "Pēc noklusējuma SNR tiek attēlots dB (ja atļauj uztvērējs). Šis i
 msgid "By teamblue Image Team"
 msgstr ""
 
+msgid "Bypass HDMI EDID checking"
+msgstr ""
+
 #, fuzzy
 msgid "C"
 msgstr "C"
@@ -2296,7 +2307,23 @@ msgid "Choose the option to correct invalid EPG data."
 msgstr ""
 
 #, fuzzy
-msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
+msgid "Choose whether AAC sound tracks should be transcoded."
+msgstr "Uzstāda kā daudzkanālu skaņu celiņi tiks dekodēti uz stereo."
+
+#, fuzzy
+msgid "Choose whether AC3 sound tracks should be transcoded."
+msgstr "Uzstāda kā daudzkanālu skaņu celiņi tiks dekodēti uz stereo."
+
+#, fuzzy
+msgid "Choose whether WMA Pro sound tracks should be downmixed."
+msgstr "Uzstāda kā daudzkanālu skaņu celiņi tiks dekodēti uz stereo."
+
+#, fuzzy
+msgid "Choose whether multi channel DTS-HD(HR/MA) sound tracks should be downmixed or transcoded."
+msgstr "Uzstāda kā daudzkanālu skaņu celiņi tiks dekodēti uz stereo."
+
+#, fuzzy
+msgid "Choose whether multi channel aac+ sound tracks should be downmixed to stereo."
 msgstr "Uzstāda kā daudzkanālu skaņu celiņi tiks dekodēti uz stereo."
 
 msgid "Choose whether to scan a single transponder, one satellite or multiple satellites."
@@ -2642,6 +2669,10 @@ msgstr "Uzstāda vispārējo audio aizturi Dolby Digital skaņu ierakstiem."
 msgid "Configure the general audio delay of stereo sound tracks."
 msgstr "Uzstāda vispārējo aizturi stereo skaņu ierakstiem."
 
+#, fuzzy
+msgid "Configure the general audio volume step size (limit 1-10)."
+msgstr "Uzstāda vispārējo aizturi stereo skaņu ierakstiem."
+
 msgid "Configure the hard disk drive to go to standby after the specified idle time."
 msgstr "Uzstāda lai cietais disks dodas gaidstāvē pēc noteiktā laika."
 
@@ -2772,18 +2803,6 @@ msgstr "Uzstāda kura video izeja tiks lietota."
 
 msgid "Configure whether (and for how long) a second infobar will be shown when OK is pressed twice. The second infobar contains additional information about the current channel."
 msgstr "Uzstāda kur (un cik ilgi) otrais infopanelis tiek attēlots kad divreiz nospiests OK. Otrais infopanelis satur papildus informāciju par tekošo kanālu."
-
-#, fuzzy
-msgid "Configure whether AAC sound tracks should be transcoded."
-msgstr "Uzstāda kā daudzkanālu skaņu celiņi tiks dekodēti uz stereo."
-
-#, fuzzy
-msgid "Configure whether DTS-HD channel sound tracks should be downmixed or transcoded."
-msgstr "Uzstāda kā daudzkanālu skaņu celiņi tiks dekodēti uz stereo."
-
-#, fuzzy
-msgid "Configure whether WMA pro channel sound tracks should be downmixed or transcoded."
-msgstr "Uzstāda kā daudzkanālu skaņu celiņi tiks dekodēti uz stereo."
 
 #, fuzzy
 msgid "Configure whether a simple second infobar will be shown instead of the regular one."
@@ -3172,6 +3191,9 @@ msgstr "Čehu"
 msgid "D"
 msgstr "3"
 
+msgid "DAC"
+msgstr ""
+
 msgid "DHCP"
 msgstr "DHCP"
 
@@ -3192,11 +3214,11 @@ msgid "DTS"
 msgstr ""
 
 #, fuzzy
-msgid "DTS HD downmix"
+msgid "DTS downmix"
 msgstr "AC3/DTS pārveidošana"
 
 #, fuzzy
-msgid "DTS downmix"
+msgid "DTS-HD(HR/MA) downmix"
 msgstr "AC3/DTS pārveidošana"
 
 msgid "DUAL LAYER DVD"
@@ -4242,6 +4264,10 @@ msgstr ""
 #, fuzzy, python-format
 msgid "Enable auto fastscan for %s"
 msgstr "Aktivizēt vecāku kontroli"
+
+#, fuzzy
+msgid "Enable bluetooth audio"
+msgstr "aktivizēt buķešu rediģēšanu"
 
 #, fuzzy
 msgid "Enable bouquet edit"
@@ -5327,6 +5353,10 @@ msgstr "Vispārējā AC3 aizture"
 msgid "General PCM delay"
 msgstr "Vispārējā PCM aizture"
 
+#, fuzzy
+msgid "General bluetooth audio delay"
+msgstr "Vispārējā AC3 aizture"
+
 msgid "Generator"
 msgstr ""
 
@@ -5525,6 +5555,9 @@ msgstr ""
 msgid "HDD Info"
 msgstr "Info"
 
+msgid "HDMI"
+msgstr ""
+
 #, fuzzy
 msgid "HDMI CEC setup"
 msgstr "Iestatījumi"
@@ -5547,19 +5580,6 @@ msgstr ""
 #, fuzzy
 msgid "HDMI Recording"
 msgstr "Ieraksta"
-
-msgid "HDMI allow unsupported modes"
-msgstr ""
-
-#, fuzzy
-msgid "HDMI audio source"
-msgstr "Krāsu formāts"
-
-msgid "HDMI bypass EDID checking"
-msgstr ""
-
-msgid "HDMI use pre-emphasis"
-msgstr ""
 
 msgid "HDMI-CEC"
 msgstr ""
@@ -9840,6 +9860,9 @@ msgstr "SNR:"
 msgid "SNR:"
 msgstr "SNR:"
 
+msgid "SPDIF"
+msgstr ""
+
 #, fuzzy
 msgid "SRT file"
 msgstr "%d fails"
@@ -12641,9 +12664,6 @@ msgstr ""
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr ""
 
-msgid "This option allows to select video modes even if they are not reported as supported from HDMI-EDID."
-msgstr ""
-
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr ""
 
@@ -12713,11 +12733,18 @@ msgstr ""
 msgid "This option allows you to show the full screen path leading to the current screen."
 msgstr ""
 
+msgid "This option allows you to switch audio to bluetooth speakers."
+msgstr ""
+
 msgid "This option allows you to view the old and new settings side by side."
 msgstr ""
 
 msgid "This option can be useful for long HDMI cables."
 msgstr ""
+
+#, fuzzy
+msgid "This option configures the general audio delay for bluetooth speakers."
+msgstr "Uzstāda vispārējo aizturi stereo skaņu ierakstiem."
 
 msgid "This option set the level of surpression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr ""
@@ -13474,6 +13501,9 @@ msgstr "Lietot EIT EPG informāciju kad pieejama."
 msgid "Use FreeSat EPG information when it is available."
 msgstr "Lietot FreeSat EPG informāciju kad pieejama."
 
+msgid "Use HDMI pre-emphasis"
+msgstr ""
+
 msgid "Use MHW EPG information when it is available."
 msgstr "Lietot MHW EPG informāciju kad pieejama."
 
@@ -13858,7 +13888,7 @@ msgid "WLAN connection"
 msgstr "Bezvadu savienojums"
 
 #, fuzzy
-msgid "WMA pro downmix"
+msgid "WMA Pro downmix"
 msgstr "AC3/DTS pārveidošana"
 
 #, fuzzy
@@ -14289,6 +14319,9 @@ msgid "When nonzero, a recording will stop later than the ending time indicated 
 msgstr "Ja nav nulle, ieraksts sāksies vēlāk, nevis laikā kas parādīts EPG."
 
 msgid "When receiver wakes from standby, it will command the TV to switch to the HDMI input the receiver is connected to."
+msgstr ""
+
+msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr ""
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
@@ -15070,8 +15103,14 @@ msgstr "savienots"
 msgid "controlled by HDMI"
 msgstr ""
 
+msgid "convert to AC3"
+msgstr ""
+
+msgid "convert to DTS"
+msgstr ""
+
 #, fuzzy
-msgid "convert to multi channel PCM"
+msgid "convert to multi-channel PCM"
 msgstr "Rādīt daudzkanālu EPG"
 
 msgid "cooking"
@@ -16084,7 +16123,10 @@ msgstr "Aktivizēt"
 msgid "until standby/restart"
 msgstr "līdz gaidstāvei/pārstartēšanai"
 
-msgid "use best, controlled by HDMI"
+msgid "use HDMI cacenter"
+msgstr ""
+
+msgid "use best / controlled by HDMI"
 msgstr ""
 
 msgid "user defined"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-27 08:37+0200\n"
+"POT-Creation-Date: 2023-07-22 07:44+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Budiarno\n"
 "Language-Team: \n"
@@ -746,12 +746,12 @@ msgstr ""
 msgid "AAC downmix"
 msgstr "Downmix AAC"
 
-#, fuzzy
-msgid "AAC plus downmix"
-msgstr "Downmix AAC"
-
 msgid "AAC transcoding"
 msgstr ""
+
+#, fuzzy
+msgid "AAC+ downmix"
+msgstr "Downmix AAC"
 
 msgid "AC3"
 msgstr ""
@@ -760,8 +760,8 @@ msgid "AC3 downmix"
 msgstr "Downmix AC3"
 
 #, fuzzy
-msgid "AC3 plus downmix"
-msgstr "Downmix AC3"
+msgid "AC3 transcoding"
+msgstr "Transponder"
 
 msgid "ACQUIRING TSID/ONID"
 msgstr ""
@@ -1096,6 +1096,10 @@ msgstr "Izinkan bahasa teks film sama dengan bahasa audio"
 msgid "Allow subtitles for hearing impaired"
 msgstr "Izinkan teks film untuk tuna rungu"
 
+#, fuzzy
+msgid "Allow unsupported modes"
+msgstr "tidak didukung"
+
 msgid "Allows the TV remote to be used to control the receiver."
 msgstr ""
 
@@ -1399,6 +1403,10 @@ msgstr "Plugin audio"
 #, fuzzy
 msgid "Audio settings"
 msgstr "Ubah pengaturan"
+
+#, fuzzy
+msgid "Audio volume step size"
+msgstr "Forward volume keys"
 
 #, fuzzy
 msgid "Australia"
@@ -1832,6 +1840,10 @@ msgid "By teamblue Image Team"
 msgstr ""
 
 #, fuzzy
+msgid "Bypass HDMI EDID checking"
+msgstr "Lewati pemeriksaan HDMI EDID"
+
+#, fuzzy
 msgid "C"
 msgstr "CH"
 
@@ -2249,7 +2261,23 @@ msgid "Choose the option to correct invalid EPG data."
 msgstr ""
 
 #, fuzzy
-msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
+msgid "Choose whether AAC sound tracks should be transcoded."
+msgstr "Atur apakah jalur suara kanal banyak ingin diturunkan ke stereo."
+
+#, fuzzy
+msgid "Choose whether AC3 sound tracks should be transcoded."
+msgstr "Atur apakah jalur suara kanal banyak ingin diturunkan ke stereo."
+
+#, fuzzy
+msgid "Choose whether WMA Pro sound tracks should be downmixed."
+msgstr "Atur apakah jalur suara kanal banyak ingin diturunkan ke stereo."
+
+#, fuzzy
+msgid "Choose whether multi channel DTS-HD(HR/MA) sound tracks should be downmixed or transcoded."
+msgstr "Atur apakah jalur suara kanal banyak ingin diturunkan ke stereo."
+
+#, fuzzy
+msgid "Choose whether multi channel aac+ sound tracks should be downmixed to stereo."
 msgstr "Atur apakah jalur suara kanal banyak ingin diturunkan ke stereo."
 
 msgid "Choose whether to scan a single transponder, one satellite or multiple satellites."
@@ -2588,6 +2616,10 @@ msgstr "Atur penundaan audio umum pada jalur suara Dolby Digital."
 msgid "Configure the general audio delay of stereo sound tracks."
 msgstr "Atur penundaan audio umum pada jalur suara stereo."
 
+#, fuzzy
+msgid "Configure the general audio volume step size (limit 1-10)."
+msgstr "Atur penundaan audio umum pada jalur suara stereo."
+
 msgid "Configure the hard disk drive to go to standby after the specified idle time."
 msgstr "Atur harddisk agar menuju standby setelah lama waktu idle yang ditentukan."
 
@@ -2718,18 +2750,6 @@ msgstr "Atur konektor keluaran video mana yang ingin digunakan."
 
 msgid "Configure whether (and for how long) a second infobar will be shown when OK is pressed twice. The second infobar contains additional information about the current channel."
 msgstr "Atur apakah (dan berapa lama) infobar kedua akan ditampilkan ketika OK ditekan dua kali. Infobar kedua memuat informasi tambahan tentang kanal saat ini."
-
-#, fuzzy
-msgid "Configure whether AAC sound tracks should be transcoded."
-msgstr "Atur apakah jalur suara kanal banyak ingin diturunkan ke stereo."
-
-#, fuzzy
-msgid "Configure whether DTS-HD channel sound tracks should be downmixed or transcoded."
-msgstr "Atur apakah jalur suara kanal banyak ingin diturunkan ke stereo."
-
-#, fuzzy
-msgid "Configure whether WMA pro channel sound tracks should be downmixed or transcoded."
-msgstr "Atur apakah jalur suara kanal banyak ingin diturunkan ke stereo."
 
 #, fuzzy
 msgid "Configure whether a simple second infobar will be shown instead of the regular one."
@@ -3119,6 +3139,9 @@ msgstr "Ceko"
 msgid "D"
 msgstr "3"
 
+msgid "DAC"
+msgstr ""
+
 msgid "DHCP"
 msgstr "DHCP"
 
@@ -3138,11 +3161,11 @@ msgstr "DMM normal"
 msgid "DTS"
 msgstr ""
 
-#, fuzzy
-msgid "DTS HD downmix"
+msgid "DTS downmix"
 msgstr "downmix DTS"
 
-msgid "DTS downmix"
+#, fuzzy
+msgid "DTS-HD(HR/MA) downmix"
 msgstr "downmix DTS"
 
 msgid "DUAL LAYER DVD"
@@ -4184,6 +4207,10 @@ msgstr "Aktifkan pelacakan cepat otomatis"
 #, python-format
 msgid "Enable auto fastscan for %s"
 msgstr "Aktifkan pelacakan cepat otomatis pada %s"
+
+#, fuzzy
+msgid "Enable bluetooth audio"
+msgstr "enable bouquet edit"
 
 #, fuzzy
 msgid "Enable bouquet edit"
@@ -5256,6 +5283,10 @@ msgstr "Tunda AC3 umum"
 msgid "General PCM delay"
 msgstr "Tunda PCM umum"
 
+#, fuzzy
+msgid "General bluetooth audio delay"
+msgstr "Tunda AC3 umum"
+
 msgid "Generator"
 msgstr ""
 
@@ -5453,6 +5484,10 @@ msgid "HDD Info"
 msgstr "Info"
 
 #, fuzzy
+msgid "HDMI"
+msgstr "Pengaturan HDMI-CEC"
+
+#, fuzzy
 msgid "HDMI CEC setup"
 msgstr "Pengaturan HDMI-CEC"
 
@@ -5471,20 +5506,6 @@ msgstr ""
 #, fuzzy
 msgid "HDMI Recording"
 msgstr "Recording"
-
-#, fuzzy
-msgid "HDMI allow unsupported modes"
-msgstr "tidak didukung"
-
-msgid "HDMI audio source"
-msgstr ""
-
-#, fuzzy
-msgid "HDMI bypass EDID checking"
-msgstr "Lewati pemeriksaan HDMI EDID"
-
-msgid "HDMI use pre-emphasis"
-msgstr ""
 
 #, fuzzy
 msgid "HDMI-CEC"
@@ -9690,6 +9711,9 @@ msgstr "SNR:"
 msgid "SNR:"
 msgstr "SNR:"
 
+msgid "SPDIF"
+msgstr ""
+
 msgid "SRT file"
 msgstr ""
 
@@ -12424,9 +12448,6 @@ msgstr ""
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr ""
 
-msgid "This option allows to select video modes even if they are not reported as supported from HDMI-EDID."
-msgstr ""
-
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr ""
 
@@ -12496,11 +12517,18 @@ msgstr ""
 msgid "This option allows you to show the full screen path leading to the current screen."
 msgstr ""
 
+msgid "This option allows you to switch audio to bluetooth speakers."
+msgstr ""
+
 msgid "This option allows you to view the old and new settings side by side."
 msgstr ""
 
 msgid "This option can be useful for long HDMI cables."
 msgstr ""
+
+#, fuzzy
+msgid "This option configures the general audio delay for bluetooth speakers."
+msgstr "Atur penundaan audio umum pada jalur suara stereo."
 
 msgid "This option set the level of surpression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr ""
@@ -13251,6 +13279,9 @@ msgstr "Gunakan info EPG EIT ketika tersedia."
 msgid "Use FreeSat EPG information when it is available."
 msgstr "Gunakan info EPG FreeSat ketika tersedia."
 
+msgid "Use HDMI pre-emphasis"
+msgstr ""
+
 msgid "Use MHW EPG information when it is available."
 msgstr "Gunakan info EPG MHW ketika tersedia."
 
@@ -13628,7 +13659,7 @@ msgid "WLAN connection"
 msgstr "WLAN connection"
 
 #, fuzzy
-msgid "WMA pro downmix"
+msgid "WMA Pro downmix"
 msgstr "Downmix AAC"
 
 #, fuzzy
@@ -14053,6 +14084,9 @@ msgid "When nonzero, a recording will stop later than the ending time indicated 
 msgstr "Ketika bukan nol, rekaman akan dihentikan lebih lambat daripada waktu berhenti yang ditunjukkan oleh EPG."
 
 msgid "When receiver wakes from standby, it will command the TV to switch to the HDMI input the receiver is connected to."
+msgstr ""
+
+msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr ""
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
@@ -14847,7 +14881,13 @@ msgstr "terhubung"
 msgid "controlled by HDMI"
 msgstr ""
 
-msgid "convert to multi channel PCM"
+msgid "convert to AC3"
+msgstr ""
+
+msgid "convert to DTS"
+msgstr ""
+
+msgid "convert to multi-channel PCM"
 msgstr ""
 
 msgid "cooking"
@@ -15849,7 +15889,10 @@ msgstr ""
 msgid "until standby/restart"
 msgstr "until standby/restart"
 
-msgid "use best, controlled by HDMI"
+msgid "use HDMI cacenter"
+msgstr ""
+
+msgid "use best / controlled by HDMI"
 msgstr ""
 
 msgid "user defined"

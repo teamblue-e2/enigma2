@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-27 08:37+0200\n"
+"POT-Creation-Date: 2023-07-22 07:44+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: MCelliotG <mcelliotg@gmail.com>\n"
@@ -753,12 +753,12 @@ msgid "AAC downmix"
 msgstr "Μίξη AC3/DTS"
 
 #, fuzzy
-msgid "AAC plus downmix"
-msgstr "Μίξη AC3/DTS"
-
-#, fuzzy
 msgid "AAC transcoding"
 msgstr "Μετάφραση:"
+
+#, fuzzy
+msgid "AAC+ downmix"
+msgstr "Μίξη AC3/DTS"
 
 msgid "AC3"
 msgstr ""
@@ -768,8 +768,8 @@ msgid "AC3 downmix"
 msgstr "Μίξη AC3/DTS"
 
 #, fuzzy
-msgid "AC3 plus downmix"
-msgstr "Μίξη AC3/DTS"
+msgid "AC3 transcoding"
+msgstr "Μετάφραση:"
 
 msgid "ACQUIRING TSID/ONID"
 msgstr ""
@@ -1109,6 +1109,10 @@ msgstr "Να επιτρέπεται η εξίσωση υποτίτλων και 
 msgid "Allow subtitles for hearing impaired"
 msgstr "Να επιτρέπονται υπότιτλοι για άτομα με προβλήματα ακοής"
 
+#, fuzzy
+msgid "Allow unsupported modes"
+msgstr "δεν υποστηρίζεται"
+
 msgid "Allows the TV remote to be used to control the receiver."
 msgstr ""
 
@@ -1412,6 +1416,10 @@ msgstr "Λήψη προσθέτων"
 #, fuzzy
 msgid "Audio settings"
 msgstr "Επεξεργασία ρυθμίσεων"
+
+#, fuzzy
+msgid "Audio volume step size"
+msgstr "Πλήκτρα προώθησης ήχου"
 
 #, fuzzy
 msgid "Australia"
@@ -1846,6 +1854,9 @@ msgstr "Από προεπιλογή, το SNR θα εμφανίζεται σε d
 msgid "By teamblue Image Team"
 msgstr ""
 
+msgid "Bypass HDMI EDID checking"
+msgstr ""
+
 #, fuzzy
 msgid "C"
 msgstr "Κ. "
@@ -2272,7 +2283,23 @@ msgid "Choose the option to correct invalid EPG data."
 msgstr ""
 
 #, fuzzy
-msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
+msgid "Choose whether AAC sound tracks should be transcoded."
+msgstr "Ρυθμίστε εάν οι πολυκάναλες φέρουσες ήχου πρέπει να υποβιβάζονται σε στέρεο."
+
+#, fuzzy
+msgid "Choose whether AC3 sound tracks should be transcoded."
+msgstr "Ρυθμίστε εάν οι πολυκάναλες φέρουσες ήχου πρέπει να υποβιβάζονται σε στέρεο."
+
+#, fuzzy
+msgid "Choose whether WMA Pro sound tracks should be downmixed."
+msgstr "Ρυθμίστε εάν οι πολυκάναλες φέρουσες ήχου πρέπει να υποβιβάζονται σε στέρεο."
+
+#, fuzzy
+msgid "Choose whether multi channel DTS-HD(HR/MA) sound tracks should be downmixed or transcoded."
+msgstr "Ρυθμίστε εάν οι πολυκάναλες φέρουσες ήχου πρέπει να υποβιβάζονται σε στέρεο."
+
+#, fuzzy
+msgid "Choose whether multi channel aac+ sound tracks should be downmixed to stereo."
 msgstr "Ρυθμίστε εάν οι πολυκάναλες φέρουσες ήχου πρέπει να υποβιβάζονται σε στέρεο."
 
 msgid "Choose whether to scan a single transponder, one satellite or multiple satellites."
@@ -2618,6 +2645,10 @@ msgstr "Ρύθμιση γενικής καθυστέρησης των καναλ
 msgid "Configure the general audio delay of stereo sound tracks."
 msgstr "Ρύθμιση γενικής καθυστέρησης των στερεοφωνικών καναλιών ήχου."
 
+#, fuzzy
+msgid "Configure the general audio volume step size (limit 1-10)."
+msgstr "Ρύθμιση γενικής καθυστέρησης των στερεοφωνικών καναλιών ήχου."
+
 msgid "Configure the hard disk drive to go to standby after the specified idle time."
 msgstr "Ρυθμίστε το σκληρό δίσκο να μεταβαίνει σε αναμονή έπειτα από το καθορισμένο χρόνο αδράνειας."
 
@@ -2748,18 +2779,6 @@ msgstr "Ρυθμίζει ποιος τύπος σύνδεσης εξόδου ε�
 
 msgid "Configure whether (and for how long) a second infobar will be shown when OK is pressed twice. The second infobar contains additional information about the current channel."
 msgstr "Ρυθμίστε εάν (και για πόσο χρονικό διάστημα) η δεύτερη μπάρα πληροφοριών θα εμφανιστεί όταν πατηθεί το OK δύο φορές. Η δεύτερη μπάρα πληροφοριών περιέχει πρόσθετες πληροφορίες σχετικά με το τρέχον κανάλι."
-
-#, fuzzy
-msgid "Configure whether AAC sound tracks should be transcoded."
-msgstr "Ρυθμίστε εάν οι πολυκάναλες φέρουσες ήχου πρέπει να υποβιβάζονται σε στέρεο."
-
-#, fuzzy
-msgid "Configure whether DTS-HD channel sound tracks should be downmixed or transcoded."
-msgstr "Ρυθμίστε εάν οι πολυκάναλες φέρουσες ήχου πρέπει να υποβιβάζονται σε στέρεο."
-
-#, fuzzy
-msgid "Configure whether WMA pro channel sound tracks should be downmixed or transcoded."
-msgstr "Ρυθμίστε εάν οι πολυκάναλες φέρουσες ήχου πρέπει να υποβιβάζονται σε στέρεο."
 
 #, fuzzy
 msgid "Configure whether a simple second infobar will be shown instead of the regular one."
@@ -3148,6 +3167,9 @@ msgstr "Τσέχικα"
 msgid "D"
 msgstr "3"
 
+msgid "DAC"
+msgstr ""
+
 msgid "DHCP"
 msgstr "DHCP"
 
@@ -3168,11 +3190,11 @@ msgid "DTS"
 msgstr ""
 
 #, fuzzy
-msgid "DTS HD downmix"
+msgid "DTS downmix"
 msgstr "Μίξη AC3/DTS"
 
 #, fuzzy
-msgid "DTS downmix"
+msgid "DTS-HD(HR/MA) downmix"
 msgstr "Μίξη AC3/DTS"
 
 msgid "DUAL LAYER DVD"
@@ -4219,6 +4241,10 @@ msgstr "Ενεργοποίηση της αυτόματης γρήγορης αν
 #, fuzzy, python-format
 msgid "Enable auto fastscan for %s"
 msgstr "Ενεργοποίηση της αυτόματης γρήγορης ανίχνευσης"
+
+#, fuzzy
+msgid "Enable bluetooth audio"
+msgstr "ενεργοποίηση επεξεργασίας μπουκέτων"
 
 #, fuzzy
 msgid "Enable bouquet edit"
@@ -5305,6 +5331,10 @@ msgstr "Γενική καθυστέρηση AC3"
 msgid "General PCM delay"
 msgstr "Γενική καθυστέρηση PCM"
 
+#, fuzzy
+msgid "General bluetooth audio delay"
+msgstr "Γενική καθυστέρηση AC3"
+
 msgid "Generator"
 msgstr ""
 
@@ -5504,6 +5534,10 @@ msgid "HDD Info"
 msgstr "Πληροφορίες"
 
 #, fuzzy
+msgid "HDMI"
+msgstr "Ρύθμιση HDMI-CEC"
+
+#, fuzzy
 msgid "HDMI CEC setup"
 msgstr "Ρύθμιση HDMI-CEC"
 
@@ -5525,19 +5559,6 @@ msgstr ""
 #, fuzzy
 msgid "HDMI Recording"
 msgstr "Εγγραφή..."
-
-msgid "HDMI allow unsupported modes"
-msgstr ""
-
-#, fuzzy
-msgid "HDMI audio source"
-msgstr "Φορμά χρώματος"
-
-msgid "HDMI bypass EDID checking"
-msgstr ""
-
-msgid "HDMI use pre-emphasis"
-msgstr ""
 
 #, fuzzy
 msgid "HDMI-CEC"
@@ -9829,6 +9850,9 @@ msgstr "SNR:"
 msgid "SNR:"
 msgstr "SNR:"
 
+msgid "SPDIF"
+msgstr ""
+
 #, fuzzy
 msgid "SRT file"
 msgstr "%d αρχείο"
@@ -12629,9 +12653,6 @@ msgstr ""
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr ""
 
-msgid "This option allows to select video modes even if they are not reported as supported from HDMI-EDID."
-msgstr ""
-
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr ""
 
@@ -12701,11 +12722,18 @@ msgstr ""
 msgid "This option allows you to show the full screen path leading to the current screen."
 msgstr ""
 
+msgid "This option allows you to switch audio to bluetooth speakers."
+msgstr ""
+
 msgid "This option allows you to view the old and new settings side by side."
 msgstr ""
 
 msgid "This option can be useful for long HDMI cables."
 msgstr ""
+
+#, fuzzy
+msgid "This option configures the general audio delay for bluetooth speakers."
+msgstr "Ρύθμιση γενικής καθυστέρησης των στερεοφωνικών καναλιών ήχου."
 
 msgid "This option set the level of surpression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr ""
@@ -13463,6 +13491,9 @@ msgstr "Χρήση πληροφοριών EIT EPG όταν είναι διαθέ
 msgid "Use FreeSat EPG information when it is available."
 msgstr "Χρήση πληροφοριών FreeSat EPG όταν είναι διαθέσιμες."
 
+msgid "Use HDMI pre-emphasis"
+msgstr ""
+
 msgid "Use MHW EPG information when it is available."
 msgstr "Χρήση πληροφοριών MHW όταν είναι διαθέσιμες."
 
@@ -13847,7 +13878,7 @@ msgid "WLAN connection"
 msgstr "Σύνδεση WLAN"
 
 #, fuzzy
-msgid "WMA pro downmix"
+msgid "WMA Pro downmix"
 msgstr "Μίξη AC3/DTS"
 
 #, fuzzy
@@ -14277,6 +14308,9 @@ msgid "When nonzero, a recording will stop later than the ending time indicated 
 msgstr "Όταν δεν είναι μηδέν, μία εγγραφή θα σταματά μετά την ώρα που αναγράφεται στο EPG."
 
 msgid "When receiver wakes from standby, it will command the TV to switch to the HDMI input the receiver is connected to."
+msgstr ""
+
+msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr ""
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
@@ -15055,8 +15089,14 @@ msgstr "συνδεδεμένο"
 msgid "controlled by HDMI"
 msgstr ""
 
+msgid "convert to AC3"
+msgstr ""
+
+msgid "convert to DTS"
+msgstr ""
+
 #, fuzzy
-msgid "convert to multi channel PCM"
+msgid "convert to multi-channel PCM"
 msgstr "Εμφάνιση EPG πολλαπλών καναλιών"
 
 msgid "cooking"
@@ -16071,7 +16111,10 @@ msgstr "Ενεργοποίηση"
 msgid "until standby/restart"
 msgstr "μέχρι την αναμονή/επανεκκίνηση"
 
-msgid "use best, controlled by HDMI"
+msgid "use HDMI cacenter"
+msgstr ""
+
+msgid "use best / controlled by HDMI"
 msgstr ""
 
 msgid "user defined"
