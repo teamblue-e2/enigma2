@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-27 08:37+0200\n"
+"POT-Creation-Date: 2023-07-22 07:44+0200\n"
 "PO-Revision-Date: 2019-02-13 20:52+0200\n"
 "Last-Translator: jamu\n"
 "Language-Team: BoxFreak/jamu\n"
@@ -814,13 +814,13 @@ msgstr "AC3 muunnos stereoksi"
 
 #
 #, fuzzy
-msgid "AAC plus downmix"
-msgstr "AC3 muunnos stereoksi"
+msgid "AAC transcoding"
+msgstr "Käännös:"
 
 #
 #, fuzzy
-msgid "AAC transcoding"
-msgstr "Käännös:"
+msgid "AAC+ downmix"
+msgstr "AC3 muunnos stereoksi"
 
 msgid "AC3"
 msgstr ""
@@ -832,8 +832,8 @@ msgstr "AC3 muunnos stereoksi"
 
 #
 #, fuzzy
-msgid "AC3 plus downmix"
-msgstr "AC3 muunnos stereoksi"
+msgid "AC3 transcoding"
+msgstr "Käännös:"
 
 msgid "ACQUIRING TSID/ONID"
 msgstr ""
@@ -1235,6 +1235,10 @@ msgstr "Salli tekstityskielen vastata äänivalintaa"
 msgid "Allow subtitles for hearing impaired"
 msgstr "Salli kuulovammaisten tekstitys"
 
+#, fuzzy
+msgid "Allow unsupported modes"
+msgstr "ei tuettu"
+
 msgid "Allows the TV remote to be used to control the receiver."
 msgstr ""
 
@@ -1576,6 +1580,10 @@ msgstr "Lataa lisäosia"
 #, fuzzy
 msgid "Audio settings"
 msgstr "Muokkaa asetuksia"
+
+#, fuzzy
+msgid "Audio volume step size"
+msgstr "Välitä äänenvoimakkuusnäppäimet"
 
 #
 #, fuzzy
@@ -2065,6 +2073,9 @@ msgstr "Oletuksena SNR näytetään dB:nä (jos viritin tukee tätä). Tämä as
 msgid "By teamblue Image Team"
 msgstr ""
 
+msgid "Bypass HDMI EDID checking"
+msgstr ""
+
 #, fuzzy
 msgid "C"
 msgstr "C"
@@ -2532,7 +2543,23 @@ msgid "Choose the option to correct invalid EPG data."
 msgstr ""
 
 #, fuzzy
-msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
+msgid "Choose whether AAC sound tracks should be transcoded."
+msgstr "Määrittää jos haluat että monikanavaääni miksataan stereoääneksi."
+
+#, fuzzy
+msgid "Choose whether AC3 sound tracks should be transcoded."
+msgstr "Määrittää jos haluat että monikanavaääni miksataan stereoääneksi."
+
+#, fuzzy
+msgid "Choose whether WMA Pro sound tracks should be downmixed."
+msgstr "Määrittää jos haluat että monikanavaääni miksataan stereoääneksi."
+
+#, fuzzy
+msgid "Choose whether multi channel DTS-HD(HR/MA) sound tracks should be downmixed or transcoded."
+msgstr "Määrittää jos haluat että monikanavaääni miksataan stereoääneksi."
+
+#, fuzzy
+msgid "Choose whether multi channel aac+ sound tracks should be downmixed to stereo."
 msgstr "Määrittää jos haluat että monikanavaääni miksataan stereoääneksi."
 
 msgid "Choose whether to scan a single transponder, one satellite or multiple satellites."
@@ -2919,6 +2946,10 @@ msgstr "Määrittää yleisen äänen viiveen Dolby Digital ääniraidoille."
 msgid "Configure the general audio delay of stereo sound tracks."
 msgstr "Määrittää yleisen äänen viiveen stereo ääniraidoille."
 
+#, fuzzy
+msgid "Configure the general audio volume step size (limit 1-10)."
+msgstr "Määrittää yleisen äänen viiveen stereo ääniraidoille."
+
 msgid "Configure the hard disk drive to go to standby after the specified idle time."
 msgstr "Määrittää kovalevyn sammutuksen asetetun toimettomuusajan jälkeen."
 
@@ -3054,18 +3085,6 @@ msgstr "Määrittelee mitä videolähtöä käytetään."
 
 msgid "Configure whether (and for how long) a second infobar will be shown when OK is pressed twice. The second infobar contains additional information about the current channel."
 msgstr "Määrittää josko (ja kuinka kauan) toinen tietopalkki näytetään kun OK-näppäintä painetaan kahdesti. Toinen tietopalkki sisältää lisätietoja valitusta kanavasta."
-
-#, fuzzy
-msgid "Configure whether AAC sound tracks should be transcoded."
-msgstr "Määrittää jos haluat että monikanavaääni miksataan stereoääneksi."
-
-#, fuzzy
-msgid "Configure whether DTS-HD channel sound tracks should be downmixed or transcoded."
-msgstr "Määrittää jos haluat että monikanavaääni miksataan stereoääneksi."
-
-#, fuzzy
-msgid "Configure whether WMA pro channel sound tracks should be downmixed or transcoded."
-msgstr "Määrittää jos haluat että monikanavaääni miksataan stereoääneksi."
 
 #, fuzzy
 msgid "Configure whether a simple second infobar will be shown instead of the regular one."
@@ -3502,6 +3521,9 @@ msgstr "Tšekki"
 msgid "D"
 msgstr "3"
 
+msgid "DAC"
+msgstr ""
+
 msgid "DHCP"
 msgstr "DCHP"
 
@@ -3522,11 +3544,11 @@ msgstr "Normaali"
 msgid "DTS"
 msgstr ""
 
-#, fuzzy
-msgid "DTS HD downmix"
+msgid "DTS downmix"
 msgstr "DTS muunnos stereoksi"
 
-msgid "DTS downmix"
+#, fuzzy
+msgid "DTS-HD(HR/MA) downmix"
 msgstr "DTS muunnos stereoksi"
 
 msgid "DUAL LAYER DVD"
@@ -4709,6 +4731,11 @@ msgstr ""
 #, fuzzy, python-format
 msgid "Enable auto fastscan for %s"
 msgstr "Ota lapsilukko käyttöön"
+
+#
+#, fuzzy
+msgid "Enable bluetooth audio"
+msgstr "Kanavalistojen lisäys ja poisto"
 
 #
 #, fuzzy
@@ -5900,6 +5927,11 @@ msgstr "AC3-viive (ms)"
 msgid "General PCM delay"
 msgstr "PCM-viive (ms)"
 
+#
+#, fuzzy
+msgid "General bluetooth audio delay"
+msgstr "AC3-viive (ms)"
+
 msgid "Generator"
 msgstr ""
 
@@ -6114,6 +6146,9 @@ msgstr ""
 msgid "HDD Info"
 msgstr "Tietoja"
 
+msgid "HDMI"
+msgstr ""
+
 #
 #, fuzzy
 msgid "HDMI CEC setup"
@@ -6141,20 +6176,6 @@ msgstr ""
 #, fuzzy
 msgid "HDMI Recording"
 msgstr "Tallennus"
-
-msgid "HDMI allow unsupported modes"
-msgstr ""
-
-#
-#, fuzzy
-msgid "HDMI audio source"
-msgstr "Videolähtö (TV-SCART)"
-
-msgid "HDMI bypass EDID checking"
-msgstr ""
-
-msgid "HDMI use pre-emphasis"
-msgstr ""
 
 msgid "HDMI-CEC"
 msgstr ""
@@ -11038,6 +11059,9 @@ msgstr "SNR:"
 msgid "SNR:"
 msgstr "SNR:"
 
+msgid "SPDIF"
+msgstr ""
+
 #, fuzzy
 msgid "SRT file"
 msgstr "%d tiedosto"
@@ -14192,9 +14216,6 @@ msgstr ""
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr ""
 
-msgid "This option allows to select video modes even if they are not reported as supported from HDMI-EDID."
-msgstr ""
-
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr ""
 
@@ -14264,11 +14285,18 @@ msgstr ""
 msgid "This option allows you to show the full screen path leading to the current screen."
 msgstr ""
 
+msgid "This option allows you to switch audio to bluetooth speakers."
+msgstr ""
+
 msgid "This option allows you to view the old and new settings side by side."
 msgstr ""
 
 msgid "This option can be useful for long HDMI cables."
 msgstr ""
+
+#, fuzzy
+msgid "This option configures the general audio delay for bluetooth speakers."
+msgstr "Määrittää yleisen äänen viiveen stereo ääniraidoille."
 
 msgid "This option set the level of surpression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr ""
@@ -15118,6 +15146,9 @@ msgstr "Käytä EIT ohjelmaoppaan tietoja, milloin saatavilla."
 msgid "Use FreeSat EPG information when it is available."
 msgstr "Käytä FreeSat ohjelmaoppaan tietoja, milloin saatavilla."
 
+msgid "Use HDMI pre-emphasis"
+msgstr ""
+
 msgid "Use MHW EPG information when it is available."
 msgstr "Käytä MHW ohjelmaoppaan tietoja, milloin saatavilla."
 
@@ -15570,7 +15601,7 @@ msgstr "WLAN-yhteys"
 
 #
 #, fuzzy
-msgid "WMA pro downmix"
+msgid "WMA Pro downmix"
 msgstr "AC3 muunnos stereoksi"
 
 #
@@ -16026,6 +16057,9 @@ msgid "When nonzero, a recording will stop later than the ending time indicated 
 msgstr "Kun arvo ei ole nolla, tallennus päättyy myöhemmin kuin ohjelmaoppaassa oleva lopetusaika."
 
 msgid "When receiver wakes from standby, it will command the TV to switch to the HDMI input the receiver is connected to."
+msgstr ""
+
+msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr ""
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
@@ -16881,8 +16915,14 @@ msgstr "Kytketty"
 msgid "controlled by HDMI"
 msgstr ""
 
+msgid "convert to AC3"
+msgstr ""
+
+msgid "convert to DTS"
+msgstr ""
+
 #, fuzzy
-msgid "convert to multi channel PCM"
+msgid "convert to multi-channel PCM"
 msgstr "Näytä useamman kanavan ohjelmaopas"
 
 msgid "cooking"
@@ -18051,7 +18091,10 @@ msgstr "Ota käyttöön"
 msgid "until standby/restart"
 msgstr "valmiustilaan/uudelleenkäynnistykseen asti"
 
-msgid "use best, controlled by HDMI"
+msgid "use HDMI cacenter"
+msgstr ""
+
+msgid "use best / controlled by HDMI"
 msgstr ""
 
 #

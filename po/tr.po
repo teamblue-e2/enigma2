@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue (Apachi70)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-27 08:37+0200\n"
+"POT-Creation-Date: 2023-07-22 07:44+0200\n"
 "PO-Revision-Date: 2022-05-26 15:48+0200\n"
 "Last-Translator: Apachi70 <teamblue@online.de>\n"
 "Language-Team: teamblue@t-online.de(apachi70)\n"
@@ -739,11 +739,12 @@ msgstr ""
 msgid "AAC downmix"
 msgstr "AC3 downmix"
 
-msgid "AAC plus downmix"
-msgstr "AAC artı downmix"
-
 msgid "AAC transcoding"
 msgstr "AAC kod çevrimi"
+
+#, fuzzy
+msgid "AAC+ downmix"
+msgstr "AC3 downmix"
 
 msgid "AC3"
 msgstr "AC3"
@@ -751,8 +752,9 @@ msgstr "AC3"
 msgid "AC3 downmix"
 msgstr "AC3 downmix"
 
-msgid "AC3 plus downmix"
-msgstr "AC3 artı downmix"
+#, fuzzy
+msgid "AC3 transcoding"
+msgstr "AAC kod çevrimi"
 
 msgid "ACQUIRING TSID/ONID"
 msgstr "TSID / ONID GEREKLİ"
@@ -1060,6 +1062,10 @@ msgstr "Aynı ses dili için altyazı dili sağlar"
 msgid "Allow subtitles for hearing impaired"
 msgstr "İşitme engelliler için altyazı sağlar"
 
+#, fuzzy
+msgid "Allow unsupported modes"
+msgstr "HDMI desteklenmeyen modlara izin verir"
+
 msgid "Allows the TV remote to be used to control the receiver."
 msgstr "Alıcıyı kontrol etmek için TV uzaktan kumandasının kullanılmasına izin verir."
 
@@ -1348,6 +1354,10 @@ msgstr "Ses eklentileri"
 
 msgid "Audio settings"
 msgstr "Ses ayarları"
+
+#, fuzzy
+msgid "Audio volume step size"
+msgstr "Ses tuşları ileri"
 
 msgid "Australia"
 msgstr "Avustralya"
@@ -1747,6 +1757,10 @@ msgstr "Varsayılan olarak; SNR, dB olarak (Tuner tarafından destekleniyorsa) g
 
 msgid "By teamblue Image Team"
 msgstr "Teamblue Image Team tarafından"
+
+#, fuzzy
+msgid "Bypass HDMI EDID checking"
+msgstr "HDMI baypas EDID denetimi"
 
 msgid "C"
 msgstr "C"
@@ -2178,8 +2192,25 @@ msgstr "Kilitlenme ve hata ayıklama günlükleri için konum seçin."
 msgid "Choose the option to correct invalid EPG data."
 msgstr "Kilitlenme ve hata ayıklama günlükleri için konum seçin."
 
-msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
-msgstr "Çok kanallı ses parçalarının PCM veya SPDIF'e dönüştürülüp dönüştürülmeyeceğini seçin."
+#, fuzzy
+msgid "Choose whether AAC sound tracks should be transcoded."
+msgstr "AAC ses yollarının kod dönüştürülüp dönüştürülmeyeceğini yapılandırın."
+
+#, fuzzy
+msgid "Choose whether AC3 sound tracks should be transcoded."
+msgstr "AAC ses yollarının kod dönüştürülüp dönüştürülmeyeceğini yapılandırın."
+
+#, fuzzy
+msgid "Choose whether WMA Pro sound tracks should be downmixed."
+msgstr "WMA pro kanalı ses parçalarının downmixed veya transcoded olup olmadığını yapılandırın."
+
+#, fuzzy
+msgid "Choose whether multi channel DTS-HD(HR/MA) sound tracks should be downmixed or transcoded."
+msgstr "DTS-HD kanal ses yollarının downmix veya transcoded olup olmadığını yapılandırın."
+
+#, fuzzy
+msgid "Choose whether multi channel aac+ sound tracks should be downmixed to stereo."
+msgstr "Çok kanallı ses parçalarını stereo downmix olup olmayacağını yapılandırın."
 
 msgid "Choose whether to scan a single transponder, one satellite or multiple satellites."
 msgstr "Tek bir transponder, bir uydu veya birden fazla uydunun taranmasını seçin."
@@ -2501,6 +2532,10 @@ msgstr "Dolby Digital ses parçalarının genel ses gecikmesini yapılandırın.
 msgid "Configure the general audio delay of stereo sound tracks."
 msgstr "Stereo ses yollarının genel ses gecikmesini yapılandırın."
 
+#, fuzzy
+msgid "Configure the general audio volume step size (limit 1-10)."
+msgstr "Stereo ses yollarının genel ses gecikmesini yapılandırın."
+
 msgid "Configure the hard disk drive to go to standby after the specified idle time."
 msgstr "Belirtilen boşta kalma süresinden sonra bekleme moduna geçmek için sabit disk sürücüsünü yapılandırın."
 
@@ -2629,15 +2664,6 @@ msgstr "Kullanılacak video çıkışını yapılandırın."
 
 msgid "Configure whether (and for how long) a second infobar will be shown when OK is pressed twice. The second infobar contains additional information about the current channel."
 msgstr "OK iki kez basıldığında, ikinci bilgi çubuğu (ne kadar süre için) gösterilir . Ikinci bilgi çubuğu mevcut kanal hakkında ek bilgi içerir."
-
-msgid "Configure whether AAC sound tracks should be transcoded."
-msgstr "AAC ses yollarının kod dönüştürülüp dönüştürülmeyeceğini yapılandırın."
-
-msgid "Configure whether DTS-HD channel sound tracks should be downmixed or transcoded."
-msgstr "DTS-HD kanal ses yollarının downmix veya transcoded olup olmadığını yapılandırın."
-
-msgid "Configure whether WMA pro channel sound tracks should be downmixed or transcoded."
-msgstr "WMA pro kanalı ses parçalarının downmixed veya transcoded olup olmadığını yapılandırın."
 
 msgid "Configure whether a simple second infobar will be shown instead of the regular one."
 msgstr "Normal olanın yerine basit ikinci bir bilgi çubuğunun gösterilip gösterilmeyeceğini yapılandırın."
@@ -3004,6 +3030,10 @@ msgstr "Çekya"
 msgid "D"
 msgstr "D"
 
+#, fuzzy
+msgid "DAC"
+msgstr "AC3"
+
 msgid "DHCP"
 msgstr "DHCP"
 
@@ -3022,11 +3052,12 @@ msgstr "DMM normal"
 msgid "DTS"
 msgstr "DTS"
 
-msgid "DTS HD downmix"
-msgstr "DTS HD downmix"
-
 msgid "DTS downmix"
 msgstr "DTS downmix"
+
+#, fuzzy
+msgid "DTS-HD(HR/MA) downmix"
+msgstr "DTS HD downmix"
 
 msgid "DUAL LAYER DVD"
 msgstr "ÇIFT KATMAN DVD"
@@ -3977,6 +4008,10 @@ msgstr "Otomatik hızlı tarama etkinleştir"
 #, python-format
 msgid "Enable auto fastscan for %s"
 msgstr "Otomatik hızlı tarama etkinleştir % s"
+
+#, fuzzy
+msgid "Enable bluetooth audio"
+msgstr "Buket düzenlemeyi etkinleştir"
 
 msgid "Enable bouquet edit"
 msgstr "Buket düzenlemeyi etkinleştir"
@@ -4994,6 +5029,10 @@ msgstr "Genel AC3 gecikmesi"
 msgid "General PCM delay"
 msgstr "Genel PCM gecikmesi"
 
+#, fuzzy
+msgid "General bluetooth audio delay"
+msgstr "Genel AC3 gecikmesi"
+
 msgid "Generator"
 msgstr "Oluşturucu"
 
@@ -5180,6 +5219,10 @@ msgstr "HD2400"
 msgid "HDD Info"
 msgstr "HDD Bilgisi"
 
+#, fuzzy
+msgid "HDMI"
+msgstr "HDMI-CEC"
+
 msgid "HDMI CEC setup"
 msgstr "HDMI CEC kurulumu"
 
@@ -5197,18 +5240,6 @@ msgstr "HDMI HDR Tipi"
 
 msgid "HDMI Recording"
 msgstr "HDMI Kaydı"
-
-msgid "HDMI allow unsupported modes"
-msgstr "HDMI desteklenmeyen modlara izin verir"
-
-msgid "HDMI audio source"
-msgstr "HDMI ses kaynağı"
-
-msgid "HDMI bypass EDID checking"
-msgstr "HDMI baypas EDID denetimi"
-
-msgid "HDMI use pre-emphasis"
-msgstr "HDMI kullanımı ön vurgu"
 
 msgid "HDMI-CEC"
 msgstr "HDMI-CEC"
@@ -9141,6 +9172,9 @@ msgstr "SNR"
 msgid "SNR:"
 msgstr "SNR:"
 
+msgid "SPDIF"
+msgstr ""
+
 msgid "SRT file"
 msgstr "SRT dosyası"
 
@@ -11743,9 +11777,6 @@ msgstr "Bu geçerli değil ONID/TSID"
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr "Bu seçenek resimdeki blok gürültüyü azaltmak için izin verir. Açıkçası bu resim netlik ücrete tabidir."
 
-msgid "This option allows to select video modes even if they are not reported as supported from HDMI-EDID."
-msgstr "Bu seçenek, HDMI-EDID'den desteklendiği bildirilmese bile video modlarının seçilmesine izin verir."
-
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Bu seçenek resmin dinamik kontrast seviyesini ayarlamanızı sağlar."
 
@@ -11815,11 +11846,19 @@ msgstr "Bu seçenek, menü ve / veya eklenti numarası hızlı bağlantıların�
 msgid "This option allows you to show the full screen path leading to the current screen."
 msgstr "Bu seçenek, mevcut ekrana giden tam ekran yolunu göstermenizi sağlar."
 
+#, fuzzy
+msgid "This option allows you to switch audio to bluetooth speakers."
+msgstr "Bu seçenek, otomatik ses seviyesini ayarlamanıza izin verir."
+
 msgid "This option allows you to view the old and new settings side by side."
 msgstr "Bu seçenek, yan eski ve yeni ayarlar yan görüntülemenize olanak sağlar."
 
 msgid "This option can be useful for long HDMI cables."
 msgstr "Bu seçenek uzun HDMI kabloları için yararlı olabilir."
+
+#, fuzzy
+msgid "This option configures the general audio delay for bluetooth speakers."
+msgstr "Stereo ses yollarının genel ses gecikmesini yapılandırın."
 
 msgid "This option set the level of surpression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr "Bu seçenek, sivrisinek gürültüsünün bastırma seviyesini ayarlar (Sivrisinek Gürültü, güçlü bir sıkıştırma sonucu rastgele örtüşür). Açıkçası bu resim detaylarının maliyetine gider."
@@ -12541,6 +12580,10 @@ msgstr "Uygun olduğunda EPG EIT bilgilerini kullan."
 msgid "Use FreeSat EPG information when it is available."
 msgstr "Uygun olduğunda FreeSat EPG bilgilerini kullan."
 
+#, fuzzy
+msgid "Use HDMI pre-emphasis"
+msgstr "HDMI kullanımı ön vurgu"
+
 msgid "Use MHW EPG information when it is available."
 msgstr "Uygun olduğunda MHW EPG bilgilerini kullan."
 
@@ -12902,7 +12945,8 @@ msgstr "UYARI!"
 msgid "WLAN connection"
 msgstr "WLAN bağlantısı"
 
-msgid "WMA pro downmix"
+#, fuzzy
+msgid "WMA Pro downmix"
 msgstr "WMA pro downmix"
 
 msgid "WOL standby"
@@ -13316,6 +13360,10 @@ msgstr "Boş değilse, kayıt EPG zamanından önce tamamlanır."
 
 msgid "When receiver wakes from standby, it will command the TV to switch to the HDMI input the receiver is connected to."
 msgstr "Alıcı bekleme modundan çıktığında, TV'ye alıcının bağlı olduğu HDMI girişine geçmesi için komut verir."
+
+#, fuzzy
+msgid "When selected this allows video modes to be selected even if they are not reported as supported."
+msgstr "Bu seçenek, HDMI-EDID'den desteklendiği bildirilmese bile video modlarının seçilmesine izin verir."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "16:9 görüntü oranı varsa, resmi büyütme/uzatma için seçebilirsiniz."
@@ -14105,7 +14153,14 @@ msgstr "bağlı"
 msgid "controlled by HDMI"
 msgstr "hdmi tarafından kontrol edilen"
 
-msgid "convert to multi channel PCM"
+msgid "convert to AC3"
+msgstr ""
+
+msgid "convert to DTS"
+msgstr ""
+
+#, fuzzy
+msgid "convert to multi-channel PCM"
 msgstr "multi kanallı PCM'ye dönüştür"
 
 msgid "cooking"
@@ -15057,7 +15112,11 @@ msgstr "test edilemeyen"
 msgid "until standby/restart"
 msgstr "h.bekle/y.başlatana kadar"
 
-msgid "use best, controlled by HDMI"
+msgid "use HDMI cacenter"
+msgstr ""
+
+#, fuzzy
+msgid "use best / controlled by HDMI"
 msgstr "en iyi HDMI ile kullanın"
 
 msgid "user defined"

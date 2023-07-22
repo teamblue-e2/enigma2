@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-27 08:37+0200\n"
+"POT-Creation-Date: 2023-07-22 07:44+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: ims <ims21@users.sourceforge.net>\n"
 "Language-Team: PLi <ims@openpli.org>\n"
@@ -844,13 +844,13 @@ msgstr ""
 msgid "AAC downmix"
 msgstr ""
 
-msgid "AAC plus downmix"
-msgstr ""
-
 #
 #, fuzzy
 msgid "AAC transcoding"
 msgstr "Překlad:"
+
+msgid "AAC+ downmix"
+msgstr ""
 
 msgid "AC3"
 msgstr ""
@@ -858,8 +858,10 @@ msgstr ""
 msgid "AC3 downmix"
 msgstr ""
 
-msgid "AC3 plus downmix"
-msgstr ""
+#
+#, fuzzy
+msgid "AC3 transcoding"
+msgstr "Překlad:"
 
 msgid "ACQUIRING TSID/ONID"
 msgstr ""
@@ -1264,6 +1266,10 @@ msgstr "Titulky shodné se zvukem"
 msgid "Allow subtitles for hearing impaired"
 msgstr "Povolit titulky pro sluchově postižené"
 
+#, fuzzy
+msgid "Allow unsupported modes"
+msgstr "nepodporováno"
+
 msgid "Allows the TV remote to be used to control the receiver."
 msgstr ""
 
@@ -1613,6 +1619,10 @@ msgstr "Stáhnout pluginy"
 #, fuzzy
 msgid "Audio settings"
 msgstr "upravit nastavení"
+
+#, fuzzy
+msgid "Audio volume step size"
+msgstr "Předávat hlasitost"
 
 #
 #, fuzzy
@@ -2108,6 +2118,9 @@ msgstr "Standardně ( jestliže to podporuje tuner) je SNR zobrazován v dB. Tot
 msgid "By teamblue Image Team"
 msgstr ""
 
+msgid "Bypass HDMI EDID checking"
+msgstr ""
+
 #, fuzzy
 msgid "C"
 msgstr "K"
@@ -2569,7 +2582,23 @@ msgid "Choose the option to correct invalid EPG data."
 msgstr ""
 
 #, fuzzy
-msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
+msgid "Choose whether AAC sound tracks should be transcoded."
+msgstr "Nastavuje, zda bude vícekanálový zvuk přepočítáván na stereo."
+
+#, fuzzy
+msgid "Choose whether AC3 sound tracks should be transcoded."
+msgstr "Nastavuje, zda bude vícekanálový zvuk přepočítáván na stereo."
+
+#, fuzzy
+msgid "Choose whether WMA Pro sound tracks should be downmixed."
+msgstr "Nastavuje, zda bude vícekanálový zvuk přepočítáván na stereo."
+
+#, fuzzy
+msgid "Choose whether multi channel DTS-HD(HR/MA) sound tracks should be downmixed or transcoded."
+msgstr "Nastavuje, zda bude vícekanálový zvuk přepočítáván na stereo."
+
+#, fuzzy
+msgid "Choose whether multi channel aac+ sound tracks should be downmixed to stereo."
 msgstr "Nastavuje, zda bude vícekanálový zvuk přepočítáván na stereo."
 
 msgid "Choose whether to scan a single transponder, one satellite or multiple satellites."
@@ -2963,6 +2992,10 @@ msgstr "Nastavuje hlavní zpoždění Dolby Digital zvukových stop."
 msgid "Configure the general audio delay of stereo sound tracks."
 msgstr "Nastavuje hlavní zpoždění stereo zvukových stop."
 
+#, fuzzy
+msgid "Configure the general audio volume step size (limit 1-10)."
+msgstr "Nastavuje hlavní zpoždění stereo zvukových stop."
+
 msgid "Configure the hard disk drive to go to standby after the specified idle time."
 msgstr "Nastavuje čas nečinnosti, po kterém přejde pevný disk do úsporného režimu."
 
@@ -3099,18 +3132,6 @@ msgstr "Nastavuje, který konektor video výstupu bude použit. "
 
 msgid "Configure whether (and for how long) a second infobar will be shown when OK is pressed twice. The second infobar contains additional information about the current channel."
 msgstr "Nastavuje, zda (a jak dlouho) bude zobrazován druhý infobar, jestliže je dvakrát stisknuto tlačítko OK. Druhý infobar obsahuje další informace o aktuálním kanálu."
-
-#, fuzzy
-msgid "Configure whether AAC sound tracks should be transcoded."
-msgstr "Nastavuje, zda bude vícekanálový zvuk přepočítáván na stereo."
-
-#, fuzzy
-msgid "Configure whether DTS-HD channel sound tracks should be downmixed or transcoded."
-msgstr "Nastavuje, zda bude vícekanálový zvuk přepočítáván na stereo."
-
-#, fuzzy
-msgid "Configure whether WMA pro channel sound tracks should be downmixed or transcoded."
-msgstr "Nastavuje, zda bude vícekanálový zvuk přepočítáván na stereo."
 
 #, fuzzy
 msgid "Configure whether a simple second infobar will be shown instead of the regular one."
@@ -3553,6 +3574,9 @@ msgstr "Česky"
 msgid "D"
 msgstr "3"
 
+msgid "DAC"
+msgstr ""
+
 #
 msgid "DHCP"
 msgstr "DHCP"
@@ -3574,10 +3598,10 @@ msgstr "normální"
 msgid "DTS"
 msgstr ""
 
-msgid "DTS HD downmix"
+msgid "DTS downmix"
 msgstr ""
 
-msgid "DTS downmix"
+msgid "DTS-HD(HR/MA) downmix"
 msgstr ""
 
 #
@@ -4794,6 +4818,11 @@ msgstr "Povolit automatický Fast scan"
 #, fuzzy, python-format
 msgid "Enable auto fastscan for %s"
 msgstr "Povolit automatický Fast scan"
+
+#
+#, fuzzy
+msgid "Enable bluetooth audio"
+msgstr "povolit úpravu přehledu"
 
 #
 #, fuzzy
@@ -6033,6 +6062,11 @@ msgstr "Hlavní AC3 zpoždění"
 msgid "General PCM delay"
 msgstr "Hlavní PCM zpoždění"
 
+#
+#, fuzzy
+msgid "General bluetooth audio delay"
+msgstr "Hlavní AC3 zpoždění"
+
 msgid "Generator"
 msgstr ""
 
@@ -6248,6 +6282,11 @@ msgstr "Informace"
 
 #
 #, fuzzy
+msgid "HDMI"
+msgstr "Nastavení HDMI-CEC"
+
+#
+#, fuzzy
 msgid "HDMI CEC setup"
 msgstr "Nastavení HDMI-CEC"
 
@@ -6273,20 +6312,6 @@ msgstr ""
 #, fuzzy
 msgid "HDMI Recording"
 msgstr "záznam"
-
-msgid "HDMI allow unsupported modes"
-msgstr ""
-
-#
-#, fuzzy
-msgid "HDMI audio source"
-msgstr "Formát barev"
-
-msgid "HDMI bypass EDID checking"
-msgstr ""
-
-msgid "HDMI use pre-emphasis"
-msgstr ""
 
 #
 #, fuzzy
@@ -11228,6 +11253,9 @@ msgstr "SNR:"
 msgid "SNR:"
 msgstr "SNR:"
 
+msgid "SPDIF"
+msgstr ""
+
 #, fuzzy
 msgid "SRT file"
 msgstr "%d soubor"
@@ -14367,9 +14395,6 @@ msgstr ""
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr ""
 
-msgid "This option allows to select video modes even if they are not reported as supported from HDMI-EDID."
-msgstr ""
-
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr ""
 
@@ -14439,11 +14464,18 @@ msgstr ""
 msgid "This option allows you to show the full screen path leading to the current screen."
 msgstr ""
 
+msgid "This option allows you to switch audio to bluetooth speakers."
+msgstr ""
+
 msgid "This option allows you to view the old and new settings side by side."
 msgstr ""
 
 msgid "This option can be useful for long HDMI cables."
 msgstr ""
+
+#, fuzzy
+msgid "This option configures the general audio delay for bluetooth speakers."
+msgstr "Nastavuje hlavní zpoždění stereo zvukových stop."
 
 msgid "This option set the level of surpression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr ""
@@ -15301,6 +15333,9 @@ msgstr "Používat EIT EPG informace, jestliže jsou dostupné."
 msgid "Use FreeSat EPG information when it is available."
 msgstr "Používat FreeSat EPG informace, jestliže jsou dostupné."
 
+msgid "Use HDMI pre-emphasis"
+msgstr ""
+
 msgid "Use MHW EPG information when it is available."
 msgstr "Používat MHW EPG informace, jestliže jsou dostupné."
 
@@ -15743,7 +15778,7 @@ msgstr ""
 msgid "WLAN connection"
 msgstr "WLAN připojení"
 
-msgid "WMA pro downmix"
+msgid "WMA Pro downmix"
 msgstr ""
 
 #
@@ -16195,6 +16230,9 @@ msgid "When nonzero, a recording will stop later than the ending time indicated 
 msgstr "Při nenulové hodnotě nahrávání skončí později, než je čas konce uvedený v EPG. "
 
 msgid "When receiver wakes from standby, it will command the TV to switch to the HDMI input the receiver is connected to."
+msgstr ""
+
+msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr ""
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
@@ -17060,8 +17098,14 @@ msgstr "připojeno"
 msgid "controlled by HDMI"
 msgstr ""
 
+msgid "convert to AC3"
+msgstr ""
+
+msgid "convert to DTS"
+msgstr ""
+
 #, fuzzy
-msgid "convert to multi channel PCM"
+msgid "convert to multi-channel PCM"
 msgstr "Zobrazovat vícekanálovou EPG"
 
 msgid "cooking"
@@ -18240,7 +18284,10 @@ msgstr "Povolit"
 msgid "until standby/restart"
 msgstr "do standby/restartu"
 
-msgid "use best, controlled by HDMI"
+msgid "use HDMI cacenter"
+msgstr ""
+
+msgid "use best / controlled by HDMI"
 msgstr ""
 
 #

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-27 08:37+0200\n"
+"POT-Creation-Date: 2023-07-22 07:44+0200\n"
 "PO-Revision-Date: 2010-04-08 18:13+0700\n"
 "Last-Translator: Tony - Thaidreambox\n"
 "Language-Team: Tony @ Thai Dreambox <tonyboyth@gmail.com>\n"
@@ -748,12 +748,12 @@ msgstr ""
 msgid "AAC downmix"
 msgstr ""
 
-msgid "AAC plus downmix"
-msgstr ""
-
 #, fuzzy
 msgid "AAC transcoding"
 msgstr "การแปล:"
+
+msgid "AAC+ downmix"
+msgstr ""
 
 msgid "AC3"
 msgstr ""
@@ -761,8 +761,9 @@ msgstr ""
 msgid "AC3 downmix"
 msgstr ""
 
-msgid "AC3 plus downmix"
-msgstr ""
+#, fuzzy
+msgid "AC3 transcoding"
+msgstr "การแปล:"
 
 msgid "ACQUIRING TSID/ONID"
 msgstr ""
@@ -1118,6 +1119,9 @@ msgstr ""
 msgid "Allow subtitles for hearing impaired"
 msgstr ""
 
+msgid "Allow unsupported modes"
+msgstr ""
+
 msgid "Allows the TV remote to be used to control the receiver."
 msgstr ""
 
@@ -1431,6 +1435,9 @@ msgstr "ดาวน์โหลด Plugins"
 #, fuzzy
 msgid "Audio settings"
 msgstr "แก้ไขการตั้งค่า"
+
+msgid "Audio volume step size"
+msgstr ""
 
 #, fuzzy
 msgid "Australia"
@@ -1861,6 +1868,9 @@ msgstr ""
 msgid "By teamblue Image Team"
 msgstr ""
 
+msgid "Bypass HDMI EDID checking"
+msgstr ""
+
 #, fuzzy
 msgid "C"
 msgstr "C"
@@ -2287,7 +2297,19 @@ msgstr ""
 msgid "Choose the option to correct invalid EPG data."
 msgstr ""
 
-msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
+msgid "Choose whether AAC sound tracks should be transcoded."
+msgstr ""
+
+msgid "Choose whether AC3 sound tracks should be transcoded."
+msgstr ""
+
+msgid "Choose whether WMA Pro sound tracks should be downmixed."
+msgstr ""
+
+msgid "Choose whether multi channel DTS-HD(HR/MA) sound tracks should be downmixed or transcoded."
+msgstr ""
+
+msgid "Choose whether multi channel aac+ sound tracks should be downmixed to stereo."
 msgstr ""
 
 msgid "Choose whether to scan a single transponder, one satellite or multiple satellites."
@@ -2634,6 +2656,9 @@ msgstr ""
 msgid "Configure the general audio delay of stereo sound tracks."
 msgstr ""
 
+msgid "Configure the general audio volume step size (limit 1-10)."
+msgstr ""
+
 msgid "Configure the hard disk drive to go to standby after the specified idle time."
 msgstr ""
 
@@ -2768,15 +2793,6 @@ msgid "Configure where epg.dat will be stored."
 msgstr ""
 
 msgid "Configure whether (and for how long) a second infobar will be shown when OK is pressed twice. The second infobar contains additional information about the current channel."
-msgstr ""
-
-msgid "Configure whether AAC sound tracks should be transcoded."
-msgstr ""
-
-msgid "Configure whether DTS-HD channel sound tracks should be downmixed or transcoded."
-msgstr ""
-
-msgid "Configure whether WMA pro channel sound tracks should be downmixed or transcoded."
 msgstr ""
 
 msgid "Configure whether a simple second infobar will be shown instead of the regular one."
@@ -3168,6 +3184,9 @@ msgstr "ภาษาเชค"
 msgid "D"
 msgstr "3"
 
+msgid "DAC"
+msgstr ""
+
 msgid "DHCP"
 msgstr "DHCP"
 
@@ -3188,10 +3207,10 @@ msgstr ""
 msgid "DTS"
 msgstr ""
 
-msgid "DTS HD downmix"
+msgid "DTS downmix"
 msgstr ""
 
-msgid "DTS downmix"
+msgid "DTS-HD(HR/MA) downmix"
 msgstr ""
 
 msgid "DUAL LAYER DVD"
@@ -4236,6 +4255,10 @@ msgstr ""
 #, fuzzy, python-format
 msgid "Enable auto fastscan for %s"
 msgstr "เปิดใช้ส่วนควบคุมอายุรับชม"
+
+#, fuzzy
+msgid "Enable bluetooth audio"
+msgstr "แก้ไขกลุ่มรายการ"
 
 #, fuzzy
 msgid "Enable bouquet edit"
@@ -5312,6 +5335,10 @@ msgstr "General AC3 Delay"
 msgid "General PCM delay"
 msgstr "General PCM Delay"
 
+#, fuzzy
+msgid "General bluetooth audio delay"
+msgstr "General AC3 Delay"
+
 msgid "Generator"
 msgstr ""
 
@@ -5516,6 +5543,9 @@ msgstr ""
 msgid "HDD Info"
 msgstr "ข้อมูล"
 
+msgid "HDMI"
+msgstr ""
+
 #, fuzzy
 msgid "HDMI CEC setup"
 msgstr "ตั้งค่า"
@@ -5538,19 +5568,6 @@ msgstr ""
 #, fuzzy
 msgid "HDMI Recording"
 msgstr "กำลังบันทึกรายการ"
-
-msgid "HDMI allow unsupported modes"
-msgstr ""
-
-#, fuzzy
-msgid "HDMI audio source"
-msgstr "ระบบสี"
-
-msgid "HDMI bypass EDID checking"
-msgstr ""
-
-msgid "HDMI use pre-emphasis"
-msgstr ""
 
 msgid "HDMI-CEC"
 msgstr ""
@@ -9852,6 +9869,9 @@ msgstr "SNR:"
 msgid "SNR:"
 msgstr "SNR:"
 
+msgid "SPDIF"
+msgstr ""
+
 msgid "SRT file"
 msgstr ""
 
@@ -12675,9 +12695,6 @@ msgstr ""
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr ""
 
-msgid "This option allows to select video modes even if they are not reported as supported from HDMI-EDID."
-msgstr ""
-
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr ""
 
@@ -12747,10 +12764,16 @@ msgstr ""
 msgid "This option allows you to show the full screen path leading to the current screen."
 msgstr ""
 
+msgid "This option allows you to switch audio to bluetooth speakers."
+msgstr ""
+
 msgid "This option allows you to view the old and new settings side by side."
 msgstr ""
 
 msgid "This option can be useful for long HDMI cables."
+msgstr ""
+
+msgid "This option configures the general audio delay for bluetooth speakers."
 msgstr ""
 
 msgid "This option set the level of surpression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
@@ -13511,6 +13534,9 @@ msgstr ""
 msgid "Use FreeSat EPG information when it is available."
 msgstr ""
 
+msgid "Use HDMI pre-emphasis"
+msgstr ""
+
 msgid "Use MHW EPG information when it is available."
 msgstr ""
 
@@ -13906,7 +13932,7 @@ msgstr ""
 msgid "WLAN connection"
 msgstr ""
 
-msgid "WMA pro downmix"
+msgid "WMA Pro downmix"
 msgstr ""
 
 #, fuzzy
@@ -14315,6 +14341,9 @@ msgid "When nonzero, a recording will stop later than the ending time indicated 
 msgstr ""
 
 msgid "When receiver wakes from standby, it will command the TV to switch to the HDMI input the receiver is connected to."
+msgstr ""
+
+msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr ""
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
@@ -15067,8 +15096,14 @@ msgstr "เชื่อมต่อแล้ว"
 msgid "controlled by HDMI"
 msgstr ""
 
+msgid "convert to AC3"
+msgstr ""
+
+msgid "convert to DTS"
+msgstr ""
+
 #, fuzzy
-msgid "convert to multi channel PCM"
+msgid "convert to multi-channel PCM"
 msgstr "ช่อง"
 
 msgid "cooking"
@@ -16072,7 +16107,10 @@ msgstr "เปิดใช้"
 msgid "until standby/restart"
 msgstr ""
 
-msgid "use best, controlled by HDMI"
+msgid "use HDMI cacenter"
+msgstr ""
+
+msgid "use best / controlled by HDMI"
 msgstr ""
 
 msgid "user defined"

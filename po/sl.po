@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-27 08:37+0200\n"
+"POT-Creation-Date: 2023-07-22 07:44+0200\n"
 "PO-Revision-Date: 2015-08-30 09:00+0200\n"
 "Last-Translator: Taykun345 <support@satnigmo.com>\n"
 "Language-Team: Satnigmo <support@satnigmo.com>\n"
@@ -863,13 +863,13 @@ msgstr "Pretvorba AC3/DTS zvoka v stereo"
 
 #
 #, fuzzy
-msgid "AAC plus downmix"
-msgstr "Pretvorba AC3/DTS zvoka v stereo"
+msgid "AAC transcoding"
+msgstr "Prevod:"
 
 #
 #, fuzzy
-msgid "AAC transcoding"
-msgstr "Prevod:"
+msgid "AAC+ downmix"
+msgstr "Pretvorba AC3/DTS zvoka v stereo"
 
 msgid "AC3"
 msgstr ""
@@ -881,8 +881,8 @@ msgstr "Pretvorba AC3/DTS zvoka v stereo"
 
 #
 #, fuzzy
-msgid "AC3 plus downmix"
-msgstr "Pretvorba AC3/DTS zvoka v stereo"
+msgid "AC3 transcoding"
+msgstr "Prevod:"
 
 msgid "ACQUIRING TSID/ONID"
 msgstr ""
@@ -1290,6 +1290,10 @@ msgstr "Podnapisi naj se ujemajo z zvočno sledjo"
 msgid "Allow subtitles for hearing impaired"
 msgstr "Dovoli podnapise za gluhe osebe"
 
+#, fuzzy
+msgid "Allow unsupported modes"
+msgstr "ni podprto"
+
 msgid "Allows the TV remote to be used to control the receiver."
 msgstr ""
 
@@ -1646,6 +1650,10 @@ msgstr "Prenos"
 #, fuzzy
 msgid "Audio settings"
 msgstr "Spreminjanje nastavitev"
+
+#, fuzzy
+msgid "Audio volume step size"
+msgstr "Pošlji naprej tipke za glasnosti"
 
 #
 #, fuzzy
@@ -2144,6 +2152,9 @@ msgstr "V osnovi je SNR vrednost prikazana v dB (če je to podprto). Ta nastavit
 msgid "By teamblue Image Team"
 msgstr ""
 
+msgid "Bypass HDMI EDID checking"
+msgstr ""
+
 #
 #, fuzzy
 msgid "C"
@@ -2613,7 +2624,23 @@ msgid "Choose the option to correct invalid EPG data."
 msgstr ""
 
 #, fuzzy
-msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
+msgid "Choose whether AAC sound tracks should be transcoded."
+msgstr "Nastavitev omogoča pretvorbo večkanalnega zvoka v stereo zvok. Priporočena nastavitev je \"Da\", sicer se lahko zgodi, da pri nekaterih TV kanalih zvok ne bo deloval."
+
+#, fuzzy
+msgid "Choose whether AC3 sound tracks should be transcoded."
+msgstr "Nastavitev omogoča pretvorbo večkanalnega zvoka v stereo zvok. Priporočena nastavitev je \"Da\", sicer se lahko zgodi, da pri nekaterih TV kanalih zvok ne bo deloval."
+
+#, fuzzy
+msgid "Choose whether WMA Pro sound tracks should be downmixed."
+msgstr "Nastavitev omogoča pretvorbo večkanalnega zvoka v stereo zvok. Priporočena nastavitev je \"Da\", sicer se lahko zgodi, da pri nekaterih TV kanalih zvok ne bo deloval."
+
+#, fuzzy
+msgid "Choose whether multi channel DTS-HD(HR/MA) sound tracks should be downmixed or transcoded."
+msgstr "Nastavitev omogoča pretvorbo večkanalnega zvoka v stereo zvok. Priporočena nastavitev je \"Da\", sicer se lahko zgodi, da pri nekaterih TV kanalih zvok ne bo deloval."
+
+#, fuzzy
+msgid "Choose whether multi channel aac+ sound tracks should be downmixed to stereo."
 msgstr "Nastavitev omogoča pretvorbo večkanalnega zvoka v stereo zvok. Priporočena nastavitev je \"Da\", sicer se lahko zgodi, da pri nekaterih TV kanalih zvok ne bo deloval."
 
 msgid "Choose whether to scan a single transponder, one satellite or multiple satellites."
@@ -3003,6 +3030,10 @@ msgstr "Določitev zamika zvoka pri Dolby Digital (AC3) zvočnih sledeh. Priporo
 msgid "Configure the general audio delay of stereo sound tracks."
 msgstr "Določitev zamika zvoka pri stereo zvočnih sledeh. Priporočena nastavitev je \"0\"."
 
+#, fuzzy
+msgid "Configure the general audio volume step size (limit 1-10)."
+msgstr "Določitev zamika zvoka pri stereo zvočnih sledeh. Priporočena nastavitev je \"0\"."
+
 msgid "Configure the hard disk drive to go to standby after the specified idle time."
 msgstr "Določitev časa po katerem naj bi trdi disk prešel v stanje pripravljenosti."
 
@@ -3139,18 +3170,6 @@ msgstr "Nastavitev omogoča izbiro želenega video izhoda. Sedaj je večinoma v 
 
 msgid "Configure whether (and for how long) a second infobar will be shown when OK is pressed twice. The second infobar contains additional information about the current channel."
 msgstr "Določitev prikaza razširjene informacijske vrstice pri drugem pritisku na tipko \"OK\". Prikazane informacije se razlikujejo od uporabljene preobleke. Nekatere preobleke razširjene info. vrstice ne podpirajo!"
-
-#, fuzzy
-msgid "Configure whether AAC sound tracks should be transcoded."
-msgstr "Nastavitev omogoča pretvorbo večkanalnega zvoka v stereo zvok. Priporočena nastavitev je \"Da\", sicer se lahko zgodi, da pri nekaterih TV kanalih zvok ne bo deloval."
-
-#, fuzzy
-msgid "Configure whether DTS-HD channel sound tracks should be downmixed or transcoded."
-msgstr "Nastavitev omogoča pretvorbo večkanalnega zvoka v stereo zvok. Priporočena nastavitev je \"Da\", sicer se lahko zgodi, da pri nekaterih TV kanalih zvok ne bo deloval."
-
-#, fuzzy
-msgid "Configure whether WMA pro channel sound tracks should be downmixed or transcoded."
-msgstr "Nastavitev omogoča pretvorbo večkanalnega zvoka v stereo zvok. Priporočena nastavitev je \"Da\", sicer se lahko zgodi, da pri nekaterih TV kanalih zvok ne bo deloval."
 
 #, fuzzy
 msgid "Configure whether a simple second infobar will be shown instead of the regular one."
@@ -3591,6 +3610,9 @@ msgstr "Češko"
 msgid "D"
 msgstr "3"
 
+msgid "DAC"
+msgstr ""
+
 #
 msgid "DHCP"
 msgstr "Samodejno pridobivanje IP naslova - DHCP"
@@ -3614,12 +3636,12 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "DTS HD downmix"
+msgid "DTS downmix"
 msgstr "Pretvorba AC3/DTS zvoka v stereo"
 
 #
 #, fuzzy
-msgid "DTS downmix"
+msgid "DTS-HD(HR/MA) downmix"
 msgstr "Pretvorba AC3/DTS zvoka v stereo"
 
 #
@@ -4842,6 +4864,11 @@ msgstr "Omogoči samodejno hitro iskanje"
 #, fuzzy, python-format
 msgid "Enable auto fastscan for %s"
 msgstr "Omogoči samodejno hitro iskanje"
+
+#
+#, fuzzy
+msgid "Enable bluetooth audio"
+msgstr "Urejanje paketa"
 
 #
 #, fuzzy
@@ -6068,6 +6095,11 @@ msgstr "Zamik AC3 zvoka"
 msgid "General PCM delay"
 msgstr "Zamik PCM zvoka"
 
+#
+#, fuzzy
+msgid "General bluetooth audio delay"
+msgstr "Zamik AC3 zvoka"
+
 msgid "Generator"
 msgstr ""
 
@@ -6292,6 +6324,10 @@ msgid "HDD Info"
 msgstr "Info"
 
 #, fuzzy
+msgid "HDMI"
+msgstr "HDMI-CEC nastavitve"
+
+#, fuzzy
 msgid "HDMI CEC setup"
 msgstr "HDMI-CEC nastavitve"
 
@@ -6317,20 +6353,6 @@ msgstr ""
 #, fuzzy
 msgid "HDMI Recording"
 msgstr "Snemanje"
-
-msgid "HDMI allow unsupported modes"
-msgstr ""
-
-#
-#, fuzzy
-msgid "HDMI audio source"
-msgstr "Barvni format"
-
-msgid "HDMI bypass EDID checking"
-msgstr ""
-
-msgid "HDMI use pre-emphasis"
-msgstr ""
 
 #, fuzzy
 msgid "HDMI-CEC"
@@ -11286,6 +11308,9 @@ msgstr "SNR:"
 msgid "SNR:"
 msgstr "SNR:"
 
+msgid "SPDIF"
+msgstr ""
+
 #, fuzzy
 msgid "SRT file"
 msgstr "%d datoteka"
@@ -14519,9 +14544,6 @@ msgstr ""
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr ""
 
-msgid "This option allows to select video modes even if they are not reported as supported from HDMI-EDID."
-msgstr ""
-
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr ""
 
@@ -14591,11 +14613,18 @@ msgstr ""
 msgid "This option allows you to show the full screen path leading to the current screen."
 msgstr ""
 
+msgid "This option allows you to switch audio to bluetooth speakers."
+msgstr ""
+
 msgid "This option allows you to view the old and new settings side by side."
 msgstr ""
 
 msgid "This option can be useful for long HDMI cables."
 msgstr ""
+
+#, fuzzy
+msgid "This option configures the general audio delay for bluetooth speakers."
+msgstr "Določitev zamika zvoka pri stereo zvočnih sledeh. Priporočena nastavitev je \"0\"."
 
 msgid "This option set the level of surpression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr ""
@@ -15456,6 +15485,9 @@ msgstr "EIT EPG se uporablja v primerih, ko TV postaje oddajajo tudi spored. Pri
 msgid "Use FreeSat EPG information when it is available."
 msgstr "FreeSat EPG se uporablja v primerih, ko TV postaje oddajajo tudi spored. FreeSat sistem uporabljajo nekatere TV postaje iz Velike Britanije."
 
+msgid "Use HDMI pre-emphasis"
+msgstr ""
+
 msgid "Use MHW EPG information when it is available."
 msgstr "MHW EPG se uporablja v primerih, ko TV postaje oddajajo tudi spored. MHW sistem uporabljajo nekateri TV ponudniki iz Nizozemske."
 
@@ -15906,7 +15938,7 @@ msgstr "Brezžična omrežna povezava"
 
 #
 #, fuzzy
-msgid "WMA pro downmix"
+msgid "WMA Pro downmix"
 msgstr "Pretvorba AC3/DTS zvoka v stereo"
 
 #
@@ -16360,6 +16392,9 @@ msgid "When nonzero, a recording will stop later than the ending time indicated 
 msgstr "Če je nastavitev vključena, potem se snemanje konča kasneje, kot je to določeno s sporedom. Če se po sporedu oddaja konča ob 10:00, lahko sprejemnik (odvisno od nastavitve) konča s snemanjem ob 10:10."
 
 msgid "When receiver wakes from standby, it will command the TV to switch to the HDMI input the receiver is connected to."
+msgstr ""
+
+msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr ""
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
@@ -17229,8 +17264,14 @@ msgstr "povezano"
 msgid "controlled by HDMI"
 msgstr ""
 
+msgid "convert to AC3"
+msgstr ""
+
+msgid "convert to DTS"
+msgstr ""
+
 #, fuzzy
-msgid "convert to multi channel PCM"
+msgid "convert to multi-channel PCM"
 msgstr "Uporaba razširjenega (multi) EPG sistema"
 
 msgid "cooking"
@@ -18390,7 +18431,10 @@ msgstr "omogoči"
 msgid "until standby/restart"
 msgstr "do stanja pripravljenosti/resetiranja"
 
-msgid "use best, controlled by HDMI"
+msgid "use HDMI cacenter"
+msgstr ""
+
+msgid "use best / controlled by HDMI"
 msgstr ""
 
 #

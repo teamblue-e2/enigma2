@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-27 08:37+0200\n"
+"POT-Creation-Date: 2023-07-22 07:44+0200\n"
 "PO-Revision-Date: 2019-12-06 15:54+0100\n"
 "Last-Translator: GeirJ <dummy@dummy.com>\n"
 "Language-Team: GeirJ\n"
@@ -788,14 +788,14 @@ msgstr ""
 msgid "AAC downmix"
 msgstr "AAC nedskalering"
 
-#, fuzzy
-msgid "AAC plus downmix"
-msgstr "AAC nedskalering"
-
 #
 #, fuzzy
 msgid "AAC transcoding"
 msgstr "Oversetting:"
+
+#, fuzzy
+msgid "AAC+ downmix"
+msgstr "AAC nedskalering"
 
 msgid "AC3"
 msgstr ""
@@ -803,9 +803,10 @@ msgstr ""
 msgid "AC3 downmix"
 msgstr "AC3 nedskalering"
 
+#
 #, fuzzy
-msgid "AC3 plus downmix"
-msgstr "AC3 nedskalering"
+msgid "AC3 transcoding"
+msgstr "Oversetting:"
 
 msgid "ACQUIRING TSID/ONID"
 msgstr ""
@@ -1184,6 +1185,10 @@ msgstr "Undertekst språk er samme som lyd språk"
 msgid "Allow subtitles for hearing impaired"
 msgstr "Bruk undertekst for hørselshemmede"
 
+#, fuzzy
+msgid "Allow unsupported modes"
+msgstr "ikke støttet"
+
 msgid "Allows the TV remote to be used to control the receiver."
 msgstr ""
 
@@ -1523,6 +1528,10 @@ msgstr "Lyd valg..."
 #, fuzzy
 msgid "Audio settings"
 msgstr "Rediger innstillinger"
+
+#, fuzzy
+msgid "Audio volume step size"
+msgstr "Volumtaster opp"
 
 #
 #, fuzzy
@@ -2007,6 +2016,9 @@ msgstr "Som standard vil SNR (signalstyrke) vises i dB (desibel) hvis tuneren st
 msgid "By teamblue Image Team"
 msgstr ""
 
+msgid "Bypass HDMI EDID checking"
+msgstr ""
+
 msgid "C"
 msgstr ""
 
@@ -2465,7 +2477,23 @@ msgid "Choose the option to correct invalid EPG data."
 msgstr ""
 
 #, fuzzy
-msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
+msgid "Choose whether AAC sound tracks should be transcoded."
+msgstr "Still inn om flerkanals lyd skal nedskaleres til stereolyd."
+
+#, fuzzy
+msgid "Choose whether AC3 sound tracks should be transcoded."
+msgstr "Still inn om flerkanals lyd skal nedskaleres til stereolyd."
+
+#, fuzzy
+msgid "Choose whether WMA Pro sound tracks should be downmixed."
+msgstr "Still inn om flerkanals lyd skal nedskaleres til stereolyd."
+
+#, fuzzy
+msgid "Choose whether multi channel DTS-HD(HR/MA) sound tracks should be downmixed or transcoded."
+msgstr "Still inn om flerkanals lyd skal nedskaleres til stereolyd."
+
+#, fuzzy
+msgid "Choose whether multi channel aac+ sound tracks should be downmixed to stereo."
 msgstr "Still inn om flerkanals lyd skal nedskaleres til stereolyd."
 
 msgid "Choose whether to scan a single transponder, one satellite or multiple satellites."
@@ -2843,6 +2871,10 @@ msgstr "Still inn ønsket lyd forsinkelse for Dolby digital lyd."
 msgid "Configure the general audio delay of stereo sound tracks."
 msgstr "Still inn ønsket lyd forsinkelse for stereo lyd."
 
+#, fuzzy
+msgid "Configure the general audio volume step size (limit 1-10)."
+msgstr "Still inn ønsket lyd forsinkelse for stereo lyd."
+
 msgid "Configure the hard disk drive to go to standby after the specified idle time."
 msgstr "Still inn når lagringsenhet skal å gå i hvilestilling etter angitt ubrukt tid."
 
@@ -2974,18 +3006,6 @@ msgstr "Still inn video utgang som skal brukes."
 
 msgid "Configure whether (and for how long) a second infobar will be shown when OK is pressed twice. The second infobar contains additional information about the current channel."
 msgstr "Still inn (og hvor lenge) den andre infobar skal vises når du trykker OK to ganger. Den andre infobar inneholder tilleggsinformasjon om den aktuelle kanalen."
-
-#, fuzzy
-msgid "Configure whether AAC sound tracks should be transcoded."
-msgstr "Still inn om flerkanals lyd skal nedskaleres til stereolyd."
-
-#, fuzzy
-msgid "Configure whether DTS-HD channel sound tracks should be downmixed or transcoded."
-msgstr "Still inn om flerkanals lyd skal nedskaleres til stereolyd."
-
-#, fuzzy
-msgid "Configure whether WMA pro channel sound tracks should be downmixed or transcoded."
-msgstr "Still inn om flerkanals lyd skal nedskaleres til stereolyd."
 
 #, fuzzy
 msgid "Configure whether a simple second infobar will be shown instead of the regular one."
@@ -3416,6 +3436,9 @@ msgstr "Tjekkisk"
 msgid "D"
 msgstr ""
 
+msgid "DAC"
+msgstr ""
+
 #
 msgid "DHCP"
 msgstr ""
@@ -3438,11 +3461,11 @@ msgid "DTS"
 msgstr ""
 
 #, fuzzy
-msgid "DTS HD downmix"
+msgid "DTS downmix"
 msgstr "DTS nedskalering"
 
 #, fuzzy
-msgid "DTS downmix"
+msgid "DTS-HD(HR/MA) downmix"
 msgstr "DTS nedskalering"
 
 #
@@ -4596,6 +4619,11 @@ msgstr "Aktiver automatisk hurtigsøk"
 #, fuzzy, python-format
 msgid "Enable auto fastscan for %s"
 msgstr "Aktiver automatisk hurtigsøk"
+
+#
+#, fuzzy
+msgid "Enable bluetooth audio"
+msgstr "aktiver kanalliste redigering"
 
 #
 #, fuzzy
@@ -5793,6 +5821,10 @@ msgstr "AC3 forsinkelse"
 msgid "General PCM delay"
 msgstr "PCM forsinkelse"
 
+#, fuzzy
+msgid "General bluetooth audio delay"
+msgstr "AC3 forsinkelse"
+
 msgid "Generator"
 msgstr ""
 
@@ -6013,6 +6045,10 @@ msgid "HDD Info"
 msgstr "Info"
 
 #, fuzzy
+msgid "HDMI"
+msgstr "HDMI-CEC innstilling"
+
+#, fuzzy
 msgid "HDMI CEC setup"
 msgstr "HDMI-CEC innstilling"
 
@@ -6038,20 +6074,6 @@ msgstr ""
 #, fuzzy
 msgid "HDMI Recording"
 msgstr "Tar opp"
-
-msgid "HDMI allow unsupported modes"
-msgstr ""
-
-#
-#, fuzzy
-msgid "HDMI audio source"
-msgstr "Farge format"
-
-msgid "HDMI bypass EDID checking"
-msgstr ""
-
-msgid "HDMI use pre-emphasis"
-msgstr ""
 
 #, fuzzy
 msgid "HDMI-CEC"
@@ -10766,6 +10788,9 @@ msgstr ""
 msgid "SNR:"
 msgstr ""
 
+msgid "SPDIF"
+msgstr ""
+
 #, fuzzy
 msgid "SRT file"
 msgstr "%d fil"
@@ -13780,9 +13805,6 @@ msgstr ""
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr ""
 
-msgid "This option allows to select video modes even if they are not reported as supported from HDMI-EDID."
-msgstr ""
-
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr ""
 
@@ -13852,11 +13874,18 @@ msgstr ""
 msgid "This option allows you to show the full screen path leading to the current screen."
 msgstr ""
 
+msgid "This option allows you to switch audio to bluetooth speakers."
+msgstr ""
+
 msgid "This option allows you to view the old and new settings side by side."
 msgstr ""
 
 msgid "This option can be useful for long HDMI cables."
 msgstr ""
+
+#, fuzzy
+msgid "This option configures the general audio delay for bluetooth speakers."
+msgstr "Still inn ønsket lyd forsinkelse for stereo lyd."
 
 msgid "This option set the level of surpression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr ""
@@ -14700,6 +14729,9 @@ msgstr "Bruk EIT (Event Information Table) EPG informasjon når den er tilgjenge
 msgid "Use FreeSat EPG information when it is available."
 msgstr "Bruk FreeSat EPG informasjon når den er tilgjengelig."
 
+msgid "Use HDMI pre-emphasis"
+msgstr ""
+
 msgid "Use MHW EPG information when it is available."
 msgstr "Bruk MHW (Media High Way) EPG informasjon når den er tilgjengelig."
 
@@ -15113,7 +15145,7 @@ msgid "WLAN connection"
 msgstr "WLAN oppkobling"
 
 #, fuzzy
-msgid "WMA pro downmix"
+msgid "WMA Pro downmix"
 msgstr "AAC nedskalering"
 
 #
@@ -15556,6 +15588,9 @@ msgid "When nonzero, a recording will stop later than the ending time indicated 
 msgstr "Når annet enn null er valgt vil et opptak stoppe senere enn sluttidspunktet angitt av EPG."
 
 msgid "When receiver wakes from standby, it will command the TV to switch to the HDMI input the receiver is connected to."
+msgstr ""
+
+msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr ""
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
@@ -16392,8 +16427,14 @@ msgstr "tilkoblet"
 msgid "controlled by HDMI"
 msgstr ""
 
+msgid "convert to AC3"
+msgstr ""
+
+msgid "convert to DTS"
+msgstr ""
+
 #, fuzzy
-msgid "convert to multi channel PCM"
+msgid "convert to multi-channel PCM"
 msgstr "Nedskalering av flerkanals lyd"
 
 msgid "cooking"
@@ -17529,7 +17570,10 @@ msgstr "Aktiver"
 msgid "until standby/restart"
 msgstr "til slår av/starter på nytt"
 
-msgid "use best, controlled by HDMI"
+msgid "use HDMI cacenter"
+msgstr ""
+
+msgid "use best / controlled by HDMI"
 msgstr ""
 
 #

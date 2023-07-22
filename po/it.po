@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-27 08:37+0200\n"
+"POT-Creation-Date: 2023-07-22 07:44+0200\n"
 "PO-Revision-Date: 2021-11-30 12:39+0100\n"
 "Last-Translator: teamblue-e2 <teamblue-e2@online.de>\n"
 "Language-Team: www.linsat.net <spaeleus@croci.org>\n"
@@ -817,12 +817,13 @@ msgstr ""
 msgid "AAC downmix"
 msgstr "Downmix AAC"
 
-msgid "AAC plus downmix"
-msgstr "AAC più downmix"
-
 #
 msgid "AAC transcoding"
 msgstr "Transcodifica AAC"
+
+#, fuzzy
+msgid "AAC+ downmix"
+msgstr "Downmix AAC"
 
 msgid "AC3"
 msgstr "AC3"
@@ -830,8 +831,10 @@ msgstr "AC3"
 msgid "AC3 downmix"
 msgstr "Downmix AC3"
 
-msgid "AC3 plus downmix"
-msgstr "AC3 più downmix"
+#
+#, fuzzy
+msgid "AC3 transcoding"
+msgstr "Transcodifica AAC"
 
 msgid "ACQUIRING TSID/ONID"
 msgstr "ACQUISIZIONE DI TSID/ONID"
@@ -1199,6 +1202,10 @@ msgstr "Associare la lingua sottotitoli alla lingua audio"
 msgid "Allow subtitles for hearing impaired"
 msgstr "Abilitare sottotitoli per non udenti"
 
+#, fuzzy
+msgid "Allow unsupported modes"
+msgstr "HDMI permette modalità non supportate"
+
 msgid "Allows the TV remote to be used to control the receiver."
 msgstr "Consente di utilizzare il telecomando del televisore per controllare il ricevitore."
 
@@ -1525,6 +1532,10 @@ msgstr "Plugin audio"
 #
 msgid "Audio settings"
 msgstr "Impostazioni audio"
+
+#, fuzzy
+msgid "Audio volume step size"
+msgstr "Riportare i comandi volume"
 
 #
 msgid "Australia"
@@ -1978,6 +1989,10 @@ msgstr "Per impostazione predefinita, SNR sarà mostrato in dB (quando supportat
 
 msgid "By teamblue Image Team"
 msgstr "Di teamblue Image Team"
+
+#, fuzzy
+msgid "Bypass HDMI EDID checking"
+msgstr "Controllo EDID di bypass HDMI"
 
 #
 msgid "C"
@@ -2450,8 +2465,25 @@ msgstr "Scegli la posizione per arresti anomali e debuglog."
 msgid "Choose the option to correct invalid EPG data."
 msgstr "Scegli la posizione per arresti anomali e debuglog."
 
-msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
-msgstr "Scegli se le tracce audio multicanale devono essere convertite in PCM o SPDIF."
+#, fuzzy
+msgid "Choose whether AAC sound tracks should be transcoded."
+msgstr "Configura se le tracce audio AAC devono essere transcodificate."
+
+#, fuzzy
+msgid "Choose whether AC3 sound tracks should be transcoded."
+msgstr "Configura se le tracce audio AAC devono essere transcodificate."
+
+#, fuzzy
+msgid "Choose whether WMA Pro sound tracks should be downmixed."
+msgstr "Configura se le tracce audio del canale WMA pro devono essere sottoposte a downmix o transcodifica."
+
+#, fuzzy
+msgid "Choose whether multi channel DTS-HD(HR/MA) sound tracks should be downmixed or transcoded."
+msgstr "Configurare se le tracce audio del canale DTS-HD devono essere sottoposte a downmix o transcodifica."
+
+#, fuzzy
+msgid "Choose whether multi channel aac+ sound tracks should be downmixed to stereo."
+msgstr "Opzione per determinare se debba essere eseguito il downmix stereo dei canali audio multipli."
 
 msgid "Choose whether to scan a single transponder, one satellite or multiple satellites."
 msgstr ""
@@ -2815,6 +2847,10 @@ msgstr "Configura il ritardo audio generale delle tracce audio Dolby Digital."
 msgid "Configure the general audio delay of stereo sound tracks."
 msgstr "Configura il ritardo audio generale delle tracce audio stereo."
 
+#, fuzzy
+msgid "Configure the general audio volume step size (limit 1-10)."
+msgstr "Configura il ritardo audio generale delle tracce audio stereo."
+
 msgid "Configure the hard disk drive to go to standby after the specified idle time."
 msgstr "Opzione per impostare il tempo di inattività trascorso il quale l'harddisk verrà posto in standby."
 
@@ -2949,15 +2985,6 @@ msgstr "Configura dove verrà archiviato epg.dat."
 
 msgid "Configure whether (and for how long) a second infobar will be shown when OK is pressed twice. The second infobar contains additional information about the current channel."
 msgstr "Opzione per determinare se debba essere visualizzata una seconda barra informazioni su doppia pressione del tasto Ok, e la sua persistenza. Tale barra conterrà informazioni aggiuntive sul canale sintonizzato."
-
-msgid "Configure whether AAC sound tracks should be transcoded."
-msgstr "Configura se le tracce audio AAC devono essere transcodificate."
-
-msgid "Configure whether DTS-HD channel sound tracks should be downmixed or transcoded."
-msgstr "Configurare se le tracce audio del canale DTS-HD devono essere sottoposte a downmix o transcodifica."
-
-msgid "Configure whether WMA pro channel sound tracks should be downmixed or transcoded."
-msgstr "Configura se le tracce audio del canale WMA pro devono essere sottoposte a downmix o transcodifica."
 
 msgid "Configure whether a simple second infobar will be shown instead of the regular one."
 msgstr "Configura se verrà mostrata una semplice seconda barra delle informazioni invece di quella normale."
@@ -3370,6 +3397,10 @@ msgstr "Cechia"
 msgid "D"
 msgstr "D"
 
+#, fuzzy
+msgid "DAC"
+msgstr "AC3"
+
 #
 msgid "DHCP"
 msgstr "DHCP"
@@ -3390,11 +3421,12 @@ msgstr "DMM normale"
 msgid "DTS"
 msgstr "DTS"
 
-msgid "DTS HD downmix"
-msgstr "DTS HD downmix"
-
 msgid "DTS downmix"
 msgstr "DTS downmix"
+
+#, fuzzy
+msgid "DTS-HD(HR/MA) downmix"
+msgstr "DTS HD downmix"
 
 msgid "DUAL LAYER DVD"
 msgstr "DVD doppio strato"
@@ -4489,6 +4521,10 @@ msgstr "Abilita la scansione rapida automatica"
 #, python-format
 msgid "Enable auto fastscan for %s"
 msgstr "Abilita la scansione rapida automatica per %s"
+
+#, fuzzy
+msgid "Enable bluetooth audio"
+msgstr "Abilitare cache televideo"
 
 #
 msgid "Enable bouquet edit"
@@ -5628,6 +5664,11 @@ msgstr "Ritardo generale AC3"
 msgid "General PCM delay"
 msgstr "Ritardo generale PCM"
 
+#
+#, fuzzy
+msgid "General bluetooth audio delay"
+msgstr "Ritardo generale AC3"
+
 msgid "Generator"
 msgstr "Generatore"
 
@@ -5837,6 +5878,10 @@ msgstr "HD2400"
 msgid "HDD Info"
 msgstr "Info HDD"
 
+#, fuzzy
+msgid "HDMI"
+msgstr "HDMI-CEC"
+
 #
 msgid "HDMI CEC setup"
 msgstr "Configurazione HDMI-CEC"
@@ -5859,19 +5904,6 @@ msgstr "Tipo HDMI HDR"
 #
 msgid "HDMI Recording"
 msgstr "Registrazione HDMI"
-
-msgid "HDMI allow unsupported modes"
-msgstr "HDMI permette modalità non supportate"
-
-#
-msgid "HDMI audio source"
-msgstr "Sorgente audio HDMI"
-
-msgid "HDMI bypass EDID checking"
-msgstr "Controllo EDID di bypass HDMI"
-
-msgid "HDMI use pre-emphasis"
-msgstr "HDMI usare pre-enfasi"
 
 msgid "HDMI-CEC"
 msgstr "HDMI-CEC"
@@ -10388,6 +10420,9 @@ msgstr "SNR"
 msgid "SNR:"
 msgstr "SNR:"
 
+msgid "SPDIF"
+msgstr ""
+
 msgid "SRT file"
 msgstr ""
 
@@ -13334,9 +13369,6 @@ msgstr "Questo ONID/TSID non è valido"
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr ""
 
-msgid "This option allows to select video modes even if they are not reported as supported from HDMI-EDID."
-msgstr "Questa opzione permette di selezionare le modalità video anche se non sono segnalate come supportate da HDMI-EDID."
-
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr ""
 
@@ -13406,11 +13438,19 @@ msgstr "Questa opzione permette di mostrare i collegamenti rapidi del menu e/o d
 msgid "This option allows you to show the full screen path leading to the current screen."
 msgstr "Questa opzione permette di mostrare il percorso a tutto schermo che porta alla schermata corrente."
 
+#, fuzzy
+msgid "This option allows you to switch audio to bluetooth speakers."
+msgstr "Questa opzione permette di impostare il livello del volume automatico."
+
 msgid "This option allows you to view the old and new settings side by side."
 msgstr ""
 
 msgid "This option can be useful for long HDMI cables."
 msgstr "Questa opzione può essere utile per lunghi cavi HDMI."
+
+#, fuzzy
+msgid "This option configures the general audio delay for bluetooth speakers."
+msgstr "Configura il ritardo audio generale delle tracce audio stereo."
 
 msgid "This option set the level of surpression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr ""
@@ -14223,6 +14263,10 @@ msgstr "Opzione per abilitare l'utilizzo delle informazioni EPG EIT, quando disp
 msgid "Use FreeSat EPG information when it is available."
 msgstr "Opzione per abilitare l'utilizzo delle informazioni EPG FreeSat, quando disponibili."
 
+#, fuzzy
+msgid "Use HDMI pre-emphasis"
+msgstr "HDMI usare pre-enfasi"
+
 msgid "Use MHW EPG information when it is available."
 msgstr "Opzione per abilitare l'utilizzo delle informazioni EPG MHW, quando disponibili."
 
@@ -14643,7 +14687,8 @@ msgstr "ATTENZIONE!"
 msgid "WLAN connection"
 msgstr "Connessione WLAN"
 
-msgid "WMA pro downmix"
+#, fuzzy
+msgid "WMA Pro downmix"
 msgstr "WMA pro downmix"
 
 #
@@ -15072,6 +15117,10 @@ msgstr "Opzione per impostare il margine di ritardo con cui far terminare una re
 
 msgid "When receiver wakes from standby, it will command the TV to switch to the HDMI input the receiver is connected to."
 msgstr "Quando il ricevitore si sveglia dallo standby, comanderà al televisore di passare all'ingresso HDMI a cui il ricevitore è collegato."
+
+#, fuzzy
+msgid "When selected this allows video modes to be selected even if they are not reported as supported."
+msgstr "Questa opzione permette di selezionare le modalità video anche se non sono segnalate come supportate da HDMI-EDID."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Opzione per impostare la modalità di scaling/stretch dell'immagine per i contenuti trasmessi con un rapporto d'aspetto di 16:9."
@@ -15932,8 +15981,15 @@ msgstr "connesso"
 msgid "controlled by HDMI"
 msgstr "controllato da HDMI"
 
+msgid "convert to AC3"
+msgstr ""
+
+msgid "convert to DTS"
+msgstr ""
+
 #
-msgid "convert to multi channel PCM"
+#, fuzzy
+msgid "convert to multi-channel PCM"
 msgstr "convertire in PCM multicanale"
 
 msgid "cooking"
@@ -17043,7 +17099,11 @@ msgstr "indimostrabile"
 msgid "until standby/restart"
 msgstr "Fino allo standby/riavvio"
 
-msgid "use best, controlled by HDMI"
+msgid "use HDMI cacenter"
+msgstr ""
+
+#, fuzzy
+msgid "use best / controlled by HDMI"
 msgstr "uso migliore, controllato da HDMI"
 
 #

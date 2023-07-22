@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-27 08:37+0200\n"
+"POT-Creation-Date: 2023-07-22 07:44+0200\n"
 "PO-Revision-Date: 2019-04-03 06:49+0300\n"
 "Last-Translator: \n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas, zeros\\n faas, sateks, valgekotkas, tigekala, rootsikunn\\n kain, i70, mustkass, pelmeen, Scott\\n <digi-tv.ee>\n"
@@ -759,12 +759,12 @@ msgid "AAC downmix"
 msgstr "AC3/DTS > stereo"
 
 #, fuzzy
-msgid "AAC plus downmix"
-msgstr "AC3/DTS > stereo"
-
-#, fuzzy
 msgid "AAC transcoding"
 msgstr "Tõlge:"
+
+#, fuzzy
+msgid "AAC+ downmix"
+msgstr "AC3/DTS > stereo"
 
 msgid "AC3"
 msgstr ""
@@ -774,8 +774,8 @@ msgid "AC3 downmix"
 msgstr "AC3/DTS > stereo"
 
 #, fuzzy
-msgid "AC3 plus downmix"
-msgstr "AC3/DTS > stereo"
+msgid "AC3 transcoding"
+msgstr "Tõlge:"
 
 msgid "ACQUIRING TSID/ONID"
 msgstr ""
@@ -1113,6 +1113,10 @@ msgstr "Luba subtiitrid heli keele valiku järgi"
 msgid "Allow subtitles for hearing impaired"
 msgstr "Luba vaegkuuljate subtiitrid"
 
+#, fuzzy
+msgid "Allow unsupported modes"
+msgstr "pole toetatud"
+
 msgid "Allows the TV remote to be used to control the receiver."
 msgstr ""
 
@@ -1417,6 +1421,10 @@ msgstr "Paigalda laiendusi"
 #, fuzzy
 msgid "Audio settings"
 msgstr "Muuda seadeid"
+
+#, fuzzy
+msgid "Audio volume step size"
+msgstr "Kasuta helitugevuse nuppe"
 
 #, fuzzy
 msgid "Australia"
@@ -1850,6 +1858,9 @@ msgstr "Vaikimisi näidatakse SNR väärtust dB-s (kui tuuner seda toetab). Siin
 msgid "By teamblue Image Team"
 msgstr ""
 
+msgid "Bypass HDMI EDID checking"
+msgstr ""
+
 #, fuzzy
 msgid "C"
 msgstr "C"
@@ -2274,7 +2285,23 @@ msgid "Choose the option to correct invalid EPG data."
 msgstr ""
 
 #, fuzzy
-msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
+msgid "Choose whether AAC sound tracks should be transcoded."
+msgstr "Määra, kas mitmekanaline heli tuleks taandada stereoks."
+
+#, fuzzy
+msgid "Choose whether AC3 sound tracks should be transcoded."
+msgstr "Määra, kas mitmekanaline heli tuleks taandada stereoks."
+
+#, fuzzy
+msgid "Choose whether WMA Pro sound tracks should be downmixed."
+msgstr "Määra, kas mitmekanaline heli tuleks taandada stereoks."
+
+#, fuzzy
+msgid "Choose whether multi channel DTS-HD(HR/MA) sound tracks should be downmixed or transcoded."
+msgstr "Määra, kas mitmekanaline heli tuleks taandada stereoks."
+
+#, fuzzy
+msgid "Choose whether multi channel aac+ sound tracks should be downmixed to stereo."
 msgstr "Määra, kas mitmekanaline heli tuleks taandada stereoks."
 
 msgid "Choose whether to scan a single transponder, one satellite or multiple satellites."
@@ -2620,6 +2647,10 @@ msgstr "Määra üldine viiteag Dolby Digital heliga heliribadele."
 msgid "Configure the general audio delay of stereo sound tracks."
 msgstr "Määra üldine viiteag stereo heliga heliribadele."
 
+#, fuzzy
+msgid "Configure the general audio volume step size (limit 1-10)."
+msgstr "Määra üldine viiteag stereo heliga heliribadele."
+
 msgid "Configure the hard disk drive to go to standby after the specified idle time."
 msgstr "Määra kõvaketta ooterežiimi minek pärast teatud jõudeoleku aega."
 
@@ -2750,18 +2781,6 @@ msgstr "See valik määrab, millist ühenduspesa video väljund kasutab."
 
 msgid "Configure whether (and for how long) a second infobar will be shown when OK is pressed twice. The second infobar contains additional information about the current channel."
 msgstr "Luba teise inforiba näitamine (2 X OK). Seal võib leida käesoleva kanali kohta rohkem teavet."
-
-#, fuzzy
-msgid "Configure whether AAC sound tracks should be transcoded."
-msgstr "Määra, kas mitmekanaline heli tuleks taandada stereoks."
-
-#, fuzzy
-msgid "Configure whether DTS-HD channel sound tracks should be downmixed or transcoded."
-msgstr "Määra, kas mitmekanaline heli tuleks taandada stereoks."
-
-#, fuzzy
-msgid "Configure whether WMA pro channel sound tracks should be downmixed or transcoded."
-msgstr "Määra, kas mitmekanaline heli tuleks taandada stereoks."
 
 #, fuzzy
 msgid "Configure whether a simple second infobar will be shown instead of the regular one."
@@ -3150,6 +3169,9 @@ msgstr "Tšehhi"
 msgid "D"
 msgstr "3"
 
+msgid "DAC"
+msgstr ""
+
 msgid "DHCP"
 msgstr "DHCP"
 
@@ -3170,11 +3192,11 @@ msgid "DTS"
 msgstr ""
 
 #, fuzzy
-msgid "DTS HD downmix"
+msgid "DTS downmix"
 msgstr "AC3/DTS > stereo"
 
 #, fuzzy
-msgid "DTS downmix"
+msgid "DTS-HD(HR/MA) downmix"
 msgstr "AC3/DTS > stereo"
 
 msgid "DUAL LAYER DVD"
@@ -4215,6 +4237,10 @@ msgstr ""
 #, fuzzy, python-format
 msgid "Enable auto fastscan for %s"
 msgstr "Luba lapselukk"
+
+#, fuzzy
+msgid "Enable bluetooth audio"
+msgstr "luba nimekirjade muutmine"
 
 #, fuzzy
 msgid "Enable bouquet edit"
@@ -5285,6 +5311,10 @@ msgstr "Üldine AC3 viide"
 msgid "General PCM delay"
 msgstr "Üldine PCM viide"
 
+#, fuzzy
+msgid "General bluetooth audio delay"
+msgstr "Üldine AC3 viide"
+
 msgid "Generator"
 msgstr ""
 
@@ -5484,6 +5514,9 @@ msgstr ""
 msgid "HDD Info"
 msgstr "Info"
 
+msgid "HDMI"
+msgstr ""
+
 #, fuzzy
 msgid "HDMI CEC setup"
 msgstr "Seadistamine"
@@ -5506,19 +5539,6 @@ msgstr ""
 #, fuzzy
 msgid "HDMI Recording"
 msgstr "Salvestus"
-
-msgid "HDMI allow unsupported modes"
-msgstr ""
-
-#, fuzzy
-msgid "HDMI audio source"
-msgstr "Värvi vorming"
-
-msgid "HDMI bypass EDID checking"
-msgstr ""
-
-msgid "HDMI use pre-emphasis"
-msgstr ""
 
 msgid "HDMI-CEC"
 msgstr ""
@@ -9792,6 +9812,9 @@ msgstr "SNR:"
 msgid "SNR:"
 msgstr "SNR:"
 
+msgid "SPDIF"
+msgstr ""
+
 msgid "SRT file"
 msgstr ""
 
@@ -12578,9 +12601,6 @@ msgstr ""
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
 msgstr ""
 
-msgid "This option allows to select video modes even if they are not reported as supported from HDMI-EDID."
-msgstr ""
-
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr ""
 
@@ -12650,11 +12670,18 @@ msgstr ""
 msgid "This option allows you to show the full screen path leading to the current screen."
 msgstr ""
 
+msgid "This option allows you to switch audio to bluetooth speakers."
+msgstr ""
+
 msgid "This option allows you to view the old and new settings side by side."
 msgstr ""
 
 msgid "This option can be useful for long HDMI cables."
 msgstr ""
+
+#, fuzzy
+msgid "This option configures the general audio delay for bluetooth speakers."
+msgstr "Määra üldine viiteag stereo heliga heliribadele."
 
 msgid "This option set the level of surpression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr ""
@@ -13407,6 +13434,9 @@ msgstr "EIT EPG kasutamine, kui see on saadaval."
 msgid "Use FreeSat EPG information when it is available."
 msgstr "FreeSat EPG kasutamine, kui see on saadaval."
 
+msgid "Use HDMI pre-emphasis"
+msgstr ""
+
 msgid "Use MHW EPG information when it is available."
 msgstr "MHW EPG kasutamine, kui see on saadaval."
 
@@ -13790,7 +13820,7 @@ msgid "WLAN connection"
 msgstr "WiFi ühendus"
 
 #, fuzzy
-msgid "WMA pro downmix"
+msgid "WMA Pro downmix"
 msgstr "AC3/DTS > stereo"
 
 #, fuzzy
@@ -14219,6 +14249,9 @@ msgid "When nonzero, a recording will stop later than the ending time indicated 
 msgstr "Salvestamine lõpetatakse pärast saatekavas näidatud aega."
 
 msgid "When receiver wakes from standby, it will command the TV to switch to the HDMI input the receiver is connected to."
+msgstr ""
+
+msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr ""
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
@@ -14996,8 +15029,14 @@ msgstr "ühendatud"
 msgid "controlled by HDMI"
 msgstr ""
 
+msgid "convert to AC3"
+msgstr ""
+
+msgid "convert to DTS"
+msgstr ""
+
 #, fuzzy
-msgid "convert to multi channel PCM"
+msgid "convert to multi-channel PCM"
 msgstr "Kanal"
 
 msgid "cooking"
@@ -16005,7 +16044,10 @@ msgstr "Luba"
 msgid "until standby/restart"
 msgstr "kuni ooterežiimini/taaskäivitamiseni"
 
-msgid "use best, controlled by HDMI"
+msgid "use HDMI cacenter"
+msgstr ""
+
+msgid "use best / controlled by HDMI"
 msgstr ""
 
 msgid "user defined"
