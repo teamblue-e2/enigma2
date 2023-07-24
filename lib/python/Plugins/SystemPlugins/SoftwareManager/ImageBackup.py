@@ -228,9 +228,7 @@ class ImageBackup(Screen):
 
 				## PREPARING THE BUILDING ENVIRONMENT
 				os.system("rm -rf %s" % self.WORKDIR)
-				self.backuproot = "/tmp/bi/root"
-				if SystemInfo["HasRootSubdir"]:
-					self.backuproot = "/tmp/bi/RootSubdir/"
+				self.backuproot = "/tmp/bi/RootSubdir/" if SystemInfo["HasRootSubdir"] else "/tmp/bi/root"
 				if not os.path.exists(self.WORKDIR):
 					os.makedirs(self.WORKDIR)
 				if not os.path.exists(self.backuproot):
@@ -338,16 +336,18 @@ class ImageBackup(Screen):
 					cmdlist.append("mkfs.ext4 -F -i 4096 %s/rootfs.ext4" % (self.WORKDIR))
 					cmdlist.append("mkdir -p %s/userdata" % self.WORKDIR)
 					cmdlist.append("mount %s/rootfs.ext4 %s/userdata" % (self.WORKDIR, self.WORKDIR))
-					cmdlist.append("mkdir -p %s/userdata/linuxrootfs1" % self.WORKDIR)
-					cmdlist.append("mkdir -p %s/userdata/linuxrootfs2" % self.WORKDIR)
-					cmdlist.append("mkdir -p %s/userdata/linuxrootfs3" % self.WORKDIR)
-					cmdlist.append("mkdir -p %s/userdata/linuxrootfs4" % self.WORKDIR)
+					for rootindex in range(1, 5):
+						cmdlist.append("mkdir -p %s/userdata/linuxrootfs%d" % (self.WORKDIR, rootindex))
+
 					cmdlist.append("rsync -aAX %s/ %s/userdata/linuxrootfs1/" % (self.backuproot, self.WORKDIR))
 					cmdlist.append("umount %s/userdata" % (self.WORKDIR))
 
 				cmdlist.append('echo "' + _("Create:") + " kerneldump" + '"')
 				if SystemInfo["canMultiBoot"] or self.MTDKERNEL.startswith('mmcblk0'):
-					cmdlist.append("dd if=/dev/%s of=%s/%s" % (self.MTDKERNEL, self.WORKDIR, self.KERNELBIN))
+					if SystemInfo["hasKexec"]:
+						cmdlist.append("cp /%s %s/%s" % (self.MTDKERNEL, self.WORKDIR, self.KERNELBIN))
+					else:
+						cmdlist.append("dd if=/dev/%s of=%s/%s" % (self.MTDKERNEL, self.WORKDIR, self.KERNELBIN))
 				else:
 					cmdlist.append("nanddump -a -f %s/vmlinux.gz /dev/%s" % (self.WORKDIR, self.MTDKERNEL))
 
@@ -477,16 +477,14 @@ class ImageBackup(Screen):
 			os.system('rm -rf %s' % self.MAINDESTROOT)
 			if not os.path.exists(self.MAINDESTROOT):
 				os.makedirs(self.MAINDESTROOT)
-			f = open("%s/imageversion" % self.MAINDESTROOT, "w")
-			f.write(self.IMAGEVERSION)
-			f.close()
+			with open("%s/imageversion" % self.MAINDESTROOT, "w", encoding="UTF-8") as fd:
+				fd.write(self.IMAGEVERSION)
 		else:
 			os.system('rm -rf %s' % self.MAINDEST)
 			if not os.path.exists(self.MAINDEST):
 				os.makedirs(self.MAINDEST)
-			f = open("%s/imageversion" % self.MAINDEST, "w")
-			f.write(self.IMAGEVERSION)
-			f.close()
+			with open("%s/imageversion" % self.MAINDEST, "w", encoding="UTF-8") as fd:
+				fd.write(self.IMAGEVERSION)
 
 			if self.ROOTFSBIN == "rootfs.tar.bz2":
 				os.system('mv %s/rootfs.tar.bz2 %s/rootfs.tar.bz2' % (self.WORKDIR, self.MAINDEST))
@@ -509,8 +507,6 @@ class ImageBackup(Screen):
 			cmdlist.append('echo "This file forces a reboot after the update." > %s/reboot.update' % self.MAINDEST)
 		elif self.MODEL in ("vuzero", "vusolose", "vuuno4k", "vuzero4k"):
 			cmdlist.append('echo "This file forces the update." > %s/force.update' % self.MAINDEST)
-		elif self.MODEL in ('viperslim', 'evoslimse', 'evoslimt2c', "novaip", "zgemmai55", "sf98", "xpeedlxpro", 'evoslim', 'vipert2c'):
-			cmdlist.append('echo "This file forces the update." > %s/force' % self.MAINDEST)
 		elif SystemInfo["HasRootSubdir"]:
 			cmdlist.append('echo "Rename the unforce_%s.txt to force_%s.txt and move it to the root of your usb-stick" > %s/force_%s_READ.ME' % (self.MACHINEBUILD, self.MACHINEBUILD, self.MAINDEST, self.MACHINEBUILD))
 			cmdlist.append('echo "When you enter the recovery menu then it will force to install the image in the linux1 selection" >> %s/force_%s_READ.ME' % (self.MAINDEST, self.MACHINEBUILD))

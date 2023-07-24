@@ -65,6 +65,7 @@ def getMultibootslots():
 							else:
 								slot["kernel"] = "%sp%s" % (device.split("p")[0], int(device.split("p")[1]) - 1)
 							if 'rootsubdir' in line:
+								SystemInfo["HasRootSubdir"] = True
 								slot['rootsubdir'] = getparam(line, 'rootsubdir')
 								slot["kernel"] = getparam(line, "kernel")
 						break
