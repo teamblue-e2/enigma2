@@ -1,4 +1,3 @@
-import os
 import subprocess
 from os import path, unlink, system
 import string
@@ -23,7 +22,6 @@ from Tools.LoadPixmap import LoadPixmap
 from Plugins.Plugin import PluginDescriptor
 from enigma import eTimer, eConsoleAppContainer
 from boxbranding import getBoxType
-import six
 
 
 class NetworkAdapterSelection(Screen, HelpableScreen):
@@ -510,7 +508,7 @@ class AdapterSetup(ConfigListScreen, HelpableScreen, Screen):
 				("WEP", "WEP"),
 				("WPA", "WPA")
 			]
-			if not os.path.exists("/tmp/bcm/" + self.iface):
+			if not path.exists("/tmp/bcm/" + self.iface):
 				encryptionlist.append(("WPA/WPA2", "WPA/WPA2"))
 			encryptionlist.append(("WPA2", "WPA2"))
 			weplist = ["ASCII", "HEX"]
@@ -562,7 +560,7 @@ class AdapterSetup(ConfigListScreen, HelpableScreen, Screen):
 
 			self.extended = None
 			self.configStrings = None
-			isExistBcmWifi = os.path.exists("/tmp/bcm/" + self.iface)
+			isExistBcmWifi = path.exists("/tmp/bcm/" + self.iface)
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_NETWORKSETUP):
 				call_fnc = p.fnc["ifaceSupported"](self.iface)
 				if call_fnc is not None:
@@ -1079,7 +1077,6 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			self.session.open(MessageBox, _("Finished restarting your network"), type=MessageBox.TYPE_INFO, timeout=10, default=False)
 
 	def dataAvail(self, data):
-		data = six.ensure_str(data)
 		self.LinkState = None
 		for line in data.splitlines():
 			line = line.strip()
@@ -1481,7 +1478,7 @@ class NetworkAdapterTest(Screen):
 			iNetwork.getLinkState(iface, self.LinkStatedataAvail)
 
 	def LinkStatedataAvail(self, data):
-		for item in data.decode().splitlines():
+		for item in data.splitlines():
 			if "Link detected:" in item:
 				if "yes" in item:
 					self["Network"].setForegroundColorNum(2)
@@ -1660,7 +1657,6 @@ class NetworkPassword(ConfigListScreen, Screen):
 		self.showHelpWindow()
 
 	def dataAvail(self, data):
-		data = six.ensure_str(data)
 		self.output_line += data
 		while True:
 			i = self.output_line.find('\n')
