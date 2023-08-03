@@ -28,7 +28,7 @@ import tempfile
 import struct
 
 from enigma import eEPGCache
-from boxbranding import getImageDistro
+from boxbranding import getImageDistro, getBoxType
 
 def checkimagefiles(files):
 	return len([x for x in files if 'kernel' in x and '.bin' in x or x in ('uImage', 'rootfs.bin', 'root_cfe_auto.bin', 'root_cfe_auto.jffs2', 'oe_rootfs.bin', 'e2jffs2.img', 'rootfs.tar.bz2', 'rootfs.ubi')]) == 2
@@ -42,7 +42,7 @@ class SelectImage(Screen):
 		self.imagesList = {}
 		self.setIndex = 0
 		self.expanded = []
-		self.model = HardwareInfo().get_machine_name()
+		self.model = getBoxType()
 		self.selectedImage = ["Teamblue", {"url": "https://images.teamblue.tech/json/%s" % self.model, "model": self.model}]
 		self.models = [self.model]
 		self.setTitle(_("Select image"))
