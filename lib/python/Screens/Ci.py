@@ -6,27 +6,29 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import BoxInfo
-from Components.config import config, ConfigSubsection, ConfigSelection, ConfigSubList, KEY_LEFT, KEY_RIGHT, KEY_0, ConfigNothing, ConfigPIN, \
-	ConfigYesNo, NoSave
 from Screens.MessageBox import MessageBox
 from Tools.BoundFunction import boundFunction
+from Components.Sources.StaticText import StaticText
+from Components.ActionMap import ActionMap
+from Components.ActionMap import NumberActionMap
+from Components.Label import Label
+from Components.config import config, ConfigSubsection, ConfigSelection, ConfigSubList, KEY_LEFT, KEY_RIGHT, KEY_0, ConfigNothing, ConfigPIN, ConfigYesNo, NoSave
+from Components.ConfigList import ConfigList, ConfigListScreen
 from enigma import eTimer, eDVBCI_UI
-
+from os import remove
 from os.path import exists
-from Screens.Screen import Screen
+import Screens.Standby
 
 forceNotShowCiMessages = False
 
 def setCIBitrate(configElement):
-	eDVBCI_UI.getInstance().setClockRate(configElement.slotid, eDVBCI_UI.rateNormal if configElement.value == "no" else eDVBCI_UI.rateHigh)
+	open(BoxInfo.getItem("CI%dSupportsHighBitrates" % configElement.slotid), "w").write(configElement.value)
 
 def setCIEnabled(configElement):
 	eDVBCI_UI.getInstance().setEnabled(configElement.slotid, configElement.value)
 
 def setdvbCiDelay(configElement):
 	open(BoxInfo.getItem("CommonInterfaceCIDelay"), "w").write(configElement.value)
-	configElement.save()
-
 
 def setRelevantPidsRouting(configElement):
 	open(BoxInfo.getItem("CI%dRelevantPidsRoutingSupport" % configElement.slotid), "w").write("yes" if configElement.value else "no")
@@ -40,8 +42,8 @@ def InitCiConfig():
 			config.ci.append(ConfigSubsection())
 			config.ci[slot].enabled = ConfigYesNo(default=True)
 			config.ci[slot].enabled.slotid = slot
-			config.ci[slot].enabled.addNotifier(setCIEnabled)
-			config.ci[slot].canDescrambleMultipleServices = ConfigSelection(choices=[("auto", _("auto")), ("no", _("no")), ("yes", _("yes"))], default="auto")
+			config.ci[slot].enabled.addNotifier(setCIEnabled, initial_call=False)
+			config.ci[slot].canDescrambleMultipleServices = ConfigSelection(default="auto", choices=[("auto", _("auto")), ("no", _("no")), ("yes", _("yes"))])
 			config.ci[slot].use_static_pin = ConfigYesNo(default=True)
 			config.ci[slot].static_pin = ConfigPIN(default=0)
 			config.ci[slot].show_ci_messages = ConfigYesNo(default=True)
@@ -62,6 +64,10 @@ def InitCiConfig():
 		if BoxInfo.getItem("CommonInterfaceCIDelay"):
 			config.cimisc.dvbCiDelay = ConfigSelection(default="256", choices=[("16", "16"), ("32", "32"), ("64", "64"), ("128", "128"), ("256", "256")])
 			config.cimisc.dvbCiDelay.addNotifier(setdvbCiDelay)
+		bootDelayChoices = [(0, _("No timeout"))]
+		for i in range(1, 16):
+			bootDelayChoices.append((i, ngettext("%d second", "%d seconds", i) % i))
+		config.cimisc.bootDelay = ConfigSelection(default=5, choices=bootDelayChoices)
 
 
 class MMIDialog(Screen):
@@ -422,7 +428,7 @@ class CiSelection(Screen):
 		if self.slot > 1:
 			cur = self["entries"].getCurrent()
 			if cur and len(cur) > 2:
-				self["text"].setText(cur[0] == "**************************" and " " or cur[0] == _("DVB CI Delay") and _("All slots") or _("Slot %d") % (cur[3] + 1))
+				self["text"].setText(cur[0] == "**************************" and " " or cur[0] == _("DVB CI Delay") and _("All slots") or cur[0] == _("CI Boot Delay") and _("All slots") or _("Slot %d") % (cur[3] + 1))
 
 	def keyConfigEntry(self, key):
 		try:
@@ -441,7 +447,10 @@ class CiSelection(Screen):
 		self.state[slot] = state
 		if self.slot > 1:
 			self.list.append(("**************************", ConfigNothing(), 3, slot))
-		self.list.append((_("CI %s enabled" % (slot)), config.ci[slot].enabled, -1, slot))
+		self.list.append((_("CI enabled"), config.ci[slot].enabled, -1, slot))
+		if self.state[slot] in (0, 3) or not config.ci[slot].enabled.value:
+			self.list.append(((not config.ci[slot].enabled.value or self.state[slot] == 3) and _("module disabled") or _("no module found"), ConfigNothing(), 2, slot))
+			return
 		self.list.append((_("Reset"), ConfigNothing(), 0, slot))
 		self.list.append((_("Init"), ConfigNothing(), 1, slot))
 
@@ -467,6 +476,7 @@ class CiSelection(Screen):
 			self.list.append((_("PID Filtering"), config.ci[slot].relevantPidsRouting, 3, slot))
 		if BoxInfo.getItem("CommonInterfaceCIDelay"):
 			self.list.append((_("DVB CI Delay"), config.cimisc.dvbCiDelay, 3, slot))
+		self.list.append((_("CI Boot Delay"), config.cimisc.bootDelay, 3, slot))
 
 	def updateState(self, slot):
 		state = eDVBCI_UI.getInstance().getState(slot)
@@ -521,7 +531,10 @@ class CiSelection(Screen):
 				pass
 			elif action == 0: #reset
 				eDVBCI_UI.getInstance().setReset(slot)
-			elif action == 1:		#init
+				authFile = "/etc/ciplus/ci_auth_slot_%d.bin" % slot
+				if exists(authFile):
+					remove(authFile)
+			elif action == 1: #init
 				eDVBCI_UI.getInstance().setInit(slot)
 			elif action == 5:
 				self.session.openWithCallback(self.cancelCB, PermanentPinEntry, config.ci[slot].static_pin, _("Smartcard PIN"))
