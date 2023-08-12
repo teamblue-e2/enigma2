@@ -1257,12 +1257,12 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 		{
 			struct stat s = {};
 			fstat(f, &s);
-			if (m_video_clip_fd == -1)
-				m_video_clip_fd = open("/dev/dvb/adapter0/video0", O_WRONLY);
 #if HAVE_HISILICON
 			if (m_video_clip_fd >= 0)
 				finishShowSinglePic();
 #endif
+			if (m_video_clip_fd == -1)
+				m_video_clip_fd = open("/dev/dvb/adapter0/video0", O_WRONLY);
 			if (m_video_clip_fd >= 0)
 			{
 				bool seq_end_avail = false;
