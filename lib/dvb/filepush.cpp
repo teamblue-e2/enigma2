@@ -120,7 +120,7 @@ void eFilePushThread::thread()
 			if (d)
 				buf_end -= d;
 
-			if (buf_end == 0 || m_sof == 1)
+			if (buf_end == 0)
 			{
 				/* on EOF, try COMMITting once. */
 				if (m_send_pvr_commit)
@@ -130,18 +130,18 @@ void eFilePushThread::thread()
 					pfd.events = POLLIN;
 					switch (poll(&pfd, 1, 250)) // wait for 250ms
 					{
-						case 0:
-							eDebug("[eFilePushThread] wait for driver eof timeout");
-							continue;
-						case 1:
-							eDebug("[eFilePushThread] wait for driver eof ok");
+					case 0:
+						eDebug("[eFilePushThread] wait for driver eof timeout");
+						continue;
+					case 1:
+						eDebug("[eFilePushThread] wait for driver eof ok");
+						break;
+					default:
+						eDebug("[eFilePushThread] wait for driver eof aborted by signal");
+						/* Check m_stop after interrupted syscall. */
+						if (m_stop)
 							break;
-						default:
-							eDebug("[eFilePushThread] wait for driver eof aborted by signal");
-							/* Check m_stop after interrupted syscall. */
-							if (m_stop)
-								break;
-							continue;
+						continue;
 					}
 				}
 
@@ -151,10 +151,7 @@ void eFilePushThread::thread()
 				/* in stream_mode, we are sending EOF events
 				   over and over until somebody responds.
 				   in stream_mode, think of evtEOF as "buffer underrun occurred". */
-				if (m_sof == 0)
-					sendEvent(evtEOF);
-				else
-					sendEvent(evtUser); // start of file event
+				sendEvent(evtEOF);
 
 				if (m_stream_mode)
 				{
@@ -190,7 +187,12 @@ void eFilePushThread::thread()
 							break;
 						}
 						if (w < 0 && (errno == EINTR || errno == EAGAIN || errno == EBUSY))
+						{
+#if HAVE_HISILICON
+							usleep(100000);
+#endif
 							continue;
+						}
 						eDebug("[eFilePushThread] write: %m");
 						sendEvent(evtWriteError);
 						break;
@@ -583,6 +585,9 @@ void eFilePushThreadRecorder::thread()
 			if (errno == EINTR || errno == EBUSY)
 			{
 				eDebug("[eFilePushThreadRecorder] read got interrupted by signal, stop: %d", m_stop);
+#if HAVE_HISILICON
+				usleep(100000);
+#endif
 				continue;
 			}
 
