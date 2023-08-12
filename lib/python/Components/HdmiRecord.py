@@ -3,7 +3,7 @@ from boxbranding import getBoxType, getMachineBuild
 
 
 def InitHdmiRecord():
-    full_hd = getMachineBuild() in ('et10000', 'dm900', 'dm920', 'et13000', 'sf5008', 'vuuno4kse') or getBoxType() in ('spycat4k', 'spycat4kcombo', 'gbquad4k')
+    full_hd = getMachineBuild() in getBoxType() in ('spycat4k', 'spycat4kcombo', 'gbquad4k')
 
     config.hdmirecord = ConfigSubsection()
 
@@ -83,3 +83,25 @@ def InitHdmiRecord():
             ("1", "4:3"),
             ("2", "16:9"),
         ], default="0")
+
+	try:
+		f = open("/proc/stb/encoder/0/audio_codec_choices")
+		choices = f.read()[:-1]
+		choices = [(x, x) for x in choices.split(' ')]
+		f.close()
+	except OSError:
+		print("[InitHdmiRecord] couldn't read audio_codec_choices.")
+		choices = [("aac", "aac")]
+
+	config.hdmirecord.acodec = ConfigSelection(choices=choices, default="aac")
+
+	try:
+		f = open("/proc/stb/encoder/0/video_codec_choices")
+		choices = f.read()[:-1]
+		choices = [(x, x) for x in choices.split(' ')]
+		f.close()
+	except OSError:
+		print("[InitHdmiRecord] couldn't read video_codec_choices.")
+		choices = [("h264", "h264")]
+
+	config.hdmirecord.vcodec = ConfigSelection(choices=choices, default="h264")
