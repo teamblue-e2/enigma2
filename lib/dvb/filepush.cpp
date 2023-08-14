@@ -61,13 +61,12 @@ void eFilePushThread::thread()
 		size_t bytes_read = 0;
 		off_t current_span_offset = 0;
 		size_t current_span_remaining = 0;
-		m_sof = 0;
 
 		while (!m_stop)
 		{
 			if (m_sg && !current_span_remaining)
 			{
-				m_sg->getNextSourceSpan(m_current_position, bytes_read, current_span_offset, current_span_remaining, m_blocksize, m_sof);
+				m_sg->getNextSourceSpan(m_current_position, bytes_read, current_span_offset, current_span_remaining, m_blocksize);
 				ASSERT(!(current_span_remaining % m_blocksize));
 				m_current_position = current_span_offset;
 				bytes_read = 0;
@@ -82,7 +81,7 @@ void eFilePushThread::thread()
 			/* align to blocksize */
 			maxread -= maxread % m_blocksize;
 
-			if (maxread && !m_sof)
+			if (maxread)
 			{
 #ifdef SHOW_WRITE_TIME
 				struct timeval starttime = {};
@@ -130,18 +129,18 @@ void eFilePushThread::thread()
 					pfd.events = POLLIN;
 					switch (poll(&pfd, 1, 250)) // wait for 250ms
 					{
-					case 0:
-						eDebug("[eFilePushThread] wait for driver eof timeout");
-						continue;
-					case 1:
-						eDebug("[eFilePushThread] wait for driver eof ok");
-						break;
-					default:
-						eDebug("[eFilePushThread] wait for driver eof aborted by signal");
-						/* Check m_stop after interrupted syscall. */
-						if (m_stop)
+						case 0:
+							eDebug("[eFilePushThread] wait for driver eof timeout");
+							continue;
+						case 1:
+							eDebug("[eFilePushThread] wait for driver eof ok");
 							break;
-						continue;
+						default:
+							eDebug("[eFilePushThread] wait for driver eof aborted by signal");
+							/* Check m_stop after interrupted syscall. */
+							if (m_stop)
+								break;
+							continue;
 					}
 				}
 
@@ -188,14 +187,17 @@ void eFilePushThread::thread()
 						}
 						if (w < 0 && (errno == EINTR || errno == EAGAIN || errno == EBUSY))
 						{
+#if HAVE_CPULOADFIX
+							sleep(2);
+#endif
 #if HAVE_HISILICON
 							usleep(100000);
 #endif
 							continue;
-						}
 						eDebug("[eFilePushThread] write: %m");
 						sendEvent(evtWriteError);
 						break;
+						}
 					}
 					buf_start += w;
 				}
@@ -578,13 +580,14 @@ void eFilePushThreadRecorder::thread()
 
 					break;
 				}
-
+#if HAVE_HISILICON
+				usleep(100000);
+#endif
 				continue;
 			}
 
 			if (errno == EINTR || errno == EBUSY)
 			{
-				eDebug("[eFilePushThreadRecorder] read got interrupted by signal, stop: %d", m_stop);
 #if HAVE_HISILICON
 				usleep(100000);
 #endif
