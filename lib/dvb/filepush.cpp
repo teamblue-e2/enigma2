@@ -129,18 +129,18 @@ void eFilePushThread::thread()
 					pfd.events = POLLIN;
 					switch (poll(&pfd, 1, 250)) // wait for 250ms
 					{
-						case 0:
-							eDebug("[eFilePushThread] wait for driver eof timeout");
-							continue;
-						case 1:
-							eDebug("[eFilePushThread] wait for driver eof ok");
+					case 0:
+						eDebug("[eFilePushThread] wait for driver eof timeout");
+						continue;
+					case 1:
+						eDebug("[eFilePushThread] wait for driver eof ok");
+						break;
+					default:
+						eDebug("[eFilePushThread] wait for driver eof aborted by signal");
+						/* Check m_stop after interrupted syscall. */
+						if (m_stop)
 							break;
-						default:
-							eDebug("[eFilePushThread] wait for driver eof aborted by signal");
-							/* Check m_stop after interrupted syscall. */
-							if (m_stop)
-								break;
-							continue;
+						continue;
 					}
 				}
 
@@ -194,10 +194,10 @@ void eFilePushThread::thread()
 							usleep(100000);
 #endif
 							continue;
+						}
 						eDebug("[eFilePushThread] write: %m");
 						sendEvent(evtWriteError);
 						break;
-						}
 					}
 					buf_start += w;
 				}
