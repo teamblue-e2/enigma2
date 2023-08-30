@@ -22,28 +22,6 @@ from Screens.Setup import Setup, getSetupTitle, getSetupTitleLevel
 mdom = xml.etree.ElementTree.parse(resolveFilename(SCOPE_SKIN, 'menu.xml'))
 
 
-class MenuUpdater:
-	def __init__(self):
-		self.updatedMenuItems = {}
-
-	def addMenuItem(self, _id, pos, text, module, screen, weight):
-		if not self.updatedMenuAvailable(_id):
-			self.updatedMenuItems[_id] = []
-		self.updatedMenuItems[_id].append([text, pos, module, screen, weight])
-
-	def delMenuItem(self, _id, pos, text, module, screen, weight):
-		self.updatedMenuItems[_id].remove([text, pos, module, screen, weight])
-
-	def updatedMenuAvailable(self, _id):
-		return _id in self.updatedMenuItems
-
-	def getUpdatedMenu(self, _id):
-		return self.updatedMenuItems[_id]
-
-
-menuupdater = MenuUpdater()
-
-
 class MenuSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent=parent)
@@ -245,13 +223,6 @@ class Menu(Screen, ProtectedScreen):
 				self.menuID = x.get("val")
 				count = 0
 
-			if self.menuID:
-				# menuupdater?
-				if menuupdater.updatedMenuAvailable(self.menuID):
-					for x in menuupdater.getUpdatedMenu(self.menuID):
-						if x[1] == count:
-							self.list.append((x[0], boundFunction(self.runScreen, (x[2], x[3] + ", ")), x[4]))
-							count += 1
 		if self.menuID:
 			# plugins
 			for l in plugins.getPluginsForMenu(self.menuID):
