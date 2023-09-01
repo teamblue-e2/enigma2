@@ -4,7 +4,6 @@ from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
-import six
 
 
 class Console(Screen):
@@ -126,6 +125,7 @@ class Console(Screen):
 		else:
 			self.show()
 
-	def dataAvail(self, str):
-		str = six.ensure_str(str)
-		self["text"].appendText(str)
+	def dataAvail(self, data):
+		if isinstance(data, bytes):
+			data = data.decode()
+		self["text"].appendText(data)
