@@ -28,7 +28,7 @@ import tempfile
 import struct
 
 from enigma import eEPGCache
-from boxbranding import getImageDistro, getBoxType
+from boxbranding import getImageDistro, getBoxType, getMachineBrand, getMachineName
 
 def checkimagefiles(files):
 	return len([x for x in files if 'kernel' in x and '.bin' in x or x in ('uImage', 'rootfs.bin', 'root_cfe_auto.bin', 'root_cfe_auto.jffs2', 'oe_rootfs.bin', 'e2jffs2.img', 'rootfs.tar.bz2', 'rootfs.ubi')]) == 2
@@ -519,7 +519,7 @@ class FlashImage(Screen):
 				nextRecordingTime = self.session.nav.RecordTimer.getNextRecordingTime()
 				if recording or (nextRecordingTime > 0 and (nextRecordingTime - time.time()) < 360):
 					self.choice = choice
-					self.session.openWithCallback(self.recordWarning, MessageBox, "%s\n\n%s" % (_("Recording(s) are in progress or coming up in few seconds!"), _("Flash your %s %s and reboot now?") % getBoxDisplayName()), default=False)
+					self.session.openWithCallback(self.recordWarningCallback, MessageBox, "%s\n\n%s" % (_("Recording(s) are in progress or coming up in few seconds!"), _("Flash your %s %s and reboot now?") % (getMachineBrand(), getMachineName())), default=False)
 					return
 			restoreSettings = ("restoresettings" in choice)
 			restoreSettingsnoPlugin = (choice == "restoresettingsnoplugin")
@@ -559,7 +559,7 @@ class FlashImage(Screen):
 										open(path, "w").close()
 								else:
 									if os.path.exists(path):
-										unlink(path)
+										os.unlink(path)
 						except OSError as err:
 							print("[FlashImage] postFlashActionCallback Error %d: Failed to create restore mode flag file '%s'!  (%s)" % (err.errno, path, err.strerror))
 				self.startDownload()
@@ -571,6 +571,14 @@ class FlashImage(Screen):
 	def saveEPG(self):
 		epgCache = eEPGCache.getInstance()
 		epgCache.save()
+	
+	def recordWarningCallback(self, choice):
+		if not choice:
+			self.abort()
+			return
+		
+		self.postFlashActionCallback(self.choice)
+
 
 class MultibootSelection(SelectImage):
 	def __init__(self, session, *args):
