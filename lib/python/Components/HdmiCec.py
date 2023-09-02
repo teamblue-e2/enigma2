@@ -11,6 +11,7 @@ LOGFILE = "hdmicec.log"
 
 # CEC Version's table
 CEC = ["1.1", "1.2", "1.2a", "1.3", "1.3a", "1.4", "2.0?", "unknown"]
+
 cmdList = {
 	0x00: "<Polling Message>",
 	0x04: "<Image View On>",
@@ -44,6 +45,10 @@ cmdList = {
 	0x9d: "<Inactive Source>",
 	0x9e: "<CEC Version>",
 	0x9f: "<Get CEC Version>",
+	0xa0: "<Vendor Command With ID>",
+	0xa1: "<Clear External Timer>",
+	0xa2: "<Set External Timer>",
+	0xff: "<Abort>"
 	}
 
 config.hdmicec = ConfigSubsection()
@@ -179,7 +184,7 @@ class HdmiCec:
 
 	def sendMessage(self, address, message):
 		cmd = 0
-		data = ''
+		data = b''
 		if message == "wakeup":
 			if config.hdmicec.tv_wakeup_command.value == 'textview':
 				cmd = 0x0d
@@ -196,10 +201,10 @@ class HdmiCec:
 			data = self.setData()
 		elif message == "menuactive":
 			cmd = 0x8e
-			data = str(struct.pack('B', 0x00))
+			data = struct.pack('B', 0x00)
 		elif message == "menuinactive":
 			cmd = 0x8e
-			data = str(struct.pack('B', 0x01))
+			data = struct.pack('B', 0x01)
 		elif message == "givesystemaudiostatus":
 			cmd = 0x7d
 			address = 0x05
@@ -210,29 +215,29 @@ class HdmiCec:
 		elif message == "osdname":
 			cmd = 0x47
 			data = os.uname()[1]
-			data = data[:14]
+			data = data[:14].encode()
 		elif message == "poweractive":
 			cmd = 0x90
-			data = str(struct.pack('B', 0x00))
+			data = struct.pack('B', 0x00)
 		elif message == "powerinactive":
 			cmd = 0x90
-			data = str(struct.pack('B', 0x01))
+			data = struct.pack('B', 0x01)
 		elif message == "reportaddress":
 			address = 0x0f # use broadcast address
 			cmd = 0x84
 			data = self.setData(True)
 		elif message == "vendorid":
 			cmd = 0x87
-			data = '\x00\x00\x00'
+			data = b'\x00\x00\x00'
 		elif message == "keypoweron":
 			cmd = 0x44
-			data = str(struct.pack('B', 0x6d))
+			data = struct.pack('B', 0x6d)
 		elif message == "keypoweroff":
 			cmd = 0x44
-			data = str(struct.pack('B', 0x6c))
+			data = struct.pack('B', 0x6c)
 		elif message == "sendcecversion":
 			cmd = 0x9E
-			data = str(struct.pack('B', 0x04)) # v1.3a
+			data = struct.pack('B', 0x04) # v1.3a
 		elif message == "requestactivesource":
 			address = 0x0f # use broadcast address
 			cmd = 0x85
@@ -242,6 +247,10 @@ class HdmiCec:
 			cmd = 0x8f
 
 		if cmd:
+			try:
+				data = data.decode("UTF-8")
+			except:
+				data = data.decode("ISO-8859-1")
 			if config.hdmicec.minimum_send_interval.value != "0":
 				self.queue.append((address, cmd, data))
 				if not self.wait.isActive():
@@ -265,8 +274,8 @@ class HdmiCec:
 		physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
 		if devicetypeSend:
 			devicetype = eHdmiCEC.getInstance().getDeviceType()
-			return str(struct.pack('BBB', int(physicaladdress / 256), int(physicaladdress % 256), devicetype))
-		return str(struct.pack('BB', int(physicaladdress / 256), int(physicaladdress % 256)))
+			return struct.pack('BBB', int(physicaladdress / 256), int(physicaladdress % 256), devicetype)
+		return struct.pack('BB', int(physicaladdress / 256), int(physicaladdress % 256))
 
 	def wakeupMessages(self):
 		if config.hdmicec.enabled.value:
@@ -454,31 +463,35 @@ class HdmiCec:
 		if not self.volumeForwardingEnabled:
 			return
 		cmd = 0
-		data = ''
+		data = b''
 		if keyEvent == 0:
 			if keyCode == 115:
 				cmd = 0x44
-				data = str(struct.pack('B', 0x41))
+				data = struct.pack('B', 0x41)
 			if keyCode == 114:
 				cmd = 0x44
-				data = str(struct.pack('B', 0x42))
+				data = struct.pack('B', 0x42)
 			if keyCode == 113:
 				cmd = 0x44
-				data = str(struct.pack('B', 0x43))
+				data = struct.pack('B', 0x43)
 		if keyEvent == 2:
 			if keyCode == 115:
 				cmd = 0x44
-				data = str(struct.pack('B', 0x41))
+				data = struct.pack('B', 0x41)
 			if keyCode == 114:
 				cmd = 0x44
-				data = str(struct.pack('B', 0x42))
+				data = struct.pack('B', 0x42)
 			if keyCode == 113:
 				cmd = 0x44
-				data = str(struct.pack('B', 0x43))
+				data = struct.pack('B', 0x43)
 		if keyEvent == 1:
 			if keyCode == 115 or keyCode == 114 or keyCode == 113:
 				cmd = 0x45
 		if cmd:
+			try:
+				data = data.decode("UTF-8")
+			except:
+				data = data.decode("ISO-8859-1")
 			if config.hdmicec.minimum_send_interval.value != "0":
 				self.queueKeyEvent.append((self.volumeForwardingDestination, cmd, data))
 				repeat = int(config.hdmicec.volume_forwarding_repeat.value)
@@ -506,10 +519,10 @@ class HdmiCec:
 		tmp = ""
 		if len(data):
 			if cmd in [0x32, 0x47]:
-				for i in list(range(len(data))):
+				for i in range(len(data)):
 					tmp += "%s" % data[i]
 			else:
-				for i in list(range(len(data))):
+				for i in range(len(data)):
 					tmp += "%02X" % ord(data[i]) + " "
 		tmp += 48 * " "
 		self.fdebug(txt + tmp[:48] + "[0x%02X]" % (address) + "\n")
@@ -523,7 +536,7 @@ class HdmiCec:
 				txt += "<Feature Abort>" + 13 * " " + "<  " + "%02X" % (cmd) + " "
 			else:
 				txt += self.opCode(cmd) + " " + "%02X" % (cmd) + " "
-			for i in list(range(length - 1)):
+			for i in range(length - 1):
 				if cmd in [0x32, 0x47]:
 					txt += "%s" % data[i]
 				elif cmd == 0x9e:
