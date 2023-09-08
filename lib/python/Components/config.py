@@ -1340,18 +1340,6 @@ class ConfigSelectionNumber(ConfigSelection):
 
 	value = property(getValue, setValue)
 
-	def getIndex(self):
-		return self.choices.index(self.value)
-
-	index = property(getIndex)
-
-	def isChanged(self):
-		sv = self.saved_value
-		strv = str(self.tostring(self.value))
-		if sv is None and strv == str(self.default):
-			return False
-		return strv != str(sv)
-
 	def handleKey(self, key):
 		if not self.wraparound:
 			if key == KEY_RIGHT:
