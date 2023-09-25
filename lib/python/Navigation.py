@@ -280,6 +280,8 @@ class Navigation:
 			print("[Navigation] recording service: %s" % (str(ref)))
 		if isinstance(ref, ServiceReference.ServiceReference):
 			ref = ref.ref
+		if not simulate:
+			print("[Navigation] recording service: %s" % (ref and ref.toString() or "None"))
 		if ref:
 			if ref.flags & eServiceReference.isGroup:
 				ref = getBestPlayableServiceReference(ref, eServiceReference(), simulate)
