@@ -2359,6 +2359,10 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					lastservice = ref
 				if lastservice.valid() and self.getCurrentSelection() != lastservice:
 					self.setCurrentSelection(lastservice)
+		elif self.revertMode == MODE_TV and self.mode == MODE_RADIO:
+			self.setModeTv()
+		elif self.revertMode == MODE_RADIO and self.mode == MODE_TV:
+			self.setModeRadio()
 		self.asciiOff()
 		self.zapBack()
 		self.correctChannelNumber()
