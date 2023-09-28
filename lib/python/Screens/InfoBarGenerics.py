@@ -2329,9 +2329,6 @@ class InfoBarTimeshift:
 			self.ts_current_event_timer.startLongTimer(duration)
 
 
-from Screens.PiPSetup import PiPSetup
-
-
 class ExtensionsList(ChoiceBox):
 	def __init__(self, session, clist, keys, refresh_list):
 		ChoiceBox.__init__(self, session, title=_("Please choose an extension..."), list=clist, keys=keys, skin_name="ExtensionsList", reorderConfig="extension_order", windowTitle=_("Extensions menu"))
@@ -2416,20 +2413,19 @@ class InfoBarExtensions:
 		self.updateExtensions()
 		extensionsList = self.extensionsList[:]
 		keys = []
-		_list = []
+		clist = []
 		for x in self.availableKeys:
 			if x in self.extensionKeys:
 				entry = self.extensionKeys[x]
 				extension = self.extensionsList[entry]
 				if extension[2]():
-					name = str(extension[0]())
-					_list.append((extension[0](), extension))
+					clist.append((extension[0](), extension))
 					keys.append(x)
 					extensionsList.remove(extension)
 				else:
 					extensionsList.remove(extension)
-		_list.extend([(x[0](), x) for x in extensionsList])
-		_list and self.session.openWithCallback(self.extensionCallback, ExtensionsList, clist=_list, keys=keys, refresh_list="refresh" in self.extensionKeys)
+		clist.extend([(x[0](), x) for x in extensionsList])
+		clist and self.session.openWithCallback(self.extensionCallback, ExtensionsList, clist=clist, keys=keys, refresh_list="refresh" in self.extensionKeys)
 
 
 	def extensionCallback(self, answer):
@@ -2491,6 +2487,9 @@ class InfoBarJobman:
 
 	def JobViewCB(self, in_background):
 		job_manager.in_background = in_background
+
+
+from Screens.PiPSetup import PiPSetup
 
 # depends on InfoBarExtensions
 
