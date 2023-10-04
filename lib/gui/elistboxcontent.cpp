@@ -240,7 +240,7 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 		if (!item || item == Py_None)
 		{
 				/* seperator */
-			if (isverticallb) 
+			if (isverticallb)
 			{
 				int half_height = m_itemsize.height() / 2;
 				painter.fill(eRect(offset.x() + half_height, offset.y() + half_height - 2, m_itemsize.width() - m_itemsize.height(), 4));
@@ -872,10 +872,10 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 		border_color = local_style->m_border_color;
 		isverticallb = m_listbox->getOrientation() == 1;
 	}
-	
+
 	painter.clip(itemregion);
 	clearRegion(painter, style, local_style, ePyObject(), ePyObject(), ePyObject(), ePyObject(), selected, itemregion, sel_clip, offset, m_itemsize, cursorValid, true, isverticallb);
-	
+
 	// Draw frame here so to be under the content
 	if (selected && !sel_clip.valid() && (!local_style || !local_style->m_selection) && (!local_style || !local_style->m_border_set))
 			style.drawFrame(painter, eRect(offset, m_itemsize), eWindowStyle::frameListboxEntry);
@@ -1270,7 +1270,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 		}
 	}
 
-	
+
 
 error_out:
 	if (buildfunc_ret)

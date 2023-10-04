@@ -66,7 +66,7 @@ eEncoder::eEncoder()
 
 			if (CFile::parseInt(&decoder_index, filename) < 0)
 			{
-				// VU+ 
+				// VU+
 				snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/demux", index);
 				if (CFile::parseInt(&decoder_index, filename) < 0)
 					break;
