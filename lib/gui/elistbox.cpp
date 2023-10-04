@@ -389,7 +389,7 @@ void eListbox::updateScrollBar()
 		}
 		return;
 	}
-	
+
 	int entries = m_content->size();
 	if (m_content_changed)
 	{
@@ -524,7 +524,7 @@ int eListbox::event(int event, void *data, void *data2)
 			{
 				yoffset = m_scrollbar->size().height() + 5;
 			}
-			
+
 			if (m_orientation == orVertical)
 			{
 				for (int y = 0, i = 0; i <= m_items_per_page; y += m_itemheight, ++i)
@@ -734,8 +734,8 @@ void eListbox::entryRemoved(int index)
 		moveSelection(moveUp);
 	else
 		moveSelection(justCheck);
-	
-	if (m_orientation == orVertical) 
+
+	if (m_orientation == orVertical)
 	{
 		if ((m_top <= index) && (index < (m_top + m_items_per_page)))
 		{
@@ -755,7 +755,7 @@ void eListbox::entryRemoved(int index)
 
 void eListbox::entryChanged(int index)
 {
-	if (m_orientation == orVertical) 
+	if (m_orientation == orVertical)
 	{
 		if ((m_top <= index) && (index < (m_top + m_items_per_page)))
 		{

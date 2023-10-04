@@ -571,12 +571,12 @@ class FlashImage(Screen):
 	def saveEPG(self):
 		epgCache = eEPGCache.getInstance()
 		epgCache.save()
-	
+
 	def recordWarningCallback(self, choice):
 		if not choice:
 			self.abort()
 			return
-		
+
 		self.postFlashActionCallback(self.choice)
 
 

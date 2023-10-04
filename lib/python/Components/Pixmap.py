@@ -15,6 +15,9 @@ class Pixmap(GUIComponent):
 		s = self.instance.size()
 		return (s.width(), s.height())
 
+	def setPixmap(self, pixmap):
+		self.instance.setPixmap(pixmap)
+
 
 class PixmapConditional(ConditionalWidget, Pixmap):
 	def __init__(self, withTimer=True):
