@@ -18,7 +18,7 @@ from time import sleep
 import xml.etree.ElementTree as et
 import six
 
-supportfiles = ('lamedb', 'blacklist', 'whitelist', 'alternatives.')
+supportfiles = ('lamedb', 'blacklist', 'whitelist', 'alternatives.', 'whitelist')
 
 e2path = resolveFilename(SCOPE_CONFIG)
 
