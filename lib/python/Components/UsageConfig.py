@@ -1,5 +1,6 @@
 from Components.Harddisk import harddiskmanager
-from Components.config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, ConfigSelectionNumber, ConfigClock, ConfigSlider, ConfigEnableDisable, ConfigSubDict, ConfigDictionarySet, ConfigInteger, ConfigPassword, ConfigBoolean
+from Components.config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, ConfigSelectionNumber, ConfigClock, ConfigSlider, ConfigEnableDisable, ConfigSubDict, ConfigDictionarySet, ConfigInteger, ConfigPassword, ConfigBoolean, ConfigIP
+from Components.Console import Console
 from Tools.Directories import defaultRecordingLocation
 from enigma import setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, eEnv, eDVBDB, Misc_Options, eBackgroundFileEraser, eServiceEvent
 from Components.NimManager import nimmanager
@@ -915,6 +916,31 @@ def InitUsageConfig():
 	config.mediaplayer.useAlternateUserAgent = ConfigYesNo(default=False)
 	config.mediaplayer.alternateUserAgent = ConfigText(default="")
 
+	config.misc.softcam_setup = ConfigSubsection()
+	config.misc.softcam_setup.extension_menu = ConfigYesNo(default=True)
+	config.misc.softcam_streamrelay_url = ConfigIP(default=[127, 0, 0, 1], auto_jump=True)
+	config.misc.softcam_streamrelay_port = ConfigInteger(default=17999, limits=(0, 65535))
+
+	config.ntp = ConfigSubsection()
+
+	def timesyncChanged(configElement):
+		if configElement.value == "dvb" or not GetIPsFromNetworkInterfaces():
+			eDVBLocalTimeHandler.getInstance().setUseDVBTime(True)
+			eEPGCache.getInstance().timeUpdated()
+			if os.path.isfile('/var/spool/cron/crontabs/root'):
+				Console().ePopen("sed -i '/ntpdate-sync/d' /var/spool/cron/crontabs/root;")
+			if configElement.value == "dvb" and os.path.islink('/etc/network/if-up.d/ntpdate-sync'):
+				Console().ePopen("unlink /etc/network/if-up.d/ntpdate-sync")
+		else:
+			eDVBLocalTimeHandler.getInstance().setUseDVBTime(False)
+			eEPGCache.getInstance().timeUpdated()
+			if not os.path.isfile('/var/spool/cron/crontabs/root') or not 'ntpdate-sync' in open('/var/spool/cron/crontabs/root').read():
+				Console().ePopen("echo '30 * * * *    /usr/bin/ntpdate-sync silent' >> /var/spool/cron/crontabs/root")
+			if not os.path.islink('/etc/network/if-up.d/ntpdate-sync'):
+				Console().ePopen("ln -s /usr/bin/ntpdate-sync /etc/network/if-up.d/ntpdate-sync")
+	config.ntp.timesync = ConfigSelection(default="auto", choices=[("auto", _("auto")), ("dvb", _("Transponder Time")), ("ntp", _("Internet (ntp)"))])
+	config.ntp.timesync.addNotifier(timesyncChanged)
+	config.ntp.server = ConfigText("pool.ntp.org", fixed_size=False)
 
 def updateChoices(sel, choices):
 	if choices:
