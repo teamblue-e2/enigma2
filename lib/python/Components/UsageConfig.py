@@ -939,6 +939,7 @@ def InitUsageConfig():
 				Console().ePopen("echo '30 * * * *    /usr/sbin/ntpd -nq -p %s' >> /var/spool/cron/crontabs/root" % config.ntp.server.value)
 			if not os.path.islink('/etc/network/if-up.d/ntpd'):
 				Console().ePopen("ln -s /usr/bin/ntpd /etc/network/if-up.d/ntpd")
+			Console().ePopen("/usr/sbin/ntpd -nq -p %s" % config.ntp.server.value)
 	config.ntp.server = ConfigText("pool.ntp.org", fixed_size=False)
 	config.ntp.timesync = ConfigSelection(default="auto", choices=[("auto", _("auto")), ("dvb", _("Transponder Time")), ("ntp", _("Internet (ntp)"))])
 	config.ntp.timesync.addNotifier(timesyncChanged)
