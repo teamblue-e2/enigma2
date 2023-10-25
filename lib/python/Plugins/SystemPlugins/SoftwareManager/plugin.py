@@ -66,12 +66,6 @@ config.plugins.softwaremanager.updatetype = ConfigSelection(
 					("hot", _("Upgrade with GUI")),
 					("cold", _("Unattended upgrade without GUI")),
 				], "hot")
-config.plugins.softwaremanager.restoremode = ConfigSelection(
-				[
-					("turbo", _("turbo")),
-					("fast", _("fast")),
-					("slow", _("slow")),
-				], "turbo")
 config.plugins.softwaremanager.epgcache = ConfigYesNo(default=False)
 
 
@@ -386,7 +380,6 @@ class SoftwareManagerSetup(ConfigListScreen, Screen):
 		self.overwritePiconsfilesEntry = None
 		self.overwriteBootlogofilesEntry = None
 		self.overwriteSpinnerfilesEntry = None
-		self.restoremodeEntry = None
 		self.updatetypeEntry = None
 
 		self.list = []
@@ -416,7 +409,6 @@ class SoftwareManagerSetup(ConfigListScreen, Screen):
 		self.overwritePiconsfilesEntry = (_("Overwrite Picon Files ?"), config.plugins.softwaremanager.overwritePiconsFiles)
 		self.overwriteBootlogofilesEntry = (_("Overwrite Bootlogo Files ?"), config.plugins.softwaremanager.overwriteBootlogoFiles)
 		self.overwriteSpinnerfilesEntry = (_("Overwrite Spinner Files ?"), config.plugins.softwaremanager.overwriteSpinnerFiles)
-		self.restoremodeEntry = (_("Mode for autorestore"), config.plugins.softwaremanager.restoremode)
 		self.updatetypeEntry = (_("Select Software Update"), config.plugins.softwaremanager.updatetype)
 		self.list.append(self.overwriteConfigfilesEntry)
 		self.list.append((_("show softwaremanager in setup menu"), config.plugins.softwaremanager.onSetupMenu))
@@ -428,7 +420,6 @@ class SoftwareManagerSetup(ConfigListScreen, Screen):
 		self.list.append(self.overwritePiconsfilesEntry)
 		self.list.append(self.overwriteBootlogofilesEntry)
 		self.list.append(self.overwriteSpinnerfilesEntry)
-		self.list.append(self.restoremodeEntry)
 
 		self["config"].list = self.list
 		self["config"].l.setSeperation(400)
@@ -452,8 +443,6 @@ class SoftwareManagerSetup(ConfigListScreen, Screen):
 			self["introduction"].setText(_("Overwrite bootlogo files during software upgrade?"))
 		elif self["config"].getCurrent() == self.overwriteSpinnerfilesEntry:
 			self["introduction"].setText(_("Overwrite spinner files during software upgrade?"))
-		elif self["config"].getCurrent() == self.restoremodeEntry:
-			self["introduction"].setText(_("Turbo: One reboot after flash\nFast: One reboot after flash, one reboot after restore\nSlow: One reboot after flash, one reboot after restore in GUI"))
 		elif self["config"].getCurrent() == self.updatetypeEntry:
 			self["introduction"].setText(_("Select how your box will upgrade."))
 		else:

@@ -11,7 +11,7 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.ProgressBar import ProgressBar
 from Components.SystemInfo import SystemInfo
-from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen
+from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, getBackupFilename, getBackupPath
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, fileExists, pathExists, fileHas
 from Tools.Downloader import downloadWithProgress
@@ -29,6 +29,10 @@ import struct
 
 from enigma import eEPGCache
 from boxbranding import getImageDistro, getBoxType, getMachineBrand, getMachineName
+
+isDevice = False
+multibootslot = ""
+
 
 def checkimagefiles(files):
 	return len([x for x in files if 'kernel' in x and '.bin' in x or x in ('uImage', 'rootfs.bin', 'root_cfe_auto.bin', 'root_cfe_auto.jffs2', 'oe_rootfs.bin', 'e2jffs2.img', 'rootfs.tar.bz2', 'rootfs.ubi')]) == 2
@@ -306,11 +310,10 @@ class FlashImage(Screen):
 	def checkMedia(self, retval):
 		if retval:
 			if SystemInfo["canMultiBoot"]:
-				self.multibootslot = retval[0]
-				doBackup = retval[1] == "with backup"
+				global multibootslot
+				multibootslot = retval[0]
 				self.onlyDownload = retval[1] == "only download"
 			else:
-				doBackup = retval == "with backup"
 				self.onlyDownload = retval == "only download"
 
 			def findmedia(path):
@@ -344,6 +347,7 @@ class FlashImage(Screen):
 				mounts.sort(key=lambda x: x[1], reverse=True)
 				return ((devices[0][1] > 500 and (devices[0][0], True)) if devices else mounts and mounts[0][1] > 500 and (mounts[0][0], False)) or (None, None)
 
+			global isDevice
 			self.destination, isDevice = findmedia(os.path.isfile(self.BACKUP_SCRIPT) and hasattr(config.plugins, "autobackup") and config.plugins.autobackup.where.value or "/media/hdd")
 
 			if self.destination:
@@ -357,13 +361,7 @@ class FlashImage(Screen):
 						os.remove(destination)
 					if not os.path.isdir(destination):
 						os.mkdir(destination)
-					if doBackup:
-						if isDevice:
-							self.startBackupsettings(True)
-						else:
-							self.session.openWithCallback(self.startBackupsettings, MessageBox, _("Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternativaly you can mount the network drive after the flash and perform a manufacurer reset to autorestore"), simple=True)
-					else:
-						self.startBackupsettings(retval[1])
+					self.flashPostAction()
 				except:
 					self.session.openWithCallback(self.abort, MessageBox, _("Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"), type=MessageBox.TYPE_ERROR, simple=True)
 			else:
@@ -374,13 +372,9 @@ class FlashImage(Screen):
 	def startBackupsettings(self, retval):
 		if retval:
 			self["info"].setText(_("Backing up to: %s") % self.destination)
-			eEPGCache.getInstance().save()
-			if retval == "backup" or retval is True:
+			if retval is True:
 				self["info"].setText(_("Backing up to: %s") % self.destination)
-				eEPGCache.getInstance().save()
-				self.session.openWithCallback(self.flashPostAction, BackupScreen, runBackup=True)
-			else:
-				self.flashPostAction()
+				self.session.openWithCallback(self.startDownload, BackupScreen, runBackup=True)
 		else:
 			self.abort()
 
@@ -437,7 +431,8 @@ class FlashImage(Screen):
 		imagefiles = findimagefiles(self.unzippedimage)
 		if imagefiles:
 			if SystemInfo["canMultiBoot"]:
-				command = "/usr/bin/ofgwrite -k -r -m%s '%s'" % (self.multibootslot, imagefiles)
+				global multibootslot
+				command = "/usr/bin/ofgwrite -k -r -m%s '%s'" % (multibootslot, imagefiles)
 			else:
 				command = "/usr/bin/ofgwrite -k -r '%s'" % imagefiles
 			self.containerofgwrite = Console()
@@ -449,6 +444,8 @@ class FlashImage(Screen):
 		self.containerofgwrite = None
 		if retval == 0:
 			self["header"].setText(_("Flashing image successful"))
+			if SystemInfo["canMultiBoot"]:
+				self.restore()
 			self["info"].setText(_("%s\nPress ok for multiboot selection\nPress exit to close") % self.imagename)
 		else:
 			self.session.openWithCallback(self.abort, MessageBox, _("Flashing image was not successful\n%s") % self.imagename, type=MessageBox.TYPE_ERROR, simple=True)
@@ -467,6 +464,24 @@ class FlashImage(Screen):
 			self.session.openWithCallback(self.abort, MultibootSelection)
 		else:
 			return 0
+
+	def restore(self):
+		global multibootslot
+		# mount point
+		self.tmp_dir = tempfile.mkdtemp(prefix="MultibootSelection")
+		# Actual data directory (differs in case of rootsubdir)
+		self.image_dir = os.sep.join(filter(None, [self.tmp_dir, SystemInfo["canMultiBoot"][multibootslot].get('rootsubdir', '')]))
+		if os.path.exists("/media/hdd/images/config/settings"):
+			Console().ePopen('mount %s %s' % (SystemInfo["canMultiBoot"][multibootslot]['device'], self.tmp_dir))
+			self.restore_settings(self.tmp_dir, self.image_dir)
+
+	def restore_settings(self, tmpdir, image_dir):
+		filename = "%s/%s" % (getBackupPath(), getBackupFilename())
+		self.session.openWithCallback(self.cleanUp, RestoreScreen, runRestore=True, restorePath=tmpdir, image_dir=image_dir)
+
+	def cleanUp(self):
+		Console().ePopen('umount %s' % self.tmp_dir)
+		Console().ePopen('rm /tmp/chroot.sh /tmp/groups.txt /tmp/groups.txt /tmp/installed-list.txt self.tmp_dir')
 
 	def flashPostAction(self, retVal=True):
 		if retVal:
@@ -549,20 +564,11 @@ class FlashImage(Screen):
 					else:
 						if os.path.exists(path):
 							os.unlink(path)
-				if restoreSettings:
-					if config.plugins.softwaremanager.restoremode.value is not None:
-						try:
-							for fileName in ["slow", "fast", "turbo"]:
-								path = os.path.join(rootFolder, fileName)
-								if fileName == config.plugins.softwaremanager.restoremode.value:
-									if not os.path.exists(path):
-										open(path, "w").close()
-								else:
-									if os.path.exists(path):
-										os.unlink(path)
-						except OSError as err:
-							print("[FlashImage] postFlashActionCallback Error %d: Failed to create restore mode flag file '%s'!  (%s)" % (err.errno, path, err.strerror))
-				self.startDownload()
+				global isDevice
+				if isDevice:
+					self.startBackupsettings(True)
+				else:
+					self.session.openWithCallback(self.startBackupsettings, MessageBox, _("Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternativaly you can mount the network drive after the flash and perform a manufacurer reset to autorestore"), simple=True)
 			else:
 				self.abort()
 		else:
