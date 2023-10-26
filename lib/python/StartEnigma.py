@@ -86,6 +86,13 @@ def setEPGCachePath(configElement):
 #config.misc.standbyCounter.addNotifier(standbyCountChanged, initial_call = False)
 ####################################################
 
+
+def useTransponderTimeChanged(configElement):
+	enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(configElement.value)
+
+
+config.misc.useTransponderTime.addNotifier(useTransponderTimeChanged, initial_call=False)
+
 profile("Twisted")
 try:
 	import twisted.python.runtime
