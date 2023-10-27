@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-22 07:44+0200\n"
+"POT-Creation-Date: 2023-10-27 11:11+0200\n"
 "PO-Revision-Date: 2020-05-13 21:36+0200\n"
 "Last-Translator: mcfly82\n"
 "Language-Team: mcfly82 & wysless\n"
@@ -2817,10 +2817,6 @@ msgstr "Milyen tuner típus legyen automatikusan választva, ha ugyanaz a csator
 msgid "Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites."
 msgstr "Melyik tuner legyen választva, ha ugyanaz a csatorna egyszerre több tuneren keresztül is fogható (a csatornának vannak beállított alternatívái). Ha ez 'Automatikus', akkor mindig a legkevesebb csatornákat fogó tuner lesz választva."
 
-#, fuzzy
-msgid "Configure your NTP server."
-msgstr "Névszerverek konfigurálása"
-
 msgid "Configure your internal LAN"
 msgstr "A hálózat konfigurálása"
 
@@ -3504,6 +3500,14 @@ msgstr "HTTP jelfolyamook dekódolása"
 
 #, fuzzy
 msgid "Descramble sending http streams"
+msgstr "HTTP jelfolyamook dekódolása"
+
+#, fuzzy
+msgid "Descramble service via streamrelay port"
+msgstr "HTTP jelfolyamook dekódolása"
+
+#, fuzzy
+msgid "Descramble service via streamrelay url"
 msgstr "HTTP jelfolyamook dekódolása"
 
 msgid "Description"
@@ -5571,6 +5575,10 @@ msgid "HDMI-IN Actions"
 msgstr ""
 
 #, fuzzy
+msgid "HDMI-IN Recording settings"
+msgstr "Felvétel"
+
+#, fuzzy
 msgid "HDR10 support"
 msgstr "nem támogatott"
 
@@ -5753,9 +5761,6 @@ msgstr ""
 #, fuzzy
 msgid "Hotplug"
 msgstr "Pluginek letöltése"
-
-msgid "Hour"
-msgstr ""
 
 msgid "Hourly"
 msgstr ""
@@ -6232,6 +6237,9 @@ msgstr "Belső Flash"
 
 msgid "Internal hdd only"
 msgstr "csak a belső háttértárról"
+
+msgid "Internet (ntp)"
+msgstr ""
 
 msgid "Interval between keys when repeating:"
 msgstr "Billentyű-ismétlés időköze:"
@@ -6961,10 +6969,6 @@ msgid "Mode %s (%04o)"
 msgstr "%s (%s)\n"
 
 #, fuzzy
-msgid "Mode for autorestore"
-msgstr "Szoftver visszaállítás"
-
-#, fuzzy
 msgid "Model"
 msgstr "Mód"
 
@@ -7347,12 +7351,8 @@ msgstr "MOST"
 msgid "NOW"
 msgstr "MOST"
 
-msgid "NTP"
+msgid "NTP Hostname"
 msgstr ""
-
-#, fuzzy
-msgid "NTP server"
-msgstr "Névszerver"
 
 msgid "NTSC"
 msgstr "NTSC"
@@ -7873,9 +7873,6 @@ msgstr ""
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr ""
 
-msgid "Once per day"
-msgstr ""
-
 msgid "One"
 msgstr "Egy"
 
@@ -8361,6 +8358,12 @@ msgstr "Előző lejátszása"
 
 msgid "Play recorded movies..."
 msgstr "Felvett filmek lejátszása..."
+
+msgid "Play service with streamrelay"
+msgstr ""
+
+msgid "Play service without streamrelay"
+msgstr ""
 
 #, fuzzy
 msgid "Play title"
@@ -10369,6 +10372,9 @@ msgstr ""
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr ""
 
+msgid "Select how you want your receiver to keep the correct time, either from the DVB transponder, or from the internet using NTP. Or use Auto, which will favour using NTP, but will fall back to transponder time when no internet connection is available."
+msgstr ""
+
 msgid "Select how your box will upgrade."
 msgstr ""
 
@@ -10837,9 +10843,6 @@ msgstr "Beállítások menü"
 
 msgid "Setup mode"
 msgstr "Beállítás módja"
-
-msgid "Setup network time synchronization interval."
-msgstr ""
 
 msgid "Setup your positioner"
 msgstr "Forgatómotor beállítása"
@@ -12159,17 +12162,8 @@ msgstr ""
 msgid "Symlink to "
 msgstr ""
 
-msgid "Sync NTP every (minutes)"
-msgstr ""
-
 msgid "Sync failure moving back to origin !"
 msgstr "Szinkronhiba 0-hoz visszatérésk!"
-
-msgid "Sync time using"
-msgstr ""
-
-msgid "Synchronize systemtime using transponder or internet."
-msgstr ""
 
 msgid "Syrian Arab Republic"
 msgstr ""
@@ -12338,6 +12332,9 @@ msgstr ""
 msgid "The EPG data will be stored every (hours)"
 msgstr ""
 
+msgid "The IP address from the streamrelay server that is used to descramble services that can only be encrypted via streamrelay"
+msgstr ""
+
 msgid "The Image Viewer component of the File Commander requires the PicturePlayer extension. Install PicturePlayer to enable this operation."
 msgstr ""
 
@@ -12427,6 +12424,9 @@ msgstr ""
 msgid "The height of the picture. The input will be scaled to match this value."
 msgstr ""
 
+msgid "The hostname or the IP address of the NTP server to synchronise the time with."
+msgstr ""
+
 msgid ""
 "The network wizard extension is not installed!\n"
 "Please install it."
@@ -12466,6 +12466,9 @@ msgstr ""
 #, python-format
 msgid "The path %s already exists."
 msgstr "A %s útvonal már létezik."
+
+msgid "The port from the streamrelay server that is used to descramble services that can only be encrypted via streamrelay"
+msgstr ""
 
 #, fuzzy, python-format
 msgid "The results have been written to %s"
@@ -12879,6 +12882,9 @@ msgstr ""
 msgid "Time scale"
 msgstr "Időzítés kiválasztása"
 
+msgid "Time synchronization method"
+msgstr ""
+
 msgid "Time to execute command or script"
 msgstr ""
 
@@ -13081,6 +13087,10 @@ msgstr "Adási mód"
 msgid "Transponder"
 msgstr "Transzponder"
 
+#, fuzzy
+msgid "Transponder Time"
+msgstr "Transzponder"
+
 msgid "Transport Stream Type"
 msgstr ""
 
@@ -13151,12 +13161,6 @@ msgid "Tuners & scanning"
 msgstr "Tuner"
 
 msgid "Tunisia"
-msgstr ""
-
-msgid ""
-"Turbo: One reboot after flash\n"
-"Fast: One reboot after flash, one reboot after restore\n"
-"Slow: One reboot after flash, one reboot after restore in GUI"
 msgstr ""
 
 #, fuzzy
@@ -15244,9 +15248,6 @@ msgstr "nem"
 msgid "fashion"
 msgstr "divat"
 
-msgid "fast"
-msgstr ""
-
 msgid "fileformats (BMP, PNG, JPG, GIF)"
 msgstr "fájlformátumok (BMP, PNG, JPG, GIF)"
 
@@ -15476,9 +15477,6 @@ msgid "menu"
 msgstr "menü"
 
 msgid "mins"
-msgstr "perc"
-
-msgid "minutes"
 msgstr "perc"
 
 #, fuzzy
@@ -15920,9 +15918,6 @@ msgstr ""
 msgid "slot%s - %s mode 12 (current image)"
 msgstr "Aktuális konfiguráció aktiválása"
 
-msgid "slow"
-msgstr ""
-
 #, fuzzy
 msgid "soap/melodrama/folkloric"
 msgstr "szappan/melodráma"
@@ -16032,9 +16027,6 @@ msgstr "turizmus/utazás"
 
 msgid "true"
 msgstr "igaz"
-
-msgid "turbo"
-msgstr ""
 
 #, fuzzy
 msgid "type"

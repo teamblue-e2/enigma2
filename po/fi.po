@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-22 07:44+0200\n"
+"POT-Creation-Date: 2023-10-27 11:11+0200\n"
 "PO-Revision-Date: 2019-02-13 20:52+0200\n"
 "Last-Translator: jamu\n"
 "Language-Team: BoxFreak/jamu\n"
@@ -3120,11 +3120,6 @@ msgid "Configure which tuner will be preferred, when more than one tuner is avai
 msgstr "Määrittää mitä viritintä suositaan, kun enemmän kuin yksi viritin on vapaana. Jos asetettu 'auto'-tilaan järjestelmä antaa prioriteetin virittimelle jolla on vähiten kanavia/satelliittejä."
 
 #
-#, fuzzy
-msgid "Configure your NTP server."
-msgstr "Määritä nimipalvelimet"
-
-#
 msgid "Configure your internal LAN"
 msgstr "Määritä LAN-asetukset"
 
@@ -3887,6 +3882,14 @@ msgstr "Pura http-streameja"
 
 #, fuzzy
 msgid "Descramble sending http streams"
+msgstr "Pura http-streameja"
+
+#, fuzzy
+msgid "Descramble service via streamrelay port"
+msgstr "Pura http-streameja"
+
+#, fuzzy
+msgid "Descramble service via streamrelay url"
 msgstr "Pura http-streameja"
 
 #
@@ -6197,6 +6200,11 @@ msgstr ""
 msgid "HDMI-IN Actions"
 msgstr ""
 
+#
+#, fuzzy
+msgid "HDMI-IN Recording settings"
+msgstr "Tallennus"
+
 #, fuzzy
 msgid "HDR10 support"
 msgstr "ei tuettu"
@@ -6399,9 +6407,6 @@ msgstr ""
 #, fuzzy
 msgid "Hotplug"
 msgstr "Lataa lisäosia"
-
-msgid "Hour"
-msgstr ""
 
 msgid "Hourly"
 msgstr ""
@@ -6927,6 +6932,9 @@ msgstr "Sisäinen flash-muisti"
 
 msgid "Internal hdd only"
 msgstr "Vain sisäinen kiintolevy"
+
+msgid "Internet (ntp)"
+msgstr ""
 
 msgid "Interval between keys when repeating:"
 msgstr "Viive näppäimen toiston välissä."
@@ -7758,11 +7766,6 @@ msgstr "%s (%s)\n"
 
 #
 #, fuzzy
-msgid "Mode for autorestore"
-msgstr "Ohjelmiston palautus"
-
-#
-#, fuzzy
 msgid "Model"
 msgstr "Tila"
 
@@ -8185,13 +8188,8 @@ msgstr "NYT"
 msgid "NOW"
 msgstr "NYT"
 
-msgid "NTP"
+msgid "NTP Hostname"
 msgstr ""
-
-#
-#, fuzzy
-msgid "NTP server"
-msgstr "Nimipalvelin"
 
 #
 msgid "NTSC"
@@ -8794,9 +8792,6 @@ msgstr ""
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr ""
 
-msgid "Once per day"
-msgstr ""
-
 #
 msgid "One"
 msgstr "Yksi"
@@ -9333,6 +9328,12 @@ msgstr "Toista edellinen"
 #
 msgid "Play recorded movies..."
 msgstr "Toista tallenteet..."
+
+msgid "Play service with streamrelay"
+msgstr ""
+
+msgid "Play service without streamrelay"
+msgstr ""
 
 #
 #, fuzzy
@@ -11676,6 +11677,9 @@ msgstr ""
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr ""
 
+msgid "Select how you want your receiver to keep the correct time, either from the DVB transponder, or from the internet using NTP. Or use Auto, which will favour using NTP, but will fall back to transponder time when no internet connection is available."
+msgstr ""
+
 msgid "Select how your box will upgrade."
 msgstr ""
 
@@ -12208,9 +12212,6 @@ msgstr "Asetusvalikko"
 #
 msgid "Setup mode"
 msgstr "Asetusten laajuus"
-
-msgid "Setup network time synchronization interval."
-msgstr ""
 
 msgid "Setup your positioner"
 msgstr "Asenna kääntömoottori"
@@ -13710,17 +13711,8 @@ msgstr ""
 msgid "Symlink to "
 msgstr ""
 
-msgid "Sync NTP every (minutes)"
-msgstr ""
-
 msgid "Sync failure moving back to origin !"
 msgstr "Synkronointivirhe, palataan takaisin alkuperäiseen !"
-
-msgid "Sync time using"
-msgstr ""
-
-msgid "Synchronize systemtime using transponder or internet."
-msgstr ""
 
 msgid "Syrian Arab Republic"
 msgstr ""
@@ -13902,6 +13894,9 @@ msgstr ""
 msgid "The EPG data will be stored every (hours)"
 msgstr ""
 
+msgid "The IP address from the streamrelay server that is used to descramble services that can only be encrypted via streamrelay"
+msgstr ""
+
 msgid "The Image Viewer component of the File Commander requires the PicturePlayer extension. Install PicturePlayer to enable this operation."
 msgstr ""
 
@@ -13994,6 +13989,9 @@ msgstr ""
 msgid "The height of the picture. The input will be scaled to match this value."
 msgstr ""
 
+msgid "The hostname or the IP address of the NTP server to synchronise the time with."
+msgstr ""
+
 msgid ""
 "The network wizard extension is not installed!\n"
 "Please install it."
@@ -14034,6 +14032,9 @@ msgstr ""
 #, python-format
 msgid "The path %s already exists."
 msgstr "Hakemisto %s on jo olemassa."
+
+msgid "The port from the streamrelay server that is used to descramble services that can only be encrypted via streamrelay"
+msgstr ""
 
 #
 #, fuzzy, python-format
@@ -14476,6 +14477,9 @@ msgstr ""
 msgid "Time scale"
 msgstr "Aika-asteikko"
 
+msgid "Time synchronization method"
+msgstr ""
+
 msgid "Time to execute command or script"
 msgstr ""
 
@@ -14715,6 +14719,11 @@ msgstr "Lähetystapa"
 msgid "Transponder"
 msgstr "Lähetin"
 
+#
+#, fuzzy
+msgid "Transponder Time"
+msgstr "Lähetin"
+
 msgid "Transport Stream Type"
 msgstr ""
 
@@ -14797,12 +14806,6 @@ msgid "Tuners & scanning"
 msgstr "Viritin"
 
 msgid "Tunisia"
-msgstr ""
-
-msgid ""
-"Turbo: One reboot after flash\n"
-"Fast: One reboot after flash, one reboot after restore\n"
-"Slow: One reboot after flash, one reboot after restore in GUI"
 msgstr ""
 
 #
@@ -17104,9 +17107,6 @@ msgstr "epätosi"
 msgid "fashion"
 msgstr "muoti"
 
-msgid "fast"
-msgstr ""
-
 #
 msgid "fileformats (BMP, PNG, JPG, GIF)"
 msgstr "tiedostomuodot (BMP, PNG, JPG, GIF)"
@@ -17376,10 +17376,6 @@ msgstr "Valikko"
 
 #
 msgid "mins"
-msgstr "minuuttia"
-
-#
-msgid "minutes"
 msgstr "minuuttia"
 
 #
@@ -17891,9 +17887,6 @@ msgstr ""
 msgid "slot%s - %s mode 12 (current image)"
 msgstr "Aktivoi nykyiset asetukset"
 
-msgid "slow"
-msgstr ""
-
 #, fuzzy
 msgid "soap/melodrama/folkloric"
 msgstr "saippuasarja/melodraama/folkloristiikka"
@@ -18019,9 +18012,6 @@ msgstr "turismi/matkailu"
 
 msgid "true"
 msgstr "tosi"
-
-msgid "turbo"
-msgstr ""
 
 #, fuzzy
 msgid "type"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-22 07:44+0200\n"
+"POT-Creation-Date: 2023-10-27 11:11+0200\n"
 "PO-Revision-Date: 2020-03-17 01:28+0100\n"
 "Last-Translator: Jose Juan <jzapater@gmail.com>\n"
 "Language-Team: ANGELODOS  angelo2807@hotmail.com\n"
@@ -3178,10 +3178,6 @@ msgid "Configure which tuner will be preferred, when more than one tuner is avai
 msgstr "Configurar qué sintonizador dará preferencia, cuando se dispone de más de un sintonizador. Si se fija en 'auto' el sistema dará prioridad al sintonizador de tener el menor número de canales/satélites."
 
 #
-msgid "Configure your NTP server."
-msgstr "Configurar servidor NTP"
-
-#
 msgid "Configure your internal LAN"
 msgstr "Configurar su RED interna"
 
@@ -3972,6 +3968,14 @@ msgstr "Descodificar secuencias http"
 
 #, fuzzy
 msgid "Descramble sending http streams"
+msgstr "Descodificar secuencias http"
+
+#, fuzzy
+msgid "Descramble service via streamrelay port"
+msgstr "Descodificar secuencias http"
+
+#, fuzzy
+msgid "Descramble service via streamrelay url"
 msgstr "Descodificar secuencias http"
 
 #
@@ -6369,6 +6373,11 @@ msgstr ""
 msgid "HDMI-IN Actions"
 msgstr ""
 
+#
+#, fuzzy
+msgid "HDMI-IN Recording settings"
+msgstr "Grabando"
+
 #, fuzzy
 msgid "HDR10 support"
 msgstr "Soporte IPv6"
@@ -6568,9 +6577,6 @@ msgstr "Hotkey zap"
 #, fuzzy
 msgid "Hotplug"
 msgstr "Mantenga plugins"
-
-msgid "Hour"
-msgstr "Hora"
 
 #, fuzzy
 msgid "Hourly"
@@ -7108,6 +7114,9 @@ msgstr "Flash Interna"
 
 msgid "Internal hdd only"
 msgstr "Sólo el disco duro interno"
+
+msgid "Internet (ntp)"
+msgstr ""
 
 msgid "Interval between keys when repeating:"
 msgstr "Intervalo entre las teclas cuando repitiendo:"
@@ -7957,11 +7966,6 @@ msgid "Mode %s (%04o)"
 msgstr "%s (%s)\n"
 
 #
-#, fuzzy
-msgid "Mode for autorestore"
-msgstr "Restaurar software"
-
-#
 #
 #, fuzzy
 msgid "Model"
@@ -8383,12 +8387,8 @@ msgstr "AHORA"
 msgid "NOW"
 msgstr "AHORA"
 
-msgid "NTP"
+msgid "NTP Hostname"
 msgstr ""
-
-#
-msgid "NTP server"
-msgstr "Servidor NTP"
 
 #
 msgid "NTSC"
@@ -8989,9 +8989,6 @@ msgstr "En final de la película (como menú)"
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr ""
 
-msgid "Once per day"
-msgstr "Una vez al día"
-
 #
 msgid "One"
 msgstr "Uno"
@@ -9529,6 +9526,12 @@ msgstr "Reproducir anterior"
 #
 msgid "Play recorded movies..."
 msgstr "Reproducir películas grabadas..."
+
+msgid "Play service with streamrelay"
+msgstr ""
+
+msgid "Play service without streamrelay"
+msgstr ""
 
 #
 #, fuzzy
@@ -11873,6 +11876,9 @@ msgstr ""
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr ""
 
+msgid "Select how you want your receiver to keep the correct time, either from the DVB transponder, or from the internet using NTP. Or use Auto, which will favour using NTP, but will fall back to transponder time when no internet connection is available."
+msgstr ""
+
 msgid "Select how your box will upgrade."
 msgstr "Seleccione cómo actualizar su caja."
 
@@ -12417,9 +12423,6 @@ msgstr "Menú Configuración"
 #
 msgid "Setup mode"
 msgstr "Modo configuración"
-
-msgid "Setup network time synchronization interval."
-msgstr "Fijar intervalo de sincronizacón de hora"
 
 msgid "Setup your positioner"
 msgstr "Configure su posicionador"
@@ -13924,17 +13927,8 @@ msgstr ""
 msgid "Symlink to "
 msgstr ""
 
-msgid "Sync NTP every (minutes)"
-msgstr "Sincronización NTP cada (minutos)"
-
 msgid "Sync failure moving back to origin !"
 msgstr "Sincronización fallida regresando al origen"
-
-msgid "Sync time using"
-msgstr "Sincronizar hora usando"
-
-msgid "Synchronize systemtime using transponder or internet."
-msgstr "Sincronizar systemtime usando internet o transpondedor."
 
 msgid "Syrian Arab Republic"
 msgstr ""
@@ -14114,6 +14108,9 @@ msgstr ""
 msgid "The EPG data will be stored every (hours)"
 msgstr ""
 
+msgid "The IP address from the streamrelay server that is used to descramble services that can only be encrypted via streamrelay"
+msgstr ""
+
 msgid "The Image Viewer component of the File Commander requires the PicturePlayer extension. Install PicturePlayer to enable this operation."
 msgstr ""
 
@@ -14204,6 +14201,9 @@ msgstr ""
 msgid "The height of the picture. The input will be scaled to match this value."
 msgstr ""
 
+msgid "The hostname or the IP address of the NTP server to synchronise the time with."
+msgstr ""
+
 #
 msgid ""
 "The network wizard extension is not installed!\n"
@@ -14245,6 +14245,9 @@ msgstr ""
 #, python-format
 msgid "The path %s already exists."
 msgstr "El directorio %s ya existe."
+
+msgid "The port from the streamrelay server that is used to descramble services that can only be encrypted via streamrelay"
+msgstr ""
 
 #
 #, fuzzy, python-format
@@ -14722,6 +14725,9 @@ msgstr ""
 msgid "Time scale"
 msgstr "escala de tiempos"
 
+msgid "Time synchronization method"
+msgstr ""
+
 msgid "Time to execute command or script"
 msgstr ""
 
@@ -14962,6 +14968,11 @@ msgstr "Modo de trasmisión"
 msgid "Transponder"
 msgstr "Transponder"
 
+#
+#, fuzzy
+msgid "Transponder Time"
+msgstr "Transponder"
+
 msgid "Transport Stream Type"
 msgstr ""
 
@@ -15046,12 +15057,6 @@ msgid "Tuners & scanning"
 msgstr "Sintonizador"
 
 msgid "Tunisia"
-msgstr ""
-
-msgid ""
-"Turbo: One reboot after flash\n"
-"Fast: One reboot after flash, one reboot after restore\n"
-"Slow: One reboot after flash, one reboot after restore in GUI"
 msgstr ""
 
 #
@@ -17382,9 +17387,6 @@ msgstr "falso"
 msgid "fashion"
 msgstr "moda"
 
-msgid "fast"
-msgstr ""
-
 #
 msgid "fileformats (BMP, PNG, JPG, GIF)"
 msgstr "formatos (BMP, PNG, JPG, GIF)"
@@ -17659,10 +17661,6 @@ msgstr "menú"
 #
 msgid "mins"
 msgstr "mins"
-
-#
-msgid "minutes"
-msgstr "minutos"
 
 #
 #, fuzzy
@@ -18168,9 +18166,6 @@ msgstr "Sectores: %s (máx) %s (actual)"
 msgid "slot%s - %s mode 12 (current image)"
 msgstr "Sectores: %s (máx) %s (actual)"
 
-msgid "slow"
-msgstr ""
-
 #, fuzzy
 msgid "soap/melodrama/folkloric"
 msgstr "jabón / Melodram / folclórica"
@@ -18290,9 +18285,6 @@ msgstr "turismo / viajes"
 
 msgid "true"
 msgstr "verdadero"
-
-msgid "turbo"
-msgstr ""
 
 #, fuzzy
 msgid "type"

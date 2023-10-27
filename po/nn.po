@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-22 07:44+0200\n"
+"POT-Creation-Date: 2023-10-27 11:11+0200\n"
 "PO-Revision-Date: 2013-10-23 19:15+0100\n"
 "Last-Translator: andy1 <dmmm8000pvr@gmail.com>\n"
 "Language-Team: none\n"
@@ -2977,11 +2977,6 @@ msgid "Configure which tuner will be preferred, when more than one tuner is avai
 msgstr "Velg den tuneren som skal foretrekkes når flere tunere er tilgjengelige. Hvis satt til 'auto', vil systemet gi prioritet til den tuneren som har lavest antall kanaler/satellitter."
 
 #
-#, fuzzy
-msgid "Configure your NTP server."
-msgstr "Still inn navnetjenerne"
-
-#
 msgid "Configure your internal LAN"
 msgstr "Still inn ditt lokale LAN nettverk"
 
@@ -3723,6 +3718,12 @@ msgid "Descramble receiving http streams"
 msgstr ""
 
 msgid "Descramble sending http streams"
+msgstr ""
+
+msgid "Descramble service via streamrelay port"
+msgstr ""
+
+msgid "Descramble service via streamrelay url"
 msgstr ""
 
 #
@@ -5940,6 +5941,11 @@ msgstr ""
 msgid "HDMI-IN Actions"
 msgstr ""
 
+#
+#, fuzzy
+msgid "HDMI-IN Recording settings"
+msgstr "Tar opp"
+
 #, fuzzy
 msgid "HDR10 support"
 msgstr "ikke støttet"
@@ -6124,9 +6130,6 @@ msgstr ""
 #, fuzzy
 msgid "Hotplug"
 msgstr "Last ned proramvaretillegg"
-
-msgid "Hour"
-msgstr ""
 
 msgid "Hourly"
 msgstr ""
@@ -6653,6 +6656,9 @@ msgstr "Internt flash"
 
 msgid "Internal hdd only"
 msgstr "Bare for intern hdd/ssd"
+
+msgid "Internet (ntp)"
+msgstr ""
 
 msgid "Interval between keys when repeating:"
 msgstr "Tidsintervall mellom repeterende tastetrykk"
@@ -7456,11 +7462,6 @@ msgstr "Modell:"
 
 #
 #, fuzzy
-msgid "Mode for autorestore"
-msgstr "Gjenopprette programvare"
-
-#
-#, fuzzy
 msgid "Model"
 msgstr "Type"
 
@@ -7872,13 +7873,8 @@ msgstr ""
 msgid "NOW"
 msgstr ""
 
-msgid "NTP"
+msgid "NTP Hostname"
 msgstr ""
-
-#
-#, fuzzy
-msgid "NTP server"
-msgstr "Navneserver"
 
 #
 msgid "NTSC"
@@ -8444,9 +8440,6 @@ msgstr ""
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr ""
 
-msgid "Once per day"
-msgstr ""
-
 #
 msgid "One"
 msgstr "En"
@@ -8961,6 +8954,12 @@ msgstr "Spille siste"
 
 msgid "Play recorded movies..."
 msgstr "Spille av opptak..."
+
+msgid "Play service with streamrelay"
+msgstr ""
+
+msgid "Play service without streamrelay"
+msgstr ""
 
 #
 #, fuzzy
@@ -11079,6 +11078,9 @@ msgstr ""
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr ""
 
+msgid "Select how you want your receiver to keep the correct time, either from the DVB transponder, or from the internet using NTP. Or use Auto, which will favour using NTP, but will fall back to transponder time when no internet connection is available."
+msgstr ""
+
 #
 #, fuzzy
 msgid "Select how your box will upgrade."
@@ -11573,9 +11575,6 @@ msgstr "Menyoppsett"
 #
 msgid "Setup mode"
 msgstr "Menyoppsett"
-
-msgid "Setup network time synchronization interval."
-msgstr ""
 
 msgid "Setup your positioner"
 msgstr "Posisjonsoppsett"
@@ -12968,17 +12967,8 @@ msgstr ""
 msgid "Symlink to "
 msgstr ""
 
-msgid "Sync NTP every (minutes)"
-msgstr ""
-
 msgid "Sync failure moving back to origin !"
 msgstr "Synkroniseringsfeil, går tilbake til start!"
-
-msgid "Sync time using"
-msgstr ""
-
-msgid "Synchronize systemtime using transponder or internet."
-msgstr ""
 
 msgid "Syrian Arab Republic"
 msgstr ""
@@ -13147,6 +13137,9 @@ msgstr ""
 msgid "The EPG data will be stored every (hours)"
 msgstr ""
 
+msgid "The IP address from the streamrelay server that is used to descramble services that can only be encrypted via streamrelay"
+msgstr ""
+
 msgid "The Image Viewer component of the File Commander requires the PicturePlayer extension. Install PicturePlayer to enable this operation."
 msgstr ""
 
@@ -13240,6 +13233,9 @@ msgstr ""
 msgid "The height of the picture. The input will be scaled to match this value."
 msgstr ""
 
+msgid "The hostname or the IP address of the NTP server to synchronise the time with."
+msgstr ""
+
 msgid ""
 "The network wizard extension is not installed!\n"
 "Please install it."
@@ -13280,6 +13276,9 @@ msgstr ""
 #, python-format
 msgid "The path %s already exists."
 msgstr "Banen %s finnes allerede."
+
+msgid "The port from the streamrelay server that is used to descramble services that can only be encrypted via streamrelay"
+msgstr ""
 
 #, python-format
 msgid "The results have been written to %s"
@@ -13722,6 +13721,9 @@ msgstr ""
 msgid "Time scale"
 msgstr "Tids måler"
 
+msgid "Time synchronization method"
+msgstr ""
+
 msgid "Time to execute command or script"
 msgstr ""
 
@@ -13955,6 +13957,11 @@ msgstr "Sendingstype"
 msgid "Transponder"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Transponder Time"
+msgstr "vis transponder info"
+
 msgid "Transport Stream Type"
 msgstr ""
 
@@ -14032,12 +14039,6 @@ msgid "Tuners & scanning"
 msgstr "Tuner"
 
 msgid "Tunisia"
-msgstr ""
-
-msgid ""
-"Turbo: One reboot after flash\n"
-"Fast: One reboot after flash, one reboot after restore\n"
-"Slow: One reboot after flash, one reboot after restore in GUI"
 msgstr ""
 
 #
@@ -16230,9 +16231,6 @@ msgstr "falsk"
 msgid "fashion"
 msgstr "mote"
 
-msgid "fast"
-msgstr ""
-
 #
 msgid "fileformats (BMP, PNG, JPG, GIF)"
 msgstr "filformat (BMP, PNG, JPG, GIF)"
@@ -16494,10 +16492,6 @@ msgstr "meny"
 #
 msgid "mins"
 msgstr "min"
-
-#
-msgid "minutes"
-msgstr "minutter"
 
 #
 #, fuzzy
@@ -16982,9 +16976,6 @@ msgstr ""
 msgid "slot%s - %s mode 12 (current image)"
 msgstr "Aktivere gjeldende konfigurasjon"
 
-msgid "slow"
-msgstr ""
-
 #, fuzzy
 msgid "soap/melodrama/folkloric"
 msgstr "såpe/melodrama/folklore"
@@ -17101,9 +17092,6 @@ msgstr "turisme/reise"
 
 msgid "true"
 msgstr "sant"
-
-msgid "turbo"
-msgstr ""
 
 #, fuzzy
 msgid "type"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-22 07:44+0200\n"
+"POT-Creation-Date: 2023-10-27 11:11+0200\n"
 "PO-Revision-Date: 2019-04-03 06:49+0300\n"
 "Last-Translator: \n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas, zeros\\n faas, sateks, valgekotkas, tigekala, rootsikunn\\n kain, i70, mustkass, pelmeen, Scott\\n <digi-tv.ee>\n"
@@ -2815,10 +2815,6 @@ msgstr "Määra, millist tuunerit eelistatakse, kui sama kanal on saadaval mitme
 msgid "Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites."
 msgstr "Määra, millist tuunerit eelistatakse, kui saadaval on rohkem kui üks tuuner. Valikul 'automaatne' annab süsteem eelistuse tuunerile, millel on kõige vähem kanaleid/satelliite."
 
-#, fuzzy
-msgid "Configure your NTP server."
-msgstr "Seadista nimeserverid"
-
 msgid "Configure your internal LAN"
 msgstr "Seadista sisemine LAN võrk"
 
@@ -3502,6 +3498,14 @@ msgstr "Dekodeeri http vood"
 
 #, fuzzy
 msgid "Descramble sending http streams"
+msgstr "Dekodeeri http vood"
+
+#, fuzzy
+msgid "Descramble service via streamrelay port"
+msgstr "Dekodeeri http vood"
+
+#, fuzzy
+msgid "Descramble service via streamrelay url"
 msgstr "Dekodeeri http vood"
 
 msgid "Description"
@@ -5560,6 +5564,10 @@ msgid "HDMI-IN Actions"
 msgstr ""
 
 #, fuzzy
+msgid "HDMI-IN Recording settings"
+msgstr "Salvestus"
+
+#, fuzzy
 msgid "HDR10 support"
 msgstr "pole toetatud"
 
@@ -5741,9 +5749,6 @@ msgstr ""
 #, fuzzy
 msgid "Hotplug"
 msgstr "Paigalda laiendusi"
-
-msgid "Hour"
-msgstr ""
 
 msgid "Hourly"
 msgstr ""
@@ -6219,6 +6224,9 @@ msgstr "Sisemine flash-mälu"
 
 msgid "Internal hdd only"
 msgstr "Ainult sisesel kõvakettal"
+
+msgid "Internet (ntp)"
+msgstr ""
 
 msgid "Interval between keys when repeating:"
 msgstr "Võtme kordamise vahemik:"
@@ -6950,10 +6958,6 @@ msgid "Mode %s (%04o)"
 msgstr "%s (%s)\n"
 
 #, fuzzy
-msgid "Mode for autorestore"
-msgstr "Tarkvara taaste"
-
-#, fuzzy
 msgid "Model"
 msgstr "Režiim"
 
@@ -7335,12 +7339,8 @@ msgstr "PRAEGU"
 msgid "NOW"
 msgstr "PRAEGU"
 
-msgid "NTP"
+msgid "NTP Hostname"
 msgstr ""
-
-#, fuzzy
-msgid "NTP server"
-msgstr "Nimeserver"
 
 msgid "NTSC"
 msgstr "NTSC"
@@ -7860,9 +7860,6 @@ msgstr ""
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr ""
 
-msgid "Once per day"
-msgstr ""
-
 msgid "One"
 msgstr "Üks"
 
@@ -8345,6 +8342,12 @@ msgstr "Esita eelmine"
 
 msgid "Play recorded movies..."
 msgstr "Näita salvestisi"
+
+msgid "Play service with streamrelay"
+msgstr ""
+
+msgid "Play service without streamrelay"
+msgstr ""
 
 #, fuzzy
 msgid "Play title"
@@ -10350,6 +10353,9 @@ msgstr ""
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr ""
 
+msgid "Select how you want your receiver to keep the correct time, either from the DVB transponder, or from the internet using NTP. Or use Auto, which will favour using NTP, but will fall back to transponder time when no internet connection is available."
+msgstr ""
+
 msgid "Select how your box will upgrade."
 msgstr ""
 
@@ -10820,9 +10826,6 @@ msgstr "Seadistusmenüü"
 
 msgid "Setup mode"
 msgstr "Seadistamine"
-
-msgid "Setup network time synchronization interval."
-msgstr ""
 
 msgid "Setup your positioner"
 msgstr "Mootori häälestamine"
@@ -12133,16 +12136,7 @@ msgstr ""
 msgid "Symlink to "
 msgstr ""
 
-msgid "Sync NTP every (minutes)"
-msgstr ""
-
 msgid "Sync failure moving back to origin !"
-msgstr ""
-
-msgid "Sync time using"
-msgstr ""
-
-msgid "Synchronize systemtime using transponder or internet."
 msgstr ""
 
 msgid "Syrian Arab Republic"
@@ -12305,6 +12299,9 @@ msgstr ""
 msgid "The EPG data will be stored every (hours)"
 msgstr ""
 
+msgid "The IP address from the streamrelay server that is used to descramble services that can only be encrypted via streamrelay"
+msgstr ""
+
 msgid "The Image Viewer component of the File Commander requires the PicturePlayer extension. Install PicturePlayer to enable this operation."
 msgstr ""
 
@@ -12394,6 +12391,9 @@ msgstr ""
 msgid "The height of the picture. The input will be scaled to match this value."
 msgstr ""
 
+msgid "The hostname or the IP address of the NTP server to synchronise the time with."
+msgstr ""
+
 msgid ""
 "The network wizard extension is not installed!\n"
 "Please install it."
@@ -12433,6 +12433,9 @@ msgstr ""
 #, python-format
 msgid "The path %s already exists."
 msgstr "Kaust %s on juba olemas."
+
+msgid "The port from the streamrelay server that is used to descramble services that can only be encrypted via streamrelay"
+msgstr ""
 
 #, fuzzy, python-format
 msgid "The results have been written to %s"
@@ -12843,6 +12846,9 @@ msgstr ""
 msgid "Time scale"
 msgstr "Ajaskaala"
 
+msgid "Time synchronization method"
+msgstr ""
+
 msgid "Time to execute command or script"
 msgstr ""
 
@@ -13045,6 +13051,10 @@ msgstr "Edastamise moodus"
 msgid "Transponder"
 msgstr "Transponder"
 
+#, fuzzy
+msgid "Transponder Time"
+msgstr "Transponder"
+
 msgid "Transport Stream Type"
 msgstr ""
 
@@ -13115,12 +13125,6 @@ msgid "Tuners & scanning"
 msgstr "Tuuner"
 
 msgid "Tunisia"
-msgstr ""
-
-msgid ""
-"Turbo: One reboot after flash\n"
-"Fast: One reboot after flash, one reboot after restore\n"
-"Slow: One reboot after flash, one reboot after restore in GUI"
 msgstr ""
 
 #, fuzzy
@@ -15198,9 +15202,6 @@ msgstr "väär"
 msgid "fashion"
 msgstr "mood"
 
-msgid "fast"
-msgstr ""
-
 msgid "fileformats (BMP, PNG, JPG, GIF)"
 msgstr "failiformaadid (BMP, PNG, JPG, GIF)"
 
@@ -15431,9 +15432,6 @@ msgstr "menüü"
 
 msgid "mins"
 msgstr "min"
-
-msgid "minutes"
-msgstr "minutid"
 
 #, fuzzy
 msgid "module disabled"
@@ -15872,9 +15870,6 @@ msgstr ""
 msgid "slot%s - %s mode 12 (current image)"
 msgstr "Jõusta praegused seaded"
 
-msgid "slow"
-msgstr ""
-
 msgid "soap/melodrama/folkloric"
 msgstr ""
 
@@ -15981,9 +15976,6 @@ msgstr ""
 
 msgid "true"
 msgstr "tõene"
-
-msgid "turbo"
-msgstr ""
 
 #, fuzzy
 msgid "type"

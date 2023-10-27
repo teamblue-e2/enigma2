@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-22 07:44+0200\n"
+"POT-Creation-Date: 2023-10-27 11:11+0200\n"
 "PO-Revision-Date: 2020-12-27 12:25+0100\n"
 "Last-Translator: Luis A. Martínez <luis.a.martinez@gmail.com>\n"
 "Language-Team: LAMS\n"
@@ -3019,11 +3019,6 @@ msgid "Configure which tuner will be preferred, when more than one tuner is avai
 msgstr "Configurar o sintonizador preferido cando hai máis de un dispoñible. A opción ‘auto’ dará prioridade ao sintonizador que teña o número máis baixo de canles/satélites."
 
 #
-#, fuzzy
-msgid "Configure your NTP server."
-msgstr "Configurar DNSs"
-
-#
 msgid "Configure your internal LAN"
 msgstr "Configurar a rede LAN"
 
@@ -3765,6 +3760,14 @@ msgstr "Descodificar os fluxos recibidos http"
 
 msgid "Descramble sending http streams"
 msgstr "Descodificar os fluxos enviados por http"
+
+#, fuzzy
+msgid "Descramble service via streamrelay port"
+msgstr "Descodificar os fluxos recibidos http"
+
+#, fuzzy
+msgid "Descramble service via streamrelay url"
+msgstr "Descodificar os fluxos recibidos http"
 
 #
 msgid "Description"
@@ -5968,6 +5971,11 @@ msgstr "Configuración de HDMI-CEC"
 msgid "HDMI-IN Actions"
 msgstr ""
 
+#
+#, fuzzy
+msgid "HDMI-IN Recording settings"
+msgstr "Gravando"
+
 msgid "HDR10 support"
 msgstr "Soporte HDR10"
 
@@ -6150,9 +6158,6 @@ msgstr "Hotkey de cambio"
 
 msgid "Hotplug"
 msgstr "Conexión en quente"
-
-msgid "Hour"
-msgstr ""
 
 msgid "Hourly"
 msgstr ""
@@ -6675,6 +6680,9 @@ msgstr "Flash interno"
 
 msgid "Internal hdd only"
 msgstr "Só hdd interno"
+
+msgid "Internet (ntp)"
+msgstr ""
 
 msgid "Interval between keys when repeating:"
 msgstr "Intervalo entre teclas ao repetir:"
@@ -7479,9 +7487,6 @@ msgstr "Modo"
 msgid "Mode %s (%04o)"
 msgstr ""
 
-msgid "Mode for autorestore"
-msgstr ""
-
 msgid "Model"
 msgstr "Modelo"
 
@@ -7887,13 +7892,8 @@ msgstr "NON"
 msgid "NOW"
 msgstr "AGORA"
 
-msgid "NTP"
+msgid "NTP Hostname"
 msgstr ""
-
-#
-#, fuzzy
-msgid "NTP server"
-msgstr "Servidor de nomes"
 
 #
 msgid "NTSC"
@@ -8459,9 +8459,6 @@ msgstr "Ao final da película (como menú)"
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr "En ONID válidos, ignorar a parte de subrede da frecuencia"
 
-msgid "Once per day"
-msgstr ""
-
 #
 msgid "One"
 msgstr "Un"
@@ -8970,6 +8967,12 @@ msgstr "Reproducir anterior"
 #
 msgid "Play recorded movies..."
 msgstr "Reproducir películas gravadas…"
+
+msgid "Play service with streamrelay"
+msgstr ""
+
+msgid "Play service without streamrelay"
+msgstr ""
 
 #
 #, fuzzy
@@ -11125,6 +11128,9 @@ msgstr "Seleccionar a velocidade da antena para cambiar de satélite."
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "Seleccionar como se configura a antena parabólica, é dicir, plato fixo, LNB único, conmutador DiSEqC, posicionador, etc."
 
+msgid "Select how you want your receiver to keep the correct time, either from the DVB transponder, or from the internet using NTP. Or use Auto, which will favour using NTP, but will fall back to transponder time when no internet connection is available."
+msgstr ""
+
 #, fuzzy
 msgid "Select how your box will upgrade."
 msgstr "Seleccionar o provedor de ATSC."
@@ -11619,9 +11625,6 @@ msgstr "Menu de configuración"
 #
 msgid "Setup mode"
 msgstr "Modo configuración"
-
-msgid "Setup network time synchronization interval."
-msgstr ""
 
 msgid "Setup your positioner"
 msgstr "Configurar o posicionador"
@@ -12995,17 +12998,8 @@ msgstr ""
 msgid "Symlink to "
 msgstr ""
 
-msgid "Sync NTP every (minutes)"
-msgstr ""
-
 msgid "Sync failure moving back to origin !"
 msgstr "Erro de sincronización, regresando á orixe!"
-
-msgid "Sync time using"
-msgstr ""
-
-msgid "Synchronize systemtime using transponder or internet."
-msgstr ""
 
 msgid "Syrian Arab Republic"
 msgstr "República Árabe de Siria"
@@ -13178,6 +13172,9 @@ msgstr ""
 msgid "The EPG data will be stored every (hours)"
 msgstr ""
 
+msgid "The IP address from the streamrelay server that is used to descramble services that can only be encrypted via streamrelay"
+msgstr ""
+
 msgid "The Image Viewer component of the File Commander requires the PicturePlayer extension. Install PicturePlayer to enable this operation."
 msgstr ""
 
@@ -13271,6 +13268,9 @@ msgstr ""
 msgid "The height of the picture. The input will be scaled to match this value."
 msgstr ""
 
+msgid "The hostname or the IP address of the NTP server to synchronise the time with."
+msgstr ""
+
 msgid ""
 "The network wizard extension is not installed!\n"
 "Please install it."
@@ -13329,6 +13329,9 @@ msgstr ""
 #, python-format
 msgid "The path %s already exists."
 msgstr "A ruta %s xa existe."
+
+msgid "The port from the streamrelay server that is used to descramble services that can only be encrypted via streamrelay"
+msgstr ""
 
 #, python-format
 msgid "The results have been written to %s"
@@ -13790,6 +13793,9 @@ msgstr ""
 msgid "Time scale"
 msgstr "Escala de tempo"
 
+msgid "Time synchronization method"
+msgstr ""
+
 msgid "Time to execute command or script"
 msgstr ""
 
@@ -14017,6 +14023,11 @@ msgstr "Modo de transmisión"
 msgid "Transponder"
 msgstr "Transpondedor"
 
+#
+#, fuzzy
+msgid "Transponder Time"
+msgstr "Transpondedor"
+
 msgid "Transport Stream Type"
 msgstr "Tipo de fluxo de transporte"
 
@@ -14090,12 +14101,6 @@ msgstr "Sintonizadores e escaneo"
 
 msgid "Tunisia"
 msgstr "Tunisia"
-
-msgid ""
-"Turbo: One reboot after flash\n"
-"Fast: One reboot after flash, one reboot after restore\n"
-"Slow: One reboot after flash, one reboot after restore in GUI"
-msgstr ""
 
 msgid "Turkey"
 msgstr "Turquia"
@@ -16327,9 +16332,6 @@ msgstr "falso"
 msgid "fashion"
 msgstr "moda"
 
-msgid "fast"
-msgstr ""
-
 #
 msgid "fileformats (BMP, PNG, JPG, GIF)"
 msgstr "formatos (BMP, PNG, JPG, GIF)"
@@ -16592,10 +16594,6 @@ msgstr "menú"
 #
 msgid "mins"
 msgstr "mins"
-
-#
-msgid "minutes"
-msgstr "minutos"
 
 #
 #, fuzzy
@@ -17082,9 +17080,6 @@ msgstr "rañura %s - %s"
 msgid "slot%s - %s mode 12 (current image)"
 msgstr "rañura %s - %s (imaxe actual)"
 
-msgid "slow"
-msgstr ""
-
 #, fuzzy
 msgid "soap/melodrama/folkloric"
 msgstr "telenovela/melodrama/folclórico"
@@ -17203,9 +17198,6 @@ msgstr "turismo/viaxes"
 
 msgid "true"
 msgstr "verdadeiro"
-
-msgid "turbo"
-msgstr ""
 
 msgid "type"
 msgstr "tipo"
