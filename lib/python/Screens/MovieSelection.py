@@ -1388,7 +1388,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		if self.selected_tags:
 			title += " - " + ','.join(self.selected_tags)
 		self.setTitle(title)
-		
+
 		self.displayMovieOffStatus()
 		self.displaySortStatus()
 		if not (self.reload_sel and self["list"].moveTo(self.reload_sel)):
