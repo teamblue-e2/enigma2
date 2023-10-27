@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-22 07:44+0200\n"
+"POT-Creation-Date: 2023-10-27 11:11+0200\n"
 "PO-Revision-Date: 2021-01-13 17:52+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -2591,9 +2591,6 @@ msgstr ""
 msgid "Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites."
 msgstr ""
 
-msgid "Configure your NTP server."
-msgstr ""
-
 msgid "Configure your internal LAN"
 msgstr ""
 
@@ -3221,6 +3218,12 @@ msgstr ""
 msgid "Descramble sending http streams"
 msgstr ""
 
+msgid "Descramble service via streamrelay port"
+msgstr ""
+
+msgid "Descramble service via streamrelay url"
+msgstr ""
+
 msgid "Description"
 msgstr ""
 
@@ -3621,7 +3624,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Download Successsful\n"
+"Download Successful\n"
 "%s"
 msgstr ""
 
@@ -5084,6 +5087,9 @@ msgstr ""
 msgid "HDMI-IN Actions"
 msgstr ""
 
+msgid "HDMI-IN Recording settings"
+msgstr ""
+
 msgid "HDR10 support"
 msgstr ""
 
@@ -5245,9 +5251,6 @@ msgid "Hotkey zap"
 msgstr ""
 
 msgid "Hotplug"
-msgstr ""
-
-msgid "Hour"
 msgstr ""
 
 msgid "Hourly"
@@ -5683,6 +5686,9 @@ msgid "Internal flash"
 msgstr ""
 
 msgid "Internal hdd only"
+msgstr ""
+
+msgid "Internet (ntp)"
 msgstr ""
 
 msgid "Interval between keys when repeating:"
@@ -6371,9 +6377,6 @@ msgstr ""
 msgid "Mode %s (%04o)"
 msgstr ""
 
-msgid "Mode for autorestore"
-msgstr ""
-
 msgid "Model"
 msgstr ""
 
@@ -6717,10 +6720,7 @@ msgstr ""
 msgid "NOW"
 msgstr ""
 
-msgid "NTP"
-msgstr ""
-
-msgid "NTP server"
+msgid "NTP Hostname"
 msgstr ""
 
 msgid "NTSC"
@@ -7193,9 +7193,6 @@ msgstr ""
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr ""
 
-msgid "Once per day"
-msgstr ""
-
 msgid "One"
 msgstr ""
 
@@ -7622,6 +7619,12 @@ msgid "Play previous"
 msgstr ""
 
 msgid "Play recorded movies..."
+msgstr ""
+
+msgid "Play service with streamrelay"
+msgstr ""
+
+msgid "Play service without streamrelay"
 msgstr ""
 
 msgid "Play title"
@@ -9422,6 +9425,9 @@ msgstr ""
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr ""
 
+msgid "Select how you want your receiver to keep the correct time, either from the DVB transponder, or from the internet using NTP. Or use Auto, which will favour using NTP, but will fall back to transponder time when no internet connection is available."
+msgstr ""
+
 msgid "Select how your box will upgrade."
 msgstr ""
 
@@ -9846,9 +9852,6 @@ msgid "Setup menu"
 msgstr ""
 
 msgid "Setup mode"
-msgstr ""
-
-msgid "Setup network time synchronization interval."
 msgstr ""
 
 msgid "Setup your positioner"
@@ -11040,16 +11043,7 @@ msgstr ""
 msgid "Symlink to "
 msgstr ""
 
-msgid "Sync NTP every (minutes)"
-msgstr ""
-
 msgid "Sync failure moving back to origin !"
-msgstr ""
-
-msgid "Sync time using"
-msgstr ""
-
-msgid "Synchronize systemtime using transponder or internet."
 msgstr ""
 
 msgid "Syrian Arab Republic"
@@ -11195,6 +11189,9 @@ msgstr ""
 msgid "The EPG data will be stored every (hours)"
 msgstr ""
 
+msgid "The IP address from the streamrelay server that is used to descramble services that can only be encrypted via streamrelay"
+msgstr ""
+
 msgid "The Image Viewer component of the File Commander requires the PicturePlayer extension. Install PicturePlayer to enable this operation."
 msgstr ""
 
@@ -11269,6 +11266,9 @@ msgstr ""
 msgid "The height of the picture. The input will be scaled to match this value."
 msgstr ""
 
+msgid "The hostname or the IP address of the NTP server to synchronise the time with."
+msgstr ""
+
 msgid ""
 "The network wizard extension is not installed!\n"
 "Please install it."
@@ -11305,6 +11305,9 @@ msgstr ""
 
 #, python-format
 msgid "The path %s already exists."
+msgstr ""
+
+msgid "The port from the streamrelay server that is used to descramble services that can only be encrypted via streamrelay"
 msgstr ""
 
 #, python-format
@@ -11683,6 +11686,9 @@ msgstr ""
 msgid "Time scale"
 msgstr ""
 
+msgid "Time synchronization method"
+msgstr ""
+
 msgid "Time to execute command or script"
 msgstr ""
 
@@ -11870,6 +11876,9 @@ msgstr ""
 msgid "Transponder"
 msgstr ""
 
+msgid "Transponder Time"
+msgstr ""
+
 msgid "Transport Stream Type"
 msgstr ""
 
@@ -11934,12 +11943,6 @@ msgid "Tuners & scanning"
 msgstr ""
 
 msgid "Tunisia"
-msgstr ""
-
-msgid ""
-"Turbo: One reboot after flash\n"
-"Fast: One reboot after flash, one reboot after restore\n"
-"Slow: One reboot after flash, one reboot after restore in GUI"
 msgstr ""
 
 msgid "Turkey"
@@ -13860,9 +13863,6 @@ msgstr ""
 msgid "fashion"
 msgstr ""
 
-msgid "fast"
-msgstr ""
-
 msgid "fileformats (BMP, PNG, JPG, GIF)"
 msgstr ""
 
@@ -14079,9 +14079,6 @@ msgid "menu"
 msgstr ""
 
 msgid "mins"
-msgstr ""
-
-msgid "minutes"
 msgstr ""
 
 msgid "module disabled"
@@ -14489,9 +14486,6 @@ msgstr ""
 msgid "slot%s - %s mode 12 (current image)"
 msgstr ""
 
-msgid "slow"
-msgstr ""
-
 msgid "soap/melodrama/folkloric"
 msgstr ""
 
@@ -14590,9 +14584,6 @@ msgid "tourism/travel"
 msgstr ""
 
 msgid "true"
-msgstr ""
-
-msgid "turbo"
 msgstr ""
 
 msgid "type"

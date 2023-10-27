@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-22 07:44+0200\n"
+"POT-Creation-Date: 2023-10-27 11:11+0200\n"
 "PO-Revision-Date: 2015-08-30 09:00+0200\n"
 "Last-Translator: Taykun345 <support@satnigmo.com>\n"
 "Language-Team: Satnigmo <support@satnigmo.com>\n"
@@ -3205,11 +3205,6 @@ msgid "Configure which tuner will be preferred, when more than one tuner is avai
 msgstr "Kateri kanalnik naj ima prednost pred drugimi kanalniki. Če je uporabljena vrednost \"samodejno\", potem bo sistem dodelil prednost tistemu kanalniku, na katerega je priklopljeno najmanj satelitov oz. ima najmanj kanalov."
 
 #
-#, fuzzy
-msgid "Configure your NTP server."
-msgstr "Nastavite imenske strežnike"
-
-#
 msgid "Configure your internal LAN"
 msgstr "Nastavite LAN omrežje"
 
@@ -3987,6 +3982,16 @@ msgstr "Dekodiranje HTTP tokov"
 #
 #, fuzzy
 msgid "Descramble sending http streams"
+msgstr "Dekodiranje HTTP tokov"
+
+#
+#, fuzzy
+msgid "Descramble service via streamrelay port"
+msgstr "Dekodiranje HTTP tokov"
+
+#
+#, fuzzy
+msgid "Descramble service via streamrelay url"
 msgstr "Dekodiranje HTTP tokov"
 
 #
@@ -6376,6 +6381,11 @@ msgstr "HDMI-CEC nastavitve"
 msgid "HDMI-IN Actions"
 msgstr ""
 
+#
+#, fuzzy
+msgid "HDMI-IN Recording settings"
+msgstr "Snemanje"
+
 #, fuzzy
 msgid "HDR10 support"
 msgstr "ni podprto"
@@ -6582,9 +6592,6 @@ msgstr ""
 #, fuzzy
 msgid "Hotplug"
 msgstr "Prenos"
-
-msgid "Hour"
-msgstr ""
 
 msgid "Hourly"
 msgstr ""
@@ -7122,6 +7129,9 @@ msgstr "Notranji pomnilnik"
 
 msgid "Internal hdd only"
 msgstr "Samo notranji HDD"
+
+msgid "Internet (ntp)"
+msgstr ""
 
 msgid "Interval between keys when repeating:"
 msgstr "Interval med tipkami v primeru ponavljanja:"
@@ -7962,11 +7972,6 @@ msgstr "%s (%s)\n"
 
 #
 #, fuzzy
-msgid "Mode for autorestore"
-msgstr "Obnova prog. opreme"
-
-#
-#, fuzzy
 msgid "Model"
 msgstr "Način"
 
@@ -8398,13 +8403,8 @@ msgstr "SEDAJ"
 msgid "NOW"
 msgstr "SEDAJ"
 
-msgid "NTP"
+msgid "NTP Hostname"
 msgstr ""
-
-#
-#, fuzzy
-msgid "NTP server"
-msgstr "Imenski strežnik"
 
 #
 msgid "NTSC"
@@ -9001,9 +9001,6 @@ msgstr "Na koncu posnetka (kot meni)"
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr ""
 
-msgid "Once per day"
-msgstr ""
-
 #
 msgid "One"
 msgstr "En"
@@ -9548,6 +9545,12 @@ msgstr "Predvajaj prejšnje"
 #
 msgid "Play recorded movies..."
 msgstr "Predvajanje posnetkov"
+
+msgid "Play service with streamrelay"
+msgstr ""
+
+msgid "Play service without streamrelay"
+msgstr ""
 
 #
 #, fuzzy
@@ -11943,6 +11946,9 @@ msgstr ""
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr ""
 
+msgid "Select how you want your receiver to keep the correct time, either from the DVB transponder, or from the internet using NTP. Or use Auto, which will favour using NTP, but will fall back to transponder time when no internet connection is available."
+msgstr ""
+
 msgid "Select how your box will upgrade."
 msgstr ""
 
@@ -12489,9 +12495,6 @@ msgstr "Nastavitve"
 #
 msgid "Setup mode"
 msgstr "Nastavitveni način"
-
-msgid "Setup network time synchronization interval."
-msgstr ""
 
 msgid "Setup your positioner"
 msgstr "Nastavitev pozicionerja"
@@ -14033,16 +14036,7 @@ msgstr ""
 msgid "Symlink to "
 msgstr ""
 
-msgid "Sync NTP every (minutes)"
-msgstr ""
-
 msgid "Sync failure moving back to origin !"
-msgstr ""
-
-msgid "Sync time using"
-msgstr ""
-
-msgid "Synchronize systemtime using transponder or internet."
 msgstr ""
 
 msgid "Syrian Arab Republic"
@@ -14227,6 +14221,9 @@ msgstr ""
 msgid "The EPG data will be stored every (hours)"
 msgstr ""
 
+msgid "The IP address from the streamrelay server that is used to descramble services that can only be encrypted via streamrelay"
+msgstr ""
+
 msgid "The Image Viewer component of the File Commander requires the PicturePlayer extension. Install PicturePlayer to enable this operation."
 msgstr ""
 
@@ -14321,6 +14318,9 @@ msgstr ""
 msgid "The height of the picture. The input will be scaled to match this value."
 msgstr ""
 
+msgid "The hostname or the IP address of the NTP server to synchronise the time with."
+msgstr ""
+
 #
 msgid ""
 "The network wizard extension is not installed!\n"
@@ -14360,6 +14360,9 @@ msgstr ""
 #, python-format
 msgid "The path %s already exists."
 msgstr "Pot %s že obstaja."
+
+msgid "The port from the streamrelay server that is used to descramble services that can only be encrypted via streamrelay"
+msgstr ""
 
 #
 #, fuzzy, python-format
@@ -14804,6 +14807,9 @@ msgstr ""
 msgid "Time scale"
 msgstr "Izbira časovnika"
 
+msgid "Time synchronization method"
+msgstr ""
+
 msgid "Time to execute command or script"
 msgstr ""
 
@@ -15045,6 +15051,11 @@ msgstr "Način posredovanja"
 msgid "Transponder"
 msgstr "Transponder"
 
+#
+#, fuzzy
+msgid "Transponder Time"
+msgstr "Transponder"
+
 msgid "Transport Stream Type"
 msgstr ""
 
@@ -15130,12 +15141,6 @@ msgid "Tuners & scanning"
 msgstr "Kanalnik"
 
 msgid "Tunisia"
-msgstr ""
-
-msgid ""
-"Turbo: One reboot after flash\n"
-"Fast: One reboot after flash, one reboot after restore\n"
-"Slow: One reboot after flash, one reboot after restore in GUI"
 msgstr ""
 
 #
@@ -17453,9 +17458,6 @@ msgstr "napačno"
 msgid "fashion"
 msgstr ""
 
-msgid "fast"
-msgstr ""
-
 #
 msgid "fileformats (BMP, PNG, JPG, GIF)"
 msgstr "oblika datoteke (BMP, PNG, JPG, GIF)"
@@ -17725,10 +17727,6 @@ msgstr "meni"
 #
 msgid "mins"
 msgstr "mins"
-
-#
-msgid "minutes"
-msgstr "minute"
 
 #
 #, fuzzy
@@ -18236,9 +18234,6 @@ msgstr ""
 msgid "slot%s - %s mode 12 (current image)"
 msgstr "Aktiviranje trenutnih nastavitev"
 
-msgid "slow"
-msgstr ""
-
 msgid "soap/melodrama/folkloric"
 msgstr ""
 
@@ -18360,9 +18355,6 @@ msgstr ""
 
 msgid "true"
 msgstr "pravilno"
-
-msgid "turbo"
-msgstr ""
 
 #, fuzzy
 msgid "type"

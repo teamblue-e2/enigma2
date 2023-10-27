@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-22 07:44+0200\n"
+"POT-Creation-Date: 2023-10-27 11:11+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: MCelliotG <mcelliotg@gmail.com>\n"
@@ -2813,10 +2813,6 @@ msgstr "Ρυθμίστε ποιος τύπος tuner θα προτιμάται, 
 msgid "Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites."
 msgstr "Ρυθμίστε ποιο tuner θα προτιμάται, όταν περισσότερα του ενός είναι διαθέσιμα. Στο 'αυτόματο', το σύστημα θα δίνει προτεραιότητα στο tuner με τον μικρότερο αριθμό καναλιών/δορυφόρων."
 
-#, fuzzy
-msgid "Configure your NTP server."
-msgstr "Ρύθμιση nameservers"
-
 msgid "Configure your internal LAN"
 msgstr "Ρυθμίσεις εσωτερικού δικτύου"
 
@@ -3500,6 +3496,14 @@ msgstr "Αποκρυπτογράφηση ροών http"
 
 #, fuzzy
 msgid "Descramble sending http streams"
+msgstr "Αποκρυπτογράφηση ροών http"
+
+#, fuzzy
+msgid "Descramble service via streamrelay port"
+msgstr "Αποκρυπτογράφηση ροών http"
+
+#, fuzzy
+msgid "Descramble service via streamrelay url"
 msgstr "Αποκρυπτογράφηση ροών http"
 
 msgid "Description"
@@ -5583,6 +5587,10 @@ msgid "HDMI-IN Actions"
 msgstr ""
 
 #, fuzzy
+msgid "HDMI-IN Recording settings"
+msgstr "Εγγραφή..."
+
+#, fuzzy
 msgid "HDR10 support"
 msgstr "δεν υποστηρίζεται"
 
@@ -5765,9 +5773,6 @@ msgstr ""
 #, fuzzy
 msgid "Hotplug"
 msgstr "Λήψη προσθέτων"
-
-msgid "Hour"
-msgstr ""
 
 msgid "Hourly"
 msgstr ""
@@ -6244,6 +6249,9 @@ msgstr "Εσωτερική flash"
 
 msgid "Internal hdd only"
 msgstr "Εσωτερικός δίσκος μόνο"
+
+msgid "Internet (ntp)"
+msgstr ""
 
 msgid "Interval between keys when repeating:"
 msgstr "Διάστημα μεταξύ των πλήκτρων μετά από επανάληψη:"
@@ -6974,10 +6982,6 @@ msgid "Mode %s (%04o)"
 msgstr "%s (%s)\n"
 
 #, fuzzy
-msgid "Mode for autorestore"
-msgstr "Επαναφορά λογισμικού"
-
-#, fuzzy
 msgid "Model"
 msgstr "Λειτουργία"
 
@@ -7361,12 +7365,8 @@ msgstr "ΤΩΡΑ"
 msgid "NOW"
 msgstr "ΤΩΡΑ"
 
-msgid "NTP"
+msgid "NTP Hostname"
 msgstr ""
-
-#, fuzzy
-msgid "NTP server"
-msgstr "Nameserver"
 
 msgid "NTSC"
 msgstr "NTSC"
@@ -7890,9 +7890,6 @@ msgstr "Στο τέλος της ταινίας (ως μενού)"
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr ""
 
-msgid "Once per day"
-msgstr ""
-
 msgid "One"
 msgstr "Ένα"
 
@@ -8377,6 +8374,12 @@ msgstr "Απαναραγωγή προγηγούμενου"
 
 msgid "Play recorded movies..."
 msgstr "Αναπαραγωγή εγγραφών..."
+
+msgid "Play service with streamrelay"
+msgstr ""
+
+msgid "Play service without streamrelay"
+msgstr ""
 
 #, fuzzy
 msgid "Play title"
@@ -10393,6 +10396,9 @@ msgstr ""
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr ""
 
+msgid "Select how you want your receiver to keep the correct time, either from the DVB transponder, or from the internet using NTP. Or use Auto, which will favour using NTP, but will fall back to transponder time when no internet connection is available."
+msgstr ""
+
 msgid "Select how your box will upgrade."
 msgstr ""
 
@@ -10863,9 +10869,6 @@ msgstr "Μενού εγκατάστασης"
 
 msgid "Setup mode"
 msgstr "Λειτουργία εγκατάστασης"
-
-msgid "Setup network time synchronization interval."
-msgstr ""
 
 msgid "Setup your positioner"
 msgstr "Εγκατάσταση μοτέρ"
@@ -12183,17 +12186,8 @@ msgstr ""
 msgid "Symlink to "
 msgstr ""
 
-msgid "Sync NTP every (minutes)"
-msgstr ""
-
 msgid "Sync failure moving back to origin !"
 msgstr "Αποτυχία συγχρονισμού επιστροφή στο αρχικό !"
-
-msgid "Sync time using"
-msgstr ""
-
-msgid "Synchronize systemtime using transponder or internet."
-msgstr ""
 
 msgid "Syrian Arab Republic"
 msgstr ""
@@ -12357,6 +12351,9 @@ msgstr ""
 msgid "The EPG data will be stored every (hours)"
 msgstr ""
 
+msgid "The IP address from the streamrelay server that is used to descramble services that can only be encrypted via streamrelay"
+msgstr ""
+
 msgid "The Image Viewer component of the File Commander requires the PicturePlayer extension. Install PicturePlayer to enable this operation."
 msgstr ""
 
@@ -12446,6 +12443,9 @@ msgstr ""
 msgid "The height of the picture. The input will be scaled to match this value."
 msgstr ""
 
+msgid "The hostname or the IP address of the NTP server to synchronise the time with."
+msgstr ""
+
 msgid ""
 "The network wizard extension is not installed!\n"
 "Please install it."
@@ -12485,6 +12485,9 @@ msgstr ""
 #, python-format
 msgid "The path %s already exists."
 msgstr "Η διαδρομή %s υπάρχει ήδη."
+
+msgid "The port from the streamrelay server that is used to descramble services that can only be encrypted via streamrelay"
+msgstr ""
 
 #, fuzzy, python-format
 msgid "The results have been written to %s"
@@ -12897,6 +12900,9 @@ msgstr ""
 msgid "Time scale"
 msgstr "Χρονική κλιμάκωση"
 
+msgid "Time synchronization method"
+msgstr ""
+
 msgid "Time to execute command or script"
 msgstr ""
 
@@ -13099,6 +13105,10 @@ msgstr "Λειτουργία μετάδοσης"
 msgid "Transponder"
 msgstr "Αναμεταδότης"
 
+#, fuzzy
+msgid "Transponder Time"
+msgstr "Αναμεταδότης"
+
 msgid "Transport Stream Type"
 msgstr ""
 
@@ -13169,12 +13179,6 @@ msgid "Tuners & scanning"
 msgstr "Tuner"
 
 msgid "Tunisia"
-msgstr ""
-
-msgid ""
-"Turbo: One reboot after flash\n"
-"Fast: One reboot after flash, one reboot after restore\n"
-"Slow: One reboot after flash, one reboot after restore in GUI"
 msgstr ""
 
 #, fuzzy
@@ -15259,9 +15263,6 @@ msgstr "ψευδές"
 msgid "fashion"
 msgstr "μόδα"
 
-msgid "fast"
-msgstr ""
-
 msgid "fileformats (BMP, PNG, JPG, GIF)"
 msgstr "τύποι αρχείων (BMP, PNG, JPG, GIF)"
 
@@ -15493,9 +15494,6 @@ msgid "menu"
 msgstr "μενού"
 
 msgid "mins"
-msgstr "λεπτά"
-
-msgid "minutes"
 msgstr "λεπτά"
 
 #, fuzzy
@@ -15935,9 +15933,6 @@ msgstr ""
 msgid "slot%s - %s mode 12 (current image)"
 msgstr "Ενεργοποίηση τρέχουσας ρύθμισης"
 
-msgid "slow"
-msgstr ""
-
 #, fuzzy
 msgid "soap/melodrama/folkloric"
 msgstr "σαπουνόπερα/μελόδραμα/φολκλόρ"
@@ -16048,9 +16043,6 @@ msgstr "τουρισμός/ταξίδια"
 
 msgid "true"
 msgstr "αληθές"
-
-msgid "turbo"
-msgstr ""
 
 #, fuzzy
 msgid "type"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-22 07:44+0200\n"
+"POT-Creation-Date: 2023-10-27 11:11+0200\n"
 "PO-Revision-Date: 2017-01-18 16:38+0100\n"
 "Last-Translator: lupine <a_ecklon@hotmail.com>\n"
 "Language-Team: \n"
@@ -3161,11 +3161,6 @@ msgid "Configure which tuner will be preferred, when more than one tuner is avai
 msgstr ""
 
 #
-#, fuzzy
-msgid "Configure your NTP server."
-msgstr "Opsætning af navneservere"
-
-#
 msgid "Configure your internal LAN"
 msgstr "Konfigurer dit interne LAN"
 
@@ -3955,6 +3950,14 @@ msgstr "Afkod http Stream"
 
 #, fuzzy
 msgid "Descramble sending http streams"
+msgstr "Afkod http Stream"
+
+#, fuzzy
+msgid "Descramble service via streamrelay port"
+msgstr "Afkod http Stream"
+
+#, fuzzy
+msgid "Descramble service via streamrelay url"
 msgstr "Afkod http Stream"
 
 #
@@ -6316,6 +6319,11 @@ msgstr ""
 msgid "HDMI-IN Actions"
 msgstr ""
 
+#
+#, fuzzy
+msgid "HDMI-IN Recording settings"
+msgstr "Optager"
+
 #, fuzzy
 msgid "HDR10 support"
 msgstr "ikke supporteret"
@@ -6521,9 +6529,6 @@ msgstr ""
 #, fuzzy
 msgid "Hotplug"
 msgstr "Hente Plugins"
-
-msgid "Hour"
-msgstr ""
 
 msgid "Hourly"
 msgstr ""
@@ -7062,6 +7067,9 @@ msgid "Internal flash"
 msgstr "Intern Flash"
 
 msgid "Internal hdd only"
+msgstr ""
+
+msgid "Internet (ntp)"
 msgstr ""
 
 msgid "Interval between keys when repeating:"
@@ -7928,11 +7936,6 @@ msgstr "%s (%s)\n"
 
 #
 #, fuzzy
-msgid "Mode for autorestore"
-msgstr "Software gendannelse"
-
-#
-#, fuzzy
 msgid "Model"
 msgstr "Type"
 
@@ -8361,13 +8364,8 @@ msgstr "NU"
 msgid "NOW"
 msgstr "NU"
 
-msgid "NTP"
+msgid "NTP Hostname"
 msgstr ""
-
-#
-#, fuzzy
-msgid "NTP server"
-msgstr "Navneserver"
 
 #
 msgid "NTSC"
@@ -8971,9 +8969,6 @@ msgstr ""
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr ""
 
-msgid "Once per day"
-msgstr ""
-
 #
 msgid "One"
 msgstr "En"
@@ -9528,6 +9523,12 @@ msgstr "Afspil forrige"
 #
 msgid "Play recorded movies..."
 msgstr "Afspil optagede film..."
+
+msgid "Play service with streamrelay"
+msgstr ""
+
+msgid "Play service without streamrelay"
+msgstr ""
 
 #
 #, fuzzy
@@ -11903,6 +11904,9 @@ msgstr ""
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr ""
 
+msgid "Select how you want your receiver to keep the correct time, either from the DVB transponder, or from the internet using NTP. Or use Auto, which will favour using NTP, but will fall back to transponder time when no internet connection is available."
+msgstr ""
+
 msgid "Select how your box will upgrade."
 msgstr ""
 
@@ -12449,9 +12453,6 @@ msgstr "Opsætningsmenu"
 #, fuzzy
 msgid "Setup mode"
 msgstr "Opsætnings type"
-
-msgid "Setup network time synchronization interval."
-msgstr ""
 
 msgid "Setup your positioner"
 msgstr "Motor opsætning"
@@ -13984,17 +13985,8 @@ msgstr ""
 msgid "Symlink to "
 msgstr ""
 
-msgid "Sync NTP every (minutes)"
-msgstr ""
-
 msgid "Sync failure moving back to origin !"
 msgstr "Synkronationsfejl, går tilbage!"
-
-msgid "Sync time using"
-msgstr ""
-
-msgid "Synchronize systemtime using transponder or internet."
-msgstr ""
 
 msgid "Syrian Arab Republic"
 msgstr ""
@@ -14181,6 +14173,9 @@ msgstr ""
 msgid "The EPG data will be stored every (hours)"
 msgstr ""
 
+msgid "The IP address from the streamrelay server that is used to descramble services that can only be encrypted via streamrelay"
+msgstr ""
+
 msgid "The Image Viewer component of the File Commander requires the PicturePlayer extension. Install PicturePlayer to enable this operation."
 msgstr ""
 
@@ -14276,6 +14271,9 @@ msgstr ""
 msgid "The height of the picture. The input will be scaled to match this value."
 msgstr ""
 
+msgid "The hostname or the IP address of the NTP server to synchronise the time with."
+msgstr ""
+
 #
 #, fuzzy
 msgid ""
@@ -14318,6 +14316,9 @@ msgstr ""
 #, python-format
 msgid "The path %s already exists."
 msgstr "Stien %s findes allerede."
+
+msgid "The port from the streamrelay server that is used to descramble services that can only be encrypted via streamrelay"
+msgstr ""
 
 #
 #, fuzzy, python-format
@@ -14768,6 +14769,9 @@ msgstr ""
 msgid "Time scale"
 msgstr "Tidsscala"
 
+msgid "Time synchronization method"
+msgstr ""
+
 msgid "Time to execute command or script"
 msgstr ""
 
@@ -15010,6 +15014,11 @@ msgstr "Transmissions type"
 msgid "Transponder"
 msgstr "Transponder"
 
+#
+#, fuzzy
+msgid "Transponder Time"
+msgstr "Transponder"
+
 msgid "Transport Stream Type"
 msgstr ""
 
@@ -15097,12 +15106,6 @@ msgid "Tuners & scanning"
 msgstr "Tuner"
 
 msgid "Tunisia"
-msgstr ""
-
-msgid ""
-"Turbo: One reboot after flash\n"
-"Fast: One reboot after flash, one reboot after restore\n"
-"Slow: One reboot after flash, one reboot after restore in GUI"
 msgstr ""
 
 #
@@ -17383,9 +17386,6 @@ msgstr "falsk"
 msgid "fashion"
 msgstr ""
 
-msgid "fast"
-msgstr ""
-
 #
 msgid "fileformats (BMP, PNG, JPG, GIF)"
 msgstr "fil formater (BMP, PNG, JPG, GIF)"
@@ -17653,10 +17653,6 @@ msgstr "menu"
 #
 msgid "mins"
 msgstr "min"
-
-#
-msgid "minutes"
-msgstr "minutter"
 
 #
 #, fuzzy
@@ -18165,9 +18161,6 @@ msgstr ""
 msgid "slot%s - %s mode 12 (current image)"
 msgstr "aktiver den aktuelle opsætning"
 
-msgid "slow"
-msgstr ""
-
 msgid "soap/melodrama/folkloric"
 msgstr ""
 
@@ -18289,9 +18282,6 @@ msgstr ""
 
 msgid "true"
 msgstr "rigtig"
-
-msgid "turbo"
-msgstr ""
 
 #
 #, fuzzy

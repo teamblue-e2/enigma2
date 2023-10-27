@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-22 07:44+0200\n"
+"POT-Creation-Date: 2023-10-27 11:11+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Budiarno\n"
 "Language-Team: \n"
@@ -2784,10 +2784,6 @@ msgstr "Atur tipe penala mana ingin diutamakan,  ketika layanan yang sama tersed
 msgid "Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites."
 msgstr "Atur penala mana yang ingin diutamakan, ketika lebih dari satu penala tersedia. Jika diatur ke 'auto' sistem akan memprioritaskan pada penala dengan jumlah kanal/satelit yang paling sedikit."
 
-#, fuzzy
-msgid "Configure your NTP server."
-msgstr "Atur nameserver"
-
 msgid "Configure your internal LAN"
 msgstr "Atur LAN internal anda"
 
@@ -3468,6 +3464,14 @@ msgstr "Descramble penerimaan streaming http"
 
 msgid "Descramble sending http streams"
 msgstr "Descramble pengiriman streaming http"
+
+#, fuzzy
+msgid "Descramble service via streamrelay port"
+msgstr "Descramble penerimaan streaming http"
+
+#, fuzzy
+msgid "Descramble service via streamrelay url"
+msgstr "Descramble penerimaan streaming http"
 
 msgid "Description"
 msgstr "Deskripsi"
@@ -5529,6 +5533,10 @@ msgid "HDMI-IN Actions"
 msgstr ""
 
 #, fuzzy
+msgid "HDMI-IN Recording settings"
+msgstr "Recording"
+
+#, fuzzy
 msgid "HDR10 support"
 msgstr "tidak didukung"
 
@@ -5704,9 +5712,6 @@ msgstr ""
 #, fuzzy
 msgid "Hotplug"
 msgstr "Unduh plugin"
-
-msgid "Hour"
-msgstr ""
 
 msgid "Hourly"
 msgstr ""
@@ -6186,6 +6191,9 @@ msgstr "Internal flash"
 
 msgid "Internal hdd only"
 msgstr "Hdd internal saja"
+
+msgid "Internet (ntp)"
+msgstr ""
 
 msgid "Interval between keys when repeating:"
 msgstr "Interval between keys when repeating:"
@@ -6912,10 +6920,6 @@ msgid "Mode %s (%04o)"
 msgstr "%s (%s)\n"
 
 #, fuzzy
-msgid "Mode for autorestore"
-msgstr "Software restore"
-
-#, fuzzy
 msgid "Model"
 msgstr "Mode"
 
@@ -7293,12 +7297,8 @@ msgstr ""
 msgid "NOW"
 msgstr ""
 
-msgid "NTP"
+msgid "NTP Hostname"
 msgstr ""
-
-#, fuzzy
-msgid "NTP server"
-msgstr "Nameserver"
 
 msgid "NTSC"
 msgstr "NTSC"
@@ -7810,9 +7810,6 @@ msgstr ""
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr ""
 
-msgid "Once per day"
-msgstr ""
-
 msgid "One"
 msgstr "Satu"
 
@@ -8285,6 +8282,12 @@ msgstr "Mainkan sebelumnya"
 
 msgid "Play recorded movies..."
 msgstr "Mainkan film yang direkam..."
+
+msgid "Play service with streamrelay"
+msgstr ""
+
+msgid "Play service without streamrelay"
+msgstr ""
 
 #, fuzzy
 msgid "Play title"
@@ -10239,6 +10242,9 @@ msgstr ""
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr ""
 
+msgid "Select how you want your receiver to keep the correct time, either from the DVB transponder, or from the internet using NTP. Or use Auto, which will favour using NTP, but will fall back to transponder time when no internet connection is available."
+msgstr ""
+
 #, fuzzy
 msgid "Select how your box will upgrade."
 msgstr "Penyedia ATSC"
@@ -10706,9 +10712,6 @@ msgstr "Menu pengaturan"
 
 msgid "Setup mode"
 msgstr "Mode pengaturan"
-
-msgid "Setup network time synchronization interval."
-msgstr ""
 
 msgid "Setup your positioner"
 msgstr "Atur positioner anda"
@@ -11983,17 +11986,8 @@ msgstr ""
 msgid "Symlink to "
 msgstr ""
 
-msgid "Sync NTP every (minutes)"
-msgstr ""
-
 msgid "Sync failure moving back to origin !"
 msgstr "Sync failure moving back to origin !"
-
-msgid "Sync time using"
-msgstr ""
-
-msgid "Synchronize systemtime using transponder or internet."
-msgstr ""
 
 msgid "Syrian Arab Republic"
 msgstr ""
@@ -12153,6 +12147,9 @@ msgstr ""
 msgid "The EPG data will be stored every (hours)"
 msgstr ""
 
+msgid "The IP address from the streamrelay server that is used to descramble services that can only be encrypted via streamrelay"
+msgstr ""
+
 msgid "The Image Viewer component of the File Commander requires the PicturePlayer extension. Install PicturePlayer to enable this operation."
 msgstr ""
 
@@ -12241,6 +12238,9 @@ msgstr ""
 msgid "The height of the picture. The input will be scaled to match this value."
 msgstr ""
 
+msgid "The hostname or the IP address of the NTP server to synchronise the time with."
+msgstr ""
+
 msgid ""
 "The network wizard extension is not installed!\n"
 "Please install it."
@@ -12280,6 +12280,9 @@ msgstr ""
 #, python-format
 msgid "The path %s already exists."
 msgstr "The path %s already exists."
+
+msgid "The port from the streamrelay server that is used to descramble services that can only be encrypted via streamrelay"
+msgstr ""
 
 #, python-format
 msgid "The results have been written to %s"
@@ -12692,6 +12695,9 @@ msgstr ""
 msgid "Time scale"
 msgstr "Rentang waktu"
 
+msgid "Time synchronization method"
+msgstr ""
+
 msgid "Time to execute command or script"
 msgstr ""
 
@@ -12892,6 +12898,10 @@ msgstr "Transmission mode"
 msgid "Transponder"
 msgstr "Transponder"
 
+#, fuzzy
+msgid "Transponder Time"
+msgstr "Transponder"
+
 msgid "Transport Stream Type"
 msgstr ""
 
@@ -12958,12 +12968,6 @@ msgid "Tuners & scanning"
 msgstr "Penala"
 
 msgid "Tunisia"
-msgstr ""
-
-msgid ""
-"Turbo: One reboot after flash\n"
-"Fast: One reboot after flash, one reboot after restore\n"
-"Slow: One reboot after flash, one reboot after restore in GUI"
 msgstr ""
 
 #, fuzzy
@@ -15046,9 +15050,6 @@ msgstr "salah"
 msgid "fashion"
 msgstr "gaya"
 
-msgid "fast"
-msgstr ""
-
 msgid "fileformats (BMP, PNG, JPG, GIF)"
 msgstr "format file (BMP, PNG, JPG, GIF)"
 
@@ -15279,9 +15280,6 @@ msgstr "menu"
 
 msgid "mins"
 msgstr "mnt"
-
-msgid "minutes"
-msgstr "menit"
 
 #, fuzzy
 msgid "module disabled"
@@ -15716,9 +15714,6 @@ msgstr ""
 msgid "slot%s - %s mode 12 (current image)"
 msgstr "Aktifkan setelan saat ini"
 
-msgid "slow"
-msgstr ""
-
 #, fuzzy
 msgid "soap/melodrama/folkloric"
 msgstr "soap/melodram/folkloric"
@@ -15828,9 +15823,6 @@ msgstr "tourism/travel"
 
 msgid "true"
 msgstr "benar"
-
-msgid "turbo"
-msgstr ""
 
 #, fuzzy
 msgid "type"
