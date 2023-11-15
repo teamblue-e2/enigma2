@@ -62,6 +62,7 @@ class eDVBCISlot: public iObject, public sigc::trackable
 	bool user_mapped;
 	void data(int);
 	bool plugged;
+	int16_t m_ca_demux_id;
 	eMainloop *m_context;
 
 	eDVBCIApplicationManagerSession *getAppManager() { return application_manager; }
@@ -78,13 +79,11 @@ class eDVBCISlot: public iObject, public sigc::trackable
 	int cancelEnq();
 	int getMMIState();
 	int sendCAPMT(eDVBServicePMTHandler *ptr, const std::vector<uint16_t> &caids=std::vector<uint16_t>());
+	int setCADemuxID(eDVBServicePMTHandler *pmthandler);
 	void removeService(uint16_t program_number=0xFFFF);
 	int getNumOfServices() { return running_services.size(); }
 	int setSource(const std::string &source);
 	int setClockRate(int);
-<<<<<<< HEAD
-	static std::string getTunerLetter(int tuner_no) { return std::string(1, char(65 + tuner_no)); }
-=======
 	void determineCIVersion();
 	int setEnabled(bool);
 	static std::string getTunerLetter(int tuner_no) { return std::string(1, char(65 + tuner_no)); }
@@ -106,7 +105,7 @@ public:
 	int getSlotID();
 	int getNumOfServices();
 	int getVersion();
->>>>>>> 0275bee865 (Add support for enabling and disabling CI devices (#2283) (#3432))
+	int16_t getCADemuxID() { return m_ca_demux_id; };
 };
 
 struct CIPmtHandler
