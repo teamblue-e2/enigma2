@@ -61,8 +61,8 @@ class ServiceName(Converter):
 			name = self.getName(ref, info)
 			numservice = self.source.serviceref
 			num = self.getNumber(numservice, info)
-			provider = self.getProvider(ref, info)
-			orbpos = self.getOrbitalPos(ref, info)
+			orbpos, tp_data = self.getOrbitalPos(ref, info)
+			provider = self.getProvider(ref, info, tp_data)
 			res_str = ""
 			for x in self.parts[1:]:
 				x = x.upper()
