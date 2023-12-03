@@ -12,7 +12,7 @@ from Screens.LocationBox import defaultInhibitDirs
 import NavigationInstance
 from skin import parseScale
 
-from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, eServiceReference, eServiceCenter, eTimer, RT_VALIGN_CENTER
+from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, eServiceReference, eServiceCenter, eTimer, RT_VALIGN_CENTER, BT_SCALE, BT_KEEP_ASPECT_RATIO, BT_ALIGN_CENTER
 
 AUDIO_EXTENSIONS = frozenset((".dts", ".mp3", ".wav", ".wave", ".wv", ".oga", ".ogg", ".flac", ".m4a", ".mp2", ".m2a", ".wma", ".ac3", ".mka", ".aac", ".ape", ".alac", ".amr", ".au", ".mid"))
 DVD_EXTENSIONS = frozenset((".iso", ".img", ".nrg"))
@@ -403,9 +403,9 @@ class MovieList(GUIComponent):
 					return res
 			if not config.movielist.show_underlines.value:
 				txt = txt.replace('_', ' ').strip()
-			res.append(MultiContentEntryPixmapAlphaBlend(pos=(0, self.dirShift), size=(iconSize, iconSize), png=self.iconFolder))
-			res.append(MultiContentEntryText(pos=(x, 0), size=(width - x - tn - r, self.itemHeight), font=0, flags=RT_HALIGN_LEFT | valign_center, text=txt))
-			res.append(MultiContentEntryText(pos=(width - tn - r, 0), size=(tn, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT | valign_center, text=_("Directory")))
+			res.append(MultiContentEntryPixmapAlphaBlend(pos=(self.spaceLeft, self.dirShift), size=(iconSize, iconSize), png=self.iconFolder, flags=BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_ALIGN_CENTER))
+			res.append(MultiContentEntryText(pos=(x + self.spaceLeft, 0), size=(width - x - tn - r - self.spaceLeft, self.itemHeight), font=0, flags=RT_HALIGN_LEFT | valign_center, text=txt))
+			res.append(MultiContentEntryText(pos=(width - tn - r, 0), size=(tn - self.spaceLeft, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT | valign_center, text=_("Directory")))
 			return res
 		if (data == -1) or (data is None):
 			data = MovieListData()
@@ -492,18 +492,18 @@ class MovieList(GUIComponent):
 			fc, sc = self.columnsOriginal[0], self.columnsOriginal[1]
 			ih1 = (ih * 2) // 5 # 75 -> 30
 			ih2 = (ih * 2) // 3 # 75 -> 50
-			res.append(MultiContentEntryText(pos=(iconSize + space, 0), size=(width - fc - r, ih1), font=0, flags=RT_HALIGN_LEFT, text=data.txt))
+			res.append(MultiContentEntryText(pos=(iconSize + space + self.spaceLeft, 0), size=(width - fc - r - self.spaceLeft, ih1), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=data.txt))
 			if self.tags:
-				res.append(MultiContentEntryText(pos=(width - fc - r, 0), size=(fc, ih1), font=2, flags=RT_HALIGN_RIGHT, text=info.getInfoString(serviceref, iServiceInformation.sTags)))
+				res.append(MultiContentEntryText(pos=(width - fc - r - self.spaceLeft, 0), size=(fc - self.spaceLeft, ih1), font=2, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=info.getInfoString(serviceref, iServiceInformation.sTags)))
 				if data.serviceName:
-					res.append(MultiContentEntryText(pos=(sc - r, ih2), size=(sc, ih2 - ih1), font=1, flags=RT_HALIGN_LEFT, text=data.serviceName))
+					res.append(MultiContentEntryText(pos=(sc - r - self.spaceLeft, ih2), size=(sc - self.spaceLeft, ih2 - ih1), font=1, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=data.serviceName))
 			else:
 				if data.serviceName:
-					res.append(MultiContentEntryText(pos=(width - fc - r, 0), size=(fc, ih1), font=2, flags=RT_HALIGN_RIGHT, text=data.serviceName))
-			res.append(MultiContentEntryText(pos=(0, ih1), size=(width - r, ih2 - ih1), font=1, flags=RT_HALIGN_LEFT, text=data.description))
-			res.append(MultiContentEntryText(pos=(0, ih2), size=(sc - r, ih - ih2), font=1, flags=RT_HALIGN_LEFT, text=begin_string))
+					res.append(MultiContentEntryText(pos=(width - fc - r - self.spaceLeft, 0), size=(fc - self.spaceLeft, ih1), font=2, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=data.serviceName))
+			res.append(MultiContentEntryText(pos=(self.spaceLeft, ih1), size=(width - r - self.spaceLeft, ih2 - ih1), font=1, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=data.description))
+			res.append(MultiContentEntryText(pos=(self.spaceLeft, ih2), size=(sc - r - self.spaceLeft, ih - ih2), font=1, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=begin_string))
 			if len:
-				res.append(MultiContentEntryText(pos=(width - sc - r, ih2), size=(sc, ih - ih2), font=1, flags=RT_HALIGN_RIGHT, text=len))
+				res.append(MultiContentEntryText(pos=(width - sc - r - self.spaceLeft, ih2), size=(sc - self.spaceLeft, ih - ih2), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=len))
 		elif self.list_type == MovieList.LISTTYPE_COMPACT_DESCRIPTION:
 			ih1 = ((ih * 8) + 14) // 15 # 37 -> 20, round up
 			if len:
@@ -511,13 +511,13 @@ class MovieList(GUIComponent):
 			else:
 				lenSize = 0
 			fc, sc, tc = self.columnsCompactDescription[0], self.columnsCompactDescription[1], self.columnsCompactDescription[2]
-			res.append(MultiContentEntryText(pos=(iconSize + space, 0), size=(width - sc - r, ih1), font=0, flags=RT_HALIGN_LEFT, text=data.txt))
-			res.append(MultiContentEntryText(pos=(0, ih1), size=(width - tc - lenSize - r, ih - ih1), font=1, flags=RT_HALIGN_LEFT, text=data.description))
-			res.append(MultiContentEntryText(pos=(width - fc - r, 0), size=(fc, ih1), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=begin_string))
+			res.append(MultiContentEntryText(pos=(iconSize + space + self.spaceLeft, 0), size=(width - sc - r - self.spaceLeft, ih1), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=data.txt))
+			res.append(MultiContentEntryText(pos=(self.spaceLeft, ih1), size=(width - tc - lenSize - r - self.spaceLeft, ih - ih1), font=1, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=data.description))
+			res.append(MultiContentEntryText(pos=(width - fc - r - self.spaceLeft, 6), size=(fc, ih1), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=begin_string))
 			if data.serviceName:
-				res.append(MultiContentEntryText(pos=(width - tc - lenSize - r, ih1), size=(tc, ih - ih1), font=1, flags=RT_HALIGN_RIGHT, text=data.serviceName))
+				res.append(MultiContentEntryText(pos=(width - tc - lenSize - r - self.spaceLeft, ih1), size=(tc - self.spaceLeft, ih - ih1), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=data.serviceName))
 			if lenSize:
-				res.append(MultiContentEntryText(pos=(width - lenSize - r, ih1), size=(lenSize, ih - ih1), font=1, flags=RT_HALIGN_RIGHT, text=len))
+				res.append(MultiContentEntryText(pos=(width - lenSize - r - self.spaceLeft, ih1), size=(lenSize - self.spaceLeft, ih - ih1), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=len))
 		elif self.list_type == MovieList.LISTTYPE_COMPACT:
 			col = self.compactColumn
 			ih1 = ((ih * 8) + 14) // 15 # 37 -> 20, round up
@@ -525,17 +525,17 @@ class MovieList(GUIComponent):
 				lenSize = 2 * ih
 			else:
 				lenSize = 0
-			res.append(MultiContentEntryText(pos=(iconSize + space, 0), size=(width - lenSize - iconSize - space - r, ih1), font=0, flags=RT_HALIGN_LEFT, text=data.txt))
+			res.append(MultiContentEntryText(pos=(iconSize + space + self.spaceLeft, 0), size=(width - lenSize - iconSize - space - r - self.spaceLeft, ih1), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=data.txt))
 			if self.tags:
-				res.append(MultiContentEntryText(pos=(width - col - r, ih1), size=(col, ih - ih1), font=1, flags=RT_HALIGN_RIGHT, text=info.getInfoString(serviceref, iServiceInformation.sTags)))
+				res.append(MultiContentEntryText(pos=(width - col - r - self.spaceLeft, ih1), size=(col - self.spaceLeft, ih - ih1), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=info.getInfoString(serviceref, iServiceInformation.sTags)))
 				if data.serviceName:
-					res.append(MultiContentEntryText(pos=(col, ih1), size=(col, ih - ih1), font=1, flags=RT_HALIGN_LEFT, text=data.serviceName))
+					res.append(MultiContentEntryText(pos=(col + self.spaceLeft, ih1), size=(col - self.spaceLeft, ih - ih1), font=1, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=data.serviceName))
 			else:
 				if data.serviceName:
-					res.append(MultiContentEntryText(pos=(width - col - r, ih1), size=(col, ih - ih1), font=1, flags=RT_HALIGN_RIGHT, text=data.serviceName))
-			res.append(MultiContentEntryText(pos=(0, ih1), size=(col, ih - ih1), font=1, flags=RT_HALIGN_LEFT, text=begin_string))
+					res.append(MultiContentEntryText(pos=(width - col - r - self.spaceLeft, ih1), size=(col - self.spaceLeft, ih - ih1), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=data.serviceName))
+			res.append(MultiContentEntryText(pos=(self.spaceLeft, ih1), size=(col - self.spaceLeft, ih - ih1), font=1, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=begin_string))
 			if lenSize:
-				res.append(MultiContentEntryText(pos=(width - lenSize - r, 0), size=(lenSize, ih1), font=0, flags=RT_HALIGN_RIGHT, text=len))
+				res.append(MultiContentEntryText(pos=(width - lenSize - r - self.spaceLeft, 0), size=(lenSize - self.spaceLeft, ih1), font=0, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=len))
 		else:
 			if (self.descr_state == MovieList.SHOW_DESCRIPTION) or not len:
 				dateSize = ih * 145 // 25   # 25 -> 145
@@ -543,8 +543,8 @@ class MovieList(GUIComponent):
 				res.append(MultiContentEntryText(pos=(width - dateSize - r, 2), size=(dateSize, ih), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=begin_string))
 			else:
 				lenSize = ih * 3 # 25 -> 75
-				res.append(MultiContentEntryText(pos=(iconSize + space, 0), size=(width - lenSize - iconSize - space - r, ih), font=0, flags=RT_HALIGN_LEFT, text=data.txt))
-				res.append(MultiContentEntryText(pos=(width - lenSize - r, 0), size=(lenSize, ih), font=0, flags=RT_HALIGN_RIGHT, text=len))
+				res.append(MultiContentEntryText(pos=(iconSize + space + self.spaceLeft, 0), size=(width - lenSize - iconSize - space - r - self.spaceLeft, ih), font=0, flags=RT_HALIGN_LEFT, text=data.txt))
+				res.append(MultiContentEntryText(pos=(width - lenSize - r - self.spaceLeft, 0), size=(lenSize - self.spaceLeft, ih), font=0, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=len))
 		return res
 
 	def moveToFirstMovie(self):
