@@ -839,7 +839,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 		}
 
 		int xoffset=0, xoffs=0;  // used as offset when painting the folder/marker symbol or the serviceevent progress
-		
+
 		if (m_separator == "") m_separator = "  ";
 
 		std::string text = "<N/A>";
@@ -1053,7 +1053,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				eRect secondLineRect = eRect(secondLineOffset, offset.y() + (m_itemheight - m_marker_as_line) / 2, m_itemsize.width() - secondLineOffset - 16 - 8, m_marker_as_line);
 				painter.fill(secondLineRect);
 			}
-			
+
 
 			// event name
 			if (is_event)
@@ -1318,28 +1318,28 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						(orbpos == 0xFFFF) ? m_pixmaps[picDVB_C] :
 						(orbpos == 0xEEEE) ? m_pixmaps[picDVB_T] : m_pixmaps[picDVB_S];
 
-				
+
 				eSize pixmap_system_size = eSize();
 				eSize pixmap_crypto_size = eSize();
 				eSize pixmap_rec_size = eSize();
 				if (m_servicetype_icon_mode == 1 && pixmap_system) {
 					pixmap_system_size = pixmap_system->size();
 					iconCryptoPosX += pixmap_system_size.width() + m_items_distances;
-					iconRecordPosX = iconCryptoPosX;	
+					iconRecordPosX = iconCryptoPosX;
 					iconOffsX += pixmap_system_size.width() + m_items_distances;
 				}
 
-				
+
 				if (m_crypto_icon_mode == 1 && m_pixmaps[picCrypto]) {
 					pixmap_crypto_size = m_pixmaps[picCrypto]->size();
-					iconRecordPosX += pixmap_crypto_size.width() + m_items_distances;	
+					iconRecordPosX += pixmap_crypto_size.width() + m_items_distances;
 					iconOffsX += pixmap_crypto_size.width() + m_items_distances;
 				}
 
-				
+
 				if (isRecorded && m_record_indicator_mode == 1 && m_pixmaps[picRecord]) {
 					pixmap_rec_size = m_pixmaps[picRecord]->size();
-					iconOffsX += pixmap_rec_size.width() + m_items_distances;	
+					iconOffsX += pixmap_rec_size.width() + m_items_distances;
 				}
 
 				if (m_servicetype_icon_mode == 1 && pixmap_system) {
@@ -1379,24 +1379,24 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 				if (m_servicetype_icon_mode == 2 && pixmap_system) {
 					pixmap_system_size = pixmap_system->size();
 					iconCryptoPosX += pixmap_system_size.width() + m_items_distances;
-					iconRecordPosX = iconCryptoPosX;	
+					iconRecordPosX = iconCryptoPosX;
 					iconOffsX += pixmap_system_size.width() + m_items_distances;
 					xoffs = iconOffsX;
 				}
 
-				
+
 				if (m_crypto_icon_mode == 2 && m_pixmaps[picCrypto] && service_info && service_info->isCrypted()) {
 					pixmap_crypto_size = m_pixmaps[picCrypto]->size();
-					iconRecordPosX += pixmap_crypto_size.width() + m_items_distances;	
+					iconRecordPosX += pixmap_crypto_size.width() + m_items_distances;
 					iconOffsX += pixmap_crypto_size.width() + m_items_distances;
 					xoffs = iconOffsX;
 				}
 
-				
+
 				if (isRecorded && m_record_indicator_mode == 2 && m_pixmaps[picRecord]) {
 					pixmap_rec_size = m_pixmaps[picRecord]->size();
 					iconOffsX += pixmap_rec_size.width() + m_items_distances;
-					xoffs = iconOffsX;	
+					xoffs = iconOffsX;
 				}
 
 
@@ -1457,7 +1457,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						}
 					}
 
-					int eventTextWidth = (eventProgressConfig == "barright" || eventProgressConfig == "percright") ? 
+					int eventTextWidth = (eventProgressConfig == "barright" || eventProgressConfig == "percright") ?
 							(pb_xpos - xoffs - m_items_distances*2 ) : (m_itemsize.width() - m_sides_margin*2 - xoffs - m_items_distances*2);
 
 					ePtr<eTextPara> para = new eTextPara(eRect(0, 0, eventTextWidth, m_itemheight));
@@ -1515,11 +1515,11 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 							painter.setForegroundColor(m_color[eventForegroundSelected]);
 						else
 							painter.setForegroundColor(gRGB(0x787878));
-						
+
 						if (isRecorded && m_record_indicator_mode == 3) {
 							painter.setForegroundColor(m_color[serviceRecorded]);
 						}
-						
+
 						char buffer[15];
 						snprintf(buffer, sizeof(buffer), "%d %%", (int)(100 * (now - event_begin) / event_duration));
 						std::string percent = buffer;
