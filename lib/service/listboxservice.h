@@ -63,6 +63,7 @@ public:
 		celServiceInfo, // "now" event
 		celServiceNextInfo, // "next" event
 		celServiceTypePixmap,
+		celServiceInfoRemainingTime,
 		celElements
 	};
 
@@ -143,6 +144,10 @@ public:
 		serviceEventProgressbarBorderColor,
 		serviceEventProgressbarBorderColorSelected,
 		serviceRecorded,
+		eventRemainingForeground,
+		eventRemainingForegroundSelected,
+		eventRemainingForegroundFallback,
+		eventRemainingForegroundSelectedFallback,
 		colorElements
 	};
 

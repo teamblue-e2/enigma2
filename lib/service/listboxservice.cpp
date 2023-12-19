@@ -1133,12 +1133,10 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						if (!selected && m_color_set[eventForeground])
 						{
 							painter.setForegroundColor(m_color[eventForeground]);
-							EventProgressbarColor = m_color[eventForeground];
 						}
 						else if (selected && m_color_set[eventForegroundSelected])
 						{
 							painter.setForegroundColor(m_color[eventForegroundSelected]);
-							EventProgressbarColor = m_color[eventForegroundSelected];
 						}
 						else
 							painter.setForegroundColor(gRGB(0x787878));
@@ -1146,25 +1144,19 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 						if (serviceFallback && !selected && m_color_set[eventForegroundFallback]) // fallback receiver
 						{
 							painter.setForegroundColor(m_color[eventForegroundFallback]);
-							EventProgressbarColor = m_color[eventForegroundFallback];
 						}
 						else if (serviceFallback && selected && m_color_set[eventForegroundSelectedFallback])
 						{
 							painter.setForegroundColor(m_color[eventForegroundSelectedFallback]);
-							EventProgressbarColor = m_color[eventForegroundSelectedFallback];
 						}
 					}
 
-					//------------------------------------------------ Event remaining ------------------------------------------------------------------------
-					std::string timeLeft_str = "";
-					char buffer[15];
-					snprintf(buffer, sizeof(buffer), "+%d min", timeLeft/60 );
-					timeLeft_str = buffer;
-					ePtr<eTextPara> paraLeft = new eTextPara(eRect(0, 0, m_itemsize.width(), m_itemheight/2));
-					paraLeft->setFont(m_element_font[celServiceInfo]);
-					paraLeft->renderString(timeLeft_str.c_str());
-					eRect bboxtLeft = paraLeft->getBoundBox();
-					painter.renderPara(paraLeft, ePoint(m_itemsize.width() - bboxtLeft.width() - 15, offset.y() - 2 + m_itemheight/2 + ((m_itemheight/2 - bboxtLeft.height())/2)));
+					std::string percent = "";
+					if (startsWith(m_progress_mode, "perc")) {
+						char buffer[15];
+						snprintf(buffer, sizeof(buffer), "%d %%", (int)(100 * (now - event_begin) / event_duration));
+						percent = buffer;
+					}
 
 					//------------------------------------------------- Event name ------------------------------------------------------------------------------
 					if (m_has_next_event) {
@@ -1188,12 +1180,10 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 								if (!selected && m_color_set[eventNextForeground])
 								{
 									painter.setForegroundColor(m_color[eventNextForeground]);
-									EventProgressbarColor = m_color[eventNextForeground];
 								}
 								else if (selected && m_color_set[eventNextForegroundSelected])
 								{
 									painter.setForegroundColor(m_color[eventNextForegroundSelected]);
-									EventProgressbarColor = m_color[eventNextForegroundSelected];
 								}
 								else
 									painter.setForegroundColor(gRGB(0x787878));
@@ -1201,12 +1191,10 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 								if (serviceFallback && !selected && m_color_set[eventNextForegroundFallback]) // fallback receiver
 								{
 									painter.setForegroundColor(m_color[eventNextForegroundFallback]);
-									EventProgressbarColor = m_color[eventNextForegroundFallback];
 								}
 								else if (serviceFallback && selected && m_color_set[eventNextForegroundSelectedFallback])
 								{
 									painter.setForegroundColor(m_color[eventNextForegroundSelectedFallback]);
-									EventProgressbarColor = m_color[eventNextForegroundSelectedFallback];
 								}
 							}
 							ePtr<eTextPara> paraNext = new eTextPara(eRect(0, 0, xlpos - xoffs - m_items_distances, m_itemheight/2));
@@ -1216,11 +1204,46 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 							painter.renderPara(paraNext, ePoint(xoffs, offset.y() - 2 + m_itemheight/2 + ((m_itemheight/2 - bboxNext.height())/2)));
 						}
 					} else {
+						//------------------------------------------------ Event remaining ------------------------------------------------------------------------
+						std::string timeLeft_str = "";
+						char buffer[15];
+						snprintf(buffer, sizeof(buffer), ("%s" + m_text_time).c_str(), timeLeft == 0 ? "" : "+", timeLeft/60);
+						timeLeft_str = buffer;
+						ePtr<eTextPara> paraLeft = new eTextPara(eRect(0, 0, m_itemsize.width(), m_itemheight/2));
+						paraLeft->setFont(m_element_font[celServiceInfoRemainingTime]);
+						paraLeft->renderString(timeLeft_str.c_str());
+						eRect bboxtLeft = paraLeft->getBoundBox();
+
 						ePtr<eTextPara> para = new eTextPara(eRect(0, 0, m_itemsize.width() - xoffs - bboxtLeft.width() - 25 - m_items_distances, m_itemheight/2));
 						para->setFont(m_element_font[celServiceInfo]);
 						para->renderString(((!percent.empty() ? (percent + m_separator) : "") + text).c_str());
 						eRect bbox = para->getBoundBox();
 						painter.renderPara(para, ePoint(xoffs, offset.y() - 2 + m_itemheight/2 + ((m_itemheight/2 - bbox.height())/2)));
+
+						if (serviceAvail)
+						{
+							if (!selected && m_color_set[eventRemainingForeground])
+							{
+								painter.setForegroundColor(m_color[eventRemainingForeground]);
+							}
+							else if (selected && m_color_set[eventRemainingForegroundSelected])
+							{
+								painter.setForegroundColor(m_color[eventRemainingForegroundSelected]);
+							}
+							else
+								painter.setForegroundColor(gRGB(0x787878));
+
+							if (serviceFallback && !selected && m_color_set[eventRemainingForegroundFallback]) // fallback receiver
+							{
+								painter.setForegroundColor(m_color[eventRemainingForegroundFallback]);
+							}
+							else if (serviceFallback && selected && m_color_set[eventRemainingForegroundSelectedFallback])
+							{
+								painter.setForegroundColor(m_color[eventRemainingForegroundSelectedFallback]);
+							}
+						}
+
+						painter.renderPara(paraLeft, ePoint(m_itemsize.width() - bboxtLeft.width() - 15, offset.y() - 2 + m_itemheight/2 + ((m_itemheight/2 - bboxtLeft.height())/2)));
 					}
 				}
 			}
