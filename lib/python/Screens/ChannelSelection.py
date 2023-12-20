@@ -711,7 +711,7 @@ class SelectionEventInfo:
 		self.timer.stop()
 		if self.execing:
 			self.update_root = False
-			self.timer.start(int(config.usage.servicelist_eventinfo_delay.value), True)
+			self.timer.start(100, True)
 
 	def updateEventInfo(self):
 		cur = self.getCurrentSelection()
