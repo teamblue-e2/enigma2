@@ -50,6 +50,7 @@ from bisect import insort
 from sys import maxsize
 import itertools
 import datetime
+from re import match
 
 ####key debug #
 from keyids import KEYIDS
@@ -144,7 +145,6 @@ resumePointCacheLast = int(time())
 
 class whitelist:
 	vbi = []
-	streamrelay = []
 
 def reload_whitelist_vbi():
 	whitelist.vbi = [line.strip() for line in open('/etc/enigma2/whitelist_vbi', 'r').readlines()] if os.path.isfile('/etc/enigma2/whitelist_vbi') else []
@@ -152,28 +152,60 @@ def reload_whitelist_vbi():
 
 reload_whitelist_vbi()
 
-def reload_streamrelay():
-	whitelist.streamrelay = [line.strip() for line in open('/etc/enigma2/whitelist_streamrelay', 'r').readlines()] if os.path.isfile('/etc/enigma2/whitelist_streamrelay') else []
+class InfoBarStreamRelay:
+
+	FILENAME = "/etc/enigma2/whitelist_streamrelay"
+
+	def __init__(self):
+		self.__srefs = self.__sanitizeData(open(self.FILENAME, 'r').readlines()) if os.path.isfile(self.FILENAME) else []
+
+	def __sanitizeData(self, data):
+		return list(set([line.strip() for line in data if line and isinstance(line, str) and match("^(?:[0-9A-F]+[:]){10}$", line.strip())])) if isinstance(data, list) else []
+
+	def __saveToFile(self):
+		self.__srefs.sort(key=lambda ref: (int((x := ref.split(":"))[6], 16), int(x[5], 16), int(x[4], 16), int(x[3], 16)))
+		open(self.FILENAME, 'w').write('\n'.join(self.__srefs))
+
+	def toggle(self, nav, service):
+		if (servicestring := (service and service.toString())):
+			if servicestring in self.__srefs:
+				self.__srefs.remove(servicestring)
+			else:
+				self.__srefs.append(servicestring)
+			if nav.getCurrentlyPlayingServiceReference() == service:
+				nav.restartService()
+			self.__saveToFile()
+
+	def getData(self):
+		return self.__srefs
+
+	def setData(self, data):
+		self.__srefs = self.__sanitizeData(data)
+		self.__saveToFile()
+
+	data = property(getData, setData)
+
+	def streamrelayChecker(self, playref):
+		playrefstring = playref.toString()
+		if '%3a//' not in playrefstring and playrefstring in self.__srefs:
+			url = "http://%s:%s/" % (config.misc.softcam_streamrelay_url.getHTML(), config.misc.softcam_streamrelay_port.value)
+			if "127.0.0.1" in url:
+				playrefmod = ":".join([("%x" % (int(x[1], 16) + 1)).upper() if x[0] == 6 else x[1] for x in enumerate(playrefstring.split(':'))])
+			else:
+				playrefmod = playrefstring
+			playref = eServiceReference("%s%s%s:%s" % (playrefmod, url.replace(":", "%3a"), playrefstring.replace(":", "%3a"), ServiceReference(playref).getServiceName()))
+			print(f"[{self.__class__.__name__}] Play service {playref.toString()} via streamrelay")
+		return playref
+
+	def checkService(self, service):
+		return service and service.toString() in self.__srefs
 
 
-reload_streamrelay()
+streamrelay = InfoBarStreamRelay()
 
 
 class subservice:
 	groupslist = None
-
-
-def streamrelayChecker(playref):
-	playrefstring = playref.toString()
-	if '%3a//' not in playrefstring and playrefstring in whitelist.streamrelay:
-		url = "http://%s:%s/" % (config.misc.softcam_streamrelay_url.getHTML(), config.misc.softcam_streamrelay_port.value)
-		if "127.0.0.1" in url:
-				playrefmod = ":".join([("%x" % (int(x[1], 16) + 1)).upper() if x[0] == 6 else x[1] for x in enumerate(playrefstring.split(':'))])
-		else:
-				playrefmod = playrefstring
-		playref = eServiceReference("%s%s%s:%s" % (playrefmod, url.replace(":", "%3a"), playrefstring.replace(":", "%3a"), ServiceReference(playref).getServiceName()))
-		print("[Whitelist_StreamRelay] Play service via streamrelay as it is whitelisted as such", playref.toString())
-	return playref
 
 
 def reload_subservice_groupslist(force=False):
@@ -546,8 +578,8 @@ class InfoBarShowHide(InfoBarScreenSaver):
 					return ".hidevbi." in servicepath.lower()
 		return service and service.toString() in whitelist.vbi
 
-	def checkStreamrelay(self, service=None):
-		return (service or self.session.nav.getCurrentlyPlayingServiceReference()) and service.toString() in whitelist.streamrelay
+	def checkStreamrelay(self, service):
+		return streamrelay.checkService(service)
 
 	def showHideVBI(self):
 		if self.checkHideVBI():
@@ -565,18 +597,6 @@ class InfoBarShowHide(InfoBarScreenSaver):
 				whitelist.vbi.append(service)
 			open('/etc/enigma2/whitelist_vbi', 'w').write('\n'.join(whitelist.vbi))
 			self.showHideVBI()
-
-	def ToggleStreamrelay(self, service=None):
-		service = service or self.session.nav.getCurrentlyPlayingServiceReference()
-		if service:
-			servicestring = service.toString()
-			if servicestring in whitelist.streamrelay:
-				whitelist.streamrelay.remove(servicestring)
-			else:
-				whitelist.streamrelay.append(servicestring)
-				if self.session.nav.getCurrentlyPlayingServiceReference() == service:
-					self.session.nav.restartService()
-			open('/etc/enigma2/whitelist_streamrelay', 'w').write('\n'.join(whitelist.streamrelay))
 
 class BufferIndicator(Screen):
 	def __init__(self, session):
@@ -1591,7 +1611,7 @@ class InfoBarSeek:
 		return (0, -n, 0, "<< %dx" % n)
 
 	def makeStateSlowMotion(self, n):
-		return (0, 0, n, "/%d" % n)
+		return (0, 0, n, "/ %d" % n)
 
 	def isStateForward(self, state):
 		return state[1] > 1
@@ -1930,12 +1950,20 @@ class InfoBarPVRState:
 		self.force_show = force_show
 
 	def _mayShow(self):
-		if self.shown and self.seekstate != self.SEEK_STATE_PLAY:
+		if self.shown:
 			self.pvrStateDialog.show()
 
 	def __playStateChanged(self, state):
 		playstateString = state[3]
+		playstate = playstateString.split()
+		pixmapnum = [">", '||', 'END', '>>', '<<', '/'].index(playstate[0])
 		self.pvrStateDialog["state"].setText(playstateString)
+		self.pvrStateDialog["statusicon"].setPixmapNum(pixmapnum)
+		self.pvrStateDialog["speed"].setText(playstate[1] if len(playstate) > 1 else "")
+		if "state" in self:
+			self["state"].setText(playstateString)
+			self["statusicon"].setPixmapNum(pixmapnum)
+			self["speed"].setText(playstate[1] if len(playstate) > 1 else "")
 
 		# if we return into "PLAY" state, ensure that the dialog gets hidden if there will be no infobar displayed
 		if not config.usage.show_infobar_on_skip.value and self.seekstate == self.SEEK_STATE_PLAY and not self.force_show:

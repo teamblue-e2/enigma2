@@ -60,7 +60,7 @@ class GUIComponent:
 	def show(self):
 		if not self.__visible:
 			self.__visible = True
-			if self.instance is not None:
+			if self.instance:
 				self.instance.show()
 			for fnc in self.onVisibilityChange:
 				fnc(True)
@@ -68,7 +68,7 @@ class GUIComponent:
 	def hide(self):
 		if self.__visible:
 			self.__visible = False
-			if self.instance is not None:
+			if self.instance:
 				self.instance.hide()
 			for fnc in self.onVisibilityChange:
 				fnc(False)

@@ -50,7 +50,9 @@ def InitUsageConfig():
 		refreshServiceList()
 	config.usage.alternative_number_mode.addNotifier(alternativeNumberModeChange)
 
-	config.usage.servicelist_twolines = ConfigSelection(default="0", choices=[("0", _("Single line mode")), ("1", _("Two lines")), ("2", _("Two lines and next event"))])
+	config.usage.servicelist_twolines = ConfigSelection(default="0", choices=[("0", _("None")), ("1", _("two lines"))])
+	if config.usage.servicelist_twolines.value not in ("0", "1"):
+		config.usage.servicelist_twolines.value = "1"
 	config.usage.servicelist_twolines.addNotifier(refreshServiceList)
 
 	config.usage.hide_number_markers = ConfigYesNo(default=True)
@@ -77,10 +79,12 @@ def InitUsageConfig():
 		("reverseB", _("Reverse bouquet buttons")),
 		("keep reverseB", _("Keep service") + " + " + _("Reverse bouquet buttons"))])
 
-	choicelist = [("by skin", _("As defined by the skin"))]
-	for i in list(range(5, 41)):
-		choicelist.append((str(i)))
-	config.usage.servicelist_number_of_services = ConfigSelection(default="by skin", choices=choicelist)
+	config.usage.servicenum_fontsize = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
+	config.usage.servicename_fontsize = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
+	config.usage.serviceinfo_fontsize = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
+
+	choicelist = [(0, _("Use skin default"))] + [(i, _("%d") % i) for i in range(5, 41)]
+	config.usage.servicelist_number_of_services = ConfigSelection(default=0, choices=choicelist)
 	config.usage.servicelist_number_of_services.addNotifier(refreshServiceList)
 
 	config.usage.multiepg_ask_bouquet = ConfigYesNo(default=False)
@@ -108,6 +112,7 @@ def InitUsageConfig():
 	config.usage.volume_instead_of_channelselection = ConfigYesNo(default=False)
 	config.usage.channelselection_preview = ConfigYesNo(default=False)
 	config.usage.show_spinner = ConfigYesNo(default=True)
+	config.usage.enable_blinking = ConfigYesNo(default=False)
 	config.usage.menu_sort_weight = ConfigDictionarySet(default={"mainmenu": {"submenu": {}}})
 	config.usage.menu_sort_mode = ConfigSelection(default="default", choices=[("a_z", _("alphabetical")), ("default", _("Default")), ("user", _("user defined")), ("user_hidden", _("user defined hidden"))])
 	config.usage.menu_show_numbers = ConfigSelection(default="no", choices=[("no", _("no")), ("menu&plugins", _("in menu and plugins")), ("menu", _("in menu only")), ("plugins", _("in plugins only"))])
@@ -921,6 +926,7 @@ def InitUsageConfig():
 	config.misc.softcam_setup.extension_menu = ConfigYesNo(default=True)
 	config.misc.softcam_streamrelay_url = ConfigIP(default=[127, 0, 0, 1], auto_jump=True)
 	config.misc.softcam_streamrelay_port = ConfigInteger(default=17999, limits=(0, 65535))
+	config.misc.softcam_streamrelay_delay = ConfigSelectionNumber(min=0, max=2000, stepwidth=50, default=100, wraparound=True)
 
 	config.ntp = ConfigSubsection()
 

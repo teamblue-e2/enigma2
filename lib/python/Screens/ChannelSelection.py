@@ -27,6 +27,7 @@ from Components.Input import Input
 profile("ChannelSelection.py 3")
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from Components.SystemInfo import SystemInfo
+from Components.Sources.StaticText import StaticText
 from Screens.InputBox import PinInput
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.MessageBox import MessageBox
@@ -331,7 +332,8 @@ class ChannelContextMenu(Screen):
 		self.close()
 
 	def toggleStreamrelay(self):
-		Screens.InfoBar.InfoBar.instance.ToggleStreamrelay(self.csel.getCurrentSelection())
+		from Screens.InfoBarGenerics import streamrelay
+		streamrelay.toggle(self.session.nav, self.csel.getCurrentSelection())
 		self.close()
 
 	def addCenterDVBSubsFlag(self):
@@ -1342,6 +1344,9 @@ class ChannelSelectionBase(Screen):
 		self["key_green"] = Button(_("Reception lists"))
 		self["key_yellow"] = Button(_("Provider"))
 		self["key_blue"] = Button(_("Favourites"))
+
+		self["key_menu"] = StaticText(_("MENU"))
+		self["key_info"] = StaticText(_("INFO"))
 
 		self["list"] = ServiceList(self)
 		self.servicelist = self["list"]

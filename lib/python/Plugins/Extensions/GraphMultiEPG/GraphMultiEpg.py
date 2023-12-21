@@ -10,6 +10,7 @@ from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixm
 from Components.TimerList import TimerList
 from Components.Renderer.Picon import getPiconName
 from Components.Sources.ServiceEvent import ServiceEvent
+from Components.Sources.StaticText import StaticText
 from Components.UsageConfig import preferredTimerPath
 import Screens.InfoBar
 from Screens.Screen import Screen
@@ -72,6 +73,7 @@ config.misc.graph_mepg.show_timelines = ConfigSelection(default="all", choices=[
 config.misc.graph_mepg.servicename_alignment = ConfigSelection(default=possibleAlignmentChoices[0][0], choices=possibleAlignmentChoices)
 config.misc.graph_mepg.extension_menu = ConfigYesNo(default=False)
 config.misc.graph_mepg.show_record_clocks = ConfigYesNo(default=True)
+config.misc.graph_mepg.show_disabled_timers= ConfigYesNo(default=False)
 config.misc.graph_mepg.zap_blind_bouquets = ConfigYesNo(default=False)
 
 listscreen = config.misc.graph_mepg.default_mode.value
@@ -127,6 +129,7 @@ class EPGList(GUIComponent):
 		self.selEvPix = None
 		self.recEvPix = None
 		self.curSerPix = None
+		self.disEvPix = None
 
 		self.foreColor = 0xffffff
 		self.foreColorSelected = 0xffc000
@@ -143,6 +146,8 @@ class EPGList(GUIComponent):
 		self.backColorNow = 0x505080
 		self.foreColorRec = 0xffffff
 		self.backColorRec = 0x805050
+		self.foreColorDis = 0xffffff
+		self.backColorDis = 0x777700
 		self.serviceFont = gFont("Regular", applySkinFactor(20))
 		self.entryFontName = "Regular"
 		self.entryFontSize = applySkinFactor(18)
@@ -160,6 +165,11 @@ class EPGList(GUIComponent):
 		self.recIconSize = applySkinFactor(21)
 		self.iconXPadding = 1
 		self.iconYPadding = 1
+		self.borderTopPix = None
+		self.borderBottomPix = None
+		self.borderLeftPix = None
+		self.borderRightPix = None
+		self.graphics_mode = False
 
 	def applySkin(self, desktop, screen):
 		def EntryFont(value):
@@ -215,6 +225,9 @@ class EPGList(GUIComponent):
 		def ServiceForegroundColorRecording(value):
 			self.foreColorRec = parseColor(value).argb()
 
+		def ServiceForegroundColorDisabled(value):
+			self.foreColorDis = parseColor(value).argb()
+
 		def ServiceBackgroundColor(value):
 			self.backColorService = parseColor(value).argb()
 
@@ -223,6 +236,9 @@ class EPGList(GUIComponent):
 
 		def ServiceBackgroundColorRecording(value):
 			self.backColorRec = parseColor(value).argb()
+
+		def ServiceBackgroundColorDisabled(value):
+			self.backColorDis = parseColor(value).argb()
 
 		def ServiceBorderColor(value):
 			self.borderColorService = parseColor(value).argb()
@@ -395,13 +411,21 @@ class EPGList(GUIComponent):
 		self.selEvPix = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedEvent.png'))
 		self.recEvPix = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/RecordingEvent.png'))
 		self.curSerPix = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/CurrentService.png'))
+		self.disEvPix = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/DisabledEvent.png'))
+		self.borderTopPix = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "epg/BorderTop.png"))
+		self.borderBottomPix = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "epg/BorderBottom.png"))
+		self.borderLeftPix = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "epg/BorderLeft.png"))
+		self.borderRightPix = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "epg/BorderRight.png"))
 
-		# if no background png's are present at all, use the solid background borders for further calculations
-		if (self.nowEvPix, self.othEvPix, self.selEvPix, self.recEvPix, self.curSerPix) == (None, None, None, None, None):
+		# if no background png's are present at all, use the solid background borders for further calculations and set the graphics_mode accordinally
+		if (self.nowEvPix, self.othEvPix, self.selEvPix, self.recEvPix, self.curSerPix, self.disEvPix) == (None, None, None, None, None, None):
 			self.eventBorderHorWidth = self.eventBorderWidth
 			self.eventBorderVerWidth = self.eventBorderWidth
 			self.serviceBorderHorWidth = self.serviceBorderWidth
 			self.serviceBorderVerWidth = self.serviceBorderWidth
+			self.graphics_mode = False
+		else:
+			self.graphics_mode = True
 
 	def setEventFontsize(self):
 		self.l.setFont(1, gFont(self.entryFontName, self.entryFontSize + config.misc.graph_mepg.ev_fontsize.getValue()))
@@ -452,6 +476,10 @@ class EPGList(GUIComponent):
 	def buildEntry(self, service, service_name, events, picon, serviceref):
 		r1 = self.service_rect
 		r2 = self.event_rect
+		left = r2.left()
+		top = r2.top()
+		width = r2.width()
+		height = r2.height()
 		selected = self.cur_service[0] == service
 
 		# Picon and Service name
@@ -467,6 +495,52 @@ class EPGList(GUIComponent):
 			currentservice = False
 
 		res = [None]
+		if self.graphics_mode: # render borders if GMEPG is in graphics mode
+			if self.borderTopPix is not None:
+				res.append(MultiContentEntryPixmapAlphaBlend(
+						pos=(r1.left(), r1.top()),
+						size=(r1.width(), self.serviceBorderWidth),
+						png=self.borderTopPix,
+						flags=BT_SCALE))
+				res.append(MultiContentEntryPixmapAlphaBlend(
+						pos=(left, top),
+						size=(width, self.eventBorderWidth),
+						png=self.borderTopPix,
+						flags=BT_SCALE))
+			if self.borderBottomPix is not None:
+				res.append(MultiContentEntryPixmapAlphaBlend(
+						pos=(r1.left(), r1.height() - self.serviceBorderWidth),
+						size=(r1.width(), self.serviceBorderWidth),
+						png=self.borderBottomPix,
+						flags=BT_SCALE))
+				res.append(MultiContentEntryPixmapAlphaBlend(
+						pos=(left, height - self.eventBorderWidth),
+						size=(width, self.eventBorderWidth),
+						png=self.borderBottomPix,
+						flags=BT_SCALE))
+			if self.borderLeftPix is not None:
+				res.append(MultiContentEntryPixmapAlphaBlend(
+						pos=(r1.left(), r1.top()),
+						size=(self.serviceBorderWidth, r1.height()),
+						png=self.borderLeftPix,
+						flags=BT_SCALE))
+				res.append(MultiContentEntryPixmapAlphaBlend(
+						pos=(left, top),
+						size=(self.eventBorderWidth, height),
+						png=self.borderLeftPix,
+						flags=BT_SCALE))
+			if self.borderRightPix is not None:
+				res.append(MultiContentEntryPixmapAlphaBlend(
+						pos=(r1.width() - self.serviceBorderWidth, r1.left()),
+						size=(self.serviceBorderWidth, r1.height()),
+						png=self.borderRightPix,
+						flags=BT_SCALE))
+				res.append(MultiContentEntryPixmapAlphaBlend(
+						pos=(left + width - self.eventBorderWidth, top),
+						size=(self.eventBorderWidth, height),
+						png=self.borderRightPix,
+						flags=BT_SCALE))
+		
 		if bgpng is not None:    # bacground for service rect
 			res.append(MultiContentEntryPixmap(
 					pos=(r1.x + self.serviceBorderVerWidth, r1.y + self.serviceBorderHorWidth),
@@ -536,10 +610,6 @@ class EPGList(GUIComponent):
 		if events:
 			start = self.time_base + self.offs * self.time_epoch * 60
 			end = start + self.time_epoch * 60
-			left = r2.x
-			top = r2.y
-			width = r2.w
-			height = r2.h
 
 			now = time()
 			for ev in events:  #(event_id, event_title, begin_time, duration)
@@ -547,6 +617,7 @@ class EPGList(GUIComponent):
 				duration = ev[3]
 				xpos, ewidth = self.calcEntryPosAndWidthHelper(stime, duration, start, end, width)
 				rec = self.timer.isInTimer(ev[0], stime, duration, service)
+				dis = self.timer.isInTimer(ev[0], stime, duration, service, disabledTimers=True) if config.misc.graph_mepg.show_disabled_timers.value else None
 
 				# event box background
 				foreColorSelected = foreColor = self.foreColor
@@ -561,12 +632,19 @@ class EPGList(GUIComponent):
 				if selected and self.select_rect.x == xpos + left and self.selEvPix:
 					if rec is not None and rec[1][-1] in (2, 12, 17, 27):
 						foreColorSelected = self.foreColorSelectedRec
+					elif dis is not None and dis[1][-1] in (2, 12, 17, 27):
+						foreColorSelected = self.foreColorSelected
 					bgpng = self.selEvPix
 					backColorSel = None
 				elif rec is not None and rec[1][-1] in (2, 12, 17, 27):
 					bgpng = self.recEvPix
 					foreColor = self.foreColorRec
 					backColor = self.backColorRec
+				elif dis is not None and dis[1][-1] in (2, 12, 17, 27):
+					bgpng = self.disEvPix
+					foreColor = self.foreColorDis
+					backColor = self.backColorDis
+
 				elif stime <= now and now < stime + duration:
 					bgpng = self.nowEvPix
 				elif currentservice:
@@ -604,15 +682,49 @@ class EPGList(GUIComponent):
 						color=foreColor,
 						color_sel=foreColorSelected,
 						backcolor=backColor if bgpng is None else None, backcolor_sel=backColorSel if bgpng is None else None))
-				# recording icons
-				if config.misc.graph_mepg.show_record_clocks.value and rec is not None:
-					for i in list(range(len(rec[1]))):
-						if ewidth < (i + 1) * (self.recIconSize + self.iconXPadding):
-							break
+					
+				# Event box borders.
+				if self.graphics_mode:
+					if self.borderTopPix is not None:
 						res.append(MultiContentEntryPixmapAlphaBlend(
-							pos=(left + xpos + ewidth - (i + 1) * (self.recIconSize + self.iconXPadding), top + height - (self.recIconSize + self.iconYPadding)),
-							size=(self.recIconSize, self.recIconSize),
-							png=self.clocks[rec[1][len(rec[1]) - 1 - i]]))
+								pos=(left + xpos, top),
+								size=(ewidth, self.eventBorderWidth),
+								png=self.borderTopPix,
+								flags=BT_SCALE))
+					if self.borderBottomPix is not None:
+						res.append(MultiContentEntryPixmapAlphaBlend(
+								pos=(left + xpos, height - self.eventBorderWidth),
+								size=(ewidth, self.eventBorderWidth),
+								png=self.borderBottomPix,
+								flags=BT_SCALE))
+					if self.borderLeftPix is not None:
+						res.append(MultiContentEntryPixmapAlphaBlend(
+								pos=(left + xpos, top),
+								size=(self.eventBorderWidth, height),
+								png=self.borderLeftPix,
+								flags=BT_SCALE))
+					if self.borderRightPix is not None:
+						res.append(MultiContentEntryPixmapAlphaBlend(
+								pos=(left + xpos + ewidth - self.eventBorderWidth, top),
+								size=(self.eventBorderWidth, height),
+								png=self.borderRightPix,
+								flags=BT_SCALE))
+						
+				# recording icons
+				clockIconXPos = left + xpos + ewidth
+				if config.misc.graph_mepg.show_record_clocks.value and rec is not None:
+					for i in range(len(rec[1])):
+						clockpng = self.clocks[rec[1][len(rec[1]) - 1 - i]]
+						pix_size = clockpng.size()
+						pix_width = pix_size.width()
+						pix_height = pix_size.height()
+						if ewidth < pix_width:
+							break
+						clockIconXPos -= pix_width + self.iconXPadding
+						res.append(MultiContentEntryPixmapAlphaBlend(
+							pos=(clockIconXPos, top + height - (pix_height + self.iconYPadding)),
+							size=(pix_width, pix_height),
+							png=clockpng))
 
 		else:
 			if selected and self.selEvPix:
@@ -865,6 +977,8 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		self.ask_time = now - now % int(config.misc.graph_mepg.roundTo.getValue())
 		self["key_red"] = Button("")
 		self["key_green"] = Button("")
+		self["key_menu"] = StaticText(_("MENU"))
+		self["key_info"] = StaticText(_("INFO"))
 
 		global listscreen
 		if listscreen:
