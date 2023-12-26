@@ -89,10 +89,6 @@ class About(Screen):
 			BoxName = "GigaBlue X3"
 		elif boxtype == 'gbx3h':
 			BoxName = "GigaBlue X3h"
-		elif boxtype == 'spycat':
-			BoxName = "XCORE Spycat"
-		elif boxtype == 'quadbox2400':
-			BoxName = "AX Quadbox HD2400"
 		else:
 			BoxName = about.getHardwareTypeString()
 
