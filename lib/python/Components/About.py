@@ -9,6 +9,7 @@ from Tools.HardwareInfo import HardwareInfo
 from builtins import round
 
 from boxbranding import getBoxType, getMachineBuild, getImageType, getImageVersion
+from Components.SystemInfo import BoxInfo
 from sys import maxsize, modules, version_info
 
 
@@ -45,8 +46,29 @@ def getEnigmaVersionString():
 	enigma_version = getImageVersion()
 	if '-(no branch)' in enigma_version:
 		enigma_version = enigma_version[:-12]
+	enigma_version = enigma_version.rsplit("-", enigma_version.count("-") - 2)
+	if len(enigma_version) == 3:
+		enigma_version = enigma_version[0] + " (" + enigma_version[2] + "-" + enigma_version[1] + ")"
+	else:
+		enigma_version = enigma_version[0] + " (" + enigma_version[1] + ")"
 	return enigma_version
 
+def returndate(date):
+    return "%s-%s-%s" % (date[:4], date[4:6], date[6:8])
+
+def getBuildDateString():
+	return returndate(BoxInfo.getItem("compiledate"))
+
+
+def getUpdateDateString():
+	try:
+		from glob import glob
+		build = [x.split("-")[-2:-1][0][-8:] for x in open(glob("/var/lib/opkg/info/teamblue-bootlogo.control")[0], "r") if x.startswith("Version:")][0]
+		if build.isdigit():
+			return returndate(build)
+	except:
+		pass
+	return _("unknown")
 
 def getGStreamerVersionString():
 	try:
@@ -67,10 +89,7 @@ def getffmpegVersionString():
 
 
 def getKernelVersionString():
-	try:
-		return open("/proc/version", "r").read().split(' ', 4)[2].split('-', 2)[0]
-	except:
-		return _("unknown")
+	return BoxInfo.getItem("kernel")
 
 
 def getChipSetString():
@@ -136,12 +155,7 @@ def getHardwareTypeString():
 
 
 def getImageTypeString():
-	#try:
-	#       image_type = open("/etc/issue").readlines()[-2].strip()[:-6]
-	#       return image_type.capitalize()
-	#except:
-	#       return _("undefined")
-	return "%s %s" % (getImageVersion(), getImageType())
+	return BoxInfo.getItem("oe").title()
 
 
 def getCPUInfoString():
