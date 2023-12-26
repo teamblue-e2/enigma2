@@ -128,18 +128,11 @@ def getBootdevice():
 		dev = dev[:-1]
 	return dev
 
-<<<<<<< HEAD
-model = getBoxType()
-SystemInfo["CommonInterface"] = eDVBCIInterfaces.getInstance().getNumOfSlots()
-=======
 
 model = BoxInfo.getItem("machine")
-print(model)
-device_name = open("/proc/stb/info/model").read().strip()
 
 SystemInfo["InDebugMode"] = eGetEnigmaDebugLvl() >= 4
 SystemInfo["CommonInterface"] = model in ("h9combo", "h9combose", "h10", "pulse4kmini") and 1 or eDVBCIInterfaces.getInstance().getNumOfSlots()
->>>>>>> f0788d695 (Adapt the first about stuff to the BuildInfo class currently available)
 SystemInfo["CommonInterfaceCIDelay"] = fileCheck("/proc/stb/tsmux/rmx_delay")
 for cislot in list(range(0, SystemInfo["CommonInterface"])):
 	SystemInfo["CI%dSupportsHighBitrates" % cislot] = fileCheck("/proc/stb/tsmux/ci%d_tsclk" % cislot)
@@ -157,13 +150,9 @@ SystemInfo["LCDsymbol_timeshift"] = fileCheck("/proc/stb/lcd/symbol_timeshift")
 SystemInfo["LCDshow_symbols"] = (model.startswith("et9") or model in ("hd51", "vs1500")) and fileCheck("/proc/stb/lcd/show_symbols")
 SystemInfo["LCDsymbol_hdd"] = model in ("hd51", "vs1500") and fileCheck("/proc/stb/lcd/symbol_hdd")
 SystemInfo["FrontpanelDisplayGrayscale"] = fileExists("/dev/dbox/oled0")
-<<<<<<< HEAD
 SystemInfo["DeepstandbySupport"] = model != "dm800"
 SystemInfo["OledDisplay"] = fileExists(resolveFilename(SCOPE_SKIN, 'display/lcd_skin/skin_lcd_default.xml'))
 SystemInfo["GBWOL"] = fileExists("/usr/bin/gigablue_wol")
-=======
-SystemInfo["DeepstandbySupport"] = device_name != "dm800"
->>>>>>> f0788d695 (Adapt the first about stuff to the BuildInfo class currently available)
 SystemInfo["Fan"] = fileCheck("/proc/stb/fp/fan")
 SystemInfo["FanPWM"] = SystemInfo["Fan"] and fileCheck("/proc/stb/fp/fan_pwm")
 SystemInfo["PowerLED"] = fileCheck("/proc/stb/power/powerled") or model in ("gbue4k", "gbquad4k") and fileCheck("/proc/stb/fp/led1_pattern")
