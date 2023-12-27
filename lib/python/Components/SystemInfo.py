@@ -82,7 +82,6 @@ class BoxInformation:
 			self.boxInfo = MappingProxyType(boxInfoCollector)
 		else:
 			self.boxInfoMutable[item] = value
-			SystemInfo[item] = value
 		return True
 
 	def deleteItem(self, item, forceOverride=False):
