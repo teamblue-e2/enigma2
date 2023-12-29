@@ -39,11 +39,13 @@ class About(Screen):
 		self.setTitle(_("About"))
 		hddsplit = parameters.get("AboutHddSplit", 0)
 
-		#AboutHddSplit = 0
-		#try:
-		#	hddsplit = parameters.get("AboutHddSplit",(0))[0]
-		#except:
-		#	hddsplit = AboutHddSplit
+		AboutText = _("Hardware: ") + about.getHardwareTypeString() + "\n"
+		cpu = about.getCPUInfoString()
+		AboutText += _("CPU: ") + cpu + "\n"
+		AboutText += _("Image: ") + about.getImageTypeString() + "\n"
+		AboutText += _("OE Version: ") + about.getOEVersionString() + "\n"
+		AboutText += _("Build date: ") + about.getBuildDateString() + "\n"
+		AboutText += _("Last update: ") + about.getUpdateDateString() + "\n"
 
 		if boxtype == 'gb800solo':
 			BoxName = "GigaBlue HD 800SOLO"
@@ -112,7 +114,6 @@ class About(Screen):
 		ffmpegVersion = about.getffmpegVersionString()
 		self["ffmpegVersion"] = StaticText(ffmpegVersion)
 
-		cpu = about.getCPUInfoString()
 		player = None
 
 		if os.path.isfile('/var/lib/opkg/info/enigma2-plugin-systemplugins-servicemp3.list'):
@@ -128,15 +129,6 @@ class About(Screen):
 				player = _("Media player") + ": " + _("Not Installed")
 
 		AboutText += player + "\n"
-
-		#AboutText += _("Hardware: ") + about.getHardwareTypeString() + "\n"
-		#AboutText += _("CPU: ") + about.getCPUInfoString() + "\n"
-		#AboutText += _("Installed: ") + about.getFlashDateString() + "\n"
-		#AboutText += _("Image: ") + about.getImageTypeString() + "\n"
-
-		CPUinfo = _("CPU: ") + cpu
-		self["CPUinfo"] = StaticText(CPUinfo)
-		AboutText += CPUinfo + "\n"
 
 		CPUspeed = _("Speed: ") + about.getCPUSpeedString()
 		self["CPUspeed"] = StaticText(CPUspeed)
