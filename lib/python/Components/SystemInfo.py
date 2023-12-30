@@ -9,6 +9,7 @@ SystemInfo = {}
 SystemInfo["HasRootSubdir"] = False	# This needs to be here so it can be reset by getMultibootslots!
 SystemInfo["RecoveryMode"] = False or fileCheck("/proc/stb/fp/boot_mode")	# This needs to be here so it can be reset by getMultibootslots!
 
+
 from Tools.Multiboot import getMultibootStartupDevice, getMultibootslots  # This import needs to be here to avoid a SystemInfo load loop!
 
 
@@ -49,7 +50,7 @@ class BoxInformation:
 			return True
 		else:
 			try:
-				return eval(value)
+				return eval(value, {"__builtins__": {}}, {})
 			except:
 				return value
 
