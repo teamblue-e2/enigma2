@@ -95,7 +95,7 @@ class SelectImage(Screen):
 
 		def checkModels(imageFile):
 			for model in self.models:
-				if '-%s-' % model in imageFile:
+				if '-%s-' % model or '-%_' % model in imagefile:
 					return True
 			return False
 
