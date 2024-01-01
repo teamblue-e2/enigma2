@@ -43,7 +43,7 @@ class BoxInformation:
 	def processValue(self, value):
 		try:
 			return literal_eval(value)
-		except:
+		except (ValueError, SyntaxError):
 			return value
 
 	def getEnigmaInfoList(self):
