@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-27 20:38+0200\n"
+"POT-Creation-Date: 2024-01-06 14:27+0100\n"
 "PO-Revision-Date: 2020-12-27 12:25+0100\n"
 "Last-Translator: Luis A. Martínez <luis.a.martinez@gmail.com>\n"
 "Language-Team: LAMS\n"
@@ -248,6 +248,10 @@ msgstr "%a %e/%m"
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
+
+#, python-format
+msgid "%d"
+msgstr ""
 
 #, python-format
 msgid "%d MB"
@@ -1448,9 +1452,6 @@ msgstr "arte/cultura (sen música, xeral)"
 msgid "Aruba"
 msgstr "Aruba"
 
-msgid "As defined by the skin"
-msgstr "Como se define na skin"
-
 #
 msgid "Ask user"
 msgstr "Preguntar ao usuario"
@@ -2310,6 +2311,11 @@ msgstr "Canle"
 msgid "Channel Info"
 msgstr "Información da canle"
 
+#
+#, fuzzy
+msgid "Channel Selection"
+msgstr "Selección de canle"
+
 msgid "Channel button always changes sides"
 msgstr ""
 
@@ -2320,12 +2326,6 @@ msgstr "Menú contextual da canle"
 #
 msgid "Channel list type"
 msgstr "Tipo de lista de canles"
-
-msgid "Channel list update Eventinfo delay"
-msgstr ""
-
-msgid "Channel list update interval for Eventinfo on cursor moving"
-msgstr ""
 
 #
 msgid "Channel not in services list"
@@ -3567,10 +3567,6 @@ msgstr ""
 msgid "Default movie location"
 msgstr "Localización por defecto das películas"
 
-#, fuzzy
-msgid "Default recording type"
-msgstr "Tipo de temporizador predeterminado"
-
 #
 msgid "Default settings"
 msgstr "Configuración por defecto"
@@ -3660,6 +3656,9 @@ msgstr "Retardo, en milisegundos, ao inicio do desprazamento de texto na pantall
 msgid "Delay in miliseconds between scrolling characters on display."
 msgstr "Retardo, en milisegundos, entre os caracteres no desprazamento de texto na pantalla."
 
+msgid "Delay when closing a stream relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr ""
+
 #
 msgid "Delete"
 msgstr "Borrar"
@@ -3744,9 +3743,6 @@ msgstr "Dinamarca"
 
 msgid "Depth"
 msgstr "Profundidade"
-
-msgid "Descramble & record ECM gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr ""
 
 msgid "Descramble receiving http streams"
 msgstr "Descodificar os fluxos recibidos http"
@@ -6012,6 +6008,10 @@ msgid "Hardware Accelerated"
 msgstr ""
 
 #, fuzzy
+msgid "Hardware: "
+msgstr "Hardware: "
+
+#, fuzzy
 msgid "HddMount"
 msgstr "Montar"
 
@@ -6049,9 +6049,6 @@ msgstr "Ocultar a lista de canles en modo radio"
 
 msgid "Hide known extensions"
 msgstr "Ocultar as extensións coñecidas"
-
-msgid "Hide number markers"
-msgstr "Ocultar os marcadores numéricos"
 
 msgid "Hide parentel locked services"
 msgstr "Ocultar os servizos con control paterno"
@@ -6320,6 +6317,10 @@ msgid ""
 msgstr ""
 "A imaxe para instalar non é válida\n"
 "%s"
+
+#, fuzzy
+msgid "Image: "
+msgstr "Imaxe: "
 
 msgid "ImageWizard"
 msgstr ""
@@ -7209,6 +7210,9 @@ msgstr ""
 #, fuzzy
 msgid "MB"
 msgstr "B"
+
+msgid "MENU"
+msgstr ""
 
 msgid "MHz"
 msgstr ""
@@ -8379,6 +8383,11 @@ msgid "Number or SMS style data entry"
 msgstr "Números ou tipo de entrada ao estilo SMS"
 
 #
+#, fuzzy
+msgid "OE Version: "
+msgstr "Inversión"
+
+#
 msgid "OK"
 msgstr "OK"
 
@@ -8680,6 +8689,13 @@ msgstr ""
 
 msgid "PPanel"
 msgstr "PPanel"
+
+msgid "PREVIOUS"
+msgstr ""
+
+#, fuzzy
+msgid "PVR"
+msgstr "OVR"
 
 #
 msgid "Package list update"
@@ -9732,6 +9748,10 @@ msgstr "Frontal Python para /tmp/mmi.socket"
 
 msgid "Python version: "
 msgstr "Versión de Python: "
+
+#, fuzzy
+msgid "Pythonscript"
+msgstr "Shellscript"
 
 msgid "Qatar"
 msgstr "Qatar"
@@ -11355,6 +11375,11 @@ msgid "Serial No"
 msgstr "Especial 1"
 
 #
+#, fuzzy
+msgid "Serial: "
+msgstr "Sinal: "
+
+#
 #, fuzzy, python-format
 msgid "Serial: %s"
 msgstr "Sinal: "
@@ -11408,6 +11433,11 @@ msgid "Service info - tuner setting values"
 msgstr "Información do servizo - valores de axuste do sintonizador"
 
 #
+#, fuzzy
+msgid "Service info font size"
+msgstr "Información do servizo"
+
+#
 msgid ""
 "Service invalid!\n"
 "(Timeout reading PMT)"
@@ -11420,12 +11450,22 @@ msgid "Service name"
 msgstr "Nome do servizo"
 
 #
+#, fuzzy
+msgid "Service name font size"
+msgstr "Nome do servizo"
+
+#
 msgid ""
 "Service not found!\n"
 "(SID not found in PAT)"
 msgstr ""
 "Servizo non atopado!\n"
 "(SID non atopado no PAT)"
+
+#
+#, fuzzy
+msgid "Service number font size"
+msgstr "Tamaño de fonte dos subtítulos"
 
 msgid "Service reference"
 msgstr "Referencia do servizo"
@@ -11771,6 +11811,9 @@ msgstr "Amosar lista de favoritos"
 msgid "Show directories on first or last in list.(must restart File Commander)"
 msgstr ""
 
+msgid "Show disabled timers (local only)"
+msgstr ""
+
 #, fuzzy
 msgid "Show disclaimer"
 msgstr "Amosar protector de pantalla"
@@ -12108,10 +12151,6 @@ msgstr "Único"
 #
 msgid "Single EPG"
 msgstr "EPG único"
-
-#
-msgid "Single line mode"
-msgstr "Modo de liña única"
 
 #
 msgid "Single satellite"
@@ -12713,6 +12752,10 @@ msgstr "Posición almacenada"
 msgid "Stream"
 msgstr "Fluxo"
 
+#, fuzzy
+msgid "Stream Relay delay"
+msgstr "Retardo no desprazamento"
+
 msgid "Stream request"
 msgstr "Solicitude de fluxo"
 
@@ -13229,6 +13272,11 @@ msgstr ""
 "O directorio %s non é escribible.\n"
 "Selecciona outro directorio que si o sexa."
 
+msgid ""
+"The enigma.info file for the boxinformation is not available or the content is invalid.\n"
+"Press any key to continue?"
+msgstr ""
+
 #
 msgid "The following files were found..."
 msgstr "Atopáronse os seguintes ficheiros…"
@@ -13413,6 +13461,9 @@ msgstr ""
 #
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "O disco DVD-RW está xa formateado - reformatear borrará todos os contidos do disco."
+
+msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
+msgstr ""
 
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr ""
@@ -14470,6 +14521,10 @@ msgstr "Usar a posición orixinal do teletexto"
 msgid "Use power measurement"
 msgstr "Usar medida de potencia"
 
+#, fuzzy
+msgid "Use skin default"
+msgstr "Establecer valor predeterminado"
+
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
 
@@ -15182,9 +15237,6 @@ msgstr "Cando está activado, o receptor reproduce o último servizo de radio ga
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Cando está activado, mídese o consumo de enerxía para detectar cando o rotor remata de xirar (se o sintonizador o soporta)."
-
-msgid "When enabled, number markers will be hidden."
-msgstr "Cando está activado, ocúltanse os marcadores numéricos."
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Cando está activado, reformatéanse os subtítulos para que coincidan co ancho de pantalla."
@@ -17339,3 +17391,9 @@ msgstr "cambiar e gravar"
 #
 msgid "zapped"
 msgstr "cambiado"
+
+msgid "°E"
+msgstr ""
+
+msgid "°W"
+msgstr ""

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-27 20:38+0200\n"
+"POT-Creation-Date: 2024-01-06 14:27+0100\n"
 "PO-Revision-Date: 2023-10-27 20:52+0200\n"
 "Last-Translator: Andrej Tobola <andrej.tobola@gmail.com>\n"
 "Language-Team: \n"
@@ -246,6 +246,10 @@ msgstr "%a %e/%m"
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
+
+#, python-format
+msgid "%d"
+msgstr ""
 
 #, python-format
 msgid "%d MB"
@@ -1287,9 +1291,6 @@ msgstr "Umenie/kultúra (bez hudby)"
 msgid "Aruba"
 msgstr "Aruba"
 
-msgid "As defined by the skin"
-msgstr "Definované vzhľadom"
-
 msgid "Ask user"
 msgstr "Opýtať sa"
 
@@ -2060,6 +2061,10 @@ msgstr "Kanál"
 msgid "Channel Info"
 msgstr "Informácie o stanici"
 
+#, fuzzy
+msgid "Channel Selection"
+msgstr "Voľba stanice"
+
 msgid "Channel button always changes sides"
 msgstr "Tlačidlo kanála vždy mení strany"
 
@@ -2068,12 +2073,6 @@ msgstr "Kontextové menu stanice"
 
 msgid "Channel list type"
 msgstr "Typ zoznamu staníc"
-
-msgid "Channel list update Eventinfo delay"
-msgstr "Aktualizácia zoznamu kanálov Oneskorenie Eventinfo"
-
-msgid "Channel list update interval for Eventinfo on cursor moving"
-msgstr "Interval aktualizácie zoznamu kanálov pre Eventinfo pri pohybe kurzora"
 
 msgid "Channel not in services list"
 msgstr "Stanica nie je v zozname staníc"
@@ -3147,9 +3146,6 @@ msgstr "Predvolený priečinok, ak nie je uložený ľavý alebo pravý priečin
 msgid "Default movie location"
 msgstr "Predvolené umiestnenie filmov"
 
-msgid "Default recording type"
-msgstr "Predvolený typ záznamu"
-
 msgid "Default settings"
 msgstr "Predvolené nastavenia"
 
@@ -3237,6 +3233,9 @@ msgstr "Oneskorenie v milisekundách pred začiatkom rolovania textu na displeji
 msgid "Delay in miliseconds between scrolling characters on display."
 msgstr "Oneskorenie v milisekundách medzi posúvajúcimi sa znakmi na displeji."
 
+msgid "Delay when closing a stream relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr ""
+
 msgid "Delete"
 msgstr "Vymazať"
 
@@ -3306,9 +3305,6 @@ msgstr "Dánsko"
 
 msgid "Depth"
 msgstr "Hĺbka"
-
-msgid "Descramble & record ECM gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr "Zrušiť kódovanie a nahrávanie ECM poskytuje možnosť následného zrušenia kódovania, ak sa zrušenie kódovania pri nahrávaní nepodarilo. \"Neodšifrovať, nahrávať ECM\" uloží šifrovaný záznam, ktorý možno pri prehrávaní odšifrovať. 'Normálne' znamená odstránenie skramblovania záznamu a nenahrávanie ECM."
 
 msgid "Descramble receiving http streams"
 msgstr "Dekódovať prijímané http streamy"
@@ -5274,6 +5270,10 @@ msgstr "Pohotovostný režim pevného disku po"
 msgid "Hardware Accelerated"
 msgstr "Hardvérovo urýchlené"
 
+#, fuzzy
+msgid "Hardware: "
+msgstr "Firmvér: %s"
+
 msgid "HddMount"
 msgstr "HddMount"
 
@@ -5307,9 +5307,6 @@ msgstr "Skryť zoznam staníc v režime rádia"
 
 msgid "Hide known extensions"
 msgstr "Skryť známe prípony"
-
-msgid "Hide number markers"
-msgstr "Skryť číselné označenie"
 
 msgid "Hide parentel locked services"
 msgstr "Skryť služby chránené rodičovským zámkom"
@@ -5558,6 +5555,10 @@ msgid ""
 msgstr ""
 "Inštalačný image nie je platný\n"
 "%s"
+
+#, fuzzy
+msgid "Image: "
+msgstr "Zálohovanie obrázkov"
 
 msgid "ImageWizard"
 msgstr "Nástroj ImageWizard"
@@ -6305,6 +6306,9 @@ msgstr "MAC:"
 
 msgid "MB"
 msgstr "MB"
+
+msgid "MENU"
+msgstr ""
 
 msgid "MHz"
 msgstr "MHz"
@@ -7307,6 +7311,10 @@ msgstr "Počet opakovania textu na displeji."
 msgid "Number or SMS style data entry"
 msgstr "Vstupné údaje číslo alebo štýl SMS"
 
+#, fuzzy
+msgid "OE Version: "
+msgstr "Verzia: %s"
+
 msgid "OK"
 msgstr "OK"
 
@@ -7570,6 +7578,13 @@ msgstr "Dátum vytvorenia POT"
 
 msgid "PPanel"
 msgstr "PPanel"
+
+msgid "PREVIOUS"
+msgstr ""
+
+#, fuzzy
+msgid "PVR"
+msgstr "OVR"
 
 msgid "Package list update"
 msgstr "Aktualizácia zoznamu balíčkov"
@@ -8459,6 +8474,10 @@ msgstr "Python frontend pre /tmp/mmi.socket"
 
 msgid "Python version: "
 msgstr "Verzia Python: "
+
+#, fuzzy
+msgid "Pythonscript"
+msgstr "Spustiť skript"
 
 msgid "Qatar"
 msgstr "Katar"
@@ -9843,6 +9862,10 @@ msgstr "Srbčina"
 msgid "Serial No"
 msgstr "Sériové číslo"
 
+#, fuzzy
+msgid "Serial: "
+msgstr "Sériové: %s"
+
 #, python-format
 msgid "Serial: %s"
 msgstr "Sériové: %s"
@@ -9889,6 +9912,10 @@ msgstr "Info služby - okamžité hodnoty tuneru"
 msgid "Service info - tuner setting values"
 msgstr "Info služby - hodnoty nastavenia tuneru"
 
+#, fuzzy
+msgid "Service info font size"
+msgstr "Informácie o stanici"
+
 msgid ""
 "Service invalid!\n"
 "(Timeout reading PMT)"
@@ -9899,12 +9926,20 @@ msgstr ""
 msgid "Service name"
 msgstr "Názov stanice"
 
+#, fuzzy
+msgid "Service name font size"
+msgstr "Názov stanice"
+
 msgid ""
 "Service not found!\n"
 "(SID not found in PAT)"
 msgstr ""
 "Stanica nebola nájdená!\n"
 "(SID nenájdený v PAT)"
+
+#, fuzzy
+msgid "Service number font size"
+msgstr "Veľkosť písma titulkov"
 
 msgid "Service reference"
 msgstr "Referencia služby"
@@ -10216,6 +10251,9 @@ msgstr "Zobraziť adresáre ako prvé"
 msgid "Show directories on first or last in list.(must restart File Commander)"
 msgstr "Zobrazenie adresárov na prvom alebo poslednom mieste v zozname.(musí sa reštartovať program File Commander)"
 
+msgid "Show disabled timers (local only)"
+msgstr ""
+
 msgid "Show disclaimer"
 msgstr "Zobraziť zrieknutie sa zodpovednosti"
 
@@ -10507,9 +10545,6 @@ msgstr "Jeden"
 
 msgid "Single EPG"
 msgstr "Jeden EPG"
-
-msgid "Single line mode"
-msgstr "Režim jedného riadku"
 
 msgid "Single satellite"
 msgstr "Jeden satelit"
@@ -11029,6 +11064,10 @@ msgstr "Uložená pozícia"
 msgid "Stream"
 msgstr "Stream"
 
+#, fuzzy
+msgid "Stream Relay delay"
+msgstr "Oneskorenie rolovania"
+
 msgid "Stream request"
 msgstr "Žiadosť o stream"
 
@@ -11486,6 +11525,11 @@ msgstr ""
 "Do adresára %s sa nedá zapisovať.\n"
 "Zvoľte taký adresár, do ktorého sa dá zapisovať."
 
+msgid ""
+"The enigma.info file for the boxinformation is not available or the content is invalid.\n"
+"Press any key to continue?"
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "Boli nájdené tieto súbory..."
 
@@ -11655,6 +11699,9 @@ msgstr ""
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Toto médium DVD RW je už naformátované - opätovným formátovaním sa vymaže celý obsah disku."
+
+msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
+msgstr ""
 
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr "To vám umožní nastaviť počet číslic na 5, ak máte viac ako 9999 kanálov."
@@ -12598,6 +12645,10 @@ msgstr "Použiť pôvodnú pozíciu teletextu"
 msgid "Use power measurement"
 msgstr "Použiť meranie spotreby"
 
+#, fuzzy
+msgid "Use skin default"
+msgstr "Nastaviť predvolené"
+
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "Pomocou kurzorových tlačidiel vyberte nainštalovaný obrázok a potom tlačidlo Start."
 
@@ -13222,9 +13273,6 @@ msgstr "Ak je povolené, pri prepnutí do rádiového režimu sa automaticky pre
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Ak je povolené, merať spotrebu energie a zistiť, kedy sa zastaví otáčanie motora (ak funkciu podporuje tuner)."
-
-msgid "When enabled, number markers will be hidden."
-msgstr "Ak je povolené, počet značiek bude skrytý."
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Ak je povolené, preformátovať titulky tak, aby zodpovedali šírke obrazovky."
@@ -15132,3 +15180,9 @@ msgstr "zap a záznam"
 
 msgid "zapped"
 msgstr "zapínané"
+
+msgid "°E"
+msgstr ""
+
+msgid "°W"
+msgstr ""

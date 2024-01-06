@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-27 20:38+0200\n"
+"POT-Creation-Date: 2024-01-06 14:27+0100\n"
 "PO-Revision-Date: 2017-03-05 13:24+0100\n"
 "Last-Translator: Magnus Nilsson <mag_nilsson@hotmail.com>\n"
 "Language-Team: \n"
@@ -252,6 +252,10 @@ msgstr "%a %e/%m"
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
+
+#, python-format
+msgid "%d"
+msgstr ""
 
 #, python-format
 msgid "%d MB"
@@ -1475,9 +1479,6 @@ msgstr "konst/kultur (utan musik, allmänt)"
 msgid "Aruba"
 msgstr ""
 
-msgid "As defined by the skin"
-msgstr ""
-
 #
 msgid "Ask user"
 msgstr "Fråga användare"
@@ -2367,6 +2368,11 @@ msgstr "Kanal"
 msgid "Channel Info"
 msgstr "Kanal"
 
+#
+#, fuzzy
+msgid "Channel Selection"
+msgstr "Kanallista"
+
 msgid "Channel button always changes sides"
 msgstr ""
 
@@ -2378,12 +2384,6 @@ msgstr "Kanallista meny"
 #
 msgid "Channel list type"
 msgstr "Typ av kanallista"
-
-msgid "Channel list update Eventinfo delay"
-msgstr ""
-
-msgid "Channel list update interval for Eventinfo on cursor moving"
-msgstr ""
 
 #
 msgid "Channel not in services list"
@@ -3678,10 +3678,6 @@ msgstr ""
 msgid "Default movie location"
 msgstr "Normal filmplats"
 
-#, fuzzy
-msgid "Default recording type"
-msgstr "Inpelningstyp"
-
 #
 msgid "Default settings"
 msgstr "Grundinställningar"
@@ -3774,6 +3770,9 @@ msgstr ""
 msgid "Delay in miliseconds between scrolling characters on display."
 msgstr ""
 
+msgid "Delay when closing a stream relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr ""
+
 #
 msgid "Delete"
 msgstr "Ta bort"
@@ -3863,9 +3862,6 @@ msgstr ""
 
 msgid "Depth"
 msgstr "Djup"
-
-msgid "Descramble & record ECM gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr ""
 
 #, fuzzy
 msgid "Descramble receiving http streams"
@@ -6255,6 +6251,10 @@ msgid "Hardware Accelerated"
 msgstr ""
 
 #, fuzzy
+msgid "Hardware: "
+msgstr "Hårdvara:"
+
+#, fuzzy
 msgid "HddMount"
 msgstr "Montera"
 
@@ -6292,9 +6292,6 @@ msgstr "Dölj kanallistan i radioläge"
 
 msgid "Hide known extensions"
 msgstr "Dölj kända utökningar"
-
-msgid "Hide number markers"
-msgstr "Dölj nummermarkörer"
 
 #
 #, fuzzy
@@ -6573,6 +6570,11 @@ msgid ""
 "Image to install is invalid\n"
 "%s"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Image: "
+msgstr "Tillbaka"
 
 msgid "ImageWizard"
 msgstr ""
@@ -7480,6 +7482,9 @@ msgstr ""
 #, fuzzy
 msgid "MB"
 msgstr "B"
+
+msgid "MENU"
+msgstr ""
 
 msgid "MHz"
 msgstr ""
@@ -8699,6 +8704,10 @@ msgstr ""
 msgid "Number or SMS style data entry"
 msgstr ""
 
+#, fuzzy
+msgid "OE Version: "
+msgstr "Signal: "
+
 #
 msgid "OK"
 msgstr "OK"
@@ -9018,6 +9027,12 @@ msgid "POT-Creation Date"
 msgstr ""
 
 msgid "PPanel"
+msgstr ""
+
+msgid "PREVIOUS"
+msgstr ""
+
+msgid "PVR"
 msgstr ""
 
 #
@@ -10142,6 +10157,11 @@ msgstr "Python frontend för /tmp/mmi.socket"
 #, fuzzy
 msgid "Python version: "
 msgstr "Kernel Version: "
+
+#
+#, fuzzy
+msgid "Pythonscript"
+msgstr "Beskrivning"
 
 msgid "Qatar"
 msgstr ""
@@ -11900,6 +11920,10 @@ msgstr "Serbiska"
 msgid "Serial No"
 msgstr "Signal: "
 
+#, fuzzy
+msgid "Serial: "
+msgstr "Signal: "
+
 #, fuzzy, python-format
 msgid "Serial: %s"
 msgstr "Signal: "
@@ -11965,6 +11989,11 @@ msgid "Service info - tuner setting values"
 msgstr ""
 
 #
+#, fuzzy
+msgid "Service info font size"
+msgstr "Kanalinfo"
+
+#
 msgid ""
 "Service invalid!\n"
 "(Timeout reading PMT)"
@@ -11975,6 +12004,10 @@ msgstr ""
 msgid "Service name"
 msgstr "Kanalnamn"
 
+#, fuzzy
+msgid "Service name font size"
+msgstr "Kanalnamn"
+
 #
 msgid ""
 "Service not found!\n"
@@ -11982,6 +12015,10 @@ msgid ""
 msgstr ""
 "Service inte funnen!\n"
 "(SID inte funnen i PAT)"
+
+#, fuzzy
+msgid "Service number font size"
+msgstr "Undertextens fontstorlek"
 
 msgid "Service reference"
 msgstr "Servicereferens"
@@ -12343,6 +12380,9 @@ msgid "Show directories first"
 msgstr "avbryt editera favoriter"
 
 msgid "Show directories on first or last in list.(must restart File Commander)"
+msgstr ""
+
+msgid "Show disabled timers (local only)"
 msgstr ""
 
 #, fuzzy
@@ -12722,11 +12762,6 @@ msgstr "Singel"
 #
 msgid "Single EPG"
 msgstr "Singel EPG"
-
-#
-#, fuzzy
-msgid "Single line mode"
-msgstr "Välj videoläge"
 
 #
 msgid "Single satellite"
@@ -13365,6 +13400,10 @@ msgstr "Lagrad position"
 msgid "Stream"
 msgstr "Strömmningsförfrågan"
 
+#, fuzzy
+msgid "Stream Relay delay"
+msgstr "Ingen fördröjning"
+
 msgid "Stream request"
 msgstr "Strömmningsförfrågan"
 
@@ -13907,6 +13946,11 @@ msgstr ""
 "Biblioteket %s är inte skrivbart.\n"
 "Säkerställ att du har valt ett skrivbart bibliotek."
 
+msgid ""
+"The enigma.info file for the boxinformation is not available or the content is invalid.\n"
+"Press any key to continue?"
+msgstr ""
+
 #
 msgid "The following files were found..."
 msgstr "Följande filer hittades..."
@@ -14078,6 +14122,9 @@ msgstr ""
 #
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Detta DVD RW media är redan formaterat - omformatering kommer ta bort all data på skivan."
+
+msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
+msgstr ""
 
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr ""
@@ -15157,6 +15204,11 @@ msgstr "Använd teletextens originalposition"
 msgid "Use power measurement"
 msgstr "Använd strömmätning"
 
+#
+#, fuzzy
+msgid "Use skin default"
+msgstr "liststil grundläge"
+
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
 
@@ -15894,10 +15946,6 @@ msgstr "Vid aktiverad, kommer mottagaren automatiskt använda ljudspåret som du
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Vid aktiverad, kommer energiförbrukningen mätas för att upptäcka när rotorn slutar vrida (när det stöds av tunern)."
-
-#, fuzzy
-msgid "When enabled, number markers will be hidden."
-msgstr "Vid aktiverad, kommer nummermarkörer att döljas."
 
 #, fuzzy
 msgid "When enabled, reformat subtitles to match the width of the screen."
@@ -18113,3 +18161,9 @@ msgstr "zappa och spela in"
 #
 msgid "zapped"
 msgstr "zapped"
+
+msgid "°E"
+msgstr ""
+
+msgid "°W"
+msgstr ""

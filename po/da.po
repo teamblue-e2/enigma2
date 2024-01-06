@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-27 20:38+0200\n"
+"POT-Creation-Date: 2024-01-06 14:27+0100\n"
 "PO-Revision-Date: 2017-01-18 16:38+0100\n"
 "Last-Translator: lupine <a_ecklon@hotmail.com>\n"
 "Language-Team: \n"
@@ -250,6 +250,10 @@ msgstr ""
 
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
+msgstr ""
+
+#, python-format
+msgid "%d"
 msgstr ""
 
 #, python-format
@@ -1497,9 +1501,6 @@ msgstr ""
 msgid "Aruba"
 msgstr ""
 
-msgid "As defined by the skin"
-msgstr ""
-
 #
 msgid "Ask user"
 msgstr "Spørg bruger"
@@ -2405,6 +2406,11 @@ msgstr "Kanal Info..."
 msgid "Channel Info"
 msgstr "Kanal Info..."
 
+#
+#, fuzzy
+msgid "Channel Selection"
+msgstr "Kanal Vælger"
+
 msgid "Channel button always changes sides"
 msgstr ""
 
@@ -2417,12 +2423,6 @@ msgstr "Kanalliste Menu"
 #, fuzzy
 msgid "Channel list type"
 msgstr "Kanalliste Menu"
-
-msgid "Channel list update Eventinfo delay"
-msgstr ""
-
-msgid "Channel list update interval for Eventinfo on cursor moving"
-msgstr ""
 
 #
 msgid "Channel not in services list"
@@ -3743,10 +3743,6 @@ msgstr ""
 msgid "Default movie location"
 msgstr "Standardplacering af film"
 
-#, fuzzy
-msgid "Default recording type"
-msgstr "Optagelsestype"
-
 #
 #, fuzzy
 msgid "Default settings"
@@ -3838,6 +3834,9 @@ msgid "Delay in miliseconds before start of scrolling text on display."
 msgstr ""
 
 msgid "Delay in miliseconds between scrolling characters on display."
+msgstr ""
+
+msgid "Delay when closing a stream relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
 msgstr ""
 
 #
@@ -3932,9 +3931,6 @@ msgstr ""
 
 msgid "Depth"
 msgstr "Dybde"
-
-msgid "Descramble & record ECM gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr ""
 
 #, fuzzy
 msgid "Descramble receiving http streams"
@@ -6369,6 +6365,9 @@ msgstr "Harddisk slumre efter:"
 msgid "Hardware Accelerated"
 msgstr ""
 
+msgid "Hardware: "
+msgstr ""
+
 #, fuzzy
 msgid "HddMount"
 msgstr "Monter"
@@ -6405,9 +6404,6 @@ msgid "Hide channel list in radio mode"
 msgstr ""
 
 msgid "Hide known extensions"
-msgstr ""
-
-msgid "Hide number markers"
 msgstr ""
 
 #
@@ -6693,6 +6689,11 @@ msgid ""
 "Image to install is invalid\n"
 "%s"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Image: "
+msgstr "Tilbage"
 
 msgid "ImageWizard"
 msgstr ""
@@ -7635,6 +7636,9 @@ msgstr ""
 #, fuzzy
 msgid "MB"
 msgstr "B"
+
+msgid "MENU"
+msgstr ""
 
 msgid "MHz"
 msgstr ""
@@ -8884,6 +8888,11 @@ msgid "Number or SMS style data entry"
 msgstr ""
 
 #
+#, fuzzy
+msgid "OE Version: "
+msgstr "Signal: "
+
+#
 msgid "OK"
 msgstr "OK"
 
@@ -9206,6 +9215,12 @@ msgid "POT-Creation Date"
 msgstr ""
 
 msgid "PPanel"
+msgstr ""
+
+msgid "PREVIOUS"
+msgstr ""
+
+msgid "PVR"
 msgstr ""
 
 #
@@ -10367,6 +10382,11 @@ msgstr "Python frontend til /tmp/mmi.socket"
 #, fuzzy
 msgid "Python version: "
 msgstr "Ny Version:"
+
+#
+#, fuzzy
+msgid "Pythonscript"
+msgstr "Beskrivelse"
 
 msgid "Qatar"
 msgstr ""
@@ -12153,6 +12173,11 @@ msgid "Serial No"
 msgstr "Signal: "
 
 #
+#, fuzzy
+msgid "Serial: "
+msgstr "Signal: "
+
+#
 #, fuzzy, python-format
 msgid "Serial: %s"
 msgstr "Signal: "
@@ -12219,6 +12244,11 @@ msgid "Service info - tuner setting values"
 msgstr ""
 
 #
+#, fuzzy
+msgid "Service info font size"
+msgstr "Kanalinfo"
+
+#
 msgid ""
 "Service invalid!\n"
 "(Timeout reading PMT)"
@@ -12230,6 +12260,10 @@ msgstr ""
 msgid "Service name"
 msgstr "Enhedsnavn"
 
+#, fuzzy
+msgid "Service name font size"
+msgstr "Enhedsnavn"
+
 #
 msgid ""
 "Service not found!\n"
@@ -12237,6 +12271,10 @@ msgid ""
 msgstr ""
 "Kanal ikke fundet!\n"
 "(SID ikke fundet i PAT)"
+
+#, fuzzy
+msgid "Service number font size"
+msgstr "Tekststørrelse"
 
 msgid "Service reference"
 msgstr "Kanal reference"
@@ -12613,6 +12651,9 @@ msgid "Show directories first"
 msgstr "afbryd favorit redigering"
 
 msgid "Show directories on first or last in list.(must restart File Commander)"
+msgstr ""
+
+msgid "Show disabled timers (local only)"
 msgstr ""
 
 #
@@ -13011,11 +13052,6 @@ msgstr "Enkelt"
 #
 msgid "Single EPG"
 msgstr "Enkelt EPG"
-
-#
-#, fuzzy
-msgid "Single line mode"
-msgstr "Vælg video type"
 
 #
 msgid "Single satellite"
@@ -13668,6 +13704,10 @@ msgstr "Gemt position"
 msgid "Stream"
 msgstr ""
 
+#, fuzzy
+msgid "Stream Relay delay"
+msgstr "Ingen forsinkelse"
+
 msgid "Stream request"
 msgstr ""
 
@@ -14231,6 +14271,11 @@ msgstr ""
 "Mappen %s er ikke skrivbar.\n"
 "Sørg i stedet for at vælge en skrivbar mappe."
 
+msgid ""
+"The enigma.info file for the boxinformation is not available or the content is invalid.\n"
+"Press any key to continue?"
+msgstr ""
+
 #
 msgid "The following files were found..."
 msgstr "Følgende filer fandtes..."
@@ -14404,6 +14449,9 @@ msgstr ""
 #
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Denne DVD RW er allerede formatteret - reformattering vil slette alt indhold på disken."
+
+msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
+msgstr ""
 
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr ""
@@ -15502,6 +15550,11 @@ msgstr "Brug original TekstTV position"
 msgid "Use power measurement"
 msgstr "Brug strømmåling"
 
+#
+#, fuzzy
+msgid "Use skin default"
+msgstr "normal listestil"
+
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
 
@@ -16238,9 +16291,6 @@ msgid "When enabled, it will automatically play to the last saved radio service 
 msgstr ""
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
-msgstr ""
-
-msgid "When enabled, number markers will be hidden."
 msgstr ""
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
@@ -18435,3 +18485,9 @@ msgstr ""
 #
 msgid "zapped"
 msgstr "skiftet"
+
+msgid "°E"
+msgstr ""
+
+msgid "°W"
+msgstr ""

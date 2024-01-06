@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-27 20:38+0200\n"
-"PO-Revision-Date: 2023-10-27 11:22+0200\n"
+"POT-Creation-Date: 2024-01-06 14:27+0100\n"
+"PO-Revision-Date: 2024-01-06 14:34+0100\n"
 "Last-Translator: Teamblue teamblue@online.de <teamblue-e2@online.de>\n"
 "Language-Team: Teamblue teamblue@online.de\n"
 "Language: de\n"
@@ -245,6 +245,10 @@ msgstr "%a %e/%m"
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
+
+#, python-format
+msgid "%d"
+msgstr "%d"
 
 #, python-format
 msgid "%d MB"
@@ -1273,9 +1277,6 @@ msgstr "Kunst/Kultur (ohne Musik)"
 msgid "Aruba"
 msgstr "Aruba"
 
-msgid "As defined by the skin"
-msgstr "Wie vom Skin definiert wurde"
-
 msgid "Ask user"
 msgstr "Nutzer fragen"
 
@@ -2047,6 +2048,9 @@ msgstr "Kanal"
 msgid "Channel Info"
 msgstr "Kanal Info"
 
+msgid "Channel Selection"
+msgstr "Kanalauswahl"
+
 msgid "Channel button always changes sides"
 msgstr "Kanaltaste wechselt immer die Seite"
 
@@ -2055,12 +2059,6 @@ msgstr "Kanal Kontextmenü"
 
 msgid "Channel list type"
 msgstr "Kanallisten-Typ"
-
-msgid "Channel list update Eventinfo delay"
-msgstr "Verzögerung der Aktualisierung der Sendungsdetails"
-
-msgid "Channel list update interval for Eventinfo on cursor moving"
-msgstr "Verzögerung der Aktualisierung der Sendungsdetails bei Änderung der Auswahl"
 
 msgid "Channel not in services list"
 msgstr "Kanal nicht in der Kanalliste"
@@ -3134,9 +3132,6 @@ msgstr "Legt den Standardordner fest, wenn der linke oder rechte Ordner nicht ge
 msgid "Default movie location"
 msgstr "Standard Filmlisten Ort"
 
-msgid "Default recording type"
-msgstr "Standard Aufnahmetyp"
-
 msgid "Default settings"
 msgstr "Voreinstellungen"
 
@@ -3224,6 +3219,9 @@ msgstr "Hier können Sie die Verzögerung (in Millisekunden) vor einem Text-Durc
 msgid "Delay in miliseconds between scrolling characters on display."
 msgstr "Hier können Sie die Verzögerung (in Millisekunden) Zwischen den einzelnen Zeichen auf dem Display einstellen."
 
+msgid "Delay when closing a stream relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr "Verzögerung beim Beenden eines Stream-Relay-Dienstes, bevor der Tuner für einen anderen Dienst neu zugewiesen wird. Die Einstellung \"0\" wird nur für Boxen mit mehreren Satellitentunern empfohlen."
+
 msgid "Delete"
 msgstr "Löschen"
 
@@ -3293,9 +3291,6 @@ msgstr "Denmark"
 
 msgid "Depth"
 msgstr "Tiefe"
-
-msgid "Descramble & record ECM gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr "Entschlüsseln & ECM Aufnehmen bietet die Möglichkeit, nachträglich zu entschlüsseln, falls das Entschlüsseln bei der Aufnahme fehlgeschlagen ist. ' Nicht Entschlüsseln, ECM aufzeichnen' speichert Sie eine verschlüsselte Aufnahme, die bei der Wiedergabe entschlüsselt werden kann. 'Normal' bedeutet, die Aufnahme entschlüsselt und das ECM nicht aufgezeichnet wird."
 
 msgid "Descramble receiving http streams"
 msgstr "Entschlüssele empfangene HTTP-Streams"
@@ -5261,6 +5256,9 @@ msgstr "Festplatten Standby nach"
 msgid "Hardware Accelerated"
 msgstr "Hardwarebeschleunigt"
 
+msgid "Hardware: "
+msgstr "Hardware:"
+
 msgid "HddMount"
 msgstr "HddMount"
 
@@ -5294,9 +5292,6 @@ msgstr "Verberge Senderliste im Radio-Modus"
 
 msgid "Hide known extensions"
 msgstr "Bekannte Erweiterungen ausblenden"
-
-msgid "Hide number markers"
-msgstr "Verberge Nummer-Marker"
 
 msgid "Hide parentel locked services"
 msgstr "Verstecke durch Jugendschutz geschützte Sender"
@@ -5545,6 +5540,9 @@ msgid ""
 msgstr ""
 "Image zum Installieren ist fehlerhaft\n"
 "%s"
+
+msgid "Image: "
+msgstr "Image: "
 
 msgid "ImageWizard"
 msgstr "Einstellungen wiederherstellen"
@@ -6291,6 +6289,9 @@ msgstr "MAC:"
 
 msgid "MB"
 msgstr "MB"
+
+msgid "MENU"
+msgstr "MENÜ"
 
 msgid "MHz"
 msgstr "MHz"
@@ -7295,6 +7296,9 @@ msgstr "Anzahl der Textwiederholung im Display."
 msgid "Number or SMS style data entry"
 msgstr "Zahlen- oder SMS-Eingabemethode"
 
+msgid "OE Version: "
+msgstr "OE-Version:"
+
 msgid "OK"
 msgstr "OK"
 
@@ -7558,6 +7562,12 @@ msgstr "POT - Erstelldatum"
 
 msgid "PPanel"
 msgstr "PPanel"
+
+msgid "PREVIOUS"
+msgstr "VERHERIGE"
+
+msgid "PVR"
+msgstr "PVR"
 
 msgid "Package list update"
 msgstr "Paketlistenaktualisierung"
@@ -8447,6 +8457,9 @@ msgstr "Python frontend für /tmp/mmi.socket"
 
 msgid "Python version: "
 msgstr "Python Version: "
+
+msgid "Pythonscript"
+msgstr "Pythonscript"
 
 msgid "Qatar"
 msgstr "Qatar"
@@ -9828,6 +9841,9 @@ msgstr "Serbisch"
 msgid "Serial No"
 msgstr "Seriennummer"
 
+msgid "Serial: "
+msgstr "Seriennummer: "
+
 #, python-format
 msgid "Serial: %s"
 msgstr "Serial: %s"
@@ -9874,6 +9890,9 @@ msgstr "Service info - tuner live values"
 msgid "Service info - tuner setting values"
 msgstr "Service info - tuner setting values"
 
+msgid "Service info font size"
+msgstr "Schriftgröße der Serviceinfos"
+
 msgid ""
 "Service invalid!\n"
 "(Timeout reading PMT)"
@@ -9884,12 +9903,18 @@ msgstr ""
 msgid "Service name"
 msgstr "Kanalname"
 
+msgid "Service name font size"
+msgstr "Schriftgröße des Dienstnamens"
+
 msgid ""
 "Service not found!\n"
 "(SID not found in PAT)"
 msgstr ""
 "Kanal nicht gefunden!\n"
 "(SID nicht in PAT gefunden)"
+
+msgid "Service number font size"
+msgstr "Schriftgröße der Dienstnummer"
 
 msgid "Service reference"
 msgstr "Kanal Referenz"
@@ -10201,6 +10226,9 @@ msgstr "Zeige Verzeichnisse am Anfang"
 msgid "Show directories on first or last in list.(must restart File Commander)"
 msgstr "Zeige Verzeichnisse am Anfang oder am Ende der Liste (File Commander muss neugestartet werden)"
 
+msgid "Show disabled timers (local only)"
+msgstr "Deaktivierte Timer anzeigen (nur lokal)"
+
 msgid "Show disclaimer"
 msgstr "Zeige Haftungsausschluss"
 
@@ -10492,9 +10520,6 @@ msgstr "Einzeln"
 
 msgid "Single EPG"
 msgstr "Einzel EPG"
-
-msgid "Single line mode"
-msgstr "Einzeilige Kanalliste"
 
 msgid "Single satellite"
 msgstr "Einzelnen Satelliten"
@@ -11014,6 +11039,9 @@ msgstr "Gespeicherte Position"
 msgid "Stream"
 msgstr "Stream"
 
+msgid "Stream Relay delay"
+msgstr "Stream Relay Verzögerung"
+
 msgid "Stream request"
 msgstr "Stream Anfrage"
 
@@ -11468,6 +11496,13 @@ msgstr ""
 "Das Verzeichnis %s ist nicht beschreibbar.\n"
 "Stellen Sie sicher, dass Sie ein beschreibbares Verzeichnis angegeben haben."
 
+msgid ""
+"The enigma.info file for the boxinformation is not available or the content is invalid.\n"
+"Press any key to continue?"
+msgstr ""
+"Die Datei enigma.info für die Boxinformation ist nicht verfügbar oder der Inhalt ist ungültig.\n"
+"Drücke eine beliebige Taste, um fortzufahren?"
+
 msgid "The following files were found..."
 msgstr "Die folgenden Dateien wurden gefunden..."
 
@@ -11638,6 +11673,9 @@ msgstr ""
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Dieses DVD RW Medium ist bereits formatiert - durch eine Neuformatierung wird der gesamte Inhalt gelöscht."
+
+msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
+msgstr "Damit kannst du die Schriftgröße relativ zum Skin ändern, d.h. 1 erhöht die Schriftgröße um 1 Punkt und -1 verringert die Schriftgröße um 1 Punkt"
 
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr "Stellen Sie 5 Ziffern ein, wenn Sie mehr als 9999 Kanäle benutzen."
@@ -12580,6 +12618,9 @@ msgstr "Benutze originale Teletext Position"
 msgid "Use power measurement"
 msgstr "Stromaufnahme messen"
 
+msgid "Use skin default"
+msgstr "Skin-Standard verwenden"
+
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "Ein installiertes Image auswählen und danach die grüne Taste um das Fullbackup zu starten."
 
@@ -13206,9 +13247,6 @@ msgstr "Falls aktiviert, wird der letzte Radiosender automatisch abgespielt, wen
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Stromverbrauch messen um festzustellen wann der Rotor aufhört sich zu drehen (falls vom Tuner unterstützt)."
-
-msgid "When enabled, number markers will be hidden."
-msgstr "Falls aktiviert, werden Nummer-Marker nicht angezeigt."
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Wenn aktiviert, werden die Untertitel an die Bildbreite angepasst."
@@ -15118,3 +15156,9 @@ msgstr "Umschalten und aufnehmen"
 
 msgid "zapped"
 msgstr "umgeschaltet"
+
+msgid "°E"
+msgstr "°E"
+
+msgid "°W"
+msgstr "°W"
