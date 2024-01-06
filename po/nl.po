@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-27 20:38+0200\n"
+"POT-Creation-Date: 2024-01-06 14:27+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Frenske <voorzitter@openpli.org>\n"
 "Language-Team: PLiteam <translators@openpli.org>\n"
@@ -241,6 +241,10 @@ msgstr "%a %e/%m"
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
+
+#, python-format
+msgid "%d"
+msgstr ""
 
 #, python-format
 msgid "%d MB"
@@ -1337,9 +1341,6 @@ msgstr "kunst / cultuur (algemeen)"
 msgid "Aruba"
 msgstr ""
 
-msgid "As defined by the skin"
-msgstr ""
-
 msgid "Ask user"
 msgstr "Vraag gebruiker"
 
@@ -2141,6 +2142,10 @@ msgstr "Kanaal"
 msgid "Channel Info"
 msgstr "Kanaal"
 
+#, fuzzy
+msgid "Channel Selection"
+msgstr "Zenderkeuze"
+
 msgid "Channel button always changes sides"
 msgstr ""
 
@@ -2150,12 +2155,6 @@ msgstr "Zenderlijstmenu"
 
 msgid "Channel list type"
 msgstr "Zenderlijsttype"
-
-msgid "Channel list update Eventinfo delay"
-msgstr ""
-
-msgid "Channel list update interval for Eventinfo on cursor moving"
-msgstr ""
 
 msgid "Channel not in services list"
 msgstr "Kanaal komt niet voor in de zenderlijst"
@@ -3486,10 +3485,6 @@ msgstr ""
 msgid "Default movie location"
 msgstr "Standaard opnamelocatie"
 
-#, fuzzy
-msgid "Default recording type"
-msgstr "Opnamesoort"
-
 msgid "Default settings"
 msgstr "Standaard instellingen"
 
@@ -3580,6 +3575,9 @@ msgstr ""
 msgid "Delay in miliseconds between scrolling characters on display."
 msgstr ""
 
+msgid "Delay when closing a stream relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr ""
+
 msgid "Delete"
 msgstr "Verwijderen"
 
@@ -3656,9 +3654,6 @@ msgstr ""
 
 msgid "Depth"
 msgstr "Diepte"
-
-msgid "Descramble & record ECM gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr ""
 
 #, fuzzy
 msgid "Descramble receiving http streams"
@@ -5811,6 +5806,10 @@ msgid "Hardware Accelerated"
 msgstr ""
 
 #, fuzzy
+msgid "Hardware: "
+msgstr "Hardware: "
+
+#, fuzzy
 msgid "HddMount"
 msgstr "Mount"
 
@@ -5847,9 +5846,6 @@ msgstr "Verberg de zenderlijst gedurende radiomodus"
 
 msgid "Hide known extensions"
 msgstr "Verberg bekende extenties"
-
-msgid "Hide number markers"
-msgstr "Verberg de numerieke markeringen"
 
 #, fuzzy
 msgid "Hide parentel locked services"
@@ -6114,6 +6110,10 @@ msgid ""
 "Image to install is invalid\n"
 "%s"
 msgstr ""
+
+#, fuzzy
+msgid "Image: "
+msgstr "Terug"
 
 msgid "ImageWizard"
 msgstr ""
@@ -6911,6 +6911,9 @@ msgstr ""
 #, fuzzy
 msgid "MB"
 msgstr "B"
+
+msgid "MENU"
+msgstr ""
 
 msgid "MHz"
 msgstr ""
@@ -8003,6 +8006,10 @@ msgstr ""
 msgid "Number or SMS style data entry"
 msgstr ""
 
+#, fuzzy
+msgid "OE Version: "
+msgstr "Signaal:"
+
 msgid "OK"
 msgstr "Bevestigen"
 
@@ -8299,6 +8306,12 @@ msgid "POT-Creation Date"
 msgstr ""
 
 msgid "PPanel"
+msgstr ""
+
+msgid "PREVIOUS"
+msgstr ""
+
+msgid "PVR"
 msgstr ""
 
 msgid "Package list update"
@@ -9271,6 +9284,10 @@ msgstr "Python frontend voor /tmp/mmi.socket"
 #, fuzzy
 msgid "Python version: "
 msgstr "Kernel versie: "
+
+#, fuzzy
+msgid "Pythonscript"
+msgstr "Beschrijving"
 
 msgid "Qatar"
 msgstr ""
@@ -10799,6 +10816,10 @@ msgstr "Servisch"
 msgid "Serial No"
 msgstr "Signaal:"
 
+#, fuzzy
+msgid "Serial: "
+msgstr "Signaal:"
+
 #, fuzzy, python-format
 msgid "Serial: %s"
 msgstr "Signaal:"
@@ -10852,6 +10873,10 @@ msgstr ""
 msgid "Service info - tuner setting values"
 msgstr ""
 
+#, fuzzy
+msgid "Service info font size"
+msgstr "Zenderinfo"
+
 msgid ""
 "Service invalid!\n"
 "(Timeout reading PMT)"
@@ -10862,12 +10887,20 @@ msgstr ""
 msgid "Service name"
 msgstr "Zendernaam"
 
+#, fuzzy
+msgid "Service name font size"
+msgstr "Zendernaam"
+
 msgid ""
 "Service not found!\n"
 "(SID not found in PAT)"
 msgstr ""
 "Zender niet gevonden!\n"
 "(SID not found in PAT)"
+
+#, fuzzy
+msgid "Service number font size"
+msgstr "Lettergrootte van de ondertitels"
 
 msgid "Service reference"
 msgstr "Zenderreferentie"
@@ -11210,6 +11243,9 @@ msgstr "Favorieten bewerken afsluiten"
 msgid "Show directories on first or last in list.(must restart File Commander)"
 msgstr ""
 
+msgid "Show disabled timers (local only)"
+msgstr ""
+
 #, fuzzy
 msgid "Show disclaimer"
 msgstr "Screensaver tonen na"
@@ -11543,10 +11579,6 @@ msgstr "Enkel"
 
 msgid "Single EPG"
 msgstr "Zender EPG"
-
-#, fuzzy
-msgid "Single line mode"
-msgstr "Selecteer videomodus"
 
 msgid "Single satellite"
 msgstr "Eén satelliet"
@@ -12109,6 +12141,10 @@ msgstr "Opgeslagen positie"
 msgid "Stream"
 msgstr "Stream"
 
+#, fuzzy
+msgid "Stream Relay delay"
+msgstr "Geen vertraging"
+
 msgid "Stream request"
 msgstr "Stream verzoek"
 
@@ -12600,6 +12636,11 @@ msgstr ""
 "De %s directory is niet beschrijfbaar.\n"
 "Zorg ervoor dat u een beschrijfbare directory kiest. "
 
+msgid ""
+"The enigma.info file for the boxinformation is not available or the content is invalid.\n"
+"Press any key to continue?"
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "De volgende bestanden werden gevonden..."
 
@@ -12751,6 +12792,9 @@ msgstr ""
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Dit DVD-RW medium is reeds geformatteerd - herformatteren zal alles wissen op deze disk."
+
+msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
+msgstr ""
 
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr ""
@@ -13737,6 +13781,10 @@ msgstr "Originele teletextpositie gebruiken"
 msgid "Use power measurement"
 msgstr "Meet stroomopname"
 
+#, fuzzy
+msgid "Use skin default"
+msgstr "Zet als standaard"
+
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
 
@@ -14408,13 +14456,6 @@ msgstr "Indien geactiveerd, dan zal de tuner automatisch het eerder geselecteerd
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Indien geactiveerd, dan wordt het door de rotor opgenomen vermogen gedetecteerd indien deze stopt met draaien. (indien door de tuner ondersteund)"
-
-#, fuzzy
-msgid "When enabled, number markers will be hidden."
-msgstr ""
-"Indien geactiveerd, zullen de kanaalnummers van lege zenders niet in de zenderlijst worden getoond.\n"
-"\n"
-"Deze optie is alleen van toepassing op een zenderlijst of bouquet, gemaakt met de FastScan en/of KabelScan optie."
 
 #, fuzzy
 msgid "When enabled, reformat subtitles to match the width of the screen."
@@ -16398,3 +16439,9 @@ msgstr "zap en neem op"
 
 msgid "zapped"
 msgstr "zapte"
+
+msgid "°E"
+msgstr ""
+
+msgid "°W"
+msgstr ""

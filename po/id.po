@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-27 20:38+0200\n"
+"POT-Creation-Date: 2024-01-06 14:27+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Budiarno\n"
 "Language-Team: \n"
@@ -235,6 +235,10 @@ msgstr "%a %e/%m"
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
+
+#, python-format
+msgid "%d"
+msgstr ""
 
 #, python-format
 msgid "%d MB"
@@ -1318,9 +1322,6 @@ msgstr "seni/budaya (tanpa musik, umum)"
 msgid "Aruba"
 msgstr ""
 
-msgid "As defined by the skin"
-msgstr "Sesuai yg ditetapkan tampilan"
-
 msgid "Ask user"
 msgstr "Tanya pengguna"
 
@@ -2110,6 +2111,10 @@ msgstr "Kanal"
 msgid "Channel Info"
 msgstr "Info Kanal"
 
+#, fuzzy
+msgid "Channel Selection"
+msgstr "Pilihan Kanal"
+
 msgid "Channel button always changes sides"
 msgstr ""
 
@@ -2119,12 +2124,6 @@ msgstr "Menu daftar kanal"
 
 msgid "Channel list type"
 msgstr "Tipe daftar kanal"
-
-msgid "Channel list update Eventinfo delay"
-msgstr ""
-
-msgid "Channel list update interval for Eventinfo on cursor moving"
-msgstr ""
 
 msgid "Channel not in services list"
 msgstr "Kanal tidak ada di daftar layanan"
@@ -3280,10 +3279,6 @@ msgstr ""
 msgid "Default movie location"
 msgstr "Lokasi film bawaan"
 
-#, fuzzy
-msgid "Default recording type"
-msgstr "Recording type"
-
 msgid "Default settings"
 msgstr "Pengaturan bawaan"
 
@@ -3373,6 +3368,9 @@ msgstr "Tunda dalam milidetik sebelum mulai menggulung teks pada display"
 msgid "Delay in miliseconds between scrolling characters on display."
 msgstr "Tunda dalam mili detik antara menggulung karakter pada display"
 
+msgid "Delay when closing a stream relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr ""
+
 msgid "Delete"
 msgstr "Hapus"
 
@@ -3449,9 +3447,6 @@ msgstr ""
 
 msgid "Depth"
 msgstr "Kedalaman"
-
-msgid "Descramble & record ECM gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr ""
 
 msgid "Descramble receiving http streams"
 msgstr "Descramble penerimaan streaming http"
@@ -5574,6 +5569,10 @@ msgid "Hardware Accelerated"
 msgstr ""
 
 #, fuzzy
+msgid "Hardware: "
+msgstr "Hardware: "
+
+#, fuzzy
 msgid "HddMount"
 msgstr "Mount"
 
@@ -5609,9 +5608,6 @@ msgstr "Sembunyikan daftar kanal pada mode radio"
 
 msgid "Hide known extensions"
 msgstr ""
-
-msgid "Hide number markers"
-msgstr "Sembunyikan penanda nomor"
 
 msgid "Hide parentel locked services"
 msgstr ""
@@ -5869,6 +5865,10 @@ msgid ""
 "Image to install is invalid\n"
 "%s"
 msgstr ""
+
+#, fuzzy
+msgid "Image: "
+msgstr "Kembali"
 
 msgid "ImageWizard"
 msgstr ""
@@ -6663,6 +6663,9 @@ msgstr ""
 #, fuzzy
 msgid "MB"
 msgstr "B"
+
+msgid "MENU"
+msgstr ""
 
 msgid "MHz"
 msgstr ""
@@ -7736,6 +7739,10 @@ msgstr ""
 msgid "Number or SMS style data entry"
 msgstr ""
 
+#, fuzzy
+msgid "OE Version: "
+msgstr "Kernel version: "
+
 msgid "OK"
 msgstr "OK"
 
@@ -8021,6 +8028,12 @@ msgid "POT-Creation Date"
 msgstr ""
 
 msgid "PPanel"
+msgstr ""
+
+msgid "PREVIOUS"
+msgstr ""
+
+msgid "PVR"
 msgstr ""
 
 msgid "Package list update"
@@ -8958,6 +8971,9 @@ msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python frontend for /tmp/mmi.socket"
 
 msgid "Python version: "
+msgstr ""
+
+msgid "Pythonscript"
 msgstr ""
 
 msgid "Qatar"
@@ -10460,6 +10476,10 @@ msgstr "Serbia"
 msgid "Serial No"
 msgstr "Sinyal: "
 
+#, fuzzy
+msgid "Serial: "
+msgstr "Sinyal: "
+
 #, fuzzy, python-format
 msgid "Serial: %s"
 msgstr "Sinyal: "
@@ -10511,6 +10531,10 @@ msgstr ""
 msgid "Service info - tuner setting values"
 msgstr ""
 
+#, fuzzy
+msgid "Service info font size"
+msgstr "Informasi kanal"
+
 msgid ""
 "Service invalid!\n"
 "(Timeout reading PMT)"
@@ -10521,12 +10545,20 @@ msgstr ""
 msgid "Service name"
 msgstr "Nama kanal"
 
+#, fuzzy
+msgid "Service name font size"
+msgstr "Nama kanal"
+
 msgid ""
 "Service not found!\n"
 "(SID not found in PAT)"
 msgstr ""
 "Kanal tidak ditemukan\n"
 "(SID tidak ditemukan di PAT)"
+
+#, fuzzy
+msgid "Service number font size"
+msgstr "Ukuran huruf teks film"
 
 msgid "Service reference"
 msgstr "Referensi kanal"
@@ -10853,6 +10885,9 @@ msgstr "Tampilkan indikator rekaman"
 msgid "Show directories on first or last in list.(must restart File Commander)"
 msgstr ""
 
+msgid "Show disabled timers (local only)"
+msgstr ""
+
 #, fuzzy
 msgid "Show disclaimer"
 msgstr "Tampilkan screensaver"
@@ -11169,10 +11204,6 @@ msgstr "Tunggal"
 
 msgid "Single EPG"
 msgstr "EPG Tunggal"
-
-#, fuzzy
-msgid "Single line mode"
-msgstr "Pilih mode video"
 
 msgid "Single satellite"
 msgstr "Satu Satelit"
@@ -11724,6 +11755,9 @@ msgstr "Posisi tersimpan"
 msgid "Stream"
 msgstr "Stream"
 
+msgid "Stream Relay delay"
+msgstr ""
+
 msgid "Stream request"
 msgstr "Stream request"
 
@@ -12202,6 +12236,11 @@ msgstr ""
 "The directory %s is not writable.\n"
 "Make sure you select a writable directory instead."
 
+msgid ""
+"The enigma.info file for the boxinformation is not available or the content is invalid.\n"
+"Press any key to continue?"
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "The following files were found..."
 
@@ -12354,6 +12393,9 @@ msgstr ""
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
+
+msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
+msgstr ""
 
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr ""
@@ -13328,6 +13370,10 @@ msgstr "Gunakan posisi teleteks asli"
 msgid "Use power measurement"
 msgstr "Use power measurement"
 
+#, fuzzy
+msgid "Use skin default"
+msgstr "list style default"
+
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
 
@@ -13981,10 +14027,6 @@ msgstr "Ketika diaktifkan, rx akan secara otomatis menggunakan jalur audio yang 
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
-
-#, fuzzy
-msgid "When enabled, number markers will be hidden."
-msgstr "Ketika diaktifkan, penanda nomor akan disembunyikan."
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Ketika diaktifkan, format ulang teks film agar sesuai dgn lebar layar."
@@ -15955,3 +15997,9 @@ msgstr "zap and record"
 
 msgid "zapped"
 msgstr "zapped"
+
+msgid "°E"
+msgstr ""
+
+msgid "°W"
+msgstr ""
