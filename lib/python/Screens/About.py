@@ -13,7 +13,7 @@ from enigma import eGetEnigmaDebugLvl
 
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import SystemInfo, BoxInfo
 
 from Components.Label import Label
 from Components.ProgressBar import ProgressBar
@@ -36,87 +36,41 @@ import glob
 class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.setTitle(_("About"))
 		hddsplit = parameters.get("AboutHddSplit", 0)
 
-		#AboutHddSplit = 0
-		#try:
-		#	hddsplit = parameters.get("AboutHddSplit",(0))[0]
-		#except:
-		#	hddsplit = AboutHddSplit
-
-		if boxtype == 'gb800solo':
-			BoxName = "GigaBlue HD 800SOLO"
-		elif boxtype == 'gb800se':
-			BoxName = "GigaBlue HD 800SE"
-		elif boxtype == 'gb800ue':
-			BoxName = "GigaBlue HD 800UE"
-		elif boxtype == 'gbquad':
-			BoxName = "GigaBlue Quad"
-		elif boxtype == 'gbquad4k':
-			BoxName = "GigaBlue Quad 4k"
-		elif boxtype == 'gbue4k':
-			BoxName = "GigaBlue UE 4k"
-		elif boxtype == 'gbx34k':
-			BoxName = "GigaBlue X3 4k"
-		elif boxtype == 'gbtrio4k':
-			BoxName = "GigaBlue TRIO 4k"
-		elif boxtype == 'gbtrio4kpro':
-			BoxName = "GigaBlue TRIO 4k Pro"
-		elif boxtype == 'gbip4k':
-			BoxName = "GigaBlue IP 4k"
-		elif boxtype == 'gbquadplus':
-			BoxName = "GigaBlue HD Quadplus"
-		elif boxtype == 'gb800seplus':
-			BoxName = "GigaBlue HD 800SEplus"
-		elif boxtype == 'gb800ueplus':
-			BoxName = "GigaBlue HD 800UEplus"
-		elif boxtype == 'gbipbox':
-			BoxName = "GigaBlue IP Box"
-		elif boxtype == 'gbultra':
-			BoxName = "GigaBlue HD Ultra"
-		elif boxtype == 'gbultraue':
-			BoxName = "GigaBlue HD Ultra UE"
-		elif boxtype == 'gbultraueh':
-			BoxName = "GigaBlue HD Ultra UEh"
-		elif boxtype == 'gbultrase':
-			BoxName = "GigaBlue HD Ultra SE"
-		elif boxtype == 'gbx1':
-			BoxName = "GigaBlue X1"
-		elif boxtype == 'gbx2':
-			BoxName = "GigaBlue X2"
-		elif boxtype == 'gbx3':
-			BoxName = "GigaBlue X3"
-		elif boxtype == 'gbx3h':
-			BoxName = "GigaBlue X3h"
-		elif boxtype == 'spycat':
-			BoxName = "XCORE Spycat"
-		elif boxtype == 'quadbox2400':
-			BoxName = "AX Quadbox HD2400"
-		else:
-			BoxName = about.getHardwareTypeString()
-
+		BoxName = "%s %s" % (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel"))
 		self.setTitle(_("About") + " " + BoxName)
-
-		ImageType = about.getImageTypeString()
+		ImageType = BoxInfo.getItem("imagetype")
 		self["ImageType"] = StaticText(ImageType)
 
 		Boxserial = popen('cat /proc/stb/info/sn').read().strip()
 		serial = ""
 		if Boxserial != "":
-			serial = ":Serial : " + Boxserial
+			serial = Boxserial
+		cpu = about.getCPUInfoString()
+
+		AboutText = _("Hardware: ") + BoxName + "\n"
+		AboutText += _("Serial: ") + serial + "\n"
+		AboutText += _("CPU: ") + cpu + "\n"
+		AboutText += _("Image: ") + about.getImageTypeString() + " " + ImageType + "\n"
+		AboutText += _("OE Version: ") + about.getOEVersionString() + "\n"
+		ImageVersion = _("Last upgrade: ") + about.getImageVersionString()
+		AboutText += ImageVersion + "\n"
+		EnigmaVersion = _("GUI Build: ") + about.getEnigmaVersionString() + "\n"
+		self["EnigmaVersion"] = StaticText(EnigmaVersion)
+		FlashDate = _("Flashed: ") + about.getFlashDateString()
+		self["FlashDate"] = StaticText(FlashDate)
+		AboutText += FlashDate + "\n"
 
 		AboutHeader = _("About") + " " + BoxName
 		self["AboutHeader"] = StaticText(AboutHeader)
 
-		AboutText = BoxName + " - " + ImageType + serial + "\n"
 		GStreamerVersion = about.getGStreamerVersionString().replace("GStreamer", "")
 		self["GStreamerVersion"] = StaticText(GStreamerVersion)
 
 		ffmpegVersion = about.getffmpegVersionString()
 		self["ffmpegVersion"] = StaticText(ffmpegVersion)
 
-		cpu = about.getCPUInfoString()
 		player = None
 
 		if os.path.isfile('/var/lib/opkg/info/enigma2-plugin-systemplugins-servicemp3.list'):
@@ -132,15 +86,6 @@ class About(Screen):
 				player = _("Media player") + ": " + _("Not Installed")
 
 		AboutText += player + "\n"
-
-		#AboutText += _("Hardware: ") + about.getHardwareTypeString() + "\n"
-		#AboutText += _("CPU: ") + about.getCPUInfoString() + "\n"
-		#AboutText += _("Installed: ") + about.getFlashDateString() + "\n"
-		#AboutText += _("Image: ") + about.getImageTypeString() + "\n"
-
-		CPUinfo = _("CPU: ") + cpu
-		self["CPUinfo"] = StaticText(CPUinfo)
-		AboutText += CPUinfo + "\n"
 
 		CPUspeed = _("Speed: ") + about.getCPUSpeedString()
 		self["CPUspeed"] = StaticText(CPUspeed)
@@ -182,19 +127,6 @@ class About(Screen):
 			AboutText += _("DVB drivers: ") + self.realDriverDate() + "\n"
 			#AboutText += _("DVB drivers: ") + about.getDriverInstalledDate() + "\n"
 
-		ImageVersion = _("Last upgrade: ") + about.getImageVersionString()
-		self["ImageVersion"] = StaticText(ImageVersion)
-		AboutText += ImageVersion + "\n"
-
-		EnigmaVersion = _("GUI Build: ") + about.getEnigmaVersionString() + "\n"
-		self["EnigmaVersion"] = StaticText(EnigmaVersion)
-		#AboutText += EnigmaVersion
-
-		#AboutText += _("Enigma (re)starts: %d\n") % config.misc.startCounter.value
-
-		FlashDate = _("Flashed: ") + about.getFlashDateString()
-		self["FlashDate"] = StaticText(FlashDate)
-		AboutText += FlashDate + "\n"
 
 		EnigmaSkin = _('Skin & Resolution: %s (%sx%s)') % (config.skin.primary_skin.value.split('/')[0], getDesktop(0).size().width(), getDesktop(0).size().height())
 		self["EnigmaSkin"] = StaticText(EnigmaSkin)

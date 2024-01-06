@@ -20,6 +20,5 @@ def InitRecordingConfig():
 	config.recording.never_decrypt = ConfigYesNo(default=False)
 	config.recording.zap_record_service_in_standby = ConfigYesNo(default=False)
 	config.recording.offline_decode_delay = ConfigNumber(default=1000)
-	config.recording.ecm_data = ConfigSelection(choices=[("normal", _("normal")), ("descrambled+ecm", _("descramble and record ecm")), ("scrambled+ecm", _("don't descramble, record ecm"))], default="normal")
 	config.recording.include_ait = ConfigYesNo(default=False)
 	config.recording.timer_default_type = ConfigSelection(choices=[("zap", _("zap")), ("record", _("record")), ("zap+record", _("zap and record"))], default="record")
