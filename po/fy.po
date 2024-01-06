@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-27 20:38+0200\n"
+"POT-Creation-Date: 2024-01-06 14:27+0100\n"
 "PO-Revision-Date: 2008-12-29 16:22+0100\n"
 "Last-Translator: gerrit <gerrit@nedlinux.nl>\n"
 "Language-Team: gerrit <fy@li.org>\n"
@@ -250,6 +250,10 @@ msgstr ""
 
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
+msgstr ""
+
+#, python-format
+msgid "%d"
 msgstr ""
 
 #, python-format
@@ -1494,9 +1498,6 @@ msgstr ""
 msgid "Aruba"
 msgstr ""
 
-msgid "As defined by the skin"
-msgstr ""
-
 #
 msgid "Ask user"
 msgstr "freechje gebrûker"
@@ -2395,6 +2396,11 @@ msgstr "Kanaal"
 msgid "Channel Info"
 msgstr "Kanaal"
 
+#
+#, fuzzy
+msgid "Channel Selection"
+msgstr "Kanaal seleksje"
+
 msgid "Channel button always changes sides"
 msgstr ""
 
@@ -2407,12 +2413,6 @@ msgstr "Kanaal-lyst menu"
 #, fuzzy
 msgid "Channel list type"
 msgstr "Kanaal-lyst menu"
-
-msgid "Channel list update Eventinfo delay"
-msgstr ""
-
-msgid "Channel list update interval for Eventinfo on cursor moving"
-msgstr ""
 
 #
 msgid "Channel not in services list"
@@ -3712,11 +3712,6 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Default recording type"
-msgstr "Start opnimmen?"
-
-#
-#, fuzzy
 msgid "Default settings"
 msgstr "Wyzigje ynstellingen"
 
@@ -3808,6 +3803,9 @@ msgid "Delay in miliseconds before start of scrolling text on display."
 msgstr ""
 
 msgid "Delay in miliseconds between scrolling characters on display."
+msgstr ""
+
+msgid "Delay when closing a stream relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
 msgstr ""
 
 #
@@ -3902,9 +3900,6 @@ msgid "Denmark"
 msgstr ""
 
 msgid "Depth"
-msgstr ""
-
-msgid "Descramble & record ECM gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
 msgstr ""
 
 msgid "Descramble receiving http streams"
@@ -6312,6 +6307,9 @@ msgstr "Hurde skiif yn sliipstand nei"
 msgid "Hardware Accelerated"
 msgstr ""
 
+msgid "Hardware: "
+msgstr ""
+
 msgid "HddMount"
 msgstr ""
 
@@ -6348,9 +6346,6 @@ msgid "Hide channel list in radio mode"
 msgstr ""
 
 msgid "Hide known extensions"
-msgstr ""
-
-msgid "Hide number markers"
 msgstr ""
 
 #
@@ -6633,6 +6628,11 @@ msgid ""
 "Image to install is invalid\n"
 "%s"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Image: "
+msgstr "Werom"
 
 msgid "ImageWizard"
 msgstr ""
@@ -7559,6 +7559,9 @@ msgstr ""
 #, fuzzy
 msgid "MB"
 msgstr "B"
+
+msgid "MENU"
+msgstr ""
 
 msgid "MHz"
 msgstr ""
@@ -8797,6 +8800,11 @@ msgid "Number or SMS style data entry"
 msgstr ""
 
 #
+#, fuzzy
+msgid "OE Version: "
+msgstr "Model: "
+
+#
 msgid "OK"
 msgstr "Ok"
 
@@ -9119,6 +9127,12 @@ msgid "POT-Creation Date"
 msgstr ""
 
 msgid "PPanel"
+msgstr ""
+
+msgid "PREVIOUS"
+msgstr ""
+
+msgid "PVR"
 msgstr ""
 
 #
@@ -10257,6 +10271,11 @@ msgstr ""
 #, fuzzy
 msgid "Python version: "
 msgstr "Nije ferzje:"
+
+#
+#, fuzzy
+msgid "Pythonscript"
+msgstr "Beskriuwing"
 
 msgid "Qatar"
 msgstr ""
@@ -12017,6 +12036,9 @@ msgstr ""
 msgid "Serial No"
 msgstr ""
 
+msgid "Serial: "
+msgstr ""
+
 #, python-format
 msgid "Serial: %s"
 msgstr ""
@@ -12081,6 +12103,11 @@ msgid "Service info - tuner setting values"
 msgstr ""
 
 #
+#, fuzzy
+msgid "Service info font size"
+msgstr "Kanaal ynformaasje"
+
+#
 msgid ""
 "Service invalid!\n"
 "(Timeout reading PMT)"
@@ -12094,12 +12121,22 @@ msgid "Service name"
 msgstr "Kanaal sykje"
 
 #
+#, fuzzy
+msgid "Service name font size"
+msgstr "Kanaal sykje"
+
+#
 msgid ""
 "Service not found!\n"
 "(SID not found in PAT)"
 msgstr ""
 "Service net fûn!\n"
 "(SID net fûn yn PAT)"
+
+#
+#, fuzzy
+msgid "Service number font size"
+msgstr "Undertitels"
 
 msgid "Service reference"
 msgstr ""
@@ -12474,6 +12511,9 @@ msgid "Show directories first"
 msgstr "favoriet bewurkje ôfbrekke"
 
 msgid "Show directories on first or last in list.(must restart File Commander)"
+msgstr ""
+
+msgid "Show disabled timers (local only)"
 msgstr ""
 
 #
@@ -12867,11 +12907,6 @@ msgstr "Inkel"
 #
 msgid "Single EPG"
 msgstr "Inkele EPG"
-
-#
-#, fuzzy
-msgid "Single line mode"
-msgstr "Kies fideo moadus"
 
 #
 msgid "Single satellite"
@@ -13522,6 +13557,9 @@ msgstr "Opsleine posysje"
 msgid "Stream"
 msgstr ""
 
+msgid "Stream Relay delay"
+msgstr ""
+
 msgid "Stream request"
 msgstr ""
 
@@ -14074,6 +14112,11 @@ msgid ""
 "Make sure you select a writable directory instead."
 msgstr ""
 
+msgid ""
+"The enigma.info file for the boxinformation is not available or the content is invalid.\n"
+"Press any key to continue?"
+msgstr ""
+
 #
 msgid "The following files were found..."
 msgstr ""
@@ -14245,6 +14288,9 @@ msgstr ""
 #
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Dit DVD RW medium is al formattearre. Wer opnei dwaan sil alle gegevens op disk wiskje."
+
+msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
+msgstr ""
 
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr ""
@@ -15333,6 +15379,11 @@ msgstr ""
 msgid "Use power measurement"
 msgstr "Fermogensmjitting brûke"
 
+#
+#, fuzzy
+msgid "Use skin default"
+msgstr "lyst styl standert"
+
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
 
@@ -16060,9 +16111,6 @@ msgid "When enabled, it will automatically play to the last saved radio service 
 msgstr ""
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
-msgstr ""
-
-msgid "When enabled, number markers will be hidden."
 msgstr ""
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
@@ -18222,3 +18270,9 @@ msgstr ""
 #
 msgid "zapped"
 msgstr "knipt"
+
+msgid "°E"
+msgstr ""
+
+msgid "°W"
+msgstr ""

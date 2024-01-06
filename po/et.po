@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-27 20:38+0200\n"
+"POT-Creation-Date: 2024-01-06 14:27+0100\n"
 "PO-Revision-Date: 2019-04-03 06:49+0300\n"
 "Last-Translator: \n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas, zeros\\n faas, sateks, valgekotkas, tigekala, rootsikunn\\n kain, i70, mustkass, pelmeen, Scott\\n <digi-tv.ee>\n"
@@ -242,6 +242,10 @@ msgstr "%a %e/%m"
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
+
+#, python-format
+msgid "%d"
+msgstr ""
 
 #, python-format
 msgid "%d MB"
@@ -1334,9 +1338,6 @@ msgstr "Kunst/kultuur (välja arvatud muusika)"
 msgid "Aruba"
 msgstr ""
 
-msgid "As defined by the skin"
-msgstr ""
-
 msgid "Ask user"
 msgstr "Küsi kasutajalt"
 
@@ -2134,6 +2135,10 @@ msgstr "Kanal"
 msgid "Channel Info"
 msgstr "Kanal"
 
+#, fuzzy
+msgid "Channel Selection"
+msgstr "Kanalid"
+
 msgid "Channel button always changes sides"
 msgstr ""
 
@@ -2143,12 +2148,6 @@ msgstr "Kanalinimekirja menüü"
 
 msgid "Channel list type"
 msgstr "Kanalinimekirja stiil"
-
-msgid "Channel list update Eventinfo delay"
-msgstr ""
-
-msgid "Channel list update interval for Eventinfo on cursor moving"
-msgstr ""
 
 msgid "Channel not in services list"
 msgstr "Kanal pole teenuste nimekirjas"
@@ -3312,10 +3311,6 @@ msgstr ""
 msgid "Default movie location"
 msgstr "Salvestuste tavaasukoht"
 
-#, fuzzy
-msgid "Default recording type"
-msgstr "Salvestuse liik"
-
 msgid "Default settings"
 msgstr "Vaikeväärtused"
 
@@ -3406,6 +3401,9 @@ msgstr ""
 msgid "Delay in miliseconds between scrolling characters on display."
 msgstr ""
 
+msgid "Delay when closing a stream relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr ""
+
 msgid "Delete"
 msgstr "Kustuta"
 
@@ -3482,9 +3480,6 @@ msgstr ""
 
 msgid "Depth"
 msgstr "Sügavus"
-
-msgid "Descramble & record ECM gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr ""
 
 #, fuzzy
 msgid "Descramble receiving http streams"
@@ -5606,6 +5601,10 @@ msgid "Hardware Accelerated"
 msgstr ""
 
 #, fuzzy
+msgid "Hardware: "
+msgstr "Vastuvõtja: "
+
+#, fuzzy
 msgid "HddMount"
 msgstr "Haagi lahti"
 
@@ -5641,9 +5640,6 @@ msgstr "Peida raadiorežiimis kanalinimekiri"
 
 msgid "Hide known extensions"
 msgstr ""
-
-msgid "Hide number markers"
-msgstr "Peida nummerdatud markerid"
 
 #, fuzzy
 msgid "Hide parentel locked services"
@@ -5904,6 +5900,10 @@ msgid ""
 "Image to install is invalid\n"
 "%s"
 msgstr ""
+
+#, fuzzy
+msgid "Image: "
+msgstr "Tagasi"
 
 msgid "ImageWizard"
 msgstr ""
@@ -6700,6 +6700,9 @@ msgstr ""
 #, fuzzy
 msgid "MB"
 msgstr "B"
+
+msgid "MENU"
+msgstr ""
 
 msgid "MHz"
 msgstr ""
@@ -7785,6 +7788,10 @@ msgstr ""
 msgid "Number or SMS style data entry"
 msgstr ""
 
+#, fuzzy
+msgid "OE Version: "
+msgstr "Signaal: "
+
 msgid "OK"
 msgstr "OK"
 
@@ -8079,6 +8086,12 @@ msgid "POT-Creation Date"
 msgstr ""
 
 msgid "PPanel"
+msgstr ""
+
+msgid "PREVIOUS"
+msgstr ""
+
+msgid "PVR"
 msgstr ""
 
 msgid "Package list update"
@@ -9047,6 +9060,10 @@ msgstr "Pythoni programm /tmp/mmi.socket jaoks"
 #, fuzzy
 msgid "Python version: "
 msgstr "Kernel: "
+
+#, fuzzy
+msgid "Pythonscript"
+msgstr "Kirjeldus"
 
 msgid "Qatar"
 msgstr ""
@@ -10569,6 +10586,10 @@ msgstr "Serbia"
 msgid "Serial No"
 msgstr "Signaal: "
 
+#, fuzzy
+msgid "Serial: "
+msgstr "Signaal: "
+
 #, fuzzy, python-format
 msgid "Serial: %s"
 msgstr "Signaal: "
@@ -10622,6 +10643,10 @@ msgstr ""
 msgid "Service info - tuner setting values"
 msgstr ""
 
+#, fuzzy
+msgid "Service info font size"
+msgstr "Kanaliinfo"
+
 msgid ""
 "Service invalid!\n"
 "(Timeout reading PMT)"
@@ -10632,12 +10657,20 @@ msgstr ""
 msgid "Service name"
 msgstr "Kanalinimi"
 
+#, fuzzy
+msgid "Service name font size"
+msgstr "Kanalinimi"
+
 msgid ""
 "Service not found!\n"
 "(SID not found in PAT)"
 msgstr ""
 "Valitud kanalit ei leitud!\n"
 "(SID ei leitud PAT-st)"
+
+#, fuzzy
+msgid "Service number font size"
+msgstr "Subtiitrite tähesuurus"
 
 msgid "Service reference"
 msgstr "Kanali referents"
@@ -10970,6 +11003,9 @@ msgid "Show directories first"
 msgstr "tühista muudatused"
 
 msgid "Show directories on first or last in list.(must restart File Commander)"
+msgstr ""
+
+msgid "Show disabled timers (local only)"
 msgstr ""
 
 #, fuzzy
@@ -11305,10 +11341,6 @@ msgstr "Üksik"
 
 msgid "Single EPG"
 msgstr "Kanali saatekava"
-
-#, fuzzy
-msgid "Single line mode"
-msgstr "Vali video töörežiim"
 
 msgid "Single satellite"
 msgstr "Üksik satelliit"
@@ -11866,6 +11898,10 @@ msgstr "Salvestatud asukoht"
 msgid "Stream"
 msgstr ""
 
+#, fuzzy
+msgid "Stream Relay delay"
+msgstr "Viiteaeg puudub"
+
 msgid "Stream request"
 msgstr "Striimi päring"
 
@@ -12355,6 +12391,11 @@ msgstr ""
 "Kataloog %s ei ole salvestatav.\n"
 "Vali kindlasti selle asemel salvestatav kataloog."
 
+msgid ""
+"The enigma.info file for the boxinformation is not available or the content is invalid.\n"
+"Press any key to continue?"
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "Leitud järgmised failid"
 
@@ -12507,6 +12548,9 @@ msgstr ""
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "DVD RW ketas on formaaditud.Uuesti formaatimisel kustutatakse kõik, mis plaadile kirjutatud."
+
+msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
+msgstr ""
 
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr ""
@@ -13484,6 +13528,10 @@ msgstr "Kasuta algset teleteksti asukohta"
 msgid "Use power measurement"
 msgstr "Kasuta võimsuse mõõtmist"
 
+#, fuzzy
+msgid "Use skin default"
+msgstr "nimekirja stiil: vaikeseaded"
+
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
 
@@ -14144,10 +14192,6 @@ msgstr "Määrates 'jah', kasutab vastuvõtja automaatselt varem valitud helirib
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Määrates 'jah', mõõdetakse energia kulu, tuvastamaks mootori pööramise lõppemist (kui vastuvõtja seda toetab)."
-
-#, fuzzy
-msgid "When enabled, number markers will be hidden."
-msgstr "Määrates 'jah', ei näidata kanalivahetusega seotud veateateid."
 
 #, fuzzy
 msgid "When enabled, reformat subtitles to match the width of the screen."
@@ -16112,3 +16156,9 @@ msgstr ""
 
 msgid "zapped"
 msgstr "vahetatud"
+
+msgid "°E"
+msgstr ""
+
+msgid "°W"
+msgstr ""

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue (Apachi70)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-27 20:38+0200\n"
+"POT-Creation-Date: 2024-01-06 14:27+0100\n"
 "PO-Revision-Date: 2023-10-28 16:49+0200\n"
 "Last-Translator: Apachi70 (Openatv),(Teamblue) <teamblue@online.de,openatv@gmail.com>\n"
 "Language-Team: teamblue@t-online.de(apachi70)\n"
@@ -247,6 +247,10 @@ msgstr "%a %e/%m"
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
+
+#, python-format
+msgid "%d"
+msgstr ""
 
 #, python-format
 msgid "%d MB"
@@ -1263,9 +1267,6 @@ msgstr "Kültür/sanat (genel, müzik hariç)"
 msgid "Aruba"
 msgstr "Aruba"
 
-msgid "As defined by the skin"
-msgstr "Arayüz tarafından tanımlandığı gibi"
-
 msgid "Ask user"
 msgstr "Sor"
 
@@ -2036,6 +2037,10 @@ msgstr "Kanal"
 msgid "Channel Info"
 msgstr "Kanal Bilgisi"
 
+#, fuzzy
+msgid "Channel Selection"
+msgstr "Kanal Seçimi"
+
 msgid "Channel button always changes sides"
 msgstr "Kanal düğmesi her zaman taraf değiştirir"
 
@@ -2044,12 +2049,6 @@ msgstr "Kanal içeriği menüsü"
 
 msgid "Channel list type"
 msgstr "Kanal listesi tipi"
-
-msgid "Channel list update Eventinfo delay"
-msgstr "Kanal listesi olay bilgisi güncelleme gecikmesi"
-
-msgid "Channel list update interval for Eventinfo on cursor moving"
-msgstr "İmleç hareketinde Eventinfo için kanal listesi güncelleme aralığı"
 
 msgid "Channel not in services list"
 msgstr "Kanal, servis listesinde mevcut değil"
@@ -3123,9 +3122,6 @@ msgstr "Sol veya sağ klasör kaydedilmemişse varsayılan klasör ve düğme 5 
 msgid "Default movie location"
 msgstr "Varsayılan film konumu"
 
-msgid "Default recording type"
-msgstr "Varsayılan kayıt türü"
-
 msgid "Default settings"
 msgstr "Varsayılan ayarlar"
 
@@ -3213,6 +3209,9 @@ msgstr "Ekranda kayan metin başlamadan önce milisaniye cinsinden gecikme."
 msgid "Delay in miliseconds between scrolling characters on display."
 msgstr "Ekranda karakterleri kaydırma arasındaki milisaniye olarak gecikme."
 
+msgid "Delay when closing a stream relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr ""
+
 msgid "Delete"
 msgstr "Sil"
 
@@ -3282,9 +3281,6 @@ msgstr "Danimarka"
 
 msgid "Depth"
 msgstr "Yoğunluk"
-
-msgid "Descramble & record ECM gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr "Karışıklığını ve kayıt ECM kayıt üzerinde çabalıyorlar başarısız olursa sonradan karışıklığının açılması için seçeneği sunar. 'Karışıklığını etmeyin, kayıt ECM' oynatma döndürülecek olan bir karıştırmak kayıt kaydedin. 'Normal' anlamına gelir kayıt karışıklığını ve ECM kayıt yoktur."
 
 msgid "Descramble receiving http streams"
 msgstr "Http akışlarını alma Descramble"
@@ -5249,6 +5245,10 @@ msgstr "Sabit Disk bekleme sonrası"
 msgid "Hardware Accelerated"
 msgstr "Hızlandırılmış Donanım"
 
+#, fuzzy
+msgid "Hardware: "
+msgstr "Donanım Yazılımı: %s"
+
 msgid "HddMount"
 msgstr "HddMount"
 
@@ -5282,9 +5282,6 @@ msgstr "Radyo modunda kanal listesini gizle"
 
 msgid "Hide known extensions"
 msgstr "Bilinen uzantıları gizle"
-
-msgid "Hide number markers"
-msgstr "Gizle numarası işaretçileri"
 
 msgid "Hide parentel locked services"
 msgstr "Kilitli ebeveyn kanallarını gizle"
@@ -5533,6 +5530,10 @@ msgid ""
 msgstr ""
 "Image görüntü geçersiz\n"
 "%s"
+
+#, fuzzy
+msgid "Image: "
+msgstr "Image Backup yedekleme"
 
 msgid "ImageWizard"
 msgstr "ImageWizard"
@@ -6277,6 +6278,9 @@ msgstr "MAC:"
 
 msgid "MB"
 msgstr "MB"
+
+msgid "MENU"
+msgstr ""
 
 msgid "MHz"
 msgstr "MHz"
@@ -7279,6 +7283,10 @@ msgstr "Ekranda metin tekrarlayarak sayısı."
 msgid "Number or SMS style data entry"
 msgstr "Sayı veya SMS stili veri girişi"
 
+#, fuzzy
+msgid "OE Version: "
+msgstr "Sürüm: %s"
+
 msgid "OK"
 msgstr "Tamam"
 
@@ -7542,6 +7550,13 @@ msgstr "POT-Oluşturma Tarihi"
 
 msgid "PPanel"
 msgstr "PPanel"
+
+msgid "PREVIOUS"
+msgstr ""
+
+#, fuzzy
+msgid "PVR"
+msgstr "OVR"
 
 msgid "Package list update"
 msgstr "Paket listesi güncelleniyor"
@@ -8431,6 +8446,10 @@ msgstr "/tmp/mmi.socket için Python uç birimi"
 
 msgid "Python version: "
 msgstr "Python sürümü: "
+
+#, fuzzy
+msgid "Pythonscript"
+msgstr "Komut dosyasını çalıştır"
 
 msgid "Qatar"
 msgstr "Katar"
@@ -9809,6 +9828,10 @@ msgstr "Sırpça"
 msgid "Serial No"
 msgstr "Seri numarası"
 
+#, fuzzy
+msgid "Serial: "
+msgstr "Seri: %s"
+
 #, python-format
 msgid "Serial: %s"
 msgstr "Seri: %s"
@@ -9855,6 +9878,10 @@ msgstr "Kanal bilgisi - canlı tuner değerleri"
 msgid "Service info - tuner setting values"
 msgstr "Kanal bilgisi - tuner ayar değerleri"
 
+#, fuzzy
+msgid "Service info font size"
+msgstr "Kanal bilgisi"
+
 msgid ""
 "Service invalid!\n"
 "(Timeout reading PMT)"
@@ -9865,12 +9892,20 @@ msgstr ""
 msgid "Service name"
 msgstr "Kanal adı"
 
+#, fuzzy
+msgid "Service name font size"
+msgstr "Kanal adı"
+
 msgid ""
 "Service not found!\n"
 "(SID not found in PAT)"
 msgstr ""
 "Kanal bulunamadı!\n"
 "(SID, PAT içerisinde bulunamadı)"
+
+#, fuzzy
+msgid "Service number font size"
+msgstr "Altyazı yazı tipi boyutu"
 
 msgid "Service reference"
 msgstr "Kanal referansı"
@@ -10182,6 +10217,9 @@ msgstr "Önce dizinleri göster"
 msgid "Show directories on first or last in list.(must restart File Commander)"
 msgstr "Dizinleri listedeki ilk veya son listede göster. (Dosya Komutanını yeniden başlatmalı)"
 
+msgid "Show disabled timers (local only)"
+msgstr ""
+
 msgid "Show disclaimer"
 msgstr "Yasal uyarıyı göster"
 
@@ -10473,9 +10511,6 @@ msgstr "Tek"
 
 msgid "Single EPG"
 msgstr "Tekli EPG"
-
-msgid "Single line mode"
-msgstr "Tek hat modu"
 
 msgid "Single satellite"
 msgstr "Tek uydu"
@@ -10995,6 +11030,10 @@ msgstr "Kaydedilen pozisyonlar"
 msgid "Stream"
 msgstr "Akış"
 
+#, fuzzy
+msgid "Stream Relay delay"
+msgstr "Kaydırma gecikmesi"
+
 msgid "Stream request"
 msgstr "Akış isteği"
 
@@ -11449,6 +11488,11 @@ msgstr ""
 "Dizin yazılabilir %s  değil.\n"
 "Bunun yerine yazılabilir bir dizin seçtiğinizden emin olun."
 
+msgid ""
+"The enigma.info file for the boxinformation is not available or the content is invalid.\n"
+"Press any key to continue?"
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "Aşağıdaki dosyalar bulundu..."
 
@@ -11618,6 +11662,9 @@ msgstr ""
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "DVD-RW medyası zaten biçimlendirilmiş - yeniden biçimlendirme tüm disk içeriğini silecektir."
+
+msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
+msgstr ""
 
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr "Birden fazla 9999 kanal varsa, bu, size 5 basamak sayısını ayarlamak için izin verir."
@@ -12559,6 +12606,10 @@ msgstr "Orijinal teletext konumunu kullan"
 msgid "Use power measurement"
 msgstr "Güç kullanımını ölç"
 
+#, fuzzy
+msgid "Use skin default"
+msgstr "Varsayılanları ayarla"
+
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "Yüklenmiş bir Image seçmek için imleç tuşlarını ve ardından Başlat düğmesini kullanın."
 
@@ -13186,9 +13237,6 @@ msgstr "Etkinleştirildiğinde, radyo moduna geçerken en son kaydedilen radyo h
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Rotorun dönüşünün bittiği anı algılamak, çekilen güç ölçülerek anlaşılabilir. (tuner tarafından destekleniyorsa)"
-
-msgid "When enabled, number markers will be hidden."
-msgstr "Etkinleştirildiğinde, sayı işaretçileri gizlenir."
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Etkin olduğunda, ekranın genişliğine uyacak şekilde altyazı biçimlendirmek."
@@ -15103,3 +15151,9 @@ msgstr "zap ve kayıt"
 
 msgid "zapped"
 msgstr "zaplanmış"
+
+msgid "°E"
+msgstr ""
+
+msgid "°W"
+msgstr ""
