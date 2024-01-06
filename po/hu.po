@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-27 20:38+0200\n"
+"POT-Creation-Date: 2024-01-06 14:27+0100\n"
 "PO-Revision-Date: 2020-05-13 21:36+0200\n"
 "Last-Translator: mcfly82\n"
 "Language-Team: mcfly82 & wysless\n"
@@ -242,6 +242,10 @@ msgstr "%m. %e %a"
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
 msgstr "%m. %e %a  %-H:%M"
+
+#, python-format
+msgid "%d"
+msgstr ""
 
 #, python-format
 msgid "%d MB"
@@ -1334,9 +1338,6 @@ msgstr "Művészet/Kultúra (prózai, általános)"
 msgid "Aruba"
 msgstr ""
 
-msgid "As defined by the skin"
-msgstr ""
-
 msgid "Ask user"
 msgstr "Felhasználó kérdezése"
 
@@ -2135,6 +2136,10 @@ msgstr "Csatorna"
 msgid "Channel Info"
 msgstr "Csatorna"
 
+#, fuzzy
+msgid "Channel Selection"
+msgstr "Csatorna választás"
+
 msgid "Channel button always changes sides"
 msgstr ""
 
@@ -2144,12 +2149,6 @@ msgstr "Csatornalista menü"
 
 msgid "Channel list type"
 msgstr "Csatornalista menü"
-
-msgid "Channel list update Eventinfo delay"
-msgstr ""
-
-msgid "Channel list update interval for Eventinfo on cursor moving"
-msgstr ""
 
 msgid "Channel not in services list"
 msgstr "A csatorna nem szerepel a szolgáltatási listában"
@@ -3314,10 +3313,6 @@ msgstr ""
 msgid "Default movie location"
 msgstr "Felvételek tárhelye"
 
-#, fuzzy
-msgid "Default recording type"
-msgstr "Felvétel típusa"
-
 msgid "Default settings"
 msgstr "Alapértelmezett beállítások"
 
@@ -3408,6 +3403,9 @@ msgstr ""
 msgid "Delay in miliseconds between scrolling characters on display."
 msgstr ""
 
+msgid "Delay when closing a stream relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr ""
+
 msgid "Delete"
 msgstr "Törlés"
 
@@ -3484,9 +3482,6 @@ msgstr ""
 
 msgid "Depth"
 msgstr "Mélység"
-
-msgid "Descramble & record ECM gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr ""
 
 #, fuzzy
 msgid "Descramble receiving http streams"
@@ -5617,6 +5612,10 @@ msgid "Hardware Accelerated"
 msgstr ""
 
 #, fuzzy
+msgid "Hardware: "
+msgstr "Hardver: "
+
+#, fuzzy
 msgid "HddMount"
 msgstr "Csatlakozás"
 
@@ -5653,9 +5652,6 @@ msgstr "A csatornalista elrejtése rádió módban"
 
 msgid "Hide known extensions"
 msgstr "Ismert fájlkiterjesztések elrejtése"
-
-msgid "Hide number markers"
-msgstr "Sorszámozott elválasztók elrejtése"
 
 #, fuzzy
 msgid "Hide parentel locked services"
@@ -5916,6 +5912,10 @@ msgid ""
 "Image to install is invalid\n"
 "%s"
 msgstr ""
+
+#, fuzzy
+msgid "Image: "
+msgstr "Vissza"
 
 msgid "ImageWizard"
 msgstr ""
@@ -6712,6 +6712,9 @@ msgstr ""
 #, fuzzy
 msgid "MB"
 msgstr "B"
+
+msgid "MENU"
+msgstr ""
 
 msgid "MHz"
 msgstr ""
@@ -7798,6 +7801,10 @@ msgstr ""
 msgid "Number or SMS style data entry"
 msgstr ""
 
+#, fuzzy
+msgid "OE Version: "
+msgstr "Jel:"
+
 msgid "OK"
 msgstr "OK"
 
@@ -8096,6 +8103,12 @@ msgstr ""
 #, fuzzy
 msgid "PPanel"
 msgstr "PPanel-ek"
+
+msgid "PREVIOUS"
+msgstr ""
+
+msgid "PVR"
+msgstr ""
 
 msgid "Package list update"
 msgstr "Csomaglista frissítés"
@@ -9063,6 +9076,10 @@ msgstr "Python felület a /tmp/mmi.socket-hez"
 #, fuzzy
 msgid "Python version: "
 msgstr "Kernel verzió: "
+
+#, fuzzy
+msgid "Pythonscript"
+msgstr "Leírás"
 
 msgid "Qatar"
 msgstr ""
@@ -10586,6 +10603,10 @@ msgstr "Szerb"
 msgid "Serial No"
 msgstr "Jel:"
 
+#, fuzzy
+msgid "Serial: "
+msgstr "Jel:"
+
 #, fuzzy, python-format
 msgid "Serial: %s"
 msgstr "Jel:"
@@ -10639,6 +10660,10 @@ msgstr ""
 msgid "Service info - tuner setting values"
 msgstr ""
 
+#, fuzzy
+msgid "Service info font size"
+msgstr "Csatorna"
+
 msgid ""
 "Service invalid!\n"
 "(Timeout reading PMT)"
@@ -10649,12 +10674,20 @@ msgstr ""
 msgid "Service name"
 msgstr "Csatornanév"
 
+#, fuzzy
+msgid "Service name font size"
+msgstr "Csatornanév"
+
 msgid ""
 "Service not found!\n"
 "(SID not found in PAT)"
 msgstr ""
 "A csatorna nem található!\n"
 "(Nincs SID a PAT-ban)"
+
+#, fuzzy
+msgid "Service number font size"
+msgstr "Betűméret"
 
 msgid "Service reference"
 msgstr "Referencia szám"
@@ -10987,6 +11020,9 @@ msgid "Show directories first"
 msgstr "kedvencek módosításának megszakítása"
 
 msgid "Show directories on first or last in list.(must restart File Commander)"
+msgstr ""
+
+msgid "Show disabled timers (local only)"
 msgstr ""
 
 #, fuzzy
@@ -11323,10 +11359,6 @@ msgstr "Egyetlen"
 
 msgid "Single EPG"
 msgstr "Műsorújság"
-
-#, fuzzy
-msgid "Single line mode"
-msgstr "Válassza ki a video módot"
 
 msgid "Single satellite"
 msgstr "Egyetlen műhold"
@@ -11890,6 +11922,10 @@ msgstr "Tárolt pozíció"
 msgid "Stream"
 msgstr "Adatfolyam"
 
+#, fuzzy
+msgid "Stream Relay delay"
+msgstr "nincs késleltetés"
+
 msgid "Stream request"
 msgstr "Adatfolyam kérés"
 
@@ -12388,6 +12424,11 @@ msgstr ""
 "%s mappa nem írható.\n"
 "Kérem, válasszon egy írási jogosultságokkal rendelkező mappát."
 
+msgid ""
+"The enigma.info file for the boxinformation is not available or the content is invalid.\n"
+"Press any key to continue?"
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "Az alábbi fájlokat találta a rendszer..."
 
@@ -12540,6 +12581,9 @@ msgstr ""
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Ez a DVD RW medium már meg van formázva - a lemez újraformázásával minden adat el fog veszni."
+
+msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
+msgstr ""
 
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr ""
@@ -13521,6 +13565,10 @@ msgstr "Eredeti teletext-elhelyezés megtartása"
 msgid "Use power measurement"
 msgstr "Teljesítmény-felvétel mérése"
 
+#, fuzzy
+msgid "Use skin default"
+msgstr "alapértelmezett lista stílus"
+
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
 
@@ -14184,10 +14232,6 @@ msgstr "A készülék ugyanazt a hangsávot fogja legközelebb is kiválasztani,
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Ezzel a funkcióval a motor forgását az áramfelvétel mérésével lehet ellenőrizni (amennyiben a tuner támogatja)."
-
-#, fuzzy
-msgid "When enabled, number markers will be hidden."
-msgstr "A csatornalistában esetleg lévő, sorszámozott elválasztó elemek elrejtése."
 
 #, fuzzy
 msgid "When enabled, reformat subtitles to match the width of the screen."
@@ -16164,3 +16208,9 @@ msgstr "ugrás és felvétel"
 
 msgid "zapped"
 msgstr "ugrott"
+
+msgid "°E"
+msgstr ""
+
+msgid "°W"
+msgstr ""

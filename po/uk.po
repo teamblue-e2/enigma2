@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-27 20:38+0200\n"
+"POT-Creation-Date: 2024-01-06 14:27+0100\n"
 "PO-Revision-Date: 2016-11-17 12:51+0200\n"
 "Last-Translator: vovan43<vovan43@ex.ua>, sety <tim1065@mail.ru>, Irkoff <irkoff@gmail.com>\n"
 "Language-Team: gisclub.tv <http://gisclub.tv/>\n"
@@ -243,6 +243,10 @@ msgstr "%a %e/%m"
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
+
+#, python-format
+msgid "%d"
+msgstr ""
 
 #, python-format
 msgid "%d MB"
@@ -1348,9 +1352,6 @@ msgstr "мистецтво/культура (без музики, загальн
 msgid "Aruba"
 msgstr ""
 
-msgid "As defined by the skin"
-msgstr ""
-
 msgid "Ask user"
 msgstr "Запитати користувача"
 
@@ -2149,6 +2150,10 @@ msgstr "Канал"
 msgid "Channel Info"
 msgstr "Канал"
 
+#, fuzzy
+msgid "Channel Selection"
+msgstr "Селектор каналів"
+
 msgid "Channel button always changes sides"
 msgstr ""
 
@@ -2158,12 +2163,6 @@ msgstr "Меню списка каналів"
 
 msgid "Channel list type"
 msgstr "Тип списку каналів"
-
-msgid "Channel list update Eventinfo delay"
-msgstr ""
-
-msgid "Channel list update interval for Eventinfo on cursor moving"
-msgstr ""
 
 msgid "Channel not in services list"
 msgstr "Каналу немає в списку сервісів"
@@ -3339,10 +3338,6 @@ msgstr ""
 msgid "Default movie location"
 msgstr "Місце записів за замовчуванням"
 
-#, fuzzy
-msgid "Default recording type"
-msgstr "Тип запису"
-
 msgid "Default settings"
 msgstr "Налаштування за замовчуванням"
 
@@ -3433,6 +3428,9 @@ msgstr ""
 msgid "Delay in miliseconds between scrolling characters on display."
 msgstr ""
 
+msgid "Delay when closing a stream relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr ""
+
 msgid "Delete"
 msgstr "Видалити"
 
@@ -3509,9 +3507,6 @@ msgstr "Данія"
 
 msgid "Depth"
 msgstr "Глубина"
-
-msgid "Descramble & record ECM gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr ""
 
 #, fuzzy
 msgid "Descramble receiving http streams"
@@ -5649,6 +5644,10 @@ msgid "Hardware Accelerated"
 msgstr ""
 
 #, fuzzy
+msgid "Hardware: "
+msgstr "Апаратура: "
+
+#, fuzzy
 msgid "HddMount"
 msgstr "Перегляд підключень"
 
@@ -5684,9 +5683,6 @@ msgstr "Приховати список каналів в режимі раді�
 
 msgid "Hide known extensions"
 msgstr "Приховати відомі роздільні здатності"
-
-msgid "Hide number markers"
-msgstr "Приховувати номера маркерів"
 
 #, fuzzy
 msgid "Hide parentel locked services"
@@ -5944,6 +5940,10 @@ msgid ""
 "Image to install is invalid\n"
 "%s"
 msgstr ""
+
+#, fuzzy
+msgid "Image: "
+msgstr "Зберегти"
 
 msgid "ImageWizard"
 msgstr ""
@@ -6742,6 +6742,9 @@ msgstr ""
 #, fuzzy
 msgid "MB"
 msgstr "B"
+
+msgid "MENU"
+msgstr ""
 
 msgid "MHz"
 msgstr ""
@@ -7831,6 +7834,10 @@ msgstr ""
 msgid "Number or SMS style data entry"
 msgstr ""
 
+#, fuzzy
+msgid "OE Version: "
+msgstr "По відчуттю: %s"
+
 msgid "OK"
 msgstr "OK"
 
@@ -8129,6 +8136,12 @@ msgstr ""
 #, fuzzy
 msgid "PPanel"
 msgstr "E-Панель"
+
+msgid "PREVIOUS"
+msgstr ""
+
+msgid "PVR"
+msgstr ""
 
 msgid "Package list update"
 msgstr "Список пакетів оновлення"
@@ -9103,6 +9116,10 @@ msgstr "Python інтерфейс для /tmp/mmi.socket"
 #, fuzzy
 msgid "Python version: "
 msgstr "Версія ядра: "
+
+#, fuzzy
+msgid "Pythonscript"
+msgstr "Скрипти"
 
 msgid "Qatar"
 msgstr ""
@@ -10641,6 +10658,10 @@ msgstr "Сербський"
 msgid "Serial No"
 msgstr "Сигнал: "
 
+#, fuzzy
+msgid "Serial: "
+msgstr "Сигнал: "
+
 #, fuzzy, python-format
 msgid "Serial: %s"
 msgstr "Сигнал: "
@@ -10694,6 +10715,10 @@ msgstr ""
 msgid "Service info - tuner setting values"
 msgstr ""
 
+#, fuzzy
+msgid "Service info font size"
+msgstr "Информація про сервіс"
+
 msgid ""
 "Service invalid!\n"
 "(Timeout reading PMT)"
@@ -10704,12 +10729,20 @@ msgstr ""
 msgid "Service name"
 msgstr "Назва сервісу"
 
+#, fuzzy
+msgid "Service name font size"
+msgstr "Назва сервісу"
+
 msgid ""
 "Service not found!\n"
 "(SID not found in PAT)"
 msgstr ""
 "Сервіс не знайдений!\n"
 "(SID не найден в PAT)"
+
+#, fuzzy
+msgid "Service number font size"
+msgstr "Розмір шрифту субтитрів"
 
 msgid "Service reference"
 msgstr "Референс"
@@ -11041,6 +11074,9 @@ msgid "Show directories first"
 msgstr "перервати редагування фаворитів"
 
 msgid "Show directories on first or last in list.(must restart File Commander)"
+msgstr ""
+
+msgid "Show disabled timers (local only)"
 msgstr ""
 
 #, fuzzy
@@ -11377,10 +11413,6 @@ msgstr "Одиночний"
 
 msgid "Single EPG"
 msgstr "Одиночне EPG"
-
-#, fuzzy
-msgid "Single line mode"
-msgstr "Виберіть відеорежим"
 
 msgid "Single satellite"
 msgstr "Один супутник"
@@ -11941,6 +11973,10 @@ msgstr "Збережене положення"
 msgid "Stream"
 msgstr "Порт стрімінгу"
 
+#, fuzzy
+msgid "Stream Relay delay"
+msgstr "без затримки"
+
 msgid "Stream request"
 msgstr "Порт стрімінгу"
 
@@ -12432,6 +12468,11 @@ msgstr ""
 "У цю папку %s записати не можна.\n"
 "Переконайтеся, що натомість вибрали потрібну папку."
 
+msgid ""
+"The enigma.info file for the boxinformation is not available or the content is invalid.\n"
+"Press any key to continue?"
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "Наступні файли були знайдені ..."
 
@@ -12584,6 +12625,9 @@ msgstr ""
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Цей DVD RW вже відформатований - переформатування може видалити всі вміст диску."
+
+msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
+msgstr ""
 
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr ""
@@ -13571,6 +13615,10 @@ msgstr "Використовувати початкове положення т�
 msgid "Use power measurement"
 msgstr "Використовувати вимірювання потужності"
 
+#, fuzzy
+msgid "Use skin default"
+msgstr "список за замовчуванням"
+
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
 
@@ -14236,10 +14284,6 @@ msgstr "Якщо увімкнено, ресивер буде використо�
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Якщо увімкнено, використовується вимірювання потужності для виявлення, коли ротор перестав повертатися (якщо є підтримка в ресівері)."
-
-#, fuzzy
-msgid "When enabled, number markers will be hidden."
-msgstr "Якщо увімкнено, то номери маркерів не відображатимуться в списку каналів."
 
 #, fuzzy
 msgid "When enabled, reformat subtitles to match the width of the screen."
@@ -16221,3 +16265,9 @@ msgstr "перейти і записати"
 
 msgid "zapped"
 msgstr "переключено"
+
+msgid "°E"
+msgstr ""
+
+msgid "°W"
+msgstr ""

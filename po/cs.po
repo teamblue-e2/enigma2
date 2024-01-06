@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-27 20:38+0200\n"
+"POT-Creation-Date: 2024-01-06 14:27+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: ims <ims21@users.sourceforge.net>\n"
 "Language-Team: PLi <ims@openpli.org>\n"
@@ -257,6 +257,10 @@ msgstr "%a %e/%m"
 
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
+msgstr ""
+
+#, python-format
+msgid "%d"
 msgstr ""
 
 #, python-format
@@ -1516,9 +1520,6 @@ msgstr "umění/kulura (bez hudby, obecně)"
 msgid "Aruba"
 msgstr ""
 
-msgid "As defined by the skin"
-msgstr ""
-
 #
 msgid "Ask user"
 msgstr "zeptat se"
@@ -2413,6 +2414,11 @@ msgstr "Kanál"
 msgid "Channel Info"
 msgstr "Informace o programu"
 
+#
+#, fuzzy
+msgid "Channel Selection"
+msgstr "Výběr programu"
+
 msgid "Channel button always changes sides"
 msgstr ""
 
@@ -2424,12 +2430,6 @@ msgstr "Menu seznamu programů"
 #
 msgid "Channel list type"
 msgstr "Typ seznamu programů"
-
-msgid "Channel list update Eventinfo delay"
-msgstr ""
-
-msgid "Channel list update interval for Eventinfo on cursor moving"
-msgstr ""
 
 #
 msgid "Channel not in services list"
@@ -3738,10 +3738,6 @@ msgstr ""
 msgid "Default movie location"
 msgstr "Standardní umístění souborů"
 
-#, fuzzy
-msgid "Default recording type"
-msgstr "Typ nahrávání"
-
 #
 msgid "Default settings"
 msgstr "Standardní nastavení"
@@ -3832,6 +3828,9 @@ msgid "Delay in miliseconds before start of scrolling text on display."
 msgstr ""
 
 msgid "Delay in miliseconds between scrolling characters on display."
+msgstr ""
+
+msgid "Delay when closing a stream relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
 msgstr ""
 
 #
@@ -3927,9 +3926,6 @@ msgstr ""
 #
 msgid "Depth"
 msgstr "Hloubka"
-
-msgid "Descramble & record ECM gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr ""
 
 #
 #, fuzzy
@@ -6390,6 +6386,10 @@ msgstr "Uspat pevný disk po"
 msgid "Hardware Accelerated"
 msgstr ""
 
+#, fuzzy
+msgid "Hardware: "
+msgstr "Hardware: "
+
 #
 #, fuzzy
 msgid "HddMount"
@@ -6430,9 +6430,6 @@ msgstr "Skrýt seznam programů v radio módu"
 
 msgid "Hide known extensions"
 msgstr "Nezobrazovat známé přípony"
-
-msgid "Hide number markers"
-msgstr "Skrýt číslo značky"
 
 #
 #, fuzzy
@@ -6712,6 +6709,11 @@ msgid ""
 "Image to install is invalid\n"
 "%s"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Image: "
+msgstr "Zpět"
 
 msgid "ImageWizard"
 msgstr ""
@@ -7643,6 +7645,9 @@ msgstr ""
 #, fuzzy
 msgid "MB"
 msgstr "B"
+
+msgid "MENU"
+msgstr ""
 
 msgid "MHz"
 msgstr ""
@@ -8890,6 +8895,11 @@ msgid "Number or SMS style data entry"
 msgstr ""
 
 #
+#, fuzzy
+msgid "OE Version: "
+msgstr "Signál: "
+
+#
 msgid "OK"
 msgstr "OK"
 
@@ -9214,6 +9224,12 @@ msgstr ""
 
 msgid "PPanel"
 msgstr "PPanel"
+
+msgid "PREVIOUS"
+msgstr ""
+
+msgid "PVR"
+msgstr ""
 
 #
 msgid "Package list update"
@@ -10362,6 +10378,10 @@ msgstr "Python frontend pro /tmp/mmi.socket"
 #, fuzzy
 msgid "Python version: "
 msgstr "Verze kernelu: "
+
+#, fuzzy
+msgid "Pythonscript"
+msgstr "Skript"
 
 msgid "Qatar"
 msgstr ""
@@ -12133,6 +12153,11 @@ msgid "Serial No"
 msgstr "Signál: "
 
 #
+#, fuzzy
+msgid "Serial: "
+msgstr "Signál: "
+
+#
 #, fuzzy, python-format
 msgid "Serial: %s"
 msgstr "Signál: "
@@ -12198,6 +12223,11 @@ msgid "Service info - tuner setting values"
 msgstr ""
 
 #
+#, fuzzy
+msgid "Service info font size"
+msgstr "Info o programu"
+
+#
 msgid ""
 "Service invalid!\n"
 "(Timeout reading PMT)"
@@ -12208,6 +12238,10 @@ msgstr ""
 msgid "Service name"
 msgstr "Název programu"
 
+#, fuzzy
+msgid "Service name font size"
+msgstr "Název programu"
+
 #
 msgid ""
 "Service not found!\n"
@@ -12215,6 +12249,10 @@ msgid ""
 msgstr ""
 "Služba nebyla nalezena!\n"
 "(SID nebyl nalezen v PAT)"
+
+#, fuzzy
+msgid "Service number font size"
+msgstr "Velikost textu"
 
 msgid "Service reference"
 msgstr ""
@@ -12573,6 +12611,9 @@ msgid "Show directories first"
 msgstr "Oblíbené"
 
 msgid "Show directories on first or last in list.(must restart File Commander)"
+msgstr ""
+
+msgid "Show disabled timers (local only)"
 msgstr ""
 
 #
@@ -12949,11 +12990,6 @@ msgstr "Jeden"
 #
 msgid "Single EPG"
 msgstr "EPG programu"
-
-#
-#, fuzzy
-msgid "Single line mode"
-msgstr "Zvolte video mód"
 
 #
 msgid "Single satellite"
@@ -13599,6 +13635,11 @@ msgstr "Uložená pozice"
 msgid "Stream"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Stream Relay delay"
+msgstr "Žádné"
+
 msgid "Stream request"
 msgstr "požadavek streamu"
 
@@ -14131,6 +14172,11 @@ msgstr ""
 "Do adresáře %s nelze zapisovat.\n"
 "Vyberete adresář, do kterého je možné zapisovat."
 
+msgid ""
+"The enigma.info file for the boxinformation is not available or the content is invalid.\n"
+"Press any key to continue?"
+msgstr ""
+
 #
 msgid "The following files were found..."
 msgstr "Následující soubory byly nalezeny..."
@@ -14295,6 +14341,9 @@ msgstr ""
 #
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "DVD RW médium je již naformátováno - nové formátování smaže veškerý obsah na tomto DVD."
+
+msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
+msgstr ""
 
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr ""
@@ -15389,6 +15438,11 @@ msgstr "Použít původní pozici teletextu"
 msgid "Use power measurement"
 msgstr "Použít měření proudu"
 
+#
+#, fuzzy
+msgid "Use skin default"
+msgstr "defaultní"
+
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
 
@@ -16124,10 +16178,6 @@ msgstr "Jestliže je povoleno, bude přijímač automaticky používat zvukovou 
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Pokud je povoleno, přijímač se bude snažit měřením spotřeby proudu určit, kdy motor ukončí natáčení (pokud je podporováno tunerem)."
-
-#, fuzzy
-msgid "When enabled, number markers will be hidden."
-msgstr "Při povolení budou skryty číselné značky."
 
 #, fuzzy
 msgid "When enabled, reformat subtitles to match the width of the screen."
@@ -18368,3 +18418,9 @@ msgstr "přepnout a nahrát"
 #
 msgid "zapped"
 msgstr "přepnutý"
+
+msgid "°E"
+msgstr ""
+
+msgid "°W"
+msgstr ""

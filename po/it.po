@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-27 20:38+0200\n"
+"POT-Creation-Date: 2024-01-06 14:27+0100\n"
 "PO-Revision-Date: 2021-11-30 12:39+0100\n"
 "Last-Translator: teamblue-e2 <teamblue-e2@online.de>\n"
 "Language-Team: www.linsat.net <spaeleus@croci.org>\n"
@@ -259,6 +259,10 @@ msgstr "%a %e/%m"
 #. TRANSLATORS: long date representation short dayname daynum short monthname hour:minute in strftime() format! See 'man strftime'
 msgid "%a %e/%m  %-H:%M"
 msgstr "%a %e/%m  %-H:%M"
+
+#, python-format
+msgid "%d"
+msgstr ""
 
 #, python-format
 msgid "%d MB"
@@ -1439,9 +1443,6 @@ msgstr "arte/Cultura (generiche, no musica)"
 msgid "Aruba"
 msgstr "Aruba"
 
-msgid "As defined by the skin"
-msgstr "Come definito dalla pelle"
-
 #
 msgid "Ask user"
 msgstr "Chiedere"
@@ -2306,6 +2307,11 @@ msgstr "Canale"
 msgid "Channel Info"
 msgstr "Informazioni sul canale"
 
+#
+#, fuzzy
+msgid "Channel Selection"
+msgstr "Selezione del canale"
+
 msgid "Channel button always changes sides"
 msgstr "Il pulsante del canale cambia sempre lato"
 
@@ -2316,12 +2322,6 @@ msgstr "Menu contestuale del canale"
 #
 msgid "Channel list type"
 msgstr "Tipo elenco canali"
-
-msgid "Channel list update Eventinfo delay"
-msgstr "Aggiornamento della lista dei canali Ritardo di Eventinfo"
-
-msgid "Channel list update interval for Eventinfo on cursor moving"
-msgstr "Intervallo di aggiornamento della lista dei canali per Eventinfo sullo spostamento del cursore"
 
 #
 msgid "Channel not in services list"
@@ -3545,9 +3545,6 @@ msgstr "Cartella predefinita se la cartella sinistra o destra non è salvata e c
 msgid "Default movie location"
 msgstr "Percorso predefinito registrazioni"
 
-msgid "Default recording type"
-msgstr "Tipo di registrazione predefinito"
-
 #
 msgid "Default settings"
 msgstr "Configurazioni predefinite"
@@ -3637,6 +3634,9 @@ msgstr "Ritardo in millisecondi prima dell'inizio dello scorrimento del testo su
 msgid "Delay in miliseconds between scrolling characters on display."
 msgstr "Ritardo in millisecondi tra i caratteri in scorrimento sul display."
 
+msgid "Delay when closing a stream relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr ""
+
 msgid "Delete"
 msgstr "Rimuovere"
 
@@ -3720,9 +3720,6 @@ msgstr "Danimarca"
 
 msgid "Depth"
 msgstr "Profondità"
-
-msgid "Descramble & record ECM gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM."
-msgstr "Decodifica e registra ECM offre la possibilità di decodificare in seguito se la decodifica durante la registrazione non è riuscita. \"Non decodificare, registra ECM\" salva una registrazione criptata che può essere decodificata durante la riproduzione. \"Normale\" significa decodificare la registrazione e non registrare l'ECM."
 
 msgid "Descramble receiving http streams"
 msgstr "Decifra la ricezione di flussi http"
@@ -5969,6 +5966,10 @@ msgstr "Standby del disco rigido dopo"
 msgid "Hardware Accelerated"
 msgstr ""
 
+#, fuzzy
+msgid "Hardware: "
+msgstr "Firmware: %s"
+
 msgid "HddMount"
 msgstr "HddMount"
 
@@ -6002,9 +6003,6 @@ msgid "Hide channel list in radio mode"
 msgstr "Nascondere elenco canali in modalità radio"
 
 msgid "Hide known extensions"
-msgstr ""
-
-msgid "Hide number markers"
 msgstr ""
 
 #
@@ -6277,6 +6275,11 @@ msgid ""
 msgstr ""
 "L'immagine da installare non è valida\n"
 "%s"
+
+#
+#, fuzzy
+msgid "Image: "
+msgstr "Backup dell'immagine"
 
 msgid "ImageWizard"
 msgstr "ImageWizard"
@@ -7130,6 +7133,9 @@ msgstr "MAC:"
 #
 msgid "MB"
 msgstr "MB"
+
+msgid "MENU"
+msgstr ""
 
 msgid "MHz"
 msgstr "MHz"
@@ -8279,6 +8285,10 @@ msgstr "Numero di testo ripetuto sul display."
 msgid "Number or SMS style data entry"
 msgstr ""
 
+#, fuzzy
+msgid "OE Version: "
+msgstr "Versione: %s"
+
 #
 msgid "OK"
 msgstr "Ok"
@@ -8570,6 +8580,13 @@ msgstr "Data di creazione del POT"
 
 msgid "PPanel"
 msgstr "PPanel"
+
+msgid "PREVIOUS"
+msgstr ""
+
+#, fuzzy
+msgid "PVR"
+msgstr "OVR"
 
 #
 msgid "Package list update"
@@ -9615,6 +9632,10 @@ msgstr "Frontend python per /tmp/mmi.socket"
 #
 msgid "Python version: "
 msgstr "Versione Python"
+
+#, fuzzy
+msgid "Pythonscript"
+msgstr "Esegui lo script"
 
 msgid "Qatar"
 msgstr "Qatar"
@@ -11220,6 +11241,10 @@ msgstr "Serbo"
 msgid "Serial No"
 msgstr ""
 
+#, fuzzy
+msgid "Serial: "
+msgstr "Seriale: %s"
+
 #, python-format
 msgid "Serial: %s"
 msgstr "Seriale: %s"
@@ -11273,6 +11298,10 @@ msgstr "Info di servizio - valori live del tuner"
 msgid "Service info - tuner setting values"
 msgstr "Informazioni di servizio - valori di impostazione del sintonizzatore"
 
+#, fuzzy
+msgid "Service info font size"
+msgstr "Info canale"
+
 #
 msgid ""
 "Service invalid!\n"
@@ -11286,12 +11315,22 @@ msgid "Service name"
 msgstr "Nome canale"
 
 #
+#, fuzzy
+msgid "Service name font size"
+msgstr "Nome canale"
+
+#
 msgid ""
 "Service not found!\n"
 "(SID not found in PAT)"
 msgstr ""
 "Canale non trovato!\n"
 "(SID non trovato in PAT)"
+
+#
+#, fuzzy
+msgid "Service number font size"
+msgstr "Dimensione carattere sottotitoli"
 
 msgid "Service reference"
 msgstr "Rif. canale:"
@@ -11635,6 +11674,9 @@ msgstr "Mostra prima le directory"
 msgid "Show directories on first or last in list.(must restart File Commander)"
 msgstr "Mostra le directory al primo o all'ultimo posto della lista (è necessario riavviare File Commander)"
 
+msgid "Show disabled timers (local only)"
+msgstr ""
+
 msgid "Show disclaimer"
 msgstr "Mostra il disclaimer"
 
@@ -11971,10 +12013,6 @@ msgstr "Singolo"
 #
 msgid "Single EPG"
 msgstr "EPG singolo"
-
-#
-msgid "Single line mode"
-msgstr "Modalità linea singola"
 
 #
 msgid "Single satellite"
@@ -12568,6 +12606,10 @@ msgstr "Posizione memorizzata"
 msgid "Stream"
 msgstr "Stream"
 
+#, fuzzy
+msgid "Stream Relay delay"
+msgstr "Ritardo di scorrimento"
+
 msgid "Stream request"
 msgstr "Richiesta stream"
 
@@ -13083,6 +13125,11 @@ msgstr ""
 "La directory %s è in sola lettura.\n"
 "Controllare di aver scelto una directory in cui sia possibile scrivere."
 
+msgid ""
+"The enigma.info file for the boxinformation is not available or the content is invalid.\n"
+"Press any key to continue?"
+msgstr ""
+
 #
 msgid "The following files were found..."
 msgstr "Trovati i seguenti file..."
@@ -13270,6 +13317,9 @@ msgstr ""
 #
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Il DVD-RW è già formattato - una nuova formattazione cancellerà tutto il contenuto del disco!"
+
+msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size"
+msgstr ""
 
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr "Questo vi permette di impostare il numero di cifre a 5, se avete più di 9999 canali."
@@ -14316,6 +14366,11 @@ msgstr "Utilizzare la posizione originale televideo"
 msgid "Use power measurement"
 msgstr "Utilizzare misurazione di potenza"
 
+#
+#, fuzzy
+msgid "Use skin default"
+msgstr "Elenco standard"
+
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "Usate i tasti del cursore per selezionare un'immagine installata e poi il pulsante Start."
 
@@ -15012,9 +15067,6 @@ msgstr "Quando è abilitato, riproduce automaticamente l'ultimo servizio radio s
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Opzione per abilitare la misura dell'assorbimento elettrico del rotore per determinare il momento in cui si arresta. (se supportata dal tuner)."
-
-msgid "When enabled, number markers will be hidden."
-msgstr ""
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr ""
@@ -17173,3 +17225,9 @@ msgstr ""
 #
 msgid "zapped"
 msgstr "Zap eseguito"
+
+msgid "°E"
+msgstr ""
+
+msgid "°W"
+msgstr ""
