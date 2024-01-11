@@ -179,7 +179,6 @@ class eDVBResourceManager: public iObject, public sigc::trackable
 	ePtr<iDVBChannelList> m_list;
 	ePtr<iDVBSatelliteEquipmentControl> m_sec;
 	static eDVBResourceManager *instance;
-
 	friend class eDVBChannel;
 	friend class eFBCTunerManager;
 	ePtr<eFBCTunerManager> m_fbcmng;
@@ -216,7 +215,7 @@ public:
 	};
 
 	RESULT connectChannelAdded(const sigc::slot1<void,eDVBChannel*> &channelAdded, ePtr<eConnection> &connection);
-	int canAllocateChannel(const eDVBChannelID &channelid, const eDVBChannelID &ignore, int &system, bool simulate=false);
+	int canAllocateChannel(const eDVBChannelID &channelid, const eDVBChannelID &ignore, const eDVBChannelID& ignoresr, int &system, bool simulate=false);
 
 		/* allocate channel... */
 	RESULT allocateChannel(const eDVBChannelID &channelid, eUsePtr<iDVBChannel> &channel, bool simulate=false);
