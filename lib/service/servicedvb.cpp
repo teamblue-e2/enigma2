@@ -106,7 +106,7 @@ int eStaticServiceDVBInformation::isPlayable(const eServiceReference &ref, const
 		int system;
 		((const eServiceReferenceDVB&)ref).getChannelID(chid);
 		((const eServiceReferenceDVB&)ignore).getChannelID(chid_ignore);
-		return res_mgr->canAllocateChannel(chid, chid_ignore, system);
+		return res_mgr->canAllocateChannel(chid, chid_ignore, eDVBChannelID(), system);
 	}
 	return 0;
 }
@@ -251,7 +251,7 @@ int eStaticServiceDVBBouquetInformation::isPlayable(const eServiceReference &ref
 			};
 			int system;
 			((const eServiceReferenceDVB&)*it).getChannelID(chid);
-			int tmp = res->canAllocateChannel(chid, chid_ignore, system, simulate);
+			int tmp = res->canAllocateChannel(chid, chid_ignore, eDVBChannelID(), system, simulate);
 			if (prio_order == 127) // ignore dvb-type priority, try all alternatives one-by-one
 			{
 				if (((tmp > 0) || (!it->path.empty())))
@@ -403,7 +403,7 @@ int eStaticServiceDVBPVRInformation::getLength(const eServiceReference &ref)
 
 			/* check if cached data is still valid */
 	if (m_parser.m_data_ok && (s.st_size == m_parser.m_filesize) && (m_parser.m_length))
-		return (int)(m_parser.m_length / 90000);
+		return m_parser.m_length / 90000;
 
 			/* open again, this time with stream info */
 	if (tstools.openFile(ref.path.c_str()))
@@ -423,7 +423,7 @@ int eStaticServiceDVBPVRInformation::getLength(const eServiceReference &ref)
  	m_parser.m_length = len;
 	m_parser.m_filesize = s.st_size;
 	m_parser.updateMeta(ref.path);
-	return (int)(m_parser.m_length / 90000);
+	return m_parser.m_length / 90000;
 }
 
 int eStaticServiceDVBPVRInformation::getInfo(const eServiceReference &ref, int w)
@@ -638,9 +638,7 @@ RESULT eDVBPVRServiceOfflineOperations::reindex()
 	int result;
 	/* Release global interpreter lock */
 	Py_BEGIN_ALLOW_THREADS;
-	{
-		result = reindex_work(m_ref.path.c_str());
-	}
+	result = reindex_work(m_ref.path.c_str());
 	Py_END_ALLOW_THREADS;
 	return result;
 }
@@ -2040,8 +2038,20 @@ std::string eDVBServicePlay::getInfoString(int w)
 	switch (w)
 	{
 	case sProvider:
+	{
 		if (!m_dvb_service) return "";
-		return m_dvb_service->m_provider_name;
+		std::string prov = m_dvb_service->m_provider_name;
+		if (prov.empty()) {
+			eServiceReferenceDVB sRelayOrigSref;
+			bool res = ((const eServiceReferenceDVB&)m_reference).getSROriginal(sRelayOrigSref);
+			if (res) {
+				ePtr<eDVBService> sRelayServiceOrigSref;
+				eDVBDB::getInstance()->getService(sRelayOrigSref, sRelayServiceOrigSref);
+				return sRelayServiceOrigSref->m_provider_name;
+			}
+		}
+		return prov;
+	}
 	case sServiceref:
 		return m_reference.toString();
 	case sHBBTVUrl:
@@ -2230,8 +2240,8 @@ int eDVBServicePlay::selectAudioStream(int i)
 
 	int rdsPid = apid;
 
-		/* if we are not in PVR mode, timeshift is not active and we are not in pip mode, check if we need to enable the rds reader */
-	if (!(m_is_pvr || m_timeshift_active || m_decoder_index || m_have_video_pid || !m_is_primary))
+	/* if we are not in PVR mode, timeshift is not active and we are not in pip mode, check if we need to enable the rds reader */
+	if (!(m_timeshift_active || m_decoder_index || m_have_video_pid || !m_is_primary))
 	{
 		int different_pid = program.videoStreams.empty() && program.audioStreams.size() == 1 && program.audioStreams[stream].rdsPid != -1;
 		if (different_pid)
@@ -2394,7 +2404,8 @@ bool eDVBServiceBase::tryFallbackTuner(eServiceReferenceDVB &service, bool &is_s
 		return false;
 	service.getChannelID(chid); 						// this sets chid
 	eServiceReferenceDVB().getChannelID(chid_ignore);	// this sets chid_ignore
-	if(res_mgr->canAllocateChannel(chid, chid_ignore, system))	// this sets system
+
+	if(res_mgr->canAllocateChannel(chid, chid_ignore, eDVBChannelID(), system))	// this sets system
 		return false;
 
 	if (eConfigManager::getConfigBoolValue("config.usage.remote_fallback_alternative", false) && !(system == iDVBFrontend::feSatellite))
