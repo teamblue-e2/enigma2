@@ -9,7 +9,7 @@ from Components.About import about
 from Components.ScrollLabel import ScrollLabel
 from Components.Button import Button
 from Components.config import config
-from enigma import eGetEnigmaDebugLvl
+from enigma import eGetEnigmaDebugLvl, getE2Rev
 
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
@@ -53,6 +53,7 @@ class About(Screen):
 		AboutText += _("Serial: ") + serial + "\n"
 		AboutText += _("CPU: ") + cpu + "\n"
 		AboutText += _("Image: ") + about.getImageTypeString() + " " + ImageType + "\n"
+		AboutText += _("Image Rev: ") + getE2Rev() +  "\n"
 		AboutText += _("OE Version: ") + about.getOEVersionString() + "\n"
 		ImageVersion = _("Last upgrade: ") + about.getImageVersionString()
 		AboutText += ImageVersion + "\n"
