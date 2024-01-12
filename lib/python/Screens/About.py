@@ -53,7 +53,7 @@ class About(Screen):
 		AboutText += _("Serial: ") + serial + "\n"
 		AboutText += _("CPU: ") + cpu + "\n"
 		AboutText += _("Image: ") + about.getImageTypeString() + " " + ImageType + "\n"
-		AboutText += _("Image Rev: ") + getE2Rev() +  "\n"
+		AboutText += _("Image revision: ") + getE2Rev() +  "\n"
 		AboutText += _("OE Version: ") + about.getOEVersionString() + "\n"
 		ImageVersion = _("Last upgrade: ") + about.getImageVersionString()
 		AboutText += ImageVersion + "\n"
@@ -139,12 +139,11 @@ class About(Screen):
 		twisted = popen('opkg list-installed  |grep -i python3-twisted-core').read().strip().split(' - ')[1]
 		AboutText += "Python-Twisted: " + str(twisted) + "\n"
 
-		AboutText += "\n"
 		self["TunerHeader"] = StaticText(_("Detected NIMs:"))
-		#AboutText += _("Detected NIMs:") + "\n"
+		AboutText += "\n" + _("Detected NIMs:") + "\n"
 
-		nims = nimmanager.nimList()
-		for count in list(range(len(nims))):
+		nims = nimmanager.nimListCompressed()
+		for count in range(len(nims)):
 			if count < 4:
 				self["Tuner" + str(count)] = StaticText(nims[count])
 			else:
@@ -171,9 +170,6 @@ class About(Screen):
 		self["hddA"] = StaticText(hddinfo)
 		AboutText += hddinfo
 
-		#AboutText += "\n\n" + _("Network Info")
-		#for x in about.GetIPsFromNetworkInterfaces():
-		#	AboutText += "\n" + iNetwork.getFriendlyAdapterDescription(x[0]) + " :" + "/dev/" + x[0] + " " + x[1]
 		AboutText += '\n\n' + _("Uptime") + ": " + about.getBoxUptime()
 		if SystemInfo["HasHDMI-CEC"] and config.hdmicec.enabled.value:
 			address = config.hdmicec.fixed_physical_address.value if config.hdmicec.fixed_physical_address.value != "0.0.0.0" else _("not set")
