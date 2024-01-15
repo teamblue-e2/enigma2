@@ -13,7 +13,7 @@ from Components.ServiceEventTracker import ServiceEventTracker
 from Components.ServiceList import refreshServiceList
 from Components.Sources.Boolean import Boolean
 from Components.config import config, ConfigBoolean, ConfigClock
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.UsageConfig import preferredInstantRecordPath, defaultMoviePath
 from Components.VolumeControl import VolumeControl
 from Components.Sources.StaticText import StaticText
@@ -1129,7 +1129,7 @@ class InfoBarMenu:
 		self.session.openWithCallback(self.mainMenuClosed, MainMenu, menu)
 
 	def showHDMiRecordSetup(self):
-		if SystemInfo["HasHDMI-In"]:
+		if BoxInfo.getItem("HasHDMI-In"):
 			self.session.openWithCallback(self.mainMenuClosed, Setup, 'HDMIRecord')
 
 	def mainMenuClosed(self, *val):
@@ -2280,8 +2280,8 @@ class InfoBarTimeshift:
 		self.restartSubtitle()
 
 	def setLCDsymbolTimeshift(self):
-		if SystemInfo["LCDsymbol_timeshift"]:
-			open(SystemInfo["LCDsymbol_timeshift"], "w").write(self.timeshiftEnabled() and "1" or "0")
+		if BoxInfo.getItem("LCDsymbol_timeshift"):
+			open(BoxInfo.getItem("LCDsymbol_timeshift"), "w").write(self.timeshiftEnabled() and "1" or "0")
 
 	def __serviceStarted(self):
 		self.pvrStateDialog.hide()
@@ -2428,7 +2428,7 @@ class InfoBarExtensions:
 
 	def __init__(self):
 		self.list = []
-		# self.addExtension((lambda: _("Softcam Setup"), self.openSoftcamSetup, lambda: config.misc.softcam_setup.extension_menu.value and SystemInfo["HasSoftcamInstalled"]), "1")
+		# self.addExtension((lambda: _("Softcam Setup"), self.openSoftcamSetup, lambda: config.misc.softcam_setup.extension_menu.value and BoxInfo.getItem("HasSoftcamInstalled")), "1")
 		self.addExtension((lambda: _("Manually import from fallback tuner"), self.importChannels, lambda: config.usage.remote_fallback_extension_menu.value and config.usage.remote_fallback_import.value))
 		self["InstantExtensionsActions"] = HelpableActionMap(self, ["InfobarExtensions"],
 			{
@@ -2564,7 +2564,7 @@ class InfoBarPiP:
 
 		self.lastPiPService = None
 
-		if SystemInfo["PIPAvailable"]:
+		if BoxInfo.getItem("PIPAvailable"):
 			self["PiPActions"] = HelpableActionMap(self, ["InfobarPiPActions"],
 				{
 					"activatePiP": (self.activePiP, self.activePiPName),
@@ -2629,7 +2629,7 @@ class InfoBarPiP:
 					if lastPiPServiceTimeout:
 						self.lastPiPServiceTimeoutTimer.startLongTimer(lastPiPServiceTimeout)
 				del self.session.pip
-				if SystemInfo["LCDMiniTV"]:
+				if BoxInfo.getItem("LCDMiniTV"):
 					if config.lcd.modepip.value >= "1":
 						f = open("/proc/stb/lcd/mode", "w")
 						f.write(config.lcd.modeminitv.value)
@@ -2644,7 +2644,7 @@ class InfoBarPiP:
 			if self.session.pip.playService(newservice):
 				self.session.pipshown = True
 				self.session.pip.servicePath = slist and slist.getCurrentServicePath()
-				if SystemInfo["LCDMiniTV"]:
+				if BoxInfo.getItem("LCDMiniTV"):
 					if config.lcd.modepip.value >= "1":
 						f = open("/proc/stb/lcd/mode", "w")
 						f.write(config.lcd.modepip.value)
@@ -3949,7 +3949,7 @@ class InfoBarHDMI:
 		self.hdmi_enabled_full = False
 		self.hdmi_enabled_pip = False
 
-		if SystemInfo["HasHDMI-In"]:
+		if BoxInfo.getItem("HasHDMI-In"):
 			if not self.hdmi_enabled_full:
 				self.addExtension((self.getHDMIInFullScreen, self.HDMIInFull, lambda: True), "blue")
 			if not self.hdmi_enabled_pip:

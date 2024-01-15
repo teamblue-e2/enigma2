@@ -2,7 +2,7 @@ from Screens.Screen import Screen
 from Components.ActionMap import NumberActionMap
 from Components.config import config, ConfigNothing, ConfigText, ConfigPassword
 from Components.Label import Label
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.ConfigList import ConfigListScreen
 from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
@@ -166,10 +166,10 @@ class Setup(ConfigListScreen, Screen):
 
 				requires = x.get("requires")
 				if requires:
-					if requires[0] == '!':
-						if SystemInfo.get(requires[1:], False):
+					if requires.startswith('!'):
+						if BoxInfo.getItem(requires[1:], False):
 							continue
-					elif not SystemInfo.get(requires, False):
+					elif not BoxInfo.getItem(requires, False):
 						continue
 				conditional = x.get("conditional")
 				if conditional and not eval(conditional):
