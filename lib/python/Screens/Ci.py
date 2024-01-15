@@ -5,12 +5,12 @@ from Components.Console import Console
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigSubList, KEY_LEFT, KEY_RIGHT, KEY_0, ConfigNothing, ConfigPIN, \
 	ConfigYesNo, NoSave
 from Screens.MessageBox import MessageBox
 from Tools.BoundFunction import boundFunction
-from enigma import eTimer, eDVBCI_UI, eDVBCIInterfaces
+from enigma import eTimer, eDVBCI_UI
 
 from Screens.Screen import Screen
 
@@ -22,34 +22,40 @@ def setCIBitrate(configElement):
 
 
 def setdvbCiDelay(configElement):
-	open(SystemInfo["CommonInterfaceCIDelay"], "w").write(configElement.value)
+	open(BoxInfo.getItem("CommonInterfaceCIDelay"), "w").write(configElement.value)
 	configElement.save()
 
 
 def setRelevantPidsRouting(configElement):
-	open(SystemInfo["CI%dRelevantPidsRoutingSupport" % configElement.slotid], "w").write("yes" if configElement.value else "no")
+	open(BoxInfo.getItem("CI%dRelevantPidsRoutingSupport" % configElement.slotid), "w").write("yes" if configElement.value else "no")
 
 
 def InitCiConfig():
 	config.ci = ConfigSubList()
 	config.cimisc = ConfigSubsection()
-	if SystemInfo["CommonInterface"]:
-		for slot in list(range(SystemInfo["CommonInterface"])):
+	if BoxInfo.getItem("CommonInterface"):
+		for slot in range(BoxInfo.getItem("CommonInterface")):
 			config.ci.append(ConfigSubsection())
 			config.ci[slot].canDescrambleMultipleServices = ConfigSelection(choices=[("auto", _("auto")), ("no", _("no")), ("yes", _("yes"))], default="auto")
 			config.ci[slot].use_static_pin = ConfigYesNo(default=True)
 			config.ci[slot].static_pin = ConfigPIN(default=0)
 			config.ci[slot].show_ci_messages = ConfigYesNo(default=True)
-			if SystemInfo["CI%dSupportsHighBitrates" % slot]:
-				config.ci[slot].canHandleHighBitrates = ConfigYesNo(default=True)
-				config.ci[slot].canHandleHighBitrates.slotid = slot
-				config.ci[slot].canHandleHighBitrates.addNotifier(setCIBitrate)
-			if SystemInfo["CI%dRelevantPidsRoutingSupport" % slot]:
+			if BoxInfo.getItem("CI%dSupportsHighBitrates" % slot):
+				highBitrateChoices = [("normal", _("normal")), ("high", _("high"))]
+				if exists("/proc/stb/tsmux/ci%d_tsclk_choices" % slot):
+					with open("/proc/stb/tsmux/ci%d_tsclk_choices" % slot) as fd:
+						choices = fd.read()
+						if "extra_high" in choices:
+							highBitrateChoices.append(("extra_high", _("extra high")))
+				config.ci[slot].highBitrate = ConfigSelection(default="high", choices=highBitrateChoices)
+				config.ci[slot].highBitrate.slotid = slot
+				config.ci[slot].highBitrate.addNotifier(setCIBitrate)
+			if BoxInfo.getItem("CI%dRelevantPidsRoutingSupport" % slot):
 				config.ci[slot].relevantPidsRouting = ConfigYesNo(default=False)
 				config.ci[slot].relevantPidsRouting.slotid = slot
 				config.ci[slot].relevantPidsRouting.addNotifier(setRelevantPidsRouting)
-		if SystemInfo["CommonInterfaceCIDelay"]:
-			config.cimisc.dvbCiDelay = ConfigSelection(default="256", choices=[("16"), ("32"), ("64"), ("128"), ("256")])
+		if BoxInfo.getItem("CommonInterfaceCIDelay"):
+			config.cimisc.dvbCiDelay = ConfigSelection(default="256", choices=[("16", "16"), ("32", "32"), ("64", "64"), ("128", "128"), ("256", "256")])
 			config.cimisc.dvbCiDelay.addNotifier(setdvbCiDelay)
 
 
@@ -383,7 +389,7 @@ class CiSelection(Screen):
 		self.state = {}
 		self.list = []
 		self.slot = 0
-		for slot in list(range(SystemInfo["CommonInterface"])):
+		for slot in range(BoxInfo.getItem("CommonInterface")):
 			state = eDVBCI_UI.getInstance().getState(slot)
 			if state != -1:
 				self.slot += 1
@@ -445,11 +451,11 @@ class CiSelection(Screen):
 		self.list.append((_("Reset persistent PIN code"), ConfigNothing(), 6, slot))
 		self.list.append((_("Show CI messages"), config.ci[slot].show_ci_messages, 3, slot))
 		self.list.append((_("Multiple service support"), config.ci[slot].canDescrambleMultipleServices, 3, slot))
-		if SystemInfo["CI%dSupportsHighBitrates" % slot]:
-			self.list.append((_("High bitrate support"), config.ci[slot].canHandleHighBitrates, 3, slot))
-		if SystemInfo["CI%dRelevantPidsRoutingSupport" % slot]:
+		if BoxInfo.getItem("CI%dSupportsHighBitrates" % slot):
+			self.list.append((_("High bitrate support"), config.ci[slot].highBitrate, 3, slot))
+		if BoxInfo.getItem("CI%dRelevantPidsRoutingSupport" % slot):
 			self.list.append((_("PID Filtering"), config.ci[slot].relevantPidsRouting, 3, slot))
-		if SystemInfo["CommonInterfaceCIDelay"]:
+		if BoxInfo.getItem("CommonInterfaceCIDelay"):
 			self.list.append((_("DVB CI Delay"), config.cimisc.dvbCiDelay, 3, slot))
 
 	def updateState(self, slot):
@@ -515,7 +521,7 @@ class CiSelection(Screen):
 		pass
 
 	def cancel(self):
-		for slot in list(range(SystemInfo["CommonInterface"])):
+		for slot in range(BoxInfo.getItem("CommonInterface")):
 			state = eDVBCI_UI.getInstance().getState(slot)
 			if state != -1:
 				CiHandler.unregisterCIMessageHandler(slot)

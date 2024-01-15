@@ -9,7 +9,7 @@ from Components.config import config
 from Components.AVSwitch import AVSwitch
 from Components.Console import Console
 from Components.ImportChannels import ImportChannels
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.Sources.StreamService import StreamServiceList
 from boxbranding import getMachineBrand, getMachineName, getBoxType
 from Components.Task import job_manager
@@ -92,7 +92,7 @@ class StandbyScreen(Screen):
 		self.setMute()
 
 		# set LCDminiTV off
-		if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
+		if BoxInfo.getItem("Display") and BoxInfo.getItem("LCDMiniTV"):
 			setLCDModeMinitTV("0")
 
 		self.paused_service = self.paused_action = False
@@ -123,7 +123,7 @@ class StandbyScreen(Screen):
 			del self.session.pip
 		self.session.pipshown = False
 
-		if SystemInfo["ScartSwitch"]:
+		if BoxInfo.getItem("ScartSwitch"):
 			self.avswitch.setInput("SCART")
 		else:
 			self.avswitch.setInput("AUX")
@@ -365,7 +365,7 @@ class TryQuitMainloop(MessageBox):
 				if not inStandby:
 					if os.path.exists("/usr/script/standby_enter.sh"):
 						Console().ePopen("/usr/script/standby_enter.sh")
-					if SystemInfo["HasHDMI-CEC"] and config.hdmicec.enabled.value and ((config.hdmicec.control_tv_standby.value and config.hdmicec.next_boxes_detect.value) or config.hdmicec.handle_deepstandby_events.value != "no"):
+					if BoxInfo.getItem("HasHDMI-CEC") and config.hdmicec.enabled.value and ((config.hdmicec.control_tv_standby.value and config.hdmicec.next_boxes_detect.value) or config.hdmicec.handle_deepstandby_events.value != "no"):
 						if config.hdmicec.control_tv_standby.value and config.hdmicec.next_boxes_detect.value:
 							import Components.HdmiCec
 							Components.HdmiCec.hdmi_cec.secondBoxActive()
