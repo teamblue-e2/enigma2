@@ -169,7 +169,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, InfoBarVmodeButton, InfoBarLongKeyDetection,
 		InfoBarAudioSelection, HelpableScreen, InfoBarNotifications, InfoBarServiceNotifications, InfoBarPVRState,
 		InfoBarCueSheetSupport, InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, Screen, InfoBarTeletextPlugin,
-		InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarPlugins, InfoBarPiP, InfoBarHDMI, InfoBarHotkey):
+		InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarPlugins, InfoBarPiP, InfoBarHDMI, InfoBarHotkey, InfoBarJobman):
 
 	ENABLE_RESUME_SUPPORT = True
 	ALLOW_SUSPEND = True
@@ -192,6 +192,11 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 				"right": self.right
 			}, prio=-2)
 
+		self["InstantExtensionsActions"] = HelpableActionMap(self, ["InfobarExtensions"],
+			{
+				"extensions": (self.showExtensionSelection, _("Show extensions...")),
+			}, 1) # lower priority
+
 		self["state"] = Label()
 		self["speed"] = Label()
 		self["statusicon"] = MultiPixmap()
@@ -204,7 +209,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 				InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, \
 				InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, \
 				InfoBarTeletextPlugin, InfoBarServiceErrorPopupSupport, InfoBarExtensions, \
-				InfoBarPlugins, InfoBarPiP, InfoBarHotkey:
+				InfoBarPlugins, InfoBarPiP, InfoBarHotkey, InfoBarJobman:
 			x.__init__(self)
 
 		self.servicelist = slist
