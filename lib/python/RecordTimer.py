@@ -192,20 +192,8 @@ class RecordTimerEntry(timer.TimerEntry):
 		self.autoincrease = False
 		self.autoincreasetime = 3600 * 24 # 1 day
 		self.tags = tags or []
-
-		if descramble == 'notset' and record_ecm == 'notset':
-			if config.recording.ecm_data.value == 'descrambled+ecm':
-				self.descramble = True
-				self.record_ecm = True
-			elif config.recording.ecm_data.value == 'scrambled+ecm':
-				self.descramble = False
-				self.record_ecm = True
-			elif config.recording.ecm_data.value == 'normal':
-				self.descramble = True
-				self.record_ecm = False
-		else:
-			self.descramble = descramble
-			self.record_ecm = record_ecm
+		self.descramble = descramble
+		self.record_ecm = record_ecm
 
 		self.wasInStandby = False
 		self.isAutoTimer = isAutoTimer
@@ -353,7 +341,8 @@ class RecordTimerEntry(timer.TimerEntry):
 			description = self.description
 			if self.repeated:
 				epgcache = eEPGCache.getInstance()
-				queryTime = self.begin + (self.end - self.begin) // 2
+				#This might need further investigation. Dp npt get exactly the middle, take 20% so we usually expect to get first event.
+				queryTime = self.begin + (self.end - self.begin) // 5
 				evt = epgcache.lookupEventTime(rec_ref, queryTime)
 				if evt:
 					if self.rename_repeat:
