@@ -1067,7 +1067,6 @@ class ChannelSelectionEdit:
 					self.servicelist.moveUp()
 
 	def insertService(self, serviceref):
-		currentIndex = self.servicelist.getCurrentIndex()
 		current = self.servicelist.getCurrent()
 		mutableList = self.getMutableList()
 		if mutableList:
