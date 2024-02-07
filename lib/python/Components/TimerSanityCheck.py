@@ -6,9 +6,6 @@ import RecordTimer
 from Tools.CIHelper import cihelper
 from Components.config import config
 
-from Tools.CIHelper import cihelper
-from Components.config import config
-
 
 class TimerSanityCheck:
 	def __init__(self, timerlist, newtimer=None):
@@ -136,7 +133,7 @@ class TimerSanityCheck:
 			weeks = (interval_end - offset_0) // 604800
 			if (interval_end - offset_0) % 604800:
 				weeks += 1
-			for cnt in list(range(int(weeks))):
+			for cnt in range(int(weeks)):
 				for event in self.rep_eventlist:
 					if event[1] == -1: # -1 is the identifier of the changed timer
 						event_begin = self.newtimer.begin
@@ -171,7 +168,7 @@ class TimerSanityCheck:
 
 ################################################################################
 # order list chronological
-		sorted(self.nrep_eventlist)
+		self.nrep_eventlist.sort()
 
 ##################################################################################
 # detect overlapping timers and overlapping times
@@ -299,7 +296,7 @@ class TimerSanityCheck:
 			idx += 1
 
 		if ConflictTimer is None:
-			print("[TimerSanityCheck] no conflict found.")
+			print("[TimerSanityCheck] conflict not found!")
 			return True
 
 ##################################################################################
