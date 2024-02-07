@@ -1,8 +1,7 @@
 from Components.ActionMap import ActionMap
-from Components.Button import Button
+from Components.Sources.StaticText import StaticText
 from Components.Label import Label
 from Components.config import config
-from Components.Sources.StaticText import StaticText
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.TimerList import TimerList
 from Components.TimerSanityCheck import TimerSanityCheck
@@ -22,6 +21,7 @@ from ServiceReference import ServiceReference
 from enigma import eServiceReference, eEPGCache
 import functools
 
+
 class TimerEditList(Screen):
 	EMPTY = 0
 	ENABLE = 1
@@ -33,8 +33,8 @@ class TimerEditList(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
-		_list = []
-		self.list = _list
+		list = []
+		self.list = list
 		self.url = None
 		self["timerlist"] = TimerList(list)
 		self["Service"] = ServiceEvent()
@@ -128,12 +128,12 @@ class TimerEditList(Screen):
 				else:
 					if stateRunning:
 						if t.isRunning() and t.repeated:
-							_list = (
+							list = (
 								(_("Stop current event but not coming events"), "stoponlycurrent"),
 								(_("Stop current event and disable coming events"), "stopall"),
 								(_("Don't stop current event but disable coming events"), "stoponlycoming")
 							)
-							self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("A repeating event is currently recording. What would you like to do?"), list=_list)
+							self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("A repeating event is currently recording. What would you like to do?"), list=list)
 							timer_changed = False
 					else:
 						t.disable()
@@ -261,8 +261,8 @@ class TimerEditList(Screen):
 		if config.usage.timerlist_finished_timer_position.index: #end of list
 			self.list.sort(key=functools.cmp_to_key(eol_compare))
 		else:
-			sorted(self.list, key=lambda x: x[0].begin)
-		self["timerlist"].l.setList(self.list)
+			self.list.sort(key=lambda x: x[0].begin)
+		self["timerlist"].setList(self.list)
 		self.updateState()
 
 	def showLog(self):
@@ -427,10 +427,10 @@ class TimerSanityConflict(Screen):
 
 		self["timerlist"] = TimerList(self.list)
 
-		self["key_red"] = Button(_("Cancel"))
-		self["key_green"] = Button("")
-		self["key_yellow"] = Button("")
-		self["key_blue"] = Button("")
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText("")
+		self["key_yellow"] = StaticText("")
+		self["key_blue"] = StaticText("")
 
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ShortcutActions", "TimerEditActions", "MenuActions"],
 			{
@@ -486,8 +486,8 @@ class TimerSanityConflict(Screen):
 			selected_timer = self["timerlist"].getCurrent()
 			if selected_timer and selected_timer.conflict_detection:
 				if config.usage.show_timer_conflict_warning.value:
-					_list = [(_("yes"), True), (_("no"), False), (_("yes") + " " + _("and never ask this again"), "never")]
-					self.session.openWithCallback(self.ignoreConflictConfirm, MessageBox, _("Warning!\nThis is an option for advanced users.\nReally disable timer conflict detection?"), list=_list)
+					list = [(_("yes"), True), (_("no"), False), (_("yes") + " " + _("and never ask this again"), "never")]
+					self.session.openWithCallback(self.ignoreConflictConfirm, MessageBox, _("Warning!\nThis is an option for advanced users.\nReally disable timer conflict detection?"), list=list)
 				else:
 					self.ignoreConflictConfirm(True)
 
