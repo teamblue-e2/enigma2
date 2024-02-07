@@ -368,25 +368,8 @@ class PowerKey:
 		globalActionMap.actions["discrete_off"] = self.standby
 
 	def shutdown(self):
-		wasRecTimerWakeup = False
-		from time import time
-		recordings = self.session.nav.getRecordings()
-		if not recordings:
-			next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
-		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
-			if os.path.exists("/tmp/was_rectimer_wakeup") and not self.session.nav.RecordTimer.isRecTimerWakeup():
-				f = open("/tmp/was_rectimer_wakeup", "r")
-				_file = f.read()
-				f.close()
-				wasRecTimerWakeup = int(_file) and True or False
-			if self.session.nav.RecordTimer.isRecTimerWakeup() or wasRecTimerWakeup:
-				print("[StartEnigma] PowerOff (timer wakewup) - Recording in progress or a timer about to activate, entering standby!")
-				self.standby()
-			else:
-				print("[StartEnigma] PowerOff - Now!")
-				self.session.open(Screens.Standby.TryQuitMainloop, 1)
-		elif not Screens.Standby.inTryQuitMainloop and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND:
-			print("[StartEnigma] PowerOff - Now!")
+		print("[StartEnigma] PowerOff - Now!")
+		if not Screens.Standby.inTryQuitMainloop and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND:
 			self.session.open(Screens.Standby.TryQuitMainloop, 1)
 		else:
 			return 0
