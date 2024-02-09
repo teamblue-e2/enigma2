@@ -27,7 +27,6 @@ from ServiceReference import ServiceReference, isPlayableForCur
 from time import localtime, strftime, ctime, time
 from bisect import insort
 from sys import maxsize
-import six
 
 # ok, for descriptions etc we have:
 # service reference  (to get the service name)
@@ -84,12 +83,7 @@ def checkForRecordings():
 	if NavigationInstance.instance.getRecordings():
 		return True
 	rec_time = NavigationInstance.instance.RecordTimer.getNextTimerTime(isWakeup=True)
-	if rec_time > 0 and (rec_time - time()) < 360:
-		print("another recording starts in", rec_time - time(), "seconds... do not shutdown yet")
 	return rec_time > 0 and (rec_time - time()) < 360
-
-
-wasRecTimerWakeup = False
 
 
 def createRecordTimerEntry(timer):
@@ -98,6 +92,8 @@ def createRecordTimerEntry(timer):
 		tags=timer.tags, descramble=timer.descramble, record_ecm=timer.record_ecm, always_zap=timer.always_zap,
 		zap_wakeup=timer.zap_wakeup, rename_repeat=timer.rename_repeat, conflict_detection=timer.conflict_detection,
 		pipzap=timer.pipzap)
+
+# please do not translate log messages
 
 
 class RecordTimerEntry(timer.TimerEntry):
@@ -135,7 +131,7 @@ class RecordTimerEntry(timer.TimerEntry):
 		if event == iRecordableService.evEnd:
 			print("RecordTimer.staticGotRecordEvent(iRecordableService.evEnd)")
 			if not checkForRecordings():
-				print("no starting recordings in the next 360 seconds... immediate shutdown")
+				print("No recordings busy of sceduled within 6 minutes so shutdown")
 				RecordTimerEntry.shutdown() # immediate shutdown
 		elif event == iRecordableService.evStart:
 			print("RecordTimer.staticGotRecordEvent(iRecordableService.evStart)")
@@ -157,7 +153,7 @@ class RecordTimerEntry(timer.TimerEntry):
 			RecordTimerEntry.staticGotRecordEvent(None, iRecordableService.evEnd)
 #################################################################
 
-	def __init__(self, serviceref, begin, end, name, description, eit, disabled=False, justplay=False, afterEvent=AFTEREVENT.AUTO, checkOldTimers=False, dirname=None, tags=None, descramble=True, record_ecm=False, always_zap=False, zap_wakeup="always", rename_repeat=True, conflict_detection=True, isAutoTimer=False, pipzap=False):
+	def __init__(self, serviceref, begin, end, name, description, eit, disabled=False, justplay=False, afterEvent=AFTEREVENT.AUTO, checkOldTimers=False, dirname=None, tags=None, descramble=True, record_ecm=False, always_zap=False, zap_wakeup="always", rename_repeat=True, conflict_detection=True, pipzap=False):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
 
 		if checkOldTimers:
@@ -194,10 +190,6 @@ class RecordTimerEntry(timer.TimerEntry):
 		self.tags = tags or []
 		self.descramble = descramble
 		self.record_ecm = record_ecm
-
-		self.wasInStandby = False
-		self.isAutoTimer = isAutoTimer
-
 		self.rename_repeat = rename_repeat
 		self.conflict_detection = conflict_detection
 		self.external = self.external_prev = False
@@ -235,13 +227,10 @@ class RecordTimerEntry(timer.TimerEntry):
 		self.resetState()
 
 	def __repr__(self):
-		return "RecordTimerEntry(name=%s, begin=%s, serviceref=%s, justplay=%s, isAutoTimer=%s)" % (self.name, ctime(self.begin), self.service_ref, self.justplay, self.isAutoTimer)
+		return "RecordTimerEntry(name=%s, begin=%s, serviceref=%s, justplay=%s)" % (self.name, ctime(self.begin), self.service_ref, self.justplay)
 
 	def log(self, code, msg):
-		try:
-			self.log_entries.append((int(time()), code, msg))
-		except:
-			pass
+		self.log_entries.append((int(time()), code, msg))
 		print("[TIMER]", msg)
 
 	def calculateFilename(self, name=None):
@@ -252,8 +241,6 @@ class RecordTimerEntry(timer.TimerEntry):
 		if name:
 			if config.recording.filename_composition.value == "event":
 				filename = name + ' - ' + begin_date + "_" + service_name
-			elif config.recording.filename_composition.value == "veryshort":
-				filename = name + " - " + begin_date
 			elif config.recording.filename_composition.value == "short":
 				filename = strftime("%Y%m%d", localtime(self.begin)) + " - " + name
 			elif config.recording.filename_composition.value == "long":
@@ -420,7 +407,6 @@ class RecordTimerEntry(timer.TimerEntry):
 					Screens.Standby.inStandby.paused_service = None
 					#wakeup standby
 					Screens.Standby.inStandby.Power()
-					self.log(5, "wakeup and zap to recording service")
 				else:
 					self.sendactivesource()
 					if RecordTimerEntry.wasInDeepStandby:
@@ -448,8 +434,8 @@ class RecordTimerEntry(timer.TimerEntry):
 					try:
 						trashcan_instance.cleanIfIdle(self.Filename)
 					except Exception as e:
-						 print("[TIMER] Failed to call Trashcan.instance.cleanIfIdle()")
-						 print("[TIMER] Error:", e)
+						print("[TIMER] Failed to call Trashcan.instance.cleanIfIdle()")
+						print("[TIMER] Error:", e)
 				# fine. it worked, resources are allocated.
 				self.next_activation = self.begin
 				self.backoff = 0
@@ -483,14 +469,8 @@ class RecordTimerEntry(timer.TimerEntry):
 				else:
 					self.log(8, "currently no service running... so we dont need to stop it")
 			return False
+
 		elif next_state == self.StateRunning:
-			global wasRecTimerWakeup
-			if os.path.exists("/tmp/was_rectimer_wakeup") and not wasRecTimerWakeup:
-				wasRecTimerWakeup = int(open("/tmp/was_rectimer_wakeup", "r").read()) and True or False
-				os.remove("/tmp/was_rectimer_wakeup")
-
-			self.autostate = Screens.Standby.inStandby
-
 			# if this timer has been cancelled, just go to "end" state.
 			if self.cancelled:
 				return True
@@ -616,7 +596,7 @@ class RecordTimerEntry(timer.TimerEntry):
 				self.rec_ref = None
 				self.background_zap = None
 			if not checkForRecordings():
-				if self.afterEvent == AFTEREVENT.DEEPSTANDBY or self.afterEvent == AFTEREVENT.AUTO and (Screens.Standby.inStandby or self.wasInStandby) and not config.misc.standbyCounter.value:
+				if self.afterEvent == AFTEREVENT.DEEPSTANDBY or self.afterEvent == AFTEREVENT.AUTO and (Screens.Standby.inStandby or RecordTimerEntry.wasInStandby) and not config.misc.standbyCounter.value:
 					if not Screens.Standby.inTryQuitMainloop:
 						if Screens.Standby.inStandby:
 							RecordTimerEntry.TryQuitMainloop()
@@ -739,22 +719,12 @@ class RecordTimerEntry(timer.TimerEntry):
 		RecordTimerEntry.keypress()
 		if answer:
 			AddNotification(Screens.Standby.TryQuitMainloop, 1)
-		else:
-			global wasRecTimerWakeup
-			wasRecTimerWakeup = False
 
 	def getNextActivation(self):
-		self.isStillRecording = False
-		if self.state == self.StateEnded or self.state == self.StateFailed:
-			if self.end > time():
-				self.isStillRecording = True
+		if self.state == self.StateEnded:
 			return self.end
 
 		next_state = self.state + 1
-
-		if next_state == self.StateEnded or next_state == self.StateFailed:
-			if self.end > time():
-				self.isStillRecording = True
 
 		return {self.StatePrepared: self.start_prepare,
 				self.StateRunning: self.begin,
@@ -847,9 +817,9 @@ class RecordTimerEntry(timer.TimerEntry):
 def createTimer(xml):
 	begin = int(xml.get("begin"))
 	end = int(xml.get("end"))
-	serviceref = ServiceReference(six.ensure_str(xml.get("serviceref")))
-	description = six.ensure_str(xml.get("description"))
-	repeated = six.ensure_str(xml.get("repeated"))
+	serviceref = ServiceReference(xml.get("serviceref"))
+	description = xml.get("description")
+	repeated = xml.get("repeated")
 	rename_repeat = int(xml.get("rename_repeat") or "1")
 	disabled = int(xml.get("disabled") or "0")
 	justplay = int(xml.get("justplay") or "0")
@@ -870,26 +840,23 @@ def createTimer(xml):
 	else:
 		eit = None
 	location = xml.get("location")
-	if location and location != "None":
-		location = six.ensure_str(location)
-	else:
+	if location == "None":
 		location = None
 	tags = xml.get("tags")
 	if tags and tags != "None":
-		tags = six.ensure_str(tags).split(' ')
+		tags = tags.split(' ')
 	else:
 		tags = None
 	descramble = int(xml.get("descramble") or "1")
 	record_ecm = int(xml.get("record_ecm") or "0")
-	isAutoTimer = int(xml.get("isAutoTimer") or "0")
 
-	name = six.ensure_str(xml.get("name"))
-	#filename = six.ensure_str(xml.get("filename"))
-	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname=location, tags=tags, descramble=descramble, record_ecm=record_ecm, always_zap=always_zap, zap_wakeup=zap_wakeup, rename_repeat=rename_repeat, conflict_detection=conflict_detection, isAutoTimer=isAutoTimer, pipzap=pipzap)
+	name = xml.get("name")
+	#filename = xml.get("filename")
+	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent, dirname=location, tags=tags, descramble=descramble, record_ecm=record_ecm, always_zap=always_zap, zap_wakeup=zap_wakeup, rename_repeat=rename_repeat, conflict_detection=conflict_detection, pipzap=pipzap)
 	entry.repeated = int(repeated)
 	flags = xml.get("flags")
 	if flags:
-		entry.flags = set(six.ensure_str(flags).split(' '))
+		entry.flags = set(flags.split(' '))
 
 	for l in xml.findall("log"):
 		time = int(l.get("time"))
@@ -958,9 +925,6 @@ class RecordTimer(timer.Timer):
 
 		self.stateChanged(w)
 
-	def isRecTimerWakeup(self):
-		return wasRecTimerWakeup
-
 	def checkWrongRunningTimers(self):
 		now = time() + 100
 		if int(now) > 1072224000:
@@ -983,6 +947,7 @@ class RecordTimer(timer.Timer):
 
 			print("timers.xml failed to load!")
 			try:
+				import os
 				os.rename(self.Filename, self.Filename + "_old")
 			except (IOError, OSError):
 				print("renaming broken timer failed")
@@ -1045,72 +1010,69 @@ class RecordTimer(timer.Timer):
 		#doc = xml.etree.ElementTree.ElementTree(root_element)
 		#doc.write(self.Filename)
 
-		_list = []
+		list = []
 
-		_list.append('<?xml version="1.0" ?>\n')
-		_list.append('<timers>\n')
+		list.append('<?xml version="1.0" ?>\n')
+		list.append('<timers>\n')
 
 		for timer in self.timer_list + self.processed_timers:
 			if timer.dontSave:
 				continue
 
-			_list.append('<timer')
-			_list.append(' begin="' + str(int(timer.begin)) + '"')
-			_list.append(' end="' + str(int(timer.end)) + '"')
-			_list.append(' serviceref="' + stringToXML(str(timer.service_ref)) + '"')
-			_list.append(' repeated="' + str(int(timer.repeated)) + '"')
-			_list.append(' name="' + str(stringToXML(timer.name)) + '"')
-			_list.append(' description="' + str(stringToXML(timer.description)) + '"')
-			_list.append(' afterevent="' + str(stringToXML({
+			list.append('<timer')
+			list.append(' begin="' + str(int(timer.begin)) + '"')
+			list.append(' end="' + str(int(timer.end)) + '"')
+			list.append(' serviceref="' + stringToXML(str(timer.service_ref)) + '"')
+			list.append(' repeated="' + str(int(timer.repeated)) + '"')
+			list.append(' name="' + str(stringToXML(timer.name)) + '"')
+			list.append(' description="' + str(stringToXML(timer.description)) + '"')
+			list.append(' afterevent="' + str(stringToXML({
 				AFTEREVENT.NONE: "nothing",
 				AFTEREVENT.STANDBY: "standby",
 				AFTEREVENT.DEEPSTANDBY: "deepstandby",
 				AFTEREVENT.AUTO: "auto"
 				}[timer.afterEvent])) + '"')
 			if timer.eit is not None:
-				_list.append(' eit="' + str(timer.eit) + '"')
+				list.append(' eit="' + str(timer.eit) + '"')
 			if timer.dirname:
-				_list.append(' location="' + str(stringToXML(timer.dirname)) + '"')
+				list.append(' location="' + str(stringToXML(timer.dirname)) + '"')
 			if timer.tags:
-				_list.append(' tags="' + str(stringToXML(' '.join(timer.tags))) + '"')
+				list.append(' tags="' + str(stringToXML(' '.join(timer.tags))) + '"')
 			if timer.disabled:
-				_list.append(' disabled="' + str(int(timer.disabled)) + '"')
-			_list.append(' justplay="' + str(int(timer.justplay)) + '"')
-			_list.append(' always_zap="' + str(int(timer.always_zap)) + '"')
-			_list.append(' pipzap="' + str(int(timer.pipzap)) + '"')
-			_list.append(' zap_wakeup="' + str(timer.zap_wakeup) + '"')
-			_list.append(' rename_repeat="' + str(int(timer.rename_repeat)) + '"')
-			_list.append(' conflict_detection="' + str(int(timer.conflict_detection)) + '"')
-			_list.append(' descramble="' + str(int(timer.descramble)) + '"')
-			_list.append(' record_ecm="' + str(int(timer.record_ecm)) + '"')
-			_list.append(' isAutoTimer="' + str(int(timer.isAutoTimer)) + '"')
+				list.append(' disabled="' + str(int(timer.disabled)) + '"')
+			list.append(' justplay="' + str(int(timer.justplay)) + '"')
+			list.append(' always_zap="' + str(int(timer.always_zap)) + '"')
+			list.append(' pipzap="' + str(int(timer.pipzap)) + '"')
+			list.append(' zap_wakeup="' + str(timer.zap_wakeup) + '"')
+			list.append(' rename_repeat="' + str(int(timer.rename_repeat)) + '"')
+			list.append(' conflict_detection="' + str(int(timer.conflict_detection)) + '"')
+			list.append(' descramble="' + str(int(timer.descramble)) + '"')
+			list.append(' record_ecm="' + str(int(timer.record_ecm)) + '"')
 			if timer.flags:
-				_list.append(' flags="' + ' '.join([stringToXML(x) for x in timer.flags]) + '"')
-			_list.append('>\n')
+				list.append(' flags="' + ' '.join([stringToXML(x) for x in timer.flags]) + '"')
+			list.append('>\n')
 
 			if config.recording.debug.value:
 				for time, code, msg in timer.log_entries:
-					_list.append('<log')
-					_list.append(' code="' + str(code) + '"')
-					_list.append(' time="' + str(time) + '"')
-					_list.append('>')
-					if isinstance(msg, int):
-						_list.append(str(msg))
-					else:
-						_list.append(str(stringToXML(msg)))
-					_list.append('</log>\n')
+					list.append('<log')
+					list.append(' code="' + str(code) + '"')
+					list.append(' time="' + str(time) + '"')
+					list.append('>')
+					list.append(str(stringToXML(msg)))
+					list.append('</log>\n')
 
-			_list.append('</timer>\n')
+			list.append('</timer>\n')
 
-		_list.append('</timers>\n')
+		list.append('</timers>\n')
 
-		_file = open(self.Filename + ".writing", "w", encoding='utf-8')
-		for x in _list:
-			_file.write(x)
-		_file.flush()
+		file = open(self.Filename + ".writing", "w")
+		for x in list:
+			file.write(x)
+		file.flush()
 
-		os.fsync(_file.fileno())
-		_file.close()
+		import os
+		os.fsync(file.fileno())
+		file.close()
 		os.rename(self.Filename + ".writing", self.Filename)
 
 	def getNextZapTime(self, isWakeup=False):
@@ -1120,14 +1082,6 @@ class RecordTimer(timer.Timer):
 				continue
 			return timer.begin
 		return -1
-
-	def getStillRecording(self):
-		isStillRecording = False
-		for timer in self.timer_list:
-			if timer.isStillRecording:
-				isStillRecording = True
-				break
-		return isStillRecording
 
 	def getNextRecordingTime(self):
 		now = time()
@@ -1292,8 +1246,8 @@ class RecordTimer(timer.Timer):
 					is_editable = True
 		return time_match and is_editable
 
-	def setFallbackTimerList(self, _list):
-		self.fallback_timer_list = [timer for timer in _list if timer.state != 3]
+	def setFallbackTimerList(self, list):
+		self.fallback_timer_list = [timer for timer in list if timer.state != 3]
 
 	def getAllTimersList(self):
 		return self.timer_list + self.fallback_timer_list
@@ -1305,17 +1259,12 @@ class RecordTimer(timer.Timer):
 		returnValue = None
 		type = 0
 		time_match = 0
-		isAutoTimer = False
 		bt = None
 		check_offset_time = not config.recording.margin_before.value and not config.recording.margin_after.value
 		end = begin + duration
 		refstr = ':'.join(service.split(':')[:11])
 		timersList = self.getAllTimersList() if not disabledTimers else self.getDisabledTimers()
 		for x in timersList:
-			if x.isAutoTimer == 1:
-				isAutoTimer = True
-			else:
-				isAutoTimer = False
 			if disabledTimers and not x.disabled:
 				continue
 			check = ':'.join(x.service_ref.ref.toString().split(':')[:11]) == refstr
@@ -1447,7 +1396,7 @@ class RecordTimer(timer.Timer):
 				if time_match:
 					if type in (2, 7, 12, 17, 22, 27, 32):
 						# When full recording do not look further
-						returnValue = (time_match, [type], isAutoTimer)
+						returnValue = (time_match, [type])
 						break
 					elif returnValue:
 						if type not in returnValue[1]:
