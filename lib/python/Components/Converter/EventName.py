@@ -22,6 +22,7 @@ class EventName(Converter):
 	PDCTIMESHORT = 12
 	ISRUNNINGSTATUS = 13
 	FORMAT_STRING = 14
+	RAWRATING = 15
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -56,6 +57,8 @@ class EventName(Converter):
 				self.type = self.PDCTIMESHORT
 			elif type == "IsRunningStatus":
 				self.type = self.ISRUNNINGSTATUS
+			elif type == "RawRating":
+				self.type = self.RAWRATING
 			else:
 				self.type = self.NAME
 
@@ -159,6 +162,10 @@ class EventName(Converter):
 					return _("reserved for future use")
 				return _("undefined")
 			return ""
+		elif self.type == self.RAWRATING:
+			rating = event.getParentalData()
+			if rating:
+				return "%d" % rating.getRating()
 		elif self.type == self.FORMAT_STRING:
 			begin = event.getBeginTime()
 			end = begin + event.getDuration()
