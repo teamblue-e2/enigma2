@@ -12,6 +12,7 @@ from Screens.MessageBox import MessageBox
 from Tools.BoundFunction import boundFunction
 from enigma import eTimer, eDVBCI_UI
 
+from os.path import exists
 from Screens.Screen import Screen
 
 forceNotShowCiMessages = False

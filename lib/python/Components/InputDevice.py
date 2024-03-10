@@ -205,7 +205,7 @@ config.plugins.remotecontroltype.rctype = ConfigInteger(default=0)
 
 class RcTypeControl:
 	def __init__(self):
-		if BoxInfo.getItem("RcTypeChangable") and os.path.exists('/proc/stb/info/boxtype'):
+		if BoxInfo.getItem("RcTypeChangable") and pathExists('/proc/stb/info/boxtype'):
 			self.isSupported = True
 
 			if config.plugins.remotecontroltype.rctype.value != 0:
