@@ -68,7 +68,7 @@ def InitLcd():
 	else:
 		detected = eDBoxLCD.getInstance() and eDBoxLCD.getInstance().detected()
 
-	BoxInfo.setItemi("Display", detected)
+	BoxInfo.setItem("Display", detected)
 	config.lcd = ConfigSubsection()
 
 	if fileExists("/proc/stb/lcd/mode"):
