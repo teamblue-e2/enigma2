@@ -93,8 +93,7 @@ class ImportChannels:
 						content = self.getUrl("%s/file?file=%s/%s" % (self.url, e2path, quote(_file))).readlines()
 					except Exception as e:
 						print("[Import Channels] Exception: %s" % str(e))
-						self.ImportChannelsDone(False, _("ERROR downloading file %s/%s") % (e2path, _file))
-						return
+						continue
 				else:
 					with open('%s/%s' % (e2path, _file), 'r') as f:
 						content = f.readlines()
