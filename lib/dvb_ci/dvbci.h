@@ -186,6 +186,33 @@ public:
 	PyObject *getDescrambleRules(int slotid);
 	RESULT setDescrambleRules(int slotid, SWIG_PYOBJECT(ePyObject) );
 	PyObject *readCICaIds(int slotid);
+	struct Message
+	{
+		enum
+		{
+			slotStateChanged,
+			mmiSessionDestroyed,
+			mmiDataReceived,
+			appNameChanged,
+			slotDecodingStateChanged
+		};
+		int m_type;
+		int m_slotid;
+		int m_state;
+		unsigned char m_tag[3];
+		unsigned char m_data[4096];
+		int m_len;
+		std::string m_appName;
+		Message(int type, int slotid): m_type(type), m_slotid(slotid) {};
+		Message(int type, int slotid, int state): m_type(type), m_slotid(slotid), m_state(state) {};
+		Message(int type, int slotid, std::string appName): m_type(type), m_slotid(slotid), m_appName(appName) {};
+		Message(int type, int slotid, const unsigned char* tag, unsigned char* data, int len): m_type(type), m_slotid(slotid), m_len(len)
+		{
+			memcpy(m_tag, tag, 3);
+			memcpy(m_data, data, len);
+		};
+	};
+
 };
 
 #endif
