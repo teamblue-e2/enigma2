@@ -183,8 +183,11 @@ class ImportChannels:
 
 			print("[Import Channels] Removing old local files...")
 			for _file in files:
-				print("- Removing %s..." % _file)
-				os.remove(os.path.join(e2path, _file))
+#				print("- Removing %s..." % _file)
+				try:
+					os.remove(os.path.join(e2path, _file))
+				except OSError:
+				    print("[Import Channels] File %s did not exist" % _file)
 
 			print("[Import Channels] Updating files...")
 			files = [x for x in os.listdir(self.tmp_dir)]
