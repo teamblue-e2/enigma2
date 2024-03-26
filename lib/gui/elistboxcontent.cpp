@@ -1035,8 +1035,6 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 	eListboxStyle *local_style = 0;
 	eRect sel_clip(m_selection_clip);
 	bool cursorValid = this->cursorValid();
-	gRGB border_color;
-	int border_size = 0;
 	bool isverticallb = true;
 
 	if (sel_clip.valid())
@@ -1046,8 +1044,6 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 	if (m_listbox)
 	{
 		local_style = m_listbox->getLocalStyle();
-		border_size = local_style->m_border_size;
-		border_color = local_style->m_border_color;
 		isverticallb = m_listbox->getOrientation() == 1;
 	}
 
