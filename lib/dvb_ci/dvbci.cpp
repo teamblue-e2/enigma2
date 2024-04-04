@@ -82,7 +82,7 @@ static char* readInputCI(int NimNumber)
 }
 
 eDVBCIInterfaces::eDVBCIInterfaces()
- : m_messagepump_thread(this, 1), m_messagepump_main(eApp, 1), m_runTimer(eTimer::create(this))
+ : m_messagepump_thread(this,1), m_messagepump_main(eApp,1), m_runTimer(eTimer::create(this))
 {
 	int num_ci = 0;
 	std::stringstream path;
@@ -1241,7 +1241,7 @@ void eDVBCISlot::data(int what)
 
 DEFINE_REF(eDVBCISlot);
 
-eDVBCISlot::eDVBCISlot(eMainloop *context, int nr)
+eDVBCISlot::eDVBCISlot(eMainloop *context, int nr):
 	startup_timeout(eTimer::create(context))
 {
 	char configStr[255];
@@ -1691,7 +1691,7 @@ int eDVBCISlot::setClockRate(int rate)
 {
 	char buf[64];
 	snprintf(buf, sizeof(buf), "/proc/stb/tsmux/ci%d_tsclk", slotid);
-	if(CFile::writeStr(buf, rate) == -1)
+	if(CFile::write(buf, rate ? "high" : "normal") == -1)
 		return -1;
 	return 0;
 }
