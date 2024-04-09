@@ -5,7 +5,7 @@ import NavigationInstance
 from Tools.Directories import fileExists
 from Components.ParentalControl import parentalControl
 from Components.ServiceEventTracker import ServiceEventTracker
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from boxbranding import getBoxType
 
 POLLTIME = 5 # seconds
@@ -150,7 +150,7 @@ class SymbolsCheckPoller:
 		if not fileExists("/proc/stb/lcd/symbol_play "):
 			return
 
-		if SystemInfo["SeekStatePlay"]:
+		if BoxInfo.getItem("SeekStatePlay"):
 			open("/proc/stb/lcd/symbol_play ", "w").write("1")
 		else:
 			open("/proc/stb/lcd/symbol_play ", "w").write("0")

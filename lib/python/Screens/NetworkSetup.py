@@ -540,7 +540,7 @@ class AdapterSetup(ConfigListScreen, HelpableScreen, Screen):
 		self.secondaryDNS = NoSave(ConfigIP(default=nameserver[1]))
 
 	def createSetup(self, element=None):
-		if SystemInfo["WakeOnLAN"]:
+		if BoxInfo.getItem("WakeOnLAN"):
 			self.wolstartvalue = config.network.wol.value
 		self.list = [(_("Use interface"), self.activateInterfaceEntry)]
 		if self.activateInterfaceEntry.value:
@@ -555,7 +555,7 @@ class AdapterSetup(ConfigListScreen, HelpableScreen, Screen):
 					self.list.append((_('Gateway'), self.gatewayConfigEntry))
 
 			havewol = False
-			if SystemInfo["WakeOnLAN"] and getBoxType() in ('gbquadplus', 'quadbox2400'):
+			if BoxInfo.getItem("WakeOnLAN") and getBoxType() in ('gbquadplus', 'quadbox2400'):
 				havewol = True
 			if havewol and self.iface == 'eth0':
 				self.list.append((_('Enable Wake On LAN'), config.network.wol))
@@ -737,7 +737,7 @@ class AdapterSetup(ConfigListScreen, HelpableScreen, Screen):
 	def keyCancelConfirm(self, result):
 		if not result:
 			return
-		if SystemInfo["WakeOnLAN"]:
+		if BoxInfo.getItem("WakeOnLAN"):
 			config.network.wol.setValue(self.wolstartvalue)
 		if not self.oldInterfaceState:
 			iNetwork.deactivateInterface(self.iface, self.keyCancelCB)
@@ -746,7 +746,7 @@ class AdapterSetup(ConfigListScreen, HelpableScreen, Screen):
 
 	def keyCancel(self):
 		self.hideInputHelp()
-		if self["config"].isChanged() or (SystemInfo["WakeOnLAN"] and self.wolstartvalue != config.network.wol.value):
+		if self["config"].isChanged() or (BoxInfo.getItem("WakeOnLAN") and self.wolstartvalue != config.network.wol.value):
 			self.session.openWithCallback(self.keyCancelConfirm, MessageBox, _("Really close without saving settings?"), default=False)
 		else:
 			self.close('cancel')
