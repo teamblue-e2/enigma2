@@ -1,5 +1,5 @@
 from Components.config import config, ConfigSelection, ConfigNothing
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Tools.Directories import fileExists
 from boxbranding import getBoxType
 
@@ -17,7 +17,7 @@ class WOL:
 
 
 def Init():
-	if SystemInfo["WakeOnLAN"] and getBoxType() in ('gbquadplus', 'quadbox2400'):
+	if BoxInfo.getItem("WakeOnLAN") and getBoxType() in ('gbquadplus', 'quadbox2400'):
 		def setWOLmode(value):
 			iwol.setWolState(config.network.wol.value)
 		iwol = WOL()

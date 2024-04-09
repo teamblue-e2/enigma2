@@ -746,7 +746,7 @@ class ConfigSequence(ConfigElement):
 		return str(v)
 
 	def fromstring(self, value):
-		ret = [int(x) for x in value.split(self.seperator)]
+		ret = [int(float(x)) for x in value.split(self.seperator)]
 		return ret + [int(x[0]) for x in self.limits[len(ret):]]
 
 	def onDeselect(self, session):
