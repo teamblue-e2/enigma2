@@ -15,10 +15,11 @@ bootuptime: integer, delay to allow the device to boot up, in milliseconds (opti
 lofl: integer, alternative LOF/L value (optional, default value is 9750)
 lofh: integer, alternative LOF/H value (optional, defaultvalue is 10600)
 -->
-<unicable version="20230506">
+<unicable version="20240410">
 	<lnb>
 		<manufacturer name="Dura-Sat(DUR-line)">
 			<product name="Unicable LNB" scrs="1210,1420,1680,2040"/>
+			<product name="MB6-UK Mono" positions="2" format="jess" bootuptime="2500" scrs= "1210,1420,1680,2040,1005,1050,1095,1140,1260,1305,1350,1475,1520,1565,1610,1725,1770,1815,1860,1905,1950,1995,2085,2130"/>
 			<product name="UK101" scrs="1210,1420,1680,2040" bootuptime="2500"/>
 			<product name="UK102" scrs="1210,1420,1680,2040"/>
 			<product name="UK104" scrs="1210,1420,1680,2040"/>
@@ -32,6 +33,7 @@ lofh: integer, alternative LOF/H value (optional, defaultvalue is 10600)
 			<product name="SCR-1" scrs="1210,1420,1680,2040"/>
 		</manufacturer>
 		<manufacturer name="Fuba">
+			<product name="DEK 124" format="jess" scrs="975,1025,1075,1125,1175,1225,1275,1325,1375,1425,1475,1525,1575,1625,1675,1730,1775,1825,1875,1925,1975,2025,2075,2125"/>
 			<product name="DEK 342" scrs="1210,1420,1680,2040"/>
 		</manufacturer>
 		<manufacturer name="Fte maximal">
@@ -48,6 +50,7 @@ lofh: integer, alternative LOF/H value (optional, defaultvalue is 10600)
 			<product name="GT-S1-2-3SCR4" scrs="1210,1420,1680,2040"/>
 			<product name="dLNB dHello" format="jess" bootuptime="2700" scrs="0975,1025,1075,1125,1175,1225,1275,1325,1375,1425,1475,1525,1575,1625,1675,1725,1775,1825,1875,1925,1975,2025,2075,2125"/>
 			<product name="GT-dLNB1-T" format="jess" bootuptime="2700" scrs="0975,1025,1075,1125,1175,1225,1275,1325,1375,1425,1475,1525,1575,1625,1675,1725,1775,1825,1875,1925,1975,2025,2075,2125"/>
+			<product name="GT-dLNB1-T - Poland" format="jess" bootuptime="2500" scrs="1210,1420,1680,2040,978,1028,1072,1116,1160,1271,1315,1359,1484,1528,1572,1616,2084,2128,1816,1860,1904,1948,1992,1728"/>
 			<product name="GT-dLNB1-DY" format="jess" bootuptime="2700" scrs="0975,1025,1075,1125,1175,1225,1275,1325,1375,1425,1475,1525,1575,1625,1675,1725,1775,1825,1875,1925,1975,2025,2075,2125"/>
 			<product name="GT-S1dCSS24" bootuptime="2500" format="jess" scrs="0975,1025,1075,1125,1175,1225,1275,1325,1375,1425,1475,1525,1575,1625,1675,1725,1775,1825,1875,1925,1975,2025,2075,2125"/>
 			<product name="GT-S2dCSS24" bootuptime="2500" format="jess" scrs="0975,1025,1075,1125,1175,1225,1275,1325,1375,1425,1475,1525,1575,1625,1675,1725,1775,1825,1875,1925,1975,2025,2075,2125"/>
