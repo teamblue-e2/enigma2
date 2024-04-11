@@ -267,6 +267,8 @@ def setBoxInfoItems():
 	BoxInfo.setItem("HasHiSi", pathExists("/proc/hisi"))
 	BoxInfo.setItem("FCCactive", False)
 	BoxInfo.setItem("Autoresolution_proc_videomode", model in ("gbue4k", "gbquad4k") and "/proc/stb/video/videomode_50hz" or "/proc/stb/video/videomode")
+	BoxInfo.setItem("ArchIsARM64", BoxInfo.getItem("architecture") == "aarch64" or "64" in BoxInfo.getItem("architecture"))
+	BoxInfo.setItem("ArchIsARM", BoxInfo.getItem("architecture").startswith(("arm", "cortex")))
 
 
 setBoxInfoItems()
