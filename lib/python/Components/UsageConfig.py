@@ -461,6 +461,7 @@ def InitUsageConfig():
 		config.usage.LcdLiveTVMode = ConfigSelection(default="0", choices=[str(x) for x in range(0, 9)])
 		config.usage.LcdLiveTVMode.addNotifier(setLcdLiveTVMode)
 
+	config.usage.multiboot_order = ConfigYesNo(default=True)
 	if BoxInfo.getItem("LcdLiveDecoder"):
 		def setLcdLiveDecoder(configElement):
 			open(BoxInfo.getItem("LcdLiveDecoder"), "w").write(configElement.value)
