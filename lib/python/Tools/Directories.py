@@ -2,13 +2,18 @@
 import errno
 import os
 
-from enigma import eEnv
+from enigma import eEnv, eGetEnigmaDebugLvl
 from re import compile, split
 from stat import S_IMODE
 from sys import _getframe as getframe
 from unicodedata import normalize
+from xml.etree.ElementTree import Element, ParseError, fromstring, parse
 
 pathExists = os.path.exists
+
+DEFAULT_MODULE_NAME = __name__.split(".")[-1]
+
+forceDebug = eGetEnigmaDebugLvl() > 4
 
 SCOPE_HOME = 0  # DEBUG: Not currently used in Enigma2.
 SCOPE_LANGUAGE = 1
@@ -263,6 +268,44 @@ def bestRecordingLocation(candidates):
 			print("[Directories] Error %d: Couldn't get free space for '%s' (%s)" % (err.errno, candidate[1], err.strerror))
 	return path
 
+
+def fileReadXML(filename, default=None, source=DEFAULT_MODULE_NAME, debug=False):
+	dom = None
+	try:
+		with open(filename, "r") as fd:  # This open gets around a possible file handle leak in Python's XML parser.
+			try:
+				dom = parse(fd).getroot()
+				msg = "Read"
+			except ParseError as err:
+				fd.seek(0)
+				content = fd.readlines()
+				line, column = err.position
+				print("[%s] XML Parse Error: '%s' in '%s'!" % (source, err, filename))
+				data = content[line - 1].replace("\t", " ").rstrip()
+				print("[%s] XML Parse Error: '%s'" % (source, data))
+				print("[%s] XML Parse Error: '%s^%s'" % (source, "-" * column, " " * (len(data) - column - 1)))
+			except Exception as err:
+				print("[%s] Error: Unable to parse data in '%s' - '%s'!" % (source, filename, err))
+	except (IOError, OSError) as err:
+		if err.errno == errno.ENOENT:  # ENOENT - No such file or directory.
+			print("[%s] Warning: File '%s' does not exist!" % (source, filename))
+		else:
+			print("[%s] Error %d: Opening file '%s'!  (%s)" % (source, err.errno, filename, err.strerror))
+	except Exception as err:
+		print("[%s] Error: Unexpected error opening/parsing file '%s'!  (%s)" % (source, filename, err))
+		print_exc()
+	if dom is None:
+		if default and isinstance(default, str):
+			dom = fromstring(default)
+			msg = "Default (XML)"
+		elif default and isinstance(default, Element):
+			dom = default
+			msg = "Default (DOM)"
+		else:
+			msg = "Failed to read"
+	if debug or forceDebug:
+		print("[%s] Line %d: %s from XML file '%s'." % (source, stack()[1][0].f_lineno, msg, filename))
+	return dom
 
 def defaultRecordingLocation(candidate=None):
 	if candidate and pathExists(candidate):
