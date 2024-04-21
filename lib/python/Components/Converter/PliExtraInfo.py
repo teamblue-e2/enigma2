@@ -9,6 +9,7 @@ from Tools.Transponder import ConvertToHumanReadable
 from Tools.GetEcmInfo import GetEcmInfo
 from Components.Converter.Poll import Poll
 from Tools.Directories import pathExists
+from Components.SystemInfo import BoxInfo
 from skin import parameters
 
 caid_data = (
@@ -78,10 +79,24 @@ def getCryptoInfo(info):
 		current_ecmpid = "0"
 	return current_source, current_caid, current_provid, current_ecmpid
 
-def createCurrentCaidLabel(info):
-	current_source, current_caid, current_provid, current_ecmpid = getCryptoInfo(info)
-	res = "---"
-	if not pathExists("/tmp/ecm.info"):
+
+def createCurrentCaidLabel(info, currentCaid=None):
+	if currentCaid:
+		current_caid = currentCaid
+	else:
+		current_source, current_caid, current_provid, current_ecmpid = getCryptoInfo(info)
+	res = ""
+	decodingCiSlot = -1
+	NUM_CI = BoxInfo.getItem("CommonInterface")
+	if NUM_CI and NUM_CI > 0:
+		if dvbCIUI:
+			for slot in range(NUM_CI):
+				stateDecoding = dvbCIUI.getDecodingState(slot)
+				stateSlot = dvbCIUI.getState(slot)
+				if stateDecoding == 2 and stateSlot not in (-1, 0, 3):
+					decodingCiSlot = slot
+		
+	if not pathExists("/tmp/ecm.info") and decodingCiSlot == -1:
 		return "FTA"
 	for caid_entry in caid_data:
 		if int(caid_entry[0], 16) <= int(current_caid, 16) <= int(caid_entry[1], 16):
@@ -171,15 +186,8 @@ class PliExtraInfo(Poll, Converter):
 		res += "\c%08x" % colors[3] # white (this acts like a color "reset" for following strings
 		return res
 
-	def createCurrentCaidLabel(self):
-		res = ""
-		if not pathExists("/tmp/ecm.info"):
-			return "FTA"
-		for caid_entry in caid_data:
-			if int(caid_entry[0], 16) <= int(self.current_caid, 16) <= int(caid_entry[1], 16):
-				res = caid_entry[4]
-
-		return res
+	def createCurrentCaidLabel(self, info):
+		return createCurrentCaidLabel(info, self.current_caid)
 
 	def createCryptoSpecial(self, info):
 		caid_name = "FTA"
@@ -353,7 +361,7 @@ class PliExtraInfo(Poll, Converter):
 
 		if self.type == "CurrentCrypto":
 			self.getCryptoInfo(info)
-			return self.createCurrentCaidLabel()
+			return self.createCurrentCaidLabel(info)
 
 		if self.type == "CryptoBar":
 			self.getCryptoInfo(info)

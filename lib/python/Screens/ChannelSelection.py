@@ -352,7 +352,7 @@ class ChannelContextMenu(Screen):
 						append_when_current_valid(current, menu, (_("Unpin Userbouquet"), self.toggleBouquet), level=2)
 					else:
 						append_when_current_valid(current, menu, (_("Pin Userbouquet"), self.toggleBouquet), level=2)
-				append_when_current_valid(current, menu, (_("Reload services/bouquets list"), self.reloadServicesBouquets), level=2)
+				append_when_current_valid(current, menu, (_("Reload services/bouquets list"), self.reloadServices), level=2)
 		if self.inBouquet: # current list is editable?
 			if csel.bouquet_mark_edit == OFF:
 				if csel.movemode:
