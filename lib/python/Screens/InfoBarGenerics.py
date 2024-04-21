@@ -43,7 +43,7 @@ from Tools.Directories import fileExists, getRecordingFilename, moveFiles, isPlu
 from Tools.Notifications import AddPopup, AddNotificationWithCallback, current_notifications, lock, notificationAdded, notifications, RemovePopup
 
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, getDesktop, eDVBDB
-
+from skin import findSkinScreen
 from time import time, localtime, strftime
 import os
 from bisect import insort
@@ -178,8 +178,12 @@ class InfoBarStreamRelay:
 		self.__srefs.sort(key=lambda ref: (int((x := ref.split(":"))[6], 16), int(x[5], 16), int(x[4], 16), int(x[3], 16)))
 		open(self.FILENAME, 'w').write('\n'.join(self.__srefs))
 
+	def splitref(self, ref):
+		ref = ref.split(":")
+		return ":".join(ref[:11]), len(ref) > 11 and ref[-1]
+
 	def toggle(self, nav, service):
-		if (servicestring := (service and service.toString())):
+		if (servicestring := (service and self.splitref(service.toString())[0])):
 			if servicestring in self.__srefs:
 				self.__srefs.remove(servicestring)
 			else:
@@ -198,19 +202,19 @@ class InfoBarStreamRelay:
 	data = property(getData, setData)
 
 	def streamrelayChecker(self, playref):
-		playrefstring = playref.toString()
+		playrefstring, renamestring = self.splitref(playref.toString())
 		if '%3a//' not in playrefstring and playrefstring in self.__srefs:
 			url = "http://%s:%s/" % (config.misc.softcam_streamrelay_url.getHTML(), config.misc.softcam_streamrelay_port.value)
 			if "127.0.0.1" in url:
 				playrefmod = ":".join([("%x" % (int(x[1], 16) + 1)).upper() if x[0] == 6 else x[1] for x in enumerate(playrefstring.split(':'))])
 			else:
 				playrefmod = playrefstring
-			playref = eServiceReference("%s%s%s:%s" % (playrefmod, url.replace(":", "%3a"), playrefstring.replace(":", "%3a"), ServiceReference(playref).getServiceName()))
+			playref = eServiceReference("%s%s%s:%s" % (playrefmod, url.replace(":", "%3a"), playrefstring.replace(":", "%3a"), renamestring or ServiceReference(playref).getServiceName()))
 			print(f"[{self.__class__.__name__}] Play service {playref.toString()} via streamrelay")
 		return playref
 
 	def checkService(self, service):
-		return service and service.toString() in self.__srefs
+		return service and self.splitref(service.toString())[0] in self.__srefs
 
 
 streamrelay = InfoBarStreamRelay()
@@ -379,14 +383,24 @@ class InfoBarShowHide(InfoBarScreenSaver):
 
 		self.onShowHideNotifiers = []
 
-		self.actualSecondInfoBarScreen = None
+		self.actualSecondInfoBarScreen = self.InfoBarAdds = None
 		self.secondInfoBarScreen = None
 		if isStandardInfoBar(self):
 			self.secondInfoBarScreen = self.session.instantiateDialog(SecondInfoBar, "SecondInfoBar")
 			self.secondInfoBarScreen.show()
+			self.secondInfoBarScreen.onShow.append(self.__SecondInfobarOnShow)
+			self.secondInfoBarScreen.onHide.append(self.__SecondInfobarOnHide)
 			self.secondInfoBarScreenSimple = self.session.instantiateDialog(SecondInfoBar, "SecondInfoBarSimple")
 			self.secondInfoBarScreenSimple.show()
+			self.secondInfoBarScreenSimple.onShow.append(self.__SecondInfobarOnShow)
+			self.secondInfoBarScreenSimple.onHide.append(self.__SecondInfobarOnHide)
 			self.actualSecondInfoBarScreen = config.usage.show_simple_second_infobar.value and self.secondInfoBarScreenSimple.skinAttributes and self.secondInfoBarScreenSimple or self.secondInfoBarScreen
+			if findSkinScreen("InfoBarAdds"):
+				self.InfoBarAdds = self.session.instantiateDialog(SecondInfoBar, "InfoBarAdds")
+				self.InfoBarAdds.show()
+
+		self.InfobarPluginScreens = [self.session.instantiateDialog(plugin) for plugin in plugins.getPlugins(where=PluginDescriptor.WHERE_INFOBAR_SCREEN)]
+		self.SecondInfobarPluginScreens = [self.session.instantiateDialog(plugin) for plugin in plugins.getPlugins(where=PluginDescriptor.WHERE_SECONDINFOBAR_SCREEN)]
 
 		from Screens.InfoBar import InfoBar
 		InfoBarInstance = InfoBar.instance
@@ -405,14 +419,20 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		if self.actualSecondInfoBarScreen:
 			self.secondInfoBarScreen.hide()
 			self.secondInfoBarScreenSimple.hide()
+		if self.InfoBarAdds:
+			self.InfoBarAdds.hide()
 		self.hideVBILineScreen.hide()
 
 	def __onShow(self):
 		self.__state = self.STATE_SHOWN
 		for x in self.onShowHideNotifiers:
 			x(True)
+		for PluginScreen in self.InfobarPluginScreens:
+			PluginScreen.show()
 		self.startHideTimer()
 		VolumeControl.instance and VolumeControl.instance.showMute()
+		if self.InfoBarAdds and config.usage.show_infobar_adds.value:
+			self.InfoBarAdds.show()
 
 	def doDimming(self):
 		if config.usage.show_infobar_do_dimming.value:
@@ -441,22 +461,50 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.actualSecondInfoBarScreen.hide()
 		for x in self.onShowHideNotifiers:
 			x(False)
+		for PluginScreen in self.InfobarPluginScreens:
+			PluginScreen.hide()
+		if self.InfoBarAdds:
+			self.InfoBarAdds.hide()
+
+	def __SecondInfobarOnShow(self):
+		for PluginScreen in self.InfobarPluginScreens:
+			PluginScreen.hide()
+		for PluginScreen in self.SecondInfobarPluginScreens:
+			PluginScreen.show()
+
+	def __SecondInfobarOnHide(self):
+		for PluginScreen in self.SecondInfobarPluginScreens:
+			PluginScreen.hide()
 
 	def toggleShowLong(self):
 		if not config.usage.ok_is_channelselection.value:
-			self.toggleSecondInfoBar()
+			self.toggleViews()
 
 	def hideLong(self):
 		if config.usage.ok_is_channelselection.value:
+			self.toggleViews()
+
+	def toggleViews(self):
+		if self.shown:
+			self.toggleInfoBarAddon()
+		else:
 			self.toggleSecondInfoBar()
 
 	def toggleSecondInfoBar(self):
-		if self.actualSecondInfoBarScreen and not self.shown and not self.actualSecondInfoBarScreen.shown and self.secondInfoBarScreenSimple.skinAttributes and self.secondInfoBarScreen.skinAttributes:
+		if self.actualSecondInfoBarScreen and not self.actualSecondInfoBarScreen.shown and self.secondInfoBarScreenSimple.skinAttributes and self.secondInfoBarScreen.skinAttributes:
 			self.actualSecondInfoBarScreen.hide()
 			config.usage.show_simple_second_infobar.value = not config.usage.show_simple_second_infobar.value
 			config.usage.show_simple_second_infobar.save()
 			self.actualSecondInfoBarScreen = config.usage.show_simple_second_infobar.value and self.secondInfoBarScreenSimple or self.secondInfoBarScreen
 			self.showSecondInfoBar()
+
+	def toggleInfoBarAddon(self):
+		if self.InfoBarAdds and (self.actualSecondInfoBarScreen and not self.actualSecondInfoBarScreen.shown or not self.actualSecondInfoBarScreen):
+			config.usage.show_infobar_adds.value = not config.usage.show_infobar_adds.value
+			if config.usage.show_infobar_adds.value:
+				self.InfoBarAdds.show()
+			else:
+				self.InfoBarAdds.hide()
 
 	def keyHide(self):
 		if self.__state == self.STATE_HIDDEN and self.session.pipshown and "popup" in config.usage.pip_hideOnExit.value:

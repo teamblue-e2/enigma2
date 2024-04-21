@@ -67,6 +67,9 @@ class PluginDescriptor:
 	# override internal RecordTimer navigation instance
 	# fnc must return the custom instance or None to skip it
 	WHERE_RECORDTIMER = 16
+	# a method where a plugin can add an instantiate screen at the infobars
+	WHERE_INFOBAR_SCREEN = 17
+	WHERE_SECONDINFOBAR_SCREEN = 18
 
 	def __init__(self, name="Plugin", where=[], description="", icon=None, fnc=None, wakeupfnc=None, needsRestart=None, internal=False, weight=0):
 		self.name = name
