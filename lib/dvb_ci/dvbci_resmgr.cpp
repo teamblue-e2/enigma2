@@ -2,6 +2,7 @@
 
 #include <lib/base/eerror.h>
 #include <lib/dvb_ci/dvbci_resmgr.h>
+#include <lib/dvb_ci/dvbci_ccmgr_helper.h>
 
 int eDVBCIResourceManagerSession::receivedAPDU(const unsigned char *tag,const void *data, int len)
 {
@@ -23,11 +24,10 @@ int eDVBCIResourceManagerSession::receivedAPDU(const unsigned char *tag,const vo
 			if (!len)
 				eDebugNoNewLine("nothing");
 			else
-			{
 				for (int i=0; i<len; i++)
 					eDebugNoNewLine("%02x ", ((const unsigned char*)data)[i]);
-				eDebugNoNewLine("\n");
-			}
+			eDebugNoNewLine("\n");
+
 			if (state == stateFirstProfileEnquiry)
 			{
 				// profile change

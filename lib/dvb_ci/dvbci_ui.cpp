@@ -15,10 +15,11 @@
 eDVBCI_UI *eDVBCI_UI::instance;
 
 eDVBCI_UI::eDVBCI_UI()
-	:eMMI_UI(MAX_SLOTS)
+	:eMMI_UI(MAX_SLOTS), m_messagepump(eApp,1)
 {
 	ASSERT(!instance);
 	instance = this;
+	CONNECT(m_messagepump.recv_msg, eDVBCI_UI::gotMessage);
 }
 
 eDVBCI_UI *eDVBCI_UI::getInstance()
