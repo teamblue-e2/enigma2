@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-12 11:21+0100\n"
+"POT-Creation-Date: 2024-04-24 10:35+0200\n"
 "PO-Revision-Date: 2016-11-17 12:51+0200\n"
 "Last-Translator: vovan43<vovan43@ex.ua>, sety <tim1065@mail.ru>, Irkoff <irkoff@gmail.com>\n"
 "Language-Team: gisclub.tv <http://gisclub.tv/>\n"
@@ -501,7 +501,7 @@ msgid "(activated +%d min)"
 msgstr ""
 
 #, fuzzy
-msgid "(current)"
+msgid "(current image)"
 msgstr "Активувати поточні налаштування"
 
 msgid "(empty)"
@@ -517,6 +517,9 @@ msgstr "(показати опції. DVD аудіо меню)"
 #, fuzzy
 msgid "(unknown)"
 msgstr "<невідомий>"
+
+msgid "* = Restart Required"
+msgstr ""
 
 msgid "* Only available if more than one interface is active."
 msgstr "* Доступно якщо активно більше одного інтерфейсу."
@@ -1904,8 +1907,15 @@ msgstr "С"
 msgid "CI (Common Interface) Setup"
 msgstr "Інтерфейс модулів"
 
+msgid "CI Boot Delay"
+msgstr ""
+
 msgid "CI assignment"
 msgstr "Призначення CI"
+
+#, fuzzy
+msgid "CI enabled"
+msgstr "увімкнено"
 
 #, fuzzy
 msgid "CI slot: "
@@ -2983,6 +2993,10 @@ msgstr ""
 msgid "Copy to bouquets"
 msgstr "копіювати в пакет"
 
+#, fuzzy
+msgid "Copying files"
+msgstr "%d файл"
+
 #, fuzzy, python-format
 msgid "Cores: %s"
 msgstr "Сервер: %s"
@@ -3501,6 +3515,10 @@ msgstr "Видалити файл"
 
 msgid "Deleted items"
 msgstr "Видалені"
+
+#, fuzzy
+msgid "Deleting files"
+msgstr "Видалити файл"
 
 msgid "Denmark"
 msgstr "Данія"
@@ -4093,10 +4111,6 @@ msgstr "Налаштування тюнера"
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "Помилка - неможливе сканування (%s)!"
-
-#, python-format
-msgid "ERROR downloading file %s/%s"
-msgstr ""
 
 msgid "East"
 msgstr "Схід"
@@ -5586,6 +5600,9 @@ msgstr ""
 msgid "HDMI-IN Recording settings"
 msgstr "Запис"
 
+msgid "HDMI-In"
+msgstr ""
+
 #, fuzzy
 msgid "HDR10 support"
 msgstr "Невідома"
@@ -5676,6 +5693,9 @@ msgid "Hidden network"
 msgstr "Прихована мережа"
 
 msgid "Hide"
+msgstr ""
+
+msgid "Hide and confirm invalid key message"
 msgstr ""
 
 msgid "Hide channel list in radio mode"
@@ -6129,6 +6149,14 @@ msgstr "Налаштування пульта"
 
 msgid "Insert"
 msgstr ""
+
+#, fuzzy
+msgid "Insert Service"
+msgstr "Інсталяція"
+
+#, fuzzy
+msgid "Insert entry"
+msgstr "Введення таймера"
 
 #, fuzzy
 msgid "Insert line before current line"
@@ -7261,6 +7289,10 @@ msgstr "Переміщуємо"
 msgid "Moving east..."
 msgstr "Переміщаємо на схід ..."
 
+#, fuzzy
+msgid "Moving files"
+msgstr "Переміщення на схід"
+
 msgid "Moving to position"
 msgstr "Переміщаємо на позицію"
 
@@ -8323,6 +8355,10 @@ msgstr "Pillarbox"
 
 msgid "Pilot"
 msgstr "Пілот"
+
+#, fuzzy
+msgid "Pin Userbouquet"
+msgstr "Дозволити мульти-букети"
 
 msgid "Pitcairn"
 msgstr ""
@@ -9395,6 +9431,10 @@ msgid "Reload blacklists"
 msgstr "Оновити чорний/білий список"
 
 #, fuzzy
+msgid "Reload services/bouquets list"
+msgstr "Сервиси"
+
+#, fuzzy
 msgid "Reloading EPG Cache..."
 msgstr "Оновлення фаворитів і сервісів...."
 
@@ -10316,6 +10356,10 @@ msgid "Select OPKG source....."
 msgstr "Вибір джерела оновлення"
 
 #, fuzzy
+msgid "Select Service"
+msgstr "Вибір відео"
+
+#, fuzzy
 msgid "Select Software Update"
 msgstr "Оновлення софта"
 
@@ -10474,7 +10518,15 @@ msgstr ""
 msgid "Select secondary softcam"
 msgstr ""
 
+#, fuzzy
+msgid "Select service name"
+msgstr "Назва сервісу"
+
 msgid "Select service to add..."
+msgstr "Вибір сервісу для додавання..."
+
+#, fuzzy
+msgid "Select service type"
 msgstr "Вибір сервісу для додавання..."
 
 #, fuzzy
@@ -10483,6 +10535,14 @@ msgstr "Вибір розташування"
 
 msgid "Select sort method:"
 msgstr ""
+
+#, fuzzy
+msgid "Select stream URL"
+msgstr "Вибір розташування"
+
+#, fuzzy
+msgid "Select stream type"
+msgstr "Вибрати тюнер"
 
 msgid "Select target folder"
 msgstr "Вибрати цільову папку"
@@ -10539,6 +10599,10 @@ msgstr "Вибрати шлях до відео"
 
 msgid "Select the shifted character set for the next character only"
 msgstr ""
+
+#, fuzzy
+msgid "Select the timer from the fallback tuner by default"
+msgstr "Вибрати шлях до відео"
 
 msgid "Select the tuner that controls the motorised dish."
 msgstr ""
@@ -10683,6 +10747,14 @@ msgstr "Сервиси"
 #, fuzzy
 msgid "Service ID"
 msgstr "Сервіс"
+
+#, fuzzy
+msgid "Service Name"
+msgstr "Назва сервісу"
+
+#, fuzzy
+msgid "Service Type"
+msgstr "Назва сервісу"
 
 #, fuzzy
 msgid "Service belongs to a parental protected bouquet"
@@ -11980,6 +12052,14 @@ msgstr "Порт стрімінгу"
 msgid "Stream Relay delay"
 msgstr "без затримки"
 
+#, fuzzy
+msgid "Stream Type"
+msgstr "Порт стрімінгу"
+
+#, fuzzy
+msgid "Stream URL"
+msgstr "Порт стрімінгу"
+
 msgid "Stream request"
 msgstr "Порт стрімінгу"
 
@@ -12604,6 +12684,10 @@ msgstr "Доступно щонайменше %d оновлень."
 
 msgid "There are currently no outstanding actions."
 msgstr "У поточний момент немає нових оновлень."
+
+#, fuzzy
+msgid "There are no items currently available for this screen."
+msgstr " доступних оновлень."
 
 #, fuzzy
 msgid "There are no saved playlists to delete!"
@@ -13459,6 +13543,10 @@ msgstr ""
 msgid "Unpack to current folder"
 msgstr "Показати поточний режим"
 
+#, fuzzy
+msgid "Unpin Userbouquet"
+msgstr "Дозволити мульти-букети"
+
 msgid "Unsupported"
 msgstr "Невідома"
 
@@ -13584,6 +13672,10 @@ msgstr ""
 msgid "Use a gateway"
 msgstr "Використовувати шлюз"
 
+#, fuzzy
+msgid "Use alternative skin"
+msgstr "додати альтернативу"
+
 msgid "Use as PiP if possible"
 msgstr ""
 
@@ -13621,6 +13713,10 @@ msgstr "Використовувати вимірювання потужност
 #, fuzzy
 msgid "Use skin default"
 msgstr "список за замовчуванням"
+
+#, fuzzy
+msgid "Use the alternative screen"
+msgstr "змінити альтернативу"
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
@@ -14178,6 +14274,9 @@ msgid "When enabled the receiver will automatically wake from standby when the T
 msgstr "Якщо увімкнено, ресивер буде використовувати субтитри, які були обрані раніше"
 
 msgid "When enabled the timer from the fallback tuner is imported"
+msgstr ""
+
+msgid "When enabled the timer from the fallback tuner is the default timer"
 msgstr ""
 
 msgid "When enabled then when you select a new channel in the channel selection the channel selection will not close. It will only close when you select the current playing service. This is a kind of preview mode"
@@ -15293,6 +15392,9 @@ msgstr "експериментальний фільм/відео"
 msgid "extensions"
 msgstr " Доповнень."
 
+msgid "extra high"
+msgstr ""
+
 msgid "extra wide"
 msgstr ""
 
@@ -15390,6 +15492,9 @@ msgstr "зберегти фрейм як растрове зображення"
 msgid "green"
 msgstr "зелений"
 
+msgid "half an hour"
+msgstr ""
+
 msgid "handicraft"
 msgstr "ремесло"
 
@@ -15404,6 +15509,9 @@ msgid "help..."
 msgstr "допомога..."
 
 msgid "hide"
+msgstr ""
+
+msgid "high"
 msgstr ""
 
 msgid "horizontal"
@@ -16172,6 +16280,10 @@ msgstr "вертикальна"
 
 msgid "violet"
 msgstr ""
+
+#, fuzzy
+msgid "wait for ci..."
+msgstr "очікування mmi..."
 
 msgid "wait for mmi..."
 msgstr "очікування mmi..."

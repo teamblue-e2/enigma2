@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-12 11:21+0100\n"
+"POT-Creation-Date: 2024-04-24 10:35+0200\n"
 "PO-Revision-Date: 2021-12-06 10:46+0100\n"
 "Last-Translator: teamblue-e2 <teamblue-e2@online.de>\n"
 "Language-Team: \n"
@@ -496,7 +496,7 @@ msgid "(activated +%d min)"
 msgstr "(activé + %d min)"
 
 #, fuzzy
-msgid "(current)"
+msgid "(current image)"
 msgstr "(image actuelle)"
 
 msgid "(empty)"
@@ -510,6 +510,9 @@ msgstr "(Afficher menu audio DVD optionnel)"
 
 msgid "(unknown)"
 msgstr "(inconnu)"
+
+msgid "* = Restart Required"
+msgstr ""
 
 msgid "* Only available if more than one interface is active."
 msgstr "* Seulement disponible si plus d'une interface est active."
@@ -1818,8 +1821,16 @@ msgstr "CI"
 msgid "CI (Common Interface) Setup"
 msgstr "Configuration CI (Interface Commune)"
 
+#, fuzzy
+msgid "CI Boot Delay"
+msgstr "Délai DVB CI"
+
 msgid "CI assignment"
 msgstr "Assignation CI"
+
+#, fuzzy
+msgid "CI enabled"
+msgstr "Activé"
 
 msgid "CI slot: "
 msgstr "Emplacement CI "
@@ -2876,6 +2887,10 @@ msgstr "Copier le répertoire"
 msgid "Copy to bouquets"
 msgstr "Copie aux bouquets"
 
+#, fuzzy
+msgid "Copying files"
+msgstr "Copier fichier"
+
 #, fuzzy, python-format
 msgid "Cores: %s"
 msgstr "Cores : %s"
@@ -3373,6 +3388,10 @@ msgstr "Supprimer l’image"
 
 msgid "Deleted items"
 msgstr "Eléments supprimés"
+
+#, fuzzy
+msgid "Deleting files"
+msgstr "Effacer fichier"
 
 msgid "Denmark"
 msgstr "Danemark"
@@ -3932,10 +3951,6 @@ msgstr "Configuration de l'EPGRefresh"
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "ERREUR - échec lors de l'analyse (%s) !"
-
-#, fuzzy, python-format
-msgid "ERROR downloading file %s/%s"
-msgstr "ERREUR lors du téléchargement du fichier %s"
 
 msgid "East"
 msgstr "Est"
@@ -5385,6 +5400,10 @@ msgstr "Actions HDMI-IN"
 msgid "HDMI-IN Recording settings"
 msgstr "Enregistrement HDMI"
 
+#, fuzzy
+msgid "HDMI-In"
+msgstr "HDMI CEC"
+
 msgid "HDR10 support"
 msgstr "support HDR10"
 
@@ -5469,6 +5488,9 @@ msgstr "Réseau caché"
 
 msgid "Hide"
 msgstr "Cacher"
+
+msgid "Hide and confirm invalid key message"
+msgstr ""
 
 msgid "Hide channel list in radio mode"
 msgstr "Cacher la liste des chaînes en mode radio"
@@ -5903,6 +5925,14 @@ msgstr "Périphériques entrée"
 
 msgid "Insert"
 msgstr "Insérer"
+
+#, fuzzy
+msgid "Insert Service"
+msgstr "Installation des services"
+
+#, fuzzy
+msgid "Insert entry"
+msgstr "Saisir programmation"
 
 #, fuzzy
 msgid "Insert line before current line"
@@ -6987,6 +7017,10 @@ msgstr "En mouvement"
 msgid "Moving east..."
 msgstr "En se déplaçant vers l'est..."
 
+#, fuzzy
+msgid "Moving files"
+msgstr "Déplacer fichier"
+
 msgid "Moving to position"
 msgstr "Déplacement vers position"
 
@@ -7987,6 +8021,10 @@ msgstr "Bandes noires"
 
 msgid "Pilot"
 msgstr "Pilote"
+
+#, fuzzy
+msgid "Pin Userbouquet"
+msgstr "Charger les userbouquets non liés"
 
 msgid "Pitcairn"
 msgstr "Pitcairn"
@@ -9000,6 +9038,10 @@ msgstr "Recharger les services"
 msgid "Reload blacklists"
 msgstr "Recharger la liste noire"
 
+#, fuzzy
+msgid "Reload services/bouquets list"
+msgstr "Recharger les services"
+
 msgid "Reloading EPG Cache..."
 msgstr "Recharger le cache EPG…"
 
@@ -9868,6 +9910,10 @@ msgstr "Sélectionner le disque dur"
 msgid "Select OPKG source....."
 msgstr "Sélectionner la source OPKG....."
 
+#, fuzzy
+msgid "Select Service"
+msgstr "Choisir un film"
+
 msgid "Select Software Update"
 msgstr "Choisir mise à jour logiciel"
 
@@ -10015,7 +10061,15 @@ msgstr "Choisir les satellites"
 msgid "Select secondary softcam"
 msgstr "Sélectionner la deuxième softcam"
 
+#, fuzzy
+msgid "Select service name"
+msgstr "Nom du service"
+
 msgid "Select service to add..."
+msgstr "Choisir service à ajouter..."
+
+#, fuzzy
+msgid "Select service type"
 msgstr "Choisir service à ajouter..."
 
 msgid "Select slot"
@@ -10023,6 +10077,14 @@ msgstr "Choisir un slot"
 
 msgid "Select sort method:"
 msgstr "Choisir la méthode de tri:"
+
+#, fuzzy
+msgid "Select stream URL"
+msgstr "Choisir un slot"
+
+#, fuzzy
+msgid "Select stream type"
+msgstr "Sélectionner un tuner"
 
 msgid "Select target folder"
 msgstr "Choisir le dossier cible"
@@ -10077,6 +10139,10 @@ msgstr "Sélectionnez le jeu de caractères décalé"
 
 msgid "Select the shifted character set for the next character only"
 msgstr "Sélectionnez le caractère décalé uniquement pour le suivant"
+
+#, fuzzy
+msgid "Select the timer from the fallback tuner by default"
+msgstr "Lorsque c’est activé les programmations du récepteur de repli sont importées"
 
 msgid "Select the tuner that controls the motorised dish."
 msgstr "Sélectionnez le tuner qui contrôle l’antenne motorisée."
@@ -10210,6 +10276,14 @@ msgstr "Service & PIDs"
 
 msgid "Service ID"
 msgstr "Service ID"
+
+#, fuzzy
+msgid "Service Name"
+msgstr "Nom du service"
+
+#, fuzzy
+msgid "Service Type"
+msgstr "Nom du service"
 
 #, fuzzy
 msgid "Service belongs to a parental protected bouquet"
@@ -11442,6 +11516,14 @@ msgstr "Demande de flux"
 msgid "Stream Relay delay"
 msgstr "Délai du défilement"
 
+#, fuzzy
+msgid "Stream Type"
+msgstr "Demande de flux"
+
+#, fuzzy
+msgid "Stream URL"
+msgstr "Demande de flux"
+
 msgid "Stream request"
 msgstr "Demande de flux"
 
@@ -12069,6 +12151,10 @@ msgstr "Il y a au moins %d mises à jour disponibles."
 
 msgid "There are currently no outstanding actions."
 msgstr "Il n'y a actuellement aucune action marquante."
+
+#, fuzzy
+msgid "There are no items currently available for this screen."
+msgstr "Il n'y a pas de mise à jour disponible"
 
 msgid "There are no saved playlists to delete!"
 msgstr "Il n’y a pas de liste de lecture à supprimer!"
@@ -12909,6 +12995,10 @@ msgstr "Décompresser vers %s"
 msgid "Unpack to current folder"
 msgstr "Décompresser dans le dossier actuel"
 
+#, fuzzy
+msgid "Unpin Userbouquet"
+msgstr "Charger les userbouquets non liés"
+
 msgid "Unsupported"
 msgstr "Non supporté"
 
@@ -13029,6 +13119,10 @@ msgstr "Utiliser les informations de l’EPG Virgin quand il est disponible."
 msgid "Use a gateway"
 msgstr "Utiliser la passerelle"
 
+#, fuzzy
+msgid "Use alternative skin"
+msgstr "Ajouter des alternatives"
+
 msgid "Use as PiP if possible"
 msgstr "Utiliser comme PiP si possible"
 
@@ -13065,6 +13159,10 @@ msgstr "Utiliser la mesure de puissance"
 #, fuzzy
 msgid "Use skin default"
 msgstr "Définir par défaut"
+
+#, fuzzy
+msgid "Use the alternative screen"
+msgstr "Modifier les alternatives"
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "Utilisez les touches de curseur pour sélectionner une image installée, puis le bouton Start."
@@ -13604,6 +13702,10 @@ msgid "When enabled the receiver will automatically wake from standby when the T
 msgstr "Lorsqu’il est activé, le récepteur en veille s’active automatiquement lorsque le téléviseur est allumé."
 
 msgid "When enabled the timer from the fallback tuner is imported"
+msgstr "Lorsque c’est activé les programmations du récepteur de repli sont importées"
+
+#, fuzzy
+msgid "When enabled the timer from the fallback tuner is the default timer"
 msgstr "Lorsque c’est activé les programmations du récepteur de repli sont importées"
 
 msgid "When enabled then when you select a new channel in the channel selection the channel selection will not close. It will only close when you select the current playing service. This is a kind of preview mode"
@@ -14716,6 +14818,10 @@ msgstr "Film expérimental/Vidéo"
 msgid "extensions"
 msgstr "Extensions"
 
+#, fuzzy
+msgid "extra high"
+msgstr "extra large"
+
 msgid "extra wide"
 msgstr "extra large"
 
@@ -14810,6 +14916,9 @@ msgstr "Saisir cette frame commme bitmap"
 msgid "green"
 msgstr "Vert"
 
+msgid "half an hour"
+msgstr ""
+
 msgid "handicraft"
 msgstr "Artisanat"
 
@@ -14824,6 +14933,9 @@ msgstr "Aide..."
 
 msgid "hide"
 msgstr "cacher"
+
+msgid "high"
+msgstr ""
 
 msgid "horizontal"
 msgstr "Horizontale"
@@ -15570,6 +15682,10 @@ msgstr "Verticale"
 
 msgid "violet"
 msgstr "violet"
+
+#, fuzzy
+msgid "wait for ci..."
+msgstr "Attente pour mmi..."
 
 msgid "wait for mmi..."
 msgstr "Attente pour mmi..."

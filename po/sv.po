@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-12 11:21+0100\n"
+"POT-Creation-Date: 2024-04-24 10:35+0200\n"
 "PO-Revision-Date: 2017-03-05 13:24+0100\n"
 "Last-Translator: Magnus Nilsson <mag_nilsson@hotmail.com>\n"
 "Language-Team: \n"
@@ -503,7 +503,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "(current)"
+msgid "(current image)"
 msgstr "Aktivera nuvarande konfiguration"
 
 #
@@ -522,6 +522,9 @@ msgstr "(visa utökad DVD ljudmeny)"
 #, fuzzy
 msgid "(unknown)"
 msgstr "okänd"
+
+msgid "* = Restart Required"
+msgstr ""
 
 #
 msgid "* Only available if more than one interface is active."
@@ -2104,9 +2107,17 @@ msgstr "C"
 msgid "CI (Common Interface) Setup"
 msgstr "Common Interface"
 
+msgid "CI Boot Delay"
+msgstr ""
+
 #
 msgid "CI assignment"
 msgstr "CI tilldelning"
+
+#
+#, fuzzy
+msgid "CI enabled"
+msgstr "aktiverad"
 
 #
 #, fuzzy
@@ -3274,6 +3285,10 @@ msgstr ""
 msgid "Copy to bouquets"
 msgstr "kopiera till favoritlista"
 
+#, fuzzy
+msgid "Copying files"
+msgstr "%d fil"
+
 #
 #, fuzzy, python-format
 msgid "Cores: %s"
@@ -3856,6 +3871,11 @@ msgstr "Ta bort fil"
 
 msgid "Deleted items"
 msgstr "Raderade objekt"
+
+#
+#, fuzzy
+msgid "Deleting files"
+msgstr "Ta bort fil"
 
 msgid "Denmark"
 msgstr ""
@@ -4526,10 +4546,6 @@ msgstr "Tunerkonfiguration"
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "FEL - misslyckades söka (%s)!"
-
-#, python-format
-msgid "ERROR downloading file %s/%s"
-msgstr ""
 
 #
 msgid "East"
@@ -6185,6 +6201,9 @@ msgstr ""
 msgid "HDMI-IN Recording settings"
 msgstr "Spelar in"
 
+msgid "HDMI-In"
+msgstr ""
+
 #, fuzzy
 msgid "HDR10 support"
 msgstr "stöds ej"
@@ -6285,6 +6304,9 @@ msgid "Hidden network"
 msgstr "Dolt nätverk"
 
 msgid "Hide"
+msgstr ""
+
+msgid "Hide and confirm invalid key message"
 msgstr ""
 
 msgid "Hide channel list in radio mode"
@@ -6778,6 +6800,16 @@ msgstr "Inmatningsenheter"
 
 msgid "Insert"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Insert Service"
+msgstr "Installerar"
+
+#
+#, fuzzy
+msgid "Insert entry"
+msgstr "Timerinmatning"
 
 #
 #, fuzzy
@@ -8058,6 +8090,11 @@ msgstr "Flyttar"
 msgid "Moving east..."
 msgstr "Flyttar öst..."
 
+#
+#, fuzzy
+msgid "Moving files"
+msgstr "Flytta öst"
+
 msgid "Moving to position"
 msgstr "Flyttar till position"
 
@@ -9242,6 +9279,11 @@ msgstr "Svarta kanter"
 #
 msgid "Pilot"
 msgstr "Pilot"
+
+#
+#, fuzzy
+msgid "Pin Userbouquet"
+msgstr "Aktivera flera favoritlistor"
 
 msgid "Pitcairn"
 msgstr ""
@@ -10483,6 +10525,11 @@ msgstr "Kanaler"
 msgid "Reload blacklists"
 msgstr "Ladda om svart / vitlistor"
 
+#
+#, fuzzy
+msgid "Reload services/bouquets list"
+msgstr "Kanaler"
+
 #, fuzzy
 msgid "Reloading EPG Cache..."
 msgstr "Laddar om favoritlistor och kanaler..."
@@ -11528,6 +11575,11 @@ msgstr "Ange uppgraderingskälla."
 
 #
 #, fuzzy
+msgid "Select Service"
+msgstr "Välj en film"
+
+#
+#, fuzzy
 msgid "Select Software Update"
 msgstr "Mjukvaruuppdatera"
 
@@ -11714,8 +11766,17 @@ msgstr ""
 msgid "Select secondary softcam"
 msgstr ""
 
+#, fuzzy
+msgid "Select service name"
+msgstr "Kanalnamn"
+
 #
 msgid "Select service to add..."
+msgstr "Välj kanal att lägga till..."
+
+#
+#, fuzzy
+msgid "Select service type"
 msgstr "Välj kanal att lägga till..."
 
 #
@@ -11725,6 +11786,16 @@ msgstr "Välj Sökväg"
 
 msgid "Select sort method:"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Select stream URL"
+msgstr "Välj Sökväg"
+
+#
+#, fuzzy
+msgid "Select stream type"
+msgstr "Välj en tuner"
 
 #
 msgid "Select target folder"
@@ -11785,6 +11856,11 @@ msgstr "Välj film sökväg"
 
 msgid "Select the shifted character set for the next character only"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Select the timer from the fallback tuner by default"
+msgstr "Välj film sökväg"
 
 msgid "Select the tuner that controls the motorised dish."
 msgstr ""
@@ -11949,6 +12025,14 @@ msgstr "Kanaler"
 #, fuzzy
 msgid "Service ID"
 msgstr "Kanal"
+
+#, fuzzy
+msgid "Service Name"
+msgstr "Kanalnamn"
+
+#, fuzzy
+msgid "Service Type"
+msgstr "Kanalnamn"
 
 #
 #, fuzzy
@@ -13407,6 +13491,14 @@ msgstr "Strömmningsförfrågan"
 msgid "Stream Relay delay"
 msgstr "Ingen fördröjning"
 
+#, fuzzy
+msgid "Stream Type"
+msgstr "Strömmningsförfrågan"
+
+#, fuzzy
+msgid "Stream URL"
+msgstr "Strömmningsförfrågan"
+
 msgid "Stream request"
 msgstr "Strömmningsförfrågan"
 
@@ -14096,6 +14188,11 @@ msgstr "Det finns minst %d uppdateringar tillgängliga."
 #
 msgid "There are currently no outstanding actions."
 msgstr "För tillfället är det inga åtgärder att utföra."
+
+#
+#, fuzzy
+msgid "There are no items currently available for this screen."
+msgstr "Inga uppdateringar tillgängliga."
 
 #
 #, fuzzy
@@ -15035,6 +15132,11 @@ msgid "Unpack to current folder"
 msgstr "Visa programdetaljer"
 
 #
+#, fuzzy
+msgid "Unpin Userbouquet"
+msgstr "Aktivera flera favoritlistor"
+
+#
 msgid "Unsupported"
 msgstr "Osupporterat"
 
@@ -15170,6 +15272,11 @@ msgstr ""
 msgid "Use a gateway"
 msgstr "Använd en gateway"
 
+#
+#, fuzzy
+msgid "Use alternative skin"
+msgstr "lägg till alternativ"
+
 msgid "Use as PiP if possible"
 msgstr ""
 
@@ -15211,6 +15318,11 @@ msgstr "Använd strömmätning"
 #, fuzzy
 msgid "Use skin default"
 msgstr "liststil grundläge"
+
+#
+#, fuzzy
+msgid "Use the alternative screen"
+msgstr "ändra alternativ"
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
@@ -15839,6 +15951,9 @@ msgid "When enabled the receiver will automatically wake from standby when the T
 msgstr "Vid aktiverad, kommer mottagaren automatiskt använda ljudspåret som du valt tidigare."
 
 msgid "When enabled the timer from the fallback tuner is imported"
+msgstr ""
+
+msgid "When enabled the timer from the fallback tuner is the default timer"
 msgstr ""
 
 msgid "When enabled then when you select a new channel in the channel selection the channel selection will not close. It will only close when you select the current playing service. This is a kind of preview mode"
@@ -17045,6 +17160,9 @@ msgstr "experimentell film/video"
 msgid "extensions"
 msgstr " utökningar."
 
+msgid "extra high"
+msgstr ""
+
 msgid "extra wide"
 msgstr ""
 
@@ -17157,6 +17275,9 @@ msgstr "grab den här framen som bitmap"
 msgid "green"
 msgstr "grön"
 
+msgid "half an hour"
+msgstr ""
+
 msgid "handicraft"
 msgstr "hantverk"
 
@@ -17173,6 +17294,9 @@ msgid "help..."
 msgstr "hjälp..."
 
 msgid "hide"
+msgstr ""
+
+msgid "high"
 msgstr ""
 
 #
@@ -18060,6 +18184,11 @@ msgstr "vertikal"
 
 msgid "violet"
 msgstr ""
+
+#
+#, fuzzy
+msgid "wait for ci..."
+msgstr "vänta på mmi..."
 
 #
 msgid "wait for mmi..."

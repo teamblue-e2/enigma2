@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-12 11:34+0100\n"
+"POT-Creation-Date: 2024-04-24 10:35+0200\n"
 "PO-Revision-Date: 2021-02-19 14:49+0100\n"
 "Last-Translator: \n"
 "Language-Team: Muzoss-VELEBRDO\n"
@@ -487,7 +487,7 @@ msgid "(activated +%d min)"
 msgstr "(активиран + %d мин.)"
 
 #, fuzzy
-msgid "(current)"
+msgid "(current image)"
 msgstr "Тековни"
 
 msgid "(empty)"
@@ -501,6 +501,9 @@ msgstr "(покажете мени за ДВД-звук, доколку е до�
 
 msgid "(unknown)"
 msgstr "(непознато)"
+
+msgid "* = Restart Required"
+msgstr ""
 
 msgid "* Only available if more than one interface is active."
 msgstr "* Достапно е само ако се активни повеќе од еден интерфејс."
@@ -1829,8 +1832,16 @@ msgstr "Ц"
 msgid "CI (Common Interface) Setup"
 msgstr "Поставки за CI (Заеднички интерфејс)"
 
+#, fuzzy
+msgid "CI Boot Delay"
+msgstr "Одложување на DVB CI"
+
 msgid "CI assignment"
 msgstr "Назначување на CI"
+
+#, fuzzy
+msgid "CI enabled"
+msgstr "овозможено"
 
 msgid "CI slot: "
 msgstr "CI слот: "
@@ -2871,6 +2882,10 @@ msgstr ""
 msgid "Copy to bouquets"
 msgstr "Копирајте во букети"
 
+#, fuzzy
+msgid "Copying files"
+msgstr "%d датотека"
+
 #, python-format
 msgid "Cores: %s"
 msgstr ""
@@ -3364,6 +3379,10 @@ msgstr "Избришан имиџ"
 
 msgid "Deleted items"
 msgstr "Избришани предмети"
+
+#, fuzzy
+msgid "Deleting files"
+msgstr "Избриши  датотека"
 
 msgid "Denmark"
 msgstr "Данска"
@@ -3937,10 +3956,6 @@ msgstr "Конфигурација на тјунер"
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "ГРЕШКА - Пребарувањето не успеа (% s)!"
-
-#, fuzzy, python-format
-msgid "ERROR downloading file %s/%s"
-msgstr "ГРЕШКА при преземање на датотеката% s"
 
 msgid "East"
 msgstr "Исток"
@@ -5371,6 +5386,10 @@ msgstr ""
 msgid "HDMI-IN Recording settings"
 msgstr "Поставки за прием"
 
+#, fuzzy
+msgid "HDMI-In"
+msgstr "HDMI"
+
 msgid "HDR10 support"
 msgstr "Поддршка за HDR10"
 
@@ -5457,6 +5476,9 @@ msgstr "Скриена мрежа"
 
 msgid "Hide"
 msgstr "Сокриј"
+
+msgid "Hide and confirm invalid key message"
+msgstr ""
 
 msgid "Hide channel list in radio mode"
 msgstr "Сокриј список на станици во режим на радио \""
@@ -5901,6 +5923,14 @@ msgstr "Влезни уреди"
 
 msgid "Insert"
 msgstr ""
+
+#, fuzzy
+msgid "Insert Service"
+msgstr "Инсталирање"
+
+#, fuzzy
+msgid "Insert entry"
+msgstr "Внес на тајмер"
 
 #, fuzzy
 msgid "Insert line before current line"
@@ -7000,6 +7030,10 @@ msgstr "Движење"
 msgid "Moving east..."
 msgstr "Премести на исток ..."
 
+#, fuzzy
+msgid "Moving files"
+msgstr "Поместете го PiP"
+
 msgid "Moving to position"
 msgstr "Премести на позиција"
 
@@ -8025,6 +8059,10 @@ msgstr "Pillarbox"
 msgid "Pilot"
 msgstr "Пилот"
 
+#, fuzzy
+msgid "Pin Userbouquet"
+msgstr "Вчитај неврзани кориснички букети"
+
 msgid "Pitcairn"
 msgstr "Питкерн"
 
@@ -9030,6 +9068,10 @@ msgid "Reload blacklists"
 msgstr "Вчитување на црни листи"
 
 #, fuzzy
+msgid "Reload services/bouquets list"
+msgstr "Канали"
+
+#, fuzzy
 msgid "Reloading EPG Cache..."
 msgstr "Локација на датотеката за предмеморија на EPG"
 
@@ -9887,6 +9929,10 @@ msgid "Select OPKG source....."
 msgstr "Изберете извор на ажурирање"
 
 #, fuzzy
+msgid "Select Service"
+msgstr "Изберете филм"
+
+#, fuzzy
 msgid "Select Software Update"
 msgstr "Ажурирај го софтверот"
 
@@ -10036,7 +10082,15 @@ msgstr "Изберете сателити"
 msgid "Select secondary softcam"
 msgstr "Изберете софткам"
 
+#, fuzzy
+msgid "Select service name"
+msgstr "Име на Канал"
+
 msgid "Select service to add..."
+msgstr "Изберете канал за да додадете ..."
+
+#, fuzzy
+msgid "Select service type"
 msgstr "Изберете канал за да додадете ..."
 
 msgid "Select slot"
@@ -10044,6 +10098,14 @@ msgstr "Изберете слот"
 
 msgid "Select sort method:"
 msgstr "Изберете метод на сортирање:"
+
+#, fuzzy
+msgid "Select stream URL"
+msgstr "Изберете слот"
+
+#, fuzzy
+msgid "Select stream type"
+msgstr "Изберете тјунер"
 
 msgid "Select target folder"
 msgstr "Изберете целна папка"
@@ -10098,6 +10160,10 @@ msgstr "Изберете го множеството знаци преместе
 
 msgid "Select the shifted character set for the next character only"
 msgstr "Изберете поместете множеството карактер само за следниот знак"
+
+#, fuzzy
+msgid "Select the timer from the fallback tuner by default"
+msgstr "Ако ја активирате оваа опција, тајмерот од резервниот приемник се импортира"
 
 msgid "Select the tuner that controls the motorised dish."
 msgstr "Изберете го тјунерот што ја контролира моторизираната антена."
@@ -10235,6 +10301,14 @@ msgstr "Канал и PID"
 
 msgid "Service ID"
 msgstr "ID на Канал"
+
+#, fuzzy
+msgid "Service Name"
+msgstr "Име на Канал"
+
+#, fuzzy
+msgid "Service Type"
+msgstr "Име на Канал"
 
 msgid "Service belongs to a parental protected bouquet"
 msgstr "Каналот припаѓа на родителски заштитен букет"
@@ -11462,6 +11536,14 @@ msgstr "Стрим"
 msgid "Stream Relay delay"
 msgstr "Доцнење на лизгање"
 
+#, fuzzy
+msgid "Stream Type"
+msgstr "Стрим"
+
+#, fuzzy
+msgid "Stream URL"
+msgstr "Стрим"
+
 msgid "Stream request"
 msgstr "Барање за стрим"
 
@@ -12078,6 +12160,10 @@ msgstr "Има најмалку %d достапни ажурирања."
 
 msgid "There are currently no outstanding actions."
 msgstr "Не се планираат активности."
+
+#, fuzzy
+msgid "There are no items currently available for this screen."
+msgstr "Нема достапни ажурирања."
 
 msgid "There are no saved playlists to delete!"
 msgstr "Нема зачувани плејлисти за бришење!"
@@ -12921,6 +13007,10 @@ msgstr ""
 msgid "Unpack to current folder"
 msgstr ""
 
+#, fuzzy
+msgid "Unpin Userbouquet"
+msgstr "Вчитај неврзани кориснички букети"
+
 msgid "Unsupported"
 msgstr "Неподдржан"
 
@@ -13040,6 +13130,10 @@ msgstr "Користете ги информациите за Virgin EPG ког�
 msgid "Use a gateway"
 msgstr "Користете портал"
 
+#, fuzzy
+msgid "Use alternative skin"
+msgstr "Додај алтернативи"
+
 msgid "Use as PiP if possible"
 msgstr "Користете како PiP ако е можно"
 
@@ -13076,6 +13170,10 @@ msgstr "Користете мерење на моќност"
 #, fuzzy
 msgid "Use skin default"
 msgstr "Поставете стандардно"
+
+#, fuzzy
+msgid "Use the alternative screen"
+msgstr "Уредете ги алтернативите"
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
@@ -13615,6 +13713,10 @@ msgid "When enabled the receiver will automatically wake from standby when the T
 msgstr "Ако ја активирате оваа опција, приемникот автоматски ќе се подигне од стендбај кога телевизорот е вклучен."
 
 msgid "When enabled the timer from the fallback tuner is imported"
+msgstr "Ако ја активирате оваа опција, тајмерот од резервниот приемник се импортира"
+
+#, fuzzy
+msgid "When enabled the timer from the fallback tuner is the default timer"
 msgstr "Ако ја активирате оваа опција, тајмерот од резервниот приемник се импортира"
 
 msgid "When enabled then when you select a new channel in the channel selection the channel selection will not close. It will only close when you select the current playing service. This is a kind of preview mode"
@@ -14719,6 +14821,10 @@ msgstr "експериментален филм / видео"
 msgid "extensions"
 msgstr " екстензии."
 
+#, fuzzy
+msgid "extra high"
+msgstr "екстра широк"
+
 msgid "extra wide"
 msgstr "екстра широк"
 
@@ -14814,6 +14920,9 @@ msgstr "зацувај ја оваа рамка како битмапа"
 msgid "green"
 msgstr "зелена"
 
+msgid "half an hour"
+msgstr ""
+
 msgid "handicraft"
 msgstr "занает"
 
@@ -14827,6 +14936,9 @@ msgid "help..."
 msgstr "помош..."
 
 msgid "hide"
+msgstr ""
+
+msgid "high"
 msgstr ""
 
 msgid "horizontal"
@@ -15572,6 +15684,10 @@ msgstr "вертикално"
 
 msgid "violet"
 msgstr "виолетова"
+
+#, fuzzy
+msgid "wait for ci..."
+msgstr "почекај мми ..."
 
 msgid "wait for mmi..."
 msgstr "почекај мми ..."
