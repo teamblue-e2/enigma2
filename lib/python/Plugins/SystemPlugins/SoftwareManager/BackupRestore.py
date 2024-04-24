@@ -49,7 +49,7 @@ def InitConfig():
 		'/etc/default/crond', '/etc/dropbear/', '/etc/default/dropbear', '/home/', '/etc/samba/', '/etc/fstab', '/etc/inadyn.conf',
 		'/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf',
 		'/etc/wpa_supplicant.wlan0.conf', '/etc/wpa_supplicant.wlan1.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname', '/etc/epgimport/', '/etc/exports',
-		'/etc/enigmalight.conf', '/etc/volume.xml', '/etc/enigma2/ci_auth_slot_0.bin', '/etc/enigma2/ci_auth_slot_1.bin',
+		'/etc/enigmalight.conf', '/etc/volume.xml', '/etc/ciplus/',
 		'/usr/share/enigma2/display/skin_display_usr.xml',
 		'/usr/share/enigma2/display/userskin.png',
 		'/usr/lib/enigma2/python/Plugins/Extensions/SpecialJump/keymap_user.xml',
