@@ -7,6 +7,12 @@
 #include <lib/dvb_ci/dvbci_camgr.h>
 #include <lib/dvb_ci/dvbci_datetimemgr.h>
 #include <lib/dvb_ci/dvbci_mmi.h>
+#include <lib/dvb_ci/dvbci_ccmgr.h>
+#include <lib/dvb_ci/dvbci_hlcmgr.h>
+#include <lib/dvb_ci/dvbci_host_ctrl.h>
+#include <lib/dvb_ci/dvbci_cam_upgrade.h>
+#include <lib/dvb_ci/dvbci_app_mmi.h>
+#include <lib/dvb_ci/dvbci_operatorprofile.h>
 
 DEFINE_REF(eDVBCISession);
 
@@ -228,10 +234,6 @@ void eDVBCISession::createSession(eDVBCISlot *slot, const unsigned char *resourc
 //		session = new eDVBCIAuthSession;
 		eDebug("[CI%d SESS] AuthSession", slot->getSlotID());
 		[[fallthrough]];
-	case 0x008C1001:
-	case 0x008D1001:
-	case 0x008E1001:
-	case 0x00200041:
 	default:
 		eDebug("[CI%d SESS] unknown resource type %02x %02x %02x %02x", slot->getSlotID(), resource_identifier[0], resource_identifier[1], resource_identifier[2],resource_identifier[3]);
 		session = 0;

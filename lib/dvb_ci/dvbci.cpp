@@ -4,6 +4,7 @@
 
 #include <ios>
 #include <fstream>
+#include <sstream>
 #include <iomanip>
 
 #include <lib/base/init.h>
@@ -21,65 +22,15 @@
 #include <lib/dvb_ci/dvbci_ui.h>
 #include <lib/dvb_ci/dvbci_appmgr.h>
 #include <lib/dvb_ci/dvbci_mmi.h>
+#include <lib/dvb_ci/dvbci_ccmgr.h>
 
 #include <dvbsi++/ca_program_map_section.h>
 
 
 eDVBCIInterfaces *eDVBCIInterfaces::instance = 0;
 
-static char* readInputCI(int NimNumber)
-{
-	char id1[] = "NIM Socket";
-	char id2[] = "Input_Name";
-	char keys1[] = "1234567890";
-	char keys2[] = "12ABCDabcd";
-	char *inputName = 0;
-	char buf[256];
-	FILE *f;
-
-	f = fopen("/proc/bus/nim_sockets", "rt");
-	if (f)
-	{
-		while (fgets(buf, sizeof(buf), f))
-		{
-			char *p = strcasestr(buf, id1);
-			if (!p)
-				continue;
-
-			p += strlen(id1);
-			p += strcspn(p, keys1);
-			if (*p && strtol(p, 0, 0) == NimNumber)
-				break;
-		}
-
-		while (fgets(buf, sizeof(buf), f))
-		{
-			if (strcasestr(buf, id1))
-				break;
-
-			char *p = strcasestr(buf, id2);
-			if (!p)
-				continue;
-
-			p = strchr(p + strlen(id2), ':');
-			if (!p)
-				continue;
-
-			p++;
-			p += strcspn(p, keys2);
-			size_t len = strspn(p, keys2);
-			if (len > 0)
-			{
-				inputName = strndup(p, len);
-				break;
-			}
-		}
-
-		fclose(f);
-	}
-
-	return inputName;
-}
+pthread_mutex_t eDVBCIInterfaces::m_pmt_handler_lock = PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;
+pthread_mutex_t eDVBCIInterfaces::m_slot_lock = PTHREAD_RECURSIVE_MUTEX_INITIALIZER_NP;
 
 eDVBCIInterfaces::eDVBCIInterfaces()
  : m_messagepump_thread(this,1), m_messagepump_main(eApp,1), m_runTimer(eTimer::create(this))
@@ -91,19 +42,26 @@ eDVBCIInterfaces::eDVBCIInterfaces()
 	m_stream_interface = interface_none;
 	m_stream_finish_mode = finish_none;
 
+	CONNECT(m_messagepump_thread.recv_msg, eDVBCIInterfaces::gotMessageThread);
+	CONNECT(m_messagepump_main.recv_msg, eDVBCIInterfaces::gotMessageMain);
+	m_runTimer->start(750, false);
+
 	eDebug("[CI] scanning for common interfaces..");
+
+	singleLock s(m_slot_lock);
 
 	for (;;)
 	{
 		path.str("");
 		path.clear();
 		path << "/dev/ci" << num_ci;
+
 		if(::access(path.str().c_str(), R_OK) < 0)
 			break;
 
 		ePtr<eDVBCISlot> cislot;
 
-		cislot = new eDVBCISlot(eApp, num_ci);
+		cislot = new eDVBCISlot(this, num_ci);
 		m_slots.push_back(cislot);
 
 		++num_ci;
@@ -163,6 +121,8 @@ eDVBCIInterfaces::eDVBCIInterfaces()
 
 eDVBCIInterfaces::~eDVBCIInterfaces()
 {
+	m_messagepump_thread.send(1); // stop thread
+	kill(); // join
 }
 
 eDVBCIInterfaces *eDVBCIInterfaces::getInstance()
@@ -170,8 +130,31 @@ eDVBCIInterfaces *eDVBCIInterfaces::getInstance()
 	return instance;
 }
 
+void eDVBCIInterfaces::thread()
+{
+	hasStarted();
+	if (nice(4) == -1)
+	{
+		eDebug("[CI] thread failed to modify scheduling priority (%m)");
+	}
+	runLoop();
+}
+
+// runs in the thread
+void eDVBCIInterfaces::gotMessageThread(const int &message)
+{
+	quit(0); // quit thread
+}
+
+// runs in the e2 mainloop
+void eDVBCIInterfaces::gotMessageMain(const int &message)
+{
+	recheckPMTHandlers();
+}
+
 eDVBCISlot *eDVBCIInterfaces::getSlot(int slotid)
 {
+	singleLock s(m_slot_lock);
 	for(eSmartPtrList<eDVBCISlot>::iterator i(m_slots.begin()); i != m_slots.end(); ++i)
 		if(i->getSlotID() == slotid)
 			return i;
@@ -185,6 +168,7 @@ int eDVBCIInterfaces::getSlotState(int slotid)
 {
 	eDVBCISlot *slot;
 
+	singleLock s(m_slot_lock);
 	if( (slot = getSlot(slotid)) == 0 )
 		return eDVBCISlot::stateInvalid;
 
@@ -195,6 +179,7 @@ int eDVBCIInterfaces::reset(int slotid)
 {
 	eDVBCISlot *slot;
 
+	singleLock s(m_slot_lock);
 	if( (slot = getSlot(slotid)) == 0 )
 		return -1;
 
@@ -205,6 +190,7 @@ int eDVBCIInterfaces::initialize(int slotid)
 {
 	eDVBCISlot *slot;
 
+	singleLock s(m_slot_lock);
 	if( (slot = getSlot(slotid)) == 0 )
 		return -1;
 
@@ -217,9 +203,11 @@ int eDVBCIInterfaces::sendCAPMT(int slotid)
 {
 	eDVBCISlot *slot;
 
+	singleLock s1(m_slot_lock);
 	if( (slot = getSlot(slotid)) == 0 )
 		return -1;
 
+	singleLock s2(m_pmt_handler_lock);
 	PMTHandlerList::iterator it = m_pmt_handlers.begin();
 	while (it != m_pmt_handlers.end())
 	{
@@ -241,6 +229,7 @@ int eDVBCIInterfaces::startMMI(int slotid)
 {
 	eDVBCISlot *slot;
 
+	singleLock s(m_slot_lock);
 	if( (slot = getSlot(slotid)) == 0 )
 		return -1;
 
@@ -251,6 +240,7 @@ int eDVBCIInterfaces::stopMMI(int slotid)
 {
 	eDVBCISlot *slot;
 
+	singleLock s(m_slot_lock);
 	if( (slot = getSlot(slotid)) == 0 )
 		return -1;
 
@@ -261,6 +251,7 @@ int eDVBCIInterfaces::answerText(int slotid, int answer)
 {
 	eDVBCISlot *slot;
 
+	singleLock s(m_slot_lock);
 	if( (slot = getSlot(slotid)) == 0 )
 		return -1;
 
@@ -271,6 +262,7 @@ int eDVBCIInterfaces::answerEnq(int slotid, char *value)
 {
 	eDVBCISlot *slot;
 
+	singleLock s(m_slot_lock);
 	if( (slot = getSlot(slotid)) == 0 )
 		return -1;
 
@@ -281,6 +273,7 @@ int eDVBCIInterfaces::cancelEnq(int slotid)
 {
 	eDVBCISlot *slot;
 
+	singleLock s(m_slot_lock);
 	if( (slot = getSlot(slotid)) == 0 )
 		return -1;
 
@@ -291,6 +284,8 @@ void eDVBCIInterfaces::ciRemoved(eDVBCISlot *slot)
 {
 	if (slot->use_count)
 	{
+		singleLock s1(m_pmt_handler_lock);
+		singleLock s2(m_slot_lock);
 		eDebug("[CI] Slot %d: removed... usecount %d", slot->getSlotID(), slot->use_count);
 		for (PMTHandlerList::iterator it(m_pmt_handlers.begin());
 			it != m_pmt_handlers.end(); ++it)
@@ -320,28 +315,41 @@ void eDVBCIInterfaces::ciRemoved(eDVBCISlot *slot)
 		slot->plugged=true;
 		slot->user_mapped=false;
 		slot->removeService(0xFFFF);
-		recheckPMTHandlers();
+		executeRecheckPMTHandlersInMainloop(); // calls recheckPMTHandlers in the e2 mainloop
 	}
 }
 
-static bool canDescrambleMultipleServices(int slotid)
+bool eDVBCIInterfaces::canDescrambleMultipleServices(eDVBCISlot* slot)
 {
+	singleLock s(m_slot_lock);
 	char configStr[255];
-	snprintf(configStr, 255, "config.ci.%d.canDescrambleMultipleServices", slotid);
+	snprintf(configStr, 255, "config.ci.%d.canDescrambleMultipleServices", slot->getSlotID());
 	std::string str = eConfigManager::getConfigValue(configStr);
 	if ( str == "auto" )
 	{
-		std::string appname = eDVBCI_UI::getInstance()->getAppName(slotid);
-		if (appname.find("AlphaCrypt") != std::string::npos || appname.find("Multi") != std::string::npos)
-			return true;
+		if (slot->getAppManager())
+		{
+			std::string appname = slot->getAppManager()->getAppName();
+			if (appname.find("AlphaCrypt") != std::string::npos || appname.find("Multi") != std::string::npos)
+				return true;
+		}
 	}
 	else if (str == "yes")
 		return true;
 	return false;
 }
 
+// executes recheckPMTHandlers in the e2 mainloop
+void eDVBCIInterfaces::executeRecheckPMTHandlersInMainloop()
+{
+	m_messagepump_main.send(1);
+}
+
+// has to run in the e2 mainloop to be able to access the pmt handler
 void eDVBCIInterfaces::recheckPMTHandlers()
 {
+	singleLock s1(m_pmt_handler_lock);
+	singleLock s2(m_slot_lock);
 	eTrace("[CI] recheckPMTHAndlers()");
 	for (PMTHandlerList::iterator it(m_pmt_handlers.begin());
 		it != m_pmt_handlers.end(); ++it)
@@ -523,7 +531,7 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 									ref.getChannelID(s1);
 									ref2.getChannelID(s2);
 								}
-								if (ref == ref2 || (s1 == s2 && canDescrambleMultipleServices(tmp_cislot->getSlotID())))
+								if (ref == ref2 || (s1 == s2 && canDescrambleMultipleServices(tmp_cislot)))
 								{
 									found = true;
 									eTrace("[CI] found!");
@@ -633,6 +641,7 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 
 void eDVBCIInterfaces::addPMTHandler(eDVBServicePMTHandler *pmthandler)
 {
+	singleLock s(m_pmt_handler_lock);
 	// check if this pmthandler is already registered
 	PMTHandlerList::iterator it = m_pmt_handlers.begin();
 	while (it != m_pmt_handlers.end())
@@ -651,6 +660,8 @@ void eDVBCIInterfaces::addPMTHandler(eDVBServicePMTHandler *pmthandler)
 
 void eDVBCIInterfaces::removePMTHandler(eDVBServicePMTHandler *pmthandler)
 {
+	singleLock s1(m_pmt_handler_lock);
+	singleLock s2(m_slot_lock);
 	PMTHandlerList::iterator it=std::find(m_pmt_handlers.begin(),m_pmt_handlers.end(),pmthandler);
 	if (it != m_pmt_handlers.end())
 	{
@@ -688,6 +699,7 @@ void eDVBCIInterfaces::removePMTHandler(eDVBServicePMTHandler *pmthandler)
 				caids.push_back(0xFFFF);
 				slot->sendCAPMT(pmthandler, caids);  // send a capmt without caids to remove a running service
 				slot->removeService(service_to_remove.getServiceID().get());
+
 				if (slot->current_tuner == -1)
 				{
 					// no previous tuner to go back to, signal to CI interface CI action is finished
@@ -761,6 +773,12 @@ void eDVBCIInterfaces::removePMTHandler(eDVBServicePMTHandler *pmthandler)
 
 void eDVBCIInterfaces::gotPMT(eDVBServicePMTHandler *pmthandler)
 {
+	// language config can only be accessed by e2 mainloop
+	if (m_language == "")
+		m_language = eConfigManager::getConfigValue("config.osd.language");
+
+	singleLock s1(m_pmt_handler_lock);
+	singleLock s2(m_slot_lock);
 	eDebug("[eDVBCIInterfaces] gotPMT");
 	PMTHandlerList::iterator it=std::find(m_pmt_handlers.begin(), m_pmt_handlers.end(), pmthandler);
 	if (it != m_pmt_handlers.end() && it->cislot)
@@ -783,6 +801,7 @@ int eDVBCIInterfaces::getMMIState(int slotid)
 {
 	eDVBCISlot *slot;
 
+	singleLock s(m_slot_lock);
 	if( (slot = getSlot(slotid)) == 0 )
 		return -1;
 
@@ -795,18 +814,8 @@ int eDVBCIInterfaces::setInputSource(int tuner_no, const std::string &source)
 	{
 		char buf[64];
 		snprintf(buf, sizeof(buf), "/proc/stb/tsmux/input%d", tuner_no);
-		char *srcCI = NULL;
 
-		if (source.find("CI") == std::string::npos)
-		{
-			srcCI = readInputCI(tuner_no);
-		}
-
-		if (srcCI && CFile::write(buf, srcCI) == -1)
-		{
-			eDebug("[CI] eDVBCIInterfaces setInputSource for input %s failed!", srcCI);
-		}
-		else if (CFile::write(buf, source.c_str()) == -1)
+		if (CFile::write(buf, source.c_str()) == -1)
 		{
 			eDebug("[CI] eDVBCIInterfaces setInputSource for input %s failed!", source.c_str());
 			return 0;
@@ -819,6 +828,7 @@ int eDVBCIInterfaces::setInputSource(int tuner_no, const std::string &source)
 
 PyObject *eDVBCIInterfaces::getDescrambleRules(int slotid)
 {
+	singleLock s(m_slot_lock);
 	eDVBCISlot *slot = getSlot(slotid);
 	if (!slot)
 	{
@@ -871,6 +881,7 @@ const char *PyObject_TypeStr(PyObject *o)
 
 RESULT eDVBCIInterfaces::setDescrambleRules(int slotid, SWIG_PYOBJECT(ePyObject) obj )
 {
+	singleLock s(m_slot_lock);
 	eDVBCISlot *slot = getSlot(slotid);
 	if (!slot)
 	{
@@ -994,6 +1005,7 @@ RESULT eDVBCIInterfaces::setDescrambleRules(int slotid, SWIG_PYOBJECT(ePyObject)
 
 PyObject *eDVBCIInterfaces::readCICaIds(int slotid)
 {
+	singleLock s(m_slot_lock);
 	eDVBCISlot *slot = getSlot(slotid);
 	if (!slot)
 	{
@@ -1027,6 +1039,7 @@ int eDVBCIInterfaces::setCIEnabled(int slotid, bool enabled)
 
 int eDVBCIInterfaces::setCIClockRate(int slotid, int rate)
 {
+	singleLock s(m_slot_lock);
 	eDVBCISlot *slot = getSlot(slotid);
 	if (slot)
 		return slot->setClockRate(rate);
@@ -1155,6 +1168,7 @@ void eDVBCIInterfaces::revertCIPlusRouting(int slotid)
 
 int eDVBCISlot::send(const unsigned char *data, size_t len)
 {
+	singleLock s(eDVBCIInterfaces::m_slot_lock);
 	int res=0;
 	unsigned int i;
 	eTraceNoNewLineStart("[CI%d] < ", slotid);
@@ -1191,7 +1205,7 @@ void eDVBCISlot::data(int what)
 			eDVBCISession::deleteSessions(this);
 			eDVBCIInterfaces::getInstance()->ciRemoved(this);
 			notifier->setRequested(eSocketNotifier::Read);
-			eDVBCI_UI::getInstance()->setState(getSlotID(),0);
+			/* emit */ eDVBCI_UI::getInstance()->m_messagepump.send(eDVBCIInterfaces::Message(eDVBCIInterfaces::Message::slotStateChanged, getSlotID(), 0));
 		}
 		return;
 	}
@@ -1202,7 +1216,7 @@ void eDVBCISlot::data(int what)
 	if(state != stateInserted) {
 		eDebug("[CI%d] ci inserted", slotid);
 		state = stateInserted;
-		eDVBCI_UI::getInstance()->setState(getSlotID(),1);
+		/* emit */ eDVBCI_UI::getInstance()->m_messagepump.send(eDVBCIInterfaces::Message(eDVBCIInterfaces::Message::slotStateChanged, getSlotID(), 1));
 		notifier->setRequested(eSocketNotifier::Read|eSocketNotifier::Priority);
 		/* enable PRI to detect removal or errors */
 	}
@@ -1252,6 +1266,15 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr):
 	m_context = context;
 	m_ciplus_routing_tunernum = -1;
 	state = stateDisabled;
+	application_manager = 0;
+	mmi_session = 0;
+	ca_manager = 0;
+	cc_manager = 0;
+	use_count = 0;
+	linked_next = 0;
+	user_mapped = false;
+	plugged = false;
+	m_ci_version = versionUnknown;
 	snprintf(configStr, 255, "config.ci.%d.enabled", slotid);
 	bool enabled = eConfigManager::getConfigBoolValue(configStr, true);
 	if (enabled)
@@ -1273,12 +1296,6 @@ void eDVBCISlot::openDevice()
 {
 	char filename[128];
 
-	application_manager = 0;
-	mmi_session = 0;
-	ca_manager = 0;
-	use_count = 0;
-	linked_next = 0;
-	user_mapped = false;
 	plugged = true;
 
 	sprintf(filename, "/dev/ci%d", slotid);
@@ -1305,6 +1322,7 @@ void eDVBCISlot::openDevice()
 eDVBCISlot::~eDVBCISlot()
 {
 	eDVBCISession::deleteSessions(this);
+	close(fd);
 }
 
 void eDVBCISlot::closeDevice() 
@@ -1318,21 +1336,31 @@ void eDVBCISlot::closeDevice()
 
 void eDVBCISlot::setAppManager(eDVBCIApplicationManagerSession *session)
 {
+	singleLock s(eDVBCIInterfaces::m_slot_lock);
 	application_manager=session;
 }
 
 void eDVBCISlot::setMMIManager( eDVBCIMMISession *session )
 {
+	singleLock s(eDVBCIInterfaces::m_slot_lock);
 	mmi_session = session;
 }
 
 void eDVBCISlot::setCAManager( eDVBCICAManagerSession *session )
 {
+	singleLock s(eDVBCIInterfaces::m_slot_lock);
 	ca_manager = session;
+}
+
+void eDVBCISlot::setCCManager( eDVBCICcSession *session )
+{
+	singleLock s(eDVBCIInterfaces::m_slot_lock);
+	cc_manager = session;
 }
 
 int eDVBCISlot::getSlotID()
 {
+	singleLock s(eDVBCIInterfaces::m_slot_lock);
 	return slotid;
 }
 
@@ -1636,17 +1664,35 @@ int eDVBCISlot::sendCAPMT(eDVBServicePMTHandler *pmthandler, const std::vector<u
 					raw_data[hlen] = 0x03; // send only instead of update... because of strange effects with alphacrypt
 				raw_data[hlen+3] &= ~0x3E;
 				raw_data[hlen+3] |= ((pmt_version+1) & 0x1F) << 1;
-//				eDebug(" new version is %02x", raw_data[hlen+3]);
+//				eDebugNoNewLine(" new version is %02x\n", raw_data[hlen+3]);
 			}
 
 //			eDebugNoNewLineStart("[CI%d[ ca_manager %p dump capmt:", slotid, ca_manager);
 //			for(int i=0;i<wp;i++)
 //				eDebugNoNewLine("%02x ", raw_data[i]);
-//			eDebug("");
+//			eDebugNoNewLine("\n");
 
 			//dont need tag and lenfield
 			ca_manager->sendCAPMT(raw_data + hlen, wp - hlen);
 			running_services[program_number] = pmt_version;
+
+			std::vector<uint16_t> pids;
+			int prg_info_len = ((raw_data[hlen + 4] << 8) | raw_data[hlen + 5]) & 0xfff;
+			int es_info_len = 0;
+			for (int jj = hlen + prg_info_len + 6; jj < wp; jj += es_info_len + 5)
+			{
+				uint16_t es_pid = ((raw_data[jj + 1] << 8) | raw_data[jj + 2]) & 0x1fff;
+				pids.push_back( es_pid );
+				es_info_len = ((raw_data[jj + 3] << 8) | raw_data[jj + 4]) & 0xfff;
+			}
+
+			if (cc_manager)
+			{
+				if (!sendEmpty)
+					cc_manager->addProgram(program_number, pids);
+				else
+					cc_manager->removeProgram(program_number, pids);
+			}
 		}
 	}
 	return 0;
@@ -1665,19 +1711,8 @@ int eDVBCISlot::setSource(const std::string &source)
 	char buf[64];
 	current_source = source;
 	snprintf(buf, sizeof(buf), "/proc/stb/tsmux/ci%d_input", slotid);
-	char *srcCI = NULL;
 
-	if(source.find("CI") == std::string::npos || source.size() == 1)
-	{
-		srcCI = readInputCI(source[0]-65);
-	}
-
-	if(srcCI && CFile::write(buf, srcCI) == -1)
-	{
-		eDebug("[CI] Slot: %d setSource: %s failed!", getSlotID(), srcCI);
-		return 0;
-	}
-	else if(CFile::write(buf, source.c_str()) == -1)
+	if(CFile::write(buf, source.c_str()) == -1)
 	{
 		eDebug("[CI%d] setSource: %s failed!", slotid, source.c_str());
 		return 0;

@@ -33,7 +33,8 @@ int eDVBCICAManagerSession::receivedAPDU(const unsigned char *tag, const void *d
 				caids.push_back((((const unsigned char*)data)[i]<<8)|(((const unsigned char*)data)[i+1]));
 			}
 			std::sort(caids.begin(), caids.end());
-			eDVBCIInterfaces::getInstance()->recheckPMTHandlers();
+			eDebugNoNewLine("\n");
+			eDVBCIInterfaces::getInstance()->executeRecheckPMTHandlersInMainloop();
 			break;
 		default:
 			eWarning("[CI%d CA] unknown APDU tag 9F 80 %02x", slot->getSlotID(), tag[2]);

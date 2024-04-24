@@ -9,6 +9,7 @@ eDVBCIApplicationManagerSession::eDVBCIApplicationManagerSession(eDVBCISlot *tsl
 {
 	slot = tslot;
 	slot->setAppManager(this);
+	m_app_name = "";
 }
 
 eDVBCIApplicationManagerSession::~eDVBCIApplicationManagerSession()
@@ -58,7 +59,7 @@ int eDVBCIApplicationManagerSession::receivedAPDU(const unsigned char *tag,const
 			}
 			/* emit */ eDVBCI_UI::getInstance()->m_messagepump.send(eDVBCIInterfaces::Message(eDVBCIInterfaces::Message::appNameChanged, slot->getSlotID(), m_app_name.c_str()));
 
-			eDVBCI_UI::getInstance()->setState(slot->getSlotID(), 2);
+			/* emit */ eDVBCI_UI::getInstance()->m_messagepump.send(eDVBCIInterfaces::Message(eDVBCIInterfaces::Message::slotStateChanged, slot->getSlotID(), 2));
 			break;
 		}
 		default:

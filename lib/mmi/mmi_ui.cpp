@@ -75,11 +75,12 @@ int eMMI_UI::processMMIData(int slot_id, const unsigned char *tag, const void *d
 			eDebug("[eMMI_UI] %d bytes text", textlen);
 		if ((d+textlen) > max)
 			break;
-		char str[textlen + 1];
-		memcpy(str, ((char*)d), textlen);
+		unsigned char str[textlen + 1];
+		memcpy(str, ((unsigned char*)d), textlen);
 		str[textlen] = '\0';
-		eDebug("[eMMI_UI] enq-text: %s",str);
-		mmiScreenEnq(slot_id, blind, alen, (char*)convertDVBUTF8(str).c_str());
+		std::string converted_str = convertDVBUTF8(str, textlen, -1, 1, 0);
+		eDebug("[eMMI_UI] enq-text: %s", converted_str.c_str());
+		mmiScreenEnq(slot_id, blind, alen, (char*)converted_str.c_str());
 		break;
 	}
 	case 0x09:		//Tmenu_last
@@ -113,8 +114,8 @@ int eMMI_UI::processMMIData(int slot_id, const unsigned char *tag, const void *d
 			eDebug("[eMMI_UI] %d bytes text", textlen);
 			if ((d+textlen) > max)
 				break;
-			char str[textlen + 1];
-			memcpy(str, ((char*)d), textlen);
+			unsigned char str[textlen + 1];
+			memcpy(str, ((unsigned char*)d), textlen);
 			str[textlen] = '\0';
 			std::string converted_str = convertDVBUTF8(str, textlen, -1, 1, 0);
 			if (std::regex_match(converted_str, std::regex("^[^0-9]*\\s10")))

@@ -4,6 +4,8 @@
 #ifndef SWIG
 
 #include <lib/base/ebase.h>
+#include <lib/base/message.h>
+#include <lib/base/thread.h>
 #include <lib/service/iservice.h>
 #include <lib/python/python.h>
 #include <set>
@@ -12,6 +14,7 @@
 class eDVBCISession;
 class eDVBCIApplicationManagerSession;
 class eDVBCICAManagerSession;
+class eDVBCICcSession;
 class eDVBCIMMISession;
 class eDVBServicePMTHandler;
 class eDVBCISlot;
@@ -47,9 +50,11 @@ class eDVBCISlot: public iObject, public sigc::trackable
 	ePtr<eSocketNotifier> notifier;
 	ePtr<eTimer> startup_timeout;
 	int state;
+	int m_ci_version;
 	std::map<uint16_t, uint8_t> running_services;
 	eDVBCIApplicationManagerSession *application_manager;
 	eDVBCICAManagerSession *ca_manager;
+	eDVBCICcSession *cc_manager;
 	eDVBCIMMISession *mmi_session;
 	std::priority_queue<queueData> sendqueue;
 	caidSet possible_caids;
@@ -79,6 +84,7 @@ class eDVBCISlot: public iObject, public sigc::trackable
 	eDVBCIApplicationManagerSession *getAppManager() { return application_manager; }
 	eDVBCIMMISession *getMMIManager() { return mmi_session; }
 	eDVBCICAManagerSession *getCAManager() { return ca_manager; }
+	eDVBCICcSession *getCCManager() { return cc_manager; }
 
 	int getState() { return state; };
 	void setCamMgrRoutingActive(bool active) { m_isCamMgrRoutingActive= active; };
@@ -99,7 +105,6 @@ class eDVBCISlot: public iObject, public sigc::trackable
 	int sendCAPMT(eDVBServicePMTHandler *ptr, const std::vector<uint16_t> &caids=std::vector<uint16_t>());
 	int setCaParameter(eDVBServicePMTHandler *pmthandler);
 	void removeService(uint16_t program_number=0xFFFF);
-	int getNumOfServices() { return running_services.size(); }
 	int setSource(const std::string &source);
 	int setClockRate(int);
 	void determineCIVersion();
@@ -154,7 +159,7 @@ typedef std::list<CIPmtHandler> PMTHandlerList;
 
 #endif // SWIG
 
-class eDVBCIInterfaces
+class eDVBCIInterfaces: public eMainloop, private eThread
 {
 private:
 	typedef enum
@@ -173,8 +178,10 @@ private:
 	} stream_finish_mode_t;
 
 	DECLARE_REF(eDVBCIInterfaces);
+
 	stream_interface_t m_stream_interface;
 	stream_finish_mode_t m_stream_finish_mode;
+
 	static eDVBCIInterfaces *instance;
 	eSmartPtrList<eDVBCISlot> m_slots;
 	eDVBCISlot *getSlot(int slotid);
@@ -197,9 +204,12 @@ public:
 	eDVBCIInterfaces();
 	~eDVBCIInterfaces();
 
+	static pthread_mutex_t m_slot_lock;
+
 	void addPMTHandler(eDVBServicePMTHandler *pmthandler);
 	void removePMTHandler(eDVBServicePMTHandler *pmthandler);
 	void recheckPMTHandlers();
+	void executeRecheckPMTHandlersInMainloop();
 	void gotPMT(eDVBServicePMTHandler *pmthandler);
 	void ciRemoved(eDVBCISlot *slot);
 	int getSlotState(int slot);
@@ -213,9 +223,12 @@ public:
 	int answerEnq(int slot, char *value);
 	int cancelEnq(int slot);
 	int getMMIState(int slot);
-	int sendCAPMT(int slot);
 	int setInputSource(int tunerno, const std::string &source);
 	int setCIClockRate(int slot, int rate);
+	void setCIPlusRouting(int slotid);
+	void revertCIPlusRouting(int slotid);
+	bool canDescrambleMultipleServices(eDVBCISlot* slot);
+	std::string getLanguage() { return m_language; };
 #ifdef SWIG
 public:
 #endif
