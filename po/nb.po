@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-12 11:21+0100\n"
+"POT-Creation-Date: 2024-04-24 10:35+0200\n"
 "PO-Revision-Date: 2019-12-06 15:54+0100\n"
 "Last-Translator: GeirJ <dummy@dummy.com>\n"
 "Language-Team: GeirJ\n"
@@ -501,7 +501,7 @@ msgstr "(aktivert +%d min)"
 
 #
 #, fuzzy
-msgid "(current)"
+msgid "(current image)"
 msgstr "Aktiver gjeldende konfigurasjon"
 
 #
@@ -519,6 +519,9 @@ msgstr "(vis valgfri DVD lydmeny)"
 #, fuzzy
 msgid "(unknown)"
 msgstr "ukjent"
+
+msgid "* = Restart Required"
+msgstr ""
 
 msgid "* Only available if more than one interface is active."
 msgstr "* Kun tilgjengelig dersom flere grensesnitt er aktive."
@@ -2047,9 +2050,17 @@ msgstr ""
 msgid "CI (Common Interface) Setup"
 msgstr "CI (Common Interface) Oppsett"
 
+msgid "CI Boot Delay"
+msgstr ""
+
 #
 msgid "CI assignment"
 msgstr "CI tildeling"
+
+#
+#, fuzzy
+msgid "CI enabled"
+msgstr "aktivert"
 
 #
 #, fuzzy
@@ -3201,6 +3212,10 @@ msgstr ""
 msgid "Copy to bouquets"
 msgstr "kopiere til kanallister"
 
+#, fuzzy
+msgid "Copying files"
+msgstr "%d fil"
+
 #, fuzzy, python-format
 msgid "Cores: %s"
 msgstr "DVB driver:"
@@ -3771,6 +3786,11 @@ msgstr "Slett timer"
 
 msgid "Deleted items"
 msgstr "Slettede elementer"
+
+#
+#, fuzzy
+msgid "Deleting files"
+msgstr "Slett fil"
 
 msgid "Denmark"
 msgstr ""
@@ -4429,10 +4449,6 @@ msgstr "Tuner innstilling"
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "FEIL - kunne ikke søke (%s)!"
-
-#, python-format
-msgid "ERROR downloading file %s/%s"
-msgstr ""
 
 #
 msgid "East"
@@ -6082,6 +6098,10 @@ msgid "HDMI-IN Recording settings"
 msgstr "Tar opp"
 
 #, fuzzy
+msgid "HDMI-In"
+msgstr "HDMI-CEC innstilling"
+
+#, fuzzy
 msgid "HDR10 support"
 msgstr "ikke støttet"
 
@@ -6173,6 +6193,9 @@ msgid "Hidden network"
 msgstr "Skjult nettverk"
 
 msgid "Hide"
+msgstr ""
+
+msgid "Hide and confirm invalid key message"
 msgstr ""
 
 msgid "Hide channel list in radio mode"
@@ -6671,6 +6694,16 @@ msgstr "Enhets innstilling"
 
 msgid "Insert"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Insert Service"
+msgstr "Installerer"
+
+#
+#, fuzzy
+msgid "Insert entry"
+msgstr "Tidtaker innstilling"
 
 #
 #, fuzzy
@@ -7928,6 +7961,11 @@ msgstr "Kjører"
 msgid "Moving east..."
 msgstr "Kjører østover..."
 
+#
+#, fuzzy
+msgid "Moving files"
+msgstr "Kjør østover"
+
 msgid "Moving to position"
 msgstr "Kjører til posisjon"
 
@@ -9091,6 +9129,11 @@ msgstr "Sorte kanter"
 #
 msgid "Pilot"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Pin Userbouquet"
+msgstr "Last kanallister som ikke er tilknyttet"
 
 msgid "Pitcairn"
 msgstr ""
@@ -10261,6 +10304,11 @@ msgstr "Kanaler"
 msgid "Reload blacklists"
 msgstr "Last om svartelister"
 
+#
+#, fuzzy
+msgid "Reload services/bouquets list"
+msgstr "Kanaler"
+
 #, fuzzy
 msgid "Reloading EPG Cache..."
 msgstr "Restarter kanallister..."
@@ -11250,6 +11298,10 @@ msgid "Select OPKG source....."
 msgstr "Velg oppdateringssted"
 
 #, fuzzy
+msgid "Select Service"
+msgstr "Velg opptak"
+
+#, fuzzy
 msgid "Select Software Update"
 msgstr "Programvareoppdatering"
 
@@ -11429,7 +11481,17 @@ msgid "Select secondary softcam"
 msgstr ""
 
 #
+#, fuzzy
+msgid "Select service name"
+msgstr "Kanalnavn"
+
+#
 msgid "Select service to add..."
+msgstr "Velg kanal som skal legges til..."
+
+#
+#, fuzzy
+msgid "Select service type"
 msgstr "Velg kanal som skal legges til..."
 
 #
@@ -11440,6 +11502,16 @@ msgstr "Velg alt"
 #
 msgid "Select sort method:"
 msgstr "Velg sorteringsmetode"
+
+#
+#, fuzzy
+msgid "Select stream URL"
+msgstr "Velg alt"
+
+#
+#, fuzzy
+msgid "Select stream type"
+msgstr "Velg tuner"
 
 #
 msgid "Select target folder"
@@ -11497,6 +11569,10 @@ msgstr "Velg målmappe for opptak"
 
 msgid "Select the shifted character set for the next character only"
 msgstr ""
+
+#, fuzzy
+msgid "Select the timer from the fallback tuner by default"
+msgstr "Velg målmappe for opptak"
 
 msgid "Select the tuner that controls the motorised dish."
 msgstr ""
@@ -11656,6 +11732,16 @@ msgstr "Kanaler"
 #, fuzzy
 msgid "Service ID"
 msgstr "Kanal"
+
+#
+#, fuzzy
+msgid "Service Name"
+msgstr "Kanalnavn"
+
+#
+#, fuzzy
+msgid "Service Type"
+msgstr "Kanalnavn"
 
 #, fuzzy
 msgid "Service belongs to a parental protected bouquet"
@@ -13054,6 +13140,14 @@ msgstr "Datastrøm"
 msgid "Stream Relay delay"
 msgstr "Skroll forsinkelse"
 
+#, fuzzy
+msgid "Stream Type"
+msgstr "Datastrøm"
+
+#, fuzzy
+msgid "Stream URL"
+msgstr "Datastrøm"
+
 msgid "Stream request"
 msgstr "Datastrøm forespørsel"
 
@@ -13724,6 +13818,10 @@ msgstr "Det er minst %d oppdateringer tilgjengelig."
 #
 msgid "There are currently no outstanding actions."
 msgstr "Det er for tiden ingen utestående handlinger."
+
+#, fuzzy
+msgid "There are no items currently available for this screen."
+msgstr "Det er ingen oppdateringer tilgjengelig."
 
 #
 #, fuzzy
@@ -14667,6 +14765,11 @@ msgid "Unpack to current folder"
 msgstr "Gjeldende modus: %s \n"
 
 #
+#, fuzzy
+msgid "Unpin Userbouquet"
+msgstr "Last kanallister som ikke er tilknyttet"
+
+#
 msgid "Unsupported"
 msgstr "Ikke støttet"
 
@@ -14796,6 +14899,11 @@ msgstr "Bruk Virgin EPG informasjon når den er tilgjengelig."
 msgid "Use a gateway"
 msgstr "Bruk gateway"
 
+#
+#, fuzzy
+msgid "Use alternative skin"
+msgstr "legg til alternativer"
+
 msgid "Use as PiP if possible"
 msgstr ""
 
@@ -14835,6 +14943,10 @@ msgstr "Bruk strøm-måling"
 #, fuzzy
 msgid "Use skin default"
 msgstr "Sett standard"
+
+#, fuzzy
+msgid "Use the alternative screen"
+msgstr "rediger alternativer"
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
@@ -15433,6 +15545,9 @@ msgid "When enabled the receiver will automatically wake from standby when the T
 msgstr "Når aktivert, vil mottakeren automatisk bruke lyd som tidligere ble aktivert."
 
 msgid "When enabled the timer from the fallback tuner is imported"
+msgstr ""
+
+msgid "When enabled the timer from the fallback tuner is the default timer"
 msgstr ""
 
 msgid "When enabled then when you select a new channel in the channel selection the channel selection will not close. It will only close when you select the current playing service. This is a kind of preview mode"
@@ -16614,6 +16729,9 @@ msgstr "eksperimentell film/video"
 msgid "extensions"
 msgstr " utvidelser."
 
+msgid "extra high"
+msgstr ""
+
 msgid "extra wide"
 msgstr ""
 
@@ -16727,6 +16845,9 @@ msgstr "grip denne rammen som bitmap"
 msgid "green"
 msgstr "grønn"
 
+msgid "half an hour"
+msgstr ""
+
 msgid "handicraft"
 msgstr "håndverk"
 
@@ -16743,6 +16864,9 @@ msgid "help..."
 msgstr "hjelp..."
 
 msgid "hide"
+msgstr ""
+
+msgid "high"
 msgstr ""
 
 #
@@ -17598,6 +17722,11 @@ msgstr "vertikal"
 
 msgid "violet"
 msgstr ""
+
+#
+#, fuzzy
+msgid "wait for ci..."
+msgstr "venter på mmi..."
 
 #
 msgid "wait for mmi..."

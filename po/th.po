@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-12 11:21+0100\n"
+"POT-Creation-Date: 2024-04-24 10:35+0200\n"
 "PO-Revision-Date: 2010-04-08 18:13+0700\n"
 "Last-Translator: Tony - Thaidreambox\n"
 "Language-Team: Tony @ Thai Dreambox <tonyboyth@gmail.com>\n"
@@ -484,7 +484,7 @@ msgid "(activated +%d min)"
 msgstr ""
 
 #, fuzzy
-msgid "(current)"
+msgid "(current image)"
 msgstr "สั่งใช้งานการตั้งค่าปัจจุบัน"
 
 msgid "(empty)"
@@ -499,6 +499,9 @@ msgstr "(เมนูเสียงของดีวีดี)"
 #, fuzzy
 msgid "(unknown)"
 msgstr "ไม่มีข้อมูล"
+
+msgid "* = Restart Required"
+msgstr ""
 
 msgid "* Only available if more than one interface is active."
 msgstr "* ต้องมีอย่างน้อย 1 อินเตอร์เฟซใช้งานอยู่"
@@ -1900,8 +1903,15 @@ msgstr "C"
 msgid "CI (Common Interface) Setup"
 msgstr "อินเตอร์เฟซพื้นฐาน"
 
+msgid "CI Boot Delay"
+msgstr ""
+
 msgid "CI assignment"
 msgstr "CI assignment"
+
+#, fuzzy
+msgid "CI enabled"
+msgstr "ใช้งานแล้ว"
 
 #, fuzzy
 msgid "CI slot: "
@@ -2970,6 +2980,10 @@ msgstr ""
 msgid "Copy to bouquets"
 msgstr "คัดลอกเข้าสู่กลุ่มรายการ"
 
+#, fuzzy
+msgid "Copying files"
+msgstr "กำลังตรวจสอบระบบไฟล์..."
+
 #, fuzzy, python-format
 msgid "Cores: %s"
 msgstr "ความเร็วในการย้อน"
@@ -3494,6 +3508,10 @@ msgstr "ลบไฟล์"
 
 msgid "Deleted items"
 msgstr ""
+
+#, fuzzy
+msgid "Deleting files"
+msgstr "ลบไฟล์"
 
 msgid "Denmark"
 msgstr ""
@@ -4077,10 +4095,6 @@ msgstr "ตั้งค่า Tuner"
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "ผิดพลาด - การค้นหา (%s) ล้มเหลว"
-
-#, python-format
-msgid "ERROR downloading file %s/%s"
-msgstr ""
 
 msgid "East"
 msgstr "ตะวันออก"
@@ -5569,6 +5583,9 @@ msgstr ""
 msgid "HDMI-IN Recording settings"
 msgstr "กำลังบันทึกรายการ"
 
+msgid "HDMI-In"
+msgstr ""
+
 #, fuzzy
 msgid "HDR10 support"
 msgstr "ไม่รองรับ"
@@ -5658,6 +5675,9 @@ msgid "Hidden network"
 msgstr ""
 
 msgid "Hide"
+msgstr ""
+
+msgid "Hide and confirm invalid key message"
 msgstr ""
 
 msgid "Hide channel list in radio mode"
@@ -6114,6 +6134,14 @@ msgstr ""
 
 msgid "Insert"
 msgstr ""
+
+#, fuzzy
+msgid "Insert Service"
+msgstr "กำลังติดตั้ง"
+
+#, fuzzy
+msgid "Insert entry"
+msgstr "ตั้งเวลา"
 
 #, fuzzy
 msgid "Insert line before current line"
@@ -7272,6 +7300,10 @@ msgstr ""
 msgid "Moving east..."
 msgstr "เคลื่อนไปทางทิศตะวันออก"
 
+#, fuzzy
+msgid "Moving files"
+msgstr "เคลื่อนไปทางทิศตะวันออก"
+
 msgid "Moving to position"
 msgstr ""
 
@@ -8329,6 +8361,10 @@ msgstr "Pillarbox"
 
 msgid "Pilot"
 msgstr "Pilot"
+
+#, fuzzy
+msgid "Pin Userbouquet"
+msgstr "เปิดใช้หลายกลุ่มรายการ"
 
 msgid "Pitcairn"
 msgstr ""
@@ -9393,6 +9429,10 @@ msgstr "บริการต่างๆ"
 msgid "Reload blacklists"
 msgstr "รายการต้องห้าม"
 
+#, fuzzy
+msgid "Reload services/bouquets list"
+msgstr "บริการต่างๆ"
+
 msgid "Reloading EPG Cache..."
 msgstr ""
 
@@ -10306,6 +10346,10 @@ msgid "Select OPKG source....."
 msgstr "เลือกที่มาเพื่อปรับปรุง"
 
 #, fuzzy
+msgid "Select Service"
+msgstr "เลือกภาพยนต์"
+
+#, fuzzy
 msgid "Select Software Update"
 msgstr "ปรับปรุงซอพท์แวร์"
 
@@ -10468,7 +10512,15 @@ msgstr ""
 msgid "Select secondary softcam"
 msgstr ""
 
+#, fuzzy
+msgid "Select service name"
+msgstr "ค้นหาบริการ"
+
 msgid "Select service to add..."
+msgstr "เลือกบริการที่ต้องการเพิ่ม..."
+
+#, fuzzy
+msgid "Select service type"
 msgstr "เลือกบริการที่ต้องการเพิ่ม..."
 
 #, fuzzy
@@ -10477,6 +10529,14 @@ msgstr "เลือกตำแหน่ง"
 
 msgid "Select sort method:"
 msgstr ""
+
+#, fuzzy
+msgid "Select stream URL"
+msgstr "เลือกตำแหน่ง"
+
+#, fuzzy
+msgid "Select stream type"
+msgstr "เลือกภาพยนต์"
 
 #, fuzzy
 msgid "Select target folder"
@@ -10535,6 +10595,10 @@ msgstr "เลือกพาธของภาพยนต์"
 
 msgid "Select the shifted character set for the next character only"
 msgstr ""
+
+#, fuzzy
+msgid "Select the timer from the fallback tuner by default"
+msgstr "เลือกพาธของภาพยนต์"
 
 msgid "Select the tuner that controls the motorised dish."
 msgstr ""
@@ -10678,6 +10742,14 @@ msgstr "บริการต่างๆ"
 #, fuzzy
 msgid "Service ID"
 msgstr "บริการ"
+
+#, fuzzy
+msgid "Service Name"
+msgstr "ค้นหาบริการ"
+
+#, fuzzy
+msgid "Service Type"
+msgstr "ค้นหาบริการ"
 
 #, fuzzy
 msgid "Service belongs to a parental protected bouquet"
@@ -12000,6 +12072,14 @@ msgstr ""
 msgid "Stream Relay delay"
 msgstr ""
 
+#, fuzzy
+msgid "Stream Type"
+msgstr "ทำต่อ"
+
+#, fuzzy
+msgid "Stream URL"
+msgstr "ช่อง"
+
 msgid "Stream request"
 msgstr ""
 
@@ -12615,6 +12695,9 @@ msgid "There are at least %d updates available."
 msgstr " มีรายการปรับปรุง"
 
 msgid "There are currently no outstanding actions."
+msgstr ""
+
+msgid "There are no items currently available for this screen."
 msgstr ""
 
 #, fuzzy
@@ -13470,6 +13553,10 @@ msgstr ""
 msgid "Unpack to current folder"
 msgstr "แสดงรายละเอียดรายการ"
 
+#, fuzzy
+msgid "Unpin Userbouquet"
+msgstr "เปิดใช้หลายกลุ่มรายการ"
+
 msgid "Unsupported"
 msgstr "ไม่รองรับ"
 
@@ -13592,6 +13679,10 @@ msgstr ""
 msgid "Use a gateway"
 msgstr "ใช้ Gateway"
 
+#, fuzzy
+msgid "Use alternative skin"
+msgstr "เพิ่มทางเลือกอื่น"
+
 msgid "Use as PiP if possible"
 msgstr ""
 
@@ -13630,6 +13721,10 @@ msgstr "ใช้ power measurement"
 #, fuzzy
 msgid "Use skin default"
 msgstr "แสดงรูปแบบเริ่มต้น"
+
+#, fuzzy
+msgid "Use the alternative screen"
+msgstr "แก้ไขแบบอื่น"
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
@@ -14181,6 +14276,9 @@ msgid "When enabled the receiver will automatically wake from standby when the T
 msgstr ""
 
 msgid "When enabled the timer from the fallback tuner is imported"
+msgstr ""
+
+msgid "When enabled the timer from the fallback tuner is the default timer"
 msgstr ""
 
 msgid "When enabled then when you select a new channel in the channel selection the channel selection will not close. It will only close when you select the current playing service. This is a kind of preview mode"
@@ -15256,6 +15354,9 @@ msgstr ""
 msgid "extensions"
 msgstr " ส่วนเพิ่มเติม"
 
+msgid "extra high"
+msgstr ""
+
 msgid "extra wide"
 msgstr ""
 
@@ -15354,6 +15455,9 @@ msgstr "เก็บหน้าจอนี้ลงแฟ้ม"
 msgid "green"
 msgstr "เขียว"
 
+msgid "half an hour"
+msgstr ""
+
 msgid "handicraft"
 msgstr ""
 
@@ -15368,6 +15472,9 @@ msgid "help..."
 msgstr "ช่วยเหลือ..."
 
 msgid "hide"
+msgstr ""
+
+msgid "high"
 msgstr ""
 
 msgid "horizontal"
@@ -16124,6 +16231,10 @@ msgstr "แนวตั้ง (V)"
 
 msgid "violet"
 msgstr ""
+
+#, fuzzy
+msgid "wait for ci..."
+msgstr "รอ MMI..."
 
 msgid "wait for mmi..."
 msgstr "รอ MMI..."

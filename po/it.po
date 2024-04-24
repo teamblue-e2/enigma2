@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-12 11:21+0100\n"
+"POT-Creation-Date: 2024-04-24 10:35+0200\n"
 "PO-Revision-Date: 2021-11-30 12:39+0100\n"
 "Last-Translator: teamblue-e2 <teamblue-e2@online.de>\n"
 "Language-Team: www.linsat.net <spaeleus@croci.org>\n"
@@ -525,7 +525,7 @@ msgstr "(attivato +%d min)"
 
 #
 #, fuzzy
-msgid "(current)"
+msgid "(current image)"
 msgstr "(immagine corrente)"
 
 #
@@ -542,6 +542,9 @@ msgstr "(Mostrare il menu opzionale DVD audio)"
 #
 msgid "(unknown)"
 msgstr "(sconosciuto)"
+
+msgid "* = Restart Required"
+msgstr ""
 
 #
 msgid "* Only available if more than one interface is active."
@@ -2024,9 +2027,18 @@ msgstr "CI"
 msgid "CI (Common Interface) Setup"
 msgstr "Configurazione CI (interfaccia comune)"
 
+#, fuzzy
+msgid "CI Boot Delay"
+msgstr "Ritardo DVB CI"
+
 #
 msgid "CI assignment"
 msgstr "Assegnazione CI"
+
+#
+#, fuzzy
+msgid "CI enabled"
+msgstr "Abilitato"
 
 #
 msgid "CI slot: "
@@ -3171,6 +3183,10 @@ msgstr "Copia cartella"
 msgid "Copy to bouquets"
 msgstr "Copia in bouquet"
 
+#, fuzzy
+msgid "Copying files"
+msgstr "Copia il file"
+
 #
 #, python-format
 msgid "Cores: %s"
@@ -3714,6 +3730,11 @@ msgstr "Elimina immagine"
 
 msgid "Deleted items"
 msgstr "Registrazioni rimosse"
+
+#
+#, fuzzy
+msgid "Deleting files"
+msgstr "Rimuovere file"
 
 msgid "Denmark"
 msgstr "Danimarca"
@@ -4343,10 +4364,6 @@ msgstr "Configurazione EPGRefresh"
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "ERRORE - Ricerca fallita (%s)!"
-
-#, fuzzy, python-format
-msgid "ERROR downloading file %s/%s"
-msgstr "ERRORE nello scaricare il file %s"
 
 msgid "East"
 msgstr "Est"
@@ -5910,6 +5927,10 @@ msgstr "Azioni HDMI-IN"
 msgid "HDMI-IN Recording settings"
 msgstr "Registrazione HDMI"
 
+#, fuzzy
+msgid "HDMI-In"
+msgstr "HDMI-CEC"
+
 msgid "HDR10 support"
 msgstr "Supporto HDR10"
 
@@ -5998,6 +6019,9 @@ msgstr "Rete nascosta"
 
 msgid "Hide"
 msgstr "Nascondi"
+
+msgid "Hide and confirm invalid key message"
+msgstr ""
 
 msgid "Hide channel list in radio mode"
 msgstr "Nascondere elenco canali in modalità radio"
@@ -6471,6 +6495,16 @@ msgstr "Dispositivi di input"
 
 msgid "Insert"
 msgstr "Inserisci"
+
+#
+#, fuzzy
+msgid "Insert Service"
+msgstr "Installazione del servizio"
+
+#
+#, fuzzy
+msgid "Insert entry"
+msgstr "Voce timer"
 
 #
 msgid "Insert line before current line"
@@ -7675,6 +7709,11 @@ msgstr "In movimento"
 msgid "Moving east..."
 msgstr "Spostandosi verso est..."
 
+#
+#, fuzzy
+msgid "Moving files"
+msgstr "Spostare il file"
+
 msgid "Moving to position"
 msgstr "In movimento verso la posizione"
 
@@ -8776,6 +8815,10 @@ msgstr "Pillarbox"
 #
 msgid "Pilot"
 msgstr "Pilot"
+
+#, fuzzy
+msgid "Pin Userbouquet"
+msgstr "Scegli il bouquet"
 
 msgid "Pitcairn"
 msgstr "Pitcairn"
@@ -9931,6 +9974,11 @@ msgstr "Servizi di ricarica"
 msgid "Reload blacklists"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Reload services/bouquets list"
+msgstr "Servizi di ricarica"
+
 msgid "Reloading EPG Cache..."
 msgstr ""
 
@@ -10881,6 +10929,11 @@ msgid "Select OPKG source....."
 msgstr "Selezionare la fonte OPKG....."
 
 #
+#, fuzzy
+msgid "Select Service"
+msgstr "Selezionare registrazione"
+
+#
 msgid "Select Software Update"
 msgstr "Selezionare Aggiornamento software"
 
@@ -11053,7 +11106,17 @@ msgid "Select secondary softcam"
 msgstr "Seleziona la softcam secondaria"
 
 #
+#, fuzzy
+msgid "Select service name"
+msgstr "Nome canale"
+
+#
 msgid "Select service to add..."
+msgstr "Selezionare il canale da aggiungere..."
+
+#
+#, fuzzy
+msgid "Select service type"
 msgstr "Selezionare il canale da aggiungere..."
 
 #
@@ -11062,6 +11125,16 @@ msgstr ""
 
 msgid "Select sort method:"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Select stream URL"
+msgstr "Selezionare Aggiornamento software"
+
+#
+#, fuzzy
+msgid "Select stream type"
+msgstr "Selezionare un sintonizzatore"
 
 #
 msgid "Select target folder"
@@ -11120,6 +11193,10 @@ msgstr "Selezionare il set di caratteri spostati"
 
 msgid "Select the shifted character set for the next character only"
 msgstr "Seleziona il set di caratteri spostati solo per il carattere successivo"
+
+#, fuzzy
+msgid "Select the timer from the fallback tuner by default"
+msgstr "Quando è abilitato, il timer del sintonizzatore di fallback è importato"
 
 msgid "Select the tuner that controls the motorised dish."
 msgstr ""
@@ -11268,6 +11345,16 @@ msgstr ""
 #
 msgid "Service ID"
 msgstr "ID dispositivo"
+
+#
+#, fuzzy
+msgid "Service Name"
+msgstr "Nome canale"
+
+#
+#, fuzzy
+msgid "Service Type"
+msgstr "Nome canale"
 
 #
 msgid "Service belongs to a parental protected bouquet"
@@ -12614,6 +12701,14 @@ msgstr "Stream"
 msgid "Stream Relay delay"
 msgstr "Ritardo di scorrimento"
 
+#, fuzzy
+msgid "Stream Type"
+msgstr "Stream"
+
+#, fuzzy
+msgid "Stream URL"
+msgstr "Stream"
+
 msgid "Stream request"
 msgstr "Richiesta stream"
 
@@ -13295,6 +13390,11 @@ msgstr "Sono presenti almeno %d aggiornamenti disponibili."
 #
 msgid "There are currently no outstanding actions."
 msgstr "Nessuna azione in sospeso al momento."
+
+#
+#, fuzzy
+msgid "There are no items currently available for this screen."
+msgstr "Nessun aggiornamento disponibile."
 
 msgid "There are no saved playlists to delete!"
 msgstr "Non ci sono playlist salvate da eliminare!"
@@ -14205,6 +14305,11 @@ msgid "Unpack to current folder"
 msgstr "Disimballare nella cartella corrente"
 
 #
+#, fuzzy
+msgid "Unpin Userbouquet"
+msgstr "aprire elenco bouquet"
+
+#
 msgid "Unsupported"
 msgstr "Non supportata"
 
@@ -14334,6 +14439,11 @@ msgstr ""
 msgid "Use a gateway"
 msgstr "Utilizzare un gateway"
 
+#
+#, fuzzy
+msgid "Use alternative skin"
+msgstr "Aggiungi alternative"
+
 msgid "Use as PiP if possible"
 msgstr ""
 
@@ -14374,6 +14484,11 @@ msgstr "Utilizzare misurazione di potenza"
 #, fuzzy
 msgid "Use skin default"
 msgstr "Elenco standard"
+
+#
+#, fuzzy
+msgid "Use the alternative screen"
+msgstr "Aggiungi alternative"
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "Usate i tasti del cursore per selezionare un'immagine installata e poi il pulsante Start."
@@ -14967,6 +15082,10 @@ msgid "When enabled the receiver will automatically wake from standby when the T
 msgstr "Quando è abilitato, il ricevitore si sveglierà automaticamente dallo standby quando il televisore è acceso."
 
 msgid "When enabled the timer from the fallback tuner is imported"
+msgstr "Quando è abilitato, il timer del sintonizzatore di fallback è importato"
+
+#, fuzzy
+msgid "When enabled the timer from the fallback tuner is the default timer"
 msgstr "Quando è abilitato, il timer del sintonizzatore di fallback è importato"
 
 msgid "When enabled then when you select a new channel in the channel selection the channel selection will not close. It will only close when you select the current playing service. This is a kind of preview mode"
@@ -16167,6 +16286,9 @@ msgstr "Film/video sperimentali"
 msgid "extensions"
 msgstr "estensioni"
 
+msgid "extra high"
+msgstr ""
+
 msgid "extra wide"
 msgstr ""
 
@@ -16272,6 +16394,9 @@ msgstr "Grab dell'mmagine come bitmap"
 msgid "green"
 msgstr "Verde"
 
+msgid "half an hour"
+msgstr ""
+
 msgid "handicraft"
 msgstr "Artigianato"
 
@@ -16288,6 +16413,9 @@ msgstr "Aiuto..."
 
 msgid "hide"
 msgstr "nascondi"
+
+msgid "high"
+msgstr ""
 
 #
 msgid "horizontal"
@@ -17131,6 +17259,11 @@ msgstr "Verticale"
 
 msgid "violet"
 msgstr "viola"
+
+#
+#, fuzzy
+msgid "wait for ci..."
+msgstr "Attendere per mmi..."
 
 #
 msgid "wait for mmi..."

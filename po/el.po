@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-12 11:21+0100\n"
+"POT-Creation-Date: 2024-04-24 10:35+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: MCelliotG <mcelliotg@gmail.com>\n"
@@ -481,7 +481,7 @@ msgid "(activated +%d min)"
 msgstr ""
 
 #, fuzzy
-msgid "(current)"
+msgid "(current image)"
 msgstr "Ενεργοποίηση τρέχουσας ρύθμισης"
 
 msgid "(empty)"
@@ -497,6 +497,9 @@ msgstr "(εμφάνιση προαιρετικού μενού ήχου DVD)"
 #, fuzzy
 msgid "(unknown)"
 msgstr "άγνωστο"
+
+msgid "* = Restart Required"
+msgstr ""
 
 msgid "* Only available if more than one interface is active."
 msgstr "* Διαθέσιμο μόνο εάν είναι ενεργές περισσότερες από μία διεπαφές."
@@ -1886,8 +1889,15 @@ msgstr "C"
 msgid "CI (Common Interface) Setup"
 msgstr "Κοινή Διεπαφή"
 
+msgid "CI Boot Delay"
+msgstr ""
+
 msgid "CI assignment"
 msgstr "Ορισμός CI"
+
+#, fuzzy
+msgid "CI enabled"
+msgstr "ενεργοποιημένο"
 
 #, fuzzy
 msgid "CI slot: "
@@ -2957,6 +2967,10 @@ msgstr ""
 msgid "Copy to bouquets"
 msgstr "αντιγραφή στα μπουκέτα"
 
+#, fuzzy
+msgid "Copying files"
+msgstr "%d αρχείο"
+
 #, fuzzy, python-format
 msgid "Cores: %s"
 msgstr "Ταχύτητα κίνησης πίσω "
@@ -3472,6 +3486,10 @@ msgstr "Διαγραφή χρονοδιακόπτη"
 
 msgid "Deleted items"
 msgstr "Διεγραμμένα αντικείμενα"
+
+#, fuzzy
+msgid "Deleting files"
+msgstr "Διαγραφή αρχείου"
 
 msgid "Denmark"
 msgstr ""
@@ -4061,10 +4079,6 @@ msgstr "Ρύθμιση tuner"
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "ΣΦΑΛΜΑ - Αποτυχία ανίχνευσης  (%s)!"
-
-#, python-format
-msgid "ERROR downloading file %s/%s"
-msgstr ""
 
 msgid "East"
 msgstr "Ανατολικά"
@@ -5567,6 +5581,10 @@ msgid "HDMI-IN Recording settings"
 msgstr "Εγγραφή..."
 
 #, fuzzy
+msgid "HDMI-In"
+msgstr "Ρύθμιση HDMI-CEC"
+
+#, fuzzy
 msgid "HDR10 support"
 msgstr "δεν υποστηρίζεται"
 
@@ -5657,6 +5675,9 @@ msgid "Hidden network"
 msgstr "Κρυφό δίκτυο"
 
 msgid "Hide"
+msgstr ""
+
+msgid "Hide and confirm invalid key message"
 msgstr ""
 
 msgid "Hide channel list in radio mode"
@@ -6111,6 +6132,14 @@ msgstr "Συσκευές εισόδου"
 
 msgid "Insert"
 msgstr ""
+
+#, fuzzy
+msgid "Insert Service"
+msgstr "Εγκατάσταση"
+
+#, fuzzy
+msgid "Insert entry"
+msgstr "Στοιχείο χρονοδιακόπτη"
 
 #, fuzzy
 msgid "Insert line before current line"
@@ -7241,6 +7270,10 @@ msgstr "Μετακίνηση"
 msgid "Moving east..."
 msgstr "Κίνηση ανατολικά ..."
 
+#, fuzzy
+msgid "Moving files"
+msgstr "Κίνηση ανατολικά"
+
 msgid "Moving to position"
 msgstr "Κίνηση στη θέση"
 
@@ -8306,6 +8339,10 @@ msgstr "Μπάρες εκατέρωθεν"
 
 msgid "Pilot"
 msgstr "Πιλότος"
+
+#, fuzzy
+msgid "Pin Userbouquet"
+msgstr "Ενεργοποίηση πολλαπλών μπουκέτων"
 
 msgid "Pitcairn"
 msgstr ""
@@ -9375,6 +9412,10 @@ msgid "Reload blacklists"
 msgstr "Επαναφόρτωση μαύρων/λευκών λιστών"
 
 #, fuzzy
+msgid "Reload services/bouquets list"
+msgstr "Υπηρεσίες"
+
+#, fuzzy
 msgid "Reloading EPG Cache..."
 msgstr "Επαναφόρτωση μπουκέτων και υπηρεσιών..."
 
@@ -10288,6 +10329,10 @@ msgid "Select OPKG source....."
 msgstr "Επιλογή πηγής αναβαθμίσεων"
 
 #, fuzzy
+msgid "Select Service"
+msgstr "Επιλογή ταινίας"
+
+#, fuzzy
 msgid "Select Software Update"
 msgstr "Ενημέρωση λογισμικού"
 
@@ -10446,7 +10491,15 @@ msgstr "Επιλογή δορυφόρων"
 msgid "Select secondary softcam"
 msgstr ""
 
+#, fuzzy
+msgid "Select service name"
+msgstr "Όνομα υπηρεσίας"
+
 msgid "Select service to add..."
+msgstr "Επιλογή υπηρεσίας για προσθήκη..."
+
+#, fuzzy
+msgid "Select service type"
 msgstr "Επιλογή υπηρεσίας για προσθήκη..."
 
 #, fuzzy
@@ -10455,6 +10508,14 @@ msgstr "Επιλογή τοποθεσίας"
 
 msgid "Select sort method:"
 msgstr "Επιλογή τρόπου ταξινόμησης:"
+
+#, fuzzy
+msgid "Select stream URL"
+msgstr "Επιλογή τοποθεσίας"
+
+#, fuzzy
+msgid "Select stream type"
+msgstr "Επιλογή tuner"
 
 msgid "Select target folder"
 msgstr "Επιλογή φάκελου προορισμού"
@@ -10511,6 +10572,10 @@ msgstr "Επιλογή διαδρομής ταινίας"
 
 msgid "Select the shifted character set for the next character only"
 msgstr ""
+
+#, fuzzy
+msgid "Select the timer from the fallback tuner by default"
+msgstr "Επιλογή διαδρομής ταινίας"
 
 msgid "Select the tuner that controls the motorised dish."
 msgstr ""
@@ -10654,6 +10719,14 @@ msgstr "Υπηρεσίες"
 #, fuzzy
 msgid "Service ID"
 msgstr "Υπηρεσία"
+
+#, fuzzy
+msgid "Service Name"
+msgstr "Όνομα υπηρεσίας"
+
+#, fuzzy
+msgid "Service Type"
+msgstr "Όνομα υπηρεσίας"
 
 #, fuzzy
 msgid "Service belongs to a parental protected bouquet"
@@ -11955,6 +12028,14 @@ msgstr "Ροή"
 msgid "Stream Relay delay"
 msgstr "Χωρίς καθυστέρηση"
 
+#, fuzzy
+msgid "Stream Type"
+msgstr "Ροή"
+
+#, fuzzy
+msgid "Stream URL"
+msgstr "Ροή"
+
 msgid "Stream request"
 msgstr "Αίτηση ροής"
 
@@ -12579,6 +12660,10 @@ msgstr "Υπάρχουν τουλάχιστον %d διαθέσιμες ενημ
 
 msgid "There are currently no outstanding actions."
 msgstr "Δεν υπάρχουν ενέργειες σε εκκρεμότητα."
+
+#, fuzzy
+msgid "There are no items currently available for this screen."
+msgstr "Δεν υπάρχουν διαθέσιμες ενημερώσεις."
 
 #, fuzzy
 msgid "There are no saved playlists to delete!"
@@ -13430,6 +13515,10 @@ msgstr ""
 msgid "Unpack to current folder"
 msgstr "Τρέχουσα λειτουργία: %s \n"
 
+#, fuzzy
+msgid "Unpin Userbouquet"
+msgstr "Ενεργοποίηση πολλαπλών μπουκέτων"
+
 msgid "Unsupported"
 msgstr "Δεν υποστηρίζεται"
 
@@ -13554,6 +13643,10 @@ msgstr "Χρήση πληροφοριών Virgin EPG όταν είναι δια�
 msgid "Use a gateway"
 msgstr "Χρήση πύλης"
 
+#, fuzzy
+msgid "Use alternative skin"
+msgstr "προσθήκη εναλλακτικών"
+
 msgid "Use as PiP if possible"
 msgstr ""
 
@@ -13591,6 +13684,10 @@ msgstr "Χρήση μέτρησης ισχύος"
 #, fuzzy
 msgid "Use skin default"
 msgstr "Ορισμός προεπιλογής"
+
+#, fuzzy
+msgid "Use the alternative screen"
+msgstr "επεξεργασία εναλλακτικών"
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
@@ -14146,6 +14243,9 @@ msgid "When enabled the receiver will automatically wake from standby when the T
 msgstr "Όταν είναι ενεργό, ο δέκτης θα χρησιμοποιεί αυτόματα το κανάλι ήχου που είχατε προεπιλέξει."
 
 msgid "When enabled the timer from the fallback tuner is imported"
+msgstr ""
+
+msgid "When enabled the timer from the fallback tuner is the default timer"
 msgstr ""
 
 msgid "When enabled then when you select a new channel in the channel selection the channel selection will not close. It will only close when you select the current playing service. This is a kind of preview mode"
@@ -15254,6 +15354,9 @@ msgstr "πειραματικές ταινίες/βίντεο"
 msgid "extensions"
 msgstr " επεκτάσεις."
 
+msgid "extra high"
+msgstr ""
+
 msgid "extra wide"
 msgstr ""
 
@@ -15353,6 +15456,9 @@ msgstr "λήψη στιγμιότυπου του καρέ ως bitmap"
 msgid "green"
 msgstr "πράσινο"
 
+msgid "half an hour"
+msgstr ""
+
 msgid "handicraft"
 msgstr "χειροτεχνία"
 
@@ -15367,6 +15473,9 @@ msgid "help..."
 msgstr "βοήθεια..."
 
 msgid "hide"
+msgstr ""
+
+msgid "high"
 msgstr ""
 
 msgid "horizontal"
@@ -16132,6 +16241,10 @@ msgstr "κάθετη"
 
 msgid "violet"
 msgstr ""
+
+#, fuzzy
+msgid "wait for ci..."
+msgstr "αναμονή για mmi..."
 
 msgid "wait for mmi..."
 msgstr "αναμονή για mmi..."
