@@ -87,6 +87,9 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 		self["config"].onSelectionChanged.append(self.selectionChanged)
 		self.onLayoutFinish.append(self.layoutFinished)
 
+	def run(self):
+		self.keySave()
+
 	def changedEntry(self):
 		if isinstance(self["config"].getCurrent()[1], (ConfigBoolean, ConfigSelection)):
 			self.createSetup()
