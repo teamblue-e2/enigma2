@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-12 11:21+0100\n"
+"POT-Creation-Date: 2024-04-24 10:35+0200\n"
 "PO-Revision-Date: 2015-08-30 09:00+0200\n"
 "Last-Translator: Taykun345 <support@satnigmo.com>\n"
 "Language-Team: Satnigmo <support@satnigmo.com>\n"
@@ -546,7 +546,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "(current)"
+msgid "(current image)"
 msgstr "Aktiviranje trenutnih nastavitev"
 
 #
@@ -565,6 +565,9 @@ msgstr "(prikaz opcijskega DVD avdio menija)"
 #, fuzzy
 msgid "(unknown)"
 msgstr "neznano"
+
+msgid "* = Restart Required"
+msgstr ""
 
 #
 msgid "* Only available if more than one interface is active."
@@ -2189,9 +2192,17 @@ msgstr "C"
 msgid "CI (Common Interface) Setup"
 msgstr "Stanje CI vmesnika"
 
+msgid "CI Boot Delay"
+msgstr ""
+
 #
 msgid "CI assignment"
 msgstr "CI dodelitev"
+
+#
+#, fuzzy
+msgid "CI enabled"
+msgstr "vključeno"
 
 #
 #, fuzzy
@@ -3369,6 +3380,10 @@ msgstr ""
 msgid "Copy to bouquets"
 msgstr "Prenos v seznam priljubljenih paketov"
 
+#, fuzzy
+msgid "Copying files"
+msgstr "%d datoteka"
+
 #
 #, fuzzy, python-format
 msgid "Cores: %s"
@@ -3956,6 +3971,11 @@ msgstr "Izbris časovnika"
 
 msgid "Deleted items"
 msgstr "Izbrisani"
+
+#
+#, fuzzy
+msgid "Deleting files"
+msgstr "Izbris datoteke"
 
 msgid "Denmark"
 msgstr ""
@@ -4653,10 +4673,6 @@ msgstr "Nastavitev kanalnikov"
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "NAPAKA - neuspešno iskanje (%s)!"
-
-#, python-format
-msgid "ERROR downloading file %s/%s"
-msgstr ""
 
 #
 msgid "East"
@@ -6362,6 +6378,10 @@ msgid "HDMI-IN Recording settings"
 msgstr "Snemanje"
 
 #, fuzzy
+msgid "HDMI-In"
+msgstr "HDMI-CEC nastavitve"
+
+#, fuzzy
 msgid "HDR10 support"
 msgstr "ni podprto"
 
@@ -6461,6 +6481,9 @@ msgid "Hidden network"
 msgstr "Skrito omrežje"
 
 msgid "Hide"
+msgstr ""
+
+msgid "Hide and confirm invalid key message"
 msgstr ""
 
 msgid "Hide channel list in radio mode"
@@ -6968,6 +6991,16 @@ msgstr "Vhodne naprave"
 
 msgid "Insert"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Insert Service"
+msgstr "Nameščam..."
+
+#
+#, fuzzy
+msgid "Insert entry"
+msgstr "Vnos časovnika"
 
 #
 #, fuzzy
@@ -8262,6 +8295,11 @@ msgstr "Premikanje"
 msgid "Moving east..."
 msgstr "Premikanje na vzhod ..."
 
+#
+#, fuzzy
+msgid "Moving files"
+msgstr "Premikanje proti vzhodu"
+
 msgid "Moving to position"
 msgstr "Premikanje na položaj"
 
@@ -9466,6 +9504,11 @@ msgstr "Pillarbox"
 #
 msgid "Pilot"
 msgstr "Daljinec"
+
+#
+#, fuzzy
+msgid "Pin Userbouquet"
+msgstr "Omogoči sezname priljubljenih kanalov"
 
 msgid "Pitcairn"
 msgstr ""
@@ -10744,6 +10787,11 @@ msgstr "Kanali"
 msgid "Reload blacklists"
 msgstr "črni seznam"
 
+#
+#, fuzzy
+msgid "Reload services/bouquets list"
+msgstr "Kanali"
+
 #, fuzzy
 msgid "Reloading EPG Cache..."
 msgstr "Poteka ponovno nalaganje paketov kanalov in kanalov ..."
@@ -11814,6 +11862,11 @@ msgstr "Izberite vir nadgradnje"
 
 #
 #, fuzzy
+msgid "Select Service"
+msgstr "Izberite posnetek"
+
+#
+#, fuzzy
 msgid "Select Software Update"
 msgstr "Nadgradnja OpenPLi slike"
 
@@ -12008,8 +12061,17 @@ msgstr "Izbor satelitov"
 msgid "Select secondary softcam"
 msgstr ""
 
+#, fuzzy
+msgid "Select service name"
+msgstr "Ime kanala"
+
 #
 msgid "Select service to add..."
+msgstr "Izberite kanal, ki ga želite dodati."
+
+#
+#, fuzzy
+msgid "Select service type"
 msgstr "Izberite kanal, ki ga želite dodati."
 
 #
@@ -12020,6 +12082,16 @@ msgstr "Izberite lokacijo"
 #
 msgid "Select sort method:"
 msgstr "Izbor načina razvrščanja:"
+
+#
+#, fuzzy
+msgid "Select stream URL"
+msgstr "Izberite lokacijo"
+
+#
+#, fuzzy
+msgid "Select stream type"
+msgstr "Izberite kanalnik"
 
 #
 msgid "Select target folder"
@@ -12080,6 +12152,11 @@ msgstr "Izberite pot do posnetka"
 
 msgid "Select the shifted character set for the next character only"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Select the timer from the fallback tuner by default"
+msgstr "Izberite pot do posnetka"
 
 msgid "Select the tuner that controls the motorised dish."
 msgstr ""
@@ -12250,6 +12327,14 @@ msgstr "Kanali"
 #, fuzzy
 msgid "Service ID"
 msgstr "Informacije o trenutnem kanalu"
+
+#, fuzzy
+msgid "Service Name"
+msgstr "Ime kanala"
+
+#, fuzzy
+msgid "Service Type"
+msgstr "Ime kanala"
 
 #
 #, fuzzy
@@ -13758,6 +13843,14 @@ msgstr "Pretok"
 msgid "Stream Relay delay"
 msgstr "Brez zamika"
 
+#, fuzzy
+msgid "Stream Type"
+msgstr "Pretok"
+
+#, fuzzy
+msgid "Stream URL"
+msgstr "Pretok"
+
 msgid "Stream request"
 msgstr "Zahtevek za pričetek pretakanja"
 
@@ -14467,6 +14560,11 @@ msgstr "Na voljo je %d nadgradenj."
 #
 msgid "There are currently no outstanding actions."
 msgstr ""
+
+#
+#, fuzzy
+msgid "There are no items currently available for this screen."
+msgstr "Nadgradnja ni na voljo."
 
 #
 #, fuzzy
@@ -15415,6 +15513,11 @@ msgid "Unpack to current folder"
 msgstr "Trenutni način: %s \n"
 
 #
+#, fuzzy
+msgid "Unpin Userbouquet"
+msgstr "Omogoči sezname priljubljenih kanalov"
+
+#
 msgid "Unsupported"
 msgstr "Nepodprto"
 
@@ -15554,6 +15657,11 @@ msgstr "Virgin EPG se uporablja v primerih, ko TV postaje oddajajo tudi spored. 
 msgid "Use a gateway"
 msgstr "Uporaba prehoda"
 
+#
+#, fuzzy
+msgid "Use alternative skin"
+msgstr "Dodajanje alternativ"
+
 msgid "Use as PiP if possible"
 msgstr ""
 
@@ -15597,6 +15705,11 @@ msgstr "Uporaba merjenja moči"
 #, fuzzy
 msgid "Use skin default"
 msgstr "Nastavi kot privzeto"
+
+#
+#, fuzzy
+msgid "Use the alternative screen"
+msgstr "Urejanje alternativ"
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
@@ -16232,6 +16345,9 @@ msgid "When enabled the receiver will automatically wake from standby when the T
 msgstr "Če je nastavitev vključena, potem sprejemnik samodejno uporabi zvočno sled, ki je bila pred tem že izbrana."
 
 msgid "When enabled the timer from the fallback tuner is imported"
+msgstr ""
+
+msgid "When enabled the timer from the fallback tuner is the default timer"
 msgstr ""
 
 msgid "When enabled then when you select a new channel in the channel selection the channel selection will not close. It will only close when you select the current playing service. This is a kind of preview mode"
@@ -17452,6 +17568,9 @@ msgstr ""
 msgid "extensions"
 msgstr "razširitve."
 
+msgid "extra high"
+msgstr ""
+
 msgid "extra wide"
 msgstr ""
 
@@ -17565,6 +17684,9 @@ msgstr ""
 msgid "green"
 msgstr "Zelena"
 
+msgid "half an hour"
+msgstr ""
+
 msgid "handicraft"
 msgstr ""
 
@@ -17581,6 +17703,9 @@ msgid "help..."
 msgstr "Pomoč"
 
 msgid "hide"
+msgstr ""
+
+msgid "high"
 msgstr ""
 
 #
@@ -18460,6 +18585,11 @@ msgstr "Vertikalna"
 
 msgid "violet"
 msgstr ""
+
+#
+#, fuzzy
+msgid "wait for ci..."
+msgstr "čakam mmi..."
 
 #
 msgid "wait for mmi..."

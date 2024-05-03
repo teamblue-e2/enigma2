@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-12 11:21+0100\n"
+"POT-Creation-Date: 2024-04-24 10:35+0200\n"
 "PO-Revision-Date: 2014-11-12 00:49+0200\n"
 "Last-Translator: Taapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -501,7 +501,7 @@ msgid "(activated +%d min)"
 msgstr ""
 
 #, fuzzy
-msgid "(current)"
+msgid "(current image)"
 msgstr "Aktivizēt pašreizējo konfigurāciju"
 
 msgid "(empty)"
@@ -517,6 +517,9 @@ msgstr "(rādīt papildu DVD skaņas izvēlni)"
 #, fuzzy
 msgid "(unknown)"
 msgstr "nezināms"
+
+msgid "* = Restart Required"
+msgstr ""
 
 msgid "* Only available if more than one interface is active."
 msgstr "* Pieejams ja ir aktīvs vairāk nekā viens interfeiss."
@@ -1910,8 +1913,15 @@ msgstr "C"
 msgid "CI (Common Interface) Setup"
 msgstr "Common interfeiss"
 
+msgid "CI Boot Delay"
+msgstr ""
+
 msgid "CI assignment"
 msgstr "CI piešķiršana"
+
+#, fuzzy
+msgid "CI enabled"
+msgstr "aktivizēts"
 
 #, fuzzy
 msgid "CI slot: "
@@ -2981,6 +2991,10 @@ msgstr ""
 msgid "Copy to bouquets"
 msgstr "kopēt uz buķetēm"
 
+#, fuzzy
+msgid "Copying files"
+msgstr "%d fails"
+
 #, fuzzy, python-format
 msgid "Cores: %s"
 msgstr "Attīšanas ātrumi"
@@ -3496,6 +3510,10 @@ msgstr "Dzēst failu"
 
 msgid "Deleted items"
 msgstr "Dzēsts"
+
+#, fuzzy
+msgid "Deleting files"
+msgstr "Dzēst failu"
 
 msgid "Denmark"
 msgstr ""
@@ -4086,10 +4104,6 @@ msgstr "Uztvērēja konfigurācija"
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "KĻŪDA - meklēšana neizdevās (%s)!"
-
-#, python-format
-msgid "ERROR downloading file %s/%s"
-msgstr ""
 
 msgid "East"
 msgstr "Austrumi"
@@ -5584,6 +5598,9 @@ msgstr ""
 msgid "HDMI-IN Recording settings"
 msgstr "Ieraksta"
 
+msgid "HDMI-In"
+msgstr ""
+
 #, fuzzy
 msgid "HDR10 support"
 msgstr "nav atbalstīts"
@@ -5675,6 +5692,9 @@ msgid "Hidden network"
 msgstr "Neredzams tīkls"
 
 msgid "Hide"
+msgstr ""
+
+msgid "Hide and confirm invalid key message"
 msgstr ""
 
 msgid "Hide channel list in radio mode"
@@ -6129,6 +6149,14 @@ msgstr "Ievades ierīces"
 
 msgid "Insert"
 msgstr ""
+
+#, fuzzy
+msgid "Insert Service"
+msgstr "Uzstādīšana"
+
+#, fuzzy
+msgid "Insert entry"
+msgstr "Taimera ieraksts"
 
 #, fuzzy
 msgid "Insert line before current line"
@@ -7260,6 +7288,10 @@ msgstr "Griezt"
 msgid "Moving east..."
 msgstr "Griezt uz austrumiem..."
 
+#, fuzzy
+msgid "Moving files"
+msgstr "Griezt uz austrumiem"
+
 msgid "Moving to position"
 msgstr "Griezt uz pozīciju"
 
@@ -8322,6 +8354,10 @@ msgstr "Pillarbox"
 
 msgid "Pilot"
 msgstr "Pilot"
+
+#, fuzzy
+msgid "Pin Userbouquet"
+msgstr "Aktivizēt vairāk-buķešu režīmu"
 
 msgid "Pitcairn"
 msgstr ""
@@ -9387,6 +9423,10 @@ msgid "Reload blacklists"
 msgstr "Pārlādēt melno-/balto sarakstu"
 
 #, fuzzy
+msgid "Reload services/bouquets list"
+msgstr "Kanāli"
+
+#, fuzzy
 msgid "Reloading EPG Cache..."
 msgstr "Pārlādē buķetes un kanālus..."
 
@@ -10301,6 +10341,10 @@ msgid "Select OPKG source....."
 msgstr "Izvēlieties atjaunināšanas avotu"
 
 #, fuzzy
+msgid "Select Service"
+msgstr "Izvēlieties filmu"
+
+#, fuzzy
 msgid "Select Software Update"
 msgstr "Programmatūras atjaunināšana"
 
@@ -10458,7 +10502,15 @@ msgstr ""
 msgid "Select secondary softcam"
 msgstr ""
 
+#, fuzzy
+msgid "Select service name"
+msgstr "Kanāla nosaukums"
+
 msgid "Select service to add..."
+msgstr "Izvēlieties kanālu kuru pievienot..."
+
+#, fuzzy
+msgid "Select service type"
 msgstr "Izvēlieties kanālu kuru pievienot..."
 
 #, fuzzy
@@ -10467,6 +10519,14 @@ msgstr "Izvēlieties atrašanās vietu"
 
 msgid "Select sort method:"
 msgstr ""
+
+#, fuzzy
+msgid "Select stream URL"
+msgstr "Izvēlieties atrašanās vietu"
+
+#, fuzzy
+msgid "Select stream type"
+msgstr "Izvēlieties uztvērēju"
 
 msgid "Select target folder"
 msgstr "Izvēlieties mērķa mapi"
@@ -10523,6 +10583,10 @@ msgstr "Izvēlieties filmas ceļu"
 
 msgid "Select the shifted character set for the next character only"
 msgstr ""
+
+#, fuzzy
+msgid "Select the timer from the fallback tuner by default"
+msgstr "Izvēlieties filmas ceļu"
 
 msgid "Select the tuner that controls the motorised dish."
 msgstr ""
@@ -10666,6 +10730,14 @@ msgstr "Kanāli"
 #, fuzzy
 msgid "Service ID"
 msgstr "Kanāls"
+
+#, fuzzy
+msgid "Service Name"
+msgstr "Kanāla nosaukums"
+
+#, fuzzy
+msgid "Service Type"
+msgstr "Kanāla nosaukums"
 
 #, fuzzy
 msgid "Service belongs to a parental protected bouquet"
@@ -11967,6 +12039,14 @@ msgstr "Plūsma"
 msgid "Stream Relay delay"
 msgstr "Nav aiztures"
 
+#, fuzzy
+msgid "Stream Type"
+msgstr "Plūsma"
+
+#, fuzzy
+msgid "Stream URL"
+msgstr "Plūsma"
+
 msgid "Stream request"
 msgstr "Plūsmas pieprasījums"
 
@@ -12590,6 +12670,10 @@ msgstr "Vismaz %d atjauninājumi pieejami."
 
 msgid "There are currently no outstanding actions."
 msgstr "Pašlaik nav aktuālu darbību."
+
+#, fuzzy
+msgid "There are no items currently available for this screen."
+msgstr "Pašlaik atjauninājumi nav pieejami."
 
 #, fuzzy
 msgid "There are no saved playlists to delete!"
@@ -13439,6 +13523,10 @@ msgstr ""
 msgid "Unpack to current folder"
 msgstr "Rādīt notikuma detaļas"
 
+#, fuzzy
+msgid "Unpin Userbouquet"
+msgstr "Aktivizēt vairāk-buķešu režīmu"
+
 msgid "Unsupported"
 msgstr "Neatbalstāms"
 
@@ -13564,6 +13652,10 @@ msgstr ""
 msgid "Use a gateway"
 msgstr "Lietot vārteju"
 
+#, fuzzy
+msgid "Use alternative skin"
+msgstr "pievienot alternatīvas"
+
 msgid "Use as PiP if possible"
 msgstr ""
 
@@ -13601,6 +13693,10 @@ msgstr "Lietot sprieguma mērīšanu"
 #, fuzzy
 msgid "Use skin default"
 msgstr "noklusētais saraksta stils"
+
+#, fuzzy
+msgid "Use the alternative screen"
+msgstr "rediģēt alternatīvas"
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
@@ -14157,6 +14253,9 @@ msgid "When enabled the receiver will automatically wake from standby when the T
 msgstr "Ja iespējots, uztvērējs automātiski lietos audio celiņu, kuru iepriekš norādījāt."
 
 msgid "When enabled the timer from the fallback tuner is imported"
+msgstr ""
+
+msgid "When enabled the timer from the fallback tuner is the default timer"
 msgstr ""
 
 msgid "When enabled then when you select a new channel in the channel selection the channel selection will not close. It will only close when you select the current playing service. This is a kind of preview mode"
@@ -15267,6 +15366,9 @@ msgstr "eksperimentālās filmas/video"
 msgid "extensions"
 msgstr "paplašinājumi."
 
+msgid "extra high"
+msgstr ""
+
 msgid "extra wide"
 msgstr ""
 
@@ -15364,6 +15466,9 @@ msgstr "tvert kadru bitmap formātā"
 msgid "green"
 msgstr "zaļā"
 
+msgid "half an hour"
+msgstr ""
+
 msgid "handicraft"
 msgstr "rokdarbi"
 
@@ -15378,6 +15483,9 @@ msgid "help..."
 msgstr "palīdzība..."
 
 msgid "hide"
+msgstr ""
+
+msgid "high"
 msgstr ""
 
 msgid "horizontal"
@@ -16144,6 +16252,10 @@ msgstr "vertikālā"
 
 msgid "violet"
 msgstr ""
+
+#, fuzzy
+msgid "wait for ci..."
+msgstr "gaidiet atbildi no mmi..."
 
 msgid "wait for mmi..."
 msgstr "gaidiet atbildi no mmi..."

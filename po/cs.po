@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-12 11:21+0100\n"
+"POT-Creation-Date: 2024-04-24 10:35+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: ims <ims21@users.sourceforge.net>\n"
 "Language-Team: PLi <ims@openpli.org>\n"
@@ -533,7 +533,7 @@ msgstr "(aktivován +%d min)"
 
 #
 #, fuzzy
-msgid "(current)"
+msgid "(current image)"
 msgstr "Aktivovat současnou konfiguraci"
 
 #
@@ -551,6 +551,9 @@ msgstr "(zobrazit případné DVD audio menu)"
 #, fuzzy
 msgid "(unknown)"
 msgstr "neznámý"
+
+msgid "* = Restart Required"
+msgstr ""
 
 #
 msgid "* Only available if more than one interface is active."
@@ -2149,9 +2152,17 @@ msgstr ""
 msgid "CI (Common Interface) Setup"
 msgstr "CI (Common Interface)"
 
+msgid "CI Boot Delay"
+msgstr ""
+
 #
 msgid "CI assignment"
 msgstr "CI přiřazení"
+
+#
+#, fuzzy
+msgid "CI enabled"
+msgstr "povoleno"
 
 #
 #, fuzzy
@@ -3330,6 +3341,10 @@ msgstr ""
 msgid "Copy to bouquets"
 msgstr "zkopírovat do přehledů"
 
+#, fuzzy
+msgid "Copying files"
+msgstr "%d soubor"
+
 #, fuzzy, python-format
 msgid "Cores: %s"
 msgstr "DVB ovladače:"
@@ -3919,6 +3934,11 @@ msgstr "Odstranit časovač"
 #
 msgid "Deleted items"
 msgstr "Smazané položky"
+
+#
+#, fuzzy
+msgid "Deleting files"
+msgstr "Smazat soubor"
 
 msgid "Denmark"
 msgstr ""
@@ -4613,10 +4633,6 @@ msgstr "Konfigurace tuneru"
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "CHYBA - prohledávání selhalo (%s)!"
-
-#, python-format
-msgid "ERROR downloading file %s/%s"
-msgstr ""
 
 #
 msgid "East"
@@ -6324,6 +6340,11 @@ msgstr ""
 msgid "HDMI-IN Recording settings"
 msgstr "záznam"
 
+#
+#, fuzzy
+msgid "HDMI-In"
+msgstr "Nastavení HDMI-CEC"
+
 #, fuzzy
 msgid "HDR10 support"
 msgstr "nepodporováno"
@@ -6423,6 +6444,9 @@ msgid "Hidden network"
 msgstr "Skrytá síť"
 
 msgid "Hide"
+msgstr ""
+
+msgid "Hide and confirm invalid key message"
 msgstr ""
 
 msgid "Hide channel list in radio mode"
@@ -6925,6 +6949,16 @@ msgstr "Vstupní zařízení"
 
 msgid "Insert"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Insert Service"
+msgstr "Instaluji"
+
+#
+#, fuzzy
+msgid "Insert entry"
+msgstr "Zadání časovače"
 
 #
 #, fuzzy
@@ -8232,6 +8266,11 @@ msgstr "Natáčení"
 msgid "Moving east..."
 msgstr "Natáčení na východ ..."
 
+#
+#, fuzzy
+msgid "Moving files"
+msgstr "Posun východně"
+
 msgid "Moving to position"
 msgstr "Natáčení na pozici"
 
@@ -9437,6 +9476,11 @@ msgstr "Pillarbox"
 #
 msgid "Pilot"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Pin Userbouquet"
+msgstr "Povolit vícenásobné přehledy"
 
 msgid "Pitcairn"
 msgstr ""
@@ -10697,6 +10741,11 @@ msgstr "Programy"
 msgid "Reload blacklists"
 msgstr "Znovu načíst black-/whitelist"
 
+#
+#, fuzzy
+msgid "Reload services/bouquets list"
+msgstr "Programy"
+
 #, fuzzy
 msgid "Reloading EPG Cache..."
 msgstr "Obnovuji přehledy a programy..."
@@ -11751,6 +11800,11 @@ msgstr "Vyberte zdroje pro aktualizaci"
 
 #
 #, fuzzy
+msgid "Select Service"
+msgstr "Vyberte film"
+
+#
+#, fuzzy
 msgid "Select Software Update"
 msgstr "Aktualizace software"
 
@@ -11942,8 +11996,17 @@ msgstr "Vyberte satelity"
 msgid "Select secondary softcam"
 msgstr ""
 
+#, fuzzy
+msgid "Select service name"
+msgstr "Název programu"
+
 #
 msgid "Select service to add..."
+msgstr "Vyberte program pro přidání..."
+
+#
+#, fuzzy
+msgid "Select service type"
 msgstr "Vyberte program pro přidání..."
 
 #
@@ -11954,6 +12017,16 @@ msgstr "Vyberte umístění"
 #
 msgid "Select sort method:"
 msgstr "Zvolte způsob třídění:"
+
+#
+#, fuzzy
+msgid "Select stream URL"
+msgstr "Vyberte umístění"
+
+#
+#, fuzzy
+msgid "Select stream type"
+msgstr "Vyberte tuner"
 
 #
 msgid "Select target folder"
@@ -12014,6 +12087,11 @@ msgstr "Vyberte cestu k filmu"
 
 msgid "Select the shifted character set for the next character only"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Select the timer from the fallback tuner by default"
+msgstr "Vyberte cestu k filmu"
 
 msgid "Select the tuner that controls the motorised dish."
 msgstr ""
@@ -12183,6 +12261,14 @@ msgstr "Programy"
 #, fuzzy
 msgid "Service ID"
 msgstr "O programu"
+
+#, fuzzy
+msgid "Service Name"
+msgstr "Název programu"
+
+#, fuzzy
+msgid "Service Type"
+msgstr "Název programu"
 
 #
 #, fuzzy
@@ -13643,6 +13729,14 @@ msgstr ""
 msgid "Stream Relay delay"
 msgstr "Žádné"
 
+#, fuzzy
+msgid "Stream Type"
+msgstr "požadavek streamu"
+
+#, fuzzy
+msgid "Stream URL"
+msgstr "Zopakujte nový PIN"
+
 msgid "Stream request"
 msgstr "požadavek streamu"
 
@@ -14315,6 +14409,11 @@ msgstr "K dispozici je nejméně %d aktualizací."
 #
 msgid "There are currently no outstanding actions."
 msgstr "V současné době nejsou žádné nedokončené akce."
+
+#
+#, fuzzy
+msgid "There are no items currently available for this screen."
+msgstr "Nejsou žádné dostupné aktualizace."
 
 #
 #, fuzzy
@@ -15267,6 +15366,11 @@ msgid "Unpack to current folder"
 msgstr "Aktuální mód: %s \n"
 
 #
+#, fuzzy
+msgid "Unpin Userbouquet"
+msgstr "Povolit vícenásobné přehledy"
+
+#
 msgid "Unsupported"
 msgstr "Nepodporováno"
 
@@ -15404,6 +15508,11 @@ msgstr "Používat Virgin EPG informace, jestliže jsou dostupné."
 msgid "Use a gateway"
 msgstr "Použít bránu (gateway)"
 
+#
+#, fuzzy
+msgid "Use alternative skin"
+msgstr "přidat alternativy"
+
 msgid "Use as PiP if possible"
 msgstr ""
 
@@ -15445,6 +15554,11 @@ msgstr "Použít měření proudu"
 #, fuzzy
 msgid "Use skin default"
 msgstr "defaultní"
+
+#
+#, fuzzy
+msgid "Use the alternative screen"
+msgstr "upravit alternativy"
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
@@ -16070,6 +16184,9 @@ msgid "When enabled the receiver will automatically wake from standby when the T
 msgstr "Jestliže je povoleno, bude přijímač automaticky používat zvukovou stopu, která byla vybrána dříve. "
 
 msgid "When enabled the timer from the fallback tuner is imported"
+msgstr ""
+
+msgid "When enabled the timer from the fallback tuner is the default timer"
 msgstr ""
 
 msgid "When enabled then when you select a new channel in the channel selection the channel selection will not close. It will only close when you select the current playing service. This is a kind of preview mode"
@@ -17290,6 +17407,9 @@ msgstr "experimentální film/video"
 msgid "extensions"
 msgstr "rozšíření."
 
+msgid "extra high"
+msgstr ""
+
 msgid "extra wide"
 msgstr ""
 
@@ -17406,6 +17526,9 @@ msgstr "grabovat snímek jako bitmapu"
 msgid "green"
 msgstr "Zelené"
 
+msgid "half an hour"
+msgstr ""
+
 msgid "handicraft"
 msgstr "ruční práce"
 
@@ -17423,6 +17546,9 @@ msgid "help..."
 msgstr "nápověda..."
 
 msgid "hide"
+msgstr ""
+
+msgid "high"
 msgstr ""
 
 #
@@ -18314,6 +18440,11 @@ msgstr "vertikální"
 
 msgid "violet"
 msgstr ""
+
+#
+#, fuzzy
+msgid "wait for ci..."
+msgstr "čekat na mmi..."
 
 #
 msgid "wait for mmi..."

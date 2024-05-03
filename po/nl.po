@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-12 11:21+0100\n"
+"POT-Creation-Date: 2024-04-24 10:35+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Frenske <voorzitter@openpli.org>\n"
 "Language-Team: PLiteam <translators@openpli.org>\n"
@@ -486,7 +486,7 @@ msgid "(activated +%d min)"
 msgstr "(geactiveerd +%d min)"
 
 #, fuzzy
-msgid "(current)"
+msgid "(current image)"
 msgstr "Activeer de huidige configuratie"
 
 msgid "(empty)"
@@ -501,6 +501,9 @@ msgstr "(optioneel DVD audio menu weergeven)"
 #, fuzzy
 msgid "(unknown)"
 msgstr "onbekend"
+
+msgid "* = Restart Required"
+msgstr ""
 
 msgid "* Only available if more than one interface is active."
 msgstr "* Alleen beschikbaar indien meer dan één interface is geactiveerd."
@@ -1894,8 +1897,15 @@ msgstr "C"
 msgid "CI (Common Interface) Setup"
 msgstr "Common Interface"
 
+msgid "CI Boot Delay"
+msgstr ""
+
 msgid "CI assignment"
 msgstr "CI toewijzing"
+
+#, fuzzy
+msgid "CI enabled"
+msgstr "geactiveerd"
 
 #, fuzzy
 msgid "CI slot: "
@@ -3133,6 +3143,10 @@ msgstr ""
 msgid "Copy to bouquets"
 msgstr "Kopieer naar bouquetten"
 
+#, fuzzy
+msgid "Copying files"
+msgstr "%d bestand"
+
 #, fuzzy, python-format
 msgid "Cores: %s"
 msgstr "Terugspoelsnelheid"
@@ -3648,6 +3662,10 @@ msgstr "Verwijder timer"
 
 msgid "Deleted items"
 msgstr "Verwijderde bestanden"
+
+#, fuzzy
+msgid "Deleting files"
+msgstr "Verwijder bestand"
 
 msgid "Denmark"
 msgstr ""
@@ -4237,10 +4255,6 @@ msgstr "Tunerconfiguratie"
 #, python-format
 msgid "ERROR - failed to scan (%s)!"
 msgstr "Fout - zoeken mislukt (%s)!"
-
-#, python-format
-msgid "ERROR downloading file %s/%s"
-msgstr ""
 
 msgid "East"
 msgstr "Oost"
@@ -5749,6 +5763,10 @@ msgid "HDMI-IN Recording settings"
 msgstr "Opname"
 
 #, fuzzy
+msgid "HDMI-In"
+msgstr "HDMI-CEC instellingen"
+
+#, fuzzy
 msgid "HDR10 support"
 msgstr "niet ondersteund"
 
@@ -5839,6 +5857,9 @@ msgid "Hidden network"
 msgstr "Verborgen netwerk"
 
 msgid "Hide"
+msgstr ""
+
+msgid "Hide and confirm invalid key message"
 msgstr ""
 
 msgid "Hide channel list in radio mode"
@@ -6297,6 +6318,14 @@ msgstr "Invoerapparaten"
 
 msgid "Insert"
 msgstr ""
+
+#, fuzzy
+msgid "Insert Service"
+msgstr "Installeert"
+
+#, fuzzy
+msgid "Insert entry"
+msgstr "Timerinvoer"
 
 #, fuzzy
 msgid "Insert line before current line"
@@ -7428,6 +7457,10 @@ msgstr "Draaien"
 msgid "Moving east..."
 msgstr "Draaien naar oost ..."
 
+#, fuzzy
+msgid "Moving files"
+msgstr "Draai oost"
+
 msgid "Moving to position"
 msgstr "Draaien naar positie"
 
@@ -8494,6 +8527,10 @@ msgstr "Pillarbox"
 
 msgid "Pilot"
 msgstr "Navigatie"
+
+#, fuzzy
+msgid "Pin Userbouquet"
+msgstr "Zenders in meerdere bouquetten toestaan"
 
 msgid "Pitcairn"
 msgstr ""
@@ -9562,6 +9599,10 @@ msgid "Reload blacklists"
 msgstr "Herladen van de black-/whitelists"
 
 #, fuzzy
+msgid "Reload services/bouquets list"
+msgstr "Kanalen"
+
+#, fuzzy
 msgid "Reloading EPG Cache..."
 msgstr "Bouquetten en zenders opnieuw inladen"
 
@@ -10476,6 +10517,10 @@ msgid "Select OPKG source....."
 msgstr "Kies de bron om te upgraden"
 
 #, fuzzy
+msgid "Select Service"
+msgstr "Kies een film"
+
+#, fuzzy
 msgid "Select Software Update"
 msgstr "Software update"
 
@@ -10633,7 +10678,15 @@ msgstr "Kies de satellieten"
 msgid "Select secondary softcam"
 msgstr ""
 
+#, fuzzy
+msgid "Select service name"
+msgstr "Zendernaam"
+
 msgid "Select service to add..."
+msgstr "Selecteer zender om toe te voegen..."
+
+#, fuzzy
+msgid "Select service type"
 msgstr "Selecteer zender om toe te voegen..."
 
 #, fuzzy
@@ -10642,6 +10695,14 @@ msgstr "Kies een locatie"
 
 msgid "Select sort method:"
 msgstr "Kies de sorteermethode:"
+
+#, fuzzy
+msgid "Select stream URL"
+msgstr "Kies een locatie"
+
+#, fuzzy
+msgid "Select stream type"
+msgstr "Kies een tuner"
 
 msgid "Select target folder"
 msgstr "Kies de doelmap"
@@ -10698,6 +10759,10 @@ msgstr "Selecteer het opnamepad"
 
 msgid "Select the shifted character set for the next character only"
 msgstr ""
+
+#, fuzzy
+msgid "Select the timer from the fallback tuner by default"
+msgstr "Selecteer het opnamepad"
 
 msgid "Select the tuner that controls the motorised dish."
 msgstr ""
@@ -10841,6 +10906,14 @@ msgstr "Kanalen"
 #, fuzzy
 msgid "Service ID"
 msgstr "Zender"
+
+#, fuzzy
+msgid "Service Name"
+msgstr "Zendernaam"
+
+#, fuzzy
+msgid "Service Type"
+msgstr "Zendernaam"
 
 #, fuzzy
 msgid "Service belongs to a parental protected bouquet"
@@ -12148,6 +12221,14 @@ msgstr "Stream"
 msgid "Stream Relay delay"
 msgstr "Geen vertraging"
 
+#, fuzzy
+msgid "Stream Type"
+msgstr "Stream"
+
+#, fuzzy
+msgid "Stream URL"
+msgstr "Stream"
+
 msgid "Stream request"
 msgstr "Stream verzoek"
 
@@ -12771,6 +12852,10 @@ msgstr "Er zijn minimaal %d updates beschikbaar."
 
 msgid "There are currently no outstanding actions."
 msgstr "Er zijn geen uitstaande acties"
+
+#, fuzzy
+msgid "There are no items currently available for this screen."
+msgstr "Er zijn momenteel geen updates beschikbaar"
 
 #, fuzzy
 msgid "There are no saved playlists to delete!"
@@ -13626,6 +13711,10 @@ msgstr ""
 msgid "Unpack to current folder"
 msgstr "Huidige mode:"
 
+#, fuzzy
+msgid "Unpin Userbouquet"
+msgstr "Zenders in meerdere bouquetten toestaan"
+
 msgid "Unsupported"
 msgstr "Niet ondersteund"
 
@@ -13750,6 +13839,10 @@ msgstr "Indien geactiveerd kunt u, indien deze beschikbaar is, de Virgin EPG inf
 msgid "Use a gateway"
 msgstr "Gateway gebruiken"
 
+#, fuzzy
+msgid "Use alternative skin"
+msgstr "Alternatieven toevoegen"
+
 msgid "Use as PiP if possible"
 msgstr ""
 
@@ -13787,6 +13880,10 @@ msgstr "Meet stroomopname"
 #, fuzzy
 msgid "Use skin default"
 msgstr "Zet als standaard"
+
+#, fuzzy
+msgid "Use the alternative screen"
+msgstr "Alternatieven bewerken"
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
@@ -14344,6 +14441,9 @@ msgid "When enabled the receiver will automatically wake from standby when the T
 msgstr "Indien geactiveerd, dan zal de tuner automatisch het eerder geselecteerde audiospoor gebruiken."
 
 msgid "When enabled the timer from the fallback tuner is imported"
+msgstr ""
+
+msgid "When enabled the timer from the fallback tuner is the default timer"
 msgstr ""
 
 msgid "When enabled then when you select a new channel in the channel selection the channel selection will not close. It will only close when you select the current playing service. This is a kind of preview mode"
@@ -15474,6 +15574,9 @@ msgstr "experimentele films / video"
 msgid "extensions"
 msgstr " applicaties."
 
+msgid "extra high"
+msgstr ""
+
 msgid "extra wide"
 msgstr ""
 
@@ -15573,6 +15676,9 @@ msgstr "Maak van dit scherm een screenshot"
 msgid "green"
 msgstr "groen"
 
+msgid "half an hour"
+msgstr ""
+
 msgid "handicraft"
 msgstr "ambacht"
 
@@ -15587,6 +15693,9 @@ msgid "help..."
 msgstr "Help..."
 
 msgid "hide"
+msgstr ""
+
+msgid "high"
 msgstr ""
 
 msgid "horizontal"
@@ -16347,6 +16456,10 @@ msgstr "verticaal"
 
 msgid "violet"
 msgstr ""
+
+#, fuzzy
+msgid "wait for ci..."
+msgstr "wacht op mmi..."
 
 msgid "wait for mmi..."
 msgstr "wacht op mmi..."

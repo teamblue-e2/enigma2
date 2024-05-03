@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
 # shamelessly copied from pliExpertInfo (Vali, Mirakels, Littlesat)
 
-from enigma import iServiceInformation, iPlayableService
+from enigma import iServiceInformation, iPlayableService, eDVBCI_UI
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.config import config
+from Components.SystemInfo import BoxInfo
 from Tools.Transponder import ConvertToHumanReadable
 from Tools.GetEcmInfo import GetEcmInfo
 from Components.Converter.Poll import Poll
 from Tools.Directories import pathExists
-from Components.SystemInfo import BoxInfo
 from skin import parameters
+
+dvbCIUI = eDVBCI_UI.getInstance()
 
 caid_data = (
 	("0x100", "0x1ff", "Seca", "S", "SECA", True),
@@ -84,7 +86,7 @@ def createCurrentCaidLabel(info, currentCaid=None):
 	if currentCaid:
 		current_caid = currentCaid
 	else:
-		current_source, current_caid, current_provid, current_ecmpid = getCryptoInfo(info)
+		current_caid = getCryptoInfo(info)[1]
 	res = ""
 	decodingCiSlot = -1
 	NUM_CI = BoxInfo.getItem("CommonInterface")
@@ -92,14 +94,21 @@ def createCurrentCaidLabel(info, currentCaid=None):
 		if dvbCIUI:
 			for slot in range(NUM_CI):
 				stateDecoding = dvbCIUI.getDecodingState(slot)
-				if stateDecoding == 2:
+				stateSlot = dvbCIUI.getState(slot)
+				if stateDecoding == 2 and stateSlot not in (-1, 0, 3):
 					decodingCiSlot = slot
 		
 	if not pathExists("/tmp/ecm.info") and decodingCiSlot == -1:
 		return "FTA"
+		
+	if decodingCiSlot > -1 and not pathExists("/tmp/ecm.info"):
+		return "CI%d" % (decodingCiSlot)
+		
 	for caid_entry in caid_data:
 		if int(caid_entry[0], 16) <= int(current_caid, 16) <= int(caid_entry[1], 16):
 			res = caid_entry[4]
+	if decodingCiSlot > -1:
+		return "CI%d + %s" % (decodingCiSlot, res)
 	return res
 
 
