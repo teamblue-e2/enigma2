@@ -13,6 +13,9 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.Screen import Screen, ScreenSummary
 from Tools.Directories import SCOPE_GUISKIN, SCOPE_PLUGINS, SCOPE_SKINS, fileReadXML, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
+from Components.Sources.Boolean import Boolean
+from skin import parameters, findSkinScreen
+from enigma import eEnv
 
 MODULE_NAME = __name__.split(".")[-1]
 
