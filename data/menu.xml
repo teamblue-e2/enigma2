@@ -41,15 +41,15 @@
 		<item key="scart_switch" weight="15" level="1" text="VCR scart" conditional="config.usage.show_vcr_scart.value" requires="ScartSwitch"><code>self.session.scart.VCRSbChanged(3)</code></item>
 
 		<!-- Menu / Settings -->
-		<menu key="setup_selection" weight="20" level="0" text="Setup" flushConfigOnClose="1" >
+		<menu key="setup" weight="20" level="0" text="Setup" flushConfigOnClose="1" >
 
 			<!-- Menu / Settings / Video Menu -->
-			<menu key="video_menu" weight="10" level="0" text="Video">
+			<menu key="video" weight="10" level="0" text="Video">
 				<item key="video_setup" weight="0" level="0" text="Video Settings"><setup id="video_setup" /></item>
 			</menu>
 
 			<!-- Menu / Settings / Audio Menu -->
-			<menu key="audio_menu" weight="15" level="0" text="Audio">
+			<menu key="audio" weight="15" level="0" text="Audio">
 				<item key="audio_setup" level="0" text="Basic settings"><setup id="audio_setup" /></item>
 				<item key="subtitle_setup" level="2" text="Subtitle settings"><setup id="subtitlesetup" /></item>
 				<item key="autolanguage_setup" level="1" text="Auto language selection"><setup id="autolanguagesetup" /></item>
@@ -67,7 +67,7 @@
 			<item key="parental_setup" weight="25" level="0" text="Parental control"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
 
 			<!-- Menu / Settings / CAM/CI Menu -->
-			<menu key="cam_setup" weight="30" level="1" text="CAM/CI">
+			<menu key="cam" weight="30" level="1" text="CAM/CI">
 				<item key="ci_setup" weight="0" level="1" text="CI" requires="CommonInterface"><screen module="Ci" screen="CiSelection" /></item>
 				<!-- <item key="ci_setup" weight="5" level="1" text="CI PIN" requires="CommonInterface"><screen module="Ci" screen="CiDefaultPinSetup" /></item> -->
 			</menu>
@@ -105,7 +105,7 @@
 				</menu>
 
 				<!-- Menu / Settings / System / EPG Menu -->
-				<menu key="epg_menu" weight="25" level="0" text="EPG">
+				<menu key="epg" weight="25" level="0" text="EPG">
 					<item key="epg_settings" weight="0" level="0" text="Basic settings"><setup id="epgsettings" /></item>
 					<menu key="epgloadsave" weight="10" level="2" text="Manual load or save epg.dat">
 						<item key="loadepgcache" weight="0" level="2" text="Load EPG">
