@@ -5,7 +5,7 @@ SUBDIRS = SoftwareManager PositionerSetup Satfinder \
 	DefaultServicesScanner DiseqcTester CommonInterfaceAssignment GBAspectRatioSwitch \
 	CableScan FastScan OSDPositionSetup OSD3DSetup HdmiCEC VideoClippingSetup \
 	VideoEnhancement WirelessLan NetworkWizard DeviceManager FastChannelChange \
-	SwapManager SoftcamStartup
+	SwapManager
 
 install_PYTHON =	\
 	__init__.py
