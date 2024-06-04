@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-24 10:35+0200\n"
+"POT-Creation-Date: 2024-06-04 18:59+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Budiarno\n"
 "Language-Team: \n"
@@ -218,6 +218,9 @@ msgstr "%A %e %B %Y"
 
 msgid "%H:%M"
 msgstr "%H:%M"
+
+msgid "%R"
+msgstr ""
 
 #, fuzzy
 msgid "%Y-%m-%d %H:%M:%S"
@@ -444,6 +447,10 @@ msgid_plural "%s updated packages available"
 msgstr[0] "%s pembaruan paket tersedia"
 msgstr[1] "%s pembaruan paket-paket tersedia"
 
+#, python-format
+msgid "%s%s(Default: %s)"
+msgstr ""
+
 #, fuzzy, python-format
 msgid "%s: %s"
 msgstr "%s/%s: %s"
@@ -653,9 +660,6 @@ msgstr ""
 
 #, fuzzy
 msgid "?"
-msgstr "??"
-
-msgid "??"
 msgstr "??"
 
 msgid "A"
@@ -1740,6 +1744,10 @@ msgstr "Pengurangan nois blok"
 msgid "Blue"
 msgstr "Biru"
 
+#, fuzzy
+msgid "Blue button function"
+msgstr "Pilih lokasi backup"
+
 msgid "Bolivia (Plurinational State of)"
 msgstr ""
 
@@ -1977,6 +1985,12 @@ msgstr ""
 
 msgid "Cancel"
 msgstr "Batal"
+
+msgid "Cancel any changed settings and exit"
+msgstr ""
+
+msgid "Cancel any changed settings and exit all menus"
+msgstr ""
 
 msgid "Cancel any changes to the currently active skin"
 msgstr ""
@@ -2413,6 +2427,10 @@ msgstr "Info pengerjaan"
 
 msgid "Common Interface"
 msgstr "Common Interface"
+
+#, fuzzy
+msgid "Common Setup Actions"
+msgstr "Pemilihan EPG"
 
 msgid "Communication"
 msgstr "Komunikasi"
@@ -3314,6 +3332,10 @@ msgstr "Recording type"
 msgid "Default+Picon"
 msgstr "Pengaturan bawaan"
 
+#, fuzzy, python-format
+msgid "Default: '%s'."
+msgstr "Bawaan"
+
 msgid "Define additional delay in milliseconds before start of http(s) streams, e.g. to connect a remote tuner, you use a complex system of DiSEqC."
 msgstr ""
 
@@ -3404,6 +3426,12 @@ msgstr "Hapus pewaktu"
 #, fuzzy
 msgid "Delete all the text"
 msgstr "Hapus entri daftar putar"
+
+msgid "Delete character to left of cursor or select AM times"
+msgstr ""
+
+msgid "Delete character under cursor or select PM times"
+msgstr ""
 
 #, fuzzy
 msgid "Delete current line"
@@ -3625,6 +3653,10 @@ msgstr "Matikan acara saat ini tapi tidak acara mendatang"
 msgid "Disable move mode"
 msgstr "matikan mode pindahkan"
 
+#, fuzzy
+msgid "Disable operator profiles"
+msgstr "Variabel format tersedia"
+
 msgid "Disable timer"
 msgstr "Matikan pewaktu"
 
@@ -3683,6 +3715,9 @@ msgstr ""
 
 msgid "Display setup"
 msgstr "Atur display"
+
+msgid "Display the virtual keyboard for data entry"
+msgstr ""
 
 #, fuzzy
 msgid "Djibouti"
@@ -3900,6 +3935,10 @@ msgstr "this recording"
 
 msgid "Don't save and stop timeshift"
 msgstr "Jangan simpan dan hentikan timeshift"
+
+#, fuzzy
+msgid "Don't show default"
+msgstr "list style default"
 
 msgid "Don't stop current event but disable coming events"
 msgstr "Jangan hentikan acara saat ini tapi matikan acara mendatang"
@@ -4290,6 +4329,10 @@ msgstr "Diaktifkan"
 msgid "Enable volume control with arrow buttons"
 msgstr "Aktifkan kontrol suara dengan tombol panah"
 
+#, fuzzy
+msgid "Enable wakeup timer"
+msgstr "Sleep timer"
+
 msgid "Enable zapping with CH+/-, B+/-, P+/-"
 msgstr "Aktifkan zap menggunakan CH+/-, B+/-, P+/-"
 
@@ -4574,6 +4617,9 @@ msgstr "Exceeds dual layer medium!"
 
 msgid "Exceeds dual layer medium!"
 msgstr "Exceeds dual layer medium!"
+
+msgid "Exclude first CA device"
+msgstr ""
 
 msgid "Execution finished!!"
 msgstr "Eksekusi selesai!!"
@@ -5622,9 +5668,6 @@ msgstr "Hidden network"
 msgid "Hide"
 msgstr ""
 
-msgid "Hide and confirm invalid key message"
-msgstr ""
-
 msgid "Hide channel list in radio mode"
 msgstr "Sembunyikan daftar kanal pada mode radio"
 
@@ -5922,6 +5965,9 @@ msgstr "URL penggunaan rx dari jauh"
 #, fuzzy
 msgid "Import remote receiver URL"
 msgstr "URL penggunaan rx dari jauh"
+
+msgid "In Setup screens choose whether to show the default value of the selected item in the description field."
+msgstr ""
 
 msgid "In most cases this should be set to No. Only enable if you have a very specific need."
 msgstr ""
@@ -6295,7 +6341,8 @@ msgstr "Italia"
 msgid "Italy"
 msgstr "Italia"
 
-msgid "Items per page "
+#, fuzzy
+msgid "Items per page"
 msgstr "Items per page "
 
 msgid "Items per page for list screen"
@@ -6324,6 +6371,12 @@ msgstr "Jump to beginning of list"
 
 msgid "Jump to end of list"
 msgstr "Jump to end of list"
+
+msgid "Jump to first item in list or the start of text"
+msgstr ""
+
+msgid "Jump to last item in list or the end of text"
+msgstr ""
 
 msgid "Jump to next marked position"
 msgstr "Jump to next marked position"
@@ -6867,6 +6920,10 @@ msgstr ""
 msgid "Menu"
 msgstr "Menu"
 
+#, fuzzy
+msgid "Menu button function"
+msgstr "Pilih lokasi backup"
+
 #, python-format
 msgid "Menusort (%s)"
 msgstr ""
@@ -7091,6 +7148,14 @@ msgid "Move Picture in Picture"
 msgstr "Move Picture in Picture"
 
 #, fuzzy
+msgid "Move down a line"
+msgstr "Menuju bawah daftar"
+
+#, fuzzy
+msgid "Move down a screen"
+msgstr "Menuju bawah daftar"
+
+#, fuzzy
 msgid "Move down list"
 msgstr "Menuju bawah daftar"
 
@@ -7138,6 +7203,14 @@ msgstr ""
 msgid "Move the text cursor to the last character"
 msgstr ""
 
+#, fuzzy
+msgid "Move to first line / screen"
+msgstr "gerak ke bawah menuju entri selanjutnya"
+
+#, fuzzy
+msgid "Move to last line / screen"
+msgstr "gerak ke bawah menuju entri selanjutnya"
+
 msgid "Move to position X"
 msgstr "Move to position X"
 
@@ -7156,6 +7229,14 @@ msgstr "rewind to the previous chapter"
 #, fuzzy
 msgid "Move to the previous skin"
 msgstr "gerak ke atas menuju entri sebelumnya"
+
+#, fuzzy
+msgid "Move up a line"
+msgstr "Go up the list"
+
+#, fuzzy
+msgid "Move up a screen"
+msgstr "Go up the list"
 
 #, fuzzy
 msgid "Move up list"
@@ -8070,9 +8151,6 @@ msgstr ""
 msgid "PREVIOUS"
 msgstr ""
 
-msgid "PVR"
-msgstr ""
-
 msgid "Package list update"
 msgstr "Pembaruan daftar paket"
 
@@ -8581,6 +8659,10 @@ msgid "Please wait, Loading image."
 msgstr "Mohon tunggu... Memuat daftar..."
 
 #, fuzzy
+msgid "Please wait, restarting cardserver."
+msgstr "Please wait (downloading softcam)"
+
+#, fuzzy
 msgid "Please wait, restarting primary and secondary softcam."
 msgstr "Please wait (downloading softcam)"
 
@@ -8590,6 +8672,14 @@ msgstr "Please wait (downloading softcam)"
 
 #, fuzzy
 msgid "Please wait, restarting secondary softcam."
+msgstr "Please wait (downloading softcam)"
+
+#, fuzzy
+msgid "Please wait, restarting softcam and cardserver."
+msgstr "Please wait (downloading softcam)"
+
+#, fuzzy
+msgid "Please wait, restarting softcam."
 msgstr "Please wait (downloading softcam)"
 
 msgid "Please wait..."
@@ -9157,9 +9247,6 @@ msgstr "Rekam"
 msgid "Recall to previous service"
 msgstr ""
 
-msgid "Receiver or driver does not support FCC"
-msgstr ""
-
 #, fuzzy
 msgid "Reception lists"
 msgstr "Pengaturan Penerimaan"
@@ -9520,6 +9607,10 @@ msgstr "Restart network"
 msgid "Restart both"
 msgstr "Restart test"
 
+#, fuzzy
+msgid "Restart cardserver"
+msgstr "start cut here"
+
 msgid "Restart enigma"
 msgstr "Restart Enigma"
 
@@ -9532,6 +9623,10 @@ msgstr "Restart test"
 
 #, fuzzy
 msgid "Restart secondary softcam"
+msgstr "Restart test"
+
+#, fuzzy
+msgid "Restart softcam"
 msgstr "Restart test"
 
 msgid "Restart test"
@@ -9864,6 +9959,10 @@ msgid "Save EPG every (in hours)"
 msgstr ""
 
 #, fuzzy
+msgid "Save all changed settings and exit"
+msgstr "Buat folder baru lalu keluar"
+
+#, fuzzy
 msgid "Save and activate the currently selected skin"
 msgstr "Tekan OK untuk mengaktifkan tampilan."
 
@@ -10166,6 +10265,10 @@ msgstr ""
 msgid "Select CAId"
 msgstr "Pilih CAId"
 
+#, fuzzy
+msgid "Select Card Server"
+msgstr "Pilih film"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
@@ -10179,6 +10282,10 @@ msgstr "Pilih sumber upgrade"
 
 #, fuzzy
 msgid "Select Service"
+msgstr "Pilih film"
+
+#, fuzzy
+msgid "Select Softcam"
 msgstr "Pilih film"
 
 #, fuzzy
@@ -10391,6 +10498,12 @@ msgstr ""
 msgid "Select the movie path"
 msgstr "Select the movie path"
 
+msgid "Select the next item in list or move cursor right"
+msgstr ""
+
+msgid "Select the previous item in list or move cursor left"
+msgstr ""
+
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr ""
 
@@ -10497,10 +10610,10 @@ msgstr ""
 msgid "Select your provider and region. If not present in this list you will need to select one of the other 'service scan types'."
 msgstr ""
 
-msgid "Select your provider, and press OK to start the scan"
-msgstr "Pilih provider anda, dan tekan OK untuk mulai pelacakan"
-
 msgid "Select your region. If not available change 'Country' to 'all' and select one of the default alternatives."
+msgstr ""
+
+msgid "Select, toggle, process or edit the current entry"
 msgstr ""
 
 msgid "Selected mount point is already used by another drive."
@@ -10681,6 +10794,9 @@ msgid "Set action when movie playback is finished."
 msgstr "Atur apa yang akan dilakukan ketika pemutar film dimulai."
 
 msgid "Set all hotkey to default?"
+msgstr ""
+
+msgid "Set all the settings back as they were"
 msgstr ""
 
 msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
@@ -10896,6 +11012,10 @@ msgid "Show Weather Widget"
 msgstr ""
 
 #, fuzzy
+msgid "Show additional information on infobar"
+msgstr "Tampilkan info kripto di infobar"
+
+#, fuzzy
 msgid "Show alternatives"
 msgstr "show alternatives"
 
@@ -10951,6 +11071,14 @@ msgstr "Tampilkan info kripto di infobar"
 #, fuzzy
 msgid "Show current mode"
 msgstr "Stop entry"
+
+#, fuzzy
+msgid "Show default after description"
+msgstr "Tampilkan deskripsi lebih luas"
+
+#, fuzzy
+msgid "Show default on new line"
+msgstr "Tampilkan baris info"
 
 msgid "Show detailed event info"
 msgstr "Tampilkan info acara terperinci"
@@ -11122,11 +11250,23 @@ msgid "Show servicelist or movies"
 msgstr ""
 
 #, fuzzy
+msgid "Show setup default values"
+msgstr "Tampilkan acara terperinci"
+
+#, fuzzy
 msgid "Show simple second infobar"
 msgstr "Tampilkan infobar kedua"
 
 msgid "Show single service EPG"
 msgstr ""
+
+#, fuzzy
+msgid "Show softcam information"
+msgstr "Info pengelola perangkat lunak"
+
+#, fuzzy
+msgid "Show softcam setup in extensions menu"
+msgstr "Tampilkan menu pilihan buket"
 
 #, fuzzy
 msgid "Show softcam startup in extensions menu"
@@ -11415,6 +11555,14 @@ msgid "SocketMMI"
 msgstr ""
 
 #, fuzzy
+msgid "Softcam Setup"
+msgstr "Softcam type"
+
+#, fuzzy
+msgid "Softcam setup"
+msgstr "Softcam type"
+
+#, fuzzy
 msgid "Softcam startup"
 msgstr "Softcam type"
 
@@ -11528,6 +11676,9 @@ msgid "Sort list:"
 msgstr ""
 
 msgid "Sort order for menu entries"
+msgstr ""
+
+msgid "Sort order for setup entries"
 msgstr ""
 
 msgid "Sort plugins list to default?"
@@ -11660,8 +11811,16 @@ msgid "Start"
 msgstr "Mulai pengecekan"
 
 #, fuzzy
+msgid "Start Sleeptimer"
+msgstr "Start time"
+
+#, fuzzy
 msgid "Start directory"
 msgstr "start directory"
+
+#, fuzzy
+msgid "Start fastscan"
+msgstr "Mulai pengecekan"
 
 msgid "Start from the beginning"
 msgstr "Mulai dari awal"
@@ -11700,6 +11859,10 @@ msgstr "Start timeshift"
 msgid "Start with list screen"
 msgstr "Start with list screen"
 
+#, fuzzy
+msgid "Start/Stop Sleeptimer"
+msgstr "Start time"
+
 msgid "Start/stop slide show"
 msgstr ""
 
@@ -11737,6 +11900,10 @@ msgstr "Stop"
 
 msgid "Stop PiP"
 msgstr "Hentikan PiP"
+
+#, fuzzy
+msgid "Stop Sleeptimer"
+msgstr "Stop entry"
 
 msgid "Stop all current recordings"
 msgstr ""
@@ -12456,10 +12623,6 @@ msgid "There are currently no outstanding actions."
 msgstr "There are currently no outstanding actions."
 
 #, fuzzy
-msgid "There are no items currently available for this screen."
-msgstr "There are no updates available."
-
-#, fuzzy
 msgid "There are no saved playlists to delete!"
 msgstr "Please select a playlist to delete..."
 
@@ -12573,6 +12736,13 @@ msgid "This option allows you enable smoothing filter to control the dithering p
 msgstr ""
 
 msgid "This option allows you enable the vertical scaler dejagging."
+msgstr ""
+
+#, fuzzy
+msgid "This option allows you to add the softcam setup in the extensions menu."
+msgstr "Tampilkan menu pilihan buket"
+
+msgid "This option allows you to alphabetically sort setup menu entries."
 msgstr ""
 
 msgid "This option allows you to boost the blue tones in the picture."
@@ -12918,6 +13088,10 @@ msgstr "Ke pemilihan teks film"
 
 msgid "Today"
 msgstr "Today"
+
+#, fuzzy
+msgid "Toggle Configuration Mode or AutoDisqc"
+msgstr "Mode penyetelan: %s"
 
 msgid "Toggle HDMI In"
 msgstr ""
@@ -13844,10 +14018,6 @@ msgstr "Wakeup signal from TV"
 msgid "Wakeup time"
 msgstr ""
 
-#, fuzzy
-msgid "Wakeup timer"
-msgstr "Aktifkan pewaktu bangun tidur"
-
 msgid "Wakeup type"
 msgstr ""
 
@@ -14000,9 +14170,15 @@ msgstr "Anda menginginkan ini?"
 msgid "What should happen when you start it for the first time?"
 msgstr ""
 
+msgid "When enabled a simplified version from the second infobar is shown. This can also be toggled instantly by holding the OK buttin when the second infobar is visible. The infobar will shortly disappear and then shown in the other mode."
+msgstr ""
+
 #, fuzzy
 msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are updated"
 msgstr "Ketika diaktifkan enigma2 akan memuat buket pengguna yg tak terhubung. Ini berarti bahwa buket pengguna yg tersedia, tapi tidak disertakan dalam file bouquets.tv atau bouquets.radio, akan tetap dimuat. Ini memungkinkan anda misalnya untuk menyimpan buket pengguna anda sendiri sementara pengaturan yg terpasang sedang ditingkatkan"
+
+msgid "When enabled extra information is shown on the infobar. This can also be toggled instantly by holding the OK button when the inforbar is not visible."
+msgstr ""
 
 #, fuzzy
 msgid "When enabled the Picture in Picture window can be closed with 'exit' button."
@@ -14325,6 +14501,10 @@ msgstr ""
 
 msgid "Yellow DVB subtitles"
 msgstr "Teks film DVB warna kuning"
+
+#, fuzzy
+msgid "Yellow button function"
+msgstr "Pilih lokasi backup"
 
 #, fuzzy
 msgid "Yemen"
@@ -14796,9 +14976,6 @@ msgstr "a gui to assign services/providers/caids to common interface modules"
 msgid "about to start"
 msgstr "akan memulai"
 
-msgid "activate network adapter configuration"
-msgstr "aktifkan konfigurasi adapter jaringan"
-
 #, fuzzy
 msgid "active"
 msgstr "Alternatif"
@@ -15127,9 +15304,6 @@ msgstr ""
 
 msgid "exit DVD player or return to file browser"
 msgstr "exit DVD player or return to file browser"
-
-msgid "exit network adapter configuration"
-msgstr "keluar dari konfigurasi adapter jaringan"
 
 msgid "exit networkadapter setup menu"
 msgstr "keluar dari menu atur adapter jaringan"

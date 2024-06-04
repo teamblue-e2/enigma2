@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-24 10:35+0200\n"
+"POT-Creation-Date: 2024-06-04 18:59+0200\n"
 "PO-Revision-Date: 2008-12-29 16:22+0100\n"
 "Last-Translator: gerrit <gerrit@nedlinux.nl>\n"
 "Language-Team: gerrit <fy@li.org>\n"
@@ -234,6 +234,9 @@ msgstr ""
 #
 msgid "%H:%M"
 msgstr "%H:%M"
+
+msgid "%R"
+msgstr ""
 
 msgid "%Y-%m-%d %H:%M:%S"
 msgstr ""
@@ -475,6 +478,10 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
+msgid "%s%s(Default: %s)"
+msgstr ""
+
+#, python-format
 msgid "%s: %s"
 msgstr ""
 
@@ -714,10 +721,6 @@ msgstr ""
 #
 #, fuzzy
 msgid "?"
-msgstr "??"
-
-#
-msgid "??"
 msgstr "??"
 
 #
@@ -1982,6 +1985,11 @@ msgstr ""
 msgid "Blue"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Blue button function"
+msgstr "Kies Lokaasje"
+
 msgid "Bolivia (Plurinational State of)"
 msgstr ""
 
@@ -2243,6 +2251,12 @@ msgstr ""
 #
 msgid "Cancel"
 msgstr "Ôfbrekke"
+
+msgid "Cancel any changed settings and exit"
+msgstr ""
+
+msgid "Cancel any changed settings and exit all menus"
+msgstr ""
 
 msgid "Cancel any changes to the currently active skin"
 msgstr ""
@@ -2736,6 +2750,11 @@ msgstr "Kontrast"
 #
 msgid "Common Interface"
 msgstr "Common Interface"
+
+#
+#, fuzzy
+msgid "Common Setup Actions"
+msgstr "EPG Seleksje"
 
 #
 msgid "Communication"
@@ -3750,6 +3769,11 @@ msgstr "Start opnimmen?"
 msgid "Default+Picon"
 msgstr "Wyzigje ynstellingen"
 
+#
+#, fuzzy, python-format
+msgid "Default: '%s'."
+msgstr "Wyzigje ynstellingen"
+
 msgid "Define additional delay in milliseconds before start of http(s) streams, e.g. to connect a remote tuner, you use a complex system of DiSEqC."
 msgstr ""
 
@@ -3847,6 +3871,12 @@ msgstr "triem ferwiderje"
 #, fuzzy
 msgid "Delete all the text"
 msgstr "ofspiellyst rigele ferwiderje"
+
+msgid "Delete character to left of cursor or select AM times"
+msgstr ""
+
+msgid "Delete character under cursor or select PM times"
+msgstr ""
 
 #
 #, fuzzy
@@ -4105,6 +4135,11 @@ msgstr "Stopje hjoeddeiske mar net ankommend barren"
 msgid "Disable move mode"
 msgstr "ferpleats modus útskeakelje"
 
+#
+#, fuzzy
+msgid "Disable operator profiles"
+msgstr "Beskikbere variabele formaten"
+
 msgid "Disable timer"
 msgstr ""
 
@@ -4175,6 +4210,9 @@ msgstr ""
 #, fuzzy
 msgid "Display setup"
 msgstr "Ynstellingen sjen litte"
+
+msgid "Display the virtual keyboard for data entry"
+msgstr ""
 
 #
 #, fuzzy
@@ -4418,6 +4456,11 @@ msgstr "dit opnimmen"
 #, fuzzy
 msgid "Don't save and stop timeshift"
 msgstr "tiidskowen stopje"
+
+#
+#, fuzzy
+msgid "Don't show default"
+msgstr "lyst styl standert"
 
 #
 msgid "Don't stop current event but disable coming events"
@@ -4853,6 +4896,11 @@ msgstr "Ynskeakele"
 msgid "Enable volume control with arrow buttons"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Enable wakeup timer"
+msgstr "Tiidstjoering"
+
 msgid "Enable zapping with CH+/-, B+/-, P+/-"
 msgstr ""
 
@@ -5166,6 +5214,9 @@ msgstr "te grut foar 2 laags medium!"
 #, fuzzy
 msgid "Exceeds dual layer medium!"
 msgstr "te grut foar 2 laags medium!"
+
+msgid "Exclude first CA device"
+msgstr ""
 
 #
 msgid "Execution finished!!"
@@ -6362,9 +6413,6 @@ msgstr ""
 msgid "Hide"
 msgstr ""
 
-msgid "Hide and confirm invalid key message"
-msgstr ""
-
 msgid "Hide channel list in radio mode"
 msgstr ""
 
@@ -6686,6 +6734,9 @@ msgid "Import from remote receiver URL"
 msgstr ""
 
 msgid "Import remote receiver URL"
+msgstr ""
+
+msgid "In Setup screens choose whether to show the default value of the selected item in the description field."
 msgstr ""
 
 msgid "In most cases this should be set to No. Only enable if you have a very specific need."
@@ -7120,7 +7171,7 @@ msgstr "Italiaansk"
 msgid "Italy"
 msgstr "Italiaansk"
 
-msgid "Items per page "
+msgid "Items per page"
 msgstr ""
 
 msgid "Items per page for list screen"
@@ -7153,6 +7204,12 @@ msgstr ""
 #, fuzzy
 msgid "Jump to end of list"
 msgstr "spring nei ein fan lyst"
+
+msgid "Jump to first item in list or the start of text"
+msgstr ""
+
+msgid "Jump to last item in list or the end of text"
+msgstr ""
 
 #
 #, fuzzy
@@ -7791,6 +7848,11 @@ msgstr ""
 msgid "Menu"
 msgstr "Menu"
 
+#
+#, fuzzy
+msgid "Menu button function"
+msgstr "Kies Lokaasje"
+
 #, python-format
 msgid "Menusort (%s)"
 msgstr ""
@@ -8045,6 +8107,16 @@ msgstr "PIP ynskeakelje"
 
 #
 #, fuzzy
+msgid "Move down a line"
+msgstr "Draai nei west"
+
+#
+#, fuzzy
+msgid "Move down a screen"
+msgstr "Draai nei west"
+
+#
+#, fuzzy
 msgid "Move down list"
 msgstr "Draai nei west"
 
@@ -8098,6 +8170,16 @@ msgstr ""
 msgid "Move the text cursor to the last character"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Move to first line / screen"
+msgstr "Nei it folgende menu item gean"
+
+#
+#, fuzzy
+msgid "Move to last line / screen"
+msgstr "Nei it folgende menu item gean"
+
 msgid "Move to position X"
 msgstr ""
 
@@ -8120,6 +8202,16 @@ msgstr "werom spile nei it foarige haadstik"
 #, fuzzy
 msgid "Move to the previous skin"
 msgstr "Nei it foarige menu item "
+
+#
+#, fuzzy
+msgid "Move up a line"
+msgstr "Draai nei east"
+
+#
+#, fuzzy
+msgid "Move up a screen"
+msgstr "Draai nei east"
 
 #
 #, fuzzy
@@ -9174,9 +9266,6 @@ msgstr ""
 msgid "PREVIOUS"
 msgstr ""
 
-msgid "PVR"
-msgstr ""
-
 #
 msgid "Package list update"
 msgstr "Bywurkje pakketlyst  "
@@ -9798,6 +9887,11 @@ msgstr "Wachtsje oant it netwurk opnei start is..."
 msgid "Please wait, Loading image."
 msgstr "Lyst wurd laden..."
 
+#
+#, fuzzy
+msgid "Please wait, restarting cardserver."
+msgstr "Lyst wurd laden..."
+
 msgid "Please wait, restarting primary and secondary softcam."
 msgstr ""
 
@@ -9809,6 +9903,16 @@ msgstr "Lyst wurd laden..."
 #
 #, fuzzy
 msgid "Please wait, restarting secondary softcam."
+msgstr "Lyst wurd laden..."
+
+#
+#, fuzzy
+msgid "Please wait, restarting softcam and cardserver."
+msgstr "Lyst wurd laden..."
+
+#
+#, fuzzy
+msgid "Please wait, restarting softcam."
 msgstr "Lyst wurd laden..."
 
 #
@@ -10492,9 +10596,6 @@ msgstr "Woa"
 msgid "Recall to previous service"
 msgstr "Werom nei foariche service"
 
-msgid "Receiver or driver does not support FCC"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Reception lists"
@@ -10939,6 +11040,11 @@ msgstr "Netwurk nij starte"
 msgid "Restart both"
 msgstr "Test nij starte"
 
+#
+#, fuzzy
+msgid "Restart cardserver"
+msgstr "Kanalen wikselje"
+
 msgid "Restart enigma"
 msgstr ""
 
@@ -10951,6 +11057,11 @@ msgstr ""
 
 msgid "Restart secondary softcam"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Restart softcam"
+msgstr "Test nij starte"
 
 #
 msgid "Restart test"
@@ -11327,6 +11438,11 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "Save all changed settings and exit"
+msgstr "Ofspiellyst opslaan by ôfsluten"
+
+#
+#, fuzzy
 msgid "Save and activate the currently selected skin"
 msgstr "Ferwiderje it selektearre bestan"
 
@@ -11684,6 +11800,11 @@ msgstr ""
 msgid "Select CAId"
 msgstr "Kies hurde skiif"
 
+#
+#, fuzzy
+msgid "Select Card Server"
+msgstr "Kies in film"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
@@ -11701,6 +11822,11 @@ msgstr "Kies fideo moadus"
 #, fuzzy
 msgid "Select Service"
 msgstr "Kies in film"
+
+#
+#, fuzzy
+msgid "Select Softcam"
+msgstr "Kies fideo moadus"
 
 #
 #, fuzzy
@@ -11960,6 +12086,12 @@ msgstr ""
 msgid "Select the movie path"
 msgstr "kies it film paad"
 
+msgid "Select the next item in list or move cursor right"
+msgstr ""
+
+msgid "Select the previous item in list or move cursor left"
+msgstr ""
+
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr ""
 
@@ -12067,10 +12199,10 @@ msgstr "Kies Lokaasje"
 msgid "Select your provider and region. If not present in this list you will need to select one of the other 'service scan types'."
 msgstr ""
 
-msgid "Select your provider, and press OK to start the scan"
+msgid "Select your region. If not available change 'Country' to 'all' and select one of the default alternatives."
 msgstr ""
 
-msgid "Select your region. If not available change 'Country' to 'all' and select one of the default alternatives."
+msgid "Select, toggle, process or edit the current entry"
 msgstr ""
 
 msgid "Selected mount point is already used by another drive."
@@ -12282,6 +12414,9 @@ msgid "Set action when movie playback is finished."
 msgstr "Gedrach wannear in film start is"
 
 msgid "Set all hotkey to default?"
+msgstr ""
+
+msgid "Set all the settings back as they were"
 msgstr ""
 
 msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
@@ -12533,6 +12668,11 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "Show additional information on infobar"
+msgstr "Infolyne sjen litte"
+
+#
+#, fuzzy
 msgid "Show alternatives"
 msgstr "alternatieven sjen litte"
 
@@ -12593,6 +12733,16 @@ msgstr ""
 #, fuzzy
 msgid "Show current mode"
 msgstr "EPG details sjen litte"
+
+#
+#, fuzzy
+msgid "Show default after description"
+msgstr "útbreide beskriuwing sjen litte"
+
+#
+#, fuzzy
+msgid "Show default on new line"
+msgstr "Infolyne sjen litte"
 
 msgid "Show detailed event info"
 msgstr ""
@@ -12814,10 +12964,23 @@ msgstr "Laad lengte fan films yn filmlyst"
 
 #
 #, fuzzy
+msgid "Show setup default values"
+msgstr "EPG details sjen litte"
+
+#
+#, fuzzy
 msgid "Show simple second infobar"
 msgstr "transponder ynfo sjen litte"
 
 msgid "Show single service EPG"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Show softcam information"
+msgstr "Infolyne sjen litte"
+
+msgid "Show softcam setup in extensions menu"
 msgstr ""
 
 msgid "Show softcam startup in extensions menu"
@@ -13159,6 +13322,16 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "Softcam Setup"
+msgstr "Software oan it ynstallearjen..."
+
+#
+#, fuzzy
+msgid "Softcam setup"
+msgstr "Software oan it ynstallearjen..."
+
+#
+#, fuzzy
 msgid "Softcam startup"
 msgstr "Software oan it ynstallearjen..."
 
@@ -13281,6 +13454,9 @@ msgid "Sort list:"
 msgstr ""
 
 msgid "Sort order for menu entries"
+msgstr ""
+
+msgid "Sort order for setup entries"
 msgstr ""
 
 msgid "Sort plugins list to default?"
@@ -13429,8 +13605,18 @@ msgstr "Start test"
 
 #
 #, fuzzy
+msgid "Start Sleeptimer"
+msgstr "Starttiid"
+
+#
+#, fuzzy
 msgid "Start directory"
 msgstr "start map"
+
+#
+#, fuzzy
+msgid "Start fastscan"
+msgstr "Start test"
 
 #
 msgid "Start from the beginning"
@@ -13481,6 +13667,11 @@ msgstr "tiidskowen starte"
 msgid "Start with list screen"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Start/Stop Sleeptimer"
+msgstr "Starttiid"
+
 msgid "Start/stop slide show"
 msgstr ""
 
@@ -13526,6 +13717,11 @@ msgstr "Stop"
 #, fuzzy
 msgid "Stop PiP"
 msgstr "stopje PiP"
+
+#
+#, fuzzy
+msgid "Stop Sleeptimer"
+msgstr "Tiidstjoering"
 
 #
 #, fuzzy
@@ -14360,9 +14556,6 @@ msgstr ""
 msgid "There are currently no outstanding actions."
 msgstr ""
 
-msgid "There are no items currently available for this screen."
-msgstr ""
-
 #
 #, fuzzy
 msgid "There are no saved playlists to delete!"
@@ -14481,6 +14674,12 @@ msgid "This option allows you enable smoothing filter to control the dithering p
 msgstr ""
 
 msgid "This option allows you enable the vertical scaler dejagging."
+msgstr ""
+
+msgid "This option allows you to add the softcam setup in the extensions menu."
+msgstr ""
+
+msgid "This option allows you to alphabetically sort setup menu entries."
 msgstr ""
 
 msgid "This option allows you to boost the blue tones in the picture."
@@ -14871,6 +15070,11 @@ msgstr ""
 #
 msgid "Today"
 msgstr "Hjoed"
+
+#
+#, fuzzy
+msgid "Toggle Configuration Mode or AutoDisqc"
+msgstr "Ynstellingen modus"
 
 msgid "Toggle HDMI In"
 msgstr ""
@@ -15945,11 +16149,6 @@ msgstr ""
 msgid "Wakeup time"
 msgstr "Tiidstjoering"
 
-#
-#, fuzzy
-msgid "Wakeup timer"
-msgstr "Tiidstjoering"
-
 msgid "Wakeup type"
 msgstr ""
 
@@ -16106,7 +16305,13 @@ msgstr "Wat wolle jo ôfsykje ?"
 msgid "What should happen when you start it for the first time?"
 msgstr ""
 
+msgid "When enabled a simplified version from the second infobar is shown. This can also be toggled instantly by holding the OK buttin when the second infobar is visible. The infobar will shortly disappear and then shown in the other mode."
+msgstr ""
+
 msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are updated"
+msgstr ""
+
+msgid "When enabled extra information is shown on the infobar. This can also be toggled instantly by holding the OK button when the inforbar is not visible."
 msgstr ""
 
 msgid "When enabled the Picture in Picture window can be closed with 'exit' button."
@@ -16440,6 +16645,11 @@ msgstr "giel"
 
 msgid "Yellow DVB subtitles"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Yellow button function"
+msgstr "Kies Lokaasje"
 
 msgid "Yemen"
 msgstr ""
@@ -16893,10 +17103,6 @@ msgid "about to start"
 msgstr "op it punt om te starten"
 
 #
-msgid "activate network adapter configuration"
-msgstr ""
-
-#
 #, fuzzy
 msgid "active"
 msgstr "alernatief tafoegje"
@@ -17273,10 +17479,6 @@ msgstr ""
 #
 msgid "exit DVD player or return to file browser"
 msgstr "DVD spieler ferlitte en werom nei triem browser"
-
-#
-msgid "exit network adapter configuration"
-msgstr "netwurk adapter konfiguraasje ferlitte"
 
 #
 msgid "exit networkadapter setup menu"

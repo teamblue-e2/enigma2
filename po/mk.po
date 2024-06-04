@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-24 10:35+0200\n"
+"POT-Creation-Date: 2024-06-04 18:59+0200\n"
 "PO-Revision-Date: 2021-02-19 14:49+0100\n"
 "Last-Translator: \n"
 "Language-Team: Muzoss-VELEBRDO\n"
@@ -220,6 +220,9 @@ msgid "%A %e %B %Y"
 msgstr ""
 
 msgid "%H:%M"
+msgstr ""
+
+msgid "%R"
 msgstr ""
 
 msgid "%Y-%m-%d %H:%M:%S"
@@ -452,6 +455,10 @@ msgstr[0] "%s достапен ажуриран пакет"
 msgstr[1] "%s достапни ажурирани пакети"
 
 #, python-format
+msgid "%s%s(Default: %s)"
+msgstr ""
+
+#, python-format
 msgid "%s: %s"
 msgstr ""
 
@@ -657,9 +664,6 @@ msgstr "= НЕМА СТРИМ\n"
 
 #, fuzzy
 msgid "?"
-msgstr "??"
-
-msgid "??"
 msgstr "??"
 
 msgid "A"
@@ -1704,6 +1708,10 @@ msgstr "Блокирање и намалување на бучавата"
 msgid "Blue"
 msgstr "Сино"
 
+#, fuzzy
+msgid "Blue button function"
+msgstr "Изберете функција"
+
 msgid "Bolivia (Plurinational State of)"
 msgstr "Боливија (Повеќенационална Држава)"
 
@@ -1951,6 +1959,14 @@ msgstr "Канада"
 
 msgid "Cancel"
 msgstr "Поништи"
+
+#, fuzzy
+msgid "Cancel any changed settings and exit"
+msgstr "Завршете ги сите промени во текстот и откажете"
+
+#, fuzzy
+msgid "Cancel any changed settings and exit all menus"
+msgstr "Врати ги промените на активниот скин и затворете ги сите менија"
 
 msgid "Cancel any changes to the currently active skin"
 msgstr "Прекини и врати ги промени на активниот скин"
@@ -2370,6 +2386,10 @@ msgstr "Информации за промените"
 
 msgid "Common Interface"
 msgstr "Common Interface"
+
+#, fuzzy
+msgid "Common Setup Actions"
+msgstr "Акции за избор на Скин"
 
 msgid "Communication"
 msgstr "Комуникација"
@@ -3241,6 +3261,10 @@ msgstr "Стандарден тип на тајмер"
 msgid "Default+Picon"
 msgstr "Стандардно + Пикон"
 
+#, fuzzy, python-format
+msgid "Default: '%s'."
+msgstr "Стандард"
+
 msgid "Define additional delay in milliseconds before start of http(s) streams, e.g. to connect a remote tuner, you use a complex system of DiSEqC."
 msgstr ""
 
@@ -3329,6 +3353,14 @@ msgstr "Избриши имиџ"
 
 msgid "Delete all the text"
 msgstr "Избришете го целиот текст"
+
+#, fuzzy
+msgid "Delete character to left of cursor or select AM times"
+msgstr "Избришете го карактерот лево од курсорот"
+
+#, fuzzy
+msgid "Delete character under cursor or select PM times"
+msgstr "Избришете го знакот под курсорот"
 
 #, fuzzy
 msgid "Delete current line"
@@ -3543,6 +3575,10 @@ msgstr "Деактивира го тековниот настан, но акти
 msgid "Disable move mode"
 msgstr "Деактивирај го режимот за движење"
 
+#, fuzzy
+msgid "Disable operator profiles"
+msgstr "Достапни формати"
+
 msgid "Disable timer"
 msgstr "Деактивирајте го тајмерот"
 
@@ -3599,6 +3635,9 @@ msgstr "Прикажете ја должината на филмот во лис
 
 msgid "Display setup"
 msgstr "Поставки на екранот"
+
+msgid "Display the virtual keyboard for data entry"
+msgstr ""
 
 msgid "Djibouti"
 msgstr "Џибути"
@@ -3814,6 +3853,10 @@ msgstr "оваа снимка"
 
 msgid "Don't save and stop timeshift"
 msgstr "Не меморисувај и излегувај од timeshift"
+
+#, fuzzy
+msgid "Don't show default"
+msgstr "Поставете стандардно"
 
 msgid "Don't stop current event but disable coming events"
 msgstr "Не прекинувајте го тековниот настан, туку откажете ги идните"
@@ -4187,6 +4230,10 @@ msgstr ""
 msgid "Enable volume control with arrow buttons"
 msgstr "Активирајте ја контролата на јачината на звукот со копчињата со стрелки"
 
+#, fuzzy
+msgid "Enable wakeup timer"
+msgstr "Тајмер за спиење"
+
 msgid "Enable zapping with CH+/-, B+/-, P+/-"
 msgstr "Активирајте го префрлувањето на каналот со CH +/-, B +/-, P +/- \""
 
@@ -4460,6 +4507,9 @@ msgstr "Ја надминува големината на двослоен ме�
 
 msgid "Exceeds dual layer medium!"
 msgstr "Ја надминува големината на двослоен медиум!"
+
+msgid "Exclude first CA device"
+msgstr ""
 
 msgid "Execution finished!!"
 msgstr "Извршувањето заврши !!"
@@ -5477,9 +5527,6 @@ msgstr "Скриена мрежа"
 msgid "Hide"
 msgstr "Сокриј"
 
-msgid "Hide and confirm invalid key message"
-msgstr ""
-
 msgid "Hide channel list in radio mode"
 msgstr "Сокриј список на станици во режим на радио \""
 
@@ -5774,6 +5821,9 @@ msgstr "Увезете од URL-то на далечинскиот приемн�
 
 msgid "Import remote receiver URL"
 msgstr "Внесете URL на далечински приемник"
+
+msgid "In Setup screens choose whether to show the default value of the selected item in the description field."
+msgstr ""
 
 msgid "In most cases this should be set to No. Only enable if you have a very specific need."
 msgstr ""
@@ -6144,7 +6194,8 @@ msgstr "Италијански"
 msgid "Italy"
 msgstr "Италија"
 
-msgid "Items per page "
+#, fuzzy
+msgid "Items per page"
 msgstr "Предмети по страница "
 
 msgid "Items per page for list screen"
@@ -6173,6 +6224,12 @@ msgstr "Скокни на почетокот на списокот"
 
 msgid "Jump to end of list"
 msgstr "Скокни до крајот на списокот"
+
+msgid "Jump to first item in list or the start of text"
+msgstr ""
+
+msgid "Jump to last item in list or the end of text"
+msgstr ""
 
 msgid "Jump to next marked position"
 msgstr "Скокни до следната означена позиција"
@@ -6704,6 +6761,10 @@ msgstr ""
 msgid "Menu"
 msgstr "Мени"
 
+#, fuzzy
+msgid "Menu button function"
+msgstr "Изберете функција"
+
 #, python-format
 msgid "Menusort (%s)"
 msgstr "Сортирање на Мени (%s)"
@@ -6921,6 +6982,14 @@ msgid "Move Picture in Picture"
 msgstr "Премести слика во слика"
 
 #, fuzzy
+msgid "Move down a line"
+msgstr "Движете се надолу по листот"
+
+#, fuzzy
+msgid "Move down a screen"
+msgstr "Движете се надолу по листот"
+
+#, fuzzy
 msgid "Move down list"
 msgstr "Движете се надолу по листот"
 
@@ -6966,6 +7035,14 @@ msgstr "Поместете го курсорот за текст на првио
 msgid "Move the text cursor to the last character"
 msgstr "Поместете го курсорот за текст на последниот знак"
 
+#, fuzzy
+msgid "Move to first line / screen"
+msgstr "Поместете се на следниот Скин"
+
+#, fuzzy
+msgid "Move to last line / screen"
+msgstr "Поместете се на следниот Скин"
+
 msgid "Move to position X"
 msgstr "Поместете во позиција Х \""
 
@@ -6980,6 +7057,14 @@ msgstr "Поместете на претходната страница"
 
 msgid "Move to the previous skin"
 msgstr "Поместете се на претходниот Скин"
+
+#, fuzzy
+msgid "Move up a line"
+msgstr "Оди горе по листот"
+
+#, fuzzy
+msgid "Move up a screen"
+msgstr "Оди горе по листот"
 
 #, fuzzy
 msgid "Move up list"
@@ -7883,10 +7968,6 @@ msgstr "ППанел"
 msgid "PREVIOUS"
 msgstr ""
 
-#, fuzzy
-msgid "PVR"
-msgstr "OVR"
-
 msgid "Package list update"
 msgstr "Ажурирање на списокот на пакети"
 
@@ -8385,6 +8466,10 @@ msgid "Please wait, Loading image."
 msgstr "Ве молиме почекајте ... Се вчитува список ..."
 
 #, fuzzy
+msgid "Please wait, restarting cardserver."
+msgstr "Ве молиме почекајте, се рестартира Софткам."
+
+#, fuzzy
 msgid "Please wait, restarting primary and secondary softcam."
 msgstr "Ве молиме почекајте, се рестартира Софткам."
 
@@ -8394,6 +8479,14 @@ msgstr "Ве молиме почекајте, се рестартира Софт
 
 #, fuzzy
 msgid "Please wait, restarting secondary softcam."
+msgstr "Ве молиме почекајте, се рестартира Софткам."
+
+#, fuzzy
+msgid "Please wait, restarting softcam and cardserver."
+msgstr "Ве молиме почекајте, се рестартира Софткам."
+
+#, fuzzy
+msgid "Please wait, restarting softcam."
 msgstr "Ве молиме почекајте, се рестартира Софткам."
 
 msgid "Please wait..."
@@ -8948,9 +9041,6 @@ msgstr "Rec"
 msgid "Recall to previous service"
 msgstr "Назад на последниот канал"
 
-msgid "Receiver or driver does not support FCC"
-msgstr ""
-
 #, fuzzy
 msgid "Reception lists"
 msgstr "Поставки за прием"
@@ -9294,6 +9384,10 @@ msgstr "Рестартирај ја мрежата"
 msgid "Restart both"
 msgstr "Рестартирајте ги обете"
 
+#, fuzzy
+msgid "Restart cardserver"
+msgstr "Поставете како почетен канал"
+
 msgid "Restart enigma"
 msgstr "Рестарт енигма"
 
@@ -9306,6 +9400,10 @@ msgstr "Рестарт софткам"
 
 #, fuzzy
 msgid "Restart secondary softcam"
+msgstr "Рестарт софткам"
+
+#, fuzzy
+msgid "Restart softcam"
 msgstr "Рестарт софткам"
 
 msgid "Restart test"
@@ -9622,6 +9720,10 @@ msgstr "Зачувај ги поставките и податоците за EP
 msgid "Save EPG every (in hours)"
 msgstr ""
 
+#, fuzzy
+msgid "Save all changed settings and exit"
+msgstr "Внесете текст и зачувајте, а потоа излезете"
+
 msgid "Save and activate the currently selected skin"
 msgstr "Притиснете Зачувај за да го активирате нагласениот Скин"
 
@@ -9918,6 +10020,10 @@ msgstr ""
 msgid "Select CAId"
 msgstr "Изберете CAId"
 
+#, fuzzy
+msgid "Select Card Server"
+msgstr "Изберете филм"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "Изберете Fast DiSEqC ако системот за антена го поддржува. Ако не сте сигурни, изберете „Не“."
 
@@ -9931,6 +10037,10 @@ msgstr "Изберете извор на ажурирање"
 #, fuzzy
 msgid "Select Service"
 msgstr "Изберете филм"
+
+#, fuzzy
+msgid "Select Softcam"
+msgstr "Изберете софткам"
 
 #, fuzzy
 msgid "Select Software Update"
@@ -10134,6 +10244,12 @@ msgstr "Изберете го бројот на моделот на уредот
 msgid "Select the movie path"
 msgstr "Изберете ја патеката на филмот"
 
+msgid "Select the next item in list or move cursor right"
+msgstr ""
+
+msgid "Select the previous item in list or move cursor left"
+msgstr ""
+
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Изберете го протоколот што го користи вашиот SCR уред. Изборите се 'SCR Unicable' (Unicable) или 'SCR JESS' (JESS, исто така познат како Unicable II)."
 
@@ -10234,11 +10350,11 @@ msgstr "Изберете хоризонтална резолуција:"
 msgid "Select your provider and region. If not present in this list you will need to select one of the other 'service scan types'."
 msgstr "Изберете го вашиот провајдер и регион. Доколку не е присутен на оваа листа, ќе треба да изберете еден од другите „типови на пребарување канали“."
 
-msgid "Select your provider, and press OK to start the scan"
-msgstr "Изберете го вашиот провајдер и притиснете ОК за да започнете со пребарување"
-
 msgid "Select your region. If not available change 'Country' to 'all' and select one of the default alternatives."
 msgstr "Изберете го вашиот регион. Ако не е достапно, променете ја „Земјата“ во „сите“ и изберете една од стандардните алтернативи."
+
+msgid "Select, toggle, process or edit the current entry"
+msgstr ""
 
 msgid "Selected mount point is already used by another drive."
 msgstr ""
@@ -10413,6 +10529,9 @@ msgstr "Поставете акција кога филмот ќе заврши 
 
 msgid "Set all hotkey to default?"
 msgstr "Да се постават сите hotkey  за стандардно?"
+
+msgid "Set all the settings back as they were"
+msgstr ""
 
 msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
 msgstr "Поставете дополнителни резервни приемници за DVB-T / C или ATSC"
@@ -10622,6 +10741,10 @@ msgstr "Покажи статус на WLAN"
 msgid "Show Weather Widget"
 msgstr "Прикажи алтернативи"
 
+#, fuzzy
+msgid "Show additional information on infobar"
+msgstr "Покажи крипто информации од емулаторот во лентата за информации"
+
 msgid "Show alternatives"
 msgstr "Прикажи алтернативи"
 
@@ -10677,6 +10800,14 @@ msgstr "Покажи крипто информации од емулаторот
 #, fuzzy
 msgid "Show current mode"
 msgstr "Стоп за тековниот стрим"
+
+#, fuzzy
+msgid "Show default after description"
+msgstr "Покажи проширен опис"
+
+#, fuzzy
+msgid "Show default on new line"
+msgstr "Покажи инфо линија"
 
 msgid "Show detailed event info"
 msgstr "Прикажи детални информации за настанот"
@@ -10843,11 +10974,23 @@ msgid "Show servicelist or movies"
 msgstr "Покажи список на канали или филмови"
 
 #, fuzzy
+msgid "Show setup default values"
+msgstr "Покажи детали за настанот"
+
+#, fuzzy
 msgid "Show simple second infobar"
 msgstr "Покажи ја втората инфо-лента"
 
 msgid "Show single service EPG"
 msgstr "Прикажи EPG за каналот"
+
+#, fuzzy
+msgid "Show softcam information"
+msgstr "Информации за управувач на софтвер"
+
+#, fuzzy
+msgid "Show softcam setup in extensions menu"
+msgstr "Покажи ги поставките на софткам во дополнителното мени"
 
 #, fuzzy
 msgid "Show softcam startup in extensions menu"
@@ -11125,6 +11268,14 @@ msgid "SocketMMI"
 msgstr "SocketMMI"
 
 #, fuzzy
+msgid "Softcam Setup"
+msgstr "Поставки за Softcam"
+
+#, fuzzy
+msgid "Softcam setup"
+msgstr "Поставки за Softcam"
+
+#, fuzzy
 msgid "Softcam startup"
 msgstr "Поставки за Softcam"
 
@@ -11235,6 +11386,10 @@ msgid "Sort list:"
 msgstr "Сортирај список:"
 
 msgid "Sort order for menu entries"
+msgstr "Сортирај по редоследот на изборните ставки"
+
+#, fuzzy
+msgid "Sort order for setup entries"
 msgstr "Сортирај по редоследот на изборните ставки"
 
 msgid "Sort plugins list to default?"
@@ -11361,8 +11516,16 @@ msgstr "Во стендбај "
 msgid "Start"
 msgstr "Започни тест"
 
+#, fuzzy
+msgid "Start Sleeptimer"
+msgstr "Тајмер за спиење"
+
 msgid "Start directory"
 msgstr "Почетен директориум"
+
+#, fuzzy
+msgid "Start fastscan"
+msgstr "Започни тест"
 
 msgid "Start from the beginning"
 msgstr "Започни од почеток"
@@ -11401,6 +11564,10 @@ msgstr "Започнете со timeshift"
 msgid "Start with list screen"
 msgstr "Започнете со список"
 
+#, fuzzy
+msgid "Start/Stop Sleeptimer"
+msgstr "Неактивност Слептимер"
+
 msgid "Start/stop slide show"
 msgstr ""
 
@@ -11438,6 +11605,10 @@ msgstr "Стоп"
 
 msgid "Stop PiP"
 msgstr "Стоп PiP"
+
+#, fuzzy
+msgid "Stop Sleeptimer"
+msgstr "Тајмер за спиење"
 
 msgid "Stop all current recordings"
 msgstr "Стоп за сите тековни снимки"
@@ -12161,10 +12332,6 @@ msgstr "Има најмалку %d достапни ажурирања."
 msgid "There are currently no outstanding actions."
 msgstr "Не се планираат активности."
 
-#, fuzzy
-msgid "There are no items currently available for this screen."
-msgstr "Нема достапни ажурирања."
-
 msgid "There are no saved playlists to delete!"
 msgstr "Нема зачувани плејлисти за бришење!"
 
@@ -12294,6 +12461,14 @@ msgstr "Оваа опција ви овозможува да го овозмож
 
 msgid "This option allows you enable the vertical scaler dejagging."
 msgstr "Со оваа опција можете да го активирате обезвлекувањето на вертикалниот размер."
+
+#, fuzzy
+msgid "This option allows you to add the softcam setup in the extensions menu."
+msgstr "Оваа опција ви овозможува да ги зголемите сините тонови на сликата."
+
+#, fuzzy
+msgid "This option allows you to alphabetically sort setup menu entries."
+msgstr "Оваа опција ви овозможува да ги прикажете сите симболи на екранот."
 
 msgid "This option allows you to boost the blue tones in the picture."
 msgstr "Оваа опција ви овозможува да ги зголемите сините тонови на сликата."
@@ -12636,6 +12811,10 @@ msgstr "Избор на превод"
 
 msgid "Today"
 msgstr "Денес"
+
+#, fuzzy
+msgid "Toggle Configuration Mode or AutoDisqc"
+msgstr "Режим на конфигурација: %s"
 
 msgid "Toggle HDMI In"
 msgstr "Вклучете HDMI влез"
@@ -13536,10 +13715,6 @@ msgstr "Сигнал за вклучување од ТВ"
 msgid "Wakeup time"
 msgstr "Време за вклучување"
 
-#, fuzzy
-msgid "Wakeup timer"
-msgstr "Време за вклучување"
-
 msgid "Wakeup type"
 msgstr "Тип за вклучување"
 
@@ -13694,8 +13869,14 @@ msgstr "Дали сакате да потврдите?"
 msgid "What should happen when you start it for the first time?"
 msgstr ""
 
+msgid "When enabled a simplified version from the second infobar is shown. This can also be toggled instantly by holding the OK buttin when the second infobar is visible. The infobar will shortly disappear and then shown in the other mode."
+msgstr ""
+
 msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are updated"
 msgstr "Ако ја активирате оваа опција, сите постојни списоци на канали ќе бидат вчитани, дури и ако тие не се поврзани во bouquets.tv или bouquets.radio. Ова ви овозможува, на пример, да добивате свои листи на канали ако се ажурираат инсталираните списоци на канали"
+
+msgid "When enabled extra information is shown on the infobar. This can also be toggled instantly by holding the OK button when the inforbar is not visible."
+msgstr ""
 
 msgid "When enabled the Picture in Picture window can be closed with 'exit' button."
 msgstr "Ако ја активирате оваа опција, PiP може да се затвори со копчето за излез."
@@ -14020,6 +14201,10 @@ msgstr "Жолта"
 
 msgid "Yellow DVB subtitles"
 msgstr "Жолти DVB преводи"
+
+#, fuzzy
+msgid "Yellow button function"
+msgstr "Изберете функција"
 
 msgid "Yemen"
 msgstr "Јемен"
@@ -14479,9 +14664,6 @@ msgstr "водич за доделување услуги / даватели /ca
 msgid "about to start"
 msgstr "стартирам"
 
-msgid "activate network adapter configuration"
-msgstr "активирајте ја конфигурацијата на мрежниот адаптер"
-
 msgid "active"
 msgstr "активна"
 
@@ -14807,9 +14989,6 @@ msgstr "извршете намалувања (потребен е плагин 
 
 msgid "exit DVD player or return to file browser"
 msgstr "излезете од ДВД плеерот или вратете се во прелистувачот на датотеки"
-
-msgid "exit network adapter configuration"
-msgstr "излезете од конфигурацијата на адаптерот на мрежата"
 
 msgid "exit networkadapter setup menu"
 msgstr "излезете од менито за поставување мрежен адаптер"

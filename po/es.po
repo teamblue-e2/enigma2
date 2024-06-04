@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-24 10:35+0200\n"
+"POT-Creation-Date: 2024-06-04 18:59+0200\n"
 "PO-Revision-Date: 2020-03-17 01:28+0100\n"
 "Last-Translator: Jose Juan <jzapater@gmail.com>\n"
 "Language-Team: ANGELODOS  angelo2807@hotmail.com\n"
@@ -238,6 +238,9 @@ msgstr ""
 #
 msgid "%H:%M"
 msgstr "%H:%M"
+
+msgid "%R"
+msgstr ""
 
 msgid "%Y-%m-%d %H:%M:%S"
 msgstr ""
@@ -479,6 +482,10 @@ msgstr[0] "%s paquete actualizado disponible"
 msgstr[1] "%s paquetes actualizados disponibles"
 
 #, python-format
+msgid "%s%s(Default: %s)"
+msgstr ""
+
+#, python-format
 msgid "%s: %s"
 msgstr ""
 
@@ -717,10 +724,6 @@ msgstr ""
 #
 #, fuzzy
 msgid "?"
-msgstr "??"
-
-#
-msgid "??"
 msgstr "??"
 
 #
@@ -2014,6 +2017,10 @@ msgstr "Reducción de bloque de ruido"
 msgid "Blue"
 msgstr "Azul"
 
+#, fuzzy
+msgid "Blue button function"
+msgstr "Seleccionar acción"
+
 msgid "Bolivia (Plurinational State of)"
 msgstr ""
 
@@ -2271,6 +2278,14 @@ msgstr ""
 #
 msgid "Cancel"
 msgstr "Cancelar"
+
+#, fuzzy
+msgid "Cancel any changed settings and exit"
+msgstr "Cancela cualquier cambio en la piel activa actualmente y sal de todos los menús"
+
+#, fuzzy
+msgid "Cancel any changed settings and exit all menus"
+msgstr "Cancela cualquier cambio en la piel activa actualmente y sal de todos los menús"
 
 msgid "Cancel any changes to the currently active skin"
 msgstr "Cancelar cualquier cambio en la piel actualmente activa"
@@ -2776,6 +2791,10 @@ msgstr "Contraste"
 #
 msgid "Common Interface"
 msgstr "Interface común"
+
+#, fuzzy
+msgid "Common Setup Actions"
+msgstr " Skin Seleccione la acción"
 
 #
 msgid "Communication"
@@ -3801,6 +3820,11 @@ msgstr "Tipo de temporizador predeterminado"
 msgid "Default+Picon"
 msgstr "< Piel predeterminada + Picon >"
 
+#
+#, fuzzy, python-format
+msgid "Default: '%s'."
+msgstr "Por defecto"
+
 msgid "Define additional delay in milliseconds before start of http(s) streams, e.g. to connect a remote tuner, you use a complex system of DiSEqC."
 msgstr ""
 
@@ -3896,6 +3920,12 @@ msgstr "Borrar grabación"
 #, fuzzy
 msgid "Delete all the text"
 msgstr "borrar entrada en la lista de reproducción"
+
+msgid "Delete character to left of cursor or select AM times"
+msgstr ""
+
+msgid "Delete character under cursor or select PM times"
+msgstr ""
 
 #
 #, fuzzy
@@ -4158,6 +4188,11 @@ msgstr "Parar el evento actual pero no los eventos siguientes"
 msgid "Disable move mode"
 msgstr "quitar modo movimiento"
 
+#
+#, fuzzy
+msgid "Disable operator profiles"
+msgstr "Variables de formato disponibles"
+
 msgid "Disable timer"
 msgstr "Desactiva grabación"
 
@@ -4229,6 +4264,9 @@ msgstr ""
 #
 msgid "Display setup"
 msgstr "Configurar Pantalla"
+
+msgid "Display the virtual keyboard for data entry"
+msgstr ""
 
 #
 #, fuzzy
@@ -4479,6 +4517,10 @@ msgstr "No añadir esta grabación"
 #, fuzzy
 msgid "Don't save and stop timeshift"
 msgstr "Detener Timeshift"
+
+#, fuzzy
+msgid "Don't show default"
+msgstr "Predeterminar"
 
 #
 msgid "Don't stop current event but disable coming events"
@@ -4929,6 +4971,12 @@ msgstr "Activar log"
 msgid "Enable volume control with arrow buttons"
 msgstr "Seleccione entrada de vídeo con los botones arriba/abajo"
 
+#
+#
+#, fuzzy
+msgid "Enable wakeup timer"
+msgstr "Apagado automático"
+
 msgid "Enable zapping with CH+/-, B+/-, P+/-"
 msgstr "Habilitar zapping con CH + /-, B + /-, P + /-"
 
@@ -5250,6 +5298,9 @@ msgstr "Excede el medio Bludisc."
 
 msgid "Exceeds dual layer medium!"
 msgstr "¡Excede el disco de doble capa!"
+
+msgid "Exclude first CA device"
+msgstr ""
 
 #
 msgid "Execution finished!!"
@@ -6476,9 +6527,6 @@ msgstr "Red oculta"
 msgid "Hide"
 msgstr ""
 
-msgid "Hide and confirm invalid key message"
-msgstr ""
-
 msgid "Hide channel list in radio mode"
 msgstr "Ocultar lista de canales en el modo de radio"
 
@@ -6802,6 +6850,9 @@ msgstr "Receptor remoto suplencia URL"
 #, fuzzy
 msgid "Import remote receiver URL"
 msgstr "Receptor remoto suplencia URL"
+
+msgid "In Setup screens choose whether to show the default value of the selected item in the description field."
+msgstr ""
 
 msgid "In most cases this should be set to No. Only enable if you have a very specific need."
 msgstr ""
@@ -7232,7 +7283,8 @@ msgstr "Italiano"
 msgid "Italy"
 msgstr "Italiano"
 
-msgid "Items per page "
+#, fuzzy
+msgid "Items per page"
 msgstr "Elementos por página"
 
 msgid "Items per page for list screen"
@@ -7263,6 +7315,12 @@ msgstr "Saltar al principio de la lista"
 #
 msgid "Jump to end of list"
 msgstr "Saltar al final de la lista"
+
+msgid "Jump to first item in list or the start of text"
+msgstr ""
+
+msgid "Jump to last item in list or the end of text"
+msgstr ""
 
 #
 msgid "Jump to next marked position"
@@ -7904,6 +7962,10 @@ msgstr ""
 msgid "Menu"
 msgstr "Menú"
 
+#, fuzzy
+msgid "Menu button function"
+msgstr "Seleccionar acción"
+
 #, python-format
 msgid "Menusort (%s)"
 msgstr ""
@@ -8156,6 +8218,14 @@ msgid "Move Picture in Picture"
 msgstr "Activar PiP"
 
 #, fuzzy
+msgid "Move down a line"
+msgstr "Ir abajo en la lista"
+
+#, fuzzy
+msgid "Move down a screen"
+msgstr "Ir abajo en la lista"
+
+#, fuzzy
 msgid "Move down list"
 msgstr "Ir abajo en la lista"
 
@@ -8209,6 +8279,16 @@ msgstr ""
 msgid "Move the text cursor to the last character"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Move to first line / screen"
+msgstr "mover a la  siguiente piel"
+
+#
+#, fuzzy
+msgid "Move to last line / screen"
+msgstr "mover a la  siguiente piel"
+
 msgid "Move to position X"
 msgstr "Mueva a la posición X"
 
@@ -8227,6 +8307,14 @@ msgstr "Ir a la página anterior"
 #
 msgid "Move to the previous skin"
 msgstr "Moverse a la piel anterior"
+
+#, fuzzy
+msgid "Move up a line"
+msgstr "Ir arrriba de la lista"
+
+#, fuzzy
+msgid "Move up a screen"
+msgstr "Ir arrriba de la lista"
 
 #, fuzzy
 msgid "Move up list"
@@ -9277,9 +9365,6 @@ msgstr ""
 msgid "PREVIOUS"
 msgstr ""
 
-msgid "PVR"
-msgstr ""
-
 #
 msgid "Package list update"
 msgstr "Actualización de lista de paquetes"
@@ -9890,6 +9975,12 @@ msgstr "Por favor espere mientras los feeds están siendo comprobados."
 msgid "Please wait, Loading image."
 msgstr "Espere... Cargando lista..."
 
+#
+#
+#, fuzzy
+msgid "Please wait, restarting cardserver."
+msgstr "Espere... Cargando lista..."
+
 msgid "Please wait, restarting primary and secondary softcam."
 msgstr ""
 
@@ -9903,6 +9994,18 @@ msgstr "Espere... Cargando lista..."
 #
 #, fuzzy
 msgid "Please wait, restarting secondary softcam."
+msgstr "Espere... Cargando lista..."
+
+#
+#
+#, fuzzy
+msgid "Please wait, restarting softcam and cardserver."
+msgstr "Espere... Cargando lista..."
+
+#
+#
+#, fuzzy
+msgid "Please wait, restarting softcam."
 msgstr "Espere... Cargando lista..."
 
 #
@@ -10595,9 +10698,6 @@ msgstr "Rojo"
 msgid "Recall to previous service"
 msgstr "Volver al canal anterior"
 
-msgid "Receiver or driver does not support FCC"
-msgstr ""
-
 #
 #
 #, fuzzy
@@ -11039,6 +11139,10 @@ msgstr "Reiniciar Red"
 msgid "Restart both"
 msgstr "Reiniciar test"
 
+#, fuzzy
+msgid "Restart cardserver"
+msgstr "establecer como servicio de inicio"
+
 msgid "Restart enigma"
 msgstr "Reinicio enigma"
 
@@ -11051,6 +11155,11 @@ msgstr ""
 
 msgid "Restart secondary softcam"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Restart softcam"
+msgstr "Reiniciar test"
 
 #
 msgid "Restart test"
@@ -11429,6 +11538,11 @@ msgid "Save EPG every (in hours)"
 msgstr "Sincronización NTP cada (minutos)"
 
 #
+#, fuzzy
+msgid "Save all changed settings and exit"
+msgstr "guardar la lista al salir"
+
+#
 msgid "Save and activate the currently selected skin"
 msgstr "Pulse OK para activar la piel seleccionada"
 
@@ -11779,6 +11893,12 @@ msgstr ""
 msgid "Select CAId"
 msgstr "seleccionar CAId"
 
+#
+#
+#, fuzzy
+msgid "Select Card Server"
+msgstr "Seleccionar una película"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
@@ -11797,6 +11917,11 @@ msgstr "Seleccione la fuente de actualización"
 #, fuzzy
 msgid "Select Service"
 msgstr "Seleccionar una película"
+
+#
+#, fuzzy
+msgid "Select Softcam"
+msgstr "Seleccione la fuente de actualización"
 
 #
 msgid "Select Software Update"
@@ -12055,6 +12180,12 @@ msgstr ""
 msgid "Select the movie path"
 msgstr "seleccione el directorio de las películas"
 
+msgid "Select the next item in list or move cursor right"
+msgstr ""
+
+msgid "Select the previous item in list or move cursor left"
+msgstr ""
+
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr ""
 
@@ -12172,10 +12303,10 @@ msgstr "Seleccionar acción"
 msgid "Select your provider and region. If not present in this list you will need to select one of the other 'service scan types'."
 msgstr ""
 
-msgid "Select your provider, and press OK to start the scan"
-msgstr "Seleccione su proveedor, y pulse OK para iniciar la exploración"
-
 msgid "Select your region. If not available change 'Country' to 'all' and select one of the default alternatives."
+msgstr ""
+
+msgid "Select, toggle, process or edit the current entry"
 msgstr ""
 
 msgid "Selected mount point is already used by another drive."
@@ -12401,6 +12532,9 @@ msgid "Set action when movie playback is finished."
 msgstr "Configurar comportamiento cuando se empieza la reproducción."
 
 msgid "Set all hotkey to default?"
+msgstr ""
+
+msgid "Set all the settings back as they were"
 msgstr ""
 
 msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
@@ -12639,6 +12773,10 @@ msgstr "Mostrar estado de la WLAN"
 msgid "Show Weather Widget"
 msgstr "Mostrar witdget del tiempo"
 
+#, fuzzy
+msgid "Show additional information on infobar"
+msgstr "Mostrar información de cifrado en la barra de información"
+
 #
 #, fuzzy
 msgid "Show alternatives"
@@ -12699,6 +12837,17 @@ msgstr "Mostrar información de cifrado en la barra de información"
 #
 msgid "Show current mode"
 msgstr "Mostrar modo actual"
+
+#
+#
+#, fuzzy
+msgid "Show default after description"
+msgstr "mostrar descripción extendida"
+
+#
+#, fuzzy
+msgid "Show default on new line"
+msgstr "Mostrar información de línea"
 
 msgid "Show detailed event info"
 msgstr "Mostrar información detallada de eventos"
@@ -12907,12 +13056,26 @@ msgstr "Mostrar iconos de tipo de servicio"
 msgid "Show servicelist or movies"
 msgstr "Mostrar servicelist o películas"
 
+#
+#
+#, fuzzy
+msgid "Show setup default values"
+msgstr "mostrar detalles del evento"
+
 #, fuzzy
 msgid "Show simple second infobar"
 msgstr "Mostrar segunda barra de información"
 
 msgid "Show single service EPG"
 msgstr "Mostrar EPG mono-canal"
+
+#, fuzzy
+msgid "Show softcam information"
+msgstr "Información Softwaremanager"
+
+#, fuzzy
+msgid "Show softcam setup in extensions menu"
+msgstr "Mostrar en el menú de extensiones"
 
 #, fuzzy
 msgid "Show softcam startup in extensions menu"
@@ -13265,6 +13428,18 @@ msgstr ""
 #
 #
 #, fuzzy
+msgid "Softcam Setup"
+msgstr "Software"
+
+#
+#
+#, fuzzy
+msgid "Softcam setup"
+msgstr "Software"
+
+#
+#
+#, fuzzy
 msgid "Softcam startup"
 msgstr "Software"
 
@@ -13395,6 +13570,10 @@ msgstr "Ordenar lista"
 
 #, fuzzy
 msgid "Sort order for menu entries"
+msgstr "Reintentos de comando del motor"
+
+#, fuzzy
+msgid "Sort order for setup entries"
 msgstr "Reintentos de comando del motor"
 
 msgid "Sort plugins list to default?"
@@ -13542,10 +13721,19 @@ msgstr "Reposo en"
 msgid "Start"
 msgstr "Comenzar"
 
+#, fuzzy
+msgid "Start Sleeptimer"
+msgstr "Apagado automático"
+
 #
 #, fuzzy
 msgid "Start directory"
 msgstr "directorio de inicio"
+
+#
+#, fuzzy
+msgid "Start fastscan"
+msgstr "Comenzar test"
 
 #
 msgid "Start from the beginning"
@@ -13592,6 +13780,10 @@ msgstr "Iniciar Timeshift"
 msgid "Start with list screen"
 msgstr "Comience con pantalla de la lista"
 
+#, fuzzy
+msgid "Start/Stop Sleeptimer"
+msgstr "Inactividad Sleeptimer"
+
 msgid "Start/stop slide show"
 msgstr ""
 
@@ -13637,6 +13829,10 @@ msgstr "Parar"
 #
 msgid "Stop PiP"
 msgstr "Detener PiP"
+
+#, fuzzy
+msgid "Stop Sleeptimer"
+msgstr "Apagado automático"
 
 #
 #, fuzzy
@@ -14459,11 +14655,6 @@ msgstr "No hay actualmente ninguna acción en ejecución."
 
 #
 #, fuzzy
-msgid "There are no items currently available for this screen."
-msgstr "No hay actualizaciones disponibles."
-
-#
-#, fuzzy
 msgid "There are no saved playlists to delete!"
 msgstr "Por favor, seleccione una lista de reproducción a borrar..."
 
@@ -14589,6 +14780,14 @@ msgstr "Esta opción permite que activar filtro de suavizado controlar el proces
 
 msgid "This option allows you enable the vertical scaler dejagging."
 msgstr "Esta opción permite habilitar el suavizador del escalado vertical."
+
+#, fuzzy
+msgid "This option allows you to add the softcam setup in the extensions menu."
+msgstr "Esta opción le permite aumentar los tonos azules en la imagen."
+
+#, fuzzy
+msgid "This option allows you to alphabetically sort setup menu entries."
+msgstr "Esto permite mostrar los codecs en descargas"
 
 msgid "This option allows you to boost the blue tones in the picture."
 msgstr "Esta opción le permite aumentar los tonos azules en la imagen."
@@ -14998,6 +15197,11 @@ msgstr "Selección de subtítulo"
 #
 msgid "Today"
 msgstr "Hoy"
+
+#
+#, fuzzy
+msgid "Toggle Configuration Mode or AutoDisqc"
+msgstr "Modo Configuración: %s"
 
 msgid "Toggle HDMI In"
 msgstr ""
@@ -16073,10 +16277,6 @@ msgstr "Señal de despertar del TV"
 msgid "Wakeup time"
 msgstr "Tipo de despertar"
 
-#, fuzzy
-msgid "Wakeup timer"
-msgstr "Tipo de despertar"
-
 msgid "Wakeup type"
 msgstr "Tipo de despertar"
 
@@ -16242,9 +16442,15 @@ msgstr "¿Qué quiere buscar?"
 msgid "What should happen when you start it for the first time?"
 msgstr ""
 
+msgid "When enabled a simplified version from the second infobar is shown. This can also be toggled instantly by holding the OK buttin when the second infobar is visible. The infobar will shortly disappear and then shown in the other mode."
+msgstr ""
+
 #, fuzzy
 msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are updated"
 msgstr "Cuando habilitado enigma2 cargará userbouquets disociados. Esto significa userbouquets están disponibles, pero no incluidos en los archivos bouquets.tv o bouquets.radio, todavía será cargado. Esto permite por ejemplo mantener tu propio bouquet de usuario mientras configuración instalada se actualiza"
+
+msgid "When enabled extra information is shown on the infobar. This can also be toggled instantly by holding the OK button when the inforbar is not visible."
+msgstr ""
 
 msgid "When enabled the Picture in Picture window can be closed with 'exit' button."
 msgstr "Cuando está habilitada, la ventana Imagen en imagen se puede cerrar con el botón ‘salir’."
@@ -16588,6 +16794,10 @@ msgstr "Amarillo"
 
 msgid "Yellow DVB subtitles"
 msgstr "Amarillos subtítulos DVB"
+
+#, fuzzy
+msgid "Yellow button function"
+msgstr "Seleccionar acción"
 
 #, fuzzy
 msgid "Yemen"
@@ -17095,10 +17305,6 @@ msgid "about to start"
 msgstr "a punto de comenzar"
 
 #
-msgid "activate network adapter configuration"
-msgstr "activar configuración del adaptador de red"
-
-#
 #, fuzzy
 msgid "active"
 msgstr "Inactivo"
@@ -17483,10 +17689,6 @@ msgstr ""
 #
 msgid "exit DVD player or return to file browser"
 msgstr "salir del reproductor DVD o volver a sistema de archivos"
-
-#
-msgid "exit network adapter configuration"
-msgstr "salir de la configuración de red"
 
 #
 msgid "exit networkadapter setup menu"
