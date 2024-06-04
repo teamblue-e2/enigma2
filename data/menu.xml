@@ -154,7 +154,7 @@ self.session.openWithCallback(msgClosed, EpgSaveMsg)
 				<!-- Menu / Settings / System / Devices Menu -->
 				<menu key="devices_menu" weight="35" level="0" text="Devices">
 					<menu key="harddisk" weight="5" level="0" text="Storage media" requires="Harddisk">
-						<item key="harddisk_setup" weight="5" level="1"><setup id="harddisk"/></item>
+						<item key="harddisk_setup" weight="5" level="1" text="Hard disk setup"><setup id="harddisk"/></item>
 						<item key="harddisk_init" weight="10" level="0" text="Initialization"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
 						<item key="harddisk_check" weight="15" level="0" text="Filesystem check"><screen module="HarddiskSetup" screen="HarddiskFsckSelection"/></item>
 						<item key="harddisk_convert" weight="20" level="0" text="Convert ext3 filesystem to ext4" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/></item>
