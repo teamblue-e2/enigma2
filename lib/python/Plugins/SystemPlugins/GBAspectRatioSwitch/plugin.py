@@ -194,7 +194,7 @@ def main(session, **kwargs):
 
 
 def startGBAspectRatioSwitch(menuid):
-	if menuid != "video_menu":
+	if menuid != "video":
 		return []
 	return [(_("AspectRatio switch"), main, "aspectratio_switch", 99)]
 
