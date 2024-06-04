@@ -163,10 +163,6 @@ self.session.openWithCallback(msgClosed, EpgSaveMsg)
 					<item key="hotkey_setup" weight="20" level="0" text="HotKey"><screen module="Hotkey" screen="HotkeySetup" /></item>
 				</menu>
 
-				<!-- Menu / Settings / System / Setup Menu
-				<menu key="system_menu" weight="45" level="0" text="System Setup">
-				</menu> -->
-
 				<item key="flash_image" weight="55" level="0" text="Flash image" requires="canFlashWithOfgwrite" ><screen module="FlashImage" screen="SelectImage"/></item>
 				<item key="factory_reset" weight="99" level="1" text="Factory reset">
 					<code>
