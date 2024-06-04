@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-24 10:35+0200\n"
+"POT-Creation-Date: 2024-06-04 18:59+0200\n"
 "PO-Revision-Date: 2019-04-03 06:49+0300\n"
 "Last-Translator: \n"
 "Language-Team: Raivo, Henkka, eesatfan, rimas, zeros\\n faas, sateks, valgekotkas, tigekala, rootsikunn\\n kain, i70, mustkass, pelmeen, Scott\\n <digi-tv.ee>\n"
@@ -225,6 +225,9 @@ msgstr "%A %e %B %Y"
 
 msgid "%H:%M"
 msgstr "%H:%M"
+
+msgid "%R"
+msgstr ""
 
 #, fuzzy
 msgid "%Y-%m-%d %H:%M:%S"
@@ -451,6 +454,10 @@ msgid_plural "%s updated packages available"
 msgstr[0] " %s uuendatud pakett saadaval."
 msgstr[1] " %s uuendatud paketti saadaval."
 
+#, python-format
+msgid "%s%s(Default: %s)"
+msgstr ""
+
 #, fuzzy, python-format
 msgid "%s: %s"
 msgstr "%s/%s: %s"
@@ -664,9 +671,6 @@ msgstr ""
 
 #, fuzzy
 msgid "?"
-msgstr "??"
-
-msgid "??"
 msgstr "??"
 
 msgid "A"
@@ -1758,6 +1762,10 @@ msgstr "Blokeeri müra vähendamist"
 msgid "Blue"
 msgstr ""
 
+#, fuzzy
+msgid "Blue button function"
+msgstr "Varukoopia asukoht"
+
 msgid "Bolivia (Plurinational State of)"
 msgstr ""
 
@@ -1997,6 +2005,12 @@ msgstr ""
 
 msgid "Cancel"
 msgstr "Tühista"
+
+msgid "Cancel any changed settings and exit"
+msgstr ""
+
+msgid "Cancel any changed settings and exit all menus"
+msgstr ""
 
 msgid "Cancel any changes to the currently active skin"
 msgstr ""
@@ -2437,6 +2451,10 @@ msgstr "Kontrast"
 
 msgid "Common Interface"
 msgstr "CI liides"
+
+#, fuzzy
+msgid "Common Setup Actions"
+msgstr "Saatekava"
 
 msgid "Communication"
 msgstr "Suhtlus"
@@ -3345,6 +3363,10 @@ msgstr "Salvestuse liik"
 msgid "Default+Picon"
 msgstr "Vaikeväärtused"
 
+#, fuzzy, python-format
+msgid "Default: '%s'."
+msgstr "Vaikimisi"
+
 msgid "Define additional delay in milliseconds before start of http(s) streams, e.g. to connect a remote tuner, you use a complex system of DiSEqC."
 msgstr ""
 
@@ -3436,6 +3458,12 @@ msgstr "Kustuta fail"
 #, fuzzy
 msgid "Delete all the text"
 msgstr "Kustuta esitusloendi kirje"
+
+msgid "Delete character to left of cursor or select AM times"
+msgstr ""
+
+msgid "Delete character under cursor or select PM times"
+msgstr ""
 
 #, fuzzy
 msgid "Delete current line"
@@ -3657,6 +3685,10 @@ msgstr "Peata salvestus, aga ära keela tulevaid taimereid"
 msgid "Disable move mode"
 msgstr "keela move mode"
 
+#, fuzzy
+msgid "Disable operator profiles"
+msgstr "Võimalikud formati muutujad"
+
 msgid "Disable timer"
 msgstr ""
 
@@ -3716,6 +3748,9 @@ msgstr ""
 
 msgid "Display setup"
 msgstr "Esipaneeli seaded"
+
+msgid "Display the virtual keyboard for data entry"
+msgstr ""
 
 #, fuzzy
 msgid "Djibouti"
@@ -3932,6 +3967,10 @@ msgstr "see salvestis"
 #, fuzzy
 msgid "Don't save and stop timeshift"
 msgstr "Lõpeta ajanihe"
+
+#, fuzzy
+msgid "Don't show default"
+msgstr "nimekirja stiil: vaikeseaded"
 
 msgid "Don't stop current event but disable coming events"
 msgstr "Ära peata toimuvat salvestust, aga keela tulevad"
@@ -4320,6 +4359,10 @@ msgstr "Kasutusel"
 msgid "Enable volume control with arrow buttons"
 msgstr "Vali video sisend"
 
+#, fuzzy
+msgid "Enable wakeup timer"
+msgstr "Unetaimer"
+
 msgid "Enable zapping with CH+/-, B+/-, P+/-"
 msgstr ""
 
@@ -4597,6 +4640,9 @@ msgstr "Liiga suur kahekihilise ketta jaoks!"
 
 msgid "Exceeds dual layer medium!"
 msgstr "Liiga suur kahekihilise ketta jaoks!"
+
+msgid "Exclude first CA device"
+msgstr ""
 
 msgid "Execution finished!!"
 msgstr "Käivitus lõppenud!!"
@@ -5652,9 +5698,6 @@ msgstr "Varjatud võrk"
 msgid "Hide"
 msgstr ""
 
-msgid "Hide and confirm invalid key message"
-msgstr ""
-
 msgid "Hide channel list in radio mode"
 msgstr "Peida raadiorežiimis kanalinimekiri"
 
@@ -5952,6 +5995,9 @@ msgid "Import from remote receiver URL"
 msgstr ""
 
 msgid "Import remote receiver URL"
+msgstr ""
+
+msgid "In Setup screens choose whether to show the default value of the selected item in the description field."
 msgstr ""
 
 msgid "In most cases this should be set to No. Only enable if you have a very specific need."
@@ -6327,7 +6373,8 @@ msgstr "Itaalia"
 msgid "Italy"
 msgstr "Itaalia"
 
-msgid "Items per page "
+#, fuzzy
+msgid "Items per page"
 msgstr "Kirjet lehel"
 
 msgid "Items per page for list screen"
@@ -6356,6 +6403,12 @@ msgstr "Hüppa loendi algusesse"
 
 msgid "Jump to end of list"
 msgstr "Mine loendi lõppu"
+
+msgid "Jump to first item in list or the start of text"
+msgstr ""
+
+msgid "Jump to last item in list or the end of text"
+msgstr ""
 
 msgid "Jump to next marked position"
 msgstr "Mine järgmise märgini"
@@ -6902,6 +6955,10 @@ msgstr ""
 msgid "Menu"
 msgstr "Menüü"
 
+#, fuzzy
+msgid "Menu button function"
+msgstr "Varukoopia asukoht"
+
 #, python-format
 msgid "Menusort (%s)"
 msgstr ""
@@ -7128,6 +7185,14 @@ msgid "Move Picture in Picture"
 msgstr "Ava pilt-pildis"
 
 #, fuzzy
+msgid "Move down a line"
+msgstr "Liigu nimekirjas alla"
+
+#, fuzzy
+msgid "Move down a screen"
+msgstr "Liigu nimekirjas alla"
+
+#, fuzzy
 msgid "Move down list"
 msgstr "Liigu nimekirjas alla"
 
@@ -7175,6 +7240,14 @@ msgstr ""
 msgid "Move the text cursor to the last character"
 msgstr ""
 
+#, fuzzy
+msgid "Move to first line / screen"
+msgstr "liigu järgmisele reale"
+
+#, fuzzy
+msgid "Move to last line / screen"
+msgstr "liigu järgmisele reale"
+
 msgid "Move to position X"
 msgstr "Liigu asukohta X"
 
@@ -7193,6 +7266,14 @@ msgstr "tagasi eelmisele peatükile"
 #, fuzzy
 msgid "Move to the previous skin"
 msgstr "liigu eelmisele reale"
+
+#, fuzzy
+msgid "Move up a line"
+msgstr "Liigu nimekirjas üles"
+
+#, fuzzy
+msgid "Move up a screen"
+msgstr "Liigu nimekirjas üles"
 
 #, fuzzy
 msgid "Move up list"
@@ -8126,9 +8207,6 @@ msgstr ""
 msgid "PREVIOUS"
 msgstr ""
 
-msgid "PVR"
-msgstr ""
-
 msgid "Package list update"
 msgstr "Pakettide nimekirja uuendus"
 
@@ -8646,6 +8724,10 @@ msgstr "Oota, testin võrku."
 msgid "Please wait, Loading image."
 msgstr "Oota. Sisu laetakse."
 
+#, fuzzy
+msgid "Please wait, restarting cardserver."
+msgstr "Oota (EMU hankimine)"
+
 msgid "Please wait, restarting primary and secondary softcam."
 msgstr ""
 
@@ -8655,6 +8737,14 @@ msgstr "Oota (EMU hankimine)"
 
 #, fuzzy
 msgid "Please wait, restarting secondary softcam."
+msgstr "Oota (EMU hankimine)"
+
+#, fuzzy
+msgid "Please wait, restarting softcam and cardserver."
+msgstr "Oota (EMU hankimine)"
+
+#, fuzzy
+msgid "Please wait, restarting softcam."
 msgstr "Oota (EMU hankimine)"
 
 msgid "Please wait..."
@@ -9246,9 +9336,6 @@ msgstr "Salvesta"
 msgid "Recall to previous service"
 msgstr "Tagasi eelmisele kanalile"
 
-msgid "Receiver or driver does not support FCC"
-msgstr ""
-
 #, fuzzy
 msgid "Reception lists"
 msgstr "Vastuvõtu seaded"
@@ -9619,6 +9706,10 @@ msgstr "Taaskäivita võrk "
 msgid "Restart both"
 msgstr "Taaskäivituse test"
 
+#, fuzzy
+msgid "Restart cardserver"
+msgstr "käivita vastuvõtja sellel kanalil"
+
 msgid "Restart enigma"
 msgstr "Taaskäivita enigma2"
 
@@ -9630,6 +9721,10 @@ msgstr ""
 
 msgid "Restart secondary softcam"
 msgstr ""
+
+#, fuzzy
+msgid "Restart softcam"
+msgstr "Taaskäivituse test"
 
 msgid "Restart test"
 msgstr "Taaskäivituse test"
@@ -9963,6 +10058,10 @@ msgid "Save EPG every (in hours)"
 msgstr ""
 
 #, fuzzy
+msgid "Save all changed settings and exit"
+msgstr "salvesta esitusloend"
+
+#, fuzzy
 msgid "Save and activate the currently selected skin"
 msgstr "Vajuta OK uue välimuse aktiveerimiseks."
 
@@ -10274,6 +10373,10 @@ msgstr ""
 msgid "Select CAId"
 msgstr "Vali CAId"
 
+#, fuzzy
+msgid "Select Card Server"
+msgstr "Vali film"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr ""
 
@@ -10288,6 +10391,10 @@ msgstr "Vali uuenduste allikas"
 #, fuzzy
 msgid "Select Service"
 msgstr "Vali film"
+
+#, fuzzy
+msgid "Select Softcam"
+msgstr "Vali uuenduste allikas"
 
 #, fuzzy
 msgid "Select Software Update"
@@ -10501,6 +10608,12 @@ msgstr ""
 msgid "Select the movie path"
 msgstr "Vali filmi rada"
 
+msgid "Select the next item in list or move cursor right"
+msgstr ""
+
+msgid "Select the previous item in list or move cursor left"
+msgstr ""
+
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr ""
 
@@ -10605,10 +10718,10 @@ msgstr "Varukoopia asukoht"
 msgid "Select your provider and region. If not present in this list you will need to select one of the other 'service scan types'."
 msgstr ""
 
-msgid "Select your provider, and press OK to start the scan"
-msgstr "Vali teenusepakkuja ja vajuta otsingu alustamiseks OK"
-
 msgid "Select your region. If not available change 'Country' to 'all' and select one of the default alternatives."
+msgstr ""
+
+msgid "Select, toggle, process or edit the current entry"
 msgstr ""
 
 msgid "Selected mount point is already used by another drive."
@@ -10793,6 +10906,9 @@ msgid "Set action when movie playback is finished."
 msgstr "Määra käitumine filmi algamisel."
 
 msgid "Set all hotkey to default?"
+msgstr ""
+
+msgid "Set all the settings back as they were"
 msgstr ""
 
 msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
@@ -11013,6 +11129,10 @@ msgid "Show Weather Widget"
 msgstr ""
 
 #, fuzzy
+msgid "Show additional information on infobar"
+msgstr "Näita salastatust inforibal"
+
+#, fuzzy
 msgid "Show alternatives"
 msgstr "näita alternatiivsed kanalid"
 
@@ -11069,6 +11189,14 @@ msgstr "Näita salastatust inforibal"
 #, fuzzy
 msgid "Show current mode"
 msgstr "Näita saatetutvustust"
+
+#, fuzzy
+msgid "Show default after description"
+msgstr "Näita pikemat saatetutvustust"
+
+#, fuzzy
+msgid "Show default on new line"
+msgstr " Näita infot"
 
 msgid "Show detailed event info"
 msgstr "Näita üksikasjalikku saatetutvustust"
@@ -11253,11 +11381,23 @@ msgid "Show servicelist or movies"
 msgstr "Näita teenuse tüübi ikoone"
 
 #, fuzzy
+msgid "Show setup default values"
+msgstr "Näita saatetutvustust"
+
+#, fuzzy
 msgid "Show simple second infobar"
 msgstr "Näita teist inforiba"
 
 msgid "Show single service EPG"
 msgstr ""
+
+#, fuzzy
+msgid "Show softcam information"
+msgstr "Tarkvarahalduri informatsioon"
+
+#, fuzzy
+msgid "Show softcam setup in extensions menu"
+msgstr "näita tarkvarahaldurit seadistusmenüüs"
 
 #, fuzzy
 msgid "Show softcam startup in extensions menu"
@@ -11551,6 +11691,14 @@ msgid "SocketMMI"
 msgstr ""
 
 #, fuzzy
+msgid "Softcam Setup"
+msgstr "EMU tüüp"
+
+#, fuzzy
+msgid "Softcam setup"
+msgstr "EMU tüüp"
+
+#, fuzzy
 msgid "Softcam startup"
 msgstr "EMU tüüp"
 
@@ -11663,6 +11811,9 @@ msgid "Sort list:"
 msgstr ""
 
 msgid "Sort order for menu entries"
+msgstr ""
+
+msgid "Sort order for setup entries"
 msgstr ""
 
 msgid "Sort plugins list to default?"
@@ -11793,8 +11944,16 @@ msgid "Start"
 msgstr "Käivita test"
 
 #, fuzzy
+msgid "Start Sleeptimer"
+msgstr "Alustamise aeg"
+
+#, fuzzy
 msgid "Start directory"
 msgstr "juur kaust"
+
+#, fuzzy
+msgid "Start fastscan"
+msgstr "Käivita test"
 
 msgid "Start from the beginning"
 msgstr "Alusta algusest"
@@ -11835,6 +11994,10 @@ msgstr "Käivita ajanihe"
 msgid "Start with list screen"
 msgstr ""
 
+#, fuzzy
+msgid "Start/Stop Sleeptimer"
+msgstr "Alustamise aeg"
+
 msgid "Start/stop slide show"
 msgstr ""
 
@@ -11872,6 +12035,10 @@ msgstr "Peata"
 
 msgid "Stop PiP"
 msgstr "Sulge PiP"
+
+#, fuzzy
+msgid "Stop Sleeptimer"
+msgstr "Unetaimer"
 
 #, fuzzy
 msgid "Stop all current recordings"
@@ -12609,10 +12776,6 @@ msgid "There are currently no outstanding actions."
 msgstr "Praegu ei ole täitmata tegevusi."
 
 #, fuzzy
-msgid "There are no items currently available for this screen."
-msgstr "Uuendusi ei ole saadaval."
-
-#, fuzzy
 msgid "There are no saved playlists to delete!"
 msgstr "Vali kustutatav esitusloend"
 
@@ -12726,6 +12889,13 @@ msgid "This option allows you enable smoothing filter to control the dithering p
 msgstr ""
 
 msgid "This option allows you enable the vertical scaler dejagging."
+msgstr ""
+
+#, fuzzy
+msgid "This option allows you to add the softcam setup in the extensions menu."
+msgstr "näita tarkvarahaldurit seadistusmenüüs"
+
+msgid "This option allows you to alphabetically sort setup menu entries."
 msgstr ""
 
 msgid "This option allows you to boost the blue tones in the picture."
@@ -13069,6 +13239,10 @@ msgstr "Subtiitrite valik"
 
 msgid "Today"
 msgstr "Täna"
+
+#, fuzzy
+msgid "Toggle Configuration Mode or AutoDisqc"
+msgstr "Häälestamine: %s"
 
 msgid "Toggle HDMI In"
 msgstr ""
@@ -14007,10 +14181,6 @@ msgstr "Äratussignaal telerist"
 msgid "Wakeup time"
 msgstr "Ärata"
 
-#, fuzzy
-msgid "Wakeup timer"
-msgstr "Unetaimer"
-
 msgid "Wakeup type"
 msgstr ""
 
@@ -14163,7 +14333,13 @@ msgstr "Mida soovid otsida?"
 msgid "What should happen when you start it for the first time?"
 msgstr ""
 
+msgid "When enabled a simplified version from the second infobar is shown. This can also be toggled instantly by holding the OK buttin when the second infobar is visible. The infobar will shortly disappear and then shown in the other mode."
+msgstr ""
+
 msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are updated"
+msgstr ""
+
+msgid "When enabled extra information is shown on the infobar. This can also be toggled instantly by holding the OK button when the inforbar is not visible."
 msgstr ""
 
 msgid "When enabled the Picture in Picture window can be closed with 'exit' button."
@@ -14492,6 +14668,10 @@ msgstr "kollane"
 
 msgid "Yellow DVB subtitles"
 msgstr "Kollased DVB subtiitrid"
+
+#, fuzzy
+msgid "Yellow button function"
+msgstr "Varukoopia asukoht"
 
 #, fuzzy
 msgid "Yemen"
@@ -14942,9 +15122,6 @@ msgstr "CI kasutajaliidese määratud kanalid/levitajad/caids"
 msgid "about to start"
 msgstr "algamas"
 
-msgid "activate network adapter configuration"
-msgstr "aktiveeri võrgukaardi seaded"
-
 #, fuzzy
 msgid "active"
 msgstr "Alternatiivne"
@@ -15278,9 +15455,6 @@ msgstr ""
 
 msgid "exit DVD player or return to file browser"
 msgstr "välju DVD-mängijast või mine tagasi failisirvijasse"
-
-msgid "exit network adapter configuration"
-msgstr "lõpeta võrgukaardi häälestamine"
 
 msgid "exit networkadapter setup menu"
 msgstr "välju võrgukaardi seadistusmenüüst"

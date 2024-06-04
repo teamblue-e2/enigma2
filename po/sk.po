@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-24 10:35+0200\n"
+"POT-Creation-Date: 2024-06-04 18:59+0200\n"
 "PO-Revision-Date: 2023-10-27 20:52+0200\n"
 "Last-Translator: Andrej Tobola <andrej.tobola@gmail.com>\n"
 "Language-Team: \n"
@@ -231,6 +231,9 @@ msgstr "%A %e %B %Y"
 
 msgid "%H:%M"
 msgstr "%H:%M"
+
+msgid "%R"
+msgstr ""
 
 msgid "%Y-%m-%d %H:%M:%S"
 msgstr "%Y-%m-%d %H:%M:%S"
@@ -475,6 +478,10 @@ msgstr[1] "%s aktualizované balíčky k dispozícii"
 msgstr[2] "%s aktualizovaných balíčkov k dispozícii"
 
 #, python-format
+msgid "%s%s(Default: %s)"
+msgstr ""
+
+#, python-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
@@ -674,9 +681,6 @@ msgstr "=ŽIADNY STREAM\n"
 
 msgid "?"
 msgstr "?"
-
-msgid "??"
-msgstr "??"
 
 msgid "A"
 msgstr "A"
@@ -1678,6 +1682,10 @@ msgstr "Potlačenie blokového šumu"
 msgid "Blue"
 msgstr "Modrá"
 
+#, fuzzy
+msgid "Blue button function"
+msgstr "Zvoliť funkciu"
+
 msgid "Bolivia (Plurinational State of)"
 msgstr "Bolívia"
 
@@ -1922,6 +1930,14 @@ msgstr "Kanada"
 
 msgid "Cancel"
 msgstr "Zrušiť"
+
+#, fuzzy
+msgid "Cancel any changed settings and exit"
+msgstr "Zrušiť všetky textové zmeny a ukončiť"
+
+#, fuzzy
+msgid "Cancel any changed settings and exit all menus"
+msgstr "Zrušiť všetky zmeny aktívneho vzhľadu a opustiť menu"
 
 msgid "Cancel any changes to the currently active skin"
 msgstr "Zrušiť všetky zmeny aktívneho vzhľadu"
@@ -2339,6 +2355,10 @@ msgstr "Vykonané info"
 
 msgid "Common Interface"
 msgstr "Common Interface modul"
+
+#, fuzzy
+msgid "Common Setup Actions"
+msgstr "Akcia voľby vzhľadu"
 
 msgid "Communication"
 msgstr "Komunikácia"
@@ -3180,6 +3200,10 @@ msgstr "Predvolený typ časovača"
 msgid "Default+Picon"
 msgstr "< Predvolené + Picon >"
 
+#, fuzzy, python-format
+msgid "Default: '%s'."
+msgstr "Predvolené"
+
 msgid "Define additional delay in milliseconds before start of http(s) streams, e.g. to connect a remote tuner, you use a complex system of DiSEqC."
 msgstr "Definovať dodatočné oneskorenie v milisekundách pred spustením http(s) streamov, napr. na pripojenie vzdialeného tunera používate komplexný systém DiSEqC."
 
@@ -3267,6 +3291,14 @@ msgstr "Vymazať image"
 
 msgid "Delete all the text"
 msgstr "Vymazať všetok text"
+
+#, fuzzy
+msgid "Delete character to left of cursor or select AM times"
+msgstr "Vymazať znak vľavo od kurzora"
+
+#, fuzzy
+msgid "Delete character under cursor or select PM times"
+msgstr "Vymazať znak pod kurzorom"
 
 msgid "Delete current line"
 msgstr "Odstránenie aktuálneho riadku"
@@ -3472,6 +3504,10 @@ msgstr "Vypnúť aktuálnu udalosť, ale nezrušiť nasledujúce udalosti"
 msgid "Disable move mode"
 msgstr "Zrušiť presun"
 
+#, fuzzy
+msgid "Disable operator profiles"
+msgstr "Dostupné premenné formátu"
+
 msgid "Disable timer"
 msgstr "Vypnúť časovač"
 
@@ -3526,6 +3562,9 @@ msgstr "Zobraziť dĺžku filmu v zozname filmov (okrem štýlu jedného riadku)
 
 msgid "Display setup"
 msgstr "Nastavenie displeja"
+
+msgid "Display the virtual keyboard for data entry"
+msgstr ""
 
 msgid "Djibouti"
 msgstr "Džibuti"
@@ -3721,6 +3760,10 @@ msgstr "Nepridávajte túto nahrávku"
 
 msgid "Don't save and stop timeshift"
 msgstr "Neuložiť a zastaviť timeshift"
+
+#, fuzzy
+msgid "Don't show default"
+msgstr "Nastaviť predvolené"
 
 msgid "Don't stop current event but disable coming events"
 msgstr "Nezastaviť aktuálny záznam, ale vypnúť nasledujúce záznamy"
@@ -4074,6 +4117,10 @@ msgstr "Povolenie krúteného denníka *"
 msgid "Enable volume control with arrow buttons"
 msgstr "Povoliť ovládanie hlasitosti pomocou tlačidiel so šípkami"
 
+#, fuzzy
+msgid "Enable wakeup timer"
+msgstr "Časovač spánku/prebudenia"
+
 msgid "Enable zapping with CH+/-, B+/-, P+/-"
 msgstr "Povoliť prepínanie pomcou tlačidiel CH+/-, B+/-, P+/-"
 
@@ -4343,6 +4390,9 @@ msgstr "Prekonáva Bludisc medium!"
 
 msgid "Exceeds dual layer medium!"
 msgstr "Presahuje kapacitu dvojvrstvového DVD!"
+
+msgid "Exclude first CA device"
+msgstr ""
 
 msgid "Execution finished!!"
 msgstr "Hotovo!!"
@@ -5322,9 +5372,6 @@ msgstr "Skrytá sieť"
 msgid "Hide"
 msgstr "Skryť"
 
-msgid "Hide and confirm invalid key message"
-msgstr ""
-
 msgid "Hide channel list in radio mode"
 msgstr "Skryť zoznam staníc v režime rádia"
 
@@ -5610,6 +5657,9 @@ msgstr "Importovať z URL adresy vzdialeného prijímača"
 
 msgid "Import remote receiver URL"
 msgstr "Importovať URL adresu vzdialeného prijímača"
+
+msgid "In Setup screens choose whether to show the default value of the selected item in the description field."
+msgstr ""
 
 msgid "In most cases this should be set to No. Only enable if you have a very specific need."
 msgstr "Vo väčšine prípadov by mala byť táto možnosť nastavená na Nie. Povoľte ju len vtedy, ak máte veľmi špecifickú potrebu."
@@ -5958,7 +6008,8 @@ msgstr "Taliančina"
 msgid "Italy"
 msgstr "Taliansko"
 
-msgid "Items per page "
+#, fuzzy
+msgid "Items per page"
 msgstr "Položiek na stranu "
 
 msgid "Items per page for list screen"
@@ -5987,6 +6038,12 @@ msgstr "Prejsť na začiatok zoznamu"
 
 msgid "Jump to end of list"
 msgstr "Prejsť na koniec zoznamu"
+
+msgid "Jump to first item in list or the start of text"
+msgstr ""
+
+msgid "Jump to last item in list or the end of text"
+msgstr ""
 
 msgid "Jump to next marked position"
 msgstr "Skok na nasledujúce označené miesto"
@@ -6503,6 +6560,10 @@ msgstr "MemoryInfo - len pre vývojárov"
 msgid "Menu"
 msgstr "Menu"
 
+#, fuzzy
+msgid "Menu button function"
+msgstr "Zvoliť funkciu"
+
 #, python-format
 msgid "Menusort (%s)"
 msgstr "Zoradenie menu (%s)"
@@ -6712,6 +6773,14 @@ msgstr "Premiestniť PiP do hlavného obrazu"
 msgid "Move Picture in Picture"
 msgstr "Premiestniť obraz v obraze"
 
+#, fuzzy
+msgid "Move down a line"
+msgstr "Presunúť zoznam nadol"
+
+#, fuzzy
+msgid "Move down a screen"
+msgstr "Presunúť zoznam nadol"
+
 msgid "Move down list"
 msgstr "Presunúť zoznam nadol"
 
@@ -6754,6 +6823,14 @@ msgstr "Presunúť textový kurzor na prvý znak"
 msgid "Move the text cursor to the last character"
 msgstr "Presunúť textový kurzor na posledný znak"
 
+#, fuzzy
+msgid "Move to first line / screen"
+msgstr "Presun na ďalší vzhľad"
+
+#, fuzzy
+msgid "Move to last line / screen"
+msgstr "Presun na ďalší vzhľad"
+
 msgid "Move to position X"
 msgstr "Pootočiť na pozíciu X"
 
@@ -6768,6 +6845,14 @@ msgstr "Presun na predchádzajúcu stranu"
 
 msgid "Move to the previous skin"
 msgstr "Presun na predchádzajúci vzhľad"
+
+#, fuzzy
+msgid "Move up a line"
+msgstr "Zoznam presunov"
+
+#, fuzzy
+msgid "Move up a screen"
+msgstr "Zoznam presunov"
 
 msgid "Move up list"
 msgstr "Zoznam presunov"
@@ -7620,10 +7705,6 @@ msgstr "PPanel"
 msgid "PREVIOUS"
 msgstr ""
 
-#, fuzzy
-msgid "PVR"
-msgstr "OVR"
-
 msgid "Package list update"
 msgstr "Aktualizácia zoznamu balíčkov"
 
@@ -8090,6 +8171,10 @@ msgstr "Počkajte, prosím, kým sa skontroluje stav krmív."
 msgid "Please wait, Loading image."
 msgstr "Počkajte, prosím, načítavanie obrázka."
 
+#, fuzzy
+msgid "Please wait, restarting cardserver."
+msgstr "Počkajte, prosím, reštartujte sekundárnu softvérovú kameru."
+
 msgid "Please wait, restarting primary and secondary softcam."
 msgstr "Počkajte, prosím, reštartujte primárnu a sekundárnu softvérovú kameru."
 
@@ -8098,6 +8183,14 @@ msgstr "Počkajte, prosím, reštartujte primárnu softvérovú kameru."
 
 msgid "Please wait, restarting secondary softcam."
 msgstr "Počkajte, prosím, reštartujte sekundárnu softvérovú kameru."
+
+#, fuzzy
+msgid "Please wait, restarting softcam and cardserver."
+msgstr "Počkajte, prosím, reštartujte primárnu softvérovú kameru."
+
+#, fuzzy
+msgid "Please wait, restarting softcam."
+msgstr "Počkajte, prosím, reštartujte primárnu softvérovú kameru."
 
 msgid "Please wait..."
 msgstr "Prosím čakajte..."
@@ -8655,9 +8748,6 @@ msgstr "Rec"
 msgid "Recall to previous service"
 msgstr "Návrat na predchádzajúcu stanicu"
 
-msgid "Receiver or driver does not support FCC"
-msgstr "Prijímač alebo ovládač nepodporuje FCC"
-
 msgid "Reception lists"
 msgstr "Zoznamy na recepcii"
 
@@ -8987,6 +9077,10 @@ msgstr "Reštartovanie sieťového adaptéra"
 msgid "Restart both"
 msgstr "Reštart oboch"
 
+#, fuzzy
+msgid "Restart cardserver"
+msgstr "Nastaviť stanicu po spustení"
+
 msgid "Restart enigma"
 msgstr "Reštartovať operačný systém"
 
@@ -8998,6 +9092,10 @@ msgstr "Reštartovanie primárnej softvérovej kamery"
 
 msgid "Restart secondary softcam"
 msgstr "Reštartovanie sekundárnej softvérovej kamery"
+
+#, fuzzy
+msgid "Restart softcam"
+msgstr "Reštartovanie primárnej softvérovej kamery"
 
 msgid "Restart test"
 msgstr "Zopakovať test"
@@ -9296,6 +9394,10 @@ msgstr "Uloženie údajov EPG"
 msgid "Save EPG every (in hours)"
 msgstr "Uložiť EPG každý (v hodinách)"
 
+#, fuzzy
+msgid "Save all changed settings and exit"
+msgstr "Uložiť / Vložiť text a ukončiť"
+
 msgid "Save and activate the currently selected skin"
 msgstr "Uložiť a aktivovať aktuálne zvolený vzhľad"
 
@@ -9588,6 +9690,10 @@ msgstr "Vyberte (zdrojový zoznam) alebo zadajte adresár (cieľový zoznam)"
 msgid "Select CAId"
 msgstr "Zvoliť CaID"
 
+#, fuzzy
+msgid "Select Card Server"
+msgstr "Vybrať film"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "Vyberte 'Rýchly DiSEqC' ak to podporuje váš anténny systém. Ak si nie ste istý, vyberte 'nie'."
 
@@ -9600,6 +9706,10 @@ msgstr "Vyberte zdroj OPKG....."
 #, fuzzy
 msgid "Select Service"
 msgstr "Vybrať film"
+
+#, fuzzy
+msgid "Select Softcam"
+msgstr "Výber primárnej softvérovej kamery"
 
 msgid "Select Software Update"
 msgstr "Vyberte položku Aktualizácia softvéru"
@@ -9792,6 +9902,12 @@ msgstr "Vyberte číslo modelu vášho SCR zariadenia. Ak číslo modelu nie je 
 msgid "Select the movie path"
 msgstr "Zvoliť cestu k filmu"
 
+msgid "Select the next item in list or move cursor right"
+msgstr ""
+
+msgid "Select the previous item in list or move cursor left"
+msgstr ""
+
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Vyberte protokol vášho SCR zariadenia. Voľby sú 'SCR Unicable' (Unicable), alebo 'SCR JESS' (JESS je tiež známe ako Unicable II)."
 
@@ -9887,11 +10003,11 @@ msgstr "Vyberte svoje osobné nastavenia:"
 msgid "Select your provider and region. If not present in this list you will need to select one of the other 'service scan types'."
 msgstr "Vyberte vášho poskytovateľa a región. Ak sa v tomto zozname nenachádza, budete musieť nejaký vybrať z voľby 'Typ vyhľadávania staníc'."
 
-msgid "Select your provider, and press OK to start the scan"
-msgstr "Vyberte poskytovateľa a stlačte OK pre spustenie skenovania"
-
 msgid "Select your region. If not available change 'Country' to 'all' and select one of the default alternatives."
 msgstr "Vyberte váš región. Ak nie je dostupný, zmeňte krajinu na 'všetky' a zvolte jeden z predvolených alternatív."
+
+msgid "Select, toggle, process or edit the current entry"
+msgstr ""
 
 msgid "Selected mount point is already used by another drive."
 msgstr "Vybraný prípojný bod už používa iná jednotka."
@@ -10061,6 +10177,9 @@ msgstr "Nastavene činnosti po dokončení filmu."
 
 msgid "Set all hotkey to default?"
 msgstr "Nastaviť všetky klávesové skratky na predvolené?"
+
+msgid "Set all the settings back as they were"
+msgstr ""
 
 msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
 msgstr "Nastaviť alternatívne záložné tunery pre DVB-T/C alebo ATSC"
@@ -10265,6 +10384,10 @@ msgstr "Zobraziť stav WLAN"
 msgid "Show Weather Widget"
 msgstr "Zobraziť widget počasia"
 
+#, fuzzy
+msgid "Show additional information on infobar"
+msgstr "Zobraziť info o kódovaní v infopaneli"
+
 msgid "Show alternatives"
 msgstr "Zobraziť alternatívy"
 
@@ -10319,6 +10442,14 @@ msgstr "Zobraziť info o kódovaní v infopaneli"
 
 msgid "Show current mode"
 msgstr "Zobraziť aktuálny režim"
+
+#, fuzzy
+msgid "Show default after description"
+msgstr "Zobraziť rozšírený opis"
+
+#, fuzzy
+msgid "Show default on new line"
+msgstr "Zobraziť informačný riadok"
 
 msgid "Show detailed event info"
 msgstr "Zobraziť podrobné informácie o programe"
@@ -10479,11 +10610,23 @@ msgstr "Zobrazovať ikony typu služby"
 msgid "Show servicelist or movies"
 msgstr "Zobraziť zoznam služieb alebo filmy"
 
+#, fuzzy
+msgid "Show setup default values"
+msgstr "Zobraziť detaily o programe"
+
 msgid "Show simple second infobar"
 msgstr "Zobrazenie jednoduchého druhého infobaru"
 
 msgid "Show single service EPG"
 msgstr "Zobraziť EPG pre jednu stanicu"
+
+#, fuzzy
+msgid "Show softcam information"
+msgstr "Zobraziť informácie o obrázku"
+
+#, fuzzy
+msgid "Show softcam setup in extensions menu"
+msgstr "Zobrazenie spustenia softvérovej kamery v ponuke rozšírení"
 
 msgid "Show softcam startup in extensions menu"
 msgstr "Zobrazenie spustenia softvérovej kamery v ponuke rozšírení"
@@ -10745,6 +10888,14 @@ msgstr "Zásuvka"
 msgid "SocketMMI"
 msgstr "SocketMMI"
 
+#, fuzzy
+msgid "Softcam Setup"
+msgstr "SoftcamSetup"
+
+#, fuzzy
+msgid "Softcam setup"
+msgstr "SoftcamSetup"
+
 msgid "Softcam startup"
 msgstr "Spustenie softvérovej kamery"
 
@@ -10854,6 +11005,10 @@ msgid "Sort list:"
 msgstr "Usporiadať zoznam:"
 
 msgid "Sort order for menu entries"
+msgstr "Zoradenie položiek menu"
+
+#, fuzzy
+msgid "Sort order for setup entries"
 msgstr "Zoradenie položiek menu"
 
 msgid "Sort plugins list to default?"
@@ -10977,8 +11132,16 @@ msgstr "Pohotovostný režim po "
 msgid "Start"
 msgstr "Štart"
 
+#, fuzzy
+msgid "Start Sleeptimer"
+msgstr "Časovač vypnutia"
+
 msgid "Start directory"
 msgstr "Počiatočný adresár"
+
+#, fuzzy
+msgid "Start fastscan"
+msgstr "Spustiť test"
 
 msgid "Start from the beginning"
 msgstr "Spustiť od začiatku"
@@ -11016,6 +11179,10 @@ msgstr "Spustiť časový posun"
 msgid "Start with list screen"
 msgstr "Začať zoznamom"
 
+#, fuzzy
+msgid "Start/Stop Sleeptimer"
+msgstr "Časovač pri neaktivite"
+
 msgid "Start/stop slide show"
 msgstr "Spustenie/zastavenie prezentácie"
 
@@ -11051,6 +11218,10 @@ msgstr "Zastaviť"
 
 msgid "Stop PiP"
 msgstr "Ukončiť PiP"
+
+#, fuzzy
+msgid "Stop Sleeptimer"
+msgstr "Časovač vypnutia"
 
 msgid "Stop all current recordings"
 msgstr "Zastaviť všetky prebiehajuce nahrávania"
@@ -11764,10 +11935,6 @@ msgstr "K dispozícií je najmenej %d aktualizácií."
 msgid "There are currently no outstanding actions."
 msgstr "Momentálne nie sú žiadne nevykonané akcie."
 
-#, fuzzy
-msgid "There are no items currently available for this screen."
-msgstr "Nie sú dostupné žiadne aktualizácie."
-
 msgid "There are no saved playlists to delete!"
 msgstr "Na vymazanie nie sú uložené žiadne playlisty!"
 
@@ -11886,6 +12053,14 @@ msgstr "Táto voľba umožňuje zapnúť vyhladzovací filter na ovládanie proc
 
 msgid "This option allows you enable the vertical scaler dejagging."
 msgstr "Táto voľba umožňuje zapnúť redukciu vertikálneho rozostrenia."
+
+#, fuzzy
+msgid "This option allows you to add the softcam setup in the extensions menu."
+msgstr "Táto voľba umožňuje zosilniť modré tóny v obraze."
+
+#, fuzzy
+msgid "This option allows you to alphabetically sort setup menu entries."
+msgstr "Táto voľba umožňuje zobraziť všetky symboly na displeji."
 
 msgid "This option allows you to boost the blue tones in the picture."
 msgstr "Táto voľba umožňuje zosilniť modré tóny v obraze."
@@ -12219,6 +12394,10 @@ msgstr "Výber titulkov"
 
 msgid "Today"
 msgstr "Dnes"
+
+#, fuzzy
+msgid "Toggle Configuration Mode or AutoDisqc"
+msgstr "Možnosti nastavenia: %s"
 
 msgid "Toggle HDMI In"
 msgstr "Prepnúť HDMI vstup"
@@ -13098,9 +13277,6 @@ msgstr "Signál na prebudenie prijímača z TV"
 msgid "Wakeup time"
 msgstr "Čas prebudenia"
 
-msgid "Wakeup timer"
-msgstr "Časovač prebudenia"
-
 msgid "Wakeup type"
 msgstr "Typ prebudenia"
 
@@ -13253,8 +13429,14 @@ msgstr "Čo chcete skenovať?"
 msgid "What should happen when you start it for the first time?"
 msgstr "Čo sa má stať pri prvom spustení?"
 
+msgid "When enabled a simplified version from the second infobar is shown. This can also be toggled instantly by holding the OK buttin when the second infobar is visible. The infobar will shortly disappear and then shown in the other mode."
+msgstr ""
+
 msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are updated"
 msgstr "Ak je povolené, enigma2 načíta neprepojené používateľské prehľady. To znamená, že používateľské prehľady, ktoré sú k dispozícii, ale nie sú zahrnuté v súboroch bouquets.tv alebo bouquets.radio, budú stále načítané. To vám napríklad umožňuje ponechať si svoj vlastný užívateľský prehľad počas aktualizácie nainštalovaných nastavení"
+
+msgid "When enabled extra information is shown on the infobar. This can also be toggled instantly by holding the OK button when the inforbar is not visible."
+msgstr ""
 
 msgid "When enabled the Picture in Picture window can be closed with 'exit' button."
 msgstr "Ak povolené, PiP môže byť ukončený tlačidlom EXIT."
@@ -13574,6 +13756,10 @@ msgstr "Žlté"
 
 msgid "Yellow DVB subtitles"
 msgstr "Žlté DVB titulky"
+
+#, fuzzy
+msgid "Yellow button function"
+msgstr "Zvoliť funkciu"
 
 msgid "Yemen"
 msgstr "Yemen"
@@ -14046,9 +14232,6 @@ msgstr "užívateľské rozhranie (GUI) na priradenie staníc, poskytovateľov a
 msgid "about to start"
 msgstr "hneď začne"
 
-msgid "activate network adapter configuration"
-msgstr "aktivovať konfiguráciu sieťového adaptéra"
-
 msgid "active"
 msgstr "aktívne"
 
@@ -14362,9 +14545,6 @@ msgstr "aplikovať strihy (vyžaduje MovieCut plugin)"
 
 msgid "exit DVD player or return to file browser"
 msgstr "zatvoriť prehrávač DVD alebo sa vrátiť do správcu súborov"
-
-msgid "exit network adapter configuration"
-msgstr "zatvoriť nastavovanie sieťového adaptéra"
 
 msgid "exit networkadapter setup menu"
 msgstr "zatvoriť menu nastavení sieťových rozhraní"
