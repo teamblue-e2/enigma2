@@ -1,5 +1,5 @@
 import subprocess
-from os import path, unlink, system
+from os import path, unlink, system, remove
 import string
 from random import Random
 from Screens.Screen import Screen
@@ -448,7 +448,7 @@ class AdapterSetup(ConfigListScreen, HelpableScreen, Screen):
 
 		self["Adaptertext"] = StaticText(_("Network:"))
 		self["Adapter"] = StaticText()
-		self["introduction2"] = StaticText(_("Press OK to activate the settings."))
+		self["introduction2"] = StaticText(_("Press green button to activate the settings."))
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
 
@@ -906,6 +906,8 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		if self["menulist"].getCurrent()[1][0] == 'extendedSetup':
 			self.extended = self["menulist"].getCurrent()[1][2]
 			self.extended(self.session, self.iface)
+		if self["menulist"].getCurrent()[1] == 'removewifi':
+			self.session.openWithCallback(self.removeWifiConfig, MessageBox, (_("Are you sure you want to remove your wifi configuration?\n\n") + self.oktext))
 
 	def up(self):
 		self["menulist"].up()
@@ -949,6 +951,8 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			self["description"].setText(_("Set the MAC-adress of your receiver.\n") + self.oktext)
 		if self["menulist"].getCurrent()[1] == 'ipv6':
 			self["description"].setText(_("Enable/Disable IPv6 support of your receiver.\n") + self.oktext)
+		if self["menulist"].getCurrent()[1] == 'removewifi':
+			self["description"].setText(_("Delete the current Wifi configuration.\n") + self.oktext)
 
 	def updateStatusbar(self, data=None):
 		self.mainmenu = self.genMainMenu()
@@ -1002,6 +1006,12 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 
 		if path.exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
 			menu.append((_("Network wizard"), "openwizard"))
+		try:
+			from Plugins.SystemPlugins.WirelessLan.Wlan import getWlanConfigName
+			if path.exists(getWlanConfigName(self.iface)):
+				menu.append((_("Delete Wifi configuration"), "removewifi"))
+		except:
+			pass
 		# CHECK WHICH BOXES NOW SUPPORT MAC-CHANGE VIA GUI
 		if getBoxType() not in ('DUMMY') and self.iface == 'eth0':
 			menu.append((_("Network MAC settings"), "mac"))
@@ -1040,6 +1050,16 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 			iStatus.stopWlanConsole()
 			self.updateStatusbar()
+
+	def removeWifiConfig(self, ret=False):
+		if ret:
+			from Plugins.SystemPlugins.WirelessLan.Wlan import getWlanConfigName
+			try:
+				remove(getWlanConfigName(self.iface))
+				self.session.open(MessageBox, _("Finished removing your wifi configuration"), type=MessageBox.TYPE_INFO, timeout=10, default=False)
+				self.updateStatusbar()
+			except:
+				self.session.open(MessageBox, _("Error removing your wifi configuration"), type=MessageBox.TYPE_ERROR, timeout=10, default=False)
 
 	def restartLan(self, ret=False):
 		if ret:
