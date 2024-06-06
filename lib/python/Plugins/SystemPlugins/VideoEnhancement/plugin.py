@@ -166,12 +166,6 @@ class VideoEnhancementSetup(ConfigListScreen, Screen):
 		self.keyYellowConfirm(True)
 		self.close()
 
-	def keyCancel(self):
-		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default=False)
-		else:
-			self.close()
-
 	def keyYellowConfirm(self, confirmed):
 		if confirmed:
 			if self.contrastEntry is not None:
@@ -365,17 +359,13 @@ class VideoEnhancementPreview(ConfigListScreen, Screen):
 	def getCurrentValue(self):
 		return str(self["config"].getCurrent()[1].getText())
 
-	def createSummary(self):
-		from Screens.Setup import SetupSummary
-		return SetupSummary
-
 
 def videoEnhancementSetupMain(session, **kwargs):
 	session.open(VideoEnhancementSetup)
 
 
 def startSetup(menuid):
-       if menuid != "video_menu":
+       if menuid != "video":
                return []
        return [(_("Extended settings"), videoEnhancementSetupMain, "videoenhancement_setup", 41)]
 

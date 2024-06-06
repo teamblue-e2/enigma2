@@ -9,6 +9,8 @@ from sys import _getframe as getframe
 from unicodedata import normalize
 from xml.etree.ElementTree import Element, ParseError, fromstring, parse
 
+from xml.etree.ElementTree import Element, fromstring, parse
+
 pathExists = os.path.exists
 
 DEFAULT_MODULE_NAME = __name__.split(".")[-1]
@@ -378,6 +380,22 @@ def fileHas(f, content, mode="r"):
 	return result
 
 
+def fileReadXML(filename, default=None, *args, **kwargs):
+	dom = None
+	try:
+		with open(filename, "r", encoding="utf-8") as fd:
+			dom = parse(fd).getroot()
+	except:
+		print("[fileReadXML] failed to read", filename)
+		print_exc()
+	if dom is None and default:
+		if isinstance(default, str):
+			dom = fromstring(default)
+		elif isinstance(default, Element):
+			dom = default
+	return dom
+
+
 def getRecordingFilename(basename, dirname=None):
 	# Filter out non-allowed characters.
 	non_allowed_characters = "/.\\:*?<>|\""
@@ -595,7 +613,7 @@ def sanitizeFilename(filename):
 	and make sure we do not exceed Windows filename length limits.
 	Hence a less safe blacklist, rather than a whitelist.
 	"""
-	blacklist = ["\\", "/", ":", "*", "?", "\"", "<", ">", "|", "\0", "(", ")", " "]
+	blacklist = ["\\", "/", ":", "*", "?", "\"", "<", ">", "|", "\0"]
 	reserved = [
 		"CON", "PRN", "AUX", "NUL", "COM1", "COM2", "COM3", "COM4", "COM5",
 		"COM6", "COM7", "COM8", "COM9", "LPT1", "LPT2", "LPT3", "LPT4", "LPT5",

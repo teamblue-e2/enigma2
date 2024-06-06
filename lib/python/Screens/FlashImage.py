@@ -293,7 +293,7 @@ class FlashImage(Screen):
 			imagesList = getImagelist()
 			currentimageslot = getCurrentImage()
 			choices = []
-			slotdict = {k: v for k, v in BoxInfo.getItem("canMultiBoot").items() if not v['device'].startswith('/dev/sda')}
+			slotdict = {k: v for k, v in BoxInfo.getItem("canMultiBoot").items() if not v['device'].startswith('/dev/sd')}
 			for x in range(1, len(slotdict) + 1):
 				choices.append(((_("slot%s - %s (current image)") if x == currentimageslot else _("slot%s - %s")) % (x, imagesList[x]['imagename']), (x, "with backup") if getImageDistro() in self.imagename else (x, "without backup")))
 			if "://" in self.source:
