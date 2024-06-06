@@ -453,9 +453,10 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			f.close()
 
 	def __onHide(self):
-		self.unDimmingTimer = eTimer()
-		self.unDimmingTimer.callback.append(self.unDimming)
-		self.unDimmingTimer.start(100, True)
+		if BoxInfo.getItem("CanChangeOsdAlpha"):
+			self.unDimmingTimer = eTimer()
+			self.unDimmingTimer.callback.append(self.unDimming)
+			self.unDimmingTimer.start(100, True)
 		self.__state = self.STATE_HIDDEN
 		if self.actualSecondInfoBarScreen:
 			self.actualSecondInfoBarScreen.hide()
@@ -501,6 +502,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 	def toggleInfoBarAddon(self):
 		if self.InfoBarAdds and (self.actualSecondInfoBarScreen and not self.actualSecondInfoBarScreen.shown or not self.actualSecondInfoBarScreen):
 			config.usage.show_infobar_adds.value = not config.usage.show_infobar_adds.value
+			config.usage.show_infobar_adds.save()
 			if config.usage.show_infobar_adds.value:
 				self.InfoBarAdds.show()
 			else:
@@ -551,12 +553,14 @@ class InfoBarShowHide(InfoBarScreenSaver):
 
 	def doTimerHide(self):
 		self.hideTimer.stop()
-		#if self.__state == self.STATE_SHOWN:
-		#	self.hide()
-		self.DimmingTimer = eTimer()
-		self.DimmingTimer.callback.append(self.doDimming)
-		self.DimmingTimer.start(70, True)
-		self.dimmed = config.usage.show_infobar_dimming_speed.value
+		if BoxInfo.getItem("CanChangeOsdAlpha"):
+			self.DimmingTimer = eTimer()
+			self.DimmingTimer.callback.append(self.doDimming)
+			self.DimmingTimer.start(70, True)
+			self.dimmed = config.usage.show_infobar_dimming_speed.value
+		else:
+			if self.__state == self.STATE_SHOWN:
+				self.hide()
 
 	def doHide(self):
 		if self.__state != self.STATE_HIDDEN:
@@ -2502,16 +2506,16 @@ class InfoBarExtensions:
 
 	def __init__(self):
 		self.list = []
-		# self.addExtension((lambda: _("Softcam Setup"), self.openSoftcamSetup, lambda: config.misc.softcam_setup.extension_menu.value and BoxInfo.getItem("HasSoftcamInstalled")), "1")
+		self.addExtension((lambda: _("Softcam Setup"), self.openSoftcamSetup, lambda: config.misc.softcam_setup.extension_menu.value and BoxInfo.getItem("HasSoftcamInstalled")), "1")
 		self.addExtension((lambda: _("Manually import from fallback tuner"), self.importChannels, lambda: config.usage.remote_fallback_extension_menu.value and config.usage.remote_fallback_import.value))
 		self["InstantExtensionsActions"] = HelpableActionMap(self, ["InfobarExtensions"],
 			{
 				"extensions": (self.showExtensionSelection, _("Show extensions...")),
 			}, 1) # lower priority
 
-	#def openSoftcamSetup(self):
-	#	from Screens.SoftcamSetup import SoftcamSetup
-	#	self.session.open(SoftcamSetup)
+	def openSoftcamSetup(self):
+		from Screens.SoftcamSetup import SoftcamSetup
+		self.session.open(SoftcamSetup)
 
 	def importChannels(self):
 		from Components.ImportChannels import ImportChannels
@@ -3585,11 +3589,11 @@ class InfoBarCueSheetSupport:
 				isin = True
 		return ret
 
-	def jumpPreviousNextMark(self, _cmp, start=False):
+	def jumpPreviousNextMark(self, cmp, start=False):
 		current_pos = self.cueGetCurrentPosition()
 		if current_pos is None:
 			return False
-		mark = self.getNearestCutPoint(current_pos, _cmp=_cmp, start=start)
+		mark = self.getNearestCutPoint(current_pos, cmp=cmp, start=start)
 		if mark is not None:
 			pts = mark[0]
 		else:
@@ -3607,21 +3611,21 @@ class InfoBarCueSheetSupport:
 		if not self.jumpPreviousNextMark(lambda x: x - 90000):
 			self.doSeek(-1)
 
-	def getNearestCutPoint(self, pts, _cmp=abs, start=False):
+	def getNearestCutPoint(self, pts, cmp=abs, start=False):
 		# can be optimized
 		beforecut = True
 		nearest = None
 		bestdiff = -1
 		instate = True
 		if start:
-			bestdiff = (0 > pts) - (0 < pts)
+			bestdiff = cmp(0 - pts)
 			if bestdiff >= 0:
 				nearest = [0, False]
 		for cp in self.cut_list:
 			if beforecut and cp[1] in (self.CUT_TYPE_IN, self.CUT_TYPE_OUT):
 				beforecut = False
 				if cp[1] == self.CUT_TYPE_IN:  # Start is here, disregard previous marks
-					diff = (cp[0] > pts) - (cp[0] < pts)
+					diff = cmp(cp[0] - pts)
 					if start and diff >= 0:
 						nearest = cp
 						bestdiff = diff
@@ -3633,7 +3637,7 @@ class InfoBarCueSheetSupport:
 			elif cp[1] == self.CUT_TYPE_OUT:
 				instate = False
 			elif cp[1] in (self.CUT_TYPE_MARK, self.CUT_TYPE_LAST):
-				diff = (cp[0] > pts) - (cp[0] < pts)
+				diff = cmp(cp[0] - pts)
 				if instate and diff >= 0 and (nearest is None or bestdiff > diff):
 					nearest = cp
 					bestdiff = diff

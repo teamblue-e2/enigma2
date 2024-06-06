@@ -128,6 +128,10 @@ def countFrontpanelLEDs():
 	return numLeds
 
 
+def hassoftcaminstalled():
+	from Tools.camcontrol import CamControl
+	return len(CamControl("softcam").getList()) > 1
+
 def getHasTuners():
 	if fileExists("/proc/bus/nim_sockets"):
 		nimfile = open("/proc/bus/nim_sockets")
@@ -158,7 +162,7 @@ def setBoxInfoItems():
 	for cislot in range(0, BoxInfo.getItem("CommonInterface")):
 		BoxInfo.setItem("CI%dSupportsHighBitrates" % cislot, fileCheck("/proc/stb/tsmux/ci%d_tsclk" % cislot))
 		BoxInfo.setItem("CI%dRelevantPidsRoutingSupport" % cislot, fileCheck("/proc/stb/tsmux/ci%d_relevant_pids_routing" % cislot))
-
+	BoxInfo.setItem("HasSoftcamInstalled", hassoftcaminstalled())
 	BoxInfo.setItem("NumVideoDecoders", getNumVideoDecoders())
 	BoxInfo.setItem("PIPAvailable", BoxInfo.getItem("NumVideoDecoders") > 1)
 	BoxInfo.setItem("CanMeasureFrontendInputPower", eDVBResourceManager.getInstance().canMeasureFrontendInputPower())
