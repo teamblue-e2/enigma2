@@ -3,7 +3,7 @@ from Screens.MessageBox import MessageBox
 from Components.config import config
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
-from Components.Harddisk import harddiskmanager
+from Components.Harddisk import harddiskmanager, getProcMounts
 from Components.NimManager import nimmanager
 from Components.About import about
 from Components.ScrollLabel import ScrollLabel
@@ -150,27 +150,43 @@ class About(Screen):
 				self["Tuner" + str(count)] = StaticText("")
 			AboutText += nims[count] + "\n"
 
-		self["HDDHeader"] = StaticText(_("Detected storage devices:"))
-		AboutText += "\n" + _("Detected storage devices:") + "\n"
+		mounts = getProcMounts()
 
-		hddlist = harddiskmanager.HDDList()
+		self["StorageHeader"] = StaticText(_("Internal flash storage:"))
+		AboutText += "\n" + _("Internal flash storage:") + "\n"
+
+		storageinfo = ""
+		for partition in harddiskmanager.getMountedPartitions(False, mounts):
+			if partition.mountpoint != '/':
+				continue
+			free=(("%s MB" % (partition.free()//(1024**2)) if partition.free()//(1024**2) <= 1024 else ("%.2f GB" % (partition.free()/(1024**3)))))
+			total=(("%s MB" % (partition.total()//(1024**2)) if partition.total()//(1024**2) <= 1024 else ("%.2f GB" % (partition.total()/(1024**3)))))
+			storageinfo += _("Free: %s/%s\n") % (free, total)
+			storageinfo += _("Filesystem: %s\n") % partition.filesystem()
+			storageinfo += "\n"
+		AboutText += storageinfo
+
+		self["HDDHeader"] = StaticText(_("Detected storage devices:"))
+		AboutText += _("Detected storage devices:") + "\n"
+
 		hddinfo = ""
-		if hddlist:
-			formatstring = hddsplit and "%s:%s, %.1f %s %s" or "%s\n(%s, %.1f %s %s)"
-			for count in range(len(hddlist)):
-				if hddinfo:
-					hddinfo += "\n"
-				hdd = hddlist[count][1]
-				if int(hdd.free()) > 1024:
-					hddinfo += formatstring % (hdd.model(), hdd.capacity(), hdd.free() / 1024.0, _("GB"), _("free"))
-				else:
-					hddinfo += formatstring % (hdd.model(), hdd.capacity(), hdd.free(), _("MB"), _("free"))
-		else:
+		for partition in harddiskmanager.getMountedPartitions(False, mounts):
+			if partition.mountpoint == '/':
+				continue
+			hddinfo += "%s:\n" % (partition.description)
+			hddinfo += _("Mountpoint: %s (%s)\n") % (partition.mountpoint,partition.device)
+			free=(("%s MB" % (partition.free()//(1024**2)) if partition.free()//(1024**2) <= 1024 else ("%.2f GB" % (partition.free()/(1024**3)))))
+			total=(("%s MB" % (partition.total()//(1024**2)) if partition.total()//(1024**2) <= 1024 else ("%.2f GB" % (partition.total()/(1024**3)))))
+			hddinfo += _("Free: %s/%s\n") % (free, total)
+			hddinfo += _("Filesystem: %s\n") % partition.filesystem()
+			hddinfo += "\n"
+		if hddinfo == "":
 			hddinfo = _("none")
-		self["hddA"] = StaticText(hddinfo)
+			hddinfo += "\n"
 		AboutText += hddinfo
 
-		AboutText += '\n\n' + _("Uptime") + ": " + about.getBoxUptime()
+		AboutText += _("Uptime") + ": " + about.getBoxUptime()
+
 		if BoxInfo.getItem("HasHDMI-CEC") and config.hdmicec.enabled.value:
 			address = config.hdmicec.fixed_physical_address.value if config.hdmicec.fixed_physical_address.value != "0.0.0.0" else _("not set")
 			AboutText += "\n\n" + _("HDMI-CEC address") + ": " + address
