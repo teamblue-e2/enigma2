@@ -154,7 +154,7 @@ while : ; do
 			/sbin/reboot
 			;;
 		3)
-			DEBUG_LVL=3
+			DEBUG_LVL=${ENIGMA_DEBUG_LVL:-4}
 			;;
 		4)
 			/sbin/rmmod lcd

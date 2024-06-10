@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue (Apachi70)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-24 10:35+0200\n"
+"POT-Creation-Date: 2024-06-07 12:23+0200\n"
 "PO-Revision-Date: 2023-10-28 16:49+0200\n"
 "Last-Translator: Apachi70 (Openatv),(Teamblue) <teamblue@online.de,openatv@gmail.com>\n"
 "Language-Team: teamblue@t-online.de(apachi70)\n"
@@ -233,6 +233,9 @@ msgstr "%A %e %B %Y"
 msgid "%H:%M"
 msgstr "%H:%M"
 
+msgid "%R"
+msgstr ""
+
 msgid "%Y-%m-%d %H:%M:%S"
 msgstr "%Y-%m-%d %H:%M:%S"
 
@@ -450,6 +453,10 @@ msgid_plural "%s updated packages available"
 msgstr[0] "%s mevcut paket güncellendi"
 
 #, python-format
+msgid "%s%s(Default: %s)"
+msgstr ""
+
+#, python-format
 msgid "%s: %s"
 msgstr "%s: %s"
 
@@ -649,9 +656,6 @@ msgstr "=STREAM Yok\n"
 
 msgid "?"
 msgstr "?"
-
-msgid "??"
-msgstr "??"
 
 msgid "A"
 msgstr "A"
@@ -1227,6 +1231,14 @@ msgstr "Sihirbazdan çıkmak istiyor musunuz?"
 msgid "Are you sure you want to reload the EPG data from:\n"
 msgstr "EPG verilerini yeniden yüklemek istediğinizden emin misiniz:\n"
 
+#, fuzzy
+msgid ""
+"Are you sure you want to remove your wifi configuration?\n"
+"\n"
+msgstr ""
+"Bu ağ yapılandırmasını etkinleştirmek istiyor musunuz?\n"
+"\n"
+
 msgid ""
 "Are you sure you want to restart your network interfaces?\n"
 "\n"
@@ -1654,6 +1666,10 @@ msgstr "Blok gürültü azaltma"
 msgid "Blue"
 msgstr "Mavi"
 
+#, fuzzy
+msgid "Blue button function"
+msgstr "Işlevi seçin"
+
 msgid "Bolivia (Plurinational State of)"
 msgstr "Bolivya (Çokuluslu Devlet)"
 
@@ -1898,6 +1914,14 @@ msgstr "Kanada"
 
 msgid "Cancel"
 msgstr "Vazgeç"
+
+#, fuzzy
+msgid "Cancel any changed settings and exit"
+msgstr "Metin değişikliklerini iptal et ve çık"
+
+#, fuzzy
+msgid "Cancel any changed settings and exit all menus"
+msgstr "Halihazırda aktif olan dış görünümdeki değişiklikleri iptal edin ve tüm menülerden çıkın"
 
 msgid "Cancel any changes to the currently active skin"
 msgstr "Şu anda aktif olan dış görünümdeki tüm değişiklikleri iptal edin"
@@ -2315,6 +2339,10 @@ msgstr "Kaydetme bilgileri"
 
 msgid "Common Interface"
 msgstr "Ortak Arayüz"
+
+#, fuzzy
+msgid "Common Setup Actions"
+msgstr "Arayüz Seçimi Eylemleri"
 
 msgid "Communication"
 msgstr "İletişim"
@@ -2770,7 +2798,7 @@ msgstr "Oynatmaya devam"
 msgid "Continue playing"
 msgstr "Oynatmaya devam et"
 
-msgid "Continues play (loop)"
+msgid "Continuous play (loop)"
 msgstr "Sürekli oynat (döngü)"
 
 msgid "Contrast"
@@ -3156,6 +3184,10 @@ msgstr "Varsayılan zamanlayıcı türü"
 msgid "Default+Picon"
 msgstr "Varsayılan+Picon"
 
+#, fuzzy, python-format
+msgid "Default: '%s'."
+msgstr "Varsayılan"
+
 msgid "Define additional delay in milliseconds before start of http(s) streams, e.g. to connect a remote tuner, you use a complex system of DiSEqC."
 msgstr "Http(ler) akışlarının başlamasından önce milisaniye cinsinden ek gecikme tanımlayın, örneğin uzaktaki bir tuneri bağlamak için DiSEqC'nin karmaşık bir sistemini kullanırsınız."
 
@@ -3241,8 +3273,20 @@ msgstr "1 öğe sil"
 msgid "Delete Image"
 msgstr "Image Sil"
 
+#, fuzzy
+msgid "Delete Wifi configuration"
+msgstr "OpenWebif Yapılandırması"
+
 msgid "Delete all the text"
 msgstr "Tüm metni sil"
+
+#, fuzzy
+msgid "Delete character to left of cursor or select AM times"
+msgstr "Metin imlecinin solundaki karakteri sil"
+
+#, fuzzy
+msgid "Delete character under cursor or select PM times"
+msgstr "Metin imlecinin altındaki karakteri sil"
 
 msgid "Delete current line"
 msgstr "Mevcut satırı sil"
@@ -3276,6 +3320,10 @@ msgstr "Metin imlecinin solundaki karakteri sil"
 
 msgid "Delete the character under the text cursor"
 msgstr "Metin imlecinin altındaki karakteri sil"
+
+#, fuzzy
+msgid "Delete the current Wifi configuration.\n"
+msgstr "Geçerli yapılandırmayı etkinleştir"
 
 msgid "Delete the selected files or directories"
 msgstr "Seçilen dosyaları veya dizinleri silin"
@@ -3448,6 +3496,10 @@ msgstr "Mevcut etkinliği devre dışı bırak, ancak gelecekteki etkinlikleri e
 msgid "Disable move mode"
 msgstr "Hareket modunu devre dışı bırakın"
 
+#, fuzzy
+msgid "Disable operator profiles"
+msgstr "Kullanilabilir biçim (format) değişkenleri"
+
 msgid "Disable timer"
 msgstr "Zamanlayıcı devre dışı"
 
@@ -3502,6 +3554,9 @@ msgstr "Film uzunluğunu movielistte göster (tek satır stili hariç)."
 
 msgid "Display setup"
 msgstr "Ekran kurulumu"
+
+msgid "Display the virtual keyboard for data entry"
+msgstr ""
 
 msgid "Djibouti"
 msgstr "Cibuti"
@@ -3697,6 +3752,10 @@ msgstr "Bu kayıt katmayın"
 
 msgid "Don't save and stop timeshift"
 msgstr "Zaman kaymasını kaydetme ve durdurma"
+
+#, fuzzy
+msgid "Don't show default"
+msgstr "Varsayılanları ayarla"
 
 msgid "Don't stop current event but disable coming events"
 msgstr "Geçerli olayı devre dışı bırakmayın ancak gelecek olayları durdur"
@@ -4048,6 +4107,10 @@ msgstr "Bükülmüş günlüğü etkinleştir *"
 msgid "Enable volume control with arrow buttons"
 msgstr "Ok tuşları ile ses kontrolünü etkinleştir"
 
+#, fuzzy
+msgid "Enable wakeup timer"
+msgstr "Uyku/uyandırma zamanlayıcı"
+
 msgid "Enable zapping with CH+/-, B+/-, P+/-"
 msgstr "CH +/-, B +/-, P +/- ile zapping etkinleştir-"
 
@@ -4238,6 +4301,10 @@ msgstr "Bouquets.radio okunurken hata oluştu"
 msgid "Error reading bouquets.tv"
 msgstr "Bouquets.tv okunurken hata oluştu"
 
+#, fuzzy
+msgid "Error removing your wifi configuration"
+msgstr "Film Listesi yapılandırması"
+
 #, python-format
 msgid ""
 "Error renaming %s to %s:\n"
@@ -4318,6 +4385,9 @@ msgstr "Bludisc orta ölçeği aşıyor!"
 
 msgid "Exceeds dual layer medium!"
 msgstr "Çift katman orta ölçeği aşıyor!"
+
+msgid "Exclude first CA device"
+msgstr ""
 
 msgid "Execution finished!!"
 msgstr "Uygulama bitti!!"
@@ -4714,6 +4784,10 @@ msgstr "Yedeklemeden hariç tutulacak dosyalar /klasörler"
 msgid "Filesystem check"
 msgstr "Dosya sistemi kontrolü"
 
+#, fuzzy, python-format
+msgid "Filesystem: %s\n"
+msgstr "Dosya sistemi kontrolü"
+
 msgid "Filter extension for 'My extension' setting of 'Filter extension'. Use the extension name without a '.'."
 msgstr "Uzantım\" ayarının \"Filtre uzantısı\" için filtre uzantısı. Uzantı adını  Olmadan kullanın '.'."
 
@@ -4746,6 +4820,10 @@ msgstr "Tamamlandı"
 
 msgid "Finished configuring your network"
 msgstr "Ağ yapılandırması tamamlandı"
+
+#, fuzzy
+msgid "Finished removing your wifi configuration"
+msgstr "Ağ yeniden başlatıldı"
 
 msgid "Finished restarting your network"
 msgstr "Ağ yeniden başlatıldı"
@@ -4869,6 +4947,10 @@ msgstr "Tam ekranda çerçeve boyutu"
 
 msgid "France"
 msgstr "Fransa"
+
+#, fuzzy, python-format
+msgid "Free: %s/%s\n"
+msgstr "Model: %s %s\n"
 
 msgid "French"
 msgstr "Fransızca"
@@ -5297,9 +5379,6 @@ msgstr "Gizlenmiş ağ"
 msgid "Hide"
 msgstr "Gizle"
 
-msgid "Hide and confirm invalid key message"
-msgstr ""
-
 msgid "Hide channel list in radio mode"
 msgstr "Radyo modunda kanal listesini gizle"
 
@@ -5586,6 +5665,9 @@ msgstr "Uzak alıcı URL'sinden içe aktar"
 msgid "Import remote receiver URL"
 msgstr "Uzak alıcı URL'sini içe aktar"
 
+msgid "In Setup screens choose whether to show the default value of the selected item in the description field."
+msgstr ""
+
 msgid "In most cases this should be set to No. Only enable if you have a very specific need."
 msgstr "Çoğu durumda bu, Hayır olarak ayarlanmalıdır. Sadece çok özel bir gereksiniminiz varsa etkinleştirin."
 
@@ -5839,6 +5921,10 @@ msgstr "Dahili"
 msgid "Internal flash"
 msgstr "Dahili hafıza"
 
+#, fuzzy
+msgid "Internal flash storage:"
+msgstr "Dahili hafıza"
+
 msgid "Internal hdd only"
 msgstr "Yanlız dahili HDD"
 
@@ -5932,7 +6018,8 @@ msgstr "İtalyan"
 msgid "Italy"
 msgstr "İtalya"
 
-msgid "Items per page "
+#, fuzzy
+msgid "Items per page"
 msgstr "Sayfa başına görüntüle "
 
 msgid "Items per page for list screen"
@@ -5961,6 +6048,12 @@ msgstr "Listenin başına atlar"
 
 msgid "Jump to end of list"
 msgstr "Listenin sonuna atlar"
+
+msgid "Jump to first item in list or the start of text"
+msgstr ""
+
+msgid "Jump to last item in list or the end of text"
+msgstr ""
 
 msgid "Jump to next marked position"
 msgstr "Sonraki işaretli pozisyona atla"
@@ -6475,6 +6568,10 @@ msgstr "MemoryInfo - yalnızca Geliştiriciler için"
 msgid "Menu"
 msgstr "Menü"
 
+#, fuzzy
+msgid "Menu button function"
+msgstr "Işlevi seçin"
+
 #, python-format
 msgid "Menusort (%s)"
 msgstr "Menusort (%s)"
@@ -6659,6 +6756,10 @@ msgstr "MountEdit"
 msgid "MountView"
 msgstr "MountView"
 
+#, fuzzy, python-format
+msgid "Mountpoint: %s (%s)\n"
+msgstr "Mount noktasi"
+
 msgid "Mountpoints"
 msgstr "Mount noktasi"
 
@@ -6683,6 +6784,14 @@ msgstr "Resim içinde resimi (PiP) ana ekrana tasi"
 
 msgid "Move Picture in Picture"
 msgstr "Resimdeki Resmi Taşı"
+
+#, fuzzy
+msgid "Move down a line"
+msgstr "Listeyi aşağı taşı"
+
+#, fuzzy
+msgid "Move down a screen"
+msgstr "Listeyi aşağı taşı"
 
 msgid "Move down list"
 msgstr "Listeyi aşağı taşı"
@@ -6726,6 +6835,14 @@ msgstr "Metin imlecini ilk karaktere taşı"
 msgid "Move the text cursor to the last character"
 msgstr "Metin imlecini son karaktere taşı"
 
+#, fuzzy
+msgid "Move to first line / screen"
+msgstr "Bir sonraki dış görünüme git"
+
+#, fuzzy
+msgid "Move to last line / screen"
+msgstr "Bir sonraki dış görünüme git"
+
 msgid "Move to position X"
 msgstr "'X' pozisyonuna taşı"
 
@@ -6740,6 +6857,14 @@ msgstr "Önceki sayfaya git"
 
 msgid "Move to the previous skin"
 msgstr "Önceki dış görünüme git"
+
+#, fuzzy
+msgid "Move up a line"
+msgstr "Yukarı taşı listesi"
+
+#, fuzzy
+msgid "Move up a screen"
+msgstr "Yukarı taşı listesi"
 
 msgid "Move up list"
 msgstr "Yukarı taşı listesi"
@@ -7592,10 +7717,6 @@ msgstr "PPanel"
 msgid "PREVIOUS"
 msgstr ""
 
-#, fuzzy
-msgid "PVR"
-msgstr "OVR"
-
 msgid "Package list update"
 msgstr "Paket listesi güncelleniyor"
 
@@ -8062,6 +8183,10 @@ msgstr "Besleme durumu kontrol edilirken bekleyin."
 msgid "Please wait, Loading image."
 msgstr "Lütfen bekleyin, Image yükleniyor."
 
+#, fuzzy
+msgid "Please wait, restarting cardserver."
+msgstr "İkincil Softcam yeniden başlatılıyor, lütfen bekleyin."
+
 msgid "Please wait, restarting primary and secondary softcam."
 msgstr "Birincil ve ikincil Softcam yeniden başlatılıyor, lütfen bekleyin."
 
@@ -8070,6 +8195,14 @@ msgstr "Birincil Softcam yeniden başlatılıyor, lütfen bekleyin."
 
 msgid "Please wait, restarting secondary softcam."
 msgstr "İkincil Softcam yeniden başlatılıyor, lütfen bekleyin."
+
+#, fuzzy
+msgid "Please wait, restarting softcam and cardserver."
+msgstr "Birincil Softcam yeniden başlatılıyor, lütfen bekleyin."
+
+#, fuzzy
+msgid "Please wait, restarting softcam."
+msgstr "Birincil Softcam yeniden başlatılıyor, lütfen bekleyin."
 
 msgid "Please wait..."
 msgstr "Lütfen bekleyin..."
@@ -8286,9 +8419,6 @@ msgstr "Devam etmek için kumandanızın OK tuşuna basın."
 msgid "Press OK to activate the selected %s skin."
 msgstr "Arayüzü etkinleştirmek için %s OK tuşuna basın."
 
-msgid "Press OK to activate the settings."
-msgstr "Onaylamak için OK tuşuna basın."
-
 msgid "Press OK to edit the settings."
 msgstr "Düzenlemek için OK tuşuna basın."
 
@@ -8332,6 +8462,10 @@ msgstr "Seçiminde geçiş yapmak için OK tuşuna basın."
 
 msgid "Press OK, save and exit..."
 msgstr "OK tuşuna basın, kaydedin ve çıkın ..."
+
+#, fuzzy
+msgid "Press green button to activate the settings."
+msgstr "Onaylamak için OK tuşuna basın."
 
 msgid "Press or select button and then press 'OK' for attach function."
 msgstr "Ekleme fonksiyonu için veya düğmesine basınız ve daha sonra 'Tamam'a basınız."
@@ -8626,9 +8760,6 @@ msgstr "Rec"
 
 msgid "Recall to previous service"
 msgstr "Önceki kanala dön"
-
-msgid "Receiver or driver does not support FCC"
-msgstr "Alıcı veya sürücü FCC'yi desteklemiyor"
 
 msgid "Reception lists"
 msgstr "Resepsiyon listeleri"
@@ -8959,6 +9090,10 @@ msgstr "Ağ Bağdaştırıcısını Yeniden Başlatın"
 msgid "Restart both"
 msgstr "İkisini de yeniden başlat"
 
+#, fuzzy
+msgid "Restart cardserver"
+msgstr "Set başlangıç hizmeti"
+
 msgid "Restart enigma"
 msgstr "Enigma'yı yeniden başlat"
 
@@ -8970,6 +9105,10 @@ msgstr "Yeniden birincil softcam"
 
 msgid "Restart secondary softcam"
 msgstr "Yeniden ikincil softcam"
+
+#, fuzzy
+msgid "Restart softcam"
+msgstr "Yeniden birincil softcam"
 
 msgid "Restart test"
 msgstr "Test'i yenile"
@@ -9268,6 +9407,10 @@ msgstr "EPG verisini kaydet"
 msgid "Save EPG every (in hours)"
 msgstr "Her EPG'yi kaydet (saat cinsinden)"
 
+#, fuzzy
+msgid "Save all changed settings and exit"
+msgstr "Metin kaydet / Gir ve çık"
+
 msgid "Save and activate the currently selected skin"
 msgstr "Şu anda seçili dış görünümü kaydedin ve etkinleştirin"
 
@@ -9554,6 +9697,10 @@ msgstr "Seçin (kaynak listesi) veya dizini girin (hedef listesi)"
 msgid "Select CAId"
 msgstr "CAId Seç"
 
+#, fuzzy
+msgid "Select Card Server"
+msgstr "Film seç"
+
 msgid "Select Fast DiSEqC if your aerial system supports this. If you are unsure select 'no'."
 msgstr "Anten sisteminiz bunu destekliyorsa Hızlı DiSEqC'yi seçin. Emin değilseniz 'hayır' seçeneğini seçin."
 
@@ -9566,6 +9713,10 @@ msgstr "OPKG kaynağını seçin ....."
 #, fuzzy
 msgid "Select Service"
 msgstr "Film seç"
+
+#, fuzzy
+msgid "Select Softcam"
+msgstr "Birincil Softcam seçin"
 
 msgid "Select Software Update"
 msgstr "Yazılım Güncelleme Seç"
@@ -9758,6 +9909,12 @@ msgstr "SCR cihazınızın model numarasını seçin. Model numarası listelenme
 msgid "Select the movie path"
 msgstr "Film yolunu seç"
 
+msgid "Select the next item in list or move cursor right"
+msgstr ""
+
+msgid "Select the previous item in list or move cursor left"
+msgstr ""
+
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "SCR cihazınızın kullandığı protokolü seçin. Seçenekler 'SCR Unicable' (Unicable) veya 'SCR JESS' (JESS, Unicable II olarak da bilinir)."
 
@@ -9853,11 +10010,11 @@ msgstr "Kişisel ayarlarınızı seçin:"
 msgid "Select your provider and region. If not present in this list you will need to select one of the other 'service scan types'."
 msgstr "Sağlayıcınızı ve bölgenizi seçin. Bu listede bulunmuyorsa, diğer 'hizmet tarama türlerinden' birini seçmeniz gerekecektir."
 
-msgid "Select your provider, and press OK to start the scan"
-msgstr "Sağlayıcı seçin ve taramayı başlatmak için OK tuşuna basın"
-
 msgid "Select your region. If not available change 'Country' to 'all' and select one of the default alternatives."
 msgstr "Bölgenizi seçin. Kullanılamıyorsa, \"Ülke\" yi \"tümünü\" olarak değiştirin ve varsayılan alternatiflerden birini seçin."
+
+msgid "Select, toggle, process or edit the current entry"
+msgstr ""
 
 msgid "Selected mount point is already used by another drive."
 msgstr "Seçili bağlama noktası zaten başka bir sürücü tarafından kullanılıyor."
@@ -10027,6 +10184,9 @@ msgstr "Film oynatma bittiğinde eylemi ayarlayın."
 
 msgid "Set all hotkey to default?"
 msgstr "Tüm kısayol tuşlarını varsayılan değere ayarlayın?"
+
+msgid "Set all the settings back as they were"
+msgstr ""
 
 msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
 msgstr "DVB-T / C veya ATSC için alternatif yedek ayarlayıcılar ayarlayın"
@@ -10231,6 +10391,10 @@ msgstr "WLAN durumunu göster"
 msgid "Show Weather Widget"
 msgstr "Hava Durumu Gerecini Göster"
 
+#, fuzzy
+msgid "Show additional information on infobar"
+msgstr "Bilgi çubuğunda şifreleme bilgisi göster"
+
 msgid "Show alternatives"
 msgstr "Alternatifleri göster"
 
@@ -10285,6 +10449,14 @@ msgstr "Bilgi çubuğunda şifreleme bilgisi göster"
 
 msgid "Show current mode"
 msgstr "Geçerli kipi göster"
+
+#, fuzzy
+msgid "Show default after description"
+msgstr "Geniş açıklama göster"
+
+#, fuzzy
+msgid "Show default on new line"
+msgstr "Bilgi satırı göster"
 
 msgid "Show detailed event info"
 msgstr "Ayrıntılı olay bilgisi göster"
@@ -10445,11 +10617,23 @@ msgstr "Servis türü simgelerini göster"
 msgid "Show servicelist or movies"
 msgstr "Filmleri veya kanal listesini göster"
 
+#, fuzzy
+msgid "Show setup default values"
+msgstr "Olay ayrıntılarını göster"
+
 msgid "Show simple second infobar"
 msgstr "Basit ikinci bilgi çubuğunu göster"
 
 msgid "Show single service EPG"
 msgstr "Tekli kanal EPG göster"
+
+#, fuzzy
+msgid "Show softcam information"
+msgstr "Image bilgilerini göster"
+
+#, fuzzy
+msgid "Show softcam setup in extensions menu"
+msgstr "Eklentiler menüsünde softcam başlangıç göster"
 
 msgid "Show softcam startup in extensions menu"
 msgstr "Eklentiler menüsünde softcam başlangıç göster"
@@ -10711,6 +10895,14 @@ msgstr "Soket"
 msgid "SocketMMI"
 msgstr "SocketMMI"
 
+#, fuzzy
+msgid "Softcam Setup"
+msgstr "SoftcamSetup"
+
+#, fuzzy
+msgid "Softcam setup"
+msgstr "SoftcamSetup"
+
 msgid "Softcam startup"
 msgstr "Softcam başlangıç"
 
@@ -10820,6 +11012,10 @@ msgid "Sort list:"
 msgstr "Sıralama listesi:"
 
 msgid "Sort order for menu entries"
+msgstr "Menü girişleri için sırala"
+
+#, fuzzy
+msgid "Sort order for setup entries"
 msgstr "Menü girişleri için sırala"
 
 msgid "Sort plugins list to default?"
@@ -10943,8 +11139,16 @@ msgstr "Standby in "
 msgid "Start"
 msgstr "Başlat"
 
+#, fuzzy
+msgid "Start Sleeptimer"
+msgstr "Uyku Zamanlayıcı"
+
 msgid "Start directory"
 msgstr "Başlangıç dizini"
+
+#, fuzzy
+msgid "Start fastscan"
+msgstr "Test'i başlat"
 
 msgid "Start from the beginning"
 msgstr "En baştan başla"
@@ -10982,6 +11186,10 @@ msgstr "Zaman kaydırmayı başlat"
 msgid "Start with list screen"
 msgstr "Liste ekranıyla başla"
 
+#, fuzzy
+msgid "Start/Stop Sleeptimer"
+msgstr "Hareketsizlik Kapanma Zamanlayıcısı"
+
 msgid "Start/stop slide show"
 msgstr "Slayt gösterisini başlat / durdur"
 
@@ -11017,6 +11225,10 @@ msgstr "Durdur"
 
 msgid "Stop PiP"
 msgstr "PiP'yi durdur"
+
+#, fuzzy
+msgid "Stop Sleeptimer"
+msgstr "Uyku Zamanlayıcı"
 
 msgid "Stop all current recordings"
 msgstr "Mevcut tüm kayıtları durdur"
@@ -11727,10 +11939,6 @@ msgstr "Yeni %d güncellemeler bulundu."
 msgid "There are currently no outstanding actions."
 msgstr "Seçilmiş bir görev yok."
 
-#, fuzzy
-msgid "There are no items currently available for this screen."
-msgstr "Yeni güncelleme yok."
-
 msgid "There are no saved playlists to delete!"
 msgstr "Silmek için kayıtlı oynatma listesi yok!"
 
@@ -11849,6 +12057,14 @@ msgstr "Bu seçenek Titreme sürecini kontrol etmek için yumuşatma filtre olan
 
 msgid "This option allows you enable the vertical scaler dejagging."
 msgstr "Bu seçenek dikey ölçek ayıklamayı etkinleştirmek sağlar."
+
+#, fuzzy
+msgid "This option allows you to add the softcam setup in the extensions menu."
+msgstr "Bu seçenek, resimde mavi tonları artırmak için izin verir."
+
+#, fuzzy
+msgid "This option allows you to alphabetically sort setup menu entries."
+msgstr "Bu seçenek, ekrandaki tüm sembolleri göstermenizi sağlar."
 
 msgid "This option allows you to boost the blue tones in the picture."
 msgstr "Bu seçenek, resimde mavi tonları artırmak için izin verir."
@@ -12182,6 +12398,10 @@ msgstr "Altyazı seçimi için"
 
 msgid "Today"
 msgstr "Bugün"
+
+#, fuzzy
+msgid "Toggle Configuration Mode or AutoDisqc"
+msgstr "Yapılandırma modu: %s"
 
 msgid "Toggle HDMI In"
 msgstr "Geçiş HDMI Girişi"
@@ -13061,9 +13281,6 @@ msgstr "TV'den uyandırma sinyali"
 msgid "Wakeup time"
 msgstr "Uyanma zamanı"
 
-msgid "Wakeup timer"
-msgstr "Uyandırma zamanlayıcısı"
-
 msgid "Wakeup type"
 msgstr "Uyandırma türü"
 
@@ -13216,8 +13433,14 @@ msgstr "Neleri aramak istiyorsunuz?"
 msgid "What should happen when you start it for the first time?"
 msgstr "İlk kez çalıştırdığınızda ne olması gerekir?"
 
+msgid "When enabled a simplified version from the second infobar is shown. This can also be toggled instantly by holding the OK buttin when the second infobar is visible. The infobar will shortly disappear and then shown in the other mode."
+msgstr ""
+
 msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are updated"
 msgstr "Enigma2 etkinleştirildiğinde, bağlantısız kullanıcı paketlerini yükleyecektir. Bu, mevcut olan ancak bouquets.tv veya bouquets.radio dosyalarına dahil edilmeyen kullanıcı paketlerinin yüklenmeye devam edeceği anlamına gelir. Bu, örneğin, kurulu ayarlar güncellenirken kendi kullanıcı buketinizi korumanıza izin verir"
+
+msgid "When enabled extra information is shown on the infobar. This can also be toggled instantly by holding the OK button when the inforbar is not visible."
+msgstr ""
 
 msgid "When enabled the Picture in Picture window can be closed with 'exit' button."
 msgstr "Etkinleştirildiğinde Resim İçinde Resim penceresi 'çıkış' düğmesiyle kapatılabilir."
@@ -13538,6 +13761,10 @@ msgstr "Sarı"
 
 msgid "Yellow DVB subtitles"
 msgstr "Sarı DVB altyazı"
+
+#, fuzzy
+msgid "Yellow button function"
+msgstr "Işlevi seçin"
 
 msgid "Yemen"
 msgstr "Yemen"
@@ -14011,9 +14238,6 @@ msgstr "ortak arayüz modüllerine kanal/yayıncı/caid atama arayüzü"
 msgid "about to start"
 msgstr "başlamak üzere"
 
-msgid "activate network adapter configuration"
-msgstr "ağ adaptör ayarlarını etkinleştir"
-
 msgid "active"
 msgstr "aktif"
 
@@ -14329,9 +14553,6 @@ msgstr "keseri gerçekleştirmek (MovieCut eklentisi gerektirir)"
 
 msgid "exit DVD player or return to file browser"
 msgstr "dvd oynatıcıdan çık veya dosya tarayıcısına dön"
-
-msgid "exit network adapter configuration"
-msgstr "ağ donanımı yapılandırmasından çık"
 
 msgid "exit networkadapter setup menu"
 msgstr "ağ donanımı kurulum menüsünden çık"

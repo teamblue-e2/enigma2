@@ -150,15 +150,6 @@ class Pic_Setup(ConfigListScreen, Screen):
 		# for the skin: first try MediaPlayerSettings, then Setup, this allows individual skinning
 		self.skinName = ["PicturePlayerSetup", "Setup"]
 		self.setTitle(_("Settings"))
-		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
-			{
-				"cancel": self.keyCancel,
-				"save": self.keySave,
-				"ok": self.keySave,
-				"menu": self.closeRecursive,
-			}, -2)
-		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("Save"))
 
 		setup_list = [
 			(_("Slide show interval (sec.)"), config.pic.slidetime),
@@ -171,7 +162,7 @@ class Pic_Setup(ConfigListScreen, Screen):
 			(_("Text color"), config.pic.textcolor),
 			(_("Full view resolution"), config.usage.pic_resolution),
 		]
-		ConfigListScreen.__init__(self, setup_list, session)
+		ConfigListScreen.__init__(self, setup_list, session, fullUI=True)
 
 
 class Pic_Exif(Screen):
