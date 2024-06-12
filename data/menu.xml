@@ -93,7 +93,7 @@
 
 				<!-- Menu / Settings / System / Frontpanel Menu -->
 				<menu key="frontpanel_menu" weight="15" level="0" text="Frontpanel">
-					<item weight="0" level="0" text="Basic settings" requires="Display"><setup level="1" id="lcd" /></item>
+					<item key="lcd_setup" weight="0" level="0" text="Display setup" requires="Display"><setup id="lcd"/></item>
 					<item key="display_skin_selector" weight="5" level="0" text="Display Skin" requires="OledDisplay"><screen module="SkinSelector" screen="LcdSkinSelector"/></item>
 					<item key="clock_skin_selector" weight="10" level="0" text="Clock Skin" requires="OledDisplay"><screen module="SkinSelector" screen="ClockSkinSelector"/></item>
 				</menu>
