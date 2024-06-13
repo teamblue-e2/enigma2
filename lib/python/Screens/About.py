@@ -246,6 +246,7 @@ class TranslationInfo(Screen):
 		self.setTitle(_("Translation"))
 		# don't remove the string out of the _(), or it can't be "translated" anymore.
 		# TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
+		# Don't translate TRANSLATOR_INFO to show '(N/A)'
 		info = _("TRANSLATOR_INFO")
 		if info == "TRANSLATOR_INFO":
 			info = "(N/A)"
@@ -263,7 +264,6 @@ class TranslationInfo(Screen):
 		translator_name = infomap.get("Language-Team", "none")
 		if translator_name == "none":
 			translator_name = infomap.get("Last-Translator", "")
-		self["TranslatorName"] = StaticText(translator_name)
 
 		linfo = ""
 		linfo += _("Translations Info") + ":" + "\n\n"
@@ -290,7 +290,18 @@ class TranslationInfo(Screen):
 			linfo += _("Report Msgid Bugs To") + ":" + infomap.get("Report-Msgid-Bugs-To", "") + "\n"
 		else:
 			linfo += _("Report Msgid Bugs To") + ":" + "teamblue@online.de" + "\n"
+		linfo += "\n"
+		linfo += _("Translator comment") + ":" + "\n"
+		linfo += (info)
 		self["AboutScrollLabel"] = ScrollLabel(linfo)
+
+		self["actions"] = ActionMap(["SetupActions", "DirectionActions"],
+			{
+				"cancel": self.close,
+				"ok": self.close,
+				"up": self["AboutScrollLabel"].pageUp,
+				"down": self["AboutScrollLabel"].pageDown
+			})
 
 
 class CommitInfo(Screen):
