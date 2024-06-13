@@ -3,6 +3,7 @@
 #include <fstream>
 #include <fcntl.h>
 #include <stdio.h>
+#include <vector>
 #include <sys/types.h>
 #include <sys/ioctl.h>
 #include <libsig_comp.h>
@@ -138,47 +139,53 @@ public:
 	}
 };
 
-static const std::string getConfigCurrentSpinner(const std::string &key)
-{
+bool fileExists(const std::string& path) {
+	std::ifstream file(path.c_str());
+	return file.good();
+}
+
+static const std::string getConfigCurrentSpinner(const std::string &key) {
 	std::string value = "";
 	std::ifstream in(eEnv::resolve("${sysconfdir}/enigma2/settings").c_str());
 
-	if (in.good())
-	{
-		do
-		{
-			std::string line;
-			std::getline(in, line);
-			size_t size = key.size();
-			if (line.compare(0, size, key)== 0)
-			{
-				value = line.substr(size + 1);
+	if (in.good()) {
+		std::string line;
+		while (std::getline(in, line)) {
+			if (line.compare(0, key.size(), key) == 0) {
+				value = line.substr(key.size() + 1);
 				size_t end_pos = value.find("skin.xml");
-				if (end_pos != std::string::npos)
-				{
+				if (end_pos != std::string::npos) {
 					value = value.substr(0, end_pos);
 				}
 				break;
 			}
-		} while (in.good());
+		}
 		in.close();
 	}
-	// no config.skin.primary_skin found -> Use default one
-	if (value.empty())
-		value = "GigabluePaxV2/";
 
-	// return SCOPE_CURRENT_SKIN ( /usr/share/enigma2/MYSKIN/skin_default/spinner ) BUT check if /usr/share/enigma2/MYSKIN/skin_default/spinner/wait1.png exist
-	std::string png_location = "/usr/share/enigma2/" + value + "skin_default/spinner/wait1.png";
-	std::ifstream png(png_location.c_str());
-	if (png.good())
-	{
-		png.close();
-		return value; // /usr/share/enigma2/MYSKIN/skin_default/spinner/wait1.png exists )
+	if (value.empty()) {
+		value = "GigabluePaxV2";
 	}
-	else
-	{
-		return ""; // No spinner found -> use "" ( /usr/share/enigma2/skin_default/spinner/wait1.png )
+
+	std::vector<std::string> directories = {
+		"/usr/share/enigma2/" + value + "/spinner/wait1.png",
+		"/usr/share/enigma2/" + value + "/skin_default/spinner/wait1.png",
+		"/usr/share/enigma2/skin_default/spinner/wait1.png"
+	};
+
+	for (const auto& dir : directories) {
+		if (fileExists(dir)) {
+			if (dir.find("skin_default") != std::string::npos && dir.find(value) != std::string::npos) {
+				return value + "/skin_default";
+			} else if (dir.find("skin_default") != std::string::npos) {
+				return "skin_default";
+			} else {
+				return value;
+			}
+		}
 	}
+
+	return "skin_default";
 }
 
 int exit_code;
@@ -306,7 +313,7 @@ int main(int argc, char **argv)
 	dsk_lcd.setRedrawTask(main);
 
 	std::string active_skin = getConfigCurrentSpinner("config.skin.primary_skin");
-	eDebug("[MAIN] Loading spinners...");
+	eDebug("[MAIN] Loading spinners from /usr/share/enigma2/%s/spinner/", active_skin.c_str());
 
 	{
 		int i;
@@ -316,7 +323,7 @@ int main(int argc, char **argv)
 		{
 			char filename[64] = {};
 			std::string rfilename;
-			snprintf(filename, sizeof(filename), "${datadir}/enigma2/%sskin_default/spinner/wait%d.png", active_skin.c_str(), i + 1);
+			snprintf(filename, sizeof(filename), "${datadir}/enigma2/%s/spinner/wait%d.png", active_skin.c_str(), i + 1);
 			rfilename = eEnv::resolve(filename);
 
 			if (::access(rfilename.c_str(), R_OK) < 0)
