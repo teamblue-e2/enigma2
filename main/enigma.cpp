@@ -144,6 +144,40 @@ bool fileExists(const std::string& path) {
 	return file.good();
 }
 
+bool getConfigBoolValue(const std::string& configFile, const std::string& key, bool defaultValue) {
+	std::ifstream in(configFile);
+	if (!in.is_open()) {
+		eDebug("[MAIN] Error opening config file: %s", configFile.c_str());
+		return defaultValue;
+	}
+
+	std::string line;
+	while (std::getline(in, line)) {
+		if (line.find(key) != std::string::npos) {
+			size_t pos = line.find('=');
+			if (pos != std::string::npos) {
+				std::string valueStr = line.substr(pos + 1);
+				// Trim leading and trailing whitespace
+				size_t start = valueStr.find_first_not_of(" \t");
+				size_t end = valueStr.find_last_not_of(" \t");
+				if (start != std::string::npos && end != std::string::npos) {
+					valueStr = valueStr.substr(start, end - start + 1);
+				}
+				// Check if valueStr is "true" or "false"
+				if (valueStr == "true" || valueStr == "TRUE") {
+					return true;
+				} else if (valueStr == "false" || valueStr == "FALSE") {
+					return false;
+				} else {
+					break;
+				}
+			}
+		}
+	}
+
+	return defaultValue;
+}
+
 static const std::string getConfigCurrentSpinner(const std::string &key) {
 	std::string value;
 	std::ifstream in(eEnv::resolve("${sysconfdir}/enigma2/settings").c_str());
@@ -167,13 +201,17 @@ static const std::string getConfigCurrentSpinner(const std::string &key) {
 		value = "GigabluePaxV2";
 	}
 
-	std::vector<std::string> directories = {
-		"/usr/share/enigma2/" + value + "/spinner/wait1.png",
-		"/usr/share/enigma2/" + value + "/skin_default/spinner/wait1.png",
-		"/usr/share/enigma2/skin_default/spinner/wait1.png"
-	};
+	std::vector<std::string> directories;
+	bool useDefaultSpinner = getConfigBoolValue("/etc/enigma2/settings", "config.usage.usedefaultspinner", false);
+
+	if (!useDefaultSpinner) {
+		directories.push_back("/usr/share/enigma2/" + value + "/spinner/wait1.png");
+		directories.push_back("/usr/share/enigma2/" + value + "/skin_default/spinner/wait1.png");
+	}
+	directories.push_back("/usr/share/enigma2/skin_default/spinner/wait1.png");
 
 	for (const auto& dir : directories) {
+
 		if (fileExists(dir)) {
 			if (dir.find("skin_default") != std::string::npos && dir.find(value) != std::string::npos) {
 				return value + "/skin_default";
@@ -187,6 +225,7 @@ static const std::string getConfigCurrentSpinner(const std::string &key) {
 
 	return "skin_default";
 }
+
 
 int exit_code;
 
