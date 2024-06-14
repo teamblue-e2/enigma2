@@ -362,7 +362,7 @@ class FlashImage(Screen):
 					if not os.path.isdir(destination):
 						os.mkdir(destination)
 					if not self.onlyDownload:
-						self.flashPostActionFirst()
+						self.flashPostAction()
 					else:
 						self.session.openWithCallback(self.startDownload, MessageBox, _("Starting download of image file?\nPress OK to start or Exit to abort."), type=MessageBox.TYPE_INFO, timeout=0)
 				except:
