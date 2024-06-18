@@ -2,11 +2,11 @@
 
 > Ubuntu 22.04 LTS 
 
-## teamBlue 7.2 (based on openPLi) is build using oe-alliance build-environment "7.2" and several git repositories: ##
+## teamBlue 7.3 (based on openPLi) is build using oe-alliance build-environment "7.3" and several git repositories: ##
 
-> [https://github.com/oe-alliance/oe-alliance-core/tree/5.2](https://github.com/oe-alliance/oe-alliance-core/tree/5.2 "OE-Alliance")
+> [https://github.com/oe-alliance/oe-alliance-core/tree/5.3](https://github.com/oe-alliance/oe-alliance-core/tree/5.3 "OE-Alliance")
 >
-> [https://github.com/teamblue-e2/enigma2/tree/7.2](https://github.com/teamblue-e2/enigma2/tree/7.2 "teamBlue E2")
+> [https://github.com/teamblue-e2/enigma2/tree/7.3](https://github.com/teamblue-e2/enigma2/tree/7.3 "teamBlue E2")
 >
 > [https://github.com/teamblue-e2/skin/tree/master](https://github.com/teamblue-e2/skin/tree/master "teamBlue Skin")
 
@@ -61,22 +61,22 @@
     su - teambluebuilder
     ```
 
-1. Create folder teamblue7.2
+1. Create folder teamblue73
 
     ```sh
-    mkdir -p teamblue7.2
+    mkdir -p teamblue73
     ```
 
-1. Switch to folder teamblue7.2
+1. Switch to folder teamblue73
 
     ```sh
-    cd teamblue7.2
+    cd teamblue73
     ```
 
 1. Clone oe-alliance repository
 
     ```sh
-    git clone https://github.com/oe-alliance/build-enviroment.git -b 5.2
+    git clone https://github.com/oe-alliance/build-enviroment.git -b 5.3
     ```
 
 1. Switch to folder build-enviroment
@@ -120,13 +120,13 @@
 
     source env.source
 
-    bitbake nfs-utils rcpbind ...
+    bitbake nfs-utils rpcbind ...
     ```
 
 
 
 
 
-Build Status - branch 7.2:    [![Build Status](https://travis-ci.org/teamblue-e2/enigma2.svg?branch=7.2)](https://travis-ci.org/teamblue-e2/enigma2)
+Build Status - branch 7.3:    [![Build Status](https://travis-ci.org/teamblue-e2/enigma2.svg?branch=7.3)](https://travis-ci.org/teamblue-e2/enigma2)
 
-Build Status - branch 7.2:    [![Build Status](https://circleci.com/gh/teamblue-e2/enigma2.svg?style=shield&branch=7.2)]()
+Build Status - branch 7.3:    [![Build Status](https://circleci.com/gh/teamblue-e2/enigma2.svg?style=shield&branch=7.3)]()
