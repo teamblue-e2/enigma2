@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-13 13:31+0200\n"
+"POT-Creation-Date: 2024-06-20 07:37+0200\n"
 "PO-Revision-Date: 2019-12-03 20:02+0100\n"
 "Last-Translator: blzr <blzr@o2.pl>\n"
 "Language-Team: \n"
@@ -3012,7 +3012,8 @@ msgstr "Ustaw czas (w godzinach) po jakim odbiornik przełączy się w tryb czuw
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Ustaw w minutach czas po jakim pojawi się wygaszacz ekranu."
 
-msgid "Configure the duration in minutes for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer"
+#, fuzzy
+msgid "Configure the duration in minutes for the sleeptimer. Select this entry and press blue to start/restart the sleeptimer or use yellow for stop active sleeptimer."
 msgstr "Ustaw czas (w minutach) dla wyłącznika czasowego. Wybierz opcję i wciśnij OK lub zielony aby uruchomić/zatrzymać sleeptimer. "
 
 msgid "Configure the duration when the receiver should go to shut down in case the receiver is in standby mode."
@@ -3231,11 +3232,6 @@ msgstr "Konfiguracja wewnętrznej sieci LAN"
 #
 msgid "Configure your network again"
 msgstr "Skonfiguruj sieć ponownie"
-
-#
-#, fuzzy
-msgid "Configure your network settings and press OK to scan"
-msgstr "Skonfiguruj ustawienia sieci i wciśnij OK aby rozpocząć skanowanie "
 
 #
 msgid "Configure your wireless LAN again"
@@ -8750,6 +8746,11 @@ msgid "No backup needed"
 msgstr "Kopia zapasowa nie jest  potrzebna"
 
 #
+#, fuzzy
+msgid "No config items available"
+msgstr "Brak dostępnych aktualizacji."
+
+#
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -9759,6 +9760,9 @@ msgstr ""
 #, fuzzy
 msgid "Please connect your %s %s to the internet"
 msgstr "Podłącz odbiornik do internetu"
+
+msgid "Please contact the manufacturer for clarification."
+msgstr ""
 
 #
 msgid "Please do not change any values unless you know what you are doing!"
@@ -11227,6 +11231,10 @@ msgstr "Zrestartować GUI teraz?"
 #, fuzzy
 msgid "Restart Network Adapter"
 msgstr "Restartuj sieć"
+
+#, fuzzy
+msgid "Restart Sleeptimer"
+msgstr "Wyłącznik czasowy"
 
 #
 #, fuzzy
@@ -13830,6 +13838,21 @@ msgstr "Tryb czuwania za"
 msgid "Start"
 msgstr "Testuj"
 
+#
+#, fuzzy
+msgid "Start CableScan"
+msgstr "Skanowanie kablówki"
+
+#
+#, fuzzy
+msgid "Start Cablescan"
+msgstr "Testuj"
+
+#
+#, fuzzy
+msgid "Start Fastscan"
+msgstr "Testuj"
+
 #, fuzzy
 msgid "Start Sleeptimer"
 msgstr "Wyłącznik czasowy"
@@ -13838,11 +13861,6 @@ msgstr "Wyłącznik czasowy"
 #, fuzzy
 msgid "Start directory"
 msgstr "Katalog początkowy"
-
-#
-#, fuzzy
-msgid "Start fastscan"
-msgstr "Testuj"
 
 #
 msgid "Start from the beginning"
@@ -13889,10 +13907,6 @@ msgstr "Rozpocznij timeshift"
 
 msgid "Start with list screen"
 msgstr "Rozpocznij ekranem z listą"
-
-#, fuzzy
-msgid "Start/Stop Sleeptimer"
-msgstr "Sleeptimer bezczynności"
 
 msgid "Start/stop slide show"
 msgstr ""
@@ -15212,6 +15226,11 @@ msgstr ""
 
 msgid "Timer overview"
 msgstr "Opis timera"
+
+#
+#, fuzzy
+msgid "Timer recording failed. No space left on device!\n"
+msgstr "Lokalizacja nagrań z timera"
 
 #
 msgid "Timer recording location"
