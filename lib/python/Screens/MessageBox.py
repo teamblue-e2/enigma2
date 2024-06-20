@@ -124,7 +124,6 @@ class MessageBox(Screen):
 				self.timeoutCallback()
 
 	def timeoutCallback(self):
-		print("Timeout!")
 		if self.timeout_default is not None:
 			self.close(self.timeout_default)
 		else:
@@ -163,7 +162,7 @@ class MessageBox(Screen):
 		self.stopTimer()
 
 	def __repr__(self):
-		return "%s(%s)" % (str(type(self)), self.text)
+		return "%s(%s)" % (str(type(self)), self.text if hasattr(self, "text") else "<title>")
 
 	def getListWidth(self):
 		return self["list"].instance.getMaxItemTextWidth()

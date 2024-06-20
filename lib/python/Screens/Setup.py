@@ -2,7 +2,7 @@ from xml.etree.ElementTree import fromstring
 
 from gettext import dgettext
 from os.path import getmtime, join as pathjoin
-from skin import setups, findSkinScreen, parameters  # noqa: F401  used in <item conditional="..."> to check if a screen name is available in the skin
+from skin import findSkinScreen, parameters  # noqa: F401  used in <item conditional="..."> to check if a screen name is available in the skin
 
 from Components.config import ConfigBoolean, ConfigNothing, ConfigSelection, config
 from Components.ConfigList import ConfigListScreen
@@ -12,8 +12,7 @@ from Components.SystemInfo import BoxInfo
 from Components.Sources.StaticText import StaticText
 from Screens.HelpMenu import HelpableScreen
 from Screens.Screen import Screen, ScreenSummary
-from Tools.Directories import SCOPE_CURRENT_SKIN, SCOPE_PLUGINS, SCOPE_SKIN, fileReadXML, resolveFilename
-from Tools.LoadPixmap import LoadPixmap
+from Tools.Directories import SCOPE_PLUGINS, SCOPE_SKIN, fileReadXML, resolveFilename
 
 domSetups = {}
 setupModTimes = {}
@@ -31,6 +30,7 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 		if setup:
 			self.skinName.append("Setup%s" % setup)  # DEBUG: Proposed for new setup screens.
 			self.skinName.append("setup_%s" % setup)
+			self.setImage(setup, "setup")
 		self.skinName.append("Setup")
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry, fullUI=True, yellow_button=yellow_button, blue_button=blue_button, menu_button=menu_button)
@@ -38,20 +38,10 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 		self["footnote"].hide()
 		self["description"] = Label()
 		self.createSetup()
-		self.loadSetupImage(setup)
 		if self.layoutFinished not in self.onLayoutFinish:
 			self.onLayoutFinish.append(self.layoutFinished)
 		if self.selectionChanged not in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.selectionChanged)
-
-	def loadSetupImage(self, setup):
-		self.setupImage = None
-		if setups:
-			setupImage = setups.get(setup, setups.get("default", ""))
-			if setupImage:
-				self.setupImage = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, setupImage))
-				if self.setupImage:
-					self["Image"] = Pixmap()
 
 	def changedEntry(self):
 		current = self["config"].getCurrent()
@@ -88,7 +78,7 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 				title = dgettext(self.pluginLanguageDomain, title) if self.pluginLanguageDomain else _(title)
 			self.setTitle(title if title else _("Setup"))
 			if not self.list:  #If there are no eligible items available to be displayed then show at least one ConfigNothing item indicating this
-				self["config"].list = [(_("No config items available"), ConfigNothing())]
+				self["config"].list = [(_("No config items available"),)]
 			elif self.list != oldList or self.showDefaultChanged or self.graphicSwitchChanged:
 				currentItem = self["config"].getCurrent()
 				self["config"].list = self.list
@@ -163,8 +153,6 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 		return not conditional or eval(conditional)
 
 	def layoutFinished(self):
-		if self.setupImage:
-			self["Image"].instance.setPixmap(self.setupImage)
 		if not self["config"]:
 			print("[Setup] No setup items available!")
 
