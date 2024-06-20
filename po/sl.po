@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-13 13:31+0200\n"
+"POT-Creation-Date: 2024-06-20 07:37+0200\n"
 "PO-Revision-Date: 2015-08-30 09:00+0200\n"
 "Last-Translator: Taykun345 <support@satnigmo.com>\n"
 "Language-Team: Satnigmo <support@satnigmo.com>\n"
@@ -3031,7 +3031,8 @@ msgstr "Določitev trajanja v urah, ko gre sprejemnik v stanje pripravljenosti, 
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Določitev trajanja prikazovanja ohranjevalnika zaslona."
 
-msgid "Configure the duration in minutes for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer"
+#, fuzzy
+msgid "Configure the duration in minutes for the sleeptimer. Select this entry and press blue to start/restart the sleeptimer or use yellow for stop active sleeptimer."
 msgstr "Določitev trajanja v minutah za časovnik spanja. Izberite ta vnos in pritisnite tipko \"OK\" ali zeleno tipko za vklop ali izklop časovnika spanja."
 
 msgid "Configure the duration when the receiver should go to shut down in case the receiver is in standby mode."
@@ -3250,10 +3251,6 @@ msgstr "Nastavite LAN omrežje"
 #
 msgid "Configure your network again"
 msgstr "Ponovno nastavite omrežje"
-
-#, fuzzy
-msgid "Configure your network settings and press OK to scan"
-msgstr "Nastavite omrežje in za pričetek pregledovanja pritisnite tipko \"OK\"."
 
 #
 msgid "Configure your wireless LAN again"
@@ -8773,6 +8770,10 @@ msgstr ""
 msgid "No backup needed"
 msgstr "Varnostna kopija ni potrebna"
 
+#, fuzzy
+msgid "No config items available"
+msgstr "Posodobitve niso na voljo!"
+
 #
 msgid ""
 "No data on transponder!\n"
@@ -9766,6 +9767,9 @@ msgstr ""
 #, fuzzy
 msgid "Please connect your %s %s to the internet"
 msgstr "Prosim, povežite vaš sprejemnik z internetom!"
+
+msgid "Please contact the manufacturer for clarification."
+msgstr ""
 
 #
 msgid "Please do not change any values unless you know what you are doing!"
@@ -11221,6 +11225,11 @@ msgstr "Ponoven zagon uporabniškega vmesnika (GUI)?"
 #, fuzzy
 msgid "Restart Network Adapter"
 msgstr "Ponovni zagon omrežja"
+
+#
+#, fuzzy
+msgid "Restart Sleeptimer"
+msgstr "Časovnik spanja"
 
 #
 #, fuzzy
@@ -13847,6 +13856,20 @@ msgstr "Stanje pripravljenosti v"
 msgid "Start"
 msgstr "Pričnite s preizkusom"
 
+#, fuzzy
+msgid "Start CableScan"
+msgstr "Iskanje DVBC kanalov"
+
+#
+#, fuzzy
+msgid "Start Cablescan"
+msgstr "Pričnite s preizkusom"
+
+#
+#, fuzzy
+msgid "Start Fastscan"
+msgstr "Pričnite s preizkusom"
+
 #
 #, fuzzy
 msgid "Start Sleeptimer"
@@ -13856,11 +13879,6 @@ msgstr "Časovnik spanja"
 #, fuzzy
 msgid "Start directory"
 msgstr "začetna mapa"
-
-#
-#, fuzzy
-msgid "Start fastscan"
-msgstr "Pričnite s preizkusom"
 
 #
 msgid "Start from the beginning"
@@ -13908,11 +13926,6 @@ msgstr "Pričetek časovnega zamika"
 
 msgid "Start with list screen"
 msgstr "Začeti s polnim načinom"
-
-#
-#, fuzzy
-msgid "Start/Stop Sleeptimer"
-msgstr "Časovnik spanja pri neaktivnosti"
 
 msgid "Start/stop slide show"
 msgstr ""
@@ -15227,6 +15240,11 @@ msgstr ""
 
 msgid "Timer overview"
 msgstr "Pregled časovnikov"
+
+#
+#, fuzzy
+msgid "Timer recording failed. No space left on device!\n"
+msgstr "Lokacija \"timer\" snemanja"
 
 #
 msgid "Timer recording location"

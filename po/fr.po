@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-13 13:31+0200\n"
+"POT-Creation-Date: 2024-06-20 07:37+0200\n"
 "PO-Revision-Date: 2021-12-06 10:46+0100\n"
 "Last-Translator: teamblue-e2 <teamblue-e2@online.de>\n"
 "Language-Team: \n"
@@ -2572,7 +2572,8 @@ msgstr "Configure la durée en heures après laquelle le récepteur doit se mett
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Configurez la durée en minutes de l'économiseur d'écran."
 
-msgid "Configure the duration in minutes for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer"
+#, fuzzy
+msgid "Configure the duration in minutes for the sleeptimer. Select this entry and press blue to start/restart the sleeptimer or use yellow for stop active sleeptimer."
 msgstr "Configure la durée en minutes du timer de sommeil. Sélectionner cette entrée et cliquer sur OK ou Vert pour démarrer/arrêter le timer de sommeil."
 
 msgid "Configure the duration when the receiver should go to shut down in case the receiver is in standby mode."
@@ -2779,9 +2780,6 @@ msgstr "Configurez votre réseau interne"
 
 msgid "Configure your network again"
 msgstr "Configurez votre réseau encore"
-
-msgid "Configure your network settings and press OK to scan"
-msgstr "Configure vos paramètres réseau, puis appuyez sur OK pour lancer la recherche"
 
 msgid "Configure your wireless LAN again"
 msgstr "Configurez votre LAN sans fil encore"
@@ -7430,6 +7428,10 @@ msgstr "Pas de blocage sur l'âge"
 msgid "No backup needed"
 msgstr "Pas de sauvegarde nécessaire"
 
+#, fuzzy
+msgid "No config items available"
+msgstr "Aucune mise à jour disponible"
+
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -8250,6 +8252,9 @@ msgstr ""
 
 msgid "Please connect your %s %s to the internet"
 msgstr "Merci de connecter votre %s %s sur Internet"
+
+msgid "Please contact the manufacturer for clarification."
+msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Veuillez ne changer aucune valeur si vous ne savez pas ce que vous faites !"
@@ -9403,6 +9408,10 @@ msgstr "Redémarrer l'interface graphique maintenant ?"
 #, fuzzy
 msgid "Restart Network Adapter"
 msgstr "Redémarrer l'adaptateur réseau"
+
+#, fuzzy
+msgid "Restart Sleeptimer"
+msgstr "Arrêt automatique"
 
 #, fuzzy
 msgid "Restart both"
@@ -11538,16 +11547,24 @@ msgid "Start"
 msgstr "Démarrer"
 
 #, fuzzy
+msgid "Start CableScan"
+msgstr "Scan du Cable"
+
+#, fuzzy
+msgid "Start Cablescan"
+msgstr "Lancer le test"
+
+#, fuzzy
+msgid "Start Fastscan"
+msgstr "Lancer le test"
+
+#, fuzzy
 msgid "Start Sleeptimer"
 msgstr "Arrêt automatique"
 
 #, fuzzy
 msgid "Start directory"
 msgstr "Répertoire de départ"
-
-#, fuzzy
-msgid "Start fastscan"
-msgstr "Lancer le test"
 
 msgid "Start from the beginning"
 msgstr "Démarrer depuis le début"
@@ -11585,10 +11602,6 @@ msgstr "Lancer PauseDirect"
 
 msgid "Start with list screen"
 msgstr "Commencer avec liste écran"
-
-#, fuzzy
-msgid "Start/Stop Sleeptimer"
-msgstr "Arrêt automatique en cas d'inactivité"
 
 msgid "Start/stop slide show"
 msgstr "Arrêter/Démarrer le diaporama"
@@ -12769,6 +12782,10 @@ msgstr ""
 
 msgid "Timer overview"
 msgstr "Aperçu des programmations"
+
+#, fuzzy
+msgid "Timer recording failed. No space left on device!\n"
+msgstr "Emplacement enregistrements programmés"
 
 msgid "Timer recording location"
 msgstr "Emplacement enregistrements programmés"
