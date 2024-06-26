@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 13:49+0200\n"
+"POT-Creation-Date: 2024-06-20 07:37+0200\n"
 "PO-Revision-Date: 2013-04-22 04:29+0330\n"
 "Last-Translator: dimili21\n"
 "Language-Team: \n"
@@ -2650,7 +2650,7 @@ msgstr ""
 msgid "Configure the duration in minutes for the screensaver."
 msgstr ""
 
-msgid "Configure the duration in minutes for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer"
+msgid "Configure the duration in minutes for the sleeptimer. Select this entry and press blue to start/restart the sleeptimer or use yellow for stop active sleeptimer."
 msgstr ""
 
 msgid "Configure the duration when the receiver should go to shut down in case the receiver is in standby mode."
@@ -2859,10 +2859,6 @@ msgstr "Configure your internal LAN"
 
 msgid "Configure your network again"
 msgstr "Configure your network again"
-
-#, fuzzy
-msgid "Configure your network settings and press OK to scan"
-msgstr "Configure your network settings, and press OK to start the scan"
 
 msgid "Configure your wireless LAN again"
 msgstr "Configure your wireless LAN again"
@@ -5090,6 +5086,10 @@ msgstr "Select files/folders to backup"
 msgid "Filesystem check"
 msgstr "Filesystem check"
 
+#, fuzzy, python-format
+msgid "Filesystem: %s\n"
+msgstr "Filesystem check"
+
 msgid "Filter extension for 'My extension' setting of 'Filter extension'. Use the extension name without a '.'."
 msgstr ""
 
@@ -5257,6 +5257,10 @@ msgstr "Frame size in full view"
 #, fuzzy
 msgid "France"
 msgstr "romance"
+
+#, fuzzy, python-format
+msgid "Free: %s/%s\n"
+msgstr "Model: "
 
 msgid "French"
 msgstr "French"
@@ -6311,6 +6315,10 @@ msgstr "Internal flash"
 msgid "Internal flash"
 msgstr "Internal flash"
 
+#, fuzzy
+msgid "Internal flash storage:"
+msgstr "Internal flash"
+
 msgid "Internal hdd only"
 msgstr "Internal hdd only"
 
@@ -7186,6 +7194,10 @@ msgstr "Mount"
 msgid "MountView"
 msgstr "Mount"
 
+#, fuzzy, python-format
+msgid "Mountpoint: %s (%s)\n"
+msgstr "Mount"
+
 #, fuzzy
 msgid "Mountpoints"
 msgstr "Mount"
@@ -7654,6 +7666,10 @@ msgstr ""
 
 msgid "No backup needed"
 msgstr "No backup needed"
+
+#, fuzzy
+msgid "No config items available"
+msgstr "No updates available"
 
 msgid ""
 "No data on transponder!\n"
@@ -8531,6 +8547,9 @@ msgstr ""
 #, fuzzy
 msgid "Please connect your %s %s to the internet"
 msgstr "Please connect your receiver to the internet"
+
+msgid "Please contact the manufacturer for clarification."
+msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Please do not change any values unless you know what you are doing!"
@@ -9737,6 +9756,10 @@ msgstr "Restart GUI now?"
 #, fuzzy
 msgid "Restart Network Adapter"
 msgstr "Restart network"
+
+#, fuzzy
+msgid "Restart Sleeptimer"
+msgstr "Start time"
 
 #, fuzzy
 msgid "Restart both"
@@ -11983,16 +12006,24 @@ msgid "Start"
 msgstr "Start test"
 
 #, fuzzy
+msgid "Start CableScan"
+msgstr "Cable Légerin"
+
+#, fuzzy
+msgid "Start Cablescan"
+msgstr "Start test"
+
+#, fuzzy
+msgid "Start Fastscan"
+msgstr "Start test"
+
+#, fuzzy
 msgid "Start Sleeptimer"
 msgstr "Start time"
 
 #, fuzzy
 msgid "Start directory"
 msgstr "start directory"
-
-#, fuzzy
-msgid "Start fastscan"
-msgstr "Start test"
 
 msgid "Start from the beginning"
 msgstr "Start from the beginning"
@@ -12033,11 +12064,12 @@ msgstr "Start timeshift"
 msgid "Start with list screen"
 msgstr "Start with list screen"
 
-#, fuzzy
-msgid "Start/Stop Sleeptimer"
-msgstr "Start time"
-
 msgid "Start/stop slide show"
+msgstr ""
+
+msgid ""
+"Starting download of image file?\n"
+"Press OK to start or Exit to abort."
 msgstr ""
 
 msgid "Starting on"
@@ -12477,6 +12509,7 @@ msgid "TEXT"
 msgstr ""
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
+#. Don't translate TRANSLATOR_INFO to show '(N/A)'
 msgid "TRANSLATOR_INFO"
 msgstr "TRANSLATOR_INFO"
 
@@ -13206,6 +13239,10 @@ msgstr ""
 msgid "Timer overview"
 msgstr "Timer overview"
 
+#, fuzzy
+msgid "Timer recording failed. No space left on device!\n"
+msgstr "Timer recording location"
+
 msgid "Timer recording location"
 msgstr "Timer recording location"
 
@@ -13371,6 +13408,10 @@ msgstr ""
 
 #, fuzzy
 msgid "Translations Info"
+msgstr "Translation"
+
+#, fuzzy
+msgid "Translator comment"
 msgstr "Translation"
 
 msgid "Transmission mode"
@@ -13811,6 +13852,10 @@ msgstr ""
 #, fuzzy
 msgid "Use circular LNB"
 msgstr "circular left"
+
+#, fuzzy
+msgid "Use default spinner"
+msgstr "User defined"
 
 msgid "Use fastscan channel names"
 msgstr "Use fastscan channel names"
@@ -14522,6 +14567,10 @@ msgstr "When enabled, services may be grouped in multiple bouquets."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "When enabled, show channel numbers in the channel selection screen."
+
+#, fuzzy
+msgid "When enabled, spinners that come with the activated skin are ignored."
+msgstr "When enabled, subtitles for the hearing impaired can be used."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "When enabled, subtitles for the hearing impaired can be used."

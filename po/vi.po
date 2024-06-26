@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 13:49+0200\n"
+"POT-Creation-Date: 2024-06-20 07:37+0200\n"
 "PO-Revision-Date: 2019-11-19 08:58+0700\n"
 "Last-Translator: krong\n"
 "Language-Team: none\n"
@@ -2570,7 +2570,8 @@ msgstr "Định cấu hình thời lượng tính theo giờ mà máy thu sẽ c
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Định cấu hình thời lượng tính bằng phút cho trình bảo vệ màn hình."
 
-msgid "Configure the duration in minutes for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer"
+#, fuzzy
+msgid "Configure the duration in minutes for the sleeptimer. Select this entry and press blue to start/restart the sleeptimer or use yellow for stop active sleeptimer."
 msgstr "Cấu hình thời lượng tính bằng phút cho bộ đếm thời gian ngủ. Chọn mục này và nhấp OK hoặc màu xanh lá cây để bắt đầu / dừng bộ hẹn giờ ngủ"
 
 msgid "Configure the duration when the receiver should go to shut down in case the receiver is in standby mode."
@@ -2773,9 +2774,6 @@ msgstr "Định cấu hình mạng LAN nội bộ của bạn"
 
 msgid "Configure your network again"
 msgstr "Định cấu hình lại mạng của bạn"
-
-msgid "Configure your network settings and press OK to scan"
-msgstr "Định cấu hình cài đặt mạng của bạn và nhấn OK để quét"
 
 msgid "Configure your wireless LAN again"
 msgstr "Định cấu hình lại mạng LAN không dây của bạn"
@@ -4957,6 +4955,10 @@ msgstr "Chọn tập tin / thư mục để sao lưu"
 msgid "Filesystem check"
 msgstr "Kiểm tra hệ thống tập tin"
 
+#, fuzzy, python-format
+msgid "Filesystem: %s\n"
+msgstr "Kiểm tra hệ thống tập tin"
+
 msgid "Filter extension for 'My extension' setting of 'Filter extension'. Use the extension name without a '.'."
 msgstr ""
 
@@ -5121,6 +5123,10 @@ msgstr "Kích thước khung hình trong chế độ xem đầy đủ"
 
 msgid "France"
 msgstr "Pháp"
+
+#, fuzzy, python-format
+msgid "Free: %s/%s\n"
+msgstr "Mô hình: "
 
 msgid "French"
 msgstr "Người Pháp"
@@ -6147,6 +6153,10 @@ msgstr "Nội bộ"
 msgid "Internal flash"
 msgstr "Đèn flash bên trong"
 
+#, fuzzy
+msgid "Internal flash storage:"
+msgstr "Đèn flash bên trong"
+
 msgid "Internal hdd only"
 msgstr "Chỉ hdd nội bộ"
 
@@ -6999,6 +7009,10 @@ msgstr "Núi"
 msgid "MountView"
 msgstr "Núi"
 
+#, fuzzy, python-format
+msgid "Mountpoint: %s (%s)\n"
+msgstr "Núi"
+
 #, fuzzy
 msgid "Mountpoints"
 msgstr "Núi"
@@ -7461,6 +7475,10 @@ msgstr "Không có tuổi"
 #, fuzzy
 msgid "No backup needed"
 msgstr "Mã PIN cần thiết"
+
+#, fuzzy
+msgid "No config items available"
+msgstr "Không có bảng cập nhật có sẵn"
 
 msgid ""
 "No data on transponder!\n"
@@ -8305,6 +8323,9 @@ msgstr ""
 #, fuzzy
 msgid "Please connect your %s %s to the internet"
 msgstr "Vui lòng kết nối máy thu của bạn với internet"
+
+msgid "Please contact the manufacturer for clarification."
+msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Xin vui lòng không thay đổi bất kỳ giá trị trừ khi bạn biết những gì bạn đang làm!"
@@ -9441,6 +9462,10 @@ msgstr "Khởi động lại GUI bây giờ?"
 #, fuzzy
 msgid "Restart Network Adapter"
 msgstr "Khởi động lại mạng"
+
+#, fuzzy
+msgid "Restart Sleeptimer"
+msgstr "Hẹn giờ ngủ"
 
 msgid "Restart both"
 msgstr "Khởi động lại cả hai"
@@ -11590,15 +11615,23 @@ msgid "Start"
 msgstr "Bắt đầu kiểm tra"
 
 #, fuzzy
+msgid "Start CableScan"
+msgstr "Quét cáp"
+
+#, fuzzy
+msgid "Start Cablescan"
+msgstr "Bắt đầu kiểm tra"
+
+#, fuzzy
+msgid "Start Fastscan"
+msgstr "Bắt đầu kiểm tra"
+
+#, fuzzy
 msgid "Start Sleeptimer"
 msgstr "Hẹn giờ ngủ"
 
 msgid "Start directory"
 msgstr "Bắt đầu thư mục"
-
-#, fuzzy
-msgid "Start fastscan"
-msgstr "Bắt đầu kiểm tra"
 
 msgid "Start from the beginning"
 msgstr "Bắt đầu từ đầu"
@@ -11637,11 +11670,12 @@ msgstr "Bắt đầu timeshift"
 msgid "Start with list screen"
 msgstr "Bắt đầu với màn hình danh sách"
 
-#, fuzzy
-msgid "Start/Stop Sleeptimer"
-msgstr "Không hoạt động Sleeptimer"
-
 msgid "Start/stop slide show"
+msgstr ""
+
+msgid ""
+"Starting download of image file?\n"
+"Press OK to start or Exit to abort."
 msgstr ""
 
 msgid "Starting on"
@@ -12059,6 +12093,7 @@ msgid "TEXT"
 msgstr ""
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
+#. Don't translate TRANSLATOR_INFO to show '(N/A)'
 msgid "TRANSLATOR_INFO"
 msgstr "THÔNG TIN TRUYỀN THÔNG (QUỐC OAI  BMT)"
 
@@ -12821,6 +12856,10 @@ msgstr ""
 msgid "Timer overview"
 msgstr "Tổng quan về bộ đếm thời gian"
 
+#, fuzzy
+msgid "Timer recording failed. No space left on device!\n"
+msgstr "Vị trí ghi thời gian"
+
 msgid "Timer recording location"
 msgstr "Vị trí ghi thời gian"
 
@@ -12984,6 +13023,10 @@ msgstr "Bản dịch"
 #, fuzzy
 msgid "Translations Info"
 msgstr "Bản dịch"
+
+#, fuzzy
+msgid "Translator comment"
+msgstr "Dịch"
 
 msgid "Transmission mode"
 msgstr "Chế độ truyền"
@@ -13407,6 +13450,10 @@ msgstr "Sử dụng như PiP nếu có thể"
 
 msgid "Use circular LNB"
 msgstr "Sử dụng LNB tròn"
+
+#, fuzzy
+msgid "Use default spinner"
+msgstr "Đã xác định người dùng"
 
 msgid "Use fastscan channel names"
 msgstr "Sử dụng tên kênh fastscan"
@@ -14105,6 +14152,10 @@ msgstr "Khi được bật, các dịch vụ có thể được nhóm thành nhi
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Khi được bật, hiển thị số kênh trong màn hình chọn kênh."
+
+#, fuzzy
+msgid "When enabled, spinners that come with the activated skin are ignored."
+msgstr "Khi được bật, phụ đề cho người khiếm thính có thể được sử dụng."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "Khi được bật, phụ đề cho người khiếm thính có thể được sử dụng."

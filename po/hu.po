@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 13:49+0200\n"
+"POT-Creation-Date: 2024-06-20 07:37+0200\n"
 "PO-Revision-Date: 2020-05-13 21:36+0200\n"
 "Last-Translator: mcfly82\n"
 "Language-Team: mcfly82 & wysless\n"
@@ -2648,7 +2648,7 @@ msgstr ""
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "A képernyőkímélő várakozási ideje percben."
 
-msgid "Configure the duration in minutes for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer"
+msgid "Configure the duration in minutes for the sleeptimer. Select this entry and press blue to start/restart the sleeptimer or use yellow for stop active sleeptimer."
 msgstr ""
 
 msgid "Configure the duration when the receiver should go to shut down in case the receiver is in standby mode."
@@ -2857,10 +2857,6 @@ msgstr "A hálózat konfigurálása"
 
 msgid "Configure your network again"
 msgstr "A hálózat újrakonfigurálása"
-
-#, fuzzy
-msgid "Configure your network settings and press OK to scan"
-msgstr "Állítsa be a hálózati paramétereket, majd nyomja meg az OK gombot a kereséshez"
 
 msgid "Configure your wireless LAN again"
 msgstr "A vezeték nélküli hálózat újrakonfigurálása"
@@ -5096,6 +5092,10 @@ msgstr "Válasszon fájlokat/mappákat a biztonsági mentéshez"
 msgid "Filesystem check"
 msgstr "Fájlrendszer ellenőrzése"
 
+#, fuzzy, python-format
+msgid "Filesystem: %s\n"
+msgstr "Fájlrendszer ellenőrzése"
+
 msgid "Filter extension for 'My extension' setting of 'Filter extension'. Use the extension name without a '.'."
 msgstr ""
 
@@ -5263,6 +5263,10 @@ msgstr "Képméret teljesképernyő nézetbe"
 #, fuzzy
 msgid "France"
 msgstr "románc"
+
+#, fuzzy, python-format
+msgid "Free: %s/%s\n"
+msgstr "Modell:"
 
 msgid "French"
 msgstr "Francia"
@@ -6319,6 +6323,10 @@ msgstr "Belső Flash"
 msgid "Internal flash"
 msgstr "Belső Flash"
 
+#, fuzzy
+msgid "Internal flash storage:"
+msgstr "Belső Flash"
+
 msgid "Internal hdd only"
 msgstr "csak a belső háttértárról"
 
@@ -7192,6 +7200,10 @@ msgstr "Csatlakozás"
 msgid "MountView"
 msgstr "Csatlakozás"
 
+#, fuzzy, python-format
+msgid "Mountpoint: %s (%s)\n"
+msgstr "Csatlakozás"
+
 #, fuzzy
 msgid "Mountpoints"
 msgstr "Csatlakozás"
@@ -7660,6 +7672,10 @@ msgstr ""
 
 msgid "No backup needed"
 msgstr "Nincs mentésre szükség"
+
+#, fuzzy
+msgid "No config items available"
+msgstr "Nincs elérhető frissítés"
 
 msgid ""
 "No data on transponder!\n"
@@ -8538,6 +8554,9 @@ msgstr ""
 #, fuzzy
 msgid "Please connect your %s %s to the internet"
 msgstr "Kérem, csatlakoztassa az internethez a készüléket."
+
+msgid "Please contact the manufacturer for clarification."
+msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Ha nem tudja mi mit jelent, akkor kérem, ne változtassa meg az adatokat!"
@@ -9744,6 +9763,10 @@ msgstr "Indítsam újra most a kezelő felületet?"
 #, fuzzy
 msgid "Restart Network Adapter"
 msgstr "Hálózat újraindítása"
+
+#, fuzzy
+msgid "Restart Sleeptimer"
+msgstr "Elalvás időzítő"
 
 #, fuzzy
 msgid "Restart both"
@@ -11994,16 +12017,24 @@ msgid "Start"
 msgstr "Teszt indítása"
 
 #, fuzzy
+msgid "Start CableScan"
+msgstr "Kábel keresés"
+
+#, fuzzy
+msgid "Start Cablescan"
+msgstr "Teszt indítása"
+
+#, fuzzy
+msgid "Start Fastscan"
+msgstr "Teszt indítása"
+
+#, fuzzy
 msgid "Start Sleeptimer"
 msgstr "Elalvás időzítő"
 
 #, fuzzy
 msgid "Start directory"
 msgstr "Kiindulási mappa"
-
-#, fuzzy
-msgid "Start fastscan"
-msgstr "Teszt indítása"
 
 msgid "Start from the beginning"
 msgstr "Indítsa az elejétől"
@@ -12044,11 +12075,12 @@ msgstr "időcsúsztatás elindítása"
 msgid "Start with list screen"
 msgstr "Indítás lista-nézettel"
 
-#, fuzzy
-msgid "Start/Stop Sleeptimer"
-msgstr "Elalvás inaktivitás miatt"
-
 msgid "Start/stop slide show"
+msgstr ""
+
+msgid ""
+"Starting download of image file?\n"
+"Press OK to start or Exit to abort."
 msgstr ""
 
 msgid "Starting on"
@@ -12491,6 +12523,7 @@ msgid "TEXT"
 msgstr "SZÖVEG"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
+#. Don't translate TRANSLATOR_INFO to show '(N/A)'
 msgid "TRANSLATOR_INFO"
 msgstr ""
 "A fordítást készítette:\n"
@@ -13227,6 +13260,10 @@ msgstr ""
 msgid "Timer overview"
 msgstr "Időzítések áttekintése"
 
+#, fuzzy
+msgid "Timer recording failed. No space left on device!\n"
+msgstr "Időztett felvételek:"
+
 msgid "Timer recording location"
 msgstr "Időztett felvételek:"
 
@@ -13393,6 +13430,10 @@ msgstr "Magyar fordítás"
 #, fuzzy
 msgid "Translations Info"
 msgstr "Magyar fordítás"
+
+#, fuzzy
+msgid "Translator comment"
+msgstr "Fordítás"
 
 msgid "Transmission mode"
 msgstr "Adási mód"
@@ -13833,6 +13874,10 @@ msgstr ""
 #, fuzzy
 msgid "Use circular LNB"
 msgstr "forgó balos"
+
+#, fuzzy
+msgid "Use default spinner"
+msgstr "Felh. által megadva"
 
 msgid "Use fastscan channel names"
 msgstr "Szolgáltató által megadott csatorna elnevezés"
@@ -14547,6 +14592,10 @@ msgstr "A csatornák lehessenek egyszerre akár több bouquet tagjai."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Csatornaszámok megjelenítése a csatornalistában"
+
+#, fuzzy
+msgid "When enabled, spinners that come with the activated skin are ignored."
+msgstr "A hallássérülteknek szánt feliratok megjelenítése."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "A hallássérülteknek szánt feliratok megjelenítése."

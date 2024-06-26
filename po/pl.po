@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 13:49+0200\n"
+"POT-Creation-Date: 2024-06-20 07:37+0200\n"
 "PO-Revision-Date: 2019-12-03 20:02+0100\n"
 "Last-Translator: blzr <blzr@o2.pl>\n"
 "Language-Team: \n"
@@ -3012,7 +3012,8 @@ msgstr "Ustaw czas (w godzinach) po jakim odbiornik przełączy się w tryb czuw
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Ustaw w minutach czas po jakim pojawi się wygaszacz ekranu."
 
-msgid "Configure the duration in minutes for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer"
+#, fuzzy
+msgid "Configure the duration in minutes for the sleeptimer. Select this entry and press blue to start/restart the sleeptimer or use yellow for stop active sleeptimer."
 msgstr "Ustaw czas (w minutach) dla wyłącznika czasowego. Wybierz opcję i wciśnij OK lub zielony aby uruchomić/zatrzymać sleeptimer. "
 
 msgid "Configure the duration when the receiver should go to shut down in case the receiver is in standby mode."
@@ -3231,11 +3232,6 @@ msgstr "Konfiguracja wewnętrznej sieci LAN"
 #
 msgid "Configure your network again"
 msgstr "Skonfiguruj sieć ponownie"
-
-#
-#, fuzzy
-msgid "Configure your network settings and press OK to scan"
-msgstr "Skonfiguruj ustawienia sieci i wciśnij OK aby rozpocząć skanowanie "
 
 #
 msgid "Configure your wireless LAN again"
@@ -5811,6 +5807,11 @@ msgstr "Wybierz pliki/foldery do backupu"
 msgid "Filesystem check"
 msgstr "Sprawdzanie systemu plików"
 
+#
+#, fuzzy, python-format
+msgid "Filesystem: %s\n"
+msgstr "Sprawdzanie systemu plików"
+
 msgid "Filter extension for 'My extension' setting of 'Filter extension'. Use the extension name without a '.'."
 msgstr ""
 
@@ -5997,6 +5998,11 @@ msgstr "Rozmiar ramki w pełnym widoku"
 #, fuzzy
 msgid "France"
 msgstr "Romans"
+
+#
+#, fuzzy, python-format
+msgid "Free: %s/%s\n"
+msgstr "Model: "
 
 #
 msgid "French"
@@ -7195,6 +7201,11 @@ msgid "Internal flash"
 msgstr "Wewnętrzny flash"
 
 #
+#, fuzzy
+msgid "Internal flash storage:"
+msgstr "Wewnętrzny flash"
+
+#
 msgid "Internal hdd only"
 msgstr "Tylko wewnętrzny hdd"
 
@@ -8193,6 +8204,10 @@ msgstr "Podmontuj"
 msgid "MountView"
 msgstr "Podmontuj"
 
+#, fuzzy, python-format
+msgid "Mountpoint: %s (%s)\n"
+msgstr "Podmontuj"
+
 #, fuzzy
 msgid "Mountpoints"
 msgstr "Podmontuj"
@@ -8729,6 +8744,11 @@ msgstr ""
 #
 msgid "No backup needed"
 msgstr "Kopia zapasowa nie jest  potrzebna"
+
+#
+#, fuzzy
+msgid "No config items available"
+msgstr "Brak dostępnych aktualizacji."
 
 #
 msgid ""
@@ -9740,6 +9760,9 @@ msgstr ""
 #, fuzzy
 msgid "Please connect your %s %s to the internet"
 msgstr "Podłącz odbiornik do internetu"
+
+msgid "Please contact the manufacturer for clarification."
+msgstr ""
 
 #
 msgid "Please do not change any values unless you know what you are doing!"
@@ -11208,6 +11231,10 @@ msgstr "Zrestartować GUI teraz?"
 #, fuzzy
 msgid "Restart Network Adapter"
 msgstr "Restartuj sieć"
+
+#, fuzzy
+msgid "Restart Sleeptimer"
+msgstr "Wyłącznik czasowy"
 
 #
 #, fuzzy
@@ -13811,6 +13838,21 @@ msgstr "Tryb czuwania za"
 msgid "Start"
 msgstr "Testuj"
 
+#
+#, fuzzy
+msgid "Start CableScan"
+msgstr "Skanowanie kablówki"
+
+#
+#, fuzzy
+msgid "Start Cablescan"
+msgstr "Testuj"
+
+#
+#, fuzzy
+msgid "Start Fastscan"
+msgstr "Testuj"
+
 #, fuzzy
 msgid "Start Sleeptimer"
 msgstr "Wyłącznik czasowy"
@@ -13819,11 +13861,6 @@ msgstr "Wyłącznik czasowy"
 #, fuzzy
 msgid "Start directory"
 msgstr "Katalog początkowy"
-
-#
-#, fuzzy
-msgid "Start fastscan"
-msgstr "Testuj"
 
 #
 msgid "Start from the beginning"
@@ -13871,11 +13908,12 @@ msgstr "Rozpocznij timeshift"
 msgid "Start with list screen"
 msgstr "Rozpocznij ekranem z listą"
 
-#, fuzzy
-msgid "Start/Stop Sleeptimer"
-msgstr "Sleeptimer bezczynności"
-
 msgid "Start/stop slide show"
+msgstr ""
+
+msgid ""
+"Starting download of image file?\n"
+"Press OK to start or Exit to abort."
 msgstr ""
 
 #
@@ -14390,6 +14428,7 @@ msgstr ""
 
 #
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
+#. Don't translate TRANSLATOR_INFO to show '(N/A)'
 msgid "TRANSLATOR_INFO"
 msgstr ""
 "specjalnie dla OpenPLi - @blzr\n"
@@ -15189,6 +15228,11 @@ msgid "Timer overview"
 msgstr "Opis timera"
 
 #
+#, fuzzy
+msgid "Timer recording failed. No space left on device!\n"
+msgstr "Lokalizacja nagrań z timera"
+
+#
 msgid "Timer recording location"
 msgstr "Lokalizacja nagrań z timera"
 
@@ -15379,6 +15423,11 @@ msgstr "Tłumaczenie"
 
 #, fuzzy
 msgid "Translations Info"
+msgstr "Tłumaczenie"
+
+#
+#, fuzzy
+msgid "Translator comment"
 msgstr "Tłumaczenie"
 
 #
@@ -15880,6 +15929,11 @@ msgstr ""
 #, fuzzy
 msgid "Use circular LNB"
 msgstr "Kołowa lewa"
+
+#
+#, fuzzy
+msgid "Use default spinner"
+msgstr "Zdefiniowany przez użytkownika"
 
 msgid "Use fastscan channel names"
 msgstr "Użyj nazw kanałów z Fastscan"
@@ -16679,6 +16733,10 @@ msgstr "Gdy włączone, kanały mogą być grupowane w wiele bukietów."
 #
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Gdy włączone, wyświetla numery w liście wyboru kanałów"
+
+#, fuzzy
+msgid "When enabled, spinners that come with the activated skin are ignored."
+msgstr "Gdy włączone, napisy dla niesłyszących mogą być wyświetlane."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "Gdy włączone, napisy dla niesłyszących mogą być wyświetlane."

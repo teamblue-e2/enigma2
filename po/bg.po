@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 13:49+0200\n"
+"POT-Creation-Date: 2024-06-20 07:37+0200\n"
 "PO-Revision-Date: 2018-11-12 20:51+0200\n"
 "Last-Translator: Мартин Петков <marto74bg@yahoo.co.uk>\n"
 "Language-Team: Bulgarian\n"
@@ -2593,7 +2593,7 @@ msgstr ""
 msgid "Configure the duration in minutes for the screensaver."
 msgstr ""
 
-msgid "Configure the duration in minutes for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer"
+msgid "Configure the duration in minutes for the sleeptimer. Select this entry and press blue to start/restart the sleeptimer or use yellow for stop active sleeptimer."
 msgstr ""
 
 msgid "Configure the duration when the receiver should go to shut down in case the receiver is in standby mode."
@@ -2793,10 +2793,6 @@ msgstr "Конфигуриране на вашата вътрешна LAN."
 
 msgid "Configure your network again"
 msgstr "Повторно конфигуриране на вашата мрежа."
-
-#, fuzzy
-msgid "Configure your network settings and press OK to scan"
-msgstr "Натиснете ОК за да активирате настройките."
 
 msgid "Configure your wireless LAN again"
 msgstr "Повторно конфигуриране на вашата WLAN мрежа."
@@ -4981,6 +4977,10 @@ msgstr ""
 msgid "Filesystem check"
 msgstr "Проверка файлова с-ма"
 
+#, fuzzy, python-format
+msgid "Filesystem: %s\n"
+msgstr "Проверка файлова с-ма"
+
 msgid "Filter extension for 'My extension' setting of 'Filter extension'. Use the extension name without a '.'."
 msgstr ""
 
@@ -5145,6 +5145,10 @@ msgstr ""
 #, fuzzy
 msgid "France"
 msgstr "Отказ"
+
+#, fuzzy, python-format
+msgid "Free: %s/%s\n"
+msgstr "Модел: "
 
 msgid "French"
 msgstr "Френски"
@@ -6176,6 +6180,10 @@ msgstr "Вътрешна Флаш"
 msgid "Internal flash"
 msgstr "Вътрешна Флаш"
 
+#, fuzzy
+msgid "Internal flash storage:"
+msgstr "Вътрешна Флаш"
+
 msgid "Internal hdd only"
 msgstr ""
 
@@ -7037,6 +7045,10 @@ msgstr "Редактирай"
 msgid "MountView"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "Mountpoint: %s (%s)\n"
+msgstr "Модел: "
+
 msgid "Mountpoints"
 msgstr ""
 
@@ -7500,6 +7512,10 @@ msgstr ""
 
 msgid "No backup needed"
 msgstr "Няма нужда от backup"
+
+#, fuzzy
+msgid "No config items available"
+msgstr "Няма налично описание."
 
 msgid ""
 "No data on transponder!\n"
@@ -8341,6 +8357,9 @@ msgstr ""
 "Когато сте готови натиснете ОК за да продължа."
 
 msgid "Please connect your %s %s to the internet"
+msgstr ""
+
+msgid "Please contact the manufacturer for clarification."
 msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
@@ -9529,6 +9548,10 @@ msgstr "Рестарт GUI сега?"
 #, fuzzy
 msgid "Restart Network Adapter"
 msgstr "Рестарт мрежа"
+
+#, fuzzy
+msgid "Restart Sleeptimer"
+msgstr "Старт тест"
 
 #, fuzzy
 msgid "Restart both"
@@ -11733,16 +11756,24 @@ msgid "Start"
 msgstr "Старт тест"
 
 #, fuzzy
+msgid "Start CableScan"
+msgstr "Старт тест"
+
+#, fuzzy
+msgid "Start Cablescan"
+msgstr "Старт тест"
+
+#, fuzzy
+msgid "Start Fastscan"
+msgstr "Старт тест"
+
+#, fuzzy
 msgid "Start Sleeptimer"
 msgstr "Старт тест"
 
 #, fuzzy
 msgid "Start directory"
 msgstr "стартова директория"
-
-#, fuzzy
-msgid "Start fastscan"
-msgstr "Старт тест"
 
 msgid "Start from the beginning"
 msgstr "Започни от началото"
@@ -11783,10 +11814,12 @@ msgstr ""
 msgid "Start with list screen"
 msgstr ""
 
-msgid "Start/Stop Sleeptimer"
+msgid "Start/stop slide show"
 msgstr ""
 
-msgid "Start/stop slide show"
+msgid ""
+"Starting download of image file?\n"
+"Press OK to start or Exit to abort."
 msgstr ""
 
 msgid "Starting on"
@@ -12216,8 +12249,9 @@ msgid "TEXT"
 msgstr ""
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
+#. Don't translate TRANSLATOR_INFO to show '(N/A)'
 msgid "TRANSLATOR_INFO"
-msgstr ""
+msgstr "TRANSLATOR_INFO"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr ""
@@ -12909,6 +12943,9 @@ msgstr ""
 msgid "Timer overview"
 msgstr "Преглед на таймерите"
 
+msgid "Timer recording failed. No space left on device!\n"
+msgstr ""
+
 msgid "Timer recording location"
 msgstr ""
 
@@ -13073,6 +13110,10 @@ msgstr ""
 
 #, fuzzy
 msgid "Translations Info"
+msgstr "Превод"
+
+#, fuzzy
+msgid "Translator comment"
 msgstr "Превод"
 
 msgid "Transmission mode"
@@ -13509,6 +13550,10 @@ msgstr ""
 #, fuzzy
 msgid "Use circular LNB"
 msgstr "кръгова лява"
+
+#, fuzzy
+msgid "Use default spinner"
+msgstr "Потребителска"
 
 msgid "Use fastscan channel names"
 msgstr ""
@@ -14179,6 +14224,9 @@ msgid "When enabled, services may be grouped in multiple bouquets."
 msgstr ""
 
 msgid "When enabled, show channel numbers in the channel selection screen."
+msgstr ""
+
+msgid "When enabled, spinners that come with the activated skin are ignored."
 msgstr ""
 
 msgid "When enabled, subtitles for the hearing impaired can be used."

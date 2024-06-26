@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 13:49+0200\n"
+"POT-Creation-Date: 2024-06-20 07:37+0200\n"
 "PO-Revision-Date: 2013-10-23 19:15+0100\n"
 "Last-Translator: andy1 <dmmm8000pvr@gmail.com>\n"
 "Language-Team: none\n"
@@ -2810,7 +2810,7 @@ msgstr ""
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Still inn skjermsparerens varighet i minutter."
 
-msgid "Configure the duration in minutes for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer"
+msgid "Configure the duration in minutes for the sleeptimer. Select this entry and press blue to start/restart the sleeptimer or use yellow for stop active sleeptimer."
 msgstr ""
 
 msgid "Configure the duration when the receiver should go to shut down in case the receiver is in standby mode."
@@ -3019,10 +3019,6 @@ msgstr "Still inn ditt lokale LAN nettverk"
 #
 msgid "Configure your network again"
 msgstr "Still inn nettverket på nytt"
-
-#, fuzzy
-msgid "Configure your network settings and press OK to scan"
-msgstr "Still inn nettverksinnstillingene, og trykk OK for å starte søket"
 
 msgid "Configure your wireless LAN again"
 msgstr "Still inn det trådløse nettverket igjen"
@@ -5439,6 +5435,10 @@ msgstr "Velg filer/mapper for sikkerhetskopiering"
 msgid "Filesystem check"
 msgstr "Sjekk av filsystem"
 
+#, fuzzy, python-format
+msgid "Filesystem: %s\n"
+msgstr "Sjekk av filsystem"
+
 msgid "Filter extension for 'My extension' setting of 'Filter extension'. Use the extension name without a '.'."
 msgstr ""
 
@@ -5612,6 +5612,11 @@ msgstr "Rammestørrelse i fullvisning"
 #, fuzzy
 msgid "France"
 msgstr "romantikk"
+
+#
+#, fuzzy, python-format
+msgid "Free: %s/%s\n"
+msgstr "Modell:"
 
 #
 msgid "French"
@@ -6745,6 +6750,11 @@ msgstr ""
 msgid "Internal flash"
 msgstr "Internt flash"
 
+#
+#, fuzzy
+msgid "Internal flash storage:"
+msgstr "Internt flash"
+
 msgid "Internal hdd only"
 msgstr "Bare for intern hdd/ssd"
 
@@ -7703,6 +7713,10 @@ msgstr "Montere"
 msgid "MountView"
 msgstr "Montere"
 
+#, fuzzy, python-format
+msgid "Mountpoint: %s (%s)\n"
+msgstr "Montere"
+
 #, fuzzy
 msgid "Mountpoints"
 msgstr "Montere"
@@ -8216,6 +8230,10 @@ msgstr ""
 #
 msgid "No backup needed"
 msgstr "Ingen sikkerhetskopi er nødvendig"
+
+#, fuzzy
+msgid "No config items available"
+msgstr "Det finnes ingen nye oppdateringer"
 
 #
 msgid ""
@@ -9150,6 +9168,9 @@ msgstr ""
 #, fuzzy
 msgid "Please connect your %s %s to the internet"
 msgstr "Vennligst, koble mottakeren til internett"
+
+msgid "Please contact the manufacturer for clarification."
+msgstr ""
 
 #
 msgid "Please do not change any values unless you know what you are doing!"
@@ -10428,6 +10449,10 @@ msgstr "Starte GUI på nytt?"
 #, fuzzy
 msgid "Restart Network Adapter"
 msgstr "Starte nettverk på nytt"
+
+#, fuzzy
+msgid "Restart Sleeptimer"
+msgstr "Tidtaker"
 
 #, fuzzy
 msgid "Restart both"
@@ -12799,16 +12824,24 @@ msgid "Start"
 msgstr "Starttid"
 
 #, fuzzy
+msgid "Start CableScan"
+msgstr "Kabel-TV søk"
+
+#, fuzzy
+msgid "Start Cablescan"
+msgstr "Hurtigsøk"
+
+#, fuzzy
+msgid "Start Fastscan"
+msgstr "Hurtigsøk"
+
+#, fuzzy
 msgid "Start Sleeptimer"
 msgstr "Tidtaker"
 
 #, fuzzy
 msgid "Start directory"
 msgstr "start katalog"
-
-#, fuzzy
-msgid "Start fastscan"
-msgstr "Hurtigsøk"
 
 #
 msgid "Start from the beginning"
@@ -12852,11 +12885,12 @@ msgstr "Starte tidsskift"
 msgid "Start with list screen"
 msgstr "Start med listevisning"
 
-#, fuzzy
-msgid "Start/Stop Sleeptimer"
-msgstr "Inaktivitets tidtaker"
-
 msgid "Start/stop slide show"
+msgstr ""
+
+msgid ""
+"Starting download of image file?\n"
+"Press OK to start or Exit to abort."
 msgstr ""
 
 #
@@ -13319,6 +13353,7 @@ msgid "TEXT"
 msgstr ""
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
+#. Don't translate TRANSLATOR_INFO to show '(N/A)'
 msgid "TRANSLATOR_INFO"
 msgstr "Norsk bokmålsoversettelse. 24.10.2013"
 
@@ -14097,6 +14132,10 @@ msgstr ""
 msgid "Timer overview"
 msgstr "Tidtaker oversikt"
 
+#, fuzzy
+msgid "Timer recording failed. No space left on device!\n"
+msgstr "Tidtaker opptak"
+
 msgid "Timer recording location"
 msgstr "Tidtaker opptak"
 
@@ -14287,6 +14326,11 @@ msgstr "Oversettinger"
 #, fuzzy
 msgid "Translations Info"
 msgstr "Oversettinger"
+
+#
+#, fuzzy
+msgid "Translator comment"
+msgstr "Oversetting"
 
 #
 msgid "Transmission mode"
@@ -14757,6 +14801,11 @@ msgstr ""
 
 msgid "Use circular LNB"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Use default spinner"
+msgstr "Brukerdefinert"
 
 msgid "Use fastscan channel names"
 msgstr "Bruk kanaler beregnet for 'fastscan'"
@@ -15503,6 +15552,10 @@ msgstr "Når dette er valgt, vil kanalene kunne grupperes i flere kanallister."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Når dette er valgt, vises kanalnummer på kanalvalgs skjermen"
+
+#, fuzzy
+msgid "When enabled, spinners that come with the activated skin are ignored."
+msgstr "Når dette er valgt, kan undertekst for hørselshemmede brukes."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "Når dette er valgt, kan undertekst for hørselshemmede brukes."

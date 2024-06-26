@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 13:49+0200\n"
+"POT-Creation-Date: 2024-06-20 07:37+0200\n"
 "PO-Revision-Date: 2010-04-08 18:13+0700\n"
 "Last-Translator: Tony - Thaidreambox\n"
 "Language-Team: Tony @ Thai Dreambox <tonyboyth@gmail.com>\n"
@@ -2656,7 +2656,7 @@ msgstr ""
 msgid "Configure the duration in minutes for the screensaver."
 msgstr ""
 
-msgid "Configure the duration in minutes for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer"
+msgid "Configure the duration in minutes for the sleeptimer. Select this entry and press blue to start/restart the sleeptimer or use yellow for stop active sleeptimer."
 msgstr ""
 
 msgid "Configure the duration when the receiver should go to shut down in case the receiver is in standby mode."
@@ -2865,10 +2865,6 @@ msgstr "ตั้งค่าการ์แลนในเครื่อง"
 
 msgid "Configure your network again"
 msgstr "ตั้งเครือข่ายอีกครั้ง"
-
-#, fuzzy
-msgid "Configure your network settings and press OK to scan"
-msgstr "กดปุ่ม OK เพื่อเริ่มใช้สกินที่เลือกไว้"
 
 msgid "Configure your wireless LAN again"
 msgstr "ตั้งค่าเครือข่ายไร้สายอีกครั้ง"
@@ -5107,6 +5103,10 @@ msgstr "เลือกไฟล์/โฟล์เดอร์ที่จะ�
 msgid "Filesystem check"
 msgstr ""
 
+#, python-format
+msgid "Filesystem: %s\n"
+msgstr ""
+
 msgid "Filter extension for 'My extension' setting of 'Filter extension'. Use the extension name without a '.'."
 msgstr ""
 
@@ -5272,6 +5272,10 @@ msgstr "เต็มหน้าจอ"
 #, fuzzy
 msgid "France"
 msgstr "ยกเลิก"
+
+#, fuzzy, python-format
+msgid "Free: %s/%s\n"
+msgstr "รุ่น:"
 
 msgid "French"
 msgstr "ภาษาฝรั่งเศษ"
@@ -6336,6 +6340,10 @@ msgstr "หน่วยความจำภายใน"
 msgid "Internal flash"
 msgstr "หน่วยความจำภายใน"
 
+#, fuzzy
+msgid "Internal flash storage:"
+msgstr "หน่วยความจำภายใน"
+
 msgid "Internal hdd only"
 msgstr ""
 
@@ -7233,6 +7241,10 @@ msgstr "แก้ไข"
 msgid "MountView"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "Mountpoint: %s (%s)\n"
+msgstr "รุ่น:"
+
 msgid "Mountpoints"
 msgstr ""
 
@@ -7701,6 +7713,10 @@ msgstr ""
 
 msgid "No backup needed"
 msgstr "ไม่จำเป็นต้องสำรองข้อมูล"
+
+#, fuzzy
+msgid "No config items available"
+msgstr " มีรายการปรับปรุง"
 
 msgid ""
 "No data on transponder!\n"
@@ -8575,6 +8591,9 @@ msgstr ""
 "หากป้อนแล้วให้กดปุ่ม OK เพื่อทำงานต่อ"
 
 msgid "Please connect your %s %s to the internet"
+msgstr ""
+
+msgid "Please contact the manufacturer for clarification."
 msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
@@ -9782,6 +9801,10 @@ msgstr "เริ่มทำงานใหม่ (GUI) ตอนนี้ห�
 #, fuzzy
 msgid "Restart Network Adapter"
 msgstr "เริ่มการทำงานเครือข่ายใหม่"
+
+#, fuzzy
+msgid "Restart Sleeptimer"
+msgstr "เวลาเริ่ม"
 
 #, fuzzy
 msgid "Restart both"
@@ -12058,16 +12081,24 @@ msgid "Start"
 msgstr "เริ่มทดสอบ"
 
 #, fuzzy
+msgid "Start CableScan"
+msgstr "เริ่มทดสอบ"
+
+#, fuzzy
+msgid "Start Cablescan"
+msgstr "เริ่มทดสอบ"
+
+#, fuzzy
+msgid "Start Fastscan"
+msgstr "เริ่มทดสอบ"
+
+#, fuzzy
 msgid "Start Sleeptimer"
 msgstr "เวลาเริ่ม"
 
 #, fuzzy
 msgid "Start directory"
 msgstr "โฟล์เดอร์เริ่มต้น"
-
-#, fuzzy
-msgid "Start fastscan"
-msgstr "เริ่มทดสอบ"
 
 msgid "Start from the beginning"
 msgstr "เริ่มตั้งแต่ต้น"
@@ -12110,11 +12141,12 @@ msgstr "เริ่มควบคุมรายการสด"
 msgid "Start with list screen"
 msgstr ""
 
-#, fuzzy
-msgid "Start/Stop Sleeptimer"
-msgstr "เวลาเริ่ม"
-
 msgid "Start/stop slide show"
+msgstr ""
+
+msgid ""
+"Starting download of image file?\n"
+"Press OK to start or Exit to abort."
 msgstr ""
 
 msgid "Starting on"
@@ -12565,6 +12597,7 @@ msgid "TEXT"
 msgstr ""
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
+#. Don't translate TRANSLATOR_INFO to show '(N/A)'
 msgid "TRANSLATOR_INFO"
 msgstr "TRANSLATOR_INFO"
 
@@ -13281,6 +13314,10 @@ msgid "Timer overview"
 msgstr "ตั้งเวลา"
 
 #, fuzzy
+msgid "Timer recording failed. No space left on device!\n"
+msgstr "เปลี่ยนแปลงการบันทึก (ช่วงเวลา)"
+
+#, fuzzy
 msgid "Timer recording location"
 msgstr "เปลี่ยนแปลงการบันทึก (ช่วงเวลา)"
 
@@ -13448,6 +13485,10 @@ msgstr ""
 
 #, fuzzy
 msgid "Translations Info"
+msgstr "การแปล"
+
+#, fuzzy
+msgid "Translator comment"
 msgstr "การแปล"
 
 msgid "Transmission mode"
@@ -13886,6 +13927,10 @@ msgstr ""
 #, fuzzy
 msgid "Use circular LNB"
 msgstr "วนไปทางซ้าย"
+
+#, fuzzy
+msgid "Use default spinner"
+msgstr "ผู้ใช้กำหนด"
 
 msgid "Use fastscan channel names"
 msgstr ""
@@ -14590,6 +14635,9 @@ msgid "When enabled, services may be grouped in multiple bouquets."
 msgstr ""
 
 msgid "When enabled, show channel numbers in the channel selection screen."
+msgstr ""
+
+msgid "When enabled, spinners that come with the activated skin are ignored."
 msgstr ""
 
 msgid "When enabled, subtitles for the hearing impaired can be used."

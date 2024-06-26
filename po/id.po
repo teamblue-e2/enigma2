@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 13:49+0200\n"
+"POT-Creation-Date: 2024-06-20 07:37+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Budiarno\n"
 "Language-Team: \n"
@@ -2618,7 +2618,8 @@ msgstr "Atur durasi dalam jam Rx seharusnya menuju standby ketika Rx tidak dikon
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Atur durasi screensaver dalam hitungan menit."
 
-msgid "Configure the duration in minutes for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer"
+#, fuzzy
+msgid "Configure the duration in minutes for the sleeptimer. Select this entry and press blue to start/restart the sleeptimer or use yellow for stop active sleeptimer."
 msgstr "Atur durasi dalam menit untuk pewaktu tidur. Pilih entri ini dan klik OK atau tombol hijau untuk mulai/hentikan pewaktu tidur"
 
 msgid "Configure the duration when the receiver should go to shut down in case the receiver is in standby mode."
@@ -2825,10 +2826,6 @@ msgstr "Atur LAN internal anda"
 
 msgid "Configure your network again"
 msgstr "Atur kembali jaringan anda"
-
-#, fuzzy
-msgid "Configure your network settings and press OK to scan"
-msgstr "Atur penyetelan jaringan anda, dan tekan OK untuk mulai memindai"
 
 msgid "Configure your wireless LAN again"
 msgstr "Atur kembali LAN nirkabel anda"
@@ -5061,6 +5058,10 @@ msgstr "Select files/folders to backup"
 msgid "Filesystem check"
 msgstr "Filesystem check"
 
+#, fuzzy, python-format
+msgid "Filesystem: %s\n"
+msgstr "Filesystem check"
+
 msgid "Filter extension for 'My extension' setting of 'Filter extension'. Use the extension name without a '.'."
 msgstr ""
 
@@ -5227,6 +5228,10 @@ msgstr "Frame size in full view"
 #, fuzzy
 msgid "France"
 msgstr "romance"
+
+#, fuzzy, python-format
+msgid "Free: %s/%s\n"
+msgstr "Model: "
 
 msgid "French"
 msgstr "Perancis"
@@ -6273,6 +6278,10 @@ msgstr ""
 msgid "Internal flash"
 msgstr "Internal flash"
 
+#, fuzzy
+msgid "Internal flash storage:"
+msgstr "Internal flash"
+
 msgid "Internal hdd only"
 msgstr "Hdd internal saja"
 
@@ -7142,6 +7151,10 @@ msgstr "Mount"
 msgid "MountView"
 msgstr "Mount"
 
+#, fuzzy, python-format
+msgid "Mountpoint: %s (%s)\n"
+msgstr "Mount"
+
 #, fuzzy
 msgid "Mountpoints"
 msgstr "Mount"
@@ -7604,6 +7617,10 @@ msgstr ""
 
 msgid "No backup needed"
 msgstr "Backup tidak diperlukan"
+
+#, fuzzy
+msgid "No config items available"
+msgstr "Pembaruan tidak tersedia"
 
 msgid ""
 "No data on transponder!\n"
@@ -8463,6 +8480,9 @@ msgstr ""
 #, fuzzy
 msgid "Please connect your %s %s to the internet"
 msgstr "Please connect your receiver to the internet"
+
+msgid "Please contact the manufacturer for clarification."
+msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Please do not change any values unless you know what you are doing!"
@@ -9627,6 +9647,10 @@ msgstr "Ingin Restart GUI sekarang?"
 #, fuzzy
 msgid "Restart Network Adapter"
 msgstr "Restart network"
+
+#, fuzzy
+msgid "Restart Sleeptimer"
+msgstr "Start time"
 
 #, fuzzy
 msgid "Restart both"
@@ -11836,16 +11860,24 @@ msgid "Start"
 msgstr "Mulai pengecekan"
 
 #, fuzzy
+msgid "Start CableScan"
+msgstr "Pelacakan Kabel"
+
+#, fuzzy
+msgid "Start Cablescan"
+msgstr "Mulai pengecekan"
+
+#, fuzzy
+msgid "Start Fastscan"
+msgstr "Mulai pengecekan"
+
+#, fuzzy
 msgid "Start Sleeptimer"
 msgstr "Start time"
 
 #, fuzzy
 msgid "Start directory"
 msgstr "start directory"
-
-#, fuzzy
-msgid "Start fastscan"
-msgstr "Mulai pengecekan"
 
 msgid "Start from the beginning"
 msgstr "Mulai dari awal"
@@ -11884,11 +11916,12 @@ msgstr "Start timeshift"
 msgid "Start with list screen"
 msgstr "Start with list screen"
 
-#, fuzzy
-msgid "Start/Stop Sleeptimer"
-msgstr "Start time"
-
 msgid "Start/stop slide show"
+msgstr ""
+
+msgid ""
+"Starting download of image file?\n"
+"Press OK to start or Exit to abort."
 msgstr ""
 
 msgid "Starting on"
@@ -12311,6 +12344,7 @@ msgid "TEXT"
 msgstr ""
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
+#. Don't translate TRANSLATOR_INFO to show '(N/A)'
 msgid "TRANSLATOR_INFO"
 msgstr "TRANSLATOR_INFO"
 
@@ -13038,6 +13072,10 @@ msgstr ""
 msgid "Timer overview"
 msgstr "Timer overview"
 
+#, fuzzy
+msgid "Timer recording failed. No space left on device!\n"
+msgstr "Timer recording location"
+
 msgid "Timer recording location"
 msgstr "Timer recording location"
 
@@ -13202,6 +13240,10 @@ msgstr "Translations"
 #, fuzzy
 msgid "Translations Info"
 msgstr "Translations"
+
+#, fuzzy
+msgid "Translator comment"
+msgstr "Translation"
 
 msgid "Transmission mode"
 msgstr "Transmission mode"
@@ -13638,6 +13680,10 @@ msgstr ""
 
 msgid "Use circular LNB"
 msgstr ""
+
+#, fuzzy
+msgid "Use default spinner"
+msgstr "Ditentukan pengguna"
 
 msgid "Use fastscan channel names"
 msgstr "Use fastscan channel names"
@@ -14341,6 +14387,10 @@ msgstr "Ketika diaktifkan, layanan bisa dikelompokkan dalam buket multi."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Ketika diaktifkan, akan menampilkan nomor kanal pada layar pemilihan kanal."
+
+#, fuzzy
+msgid "When enabled, spinners that come with the activated skin are ignored."
+msgstr "Ketika diaktifkan, teks film untuk tuna rungu bisa digunakan."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "Ketika diaktifkan, teks film untuk tuna rungu bisa digunakan."

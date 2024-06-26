@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 13:49+0200\n"
+"POT-Creation-Date: 2024-06-20 07:37+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Frenske <voorzitter@openpli.org>\n"
 "Language-Team: PLiteam <translators@openpli.org>\n"
@@ -2721,7 +2721,8 @@ msgstr ""
 "\n"
 "U kunt kiezen om dit tussen 0 - 60 minuten in te stellen."
 
-msgid "Configure the duration in minutes for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer"
+#, fuzzy
+msgid "Configure the duration in minutes for the sleeptimer. Select this entry and press blue to start/restart the sleeptimer or use yellow for stop active sleeptimer."
 msgstr "Stel tijd in minuten in voor de sleeptimer. Selecteer deze invoer en druk op OK of de groene toets om de sleeptimer te starten / stoppen."
 
 msgid "Configure the duration when the receiver should go to shut down in case the receiver is in standby mode."
@@ -3026,10 +3027,6 @@ msgstr "Configureer uw interne netwerk"
 
 msgid "Configure your network again"
 msgstr "Configureer uw netwerk opnieuw"
-
-#, fuzzy
-msgid "Configure your network settings and press OK to scan"
-msgstr "Configureer uw netwerkinstellingen en druk OK om de scan te starten"
 
 msgid "Configure your wireless LAN again"
 msgstr "Configureer uw draadloos netwerk opnieuw"
@@ -5286,6 +5283,10 @@ msgstr "Kies bestanden / mappen voor de backup"
 msgid "Filesystem check"
 msgstr "Bestandssysteemcontrole"
 
+#, fuzzy, python-format
+msgid "Filesystem: %s\n"
+msgstr "Bestandssysteemcontrole"
+
 msgid "Filter extension for 'My extension' setting of 'Filter extension'. Use the extension name without a '.'."
 msgstr ""
 
@@ -5453,6 +5454,10 @@ msgstr "Framegrootte in vol beeld"
 #, fuzzy
 msgid "France"
 msgstr "romantiek"
+
+#, fuzzy, python-format
+msgid "Free: %s/%s\n"
+msgstr "Model: "
 
 msgid "French"
 msgstr "Frans"
@@ -6516,6 +6521,10 @@ msgstr "Intern geheugen"
 msgid "Internal flash"
 msgstr "Intern geheugen"
 
+#, fuzzy
+msgid "Internal flash storage:"
+msgstr "Intern geheugen"
+
 msgid "Internal hdd only"
 msgstr "Alleen interne harddisk"
 
@@ -7391,6 +7400,10 @@ msgstr "Mount"
 msgid "MountView"
 msgstr "Mount"
 
+#, fuzzy, python-format
+msgid "Mountpoint: %s (%s)\n"
+msgstr "Opnieuw mounten"
+
 #, fuzzy
 msgid "Mountpoints"
 msgstr "Opnieuw mounten"
@@ -7860,6 +7873,10 @@ msgstr ""
 
 msgid "No backup needed"
 msgstr "Geen backup nodig"
+
+#, fuzzy
+msgid "No config items available"
+msgstr " Geen updates beschikbaar."
 
 msgid ""
 "No data on transponder!\n"
@@ -8741,6 +8758,9 @@ msgstr ""
 #, fuzzy
 msgid "Please connect your %s %s to the internet"
 msgstr "Verbind uw ontvanger aub met het internet"
+
+msgid "Please contact the manufacturer for clarification."
+msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Wijzig hier geen instellingen tenzij u precies weet wat u doet"
@@ -9950,6 +9970,10 @@ msgstr "Herstart Enigma2 nu?"
 #, fuzzy
 msgid "Restart Network Adapter"
 msgstr "Netwerk herstarten"
+
+#, fuzzy
+msgid "Restart Sleeptimer"
+msgstr "Sleeptimer"
 
 #, fuzzy
 msgid "Restart both"
@@ -12213,16 +12237,24 @@ msgid "Start"
 msgstr "Start test"
 
 #, fuzzy
+msgid "Start CableScan"
+msgstr "Kabel scan"
+
+#, fuzzy
+msgid "Start Cablescan"
+msgstr "Start test"
+
+#, fuzzy
+msgid "Start Fastscan"
+msgstr "Start test"
+
+#, fuzzy
 msgid "Start Sleeptimer"
 msgstr "Sleeptimer"
 
 #, fuzzy
 msgid "Start directory"
 msgstr "Start map"
-
-#, fuzzy
-msgid "Start fastscan"
-msgstr "Start test"
 
 msgid "Start from the beginning"
 msgstr "Start vanaf het begin"
@@ -12263,11 +12295,12 @@ msgstr "Start de timeshift"
 msgid "Start with list screen"
 msgstr "Start met een zichtbare lijst"
 
-#, fuzzy
-msgid "Start/Stop Sleeptimer"
-msgstr "Inactiviteits Sleeptimer"
-
 msgid "Start/stop slide show"
+msgstr ""
+
+msgid ""
+"Starting download of image file?\n"
+"Press OK to start or Exit to abort."
 msgstr ""
 
 msgid "Starting on"
@@ -12708,6 +12741,7 @@ msgid "TEXT"
 msgstr ""
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
+#. Don't translate TRANSLATOR_INFO to show '(N/A)'
 msgid "TRANSLATOR_INFO"
 msgstr ""
 "Deze Nederlandse vertaling wordt u aangeboden door het OpenPLi team.\n"
@@ -13439,6 +13473,10 @@ msgstr ""
 msgid "Timer overview"
 msgstr "Timeroverzicht"
 
+#, fuzzy
+msgid "Timer recording failed. No space left on device!\n"
+msgstr "Opnamelocatie timeropnames"
+
 msgid "Timer recording location"
 msgstr "Opnamelocatie timeropnames"
 
@@ -13607,6 +13645,10 @@ msgstr "Vertalingen"
 #, fuzzy
 msgid "Translations Info"
 msgstr "Vertalingen"
+
+#, fuzzy
+msgid "Translator comment"
+msgstr "Vertaling"
 
 msgid "Transmission mode"
 msgstr "Transmissiemodus"
@@ -14049,6 +14091,10 @@ msgstr ""
 #, fuzzy
 msgid "Use circular LNB"
 msgstr "circular links"
+
+#, fuzzy
+msgid "Use default spinner"
+msgstr "Door u ingesteld"
 
 msgid "Use fastscan channel names"
 msgstr "Gebruik fastscan kanaalnamen"
@@ -14771,6 +14817,10 @@ msgstr "Indien geactiveerd, dan worden zenders in verschillende bouquetten gegro
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Indien geactiveerd, toon dan de kanaalnummers in de zenderselectie."
+
+#, fuzzy
+msgid "When enabled, spinners that come with the activated skin are ignored."
+msgstr "Indien geactiveerd, dan kunnen de ondertitels t.b.v. gehoorgestoorden gebruikt worden."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "Indien geactiveerd, dan kunnen de ondertitels t.b.v. gehoorgestoorden gebruikt worden."

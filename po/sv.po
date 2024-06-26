@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 13:49+0200\n"
+"POT-Creation-Date: 2024-06-20 07:37+0200\n"
 "PO-Revision-Date: 2017-03-05 13:24+0100\n"
 "Last-Translator: Magnus Nilsson <mag_nilsson@hotmail.com>\n"
 "Language-Team: \n"
@@ -2940,7 +2940,7 @@ msgstr ""
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Konfigurera varaktighet i minuter för skärmsläckaren."
 
-msgid "Configure the duration in minutes for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer"
+msgid "Configure the duration in minutes for the sleeptimer. Select this entry and press blue to start/restart the sleeptimer or use yellow for stop active sleeptimer."
 msgstr ""
 
 msgid "Configure the duration when the receiver should go to shut down in case the receiver is in standby mode."
@@ -3158,10 +3158,6 @@ msgstr "Konfigurera ditt interna LAN"
 #
 msgid "Configure your network again"
 msgstr "Konfigurera ditt nätverk igen"
-
-#, fuzzy
-msgid "Configure your network settings and press OK to scan"
-msgstr "Konfigurera dina nätverksinställningar, och tryck OK för att starta skanningen"
 
 #
 msgid "Configure your wireless LAN again"
@@ -5677,6 +5673,11 @@ msgstr "Ange filer/bibliotek att ta backup på"
 msgid "Filesystem check"
 msgstr "Filsystemskontroll"
 
+#
+#, fuzzy, python-format
+msgid "Filesystem: %s\n"
+msgstr "Filsystemskontroll"
+
 msgid "Filter extension for 'My extension' setting of 'Filter extension'. Use the extension name without a '.'."
 msgstr ""
 
@@ -5861,6 +5862,11 @@ msgstr "Ramstorlek i fullskärm"
 #, fuzzy
 msgid "France"
 msgstr "romantik"
+
+#
+#, fuzzy, python-format
+msgid "Free: %s/%s\n"
+msgstr "Modell: "
 
 #
 msgid "French"
@@ -7030,6 +7036,11 @@ msgstr "Intern Flash"
 msgid "Internal flash"
 msgstr "Intern Flash"
 
+#
+#, fuzzy
+msgid "Internal flash storage:"
+msgstr "Intern Flash"
+
 msgid "Internal hdd only"
 msgstr "Intern HDD bara"
 
@@ -8017,6 +8028,10 @@ msgstr "Montera"
 msgid "MountView"
 msgstr "Montera"
 
+#, fuzzy, python-format
+msgid "Mountpoint: %s (%s)\n"
+msgstr "Montera"
+
 #, fuzzy
 msgid "Mountpoints"
 msgstr "Montera"
@@ -8543,6 +8558,10 @@ msgstr ""
 #
 msgid "No backup needed"
 msgstr "Ingen backup behövs"
+
+#, fuzzy
+msgid "No config items available"
+msgstr "Inga uppdateringar tillgängliga."
 
 #
 msgid ""
@@ -9520,6 +9539,9 @@ msgstr ""
 #, fuzzy
 msgid "Please connect your %s %s to the internet"
 msgstr "Vänligen anslut din mottagare till Internet"
+
+msgid "Please contact the manufacturer for clarification."
+msgstr ""
 
 #
 msgid "Please do not change any values unless you know what you are doing!"
@@ -10934,6 +10956,10 @@ msgstr "Omstart av GUI nu?"
 #, fuzzy
 msgid "Restart Network Adapter"
 msgstr "Omstart nätverk"
+
+#, fuzzy
+msgid "Restart Sleeptimer"
+msgstr "Insomningstimer"
 
 #
 #, fuzzy
@@ -13478,6 +13504,20 @@ msgid "Start"
 msgstr "Starta test"
 
 #, fuzzy
+msgid "Start CableScan"
+msgstr "Kabelskanning"
+
+#
+#, fuzzy
+msgid "Start Cablescan"
+msgstr "Starta test"
+
+#
+#, fuzzy
+msgid "Start Fastscan"
+msgstr "Starta test"
+
+#, fuzzy
 msgid "Start Sleeptimer"
 msgstr "Insomningstimer"
 
@@ -13485,11 +13525,6 @@ msgstr "Insomningstimer"
 #, fuzzy
 msgid "Start directory"
 msgstr "startbibliotek"
-
-#
-#, fuzzy
-msgid "Start fastscan"
-msgstr "Starta test"
 
 #
 msgid "Start from the beginning"
@@ -13537,11 +13572,12 @@ msgstr "Starta timeshift"
 msgid "Start with list screen"
 msgstr "Börja med listskärmen"
 
-#, fuzzy
-msgid "Start/Stop Sleeptimer"
-msgstr "Inaktiv Insomningstimer"
-
 msgid "Start/stop slide show"
+msgstr ""
+
+msgid ""
+"Starting download of image file?\n"
+"Press OK to start or Exit to abort."
 msgstr ""
 
 #
@@ -14037,8 +14073,9 @@ msgid "TEXT"
 msgstr ""
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
+#. Don't translate TRANSLATOR_INFO to show '(N/A)'
 msgid "TRANSLATOR_INFO"
-msgstr "ÖVERSÄTTNINGS_INFO"
+msgstr "TRANSLATOR_INFO"
 
 #
 msgid "TS file is too large for ISO9660 level 1!"
@@ -14825,6 +14862,11 @@ msgid "Timer overview"
 msgstr "Översikt av timer(s)"
 
 #
+#, fuzzy
+msgid "Timer recording failed. No space left on device!\n"
+msgstr "Timerinspelningens plats"
+
+#
 msgid "Timer recording location"
 msgstr "Timerinspelningens plats"
 
@@ -15016,6 +15058,11 @@ msgstr "Översättningar"
 #, fuzzy
 msgid "Translations Info"
 msgstr "Översättningar"
+
+#
+#, fuzzy
+msgid "Translator comment"
+msgstr "Översättning"
 
 #
 msgid "Transmission mode"
@@ -15507,6 +15554,11 @@ msgstr ""
 #, fuzzy
 msgid "Use circular LNB"
 msgstr "cirkulär vänster"
+
+#
+#, fuzzy
+msgid "Use default spinner"
+msgstr "Användardefinierat"
 
 msgid "Use fastscan channel names"
 msgstr "Använd snabbskanningens kanalnamn"
@@ -16298,6 +16350,10 @@ msgstr "Vid aktiverad, kommer kanaler grupperas i flera favoritlistor."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Vid aktiverad, kommer kanalnummer visas i kanallistan."
+
+#, fuzzy
+msgid "When enabled, spinners that come with the activated skin are ignored."
+msgstr "Vid aktiverad, kommer undertexter för hörselskadade användas."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "Vid aktiverad, kommer undertexter för hörselskadade användas."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 13:49+0200\n"
+"POT-Creation-Date: 2024-06-20 07:37+0200\n"
 "PO-Revision-Date: 2019-02-13 20:52+0200\n"
 "Last-Translator: jamu\n"
 "Language-Team: BoxFreak/jamu\n"
@@ -2947,7 +2947,7 @@ msgstr ""
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Määrittele näytönsäästäjän aika minuuteissa."
 
-msgid "Configure the duration in minutes for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer"
+msgid "Configure the duration in minutes for the sleeptimer. Select this entry and press blue to start/restart the sleeptimer or use yellow for stop active sleeptimer."
 msgstr ""
 
 msgid "Configure the duration when the receiver should go to shut down in case the receiver is in standby mode."
@@ -3165,10 +3165,6 @@ msgstr "Määritä LAN-asetukset"
 #
 msgid "Configure your network again"
 msgstr "Määrittele verkko uudelleen"
-
-#, fuzzy
-msgid "Configure your network settings and press OK to scan"
-msgstr "Määritä verkkoasetukset ja aloita haku painamalla OK"
 
 #
 msgid "Configure your wireless LAN again"
@@ -5671,6 +5667,10 @@ msgstr "Valitse varmistettavat tiedostot/kansiot"
 msgid "Filesystem check"
 msgstr "Tiedostojärjestelmän tarkistus"
 
+#, fuzzy, python-format
+msgid "Filesystem: %s\n"
+msgstr "Tiedostojärjestelmän tarkistus"
+
 msgid "Filter extension for 'My extension' setting of 'Filter extension'. Use the extension name without a '.'."
 msgstr ""
 
@@ -5853,6 +5853,11 @@ msgstr "Kehyksen koko kokoruudussa"
 #, fuzzy
 msgid "France"
 msgstr "romantiikka"
+
+#
+#, fuzzy, python-format
+msgid "Free: %s/%s\n"
+msgstr "Malli: "
 
 #
 msgid "French"
@@ -7025,6 +7030,11 @@ msgstr "Sisäinen flash-muisti"
 msgid "Internal flash"
 msgstr "Sisäinen flash-muisti"
 
+#
+#, fuzzy
+msgid "Internal flash storage:"
+msgstr "Sisäinen flash-muisti"
+
 msgid "Internal hdd only"
 msgstr "Vain sisäinen kiintolevy"
 
@@ -8014,6 +8024,10 @@ msgstr "Liitä"
 msgid "MountView"
 msgstr "Liitä"
 
+#, fuzzy, python-format
+msgid "Mountpoint: %s (%s)\n"
+msgstr "Liitä"
+
 #, fuzzy
 msgid "Mountpoints"
 msgstr "Liitä"
@@ -8541,6 +8555,10 @@ msgstr ""
 #
 msgid "No backup needed"
 msgstr "Varmuuskopiota ei tarvita"
+
+#, fuzzy
+msgid "No config items available"
+msgstr "Ei päivityksiä saatavilla"
 
 #
 msgid ""
@@ -9530,6 +9548,9 @@ msgstr ""
 #, fuzzy
 msgid "Please connect your %s %s to the internet"
 msgstr "Kytke vastaanottimesi internettiin"
+
+msgid "Please contact the manufacturer for clarification."
+msgstr ""
 
 #
 msgid "Please do not change any values unless you know what you are doing!"
@@ -10960,6 +10981,11 @@ msgstr "Käynnistetäänkö käyttöliittymä uudelleen?"
 #, fuzzy
 msgid "Restart Network Adapter"
 msgstr "Käynnistä verkko uudelleen"
+
+#
+#, fuzzy
+msgid "Restart Sleeptimer"
+msgstr "Uniajastin"
 
 #
 #, fuzzy
@@ -13517,6 +13543,20 @@ msgstr "Valmiustilaan kun kulunut "
 msgid "Start"
 msgstr "Aloita testi"
 
+#, fuzzy
+msgid "Start CableScan"
+msgstr "Kaapelihaku"
+
+#
+#, fuzzy
+msgid "Start Cablescan"
+msgstr "Aloita testi"
+
+#
+#, fuzzy
+msgid "Start Fastscan"
+msgstr "Aloita testi"
+
 #
 #, fuzzy
 msgid "Start Sleeptimer"
@@ -13526,11 +13566,6 @@ msgstr "Uniajastin"
 #, fuzzy
 msgid "Start directory"
 msgstr "aloitushakemisto"
-
-#
-#, fuzzy
-msgid "Start fastscan"
-msgstr "Aloita testi"
 
 #
 msgid "Start from the beginning"
@@ -13581,12 +13616,12 @@ msgstr "Aloita ajansiirtotallennus"
 msgid "Start with list screen"
 msgstr "Käynnistä luettelotilaan"
 
-#
-#, fuzzy
-msgid "Start/Stop Sleeptimer"
-msgstr "Käyttämättömyysajastin"
-
 msgid "Start/stop slide show"
+msgstr ""
+
+msgid ""
+"Starting download of image file?\n"
+"Press OK to start or Exit to abort."
 msgstr ""
 
 #
@@ -14085,6 +14120,7 @@ msgid "TEXT"
 msgstr ""
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
+#. Don't translate TRANSLATOR_INFO to show '(N/A)'
 msgid "TRANSLATOR_INFO"
 msgstr ""
 "Suomenkielinen käännös: Timo Järvenpää\n"
@@ -14873,6 +14909,10 @@ msgstr ""
 msgid "Timer overview"
 msgstr "Ajastukset"
 
+#, fuzzy
+msgid "Timer recording failed. No space left on device!\n"
+msgstr "Ajastuksien tallennushakemisto"
+
 msgid "Timer recording location"
 msgstr "Ajastuksien tallennushakemisto"
 
@@ -15066,6 +15106,11 @@ msgstr "Käännökset"
 #, fuzzy
 msgid "Translations Info"
 msgstr "Käännökset"
+
+#
+#, fuzzy
+msgid "Translator comment"
+msgstr "Käännös"
 
 #
 msgid "Transmission mode"
@@ -15555,6 +15600,11 @@ msgstr ""
 #, fuzzy
 msgid "Use circular LNB"
 msgstr "kiertopolarisaatio vasen"
+
+#
+#, fuzzy
+msgid "Use default spinner"
+msgstr "Käyttäjän määrittelemä"
 
 msgid "Use fastscan channel names"
 msgstr "Käytä pikahaun kanavanimiä"
@@ -16360,6 +16410,10 @@ msgstr "Kun päällä, kanavat voidaan ryhmitellä useisiin suosikkilistoihin."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Kun päällä, näytä kanavanvalinnassa kanavanumerot"
+
+#, fuzzy
+msgid "When enabled, spinners that come with the activated skin are ignored."
+msgstr "Kun päällä, kuulovammaisten tekstitystä voidaan käyttää."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "Kun päällä, kuulovammaisten tekstitystä voidaan käyttää."

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 13:49+0200\n"
+"POT-Creation-Date: 2024-06-20 07:37+0200\n"
 "PO-Revision-Date: 2017-01-18 16:38+0100\n"
 "Last-Translator: lupine <a_ecklon@hotmail.com>\n"
 "Language-Team: \n"
@@ -2982,7 +2982,7 @@ msgstr ""
 msgid "Configure the duration in minutes for the screensaver."
 msgstr ""
 
-msgid "Configure the duration in minutes for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer"
+msgid "Configure the duration in minutes for the sleeptimer. Select this entry and press blue to start/restart the sleeptimer or use yellow for stop active sleeptimer."
 msgstr ""
 
 msgid "Configure the duration when the receiver should go to shut down in case the receiver is in standby mode."
@@ -3206,10 +3206,6 @@ msgstr "Konfigurer dit interne LAN"
 #
 msgid "Configure your network again"
 msgstr "Opsæt dit netværk igen"
-
-#, fuzzy
-msgid "Configure your network settings and press OK to scan"
-msgstr "Konfigurer dine indstillinger, og tryk OK for at starte søgning"
 
 #
 msgid "Configure your wireless LAN again"
@@ -5779,6 +5775,11 @@ msgstr "Vælg filer/mapper til backup"
 msgid "Filesystem check"
 msgstr "Kontroller filsystem"
 
+#
+#, fuzzy, python-format
+msgid "Filesystem: %s\n"
+msgstr "Kontroller filsystem"
+
 msgid "Filter extension for 'My extension' setting of 'Filter extension'. Use the extension name without a '.'."
 msgstr ""
 
@@ -5966,6 +5967,11 @@ msgstr "Billed størrelse i fuld "
 #, fuzzy
 msgid "France"
 msgstr "Fortryd"
+
+#
+#, fuzzy, python-format
+msgid "Free: %s/%s\n"
+msgstr "Model:"
 
 #
 msgid "French"
@@ -7160,6 +7166,11 @@ msgstr "Intern Flash"
 msgid "Internal flash"
 msgstr "Intern Flash"
 
+#
+#, fuzzy
+msgid "Internal flash storage:"
+msgstr "Intern Flash"
+
 msgid "Internal hdd only"
 msgstr ""
 
@@ -8182,6 +8193,10 @@ msgstr "Monter"
 msgid "MountView"
 msgstr "Monter"
 
+#, fuzzy, python-format
+msgid "Mountpoint: %s (%s)\n"
+msgstr "Monter"
+
 #, fuzzy
 msgid "Mountpoints"
 msgstr "Monter"
@@ -8717,6 +8732,10 @@ msgstr ""
 #
 msgid "No backup needed"
 msgstr "Ingen backup nødvendig"
+
+#, fuzzy
+msgid "No config items available"
+msgstr " opdateringer tilgængelige_Ikke for Ferrari."
 
 #
 msgid ""
@@ -9722,6 +9741,9 @@ msgstr ""
 "Tryk på OK når du er færdig, for at fortsætte."
 
 msgid "Please connect your %s %s to the internet"
+msgstr ""
+
+msgid "Please contact the manufacturer for clarification."
 msgstr ""
 
 #
@@ -11171,6 +11193,11 @@ msgstr "Genstarte GUI nu?"
 #, fuzzy
 msgid "Restart Network Adapter"
 msgstr "Genstart netværk"
+
+#
+#, fuzzy
+msgid "Restart Sleeptimer"
+msgstr "StartTid"
 
 #
 #, fuzzy
@@ -13777,6 +13804,20 @@ msgstr ""
 msgid "Start"
 msgstr "Start test"
 
+#, fuzzy
+msgid "Start CableScan"
+msgstr "Kabelsøgning"
+
+#
+#, fuzzy
+msgid "Start Cablescan"
+msgstr "Start test"
+
+#
+#, fuzzy
+msgid "Start Fastscan"
+msgstr "Start test"
+
 #
 #, fuzzy
 msgid "Start Sleeptimer"
@@ -13786,11 +13827,6 @@ msgstr "StartTid"
 #, fuzzy
 msgid "Start directory"
 msgstr "start mappe"
-
-#
-#, fuzzy
-msgid "Start fastscan"
-msgstr "Start test"
 
 #
 msgid "Start from the beginning"
@@ -13841,12 +13877,12 @@ msgstr "start tidsforskydning"
 msgid "Start with list screen"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Start/Stop Sleeptimer"
-msgstr "StartTid"
-
 msgid "Start/stop slide show"
+msgstr ""
+
+msgid ""
+"Starting download of image file?\n"
+"Press OK to start or Exit to abort."
 msgstr ""
 
 #
@@ -14356,6 +14392,7 @@ msgstr ""
 
 #
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
+#. Don't translate TRANSLATOR_INFO to show '(N/A)'
 msgid "TRANSLATOR_INFO"
 msgstr ""
 "Sidste opdatering: 12. Juni 2008\n"
@@ -15162,6 +15199,11 @@ msgstr "Timer Oversigt"
 
 #
 #, fuzzy
+msgid "Timer recording failed. No space left on device!\n"
+msgstr "Placering af timeroptagelser"
+
+#
+#, fuzzy
 msgid "Timer recording location"
 msgstr "Placering af timeroptagelser"
 
@@ -15357,6 +15399,11 @@ msgstr ""
 #
 #, fuzzy
 msgid "Translations Info"
+msgstr "Sprog info"
+
+#
+#, fuzzy
+msgid "Translator comment"
 msgstr "Sprog info"
 
 #
@@ -15855,6 +15902,11 @@ msgstr ""
 #, fuzzy
 msgid "Use circular LNB"
 msgstr "venstre-cirkulær"
+
+#
+#, fuzzy
+msgid "Use default spinner"
+msgstr "Brugerdefineret"
 
 msgid "Use fastscan channel names"
 msgstr "Brug hurtigsøgning kanalnavne"
@@ -16650,6 +16702,9 @@ msgstr ""
 #, fuzzy
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Vis kanalnumre i kanalvælger"
+
+msgid "When enabled, spinners that come with the activated skin are ignored."
+msgstr ""
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr ""

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 13:49+0200\n"
+"POT-Creation-Date: 2024-06-20 07:37+0200\n"
 "PO-Revision-Date: 2018-02-14 16:51+0330\n"
 "Last-Translator: Persian Prince <persianprince@pe4k.com>\n"
 "Language-Team: Persian Professionals <persianpros@yahoo.com>\n"
@@ -2664,7 +2664,7 @@ msgstr ""
 msgid "Configure the duration in minutes for the screensaver."
 msgstr ""
 
-msgid "Configure the duration in minutes for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer"
+msgid "Configure the duration in minutes for the sleeptimer. Select this entry and press blue to start/restart the sleeptimer or use yellow for stop active sleeptimer."
 msgstr ""
 
 msgid "Configure the duration when the receiver should go to shut down in case the receiver is in standby mode."
@@ -2877,10 +2877,6 @@ msgstr "شبکه سیمی داخلی خود را دوباره پیکربندی �
 #
 msgid "Configure your network again"
 msgstr "شبکه خود را دوباره پیکربندی کنید"
-
-#, fuzzy
-msgid "Configure your network settings and press OK to scan"
-msgstr "تنظیمات شبکه را پیکربندی کنید ، دکمه OK را برای شروع اسکن فشار دهید"
 
 #
 msgid "Configure your wireless LAN again"
@@ -5142,6 +5138,10 @@ msgstr "انتخاب فایل و پوشه ها برای تهیه نسخه پشت
 msgid "Filesystem check"
 msgstr "بررسی سیستم فایل"
 
+#, fuzzy, python-format
+msgid "Filesystem: %s\n"
+msgstr "بررسی سیستم فایل"
+
 msgid "Filter extension for 'My extension' setting of 'Filter extension'. Use the extension name without a '.'."
 msgstr ""
 
@@ -5310,6 +5310,10 @@ msgstr "اندازه فریم در نمایش کامل"
 #, fuzzy
 msgid "France"
 msgstr "انصراف"
+
+#, fuzzy, python-format
+msgid "Free: %s/%s\n"
+msgstr "مدل:"
 
 msgid "French"
 msgstr "فرانسوی"
@@ -6385,6 +6389,10 @@ msgstr "فلش داخلی"
 msgid "Internal flash"
 msgstr "فلش داخلی"
 
+#, fuzzy
+msgid "Internal flash storage:"
+msgstr "فلش داخلی"
+
 msgid "Internal hdd only"
 msgstr "فقط هارد داخلی"
 
@@ -7291,6 +7299,10 @@ msgstr "ویرایش"
 msgid "MountView"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "Mountpoint: %s (%s)\n"
+msgstr "مدل:"
+
 msgid "Mountpoints"
 msgstr ""
 
@@ -7757,6 +7769,11 @@ msgstr ""
 
 msgid "No backup needed"
 msgstr "نیازی به نسخه پشتیبان نیست"
+
+#
+#, fuzzy
+msgid "No config items available"
+msgstr "به روز رسانی های در دسترس"
 
 msgid ""
 "No data on transponder!\n"
@@ -8641,6 +8658,9 @@ msgid ""
 msgstr ""
 
 msgid "Please connect your %s %s to the internet"
+msgstr ""
+
+msgid "Please contact the manufacturer for clarification."
 msgstr ""
 
 msgid "Please do not change any values unless you know what you are doing!"
@@ -9873,6 +9893,10 @@ msgstr "راه اندازی مجدد رابط گرافیک کاربری؟"
 #, fuzzy
 msgid "Restart Network Adapter"
 msgstr "راه اندازی دوباره شبکه"
+
+#, fuzzy
+msgid "Restart Sleeptimer"
+msgstr "زمان شروع"
 
 #, fuzzy
 msgid "Restart both"
@@ -12183,16 +12207,24 @@ msgid "Start"
 msgstr "شروع تست"
 
 #, fuzzy
+msgid "Start CableScan"
+msgstr "اسکن کابلی"
+
+#, fuzzy
+msgid "Start Cablescan"
+msgstr "شروع تست"
+
+#, fuzzy
+msgid "Start Fastscan"
+msgstr "شروع تست"
+
+#, fuzzy
 msgid "Start Sleeptimer"
 msgstr "زمان شروع"
 
 #, fuzzy
 msgid "Start directory"
 msgstr "شاخه اصلی"
-
-#, fuzzy
-msgid "Start fastscan"
-msgstr "شروع تست"
 
 msgid "Start from the beginning"
 msgstr "شروع از ابتدای کار"
@@ -12235,11 +12267,12 @@ msgstr "شروع تست"
 msgid "Start with list screen"
 msgstr ""
 
-#, fuzzy
-msgid "Start/Stop Sleeptimer"
-msgstr "زمان شروع"
-
 msgid "Start/stop slide show"
+msgstr ""
+
+msgid ""
+"Starting download of image file?\n"
+"Press OK to start or Exit to abort."
 msgstr ""
 
 msgid "Starting on"
@@ -12691,8 +12724,9 @@ msgid "TEXT"
 msgstr ""
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
+#. Don't translate TRANSLATOR_INFO to show '(N/A)'
 msgid "TRANSLATOR_INFO"
-msgstr "اطلاعات مترجم"
+msgstr "TRANSLATOR_INFO"
 
 #
 msgid "TS file is too large for ISO9660 level 1!"
@@ -13394,6 +13428,10 @@ msgid "Timer overview"
 msgstr ""
 
 #, fuzzy
+msgid "Timer recording failed. No space left on device!\n"
+msgstr "مکان ضبط کردن فوری"
+
+#, fuzzy
 msgid "Timer recording location"
 msgstr "مکان ضبط کردن فوری"
 
@@ -13559,6 +13597,10 @@ msgstr ""
 
 #, fuzzy
 msgid "Translations Info"
+msgstr "فرستنده فعلی"
+
+#, fuzzy
+msgid "Translator comment"
 msgstr "فرستنده فعلی"
 
 msgid "Transmission mode"
@@ -13982,6 +14024,10 @@ msgstr ""
 
 msgid "Use circular LNB"
 msgstr ""
+
+#, fuzzy
+msgid "Use default spinner"
+msgstr "بازگردانی نسخه های پشتیبان"
 
 msgid "Use fastscan channel names"
 msgstr ""
@@ -14662,6 +14708,9 @@ msgstr ""
 #, fuzzy
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "نمایش شماره کانال ها در انتخاب کانال"
+
+msgid "When enabled, spinners that come with the activated skin are ignored."
+msgstr ""
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr ""

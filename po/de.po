@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 13:49+0200\n"
-"PO-Revision-Date: 2024-06-05 13:51+0200\n"
+"POT-Creation-Date: 2024-06-20 07:37+0200\n"
+"PO-Revision-Date: 2024-06-20 07:41+0200\n"
 "Last-Translator: Teamblue teamblue@online.de <teamblue-e2@online.de>\n"
 "Language-Team: Teamblue teamblue@online.de\n"
 "Language: de\n"
@@ -2515,8 +2515,8 @@ msgstr "Konfiguriere den Zeitraum in Stunden, nachdem der Receiver in den Standb
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Konfiguriert die Dauer in Minuten bis zum Start des Screensavers."
 
-msgid "Configure the duration in minutes for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer"
-msgstr "Konfiguriere den Zeitraum in Minuten für den Ausschalt-Timer. Wähle diesen Eintrag aus und drücke OK oder die grüne Taste, um den Ausschalt-Timer zu starten/beenden"
+msgid "Configure the duration in minutes for the sleeptimer. Select this entry and press blue to start/restart the sleeptimer or use yellow for stop active sleeptimer."
+msgstr "Konfiguriere den Zeitraum in Minuten für den Ausschalt-Timer. Wähle diesen Eintrag aus und drücke blau, um den Timer zu starten/neuzustarten oder gelb, um den aktiven Timer zu stoppen."
 
 msgid "Configure the duration when the receiver should go to shut down in case the receiver is in standby mode."
 msgstr "Konfiguriere die Dauer, wann der Receiver ausgeschaltet werden soll, falls er sich im Standby-Modus befindet."
@@ -2715,9 +2715,6 @@ msgstr "Internes Netzwerk konfigurieren"
 
 msgid "Configure your network again"
 msgstr "Netzwerk erneut konfigurieren"
-
-msgid "Configure your network settings and press OK to scan"
-msgstr "Konfigurieren Sie Ihre Netzwerkeinstellungen und drücken Sie zum Suchen OK"
 
 msgid "Configure your wireless LAN again"
 msgstr "Funk-Netzwerk erneut konfigurieren"
@@ -3386,7 +3383,7 @@ msgid "Detected NIMs:"
 msgstr "Erkannte Tuner:"
 
 msgid "Detected storage devices:"
-msgstr "Erkannte Festplatte(n):"
+msgstr "Erkannte Speichergeräte:"
 
 msgid "Device"
 msgstr "Gerät"
@@ -4776,6 +4773,10 @@ msgstr "Nicht zu sichernde Dateien/Ordner"
 msgid "Filesystem check"
 msgstr "Dateisystemüberprüfung"
 
+#, python-format
+msgid "Filesystem: %s\n"
+msgstr "Dateisystem: %s\n"
+
 msgid "Filter extension for 'My extension' setting of 'Filter extension'. Use the extension name without a '.'."
 msgstr "Filtererweiterung für 'meine Erweiterung' Einstellung von 'Filtererweiterung'. Verwenden Sie den Erweiterungsnamen ohne '.' ein."
 
@@ -4934,6 +4935,10 @@ msgstr "Framegröße im Vollbild"
 
 msgid "France"
 msgstr "France"
+
+#, python-format
+msgid "Free: %s/%s\n"
+msgstr "Frei: %s/%s\n"
 
 msgid "French"
 msgstr "Französisch"
@@ -5900,6 +5905,9 @@ msgstr "Intern"
 msgid "Internal flash"
 msgstr "Interner Flash"
 
+msgid "Internal flash storage:"
+msgstr "Interner Flash-Speicher:"
+
 msgid "Internal hdd only"
 msgstr "Nur interne Festplatte"
 
@@ -6731,6 +6739,10 @@ msgstr "Einhängepunkt Anpassen"
 msgid "MountView"
 msgstr "Mount Übersicht"
 
+#, python-format
+msgid "Mountpoint: %s (%s)\n"
+msgstr "Einhängepunkt: %s (%s)\n"
+
 msgid "Mountpoints"
 msgstr "Einhängepunkt"
 
@@ -7151,6 +7163,9 @@ msgstr "Keine Alterseinschränkung"
 
 msgid "No backup needed"
 msgstr "Keine Sicherung benötigt"
+
+msgid "No config items available"
+msgstr "Keine Konfigurationspunkte verfügbar"
 
 msgid ""
 "No data on transponder!\n"
@@ -7942,6 +7957,9 @@ msgstr ""
 
 msgid "Please connect your %s %s to the internet"
 msgstr "Bitte die %s %s mit dem Internet verbinden"
+
+msgid "Please contact the manufacturer for clarification."
+msgstr "Bitte wende dich zur Klärung an den Imagebetreiber."
 
 msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Bitte ändern Sie keine Werte, falls Sie nicht wissen, was Sie tun!"
@@ -9044,6 +9062,9 @@ msgstr "Benutzeroberfläche jetzt neu starten?"
 
 msgid "Restart Network Adapter"
 msgstr "Neustart des Netzwerkadapters"
+
+msgid "Restart Sleeptimer"
+msgstr "Sleeptimer neu starten"
 
 msgid "Restart both"
 msgstr "Beide neustarten"
@@ -11074,14 +11095,20 @@ msgstr "Standby in "
 msgid "Start"
 msgstr "Start"
 
+msgid "Start CableScan"
+msgstr "Starte Kabel Suchlauf"
+
+msgid "Start Cablescan"
+msgstr "Starte Kabel Suchlauf"
+
+msgid "Start Fastscan"
+msgstr "Starte Fastscan"
+
 msgid "Start Sleeptimer"
 msgstr "Sleeptimer starten"
 
 msgid "Start directory"
 msgstr "Anfangsverzeichnis"
-
-msgid "Start fastscan"
-msgstr "Fastscan starten"
 
 msgid "Start from the beginning"
 msgstr "Am Anfang starten"
@@ -11119,11 +11146,15 @@ msgstr "Timeshift starten"
 msgid "Start with list screen"
 msgstr "Mit Liste beginnen"
 
-msgid "Start/Stop Sleeptimer"
-msgstr "Start/Stop Sleeptimer"
-
 msgid "Start/stop slide show"
 msgstr "Diashow starten / stoppen"
+
+msgid ""
+"Starting download of image file?\n"
+"Press OK to start or Exit to abort."
+msgstr ""
+"Download des Image starten?\n"
+"Drücke OK zum Starten oder Exit zum Abbrechen."
 
 msgid "Starting on"
 msgstr "Beginnend ab"
@@ -11523,8 +11554,9 @@ msgid "TEXT"
 msgstr "TEXT"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
+#. Don't translate TRANSLATOR_INFO to show '(N/A)'
 msgid "TRANSLATOR_INFO"
-msgstr "ÜBERSETZER INFO"
+msgstr "TRANSLATOR_INFO"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS-Datei ist zu groß für ISO9660 level 1!"
@@ -12257,6 +12289,9 @@ msgstr ""
 msgid "Timer overview"
 msgstr "Timer-Übersicht"
 
+msgid "Timer recording failed. No space left on device!\n"
+msgstr "Timer-Aufnahme fehlgeschlagen. Kein Platz mehr auf dem Gerät!\n"
+
 msgid "Timer recording location"
 msgstr "Timer-Aufnahmeverzeichnis"
 
@@ -12411,6 +12446,9 @@ msgstr "Übersetzung"
 
 msgid "Translations Info"
 msgstr "Übersetzungsinformation"
+
+msgid "Translator comment"
+msgstr "Kommentar des Übersetzers"
 
 msgid "Transmission mode"
 msgstr "Übertragungstyp"
@@ -12823,6 +12861,9 @@ msgstr "Als PiP verwenden wenn möglich"
 
 msgid "Use circular LNB"
 msgstr "Benutze rundes LNB"
+
+msgid "Use default spinner"
+msgstr "Standard-Spinner verwenden"
 
 msgid "Use fastscan channel names"
 msgstr "Benutze Fast-Scan Kanalnamen"
@@ -13498,6 +13539,9 @@ msgstr "Sender können in mehreren Bouqets gruppiert werden."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Zeige Kanalnummer in Kanalauswahl."
+
+msgid "When enabled, spinners that come with the activated skin are ignored."
+msgstr "Wenn diese Option aktiviert ist, werden Spinner, die mit dem aktivierten Skin kommen, ignoriert."
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
 msgstr "Bevorzuge Untertitel für Hörgeschädigte."

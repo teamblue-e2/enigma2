@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 13:49+0200\n"
+"POT-Creation-Date: 2024-06-20 07:37+0200\n"
 "PO-Revision-Date: 2007-08-14 10:23+0200\n"
 "Last-Translator: Oriol Pellicer <oriol@elsud.org>\n"
 "Language-Team: \n"
@@ -2897,7 +2897,7 @@ msgstr ""
 msgid "Configure the duration in minutes for the screensaver."
 msgstr ""
 
-msgid "Configure the duration in minutes for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer"
+msgid "Configure the duration in minutes for the sleeptimer. Select this entry and press blue to start/restart the sleeptimer or use yellow for stop active sleeptimer."
 msgstr ""
 
 msgid "Configure the duration when the receiver should go to shut down in case the receiver is in standby mode."
@@ -3103,11 +3103,6 @@ msgstr ""
 #
 msgid "Configure your network again"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Configure your network settings and press OK to scan"
-msgstr "Prem OK per a activar la configuració."
 
 #
 msgid "Configure your wireless LAN again"
@@ -5599,6 +5594,10 @@ msgstr ""
 msgid "Filesystem check"
 msgstr ""
 
+#, python-format
+msgid "Filesystem: %s\n"
+msgstr ""
+
 msgid "Filter extension for 'My extension' setting of 'Filter extension'. Use the extension name without a '.'."
 msgstr ""
 
@@ -5774,6 +5773,11 @@ msgstr ""
 #, fuzzy
 msgid "France"
 msgstr "Cancel·lar"
+
+#
+#, fuzzy, python-format
+msgid "Free: %s/%s\n"
+msgstr "Model: "
 
 #
 msgid "French"
@@ -6942,6 +6946,11 @@ msgstr "Flash interna"
 msgid "Internal flash"
 msgstr "Flash interna"
 
+#
+#, fuzzy
+msgid "Internal flash storage:"
+msgstr "Flash interna"
+
 msgid "Internal hdd only"
 msgstr ""
 
@@ -7918,6 +7927,11 @@ msgstr ""
 msgid "MountView"
 msgstr ""
 
+#
+#, fuzzy, python-format
+msgid "Mountpoint: %s (%s)\n"
+msgstr "Model: "
+
 msgid "Mountpoints"
 msgstr ""
 
@@ -8452,6 +8466,9 @@ msgstr ""
 #
 msgid "No backup needed"
 msgstr "No cal backup"
+
+msgid "No config items available"
+msgstr ""
 
 #
 #, fuzzy
@@ -9415,6 +9432,9 @@ msgid ""
 msgstr ""
 
 msgid "Please connect your %s %s to the internet"
+msgstr ""
+
+msgid "Please contact the manufacturer for clarification."
 msgstr ""
 
 #
@@ -10816,6 +10836,11 @@ msgstr "Reengegar la IGU ara?"
 #, fuzzy
 msgid "Restart Network Adapter"
 msgstr "Selecciona interfície de xarxa"
+
+#
+#, fuzzy
+msgid "Restart Sleeptimer"
+msgstr "Hora inici"
 
 #
 #, fuzzy
@@ -13345,6 +13370,21 @@ msgstr "Hora inici"
 
 #
 #, fuzzy
+msgid "Start CableScan"
+msgstr "Ràpid"
+
+#
+#, fuzzy
+msgid "Start Cablescan"
+msgstr "Ràpid"
+
+#
+#, fuzzy
+msgid "Start Fastscan"
+msgstr "Ràpid"
+
+#
+#, fuzzy
 msgid "Start Sleeptimer"
 msgstr "Hora inici"
 
@@ -13352,11 +13392,6 @@ msgstr "Hora inici"
 #, fuzzy
 msgid "Start directory"
 msgstr "directori /var"
-
-#
-#, fuzzy
-msgid "Start fastscan"
-msgstr "Ràpid"
 
 #
 msgid "Start from the beginning"
@@ -13407,12 +13442,12 @@ msgstr "activar pausa"
 msgid "Start with list screen"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Start/Stop Sleeptimer"
-msgstr "Hora inici"
-
 msgid "Start/stop slide show"
+msgstr ""
+
+msgid ""
+"Starting download of image file?\n"
+"Press OK to start or Exit to abort."
 msgstr ""
 
 #
@@ -13930,8 +13965,9 @@ msgstr ""
 
 #
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
+#. Don't translate TRANSLATOR_INFO to show '(N/A)'
 msgid "TRANSLATOR_INFO"
-msgstr ""
+msgstr "TRANSLATOR_INFO"
 
 #
 msgid "TS file is too large for ISO9660 level 1!"
@@ -14653,6 +14689,11 @@ msgstr "Gravació"
 
 #
 #, fuzzy
+msgid "Timer recording failed. No space left on device!\n"
+msgstr "canviar la gravació (durada)"
+
+#
+#, fuzzy
 msgid "Timer recording location"
 msgstr "canviar la gravació (durada)"
 
@@ -14848,6 +14889,11 @@ msgstr ""
 #
 #, fuzzy
 msgid "Translations Info"
+msgstr "Tipus Transponedor"
+
+#
+#, fuzzy
+msgid "Translator comment"
 msgstr "Tipus Transponedor"
 
 #
@@ -15335,6 +15381,11 @@ msgstr ""
 #, fuzzy
 msgid "Use circular LNB"
 msgstr "circular esq."
+
+#
+#, fuzzy
+msgid "Use default spinner"
+msgstr "Definit per l'usuari"
 
 msgid "Use fastscan channel names"
 msgstr ""
@@ -16078,6 +16129,9 @@ msgid "When enabled, services may be grouped in multiple bouquets."
 msgstr ""
 
 msgid "When enabled, show channel numbers in the channel selection screen."
+msgstr ""
+
+msgid "When enabled, spinners that come with the activated skin are ignored."
 msgstr ""
 
 msgid "When enabled, subtitles for the hearing impaired can be used."

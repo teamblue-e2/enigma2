@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-05 13:49+0200\n"
+"POT-Creation-Date: 2024-06-20 07:37+0200\n"
 "PO-Revision-Date: 2011-05-07 12:23+0200\n"
 "Last-Translator: Baldur <bsveinsson@gmail.com>\n"
 "Language-Team: Polar Team/LT Team <baddi@oreind.is>\n"
@@ -2822,7 +2822,7 @@ msgstr ""
 msgid "Configure the duration in minutes for the screensaver."
 msgstr ""
 
-msgid "Configure the duration in minutes for the sleeptimer. Select this entry and click OK or green to start/stop the sleeptimer"
+msgid "Configure the duration in minutes for the sleeptimer. Select this entry and press blue to start/restart the sleeptimer or use yellow for stop active sleeptimer."
 msgstr ""
 
 msgid "Configure the duration when the receiver should go to shut down in case the receiver is in standby mode."
@@ -3038,11 +3038,6 @@ msgstr "Stilla innbyggt netkort"
 
 msgid "Configure your network again"
 msgstr "Stilla netkortið þitt aftur"
-
-#
-#, fuzzy
-msgid "Configure your network settings and press OK to scan"
-msgstr "Ýttu á OK til að velja valið skinn."
 
 msgid "Configure your wireless LAN again"
 msgstr "Stilla þráðlausa netkortið þitt aftur"
@@ -5512,6 +5507,10 @@ msgstr "Veldu skrár/möppur til afritunar"
 msgid "Filesystem check"
 msgstr "Skráarkerfis athugun"
 
+#, fuzzy, python-format
+msgid "Filesystem: %s\n"
+msgstr "Skráarkerfis athugun"
+
 msgid "Filter extension for 'My extension' setting of 'Filter extension'. Use the extension name without a '.'."
 msgstr ""
 
@@ -5696,6 +5695,11 @@ msgstr "Stærð ramma í fullri stærð"
 #, fuzzy
 msgid "France"
 msgstr "Hætta við"
+
+#
+#, fuzzy, python-format
+msgid "Free: %s/%s\n"
+msgstr "Gerð:"
 
 #
 msgid "French"
@@ -6879,6 +6883,11 @@ msgstr "Innra Flash minni"
 msgid "Internal flash"
 msgstr "Innra Flash minni"
 
+#
+#, fuzzy
+msgid "Internal flash storage:"
+msgstr "Innra Flash minni"
+
 msgid "Internal hdd only"
 msgstr ""
 
@@ -7888,6 +7897,11 @@ msgstr "Breyta"
 msgid "MountView"
 msgstr ""
 
+#
+#, fuzzy, python-format
+msgid "Mountpoint: %s (%s)\n"
+msgstr "Gerð:"
+
 msgid "Mountpoints"
 msgstr ""
 
@@ -8425,6 +8439,11 @@ msgstr ""
 #
 msgid "No backup needed"
 msgstr "Afritun óþörf"
+
+#
+#, fuzzy
+msgid "No config items available"
+msgstr " uppfærslur tiltækar."
 
 #
 msgid ""
@@ -9406,6 +9425,9 @@ msgstr ""
 "Ýttu þá á OK til að halda áfram."
 
 msgid "Please connect your %s %s to the internet"
+msgstr ""
+
+msgid "Please contact the manufacturer for clarification."
 msgstr ""
 
 #
@@ -10817,6 +10839,11 @@ msgstr "Endurræsa gluggakerfi núna?"
 #, fuzzy
 msgid "Restart Network Adapter"
 msgstr "Endurræsi netkort"
+
+#
+#, fuzzy
+msgid "Restart Sleeptimer"
+msgstr "Byrjunartími"
 
 #
 #, fuzzy
@@ -13403,6 +13430,21 @@ msgstr "Byrja prófun"
 
 #
 #, fuzzy
+msgid "Start CableScan"
+msgstr "Byrja prófun"
+
+#
+#, fuzzy
+msgid "Start Cablescan"
+msgstr "Byrja prófun"
+
+#
+#, fuzzy
+msgid "Start Fastscan"
+msgstr "Byrja prófun"
+
+#
+#, fuzzy
 msgid "Start Sleeptimer"
 msgstr "Byrjunartími"
 
@@ -13410,11 +13452,6 @@ msgstr "Byrjunartími"
 #, fuzzy
 msgid "Start directory"
 msgstr "byrjunar mappa"
-
-#
-#, fuzzy
-msgid "Start fastscan"
-msgstr "Byrja prófun"
 
 #
 msgid "Start from the beginning"
@@ -13465,12 +13502,12 @@ msgstr "byrja lifandi pásu"
 msgid "Start with list screen"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Start/Stop Sleeptimer"
-msgstr "Byrjunartími"
-
 msgid "Start/stop slide show"
+msgstr ""
+
+msgid ""
+"Starting download of image file?\n"
+"Press OK to start or Exit to abort."
 msgstr ""
 
 #
@@ -13994,6 +14031,7 @@ msgstr ""
 
 #
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
+#. Don't translate TRANSLATOR_INFO to show '(N/A)'
 msgid "TRANSLATOR_INFO"
 msgstr ""
 "Dreifingaraðili á Íslandi:\n"
@@ -14788,6 +14826,10 @@ msgid "Timer overview"
 msgstr "Innsláttur tímastilltra atriða"
 
 #, fuzzy
+msgid "Timer recording failed. No space left on device!\n"
+msgstr "Staður fyrir tímastilltar upptökur"
+
+#, fuzzy
 msgid "Timer recording location"
 msgstr "Staður fyrir tímastilltar upptökur"
 
@@ -14979,6 +15021,11 @@ msgstr ""
 #
 #, fuzzy
 msgid "Translations Info"
+msgstr "Þýðing"
+
+#
+#, fuzzy
+msgid "Translator comment"
 msgstr "Þýðing"
 
 #
@@ -15464,6 +15511,11 @@ msgstr ""
 #, fuzzy
 msgid "Use circular LNB"
 msgstr "hringpólun vinstri"
+
+#
+#, fuzzy
+msgid "Use default spinner"
+msgstr "Stillt af notanda"
 
 msgid "Use fastscan channel names"
 msgstr ""
@@ -16246,6 +16298,9 @@ msgid "When enabled, services may be grouped in multiple bouquets."
 msgstr ""
 
 msgid "When enabled, show channel numbers in the channel selection screen."
+msgstr ""
+
+msgid "When enabled, spinners that come with the activated skin are ignored."
 msgstr ""
 
 msgid "When enabled, subtitles for the hearing impaired can be used."
