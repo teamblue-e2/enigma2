@@ -36,8 +36,7 @@ class SoftcamSetup(Setup):
 		self.softcams_text = _("Select Softcam")
 		self.list.append((self.softcams_text, self.softcams))
 		if cardservers:
-			self.cardservers = ConfigSelection(choices=cardservers)
-			self.cardservers.value = self.cardserver.current()
+			self.cardservers = ConfigSelection(default=self.cardserver.current(), choices=cardservers)
 			self.list.append((_("Select Card Server"), self.cardservers))
 
 		self.list.append((_("Restart softcam"), ConfigAction(self.restart, "s")))
