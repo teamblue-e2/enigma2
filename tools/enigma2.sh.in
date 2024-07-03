@@ -43,9 +43,9 @@ fi
 DEBUG_LVL=${ENIGMA_DEBUG_LVL:-4}
 
 # LC_ALL available?
-#if [ -z $LC_ALL ]; then
-#	export LC_ALL=en_US.utf8
-#fi
+if [ -z $LC_ALL ]; then
+	export LC_ALL=en_US.utf8
+fi
 
 # init script for sysctl is missing, so manually load /etc/sysctl.conf here
 sysctl -p
