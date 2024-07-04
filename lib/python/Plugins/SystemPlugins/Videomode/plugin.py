@@ -167,7 +167,7 @@ class VideoSetup(ConfigListScreen, Screen):
 		self["description"].setText("%s" % self.getCurrentDescription())
 
 
-class AudioSetup(Screen, ConfigListScreen):
+class AudioSetup(ConfigListScreen, Screen):
 
 	def __init__(self, session, hw):
 		Screen.__init__(self, session)

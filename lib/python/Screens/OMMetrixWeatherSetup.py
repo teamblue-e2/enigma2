@@ -28,7 +28,7 @@ from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
 
 
-class OMMetrixWeatherSetup(Screen, ConfigListScreen):
+class OMMetrixWeatherSetup(ConfigListScreen, Screen):
 	skin = """
 		<screen name="MetrixWeatherSetup" position="160,150" size="450,200" title="Weather Setup">
 			<ePixmap pixmap="buttons/red.png" position="10,0" size="140,40" alphatest="on" />

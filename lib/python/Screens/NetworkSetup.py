@@ -202,7 +202,7 @@ class NetworkAdapterSelection(Screen, HelpableScreen):
 					self.session.openWithCallback(self.AdapterSetupClosed, NetworkWizard, selection[0])
 
 
-class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
+class NetworkMacSetup(ConfigListScreen, Screen, HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
@@ -269,7 +269,7 @@ class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 		self.close()
 
 
-class IPv6Setup(Screen, ConfigListScreen, HelpableScreen):
+class IPv6Setup(ConfigListScreen, Screen, HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
