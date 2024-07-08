@@ -1,4 +1,3 @@
-import six
 from Screens.Screen import Screen
 from Components.Language import language
 from Screens.ParentalControlSetup import ProtectedScreen
@@ -39,6 +38,7 @@ config.pluginfilter.skins = ConfigYesNo(default=True)
 config.pluginfilter.softcams = ConfigYesNo(default=True)
 config.pluginfilter.systemplugins = ConfigYesNo(default=True)
 config.pluginfilter.skincomponents = ConfigYesNo(default=False)
+config.pluginfilter.skinpacks = ConfigYesNo(default=False)
 config.pluginfilter.codec = ConfigYesNo(default=False)
 config.pluginfilter.dvb = ConfigYesNo(default=False)
 config.pluginfilter.userfeed = ConfigText(default='http://', fixed_size=False)
@@ -286,7 +286,7 @@ class PluginBrowser(Screen, ProtectedScreen):
 		self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginDownloadBrowser, PluginDownloadBrowser.DOWNLOAD, self.firsttime)
 		self.firsttime = False
 
-	def PluginDownloadBrowserClosed(self, returnValue):
+	def PluginDownloadBrowserClosed(self, returnValue=None):
 		if returnValue == None:
 			self.updateList()
 			self.checkWarnings()
@@ -381,6 +381,8 @@ class PluginDownloadBrowser(Screen):
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'skins')
 		if config.pluginfilter.skincomponents.getValue():
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'skincomponents')
+		if config.pluginfilter.skinpacks.getValue():
+			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'skinpacks')
 		if config.pluginfilter.softcams.getValue():
 			self.PLUGIN_PREFIX2.append(self.PLUGIN_PREFIX + 'softcams')
 		if config.pluginfilter.systemplugins.getValue():
@@ -547,10 +549,10 @@ class PluginDownloadBrowser(Screen):
 			self.setTitle(_("Hold plugins"))
 
 	def startOpkgListInstalled(self, pkgname=PLUGIN_PREFIX + '*'):
-		self.container.execute(self.opkg + Opkg.opkgExtraDestinations() + " list_installed")
+		self.container.execute(self.opkg + Opkg.opkgExtraDestinations() + " list_installed '%s'" % pkgname)
 
 	def startOpkgListAvailable(self):
-		self.container.execute(self.opkg + Opkg.opkgExtraDestinations() + " list")
+		self.container.execute(self.opkg + Opkg.opkgExtraDestinations() + " list '" + self.PLUGIN_PREFIX + "*'")
 
 	def startRun(self):
 		listsize = self["list"].instance.size()
@@ -617,7 +619,7 @@ class PluginDownloadBrowser(Screen):
 					self["text"].setText(_("Sorry feeds are down for maintenance"))
 
 	def dataAvail(self, str):
-		str = six.ensure_str(str)
+		str = str.decode()
 		if self.type == self.DOWNLOAD and str.find('404 Not Found') >= 0:
 			self["text"].setText(_("Sorry feeds are down for maintenance"))
 			self.run = 3
@@ -785,6 +787,7 @@ class PluginFilter(ConfigListScreen, Screen):
 		self.list.append((_("security"), config.pluginfilter.security, _("This allows you to show security modules in downloads")))
 		self.list.append((_("skins"), config.pluginfilter.skins, _("This allows you to show skins modules in downloads")))
 		self.list.append((_("skincomponents"), config.pluginfilter.skincomponents, _("This allows you to show skin components in downloads")))
+		self.list.append((_("skinpacks"), config.pluginfilter.skinpacks, _("This allows you to show skinpacks in downloads")))
 		if checksoftcam():
 			self.list.append((_("softcams"), config.pluginfilter.softcams, _("This allows you to show softcams modules in downloads")))
 		self.list.append((_("systemplugins"), config.pluginfilter.systemplugins, _("This allows you to show systemplugins modules in downloads")))
