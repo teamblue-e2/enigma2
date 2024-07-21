@@ -324,6 +324,13 @@ class CommitInfo(Screen):
 
 		self["key_red"] = Button(_("Cancel"))
 
+		# get the branch to display from the Enigma version
+		try:
+			branch = "?sha=" + about.getEnigmaVersionString().split("(")[1].split(")")[0].lower()
+		except:
+			branch = ""
+		branch_e2plugins = "?sha=python3"
+
 		self.project = 0
 		self.projects = [
 			#("organisation",  "repository",           "readable name",                "branch", "github/gitlab"),
