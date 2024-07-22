@@ -1,16 +1,17 @@
 from Plugins.Plugin import PluginDescriptor
+from Components.config import config
 
 
 def videoFinetuneMain(session, **kwargs):
-	from .VideoFinetune import VideoFinetune
+	from Plugins.SystemPlugins.VideoTune.VideoFinetune import VideoFinetune
 	session.open(VideoFinetune)
 
 
 def startSetup(menuid):
-	if menuid != "video":
-		return []
-
-	return [(_("Testscreens"), videoFinetuneMain, "video_finetune", None)]
+	# show only in the menu when set at expert level
+	if menuid == "video" and config.usage.setup_level.index == 2:
+		return [(_("Testscreens"), videoFinetuneMain, "video_finetune", None)]
+	return []
 
 
 def Plugins(**kwargs):
