@@ -187,7 +187,7 @@ class About(Screen):
 
 		AboutText += _("Uptime") + ": " + about.getBoxUptime()
 
-		if BoxInfo.getItem("HasHDMI-CEC") and config.hdmicec.enabled.value:
+		if BoxInfo.getItem("HDMICEC") and config.hdmicec.enabled.value:
 			address = config.hdmicec.fixed_physical_address.value if config.hdmicec.fixed_physical_address.value != "0.0.0.0" else _("not set")
 			AboutText += "\n\n" + _("HDMI-CEC address") + ": " + address
 

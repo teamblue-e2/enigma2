@@ -65,7 +65,7 @@ class InsertService(Setup):
 
 	def createConfig(self):
 		choices = [("Select Service", _("Select Service"))]
-		if BoxInfo.getItem("HasHDMIin"):
+		if BoxInfo.getItem("HDMIin"):
 			choices = [("HDMI-in", _("HDMI-In"))]
 		choices.append(("IPTV stream", _("Enter URL")))
 		self.servicetype = ConfigSelection(choices=choices)

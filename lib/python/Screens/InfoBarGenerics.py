@@ -1207,7 +1207,7 @@ class InfoBarMenu:
 		self.session.openWithCallback(self.mainMenuClosed, MainMenu, menu)
 
 	def showHDMiRecordSetup(self):
-		if BoxInfo.getItem("HasHDMI-In"):
+		if BoxInfo.getItem("HDMIin"):
 			self.session.openWithCallback(self.mainMenuClosed, Setup, 'HDMIRecord')
 
 	def mainMenuClosed(self, *val):
@@ -4027,10 +4027,10 @@ class InfoBarHDMI:
 		self.hdmi_enabled_full = False
 		self.hdmi_enabled_pip = False
 
-		if BoxInfo.getItem("HasHDMI-In"):
+		if BoxInfo.getItem("HDMIin"):
 			if not self.hdmi_enabled_full:
 				self.addExtension((self.getHDMIInFullScreen, self.HDMIInFull, lambda: True), "blue")
-			if not self.hdmi_enabled_pip:
+			if BoxInfo.getItem("HDMIinPiP") and not self.hdmi_enabled_pip:
 				self.addExtension((self.getHDMIInPiPScreen, self.HDMIInPiP, lambda: True), "green")
 		self["HDMIActions"] = HelpableActionMap(self, ["InfobarHDMIActions"], {
 			"HDMIin": (self.HDMIIn, _("Switch to HDMI in mode")),
@@ -4045,7 +4045,7 @@ class InfoBarHDMI:
 				self.session.pip.show()
 				self.session.pipshown = True
 				self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
-			else:
+			elif BoxInfo.getItem("HDMIinPiP"):
 				curref = self.session.pip.getCurrentService()
 				if curref and curref.type != 8192:
 					self.session.pip.playService(eServiceReference('8192:0:1:0:0:0:0:0:0:0:'))
