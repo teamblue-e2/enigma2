@@ -237,7 +237,7 @@ def setBoxInfoItems():
 	BoxInfo.setItem("HasScaler_sharpness", pathExists("/proc/stb/vmpeg/0/pep_scaler_sharpness"))
 	BoxInfo.setItem("HDMICEC", fileExists("/dev/hdmi_cec") or fileExists("/dev/misc/hdmi_cec0"))
 	BoxInfo.setItem("HDMIin", BoxInfo.getItem("hdmifhdin") or BoxInfo.getItem("hdmihdin"))
-	BoxInfo.setItem("HDMIinPiP", BoxInfo.getItem("HDMIin") and BRAND != "dreambox")
+	BoxInfo.setItem("HDMIinPiP", BoxInfo.getItem("HDMIin"))
 	BoxInfo.setItem("HasYPbPr", model in ("dm8000", "et5000", "et6000", "et6500", "et9000", "et9200", "et9500", "et10000", "formuler1", "mbtwinplus", "spycat", "vusolo", "vuduo", "vuduo2", "vuultimo") or getMachineBuild() in ('gb7356', 'gb7325') or model in ('gbultraue', 'gbultraueh', 'gb800ueplus', 'gb800seplus'))
 	BoxInfo.setItem("HasScart", model in ("dm8000", "et4000", "et6500", "et8000", "et9000", "et9200", "et9500", "et10000", "formuler1", "hd1100", "hd1200", "hd1265", "hd2400", "vusolo", "vusolo2", "vuduo", "vuduo2", "vuultimo", "vuuno", "xp1000") or getMachineBuild() in ('gb7325', ))
 	BoxInfo.setItem("HasSVideo", model in ("dm8000"))
