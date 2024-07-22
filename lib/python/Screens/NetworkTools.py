@@ -1255,7 +1255,7 @@ class NetworkInadyn(Screen):
 		self.session.open(NetworkInadynLog)
 
 
-class NetworkInadynSetup(Screen, ConfigListScreen):
+class NetworkInadynSetup(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.onChangedEntry = []
@@ -1636,7 +1636,7 @@ class NetworkuShare(Screen):
 		self.session.open(NetworkuShareLog)
 
 
-class NetworkuShareSetup(Screen, ConfigListScreen):
+class NetworkuShareSetup(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("uShare Setup"))
@@ -2128,7 +2128,7 @@ class NetworkMiniDLNA(Screen):
 		self.session.open(NetworkMiniDLNALog)
 
 
-class NetworkMiniDLNASetup(Screen, ConfigListScreen):
+class NetworkMiniDLNASetup(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("MiniDLNA Setup"))

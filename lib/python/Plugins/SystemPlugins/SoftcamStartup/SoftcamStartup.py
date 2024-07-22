@@ -31,7 +31,7 @@ class ConfigAction(ConfigElement):
 		pass
 
 
-class SoftcamStartup(Screen, ConfigListScreen):
+class SoftcamStartup(ConfigListScreen, Screen):
 	skin = """
 	<screen name="SoftcamStartup" position="center,center" size="560,350" >
 		<widget name="config" position="5,10" size="550,200"/>
