@@ -45,8 +45,8 @@ class ImportChannels:
 		if self.header:
 			request.add_header("Authorization", self.header)
 		try:
-			result = urllib.request.urlopen(request, timeout=timeout)
-		except urllib2.URLError as e:
+			result = urlopen(request, timeout=timeout).read()
+		except URLError as e:
 			if "[Errno -3]" in str(e.reason):
 				print("[Import Channels] Network is not up yet, delay 5 seconds")
 				# network not up yet
@@ -61,7 +61,12 @@ class ImportChannels:
 		return url[:url.rfind(":")] if url else self.url
 
 	def getFallbackSettings(self):
-		return self.getUrl("%s/web/settings" % self.getTerrestrialUrl()).read()
+		result = self.getUrl("%s/api/settings" % self.getTerrestrialUrl())
+		if result:
+			result = loads(result.decode('utf-8'))
+			if 'result' in result and result['result'] == True:
+				return {result['settings'][i][0]: result['settings'][i][1] for i in range(0, len(result['settings']))}
+		return {}
 
 	def getFallbackSettingsValue(self, settings, e2settingname):
 		root = et.fromstring(settings)
@@ -90,7 +95,7 @@ class ImportChannels:
 			try:
 				if remote:
 					try:
-						content = self.getUrl("%s/file?file=%s/%s" % (self.url, e2path, quote(_file))).readlines()
+						content = self.getUrl("%s/file?file=%s/%s" % (self.url, e2path, quote(file))).decode('utf-8', 'replace').split('\n')
 					except Exception as e:
 						print("[Import Channels] Exception: %s" % str(e))
 						continue
@@ -124,17 +129,20 @@ class ImportChannels:
 		if "epg" in self.remote_fallback_import:
 			print("[Import Channels] Writing epg.dat file on sever box")
 			try:
-				self.getUrl("%s/web/saveepg" % self.url, timeout=30).read()
-			except:
-				self.ImportChannelsDone(False, _("Error when writing epg.dat on server"))
+				result = loads(self.getUrl("%s/api/saveepg" % self.url, timeout=30).decode('utf-8'))
+				if 'result' not in result and result['result'] == False:
+					self.ImportChannelsDone(False, _("Error when writing epg.dat on the fallback receiver"))
+			except Exception as e:
+				print("[Import Channels] Exception: %s" % str(e))
+				self.ImportChannelsDone(False, _("Error when writing epg.dat on the fallback receiver"))
 				return
 			print("[Import Channels] Get EPG Location")
 			try:
 				epgdatfile = self.getFallbackSettingsValue(settings, "config.misc.epgcache_filename") or "/media/hdd/epg.dat"
 				try:
-					files = [_file for _file in loads(self.getUrl("%s/file?dir=%s" % (self.url, os.path.dirname(epgdatfile))).read())["files"] if os.path.basename(_file).startswith(os.path.basename(epgdatfile))]
+					files = [file for file in loads(self.getUrl("%s/file?dir=%s" % (self.url, os.path.dirname(epgdatfile))))["files"] if os.path.basename(file).startswith(os.path.basename(epgdatfile))]
 				except:
-					files = [_file for _file in loads(self.getUrl("%s/file?dir=/" % self.url).read())["files"] if os.path.basename(_file).startswith("epg.dat")]
+					files = [file for file in loads(self.getUrl("%s/file?dir=/" % self.url))["files"] if os.path.basename(file).startswith("epg.dat")]
 				epg_location = files[0] if files else None
 			except Exception as e:
 				print("[Import Channels] Exception: %s" % str(e))
@@ -143,7 +151,7 @@ class ImportChannels:
 			if epg_location:
 				print("[Import Channels] Copy EPG file...")
 				try:
-					open(os.path.join(self.tmp_dir, "epg.dat"), "wb").write(self.getUrl("%s/file?file=%s" % (self.url, epg_location)).read())
+					open(os.path.join(self.tmp_dir, "epg.dat"), "wb").write(self.getUrl("%s/file?file=%s" % (self.url, epg_location)))
 				except Exception as e:
 					print("[Import Channels] Exception: %s" % str(e))
 					self.ImportChannelsDone(False, _("Error while retrieving epg.dat from the fallback receiver"))
@@ -166,15 +174,15 @@ class ImportChannels:
 			files = self.ImportGetFilelist(True, 'bouquets.tv', 'bouquets.radio')
 
 			print("[Import Channels] Enumerate remote support files")
-			for _file in loads(self.getUrl("%s/file?dir=%s" % (self.url, e2path)).read())["files"]:
-				if os.path.basename(_file).startswith(supportfiles):
-					files.append(_file.replace(e2path, ''))
+			for file in loads(self.getUrl("%s/file?dir=%s" % (self.url, e2path)))["files"]:
+				if os.path.basename(file).startswith(supportfiles):
+					files.append(file.replace(e2path, ''))
 
 			print("[Import Channels] Fetch remote files")
 			for _file in files:
 				print("[Import Channels] Downloading %s..." % _file)
 				try:
-					open(os.path.join(self.tmp_dir, os.path.basename(_file)), "wb").write(self.getUrl("%s/file?file=%s/%s" % (self.url, e2path, quote(_file))).read())
+					open(os.path.join(self.tmp_dir, os.path.basename(file)), "wb").write(self.getUrl("%s/file?file=%s/%s" % (self.url, e2path, quote(file))))
 				except Exception as e:
 					print("[Import Channels] Exception: %s" % str(e))
 
