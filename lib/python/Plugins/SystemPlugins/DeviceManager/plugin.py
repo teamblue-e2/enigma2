@@ -11,7 +11,7 @@ def deviceManagerMain(session, **kwargs):
 
 
 def deviceManagerSetup(menuid, **kwargs):
-	if menuid != "harddisk_menu":
+	if menuid != "harddisk":
 		return []
 	return [(_("Device Manager"), deviceManagerMain, "deviceManager", 1)]
 
