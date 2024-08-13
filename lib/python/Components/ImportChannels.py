@@ -1,26 +1,22 @@
-import threading
-import urllib.request
-import urllib.error
-import urllib.parse
 import os
 import re
 import shutil
 import tempfile
-from json import loads
-from enigma import eDVBDB, eEPGCache
-from Screens.MessageBox import MessageBox
-from Components.config import config
-from Tools import Notifications
-from Tools.Directories import resolveFilename, SCOPE_CONFIG
+import threading
 from base64 import encodebytes
-from six.moves.urllib.parse import quote
+from json import loads
 from time import sleep
-import xml.etree.ElementTree as et
-import six
+from urllib.error import URLError
+from urllib.parse import quote
+from urllib.request import Request, urlopen
+from json import loads
+from Components.config import config
+from Screens.MessageBox import MessageBox
+from Tools.Notifications import AddNotificationWithID
 
 supportfiles = ('lamedb', 'blacklist', 'whitelist', 'alternatives.')
 
-e2path = resolveFilename(SCOPE_CONFIG)
+e2path = "/etc/enigma2"
 
 
 class ImportChannels:
@@ -35,7 +31,7 @@ class ImportChannels:
 			if config.usage.remote_fallback_openwebif_customize.value:
 				self.url = "%s:%s" % (self.url, config.usage.remote_fallback_openwebif_port.value)
 				if config.usage.remote_fallback_openwebif_userid.value and config.usage.remote_fallback_openwebif_password.value:
-					self.header = "Basic %s" % encodebytes("%s:%s" % (config.usage.remote_fallback_openwebif_userid.value, config.usage.remote_fallback_openwebif_password.value)).strip()
+					self.header = "Basic %s" % encodebytes(("%s:%s" % (config.usage.remote_fallback_openwebif_userid.value, config.usage.remote_fallback_openwebif_password.value)).encode("UTF-8")).strip().decode()
 			self.remote_fallback_import = config.usage.remote_fallback_import.value
 			self.thread = threading.Thread(target=self.threaded_function, name="ChannelsImport")
 			self.settings = {}
@@ -96,7 +92,7 @@ class ImportChannels:
 
 	def ImportGetFilelist(self, remote=False, *files):
 		result = []
-		for _file in files:
+		for file in files:
 			# read the contents of the file
 			try:
 				if remote:
@@ -106,7 +102,7 @@ class ImportChannels:
 						print("[Import Channels] Exception: %s" % str(e))
 						continue
 				else:
-					with open('%s/%s' % (e2path, _file), 'r') as f:
+					with open('%s/%s' % (e2path, file), 'r') as f:
 						content = f.readlines()
 			except Exception as e:
 				# for the moment just log and ignore
@@ -122,7 +118,7 @@ class ImportChannels:
 					# recurse
 					result.extend(self.ImportGetFilelist(remote, r.group(1)))
 			# add add the file itself
-			result.append(_file)
+			result.append(file)
 
 		# return the file list
 		return result
@@ -165,7 +161,7 @@ class ImportChannels:
 				shutil.move(os.path.join(self.tmp_dir, file), os.path.join(e2path, file))
 
 		if "epg" in self.remote_fallback_import:
-			print("[Import Channels] Writing epg.dat file on sever box")
+			print("[Import Channels] Writing epg.dat file on server box")
 			try:
 				result = loads(self.getUrl("%s/api/saveepg" % self.url, timeout=30).decode('utf-8'))
 				if 'result' not in result and result['result'] == False:
@@ -205,7 +201,7 @@ class ImportChannels:
 						self.ImportChannelsDone(False, _("Error while moving epg.dat to its destination"))
 						return
 			else:
-				self.ImportChannelsDone(False, _("No epg.dat file found server"))
+				self.ImportChannelsDone(False, _("No epg.dat file found on the fallback receiver"))
 
 		self.getTerrestrialRegion()
 		self.ImportChannelsDone(True, {"channels": _("Channels"), "epg": _("EPG"), "channels_epg": _("Channels and EPG")}[self.remote_fallback_import])
@@ -213,6 +209,6 @@ class ImportChannels:
 	def ImportChannelsDone(self, flag, message=None):
 		shutil.rmtree(self.tmp_dir, True)
 		if flag:
-			Notifications.AddNotificationWithID("ChannelsImportOK", MessageBox, _("%s imported from fallback tuner") % message, type=MessageBox.TYPE_INFO, timeout=5)
+			AddNotificationWithID("ChannelsImportOK", MessageBox, _("%s imported from fallback tuner") % message, type=MessageBox.TYPE_INFO, timeout=5)
 		else:
-			Notifications.AddNotificationWithID("ChannelsImportNOK", MessageBox, _("Import from fallback tuner failed, %s") % message, type=MessageBox.TYPE_ERROR, timeout=5)
+			AddNotificationWithID("ChannelsImportNOK", MessageBox, _("Import from fallback tuner failed, %s") % message, type=MessageBox.TYPE_ERROR, timeout=5)
