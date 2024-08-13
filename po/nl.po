@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-20 07:37+0200\n"
+"POT-Creation-Date: 2024-08-13 12:25+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Frenske <voorzitter@openpli.org>\n"
 "Language-Team: PLiteam <translators@openpli.org>\n"
@@ -1878,11 +1878,6 @@ msgstr "Bus: "
 
 msgid "By teamblue Image Team"
 msgstr ""
-
-msgid "When set to 'Yes', all locations where SNR is displayed in dB will show an SNR percentage, and vice versa."
-msgstr "Indien ingesteld op 'Ja' tonen alle locaties waar de SNR wordt weergegeven in dB's een SNR-percentage, en omgekeerd,\n"
-"Weergave in dB werkt enkel indien dit door de tuner wordt ondersteund.\n"
-"N.B. Dit is een relatieve waarde gegenereerd door de betreffende tuner. Vergelijken tussen verschillende type tuners is vaak niet zinvol."
 
 msgid "Bypass HDMI EDID checking"
 msgstr ""
@@ -4769,8 +4764,11 @@ msgid ""
 "%s"
 msgstr ""
 
-msgid "Error when writing epg.dat on server"
+#, fuzzy
+msgid "Error when writing epg.dat on the fallback receiver"
 msgstr ""
+"Fout tijdens het ophalen van de Fallback timer informatie\n"
+"%s"
 
 #, fuzzy
 msgid "Error while moving epg.dat to its destination"
@@ -7899,8 +7897,11 @@ msgstr "Geen beschrijving beschikbaar."
 msgid "No displayable files on this medium found!"
 msgstr "Geen weer te geven bestanden op dit medium gevonden!"
 
-msgid "No epg.dat file found server"
+#, fuzzy
+msgid "No epg.dat file found on the fallback receiver"
 msgstr ""
+"Fout tijdens het ophalen van de Fallback timer informatie\n"
+"%s"
 
 msgid "No event info found, recording indefinitely."
 msgstr "Geen EPG gegevens gevonden. Opname voor onbepaalde tijd."
@@ -11397,8 +11398,11 @@ msgstr "Toon de informatie"
 msgid "Show PiP"
 msgstr "Toon de EPG..."
 
-msgid "Toggle the SNR values displayed"
-msgstr "Toon de signaalwaarde in procenten i.p.v. in dB"
+msgid "Show Script completed message"
+msgstr ""
+
+msgid "Show Task's completed message"
+msgstr ""
 
 msgid "Show True/False as graphical switch"
 msgstr ""
@@ -13132,6 +13136,10 @@ msgstr ""
 msgid "This allows you to show skin components in downloads"
 msgstr ""
 
+#, fuzzy
+msgid "This allows you to show skinpacks in downloads"
+msgstr "Met deze optie kunnen alle symbolen op het display getoond worden."
+
 msgid "This allows you to show skins modules in downloads"
 msgstr ""
 
@@ -13582,6 +13590,9 @@ msgstr ""
 msgid "Toggle subtitles show/hide"
 msgstr ""
 
+msgid "Toggle the SNR values displayed"
+msgstr "Toon de signaalwaarde in procenten i.p.v. in dB"
+
 #, fuzzy
 msgid "Toggle videomode"
 msgstr "Selecteer videomodus"
@@ -13930,6 +13941,10 @@ msgstr "Onbekend"
 #, fuzzy, python-format
 msgid "Unknown group: %d"
 msgstr "onbekende zender"
+
+#, fuzzy
+msgid "Unknown image"
+msgstr "Onbekend"
 
 #, fuzzy, python-format
 msgid "Unknown user: %d"
@@ -14902,6 +14917,13 @@ msgstr ""
 
 msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr ""
+
+#, fuzzy
+msgid "When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa."
+msgstr ""
+"Indien ingesteld op 'Ja' tonen alle locaties waar de SNR wordt weergegeven in dB's een SNR-percentage, en omgekeerd,\n"
+"Weergave in dB werkt enkel indien dit door de tuner wordt ondersteund.\n"
+"N.B. Dit is een relatieve waarde gegenereerd door de betreffende tuner. Vergelijken tussen verschillende type tuners is vaak niet zinvol."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr ""
@@ -16469,6 +16491,10 @@ msgstr "eenvoudig"
 
 msgid "skincomponents"
 msgstr ""
+
+#, fuzzy
+msgid "skinpacks"
+msgstr "Skins"
 
 #, fuzzy
 msgid "skins"
