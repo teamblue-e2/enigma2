@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-20 07:37+0200\n"
+"POT-Creation-Date: 2024-08-13 12:25+0200\n"
 "PO-Revision-Date: 2014-11-12 00:49+0200\n"
 "Last-Translator: Taapat <taapat@gmail.com>\n"
 "Language-Team: Taapat <taapat@gmail.com>\n"
@@ -1891,9 +1891,6 @@ msgstr ""
 
 msgid "Bus: "
 msgstr "Kopne: "
-
-msgid "By default, SNR will be shown in dB (when supported by the tuner). This setting forces SNR to be shown as a percentage instead."
-msgstr "Pēc noklusējuma SNR tiek attēlots dB (ja atļauj uztvērējs). Šis iestatījums ieslēgs SNR attēlošanu procentos."
 
 msgid "By teamblue Image Team"
 msgstr ""
@@ -4606,8 +4603,11 @@ msgid ""
 "%s"
 msgstr ""
 
-msgid "Error when writing epg.dat on server"
+#, fuzzy
+msgid "Error when writing epg.dat on the fallback receiver"
 msgstr ""
+"Kļūda iegūstot taimerus no attālinātā uztvērēja\n"
+"%s"
 
 #, fuzzy
 msgid "Error while moving epg.dat to its destination"
@@ -7727,8 +7727,11 @@ msgstr "Apraksts nav pieejams."
 msgid "No displayable files on this medium found!"
 msgstr "Šinī datu nesējā nav atrasti attēlojami faili!"
 
-msgid "No epg.dat file found server"
+#, fuzzy
+msgid "No epg.dat file found on the fallback receiver"
 msgstr ""
+"Kļūda iegūstot taimerus no attālinātā uztvērēja\n"
+"%s"
 
 msgid "No event info found, recording indefinitely."
 msgstr "Nav atrasta informācija par notikumiem, ieraksts uz nenoteiktu laiku."
@@ -11210,9 +11213,6 @@ msgstr "Rādīt informāciju"
 msgid "Show PiP"
 msgstr "Rādīt EPG..."
 
-msgid "Show SNR percentage instead of dB value"
-msgstr "Rādīt SNR procentos dB vietā"
-
 msgid "Show Script completed message"
 msgstr ""
 
@@ -12953,6 +12953,9 @@ msgstr ""
 msgid "This allows you to show skin components in downloads"
 msgstr ""
 
+msgid "This allows you to show skinpacks in downloads"
+msgstr ""
+
 msgid "This allows you to show skins modules in downloads"
 msgstr ""
 
@@ -13398,6 +13401,9 @@ msgstr ""
 msgid "Toggle subtitles show/hide"
 msgstr ""
 
+msgid "Toggle the SNR values displayed"
+msgstr "Rādīt SNR procentos dB vietā"
+
 #, fuzzy
 msgid "Toggle videomode"
 msgstr "Izvēlieties video režīmu"
@@ -13744,6 +13750,10 @@ msgstr "Nezināms"
 #, fuzzy, python-format
 msgid "Unknown group: %d"
 msgstr "nezināms kanāls"
+
+#, fuzzy
+msgid "Unknown image"
+msgstr "Nezināms"
 
 #, fuzzy, python-format
 msgid "Unknown user: %d"
@@ -14701,6 +14711,10 @@ msgstr ""
 
 msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr ""
+
+#, fuzzy
+msgid "When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa."
+msgstr "Ja iestatīts uz Jā, visās vietās, kur tiek rādīts SNR dB, tiks rādīts SNR procents un otrādi."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Ja attēla malu attiecība ir 16:9 izvēlieties, kā palielināt/stiept attēlu."
@@ -16267,6 +16281,10 @@ msgstr "vienkāršs"
 
 msgid "skincomponents"
 msgstr ""
+
+#, fuzzy
+msgid "skinpacks"
+msgstr "Ādiņas"
 
 #, fuzzy
 msgid "skins"

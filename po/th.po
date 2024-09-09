@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-20 07:37+0200\n"
+"POT-Creation-Date: 2024-08-13 12:25+0200\n"
 "PO-Revision-Date: 2010-04-08 18:13+0700\n"
 "Last-Translator: Tony - Thaidreambox\n"
 "Language-Team: Tony @ Thai Dreambox <tonyboyth@gmail.com>\n"
@@ -1881,9 +1881,6 @@ msgstr ""
 
 msgid "Bus: "
 msgstr "Bus: "
-
-msgid "By default, SNR will be shown in dB (when supported by the tuner). This setting forces SNR to be shown as a percentage instead."
-msgstr ""
 
 msgid "By teamblue Image Team"
 msgstr ""
@@ -4595,7 +4592,7 @@ msgid ""
 "%s"
 msgstr ""
 
-msgid "Error when writing epg.dat on server"
+msgid "Error when writing epg.dat on the fallback receiver"
 msgstr ""
 
 msgid "Error while moving epg.dat to its destination"
@@ -7737,7 +7734,7 @@ msgstr "ไม่มีรายละเอียดเพิ่มเติม
 msgid "No displayable files on this medium found!"
 msgstr "ไม่พบชนิดไฟล์ที่สามารถเล่นได้ในสื่อบันทีกนี้!"
 
-msgid "No epg.dat file found server"
+msgid "No epg.dat file found on the fallback receiver"
 msgstr ""
 
 msgid "No event info found, recording indefinitely."
@@ -11228,9 +11225,6 @@ msgstr "แสดงข้อมูล"
 msgid "Show PiP"
 msgstr "แสดงผังรายการ (EPG)"
 
-msgid "Show SNR percentage instead of dB value"
-msgstr ""
-
 msgid "Show Script completed message"
 msgstr ""
 
@@ -12977,6 +12971,9 @@ msgstr ""
 msgid "This allows you to show skin components in downloads"
 msgstr ""
 
+msgid "This allows you to show skinpacks in downloads"
+msgstr ""
+
 msgid "This allows you to show skins modules in downloads"
 msgstr ""
 
@@ -13427,6 +13424,9 @@ msgstr ""
 msgid "Toggle subtitles show/hide"
 msgstr ""
 
+msgid "Toggle the SNR values displayed"
+msgstr ""
+
 #, fuzzy
 msgid "Toggle videomode"
 msgstr "เลือกโหมดวีดีโอ"
@@ -13771,6 +13771,10 @@ msgstr ""
 
 #, fuzzy, python-format
 msgid "Unknown group: %d"
+msgstr "ไม่ทราบชนิดบริการ"
+
+#, fuzzy
+msgid "Unknown image"
 msgstr "ไม่ทราบชนิดบริการ"
 
 #, fuzzy, python-format
@@ -14715,6 +14719,10 @@ msgstr ""
 
 msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr ""
+
+#, fuzzy
+msgid "When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa."
+msgstr "หากตั้งค่าเป็นใช่ ทุกตำแหน่งที่แสดง SNR ในหน่วย dB จะแสดงเปอร์เซ็นต์ SNR และในทางกลับกัน"
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr ""
@@ -16247,6 +16255,10 @@ msgstr "แบบง่าย"
 
 msgid "skincomponents"
 msgstr ""
+
+#, fuzzy
+msgid "skinpacks"
+msgstr "สกิน"
 
 #, fuzzy
 msgid "skins"

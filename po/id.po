@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-20 07:37+0200\n"
+"POT-Creation-Date: 2024-08-13 12:25+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Budiarno\n"
 "Language-Team: \n"
@@ -1852,9 +1852,6 @@ msgstr ""
 
 msgid "Bus: "
 msgstr "Bus: "
-
-msgid "By default, SNR will be shown in dB (when supported by the tuner). This setting forces SNR to be shown as a percentage instead."
-msgstr "Secara bawaan, SNR akan ditampilkan dalam dB (jika didudukung oleh penala). Sebaliknya penyetelan ini membuat SNR ditampilkan dalam persentase."
 
 msgid "By teamblue Image Team"
 msgstr ""
@@ -4548,8 +4545,11 @@ msgid ""
 "%s"
 msgstr ""
 
-msgid "Error when writing epg.dat on server"
+#, fuzzy
+msgid "Error when writing epg.dat on the fallback receiver"
 msgstr ""
+"Kesalahan ketika mengambil informasi pewaktu mundur\n"
+"%s"
 
 #, fuzzy
 msgid "Error while moving epg.dat to its destination"
@@ -7641,8 +7641,11 @@ msgstr "Deskripsi tidak tersedia."
 msgid "No displayable files on this medium found!"
 msgstr "Tidak ditemukan file yang bisa dilihat pada medium ini!"
 
-msgid "No epg.dat file found server"
+#, fuzzy
+msgid "No epg.dat file found on the fallback receiver"
 msgstr ""
+"Kesalahan ketika mengambil informasi pewaktu mundur\n"
+"%s"
 
 msgid "No event info found, recording indefinitely."
 msgstr "Info acara tidak ditemukan, merekam tanpa batas waktu."
@@ -11039,9 +11042,6 @@ msgstr "Tampilkan info"
 msgid "Show PiP"
 msgstr "Hentikan PiP"
 
-msgid "Show SNR percentage instead of dB value"
-msgstr "Tampilkan persentase SNR daripada nilai dB"
-
 msgid "Show Script completed message"
 msgstr ""
 
@@ -12738,6 +12738,9 @@ msgstr ""
 msgid "This allows you to show skin components in downloads"
 msgstr ""
 
+msgid "This allows you to show skinpacks in downloads"
+msgstr ""
+
 msgid "This allows you to show skins modules in downloads"
 msgstr ""
 
@@ -13183,6 +13186,9 @@ msgstr ""
 msgid "Toggle subtitles show/hide"
 msgstr ""
 
+msgid "Toggle the SNR values displayed"
+msgstr "Tampilkan persentase SNR ketimbang nilai dB"
+
 #, fuzzy
 msgid "Toggle videomode"
 msgstr "Pilih mode video"
@@ -13526,6 +13532,10 @@ msgstr "Unknown"
 #, python-format
 msgid "Unknown group: %d"
 msgstr ""
+
+#, fuzzy
+msgid "Unknown image"
+msgstr "Unknown"
 
 #, fuzzy, python-format
 msgid "Unknown user: %d"
@@ -14467,6 +14477,10 @@ msgstr ""
 
 msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr ""
+
+#, fuzzy
+msgid "When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa."
+msgstr "Jika diatur ke Ya, semua tempat di mana SNR dalam dB ditampilkan akan menampilkan persentase SNR dan sebaliknya."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
@@ -16036,6 +16050,10 @@ msgstr "sederhana"
 
 msgid "skincomponents"
 msgstr ""
+
+#, fuzzy
+msgid "skinpacks"
+msgstr "Beberapa tampilan"
 
 #, fuzzy
 msgid "skins"

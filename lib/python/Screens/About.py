@@ -187,7 +187,7 @@ class About(Screen):
 
 		AboutText += _("Uptime") + ": " + about.getBoxUptime()
 
-		if BoxInfo.getItem("HasHDMI-CEC") and config.hdmicec.enabled.value:
+		if BoxInfo.getItem("HDMICEC") and config.hdmicec.enabled.value:
 			address = config.hdmicec.fixed_physical_address.value if config.hdmicec.fixed_physical_address.value != "0.0.0.0" else _("not set")
 			AboutText += "\n\n" + _("HDMI-CEC address") + ": " + address
 
@@ -323,6 +323,13 @@ class CommitInfo(Screen):
 			})
 
 		self["key_red"] = Button(_("Cancel"))
+
+		# get the branch to display from the Enigma version
+		try:
+			branch = "?sha=" + about.getEnigmaVersionString().split("(")[1].split(")")[0].lower()
+		except:
+			branch = ""
+		branch_e2plugins = "?sha=python3"
 
 		self.project = 0
 		self.projects = [

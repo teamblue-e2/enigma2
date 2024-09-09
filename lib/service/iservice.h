@@ -49,6 +49,7 @@ public:
 	int flags; // flags will NOT be compared.
 
 	inline int getSortKey() const { return (flags & hasSortKey) ? data[3] : ((flags & sort1) ? 1 : 0); }
+	static RESULT parseNameAndProviderFromName(std::string &sourceName, std::string& name, std::string& prov);
 
 #ifndef SWIG
 	int data[8];
@@ -87,10 +88,13 @@ public:
 // real existing service ( for dvb eServiceDVB )
 #ifndef SWIG
 	std::string name;
+	std::string prov;
 	int number;
 #endif
 	std::string getName() const { return name; }
-	void setName( const std::string &n ) { name=n; }
+	std::string getProvider() const { return prov; }
+	void setName( const std::string &s ) { name=s; }
+	void setProvider( const std::string &s ) { prov=s; }
 	int getChannelNum() const { return number; }
 	void setChannelNum(const int n) { number = n; }
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-20 07:37+0200\n"
+"POT-Creation-Date: 2024-08-13 12:25+0200\n"
 "PO-Revision-Date: 2020-03-17 01:28+0100\n"
 "Last-Translator: Jose Juan <jzapater@gmail.com>\n"
 "Language-Team: ANGELODOS  angelo2807@hotmail.com\n"
@@ -2133,9 +2133,6 @@ msgstr ""
 #
 msgid "Bus: "
 msgstr "Bus: "
-
-msgid "By default, SNR will be shown in dB (when supported by the tuner). This setting forces SNR to be shown as a percentage instead."
-msgstr "Por defecto, SNR en dB (cuando sintoniz. soporte). Esta configuración obligar a mostrar SNR en modo porcentaje."
 
 msgid "By teamblue Image Team"
 msgstr ""
@@ -5223,8 +5220,11 @@ msgid ""
 "%s"
 msgstr ""
 
-msgid "Error when writing epg.dat on server"
+#, fuzzy
+msgid "Error when writing epg.dat on the fallback receiver"
 msgstr ""
+"Error al recuperar la información del temporizador de reserva\n"
+"% s"
 
 #, fuzzy
 msgid "Error while moving epg.dat to its destination"
@@ -8791,8 +8791,11 @@ msgstr "No hay descripción."
 msgid "No displayable files on this medium found!"
 msgstr "¡No hay ficheros visualizables en su medio!"
 
-msgid "No epg.dat file found server"
+#, fuzzy
+msgid "No epg.dat file found on the fallback receiver"
 msgstr ""
+"Error al recuperar la información del temporizador de reserva\n"
+"% s"
 
 #
 msgid "No event info found, recording indefinitely."
@@ -12810,9 +12813,6 @@ msgstr "Mostrar Registro"
 msgid "Show PiP"
 msgstr "Mostrar PIP"
 
-msgid "Show SNR percentage instead of dB value"
-msgstr "Mostrar porcentaje SNR en lugar del valor dB"
-
 msgid "Show Script completed message"
 msgstr ""
 
@@ -14787,6 +14787,10 @@ msgstr "Esto permite mostrar módulos de configuración en descargas"
 msgid "This allows you to show skin components in downloads"
 msgstr "Esto permite mostrar los componentes de pieles en descargas"
 
+#, fuzzy
+msgid "This allows you to show skinpacks in downloads"
+msgstr "Esto permite mostrar los componentes de pieles en descargas"
+
 msgid "This allows you to show skins modules in downloads"
 msgstr "Esto permite mostrar módulos de pieles en descargas"
 
@@ -15309,6 +15313,9 @@ msgstr ""
 msgid "Toggle subtitles show/hide"
 msgstr ""
 
+msgid "Toggle the SNR values displayed"
+msgstr "Mostrar el porcentaje de SNR en lugar del valor de dB"
+
 #
 #, fuzzy
 msgid "Toggle videomode"
@@ -15707,6 +15714,10 @@ msgstr "Desconocido"
 #, fuzzy, python-format
 msgid "Unknown group: %d"
 msgstr "servicio desconocido"
+
+#, fuzzy
+msgid "Unknown image"
+msgstr "Desconocido"
 
 #
 #, fuzzy, python-format
@@ -16759,6 +16770,10 @@ msgstr ""
 
 msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr ""
+
+#, fuzzy
+msgid "When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa."
+msgstr "Si se establece en Sí, todos los lugares donde se muestra la SNR en dB mostrarán el porcentaje de SNR y viceversa."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Cuando el contenido tiene un cociente de aspecto de 16:9, elija si desea escala/estiramiento de la imagen."
@@ -18553,6 +18568,12 @@ msgstr "sencillo"
 
 msgid "skincomponents"
 msgstr ""
+
+#
+#
+#, fuzzy
+msgid "skinpacks"
+msgstr "Pieles"
 
 #
 #
