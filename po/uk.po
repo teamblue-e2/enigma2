@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-20 07:37+0200\n"
+"POT-Creation-Date: 2024-08-13 12:25+0200\n"
 "PO-Revision-Date: 2016-11-17 12:51+0200\n"
 "Last-Translator: vovan43<vovan43@ex.ua>, sety <tim1065@mail.ru>, Irkoff <irkoff@gmail.com>\n"
 "Language-Team: gisclub.tv <http://gisclub.tv/>\n"
@@ -1885,9 +1885,6 @@ msgstr ""
 
 msgid "Bus: "
 msgstr "Шина:"
-
-msgid "By default, SNR will be shown in dB (when supported by the tuner). This setting forces SNR to be shown as a percentage instead."
-msgstr "За замовчуванням, SNR показується в дБ (якщо підтримує тюнер). при включенні параметра SNR буде показуватися у відсотках."
 
 msgid "By teamblue Image Team"
 msgstr ""
@@ -4613,7 +4610,7 @@ msgid ""
 "%s"
 msgstr ""
 
-msgid "Error when writing epg.dat on server"
+msgid "Error when writing epg.dat on the fallback receiver"
 msgstr ""
 
 msgid "Error while moving epg.dat to its destination"
@@ -7728,7 +7725,7 @@ msgstr "Оновлень поки немає."
 msgid "No displayable files on this medium found!"
 msgstr "Немає відображуваних файлів на цьому носії!"
 
-msgid "No epg.dat file found server"
+msgid "No epg.dat file found on the fallback receiver"
 msgstr ""
 
 msgid "No event info found, recording indefinitely."
@@ -11227,9 +11224,6 @@ msgstr "Показати інфо"
 msgid "Show PiP"
 msgstr "Показати EPG..."
 
-msgid "Show SNR percentage instead of dB value"
-msgstr "Показати відсотки SNR замість значення dB в інфобарі"
-
 msgid "Show Script completed message"
 msgstr ""
 
@@ -12967,6 +12961,9 @@ msgstr ""
 msgid "This allows you to show skin components in downloads"
 msgstr ""
 
+msgid "This allows you to show skinpacks in downloads"
+msgstr ""
+
 msgid "This allows you to show skins modules in downloads"
 msgstr ""
 
@@ -13416,6 +13413,9 @@ msgstr ""
 msgid "Toggle subtitles show/hide"
 msgstr ""
 
+msgid "Toggle the SNR values displayed"
+msgstr "Показати відсотки SNR замість значення дБ в інфобарі"
+
 #, fuzzy
 msgid "Toggle videomode"
 msgstr "Виберіть відеорежим"
@@ -13764,6 +13764,10 @@ msgstr "<невідомий>"
 #, fuzzy, python-format
 msgid "Unknown group: %d"
 msgstr "невідомий сервіс"
+
+#, fuzzy
+msgid "Unknown image"
+msgstr "<невідомий>"
 
 #, fuzzy, python-format
 msgid "Unknown user: %d"
@@ -14724,6 +14728,10 @@ msgstr ""
 
 msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr ""
+
+#, fuzzy
+msgid "When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa."
+msgstr "Якщо встановлено «Так», усі місця, де SNR відображається в дБ, відображатимуть відсоток SNR, і навпаки."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Коли зображення на каналі має співвідношення сторін 16:9, виберіть, числід масштабувати / розтягнути картинку."
@@ -16294,6 +16302,10 @@ msgstr "простий"
 #, fuzzy
 msgid "skincomponents"
 msgstr "Інсталяція компонентів"
+
+#, fuzzy
+msgid "skinpacks"
+msgstr "Графічні оболочки"
 
 #, fuzzy
 msgid "skins"

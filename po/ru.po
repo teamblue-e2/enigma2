@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-20 07:37+0200\n"
+"POT-Creation-Date: 2024-08-13 12:25+0200\n"
 "PO-Revision-Date: 2019-07-25 17:52+0300\n"
 "Last-Translator: Dimitrij <Dima-73@inbox.lv>\n"
 "Language-Team: openPLi Dimitrij\n"
@@ -1883,9 +1883,6 @@ msgstr ""
 
 msgid "Bus: "
 msgstr "Шина:"
-
-msgid "By default, SNR will be shown in dB (when supported by the tuner). This setting forces SNR to be shown as a percentage instead."
-msgstr "По умолчанию, SNR показывается в дБ (если поддерживает тюнер). При включении параметра SNR будет показываться в процентах."
 
 msgid "By teamblue Image Team"
 msgstr ""
@@ -4596,8 +4593,11 @@ msgid ""
 "%s"
 msgstr ""
 
-msgid "Error when writing epg.dat on server"
+#, fuzzy
+msgid "Error when writing epg.dat on the fallback receiver"
 msgstr ""
+"Ошибка получения информации о резервных таймерах\n"
+"%s"
 
 #, fuzzy
 msgid "Error while moving epg.dat to its destination"
@@ -7714,8 +7714,11 @@ msgstr "Обновлений пока нет."
 msgid "No displayable files on this medium found!"
 msgstr "Нет отображаемых файлов на этом носителе!"
 
-msgid "No epg.dat file found server"
+#, fuzzy
+msgid "No epg.dat file found on the fallback receiver"
 msgstr ""
+"Ошибка получения информации о резервных таймерах\n"
+"%s"
 
 msgid "No event info found, recording indefinitely."
 msgstr "Информация о событии не найдена, запись на неопределенное время."
@@ -11196,9 +11199,6 @@ msgstr "Показать инфо"
 msgid "Show PiP"
 msgstr "Показать EPG..."
 
-msgid "Show SNR percentage instead of dB value"
-msgstr "Показать проценты SNR вместо значения dB в инфобаре"
-
 msgid "Show Script completed message"
 msgstr ""
 
@@ -12936,6 +12936,9 @@ msgstr ""
 msgid "This allows you to show skin components in downloads"
 msgstr ""
 
+msgid "This allows you to show skinpacks in downloads"
+msgstr ""
+
 msgid "This allows you to show skins modules in downloads"
 msgstr ""
 
@@ -13385,6 +13388,9 @@ msgstr ""
 msgid "Toggle subtitles show/hide"
 msgstr ""
 
+msgid "Toggle the SNR values displayed"
+msgstr "Показать SNR проценты вместо dB значения"
+
 #, fuzzy
 msgid "Toggle videomode"
 msgstr "Выберите видеорежим"
@@ -13731,6 +13737,10 @@ msgstr "<неизвестный>"
 #, fuzzy, python-format
 msgid "Unknown group: %d"
 msgstr "неизвестный сервис"
+
+#, fuzzy
+msgid "Unknown image"
+msgstr "<неизвестный>"
 
 #, fuzzy, python-format
 msgid "Unknown user: %d"
@@ -14688,6 +14698,10 @@ msgstr ""
 
 msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr ""
+
+#, fuzzy
+msgid "When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa."
+msgstr "Если установлено значение «Да», во всех местах, где отображается SNR в дБ, будет отображаться процент SNR, и наоборот."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Когда изображение на канале имеет соотношение сторон 16:9, выберите, следует ли масштабировать/растянуть картинку."
@@ -16354,6 +16368,10 @@ msgstr "Простой"
 
 msgid "skincomponents"
 msgstr ""
+
+#, fuzzy
+msgid "skinpacks"
+msgstr "Скины"
 
 #, fuzzy
 msgid "skins"

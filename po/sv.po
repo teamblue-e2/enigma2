@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-20 07:37+0200\n"
+"POT-Creation-Date: 2024-08-13 12:25+0200\n"
 "PO-Revision-Date: 2017-03-05 13:24+0100\n"
 "Last-Translator: Magnus Nilsson <mag_nilsson@hotmail.com>\n"
 "Language-Team: \n"
@@ -2082,9 +2082,6 @@ msgstr ""
 #
 msgid "Bus: "
 msgstr "Bus: "
-
-msgid "By default, SNR will be shown in dB (when supported by the tuner). This setting forces SNR to be shown as a percentage instead."
-msgstr "Som standard, kommer SNR att visas i dB (om det stöds av tunern). Denna inställning tvingar SNR att visas som en procentsats i stället."
 
 msgid "By teamblue Image Team"
 msgstr ""
@@ -5107,7 +5104,7 @@ msgid ""
 "%s"
 msgstr ""
 
-msgid "Error when writing epg.dat on server"
+msgid "Error when writing epg.dat on the fallback receiver"
 msgstr ""
 
 msgid "Error while moving epg.dat to its destination"
@@ -8585,7 +8582,7 @@ msgstr "Ingen beskrivning tillgänglig."
 msgid "No displayable files on this medium found!"
 msgstr "Inga visningsbara filer hittade på detta media!"
 
-msgid "No epg.dat file found server"
+msgid "No epg.dat file found on the fallback receiver"
 msgstr ""
 
 #
@@ -12562,9 +12559,6 @@ msgstr "Visa Info"
 msgid "Show PiP"
 msgstr "Visa EPG..."
 
-msgid "Show SNR percentage instead of dB value"
-msgstr "Visa SNR procent istället för dB värde"
-
 msgid "Show Script completed message"
 msgstr ""
 
@@ -14505,6 +14499,9 @@ msgstr ""
 msgid "This allows you to show skin components in downloads"
 msgstr ""
 
+msgid "This allows you to show skinpacks in downloads"
+msgstr ""
+
 msgid "This allows you to show skins modules in downloads"
 msgstr ""
 
@@ -14989,6 +14986,9 @@ msgstr ""
 msgid "Toggle subtitles show/hide"
 msgstr ""
 
+msgid "Toggle the SNR values displayed"
+msgstr "Visa SNR procent istället för dB värde"
+
 #
 #, fuzzy
 msgid "Toggle videomode"
@@ -15380,6 +15380,10 @@ msgstr "Okänd"
 #, fuzzy, python-format
 msgid "Unknown group: %d"
 msgstr "okänd kanal"
+
+#, fuzzy
+msgid "Unknown image"
+msgstr "Okänd"
 
 #
 #, fuzzy, python-format
@@ -16431,6 +16435,10 @@ msgstr ""
 
 msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr ""
+
+#, fuzzy
+msgid "When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa."
+msgstr "Om inställt på Ja, kommer alla platser där SNR i dB visas att visa SNR-procenten och vice versa."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "När innehållet har ett bildförhållande på 16:9, välj om man ska skala/sträcka bilden."
@@ -18195,6 +18203,11 @@ msgstr "enkelt"
 
 msgid "skincomponents"
 msgstr ""
+
+#
+#, fuzzy
+msgid "skinpacks"
+msgstr "Utseenden"
 
 #
 #, fuzzy

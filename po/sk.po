@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-20 07:37+0200\n"
+"POT-Creation-Date: 2024-08-13 12:25+0200\n"
 "PO-Revision-Date: 2023-10-27 20:52+0200\n"
 "Last-Translator: Andrej Tobola <andrej.tobola@gmail.com>\n"
 "Language-Team: \n"
@@ -1783,9 +1783,6 @@ msgstr "Burundi"
 
 msgid "Bus: "
 msgstr "Zbernica: "
-
-msgid "By default, SNR will be shown in dB (when supported by the tuner). This setting forces SNR to be shown as a percentage instead."
-msgstr "Predvolene je SNR zobrazené v dB (ak je podporované tunerom). Toto nastavenie zmení zobrazenie SNR na percentá."
 
 msgid "By teamblue Image Team"
 msgstr "Podľa teamblue Image Team"
@@ -4336,8 +4333,9 @@ msgstr ""
 "Chyba pri premenovaní %s na %s:\n"
 "%s"
 
-msgid "Error when writing epg.dat on server"
-msgstr "Chyba pri zápise epg.dat na serveri"
+#, fuzzy
+msgid "Error when writing epg.dat on the fallback receiver"
+msgstr "Chyba pri načítaní epg.dat zo záložného prijímača"
 
 msgid "Error while moving epg.dat to its destination"
 msgstr "Chyba pri presúvaní súboru epg.dat na miesto určenia"
@@ -7235,7 +7233,8 @@ msgstr "Opis nie je k dispozícii."
 msgid "No displayable files on this medium found!"
 msgstr "Na tomto médiu sa nenašli žiadne zobraziteľné súbory!"
 
-msgid "No epg.dat file found server"
+#, fuzzy
+msgid "No epg.dat file found on the fallback receiver"
 msgstr "Server nenašiel žiadny súbor epg.dat"
 
 msgid "No event info found, recording indefinitely."
@@ -10413,9 +10412,6 @@ msgstr "Zobraziť záznam"
 msgid "Show PiP"
 msgstr "Zobraziť PiP"
 
-msgid "Show SNR percentage instead of dB value"
-msgstr "Zobrazovať SNR v percentách namiesto hodnoty v dB"
-
 msgid "Show Script completed message"
 msgstr "Zobrazenie správy Skript dokončený"
 
@@ -12050,6 +12046,10 @@ msgstr "To vám umožní zobraziť moduly nastavení v súboroch na stiahnutie"
 msgid "This allows you to show skin components in downloads"
 msgstr "To vám umožní zobraziť komponenty kože pri sťahovaní"
 
+#, fuzzy
+msgid "This allows you to show skinpacks in downloads"
+msgstr "To vám umožní zobraziť komponenty kože pri sťahovaní"
+
 msgid "This allows you to show skins modules in downloads"
 msgstr "To vám umožní zobraziť moduly skinov v súboroch na stiahnutie"
 
@@ -12490,6 +12490,9 @@ msgstr "Prepnúť zobraziť/skryť"
 msgid "Toggle subtitles show/hide"
 msgstr "Zobraziť/skryť titulky"
 
+msgid "Toggle the SNR values displayed"
+msgstr "Zobrazovať SNR v percentách namiesto hodnoty v dB"
+
 msgid "Toggle videomode"
 msgstr "Prepnúť videorežim"
 
@@ -12813,6 +12816,10 @@ msgstr "Neznáme"
 #, python-format
 msgid "Unknown group: %d"
 msgstr "Neznáma skupina: %d"
+
+#, fuzzy
+msgid "Unknown image"
+msgstr "Neznáme"
 
 #, python-format
 msgid "Unknown user: %d"
@@ -13721,6 +13728,10 @@ msgstr "Keď sa prijímač prebudí z pohotovostného režimu, vyšle do TV pove
 
 msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr "Ak je vybraté, umožní sa zvoliť video režim i napriek tomu, že nie je uvedený medzi podporovanými."
+
+#, fuzzy
+msgid "When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa."
+msgstr "Ak je nastavené na Áno, na všetkých miestach, kde sa zobrazuje SNR v dB, sa zobrazí percento SNR a naopak."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Ak má obsah pomer strán 16: 9, vyberte, či chcete veľkosť obrazu prispôsobiť alebo obraz roztiahnuť. Doporučená hodnota: Letterbox."
@@ -15246,6 +15257,10 @@ msgstr "jednoduché"
 
 msgid "skincomponents"
 msgstr "skincomponents"
+
+#, fuzzy
+msgid "skinpacks"
+msgstr "kože"
 
 msgid "skins"
 msgstr "kože"

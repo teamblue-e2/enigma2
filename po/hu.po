@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-20 07:37+0200\n"
+"POT-Creation-Date: 2024-08-13 12:25+0200\n"
 "PO-Revision-Date: 2020-05-13 21:36+0200\n"
 "Last-Translator: mcfly82\n"
 "Language-Team: mcfly82 & wysless\n"
@@ -1872,9 +1872,6 @@ msgstr ""
 
 msgid "Bus: "
 msgstr "Busz: "
-
-msgid "By default, SNR will be shown in dB (when supported by the tuner). This setting forces SNR to be shown as a percentage instead."
-msgstr "Alapértelmezetten, a Jel/Zaj viszony (SNR) decibelben jeleník meg (ha a tuner támogatja). Ezzel a beállítással mindenképp százalékra kényszerítheti a megjelenítést."
 
 msgid "By teamblue Image Team"
 msgstr ""
@@ -4585,8 +4582,9 @@ msgid ""
 "%s"
 msgstr ""
 
-msgid "Error when writing epg.dat on server"
-msgstr "Hiba az epg.dat fájl szerverre írása során"
+#, fuzzy
+msgid "Error when writing epg.dat on the fallback receiver"
+msgstr "Hiba történt az epg.dat fájl letöltésekor a szerverről"
 
 #, fuzzy
 msgid "Error while moving epg.dat to its destination"
@@ -7696,7 +7694,8 @@ msgstr "Nincs elérhető leírás"
 msgid "No displayable files on this medium found!"
 msgstr "A hordozón nem található lejátszható fájl!"
 
-msgid "No epg.dat file found server"
+#, fuzzy
+msgid "No epg.dat file found on the fallback receiver"
 msgstr "Nem található az epg.dat fájl a szerveren"
 
 msgid "No event info found, recording indefinitely."
@@ -11174,9 +11173,6 @@ msgstr "Info megjelenítése"
 msgid "Show PiP"
 msgstr "EPG megnyitása..."
 
-msgid "Show SNR percentage instead of dB value"
-msgstr "A Jel/Zaj viszony (SNR) megjelenítése százalékban dB helyett"
-
 msgid "Show Script completed message"
 msgstr ""
 
@@ -12925,6 +12921,9 @@ msgstr ""
 msgid "This allows you to show skin components in downloads"
 msgstr ""
 
+msgid "This allows you to show skinpacks in downloads"
+msgstr ""
+
 msgid "This allows you to show skins modules in downloads"
 msgstr ""
 
@@ -13372,6 +13371,9 @@ msgstr "Mutatás/elrejtés be/ki"
 msgid "Toggle subtitles show/hide"
 msgstr "Mutatás/elrejtés be/ki"
 
+msgid "Toggle the SNR values displayed"
+msgstr "A Jel/Zaj viszony (SNR) megjelenítése százalékban dB helyett"
+
 msgid "Toggle videomode"
 msgstr "Video mód kapcsoló"
 
@@ -13717,6 +13719,10 @@ msgstr "Ismeretlen"
 #, fuzzy, python-format
 msgid "Unknown group: %d"
 msgstr "ismeretlen csatorna"
+
+#, fuzzy
+msgid "Unknown image"
+msgstr "Ismeretlen"
 
 #, fuzzy, python-format
 msgid "Unknown user: %d"
@@ -14672,6 +14678,10 @@ msgstr ""
 
 msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr ""
+
+#, fuzzy
+msgid "When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa."
+msgstr "Ha az Igen értékre van állítva, minden olyan helyen, ahol az SNR dB-ben jelenik meg, megjelenik az SNR százaléka, és fordítva."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Egy 16:9-es kép méretarányú tartalom nagyítva vagy széthúzva legyen."
@@ -16241,6 +16251,10 @@ msgstr "egyszerű"
 
 msgid "skincomponents"
 msgstr ""
+
+#, fuzzy
+msgid "skinpacks"
+msgstr "Skin-ek"
 
 #, fuzzy
 msgid "skins"

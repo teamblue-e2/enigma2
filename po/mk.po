@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-20 07:37+0200\n"
+"POT-Creation-Date: 2024-08-13 12:25+0200\n"
 "PO-Revision-Date: 2021-02-19 14:49+0100\n"
 "Last-Translator: \n"
 "Language-Team: Muzoss-VELEBRDO\n"
@@ -1812,9 +1812,6 @@ msgstr "Бурунди"
 
 msgid "Bus: "
 msgstr "Бус: "
-
-msgid "By default, SNR will be shown in dB (when supported by the tuner). This setting forces SNR to be shown as a percentage instead."
-msgstr "Стандардно, SNR се прикажува во децибели (ако е поддржано од тјунерот). Оваа опција го принудува SNR да биде прикажан како процент."
 
 msgid "By teamblue Image Team"
 msgstr ""
@@ -4448,8 +4445,9 @@ msgid ""
 "%s"
 msgstr ""
 
-msgid "Error when writing epg.dat on server"
-msgstr "Грешка при пишување на epg.dat на серверот"
+#, fuzzy
+msgid "Error when writing epg.dat on the fallback receiver"
+msgstr "Грешка при повторно враќање на epg.dat од серверот"
 
 #, fuzzy
 msgid "Error while moving epg.dat to its destination"
@@ -7464,7 +7462,8 @@ msgstr "Нема достапен опис."
 msgid "No displayable files on this medium found!"
 msgstr "Не се пронајдени датотеки што може да се прикажат на овој медиум!"
 
-msgid "No epg.dat file found server"
+#, fuzzy
+msgid "No epg.dat file found on the fallback receiver"
 msgstr "Не е пронајдена датотека epg.dat на серверот"
 
 msgid "No event info found, recording indefinitely."
@@ -10769,9 +10768,6 @@ msgstr "Покажи инфо"
 msgid "Show PiP"
 msgstr "Покажи PiP (слика во слика)"
 
-msgid "Show SNR percentage instead of dB value"
-msgstr "Покажи процент на SNR наместо вредност dB"
-
 msgid "Show Script completed message"
 msgstr ""
 
@@ -12457,6 +12453,10 @@ msgid "This allows you to show skin components in downloads"
 msgstr "Оваа опција ви овозможува да ги прикажете сите симболи на екранот."
 
 #, fuzzy
+msgid "This allows you to show skinpacks in downloads"
+msgstr "Оваа опција ви овозможува да ги прикажете сите симболи на екранот."
+
+#, fuzzy
 msgid "This allows you to show skins modules in downloads"
 msgstr "Оваа опција ви овозможува да ги прикажете сите симболи на екранот."
 
@@ -12907,6 +12907,9 @@ msgstr "Вклучи / прикажи / скриј"
 msgid "Toggle subtitles show/hide"
 msgstr "Вклучи ги преводите прикажи / скриј"
 
+msgid "Toggle the SNR values displayed"
+msgstr "Покажи процент на SNR наместо вредност dB"
+
 msgid "Toggle videomode"
 msgstr "Вклучи видео режим"
 
@@ -13236,6 +13239,10 @@ msgstr "Непознат"
 #, fuzzy, python-format
 msgid "Unknown group: %d"
 msgstr "непозната грешка"
+
+#, fuzzy
+msgid "Unknown image"
+msgstr "Непознат"
 
 #, fuzzy, python-format
 msgid "Unknown user: %d"
@@ -14166,6 +14173,10 @@ msgstr "Кога ресиверот ќе се вклучи од стендбај
 
 msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr "Ако е избрана ова опција, ова овозможува избор на режими на видео, дури и ако не се пријавени како поддржани."
+
+#, fuzzy
+msgid "When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa."
+msgstr "Ако е поставено на Да, сите места каде што се прикажува SNR во dB ќе го прикажат процентот на SNR и обратно."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Кога содржината има размер 16: 9, изберете дали ќе ја размерите / истегнете сликата."
@@ -15713,6 +15724,10 @@ msgstr "едноставно"
 
 msgid "skincomponents"
 msgstr ""
+
+#, fuzzy
+msgid "skinpacks"
+msgstr "Скинови"
 
 #, fuzzy
 msgid "skins"

@@ -517,9 +517,9 @@ class ChannelContextMenu(Screen):
 				print("restore file ", _file[:-4])
 				os.rename(_file, _file[:-4])
 		eDVBDBInstance = eDVBDB.getInstance()
-		eDVBDBInstance.setLoadUnlinkedUserbouquets(True)
+		eDVBDBInstance.setLoadUnlinkedUserbouquets(1)
 		eDVBDBInstance.reloadBouquets()
-		eDVBDBInstance.setLoadUnlinkedUserbouquets(config.misc.load_unlinked_userbouquets.value)
+		eDVBDBInstance.setLoadUnlinkedUserbouquets(int(config.misc.load_unlinked_userbouquets.value))
 		refreshServiceList()
 		self.csel.showFavourites()
 		self.close()
@@ -1133,7 +1133,7 @@ class ChannelSelectionEdit:
 		serviceHandler = eServiceCenter.getInstance()
 		mutableBouquetList = serviceHandler.list(self.bouquet_root).startEdit()
 		if mutableBouquetList:
-			name = sanitizeFilename(bName)
+			name = sanitizeFilename(bName.replace(" ", ""))
 			while os.path.isfile((self.mode == MODE_TV and '/etc/enigma2/userbouquet.%s.tv' or '/etc/enigma2/userbouquet.%s.radio') % name):
 				name = name.rsplit('_', 1)
 				name = ('_').join((name[0], len(name) == 2 and name[1].isdigit() and str(int(name[1]) + 1) or '1'))

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-20 07:37+0200\n"
+"POT-Creation-Date: 2024-08-13 12:25+0200\n"
 "PO-Revision-Date: 2020-03-03 08:50+0100\n"
 "Last-Translator: Željko <zeljko2@hi.ht.hr>\n"
 "Language-Team: Željko\n"
@@ -2070,9 +2070,6 @@ msgstr ""
 #
 msgid "Bus: "
 msgstr "Bus:"
-
-msgid "By default, SNR will be shown in dB (when supported by the tuner). This setting forces SNR to be shown as a percentage instead."
-msgstr ""
 
 msgid "By teamblue Image Team"
 msgstr ""
@@ -5050,8 +5047,11 @@ msgid ""
 "%s"
 msgstr ""
 
-msgid "Error when writing epg.dat on server"
+#, fuzzy
+msgid "Error when writing epg.dat on the fallback receiver"
 msgstr ""
+"Pogreška tijekom preuzimanja podataka o rezervnom tajmeru\n"
+"%s"
 
 #, fuzzy
 msgid "Error while moving epg.dat to its destination"
@@ -8527,8 +8527,11 @@ msgstr ""
 msgid "No displayable files on this medium found!"
 msgstr ""
 
-msgid "No epg.dat file found server"
+#, fuzzy
+msgid "No epg.dat file found on the fallback receiver"
 msgstr ""
+"Pogreška tijekom preuzimanja podataka o rezervnom tajmeru\n"
+"%s"
 
 msgid "No event info found, recording indefinitely."
 msgstr "Informacije o događaju nisu pronađene, snimanje nedefinirano."
@@ -12468,9 +12471,6 @@ msgstr ""
 msgid "Show PiP"
 msgstr "prikaži EPG..."
 
-msgid "Show SNR percentage instead of dB value"
-msgstr ""
-
 msgid "Show Script completed message"
 msgstr ""
 
@@ -14391,6 +14391,9 @@ msgstr ""
 msgid "This allows you to show skin components in downloads"
 msgstr ""
 
+msgid "This allows you to show skinpacks in downloads"
+msgstr ""
+
 msgid "This allows you to show skins modules in downloads"
 msgstr ""
 
@@ -14851,6 +14854,9 @@ msgstr ""
 msgid "Toggle subtitles show/hide"
 msgstr ""
 
+msgid "Toggle the SNR values displayed"
+msgstr "Prikažite postotke SNR umjesto dB vrijednosti"
+
 #
 #, fuzzy
 msgid "Toggle videomode"
@@ -15238,6 +15244,11 @@ msgstr ""
 #
 #, fuzzy, python-format
 msgid "Unknown group: %d"
+msgstr "Nepoznata usluga"
+
+#
+#, fuzzy
+msgid "Unknown image"
 msgstr "Nepoznata usluga"
 
 #
@@ -16241,6 +16252,10 @@ msgstr ""
 
 msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr ""
+
+#, fuzzy
+msgid "When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa."
+msgstr "Ako je postavljeno na Da, sva mjesta gdje je prikazan SNR u dB prikazat će SNR postotak i obrnuto."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr ""
@@ -17950,6 +17965,9 @@ msgid "simple"
 msgstr "jednostavno"
 
 msgid "skincomponents"
+msgstr ""
+
+msgid "skinpacks"
 msgstr ""
 
 msgid "skins"

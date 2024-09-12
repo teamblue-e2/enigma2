@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-20 07:37+0200\n"
+"POT-Creation-Date: 2024-08-13 12:25+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: MCelliotG <mcelliotg@gmail.com>\n"
@@ -1865,9 +1865,6 @@ msgstr ""
 
 msgid "Bus: "
 msgstr "Bus: "
-
-msgid "By default, SNR will be shown in dB (when supported by the tuner). This setting forces SNR to be shown as a percentage instead."
-msgstr "Από προεπιλογή, το SNR θα εμφανίζεται σε dB (αν υποστηρίζεται από το tuner). Αυτή η ρύθμιση αναγκάζει το SNR να εμφανίζεται ως ποσοστό."
 
 msgid "By teamblue Image Team"
 msgstr ""
@@ -4583,8 +4580,11 @@ msgid ""
 "%s"
 msgstr ""
 
-msgid "Error when writing epg.dat on server"
+#, fuzzy
+msgid "Error when writing epg.dat on the fallback receiver"
 msgstr ""
+"Σφάλμα ανάκτησης πληροφοριών χρονοδιακόπτη από το εφεδρικό tuner\n"
+"%s"
 
 #, fuzzy
 msgid "Error while moving epg.dat to its destination"
@@ -7708,8 +7708,11 @@ msgstr "Μη διαθέσιμη περιγραφή."
 msgid "No displayable files on this medium found!"
 msgstr "Δεν υπάρχουν αρχεία προς εμφάνιση σε αυτό το μέσο!"
 
-msgid "No epg.dat file found server"
+#, fuzzy
+msgid "No epg.dat file found on the fallback receiver"
 msgstr ""
+"Σφάλμα ανάκτησης πληροφοριών χρονοδιακόπτη από το εφεδρικό tuner\n"
+"%s"
 
 msgid "No event info found, recording indefinitely."
 msgstr ""
@@ -11198,9 +11201,6 @@ msgstr "Εμφάνιση πληροφοριών"
 msgid "Show PiP"
 msgstr "Εμφάνιση EPG..."
 
-msgid "Show SNR percentage instead of dB value"
-msgstr "Εμφάνιση τιμής SNR σε ποσοστό αντί για dB"
-
 msgid "Show Script completed message"
 msgstr ""
 
@@ -12942,6 +12942,9 @@ msgstr ""
 msgid "This allows you to show skin components in downloads"
 msgstr ""
 
+msgid "This allows you to show skinpacks in downloads"
+msgstr ""
+
 msgid "This allows you to show skins modules in downloads"
 msgstr ""
 
@@ -13387,6 +13390,9 @@ msgstr ""
 msgid "Toggle subtitles show/hide"
 msgstr ""
 
+msgid "Toggle the SNR values displayed"
+msgstr "Εμφάνιση τιμής SNR σε ποσοστό αντί για dB"
+
 #, fuzzy
 msgid "Toggle videomode"
 msgstr "Επιλογή λειτουργίας εικόνας"
@@ -13735,6 +13741,10 @@ msgstr "Άγνωστο"
 #, fuzzy, python-format
 msgid "Unknown group: %d"
 msgstr "άγνωστη υπηρεσία"
+
+#, fuzzy
+msgid "Unknown image"
+msgstr "Άγνωστο"
 
 #, fuzzy, python-format
 msgid "Unknown user: %d"
@@ -14690,6 +14700,10 @@ msgstr ""
 
 msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr ""
+
+#, fuzzy
+msgid "When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa."
+msgstr "Εάν οριστεί σε Ναι, όλα τα μέρη όπου εμφανίζεται το SNR σε dB θα εμφανίζουν το ποσοστό SNR και αντίστροφα."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Όταν το περιεχόμενο έχει λόγο πλευρών 16:9, επιλέξτε αν θα γίνεται κλιμάκωση/άπλωμα της εικόνας."
@@ -16254,6 +16268,10 @@ msgstr "απλό"
 
 msgid "skincomponents"
 msgstr ""
+
+#, fuzzy
+msgid "skinpacks"
+msgstr "Θέματα"
 
 #, fuzzy
 msgid "skins"
