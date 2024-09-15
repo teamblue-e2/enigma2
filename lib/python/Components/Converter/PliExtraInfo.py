@@ -406,10 +406,6 @@ class PliExtraInfo(Poll, Converter):
 			else:
 				fedata = self.fedata
 
-		if self.type == "CurrentCrypto":
-			self.getCryptoInfo(info)
-			return self.createCurrentCaidLabel(info)
-
 			if self.type == "All":
 				self.getCryptoInfo(info)
 				if config.usage.show_cryptoinfo.value:
