@@ -28,14 +28,12 @@ class MainMenu(GUIAddon):
 		self.minWidth = 100
 		self.maxWidth = 700
 
-
 	def onContainerShown(self):
 		self.textRenderer.GUIcreate(self.relatedScreen.instance)
 		self.source.onListUpdated.append(self.constructMenu)
 		self.constructMenu()
 
 	GUI_WIDGET = eListbox
-
 
 	def getDesktopWith(self):
 		return getDesktop(0).size().width()
@@ -80,7 +78,6 @@ class MainMenu(GUIAddon):
 	def selectionChanged(self):
 		if self.instance and hasattr(self, "source"):
 			self.source.setConnectedGuiElement(self)
-
 	def setFont(self, value):
 		self.font = parseFont(value, ((1, 1), (1, 1)))
 		self.l.setFont(0, self.font)
@@ -123,8 +120,8 @@ class MainMenu(GUIAddon):
 			if textWidth > self.longestMenuTextWidth:
 				self.longestMenuTextWidth = textWidth
 		curSize = self.instance.size()
-		dest_width = self.iconSize + 20*2 + 10
-		dest_width += self.longestMenuTextWidth 
+		dest_width = self.iconSize + 20 * 2 + 10
+		dest_width += self.longestMenuTextWidth
 		if dest_width > self.maxWidth:
 			dest_width = self.maxWidth
 		if dest_width > self.minWidth:
@@ -136,7 +133,7 @@ class MainMenu(GUIAddon):
 		attribs = []
 		for (attrib, value) in self.skinAttributes[:]:
 			if attrib == "font":
-				self.font = parseFont(value, ((1, 1), (1, 1)))
+				self.font = parseFont(value, parent.scale)
 			elif attrib == "foregroundColor":
 				self.foregroundColor = parseColor(value).argb()
 			elif attrib == "foregroundColorSelected":
