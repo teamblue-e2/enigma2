@@ -123,7 +123,7 @@ void eDVBCICcSession::addProgram(uint16_t program_number, std::vector<uint16_t>&
 {
 	// add program means probably decoding on this slot is about to begin. So mark this slot as ready for descramble
 	eDVBCI_UI::getInstance()->setDecodingState(m_slot->getSlotID(), 1);
-	
+
 	// first open ca device and set descrambler key if it's not set yet
 	set_descrambler_key();
 

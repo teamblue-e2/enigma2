@@ -28,7 +28,7 @@ class ChoiceBox(Screen):
 			self["key_menu"] = StaticText(_("MENU"))
 			self["key_previous"] = StaticText(_("PREVIOUS"))
 			self["key_next"] = StaticText(_("NEXT"))
-			
+
 		self.list = []
 		self.summarylist = []
 		self.keymap = {}

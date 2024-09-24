@@ -996,7 +996,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 					opcode=0;
 				} else
 					opcode=1;
-			} 
+			}
 			else if (surface->bpp == 32)
 			{
 				opcode = (m_blend) ? 4 : 3;
@@ -1020,7 +1020,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 				}
 				for (int i=0; i<16; ++i)
 					lookup32_invert[i]=lookup32_normal[i^0xF];
-			} 
+			}
 			else if (surface->bpp == 16)
 			{
 				opcode=2;
@@ -1045,7 +1045,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 				}
 				for (int i=0; i<16; ++i)
 					lookup16_invert[i]=lookup16_normal[i^0xF];
-			} 
+			}
 			else
 			{
 				eWarning("[eTextPara] Can't render to %dbpp!", surface->bpp);
@@ -1060,7 +1060,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 			lookup8 = lookup8_normal;
 			lookup16 = lookup16_normal;
 			lookup32 = lookup32_normal;
-		} 
+		}
 		else
 		{
 			lookup8 = lookup8_invert;

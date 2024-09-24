@@ -902,7 +902,7 @@ void gDC::exec(const gOpcode *o)
 		}
 
 		para->setBlend(flags & gPainter::RT_BLEND);
-		
+
 		if (o->parm.renderText->border)
 		{
 			para->blit(*this, offset, m_background_color_rgb, o->parm.renderText->bordercolor, true);
