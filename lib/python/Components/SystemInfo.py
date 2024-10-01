@@ -158,6 +158,7 @@ def setBoxInfoItems():
 	model = BoxInfo.getItem("machine")
 	BoxInfo.setItem("InDebugMode", eGetEnigmaDebugLvl() >= 4)
 	BoxInfo.setItem("CommonInterface", model in ("h9combo", "h9combose", "h10", "pulse4kmini") and 1 or eDVBCIInterfaces.getInstance().getNumOfSlots())
+	BoxInfo.setItem("CiAlternativeCaHandling", model in ("pulse4k",  "pulse4kmini"))
 	BoxInfo.setItem("CommonInterfaceCIDelay", fileCheck("/proc/stb/tsmux/rmx_delay"))
 	for cislot in range(0, BoxInfo.getItem("CommonInterface")):
 		BoxInfo.setItem("CI%dSupportsHighBitrates" % cislot, fileCheck("/proc/stb/tsmux/ci%d_tsclk" % cislot))
@@ -180,8 +181,8 @@ def setBoxInfoItems():
 	BoxInfo.setItem("GBWOL", fileExists("/usr/bin/gigablue_wol"))
 	BoxInfo.setItem("Fan", fileCheck("/proc/stb/fp/fan"))
 	BoxInfo.setItem("FanPWM", BoxInfo.getItem("Fan") and fileCheck("/proc/stb/fp/fan_pwm"))
-	BoxInfo.setItem("PowerLED", fileCheck("/proc/stb/power/powerled") or model in ("gbue4k", "gbquad4k") and fileCheck("/proc/stb/fp/led1_pattern"))
-	BoxInfo.setItem("StandbyLED", fileCheck("/proc/stb/power/standbyled") or model in ("gbue4k", "gbquad4k") and fileCheck("/proc/stb/fp/led0_pattern"))
+	BoxInfo.setItem("PowerLED", fileCheck("/proc/stb/power/powerled") or model in ("gbue4k", "gbquad4k", "gbtrio4k") and fileCheck("/proc/stb/fp/led1_pattern"))
+	BoxInfo.setItem("StandbyLED", fileCheck("/proc/stb/power/standbyled") or model in ("gbue4k", "gbquad4k", "gbtrio4k") and fileCheck("/proc/stb/fp/led0_pattern"))
 	BoxInfo.setItem("SuspendLED", fileCheck("/proc/stb/power/suspendled") or fileCheck("/proc/stb/fp/enable_led"))
 	BoxInfo.setItem("Display", BoxInfo.getItem("FrontpanelDisplay") or BoxInfo.getItem("StandbyLED"))
 	BoxInfo.setItem("LedPowerColor", fileCheck("/proc/stb/fp/ledpowercolor"))

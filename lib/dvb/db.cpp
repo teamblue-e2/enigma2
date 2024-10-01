@@ -227,7 +227,7 @@ RESULT eDVBService::getName(const eServiceReference &ref, std::string &name)
 
 	if (!res_provider.empty() && m_provider_name.empty()) {
 		m_provider_name = res_provider;
-	} 
+	}
 
 	return 0;
 }

@@ -174,7 +174,7 @@ class EPGList(GUIComponent):
 
 	def applySkin(self, desktop, screen):
 		def EntryFont(value):
-			font = parseFont(value, ((1, 1), (1, 1)))
+			font = parseFont(value, screen.scale)
 			self.entryFontName = font.family
 			self.entryFontSize = font.pointSize
 
@@ -215,7 +215,7 @@ class EPGList(GUIComponent):
 			self.eventNamePadding = parseScale(value)
 
 		def ServiceFont(value):
-			self.serviceFont = parseFont(value, ((1, 1), (1, 1)))
+			self.serviceFont = parseFont(value, screen.scale)
 
 		def ServiceForegroundColor(value):
 			self.foreColorService = parseColor(value).argb()
@@ -541,7 +541,7 @@ class EPGList(GUIComponent):
 						size=(self.eventBorderWidth, height),
 						png=self.borderRightPix,
 						flags=BT_SCALE))
-		
+
 		if bgpng is not None:    # bacground for service rect
 			res.append(MultiContentEntryPixmap(
 					pos=(r1.x + self.serviceBorderVerWidth, r1.y + self.serviceBorderHorWidth),
@@ -683,7 +683,7 @@ class EPGList(GUIComponent):
 						color=foreColor,
 						color_sel=foreColorSelected,
 						backcolor=backColor if bgpng is None else None, backcolor_sel=backColorSel if bgpng is None else None))
-					
+
 				# Event box borders.
 				if self.graphics_mode:
 					if self.borderTopPix is not None:
@@ -710,7 +710,7 @@ class EPGList(GUIComponent):
 								size=(self.eventBorderWidth, height),
 								png=self.borderRightPix,
 								flags=BT_SCALE))
-						
+
 				# recording icons
 				clockIconXPos = left + xpos + ewidth
 				if config.misc.graph_mepg.show_record_clocks.value and rec is not None:
@@ -873,7 +873,7 @@ class TimelineText(GUIComponent):
 			self.backColor = parseColor(value).argb()
 
 		def font(value):
-			self.font = parseFont(value, ((1, 1), (1, 1)))
+			self.font = parseFont(value, screen.scale)
 		for (attrib, value) in list(self.skinAttributes):
 			try:
 				locals().get(attrib)(value)

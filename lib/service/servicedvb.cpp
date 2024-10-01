@@ -393,7 +393,7 @@ RESULT eStaticServiceDVBPVRInformation::getName(const eServiceReference &ref, st
 	name = res_name;
 	m_parser.m_name = name;
 	if (m_parser.m_prov.empty() && !ref.prov.empty()) m_parser.m_prov = ref.prov;
-	
+
 	return 0;
 }
 

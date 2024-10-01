@@ -1133,7 +1133,7 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, ePtr<iTsSource> &s
 		if (isStreamRelay) {
 			sRelayOrigSref.getChannelID(chid);
 			res = m_resourceManager->allocateChannel(chid, m_sr_channel, simulate);
-		} 
+		}
 
 
 		if (m_sr_channel) {
