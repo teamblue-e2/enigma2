@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma 2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-20 07:37+0200\n"
+"POT-Creation-Date: 2024-08-13 12:25+0200\n"
 "PO-Revision-Date: 2019-11-19 08:58+0700\n"
 "Last-Translator: krong\n"
 "Language-Team: none\n"
@@ -1810,9 +1810,6 @@ msgstr "Burundi"
 
 msgid "Bus: "
 msgstr "Xe buýt: "
-
-msgid "By default, SNR will be shown in dB (when supported by the tuner). This setting forces SNR to be shown as a percentage instead."
-msgstr "Theo mặc định, SNR sẽ được hiển thị bằng dB (khi được bộ chỉnh tần số hỗ trợ). Thay vào đó, cài đặt này buộc SNR được hiển thị dưới dạng phần trăm."
 
 msgid "By teamblue Image Team"
 msgstr ""
@@ -4459,8 +4456,11 @@ msgid ""
 "%s"
 msgstr ""
 
-msgid "Error when writing epg.dat on server"
+#, fuzzy
+msgid "Error when writing epg.dat on the fallback receiver"
 msgstr ""
+"Lỗi trong khi truy xuất thông tin hẹn giờ dự phòng\n"
+"%s"
 
 #, fuzzy
 msgid "Error while moving epg.dat to its destination"
@@ -7499,8 +7499,11 @@ msgstr "Không có mô tả."
 msgid "No displayable files on this medium found!"
 msgstr "Không tìm thấy tập tin nào trên phương tiện này!"
 
-msgid "No epg.dat file found server"
+#, fuzzy
+msgid "No epg.dat file found on the fallback receiver"
 msgstr ""
+"Lỗi trong khi truy xuất thông tin hẹn giờ dự phòng\n"
+"%s"
 
 msgid "No event info found, recording indefinitely."
 msgstr "Không tìm thấy thông tin sự kiện, ghi lại vô thời hạn."
@@ -10810,9 +10813,6 @@ msgstr "Hiển thị thông tin"
 msgid "Show PiP"
 msgstr "Hiển thị PiP"
 
-msgid "Show SNR percentage instead of dB value"
-msgstr "Hiển thị phần trăm SNR thay vì giá trị dB"
-
 msgid "Show Script completed message"
 msgstr ""
 
@@ -12513,6 +12513,10 @@ msgid "This allows you to show skin components in downloads"
 msgstr "Tùy chọn này cho phép bạn hiển thị đường dẫn menu."
 
 #, fuzzy
+msgid "This allows you to show skinpacks in downloads"
+msgstr "Tùy chọn này cho phép bạn hiển thị đường dẫn menu."
+
+#, fuzzy
 msgid "This allows you to show skins modules in downloads"
 msgstr "Tùy chọn này cho phép bạn hiển thị đường dẫn menu."
 
@@ -12966,6 +12970,9 @@ msgstr "Chuyển đổi hiển thị / ẩn"
 msgid "Toggle subtitles show/hide"
 msgstr "Chuyển đổi hiển thị / ẩn"
 
+msgid "Toggle the SNR values displayed"
+msgstr "Hiển thị phần trăm SNR thay vì giá trị dB"
+
 #, fuzzy
 msgid "Toggle videomode"
 msgstr "Chọn chế độ video"
@@ -13299,6 +13306,10 @@ msgstr "Không xác định"
 #, fuzzy, python-format
 msgid "Unknown group: %d"
 msgstr "lỗi không rõ"
+
+#, fuzzy
+msgid "Unknown image"
+msgstr "Không xác định"
 
 #, fuzzy, python-format
 msgid "Unknown user: %d"
@@ -14232,6 +14243,10 @@ msgstr ""
 
 msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr "Khi được chọn, điều này cho phép các chế độ video được chọn ngay cả khi chúng không được báo cáo là được hỗ trợ."
+
+#, fuzzy
+msgid "When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa."
+msgstr "Nếu được đặt thành Có, tất cả những nơi hiển thị SNR tính bằng dB sẽ hiển thị phần trăm SNR và ngược lại."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Khi nội dung có tỷ lệ khung hình là 16: 9, hãy chọn có chia tỷ lệ / kéo dài hình ảnh hay không."
@@ -15785,6 +15800,10 @@ msgstr "đơn giản"
 
 msgid "skincomponents"
 msgstr ""
+
+#, fuzzy
+msgid "skinpacks"
+msgstr "Da"
 
 #, fuzzy
 msgid "skins"

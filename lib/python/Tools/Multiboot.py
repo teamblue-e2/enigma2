@@ -1,6 +1,7 @@
-from Components.SystemInfo import BoxInfo
+from Components.SystemInfo import BoxInfo, BoxInformation
 from Components.Console import Console
-from Tools.Directories import fileHas, fileExists
+from Tools.Directories import fileHas, fileExists, fileDate
+from datetime import datetime
 import os
 import glob
 import tempfile
@@ -32,6 +33,35 @@ def getMultibootStartupDevice():
 
 def getparam(line, param):
 	return line.replace("userdataroot", "rootuserdata").rsplit('%s=' % param, 1)[1].split(' ', 1)[0]
+
+
+def estimateSlotImageDate(imagedir, *arguments):
+	for argument in arguments:
+		try:
+			return datetime.strptime(argument, '%Y%m%d').strftime("(%d-%m-%Y)")
+		except (TypeError, ValueError):
+			pass
+	maxdate = max(fileDate(os.path.join(imagedir, "usr/bin/enigma2")), fileDate(os.path.join(imagedir, "var/lib/opkg/status")), fileDate(os.path.join(imagedir, "usr/share/bootlogo.mvi")))
+	return datetime.strptime(maxdate, '%Y-%m-%d').strftime("(%d-%m-%Y)") # dates were compared for max as strings
+
+
+def getSlotImageInfo(slot, imagedir="/"):
+	if os.path.isfile(os.path.join(imagedir, "usr/lib/enigma.info")):
+		print("[multiboot] [GetImagelist] using enigma.info")
+		BoxInfoInstance = BoxInformation(root=imagedir) if getCurrentImage() != slot else BoxInfo
+		Creator = BoxInfoInstance.getItem("distro", "").capitalize()
+		BuildImgVersion = BoxInfoInstance.getItem("imgversion")
+		BuildType = BoxInfoInstance.getItem("imagetype", "")
+		BuildVer = BoxInfoInstance.getItem("imagebuild")
+		BuildDate = estimateSlotImageDate(imagedir, BoxInfoInstance.getItem("compiledate"), BuildVer)
+		BuildDev = str(idb).zfill(3) if BuildType and BuildType != "release" and BoxInfoInstance.getItem("distro") != "teamblue" and (idb := BoxInfoInstance.getItem("imagedevbuild")) else ""
+		return " ".join([str(x).strip() for x in (Creator, BuildImgVersion, BuildType, BuildDev, BuildVer if BoxInfoInstance.getItem("distro") != "teamblue" else "", BuildDate) if x and str(x).strip()])
+	else:
+		print("[multiboot] [GetImagelist] using etc/issue")
+		try:
+			return "%s %s" % (open(os.path.join(imagedir, "etc/issue")).readlines()[0].capitalize().strip()[:-6], estimateSlotImageDate(imagedir))
+		except IndexError:
+			return _("Unknown image")
 
 
 def getMultibootslots():
@@ -146,24 +176,7 @@ def getImagelist():
 				Console().ePopen('mount %s %s' % (BoxInfo.getItem("canMultiBoot")[slot]['device'], tmp.dir))
 			imagedir = os.sep.join(filter(None, [tmp.dir, BoxInfo.getItem("canMultiBoot")[slot].get('rootsubdir', '')]))
 			if os.path.isfile(os.path.join(imagedir, 'usr/bin/enigma2')):
-				try:
-					from datetime import datetime
-					date = datetime.fromtimestamp(os.stat(os.path.join(imagedir, "var/lib/opkg/status")).st_mtime).strftime('%Y-%m-%d')
-					if date.startswith("1970"):
-						date = datetime.fromtimestamp(os.stat(os.path.join(imagedir, "usr/share/bootlogo.mvi")).st_mtime).strftime('%Y-%m-%d')
-					date = max(date, datetime.fromtimestamp(os.stat(os.path.join(imagedir, "usr/bin/enigma2")).st_mtime).strftime('%Y-%m-%d'))
-				except:
-					date = _("Unknown")
-				imagelist[slot] = {'imagename': "%s (%s)" % (open(os.path.join(imagedir, "etc/issue")).readlines()[-2].capitalize().strip()[:-6], date)}
-				if os.path.exists(os.path.join(imagedir, "etc/image-version")):
-					with open(os.path.join(imagedir, "etc/image-version"), 'r') as fp:
-						lines = fp.readlines()
-						for row in lines:
-							word = 'imagetype'
-							if row.find(word) != -1:
-								imagetype=row.split('=')[1]
-								imagelist[slot] = {'imagename': "%s - %s (%s)" % (open(os.path.join(imagedir, "etc/issue")).readlines()[-2].capitalize().strip()[:-6], imagetype.strip(), date)}
-								break
+				imagelist[slot] = {'imagename': getSlotImageInfo(slot, imagedir=imagedir)}
 			elif os.path.isfile(os.path.join(imagedir, 'usr/bin/enigma2.bak')):
 				imagelist[slot] = {'imagename': _("Deleted image")}
 			else:

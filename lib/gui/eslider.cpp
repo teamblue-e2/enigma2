@@ -139,7 +139,7 @@ int eSlider::event(int event, void *data, void *data2)
 		{
 			if(m_have_background_color) {
 				painter.setBackgroundColor(m_background_color);
-			} 
+			}
 			painter.setRadius(cornerRadius, getCornerRadiusEdges());
 
 			if (drawborder)

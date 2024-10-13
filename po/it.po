@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-20 07:37+0200\n"
+"POT-Creation-Date: 2024-08-13 12:25+0200\n"
 "PO-Revision-Date: 2021-11-30 12:39+0100\n"
 "Last-Translator: teamblue-e2 <teamblue-e2@online.de>\n"
 "Language-Team: www.linsat.net <spaeleus@croci.org>\n"
@@ -2004,9 +2004,6 @@ msgstr "Burundi"
 #
 msgid "Bus: "
 msgstr "Bus: "
-
-msgid "By default, SNR will be shown in dB (when supported by the tuner). This setting forces SNR to be shown as a percentage instead."
-msgstr "Per impostazione predefinita, SNR sarà mostrato in dB (quando supportato dal sintonizzatore). Questa impostazione forza il SNR ad essere mostrato invece come percentuale."
 
 msgid "By teamblue Image Team"
 msgstr "Di teamblue Image Team"
@@ -4896,8 +4893,9 @@ msgstr ""
 "Errore nel rinominare %s in %s:\n"
 "%s"
 
-msgid "Error when writing epg.dat on server"
-msgstr "Errore durante la scrittura di epg.dat sul server"
+#, fuzzy
+msgid "Error when writing epg.dat on the fallback receiver"
+msgstr "Errore durante il recupero di epg.dat dal server"
 
 #, fuzzy
 msgid "Error while moving epg.dat to its destination"
@@ -8193,7 +8191,8 @@ msgstr "Descrizione non disponibile."
 msgid "No displayable files on this medium found!"
 msgstr "Il supporto non contiene file riproducibili."
 
-msgid "No epg.dat file found server"
+#, fuzzy
+msgid "No epg.dat file found on the fallback receiver"
 msgstr "Nessun file epg.dat trovato server"
 
 msgid "No event info found, recording indefinitely."
@@ -11863,14 +11862,11 @@ msgstr "Mostra i Log"
 msgid "Show PiP"
 msgstr "Mostra PiP"
 
-msgid "Show SNR percentage instead of dB value"
-msgstr "Mostrare la percentuale SNR anzichè il valore in dB"
-
 msgid "Show Script completed message"
-msgstr "Mostra il messaggio Script completato"
+msgstr ""
 
 msgid "Show Task's completed message"
-msgstr "Mostra il messaggio di completamento dell'attività"
+msgstr ""
 
 msgid "Show True/False as graphical switch"
 msgstr ""
@@ -13707,6 +13703,10 @@ msgstr "Questo permette di mostrare i moduli delle impostazioni nei download"
 msgid "This allows you to show skin components in downloads"
 msgstr "Questo permette di mostrare i componenti della pelle nei download"
 
+#, fuzzy
+msgid "This allows you to show skinpacks in downloads"
+msgstr "Questo permette di mostrare i componenti della pelle nei download"
+
 msgid "This allows you to show skins modules in downloads"
 msgstr "Questo permette di mostrare i moduli delle pelli nei download"
 
@@ -14189,6 +14189,9 @@ msgstr "Mostra/nascondi"
 msgid "Toggle subtitles show/hide"
 msgstr "Mostra/nascondi i sottotitoli"
 
+msgid "Toggle the SNR values displayed"
+msgstr "Mostrare l'SNR come valore percentuale invece che in dB"
+
 #
 msgid "Toggle videomode"
 msgstr "Alterna la modalità video"
@@ -14559,6 +14562,10 @@ msgstr "Sconosciuto"
 #, python-format
 msgid "Unknown group: %d"
 msgstr "Gruppo sconosciuto: %d"
+
+#, fuzzy
+msgid "Unknown image"
+msgstr "Sconosciuto"
 
 #
 #, python-format
@@ -15563,6 +15570,10 @@ msgstr "Quando il ricevitore si sveglia dallo standby, comanderà al televisore 
 #, fuzzy
 msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr "Questa opzione permette di selezionare le modalità video anche se non sono segnalate come supportate da HDMI-EDID."
+
+#, fuzzy
+msgid "When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa."
+msgstr "Se impostato su Sì, tutti i punti in cui viene visualizzato l'SNR in dB visualizzeranno la percentuale SNR e viceversa."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Opzione per impostare la modalità di scaling/stretch dell'immagine per i contenuti trasmessi con un rapporto d'aspetto di 16:9."
@@ -17291,6 +17302,11 @@ msgstr "Semplice"
 
 msgid "skincomponents"
 msgstr "skincomponents"
+
+#
+#, fuzzy
+msgid "skinpacks"
+msgstr "pelli"
 
 #
 msgid "skins"

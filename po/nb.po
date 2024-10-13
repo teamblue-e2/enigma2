@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-20 07:37+0200\n"
+"POT-Creation-Date: 2024-08-13 12:25+0200\n"
 "PO-Revision-Date: 2019-12-06 15:54+0100\n"
 "Last-Translator: GeirJ <dummy@dummy.com>\n"
 "Language-Team: GeirJ\n"
@@ -2029,9 +2029,6 @@ msgstr ""
 #
 msgid "Bus: "
 msgstr "Buss: "
-
-msgid "By default, SNR will be shown in dB (when supported by the tuner). This setting forces SNR to be shown as a percentage instead."
-msgstr "Som standard vil SNR (signalstyrke) vises i dB (desibel) hvis tuneren støtter dette. Velg nei for innstilling som viser SNR i prosent."
 
 msgid "By teamblue Image Team"
 msgstr ""
@@ -4999,8 +4996,11 @@ msgid ""
 "%s"
 msgstr ""
 
-msgid "Error when writing epg.dat on server"
+#, fuzzy
+msgid "Error when writing epg.dat on the fallback receiver"
 msgstr ""
+"Feil ved henting av reserve timer informasjon\n"
+"%s"
 
 #, fuzzy
 msgid "Error while moving epg.dat to its destination"
@@ -8453,8 +8453,11 @@ msgstr "Ingen forklaring er tilgjengelig."
 msgid "No displayable files on this medium found!"
 msgstr "Ingen visbare filer på dette mediet funnet!"
 
-msgid "No epg.dat file found server"
+#, fuzzy
+msgid "No epg.dat file found on the fallback receiver"
 msgstr ""
+"Feil ved henting av reserve timer informasjon\n"
+"%s"
 
 #
 msgid "No event info found, recording indefinitely."
@@ -12244,9 +12247,6 @@ msgstr "Vis info"
 msgid "Show PiP"
 msgstr "Vis bilde i bilde"
 
-msgid "Show SNR percentage instead of dB value"
-msgstr "Vis SNR i dB verdi eller prosent"
-
 msgid "Show Script completed message"
 msgstr ""
 
@@ -14124,6 +14124,9 @@ msgstr ""
 msgid "This allows you to show skin components in downloads"
 msgstr ""
 
+msgid "This allows you to show skinpacks in downloads"
+msgstr ""
+
 msgid "This allows you to show skins modules in downloads"
 msgstr ""
 
@@ -14618,6 +14621,9 @@ msgstr ""
 msgid "Toggle subtitles show/hide"
 msgstr ""
 
+msgid "Toggle the SNR values displayed"
+msgstr "Vis SNR signalstyrke i prosent istedenfor dB verdi"
+
 #, fuzzy
 msgid "Toggle videomode"
 msgstr "Velg video modus"
@@ -15006,6 +15012,10 @@ msgstr "Ukjent"
 #, fuzzy, python-format
 msgid "Unknown group: %d"
 msgstr "ukjent kanal"
+
+#, fuzzy
+msgid "Unknown image"
+msgstr "Ukjent"
 
 #
 #, fuzzy, python-format
@@ -16014,6 +16024,10 @@ msgstr ""
 
 msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr ""
+
+#, fuzzy
+msgid "When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa."
+msgstr "Hvis satt til Ja, vil alle steder der SNR i dB vises, vise SNR-prosenten og omvendt."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Når innholdet har et sideforhold på 16:9, velg om bildet skal skaleres/strekkes ut."
@@ -17736,6 +17750,9 @@ msgid "simple"
 msgstr "enkel"
 
 msgid "skincomponents"
+msgstr ""
+
+msgid "skinpacks"
 msgstr ""
 
 msgid "skins"

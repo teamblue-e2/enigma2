@@ -124,10 +124,10 @@ int eMMI_UI::processMMIData(int slot_id, const unsigned char *tag, const void *d
 			eDebug("[eMMI_UI] %s", converted_str.c_str());
 			d += textlen;
 		}
-		
+
 		if (isError10) {
 			mmiScreenError10(slot_id);
-		} 
+		}
 
 		mmiScreenFinish(slot_id);
 		break;

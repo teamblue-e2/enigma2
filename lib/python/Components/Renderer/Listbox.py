@@ -20,6 +20,7 @@ class Listbox(Renderer):
 		self.__content = None
 		self.__wrap_around = True
 		self.__selection_enabled = True
+		self.scale = None
 		self.__scrollbarMode = "showOnDemand"
 
 	GUI_WIDGET = eListbox
@@ -46,8 +47,11 @@ class Listbox(Renderer):
 		self.scrollbarMode = self.scrollbarMode # trigger
 
 	def preWidgetRemove(self, instance):
-		instance.setContent(None)
-		instance.selectionChanged.get().remove(self.selectionChanged)
+		try:
+			instance.setContent(None)
+			instance.selectionChanged.get().remove(self.selectionChanged)
+		except:
+			pass
 
 	def setWrapAround(self, wrap_around):
 		self.__wrap_around = wrap_around
@@ -119,4 +123,5 @@ class Listbox(Renderer):
 			else:
 				attribs.append((attrib, value))
 		self.skinAttributes = attribs
+		self.scale = parent.scale
 		return Renderer.applySkin(self, desktop, parent)

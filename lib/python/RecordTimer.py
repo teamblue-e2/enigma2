@@ -383,7 +383,7 @@ class RecordTimerEntry(timer.TimerEntry):
 		self.log(10, "backoff: retry in %d seconds" % self.backoff)
 
 	def sendactivesource(self):
-		if BoxInfo.getItem("HasHDMI-CEC") and config.hdmicec.enabled.value and config.hdmicec.sourceactive_zaptimers.value:
+		if BoxInfo.getItem("HDMICEC") and config.hdmicec.enabled.value and config.hdmicec.sourceactive_zaptimers.value:
 			import Components.HdmiCec
 			Components.HdmiCec.hdmi_cec.sendMessage(0, "sourceactive")
 			print("[TIMER] sourceactive was send")

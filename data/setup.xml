@@ -115,7 +115,7 @@
 		<item level="2" text="Show crypto info in infobar" conditional="parameters.get('hasInfobarCryptoInfo', True)" description="When enabled, encryption info will be shown in the infobar (when supported by the skin).">config.usage.show_cryptoinfo</item>
 		<item level="2" text="Show picons in display" description="Configure if service picons will be shown in display (when supported by the skin)." requires="HasFrontDisplayPicon">config.usage.show_picon_in_display</item>
 		<item level="2" text="Infobar frontend data source" description="Configure the source of the frontend data as shown on the infobars. 'Settings' is as stored on the settings. 'Tuner' is as reported by the tuner.">config.usage.infobar_frontend_source</item>
-		<item level="2" text="Show SNR percentage instead of dB value" description="By default, SNR will be shown in dB (when supported by the tuner). This setting forces SNR to be shown as a percentage instead.">config.usage.swap_snr_on_osd</item>
+		<item level="2" text="Toggle the SNR values displayed" description="When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa.">config.usage.swap_snr_on_osd</item>
 		<item level="2" text="Behavior of '0' button in PiP mode" description="Configure the function of the '0' button when Picture in Picture is active." requires="PIPAvailable">config.usage.pip_zero_button</item>
 		<item level="2" text="Close PiP with 'exit' button" description="When enabled the Picture in Picture window can be closed with 'exit' button." requires="PIPAvailable">config.usage.pip_hideOnExit</item>
 		<item level="2" text="Remember last service in PiP" description="Configure if and how long the latest service in Picture in Picture mode will be remembered." requires="PIPAvailable">config.usage.pip_last_service_timeout</item>
@@ -301,6 +301,6 @@
 		<item level="0" text="Setup mode" description="Configure which access level to use for the configuration menu. Expert level gives access to all items.">config.usage.setup_level</item>
 		<item level="0" text="Alternative numbering mode" description="When enabled, channel numbering will start at '1' for each bouquet.">config.usage.alternative_number_mode</item>
 		<item level="0" text="Show picons in channel selection list" description="Configure if service picons will be shown in the channel selection list.">config.usage.service_icon_enable</item>
-		<item level="0" text="Enable HDMI-CEC" description="When enabled, HDMI-CEC is enabled with standard configuration" requires="HasHDMI-CEC">config.hdmicec.enabled</item>
+		<item level="0" text="Enable HDMI-CEC" description="When enabled, HDMI-CEC is enabled with standard configuration" requires="HDMICEC">config.hdmicec.enabled</item>
 	</setup>
 </setupxml>

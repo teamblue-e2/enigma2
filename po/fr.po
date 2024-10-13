@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-20 07:37+0200\n"
+"POT-Creation-Date: 2024-08-13 12:25+0200\n"
 "PO-Revision-Date: 2021-12-06 10:46+0100\n"
 "Last-Translator: teamblue-e2 <teamblue-e2@online.de>\n"
 "Language-Team: \n"
@@ -1801,9 +1801,6 @@ msgstr "Burundi"
 
 msgid "Bus: "
 msgstr "Bus: "
-
-msgid "By default, SNR will be shown in dB (when supported by the tuner). This setting forces SNR to be shown as a percentage instead."
-msgstr "Par défaut, le SNR sera affiché en dB (quand supporté par le tuner). Si activé, le SNR sera affiché en pourcentage."
 
 msgid "By teamblue Image Team"
 msgstr "Par l'équipe image de teamblue"
@@ -4450,8 +4447,9 @@ msgstr ""
 "Erreur en renommant %s à %s:\n"
 "%s"
 
-msgid "Error when writing epg.dat on server"
-msgstr "Erreur lors de l’écriture du epg.dat sur le serveur"
+#, fuzzy
+msgid "Error when writing epg.dat on the fallback receiver"
+msgstr "Erreur lors de la récupération du epg.dat sur le serveur"
 
 #, fuzzy
 msgid "Error while moving epg.dat to its destination"
@@ -7451,7 +7449,8 @@ msgstr "Description non disponible."
 msgid "No displayable files on this medium found!"
 msgstr "Aucun fichiers affichables trouvés sur ce support !"
 
-msgid "No epg.dat file found server"
+#, fuzzy
+msgid "No epg.dat file found on the fallback receiver"
 msgstr "Pas de epg.dat trouvé sur le serveur"
 
 msgid "No event info found, recording indefinitely."
@@ -10748,9 +10747,6 @@ msgstr "Afficher Log"
 msgid "Show PiP"
 msgstr "Montrer PiP"
 
-msgid "Show SNR percentage instead of dB value"
-msgstr "Afficher SNR en pourcentage au lieu de la valeur dB"
-
 msgid "Show Script completed message"
 msgstr "Afficher le message Script terminé"
 
@@ -12438,6 +12434,10 @@ msgstr "Cela permet d’afficher le module des configurations dans les télécha
 msgid "This allows you to show skin components in downloads"
 msgstr "Cela permets d’afficher les composants du thème en téléchargement"
 
+#, fuzzy
+msgid "This allows you to show skinpacks in downloads"
+msgstr "Cela permets d’afficher les composants du thème en téléchargement"
+
 msgid "This allows you to show skins modules in downloads"
 msgstr "Cela permet d’afficher le module des thèmes (skins) dans les téléchargements."
 
@@ -12893,6 +12893,9 @@ msgstr "Inverser afficher/cacher"
 msgid "Toggle subtitles show/hide"
 msgstr "Afficher/masquer les sous-titres"
 
+msgid "Toggle the SNR values displayed"
+msgstr "Afficher SNR en pourcentage au lieu de la valeur dB"
+
 msgid "Toggle videomode"
 msgstr "Changer le mode vidéo"
 
@@ -13224,6 +13227,10 @@ msgstr "Inconnu"
 #, fuzzy, python-format
 msgid "Unknown group: %d"
 msgstr "Groupe inconnu : %d"
+
+#, fuzzy
+msgid "Unknown image"
+msgstr "Inconnu"
 
 #, fuzzy, python-format
 msgid "Unknown user: %d"
@@ -14152,6 +14159,10 @@ msgstr "Lorsque le récepteur se réveille de veille, il commande au téléviseu
 #, fuzzy
 msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr "Cette option permet de sélectionner des modes vidéo même s'ils ne sont pas signalés comme étant pris en charge par l'HDMI-EDID."
+
+#, fuzzy
+msgid "When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa."
+msgstr "S'il est défini sur Oui, tous les endroits où le SNR en dB est affiché afficheront le pourcentage SNR et vice versa."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Lorsque le contenu a un rapport d'aspect de 16:9, choisir de redimensionner/étirer l'image."
@@ -15710,6 +15721,10 @@ msgstr "Simple"
 
 msgid "skincomponents"
 msgstr "composants du thème"
+
+#, fuzzy
+msgid "skinpacks"
+msgstr "Thèmes"
 
 msgid "skins"
 msgstr "Thèmes"

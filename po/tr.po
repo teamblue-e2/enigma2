@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue (Apachi70)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-20 07:37+0200\n"
+"POT-Creation-Date: 2024-08-13 12:25+0200\n"
 "PO-Revision-Date: 2024-06-17 18:05+0200\n"
 "Last-Translator: Apachi70 (Openatv),(Teamblue) <teamblue@online.de,openatv@gmail.com>\n"
 "Language-Team: teamblue@t-online.de(apachi70)\n"
@@ -1756,9 +1756,6 @@ msgstr "Burundi"
 
 msgid "Bus: "
 msgstr "Yol: "
-
-msgid "By default, SNR will be shown in dB (when supported by the tuner). This setting forces SNR to be shown as a percentage instead."
-msgstr "Varsayılan olarak; SNR, dB olarak (Tuner tarafından destekleniyorsa) gösterilecektir. Bu ayar SNR yerine yüzde işareti gösterir."
 
 msgid "By teamblue Image Team"
 msgstr "Teamblue Image Team tarafından"
@@ -4292,8 +4289,9 @@ msgstr ""
 "Şu şekilde yeniden adlandırma %s hatası %s:\n"
 "%s"
 
-msgid "Error when writing epg.dat on server"
-msgstr "Sunucuda epg.dat yazılırken hata oluştu"
+#, fuzzy
+msgid "Error when writing epg.dat on the fallback receiver"
+msgstr "Geri dönüş alıcısından epg.dat alınırken hata oluştu"
 
 msgid "Error while moving epg.dat to its destination"
 msgstr "Epg.dat dosyasını hedefine taşırken hata oluştu"
@@ -7172,7 +7170,8 @@ msgstr "Açıklayıcı bilgi yok."
 msgid "No displayable files on this medium found!"
 msgstr "Bu medyada gösterilecek dosya bulunamadı!"
 
-msgid "No epg.dat file found server"
+#, fuzzy
+msgid "No epg.dat file found on the fallback receiver"
 msgstr "Epg.dat dosyası bulunamadı sunucusu"
 
 msgid "No event info found, recording indefinitely."
@@ -10319,9 +10318,6 @@ msgstr "Log göster"
 msgid "Show PiP"
 msgstr "PiP'yi göster"
 
-msgid "Show SNR percentage instead of dB value"
-msgstr "SNR yüzdesi yerine dB değeri göster"
-
 msgid "Show Script completed message"
 msgstr "Komut Dosyası tamamlandı mesajını göster"
 
@@ -11943,6 +11939,10 @@ msgstr "Bu indirme ayarları modülleri göstermek sağlar"
 msgid "This allows you to show skin components in downloads"
 msgstr "Bu indirme skin bileşenlerini göstermek sağlar"
 
+#, fuzzy
+msgid "This allows you to show skinpacks in downloads"
+msgstr "Bu indirme skin bileşenlerini göstermek sağlar"
+
 msgid "This allows you to show skins modules in downloads"
 msgstr "Bu yüklemeleri skin modüllerini göstermek sağlar"
 
@@ -12380,6 +12380,9 @@ msgstr "Göster / gizle arasında geçiş yap"
 msgid "Toggle subtitles show/hide"
 msgstr "Altyazıları göster / gizle"
 
+msgid "Toggle the SNR values displayed"
+msgstr "SNR yüzdesi yerine dB değeri göster"
+
 msgid "Toggle videomode"
 msgstr "Video modunu aç / kapat"
 
@@ -12702,6 +12705,10 @@ msgstr "Bilinmeyen"
 #, python-format
 msgid "Unknown group: %d"
 msgstr "Bilinmeyen grup: %d"
+
+#, fuzzy
+msgid "Unknown image"
+msgstr "Bilinmeyen"
 
 #, python-format
 msgid "Unknown user: %d"
@@ -13604,6 +13611,10 @@ msgstr "Alıcı bekleme modundan çıktığında, TV'ye alıcının bağlı oldu
 
 msgid "When selected this allows video modes to be selected even if they are not reported as supported."
 msgstr "Bu seçildiğinde, desteklendiği bildirilmese bile video modlarının seçilmesine olanak tanır."
+
+#, fuzzy
+msgid "When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa."
+msgstr "Evet olarak ayarlanırsa dB cinsinden SNR'nin görüntülendiği tüm yerler SNR yüzdesini görüntüleyecektir (veya bunun tersi de geçerlidir)."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "16:9 görüntü oranı varsa, resmi büyütme/uzatma için seçebilirsiniz."
@@ -15130,6 +15141,10 @@ msgstr "basit"
 
 msgid "skincomponents"
 msgstr "skincomponents"
+
+#, fuzzy
+msgid "skinpacks"
+msgstr "arayüzler"
 
 msgid "skins"
 msgstr "arayüzler"
