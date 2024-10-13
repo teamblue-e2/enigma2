@@ -602,6 +602,7 @@ class MultibootSelection(SelectImage):
 		self["key_blue"] = StaticText()
 		self["description"] = Label()
 		self["config"] = ChoiceList([])
+		self["list"] = self["config"]
 
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "KeyboardInputActions", "MenuActions"],
 		{
