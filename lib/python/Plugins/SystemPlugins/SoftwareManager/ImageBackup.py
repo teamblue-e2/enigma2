@@ -281,7 +281,7 @@ class ImageBackup(Screen):
 				if cmd3:
 					cmdlist.append(cmd3)
 
-				if self.MODEL in ("gbquad4k", "gbue4k", "gbx34k"):
+				if self.MODEL in ("gbquad4k", "gbue4k", "gbx34k", "gbquad4kpro"):
 					cmdlist.append('echo "' + _("Create:") + " boot dump" + '"')
 					cmdlist.append("dd if=/dev/mmcblk0p1 of=%s/boot.bin" % self.WORKDIR)
 					cmdlist.append('echo "' + _("Create:") + " rescue dump" + '"')
@@ -513,7 +513,7 @@ class ImageBackup(Screen):
 		else:
 			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' % self.MAINDEST)
 
-		if self.MODEL in ("gbquad4k", "gbue4k", "gbx34k"):
+		if self.MODEL in ("gbquad4k", "gbue4k", "gbx34k", "gbquad4kpro"):
 			os.system('mv %s/boot.bin %s/boot.bin' % (self.WORKDIR, self.MAINDEST))
 			os.system('mv %s/rescue.bin %s/rescue.bin' % (self.WORKDIR, self.MAINDEST))
 			os.system('cp -f /usr/share/gpt.bin %s/gpt.bin' % (self.MAINDEST))
