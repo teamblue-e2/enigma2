@@ -96,7 +96,7 @@ class About(Screen):
 		self["ChipsetInfo"] = StaticText(ChipsetInfo)
 		AboutText += ChipsetInfo + "\n"
 
-		if boxtype == 'gbquad4k' or boxtype == 'gbue4k' or boxtype == 'gbx34k':
+		if boxtype == 'gbquad4k' or boxtype == 'gbue4k' or boxtype == 'gbx34k' or boxtype == "gbquad4kpro":
 			def strip_non_ascii(boltversion):
 				''' Returns the string without non ASCII characters'''
 				stripped = (c for c in boltversion if 0 < ord(c) < 127)
