@@ -4,9 +4,9 @@
 
 ## teamBlue 7.4 (based on openPLi) is build using oe-alliance build-environment "7.4" and several git repositories: ##
 
-> [https://github.com/oe-alliance/oe-alliance-core/tree/5.4](https://github.com/oe-alliance/oe-alliance-core/tree/5.3 "OE-Alliance")
+> [https://github.com/oe-alliance/oe-alliance-core/tree/5.4](https://github.com/oe-alliance/oe-alliance-core/tree/5.4 "OE-Alliance")
 >
-> [https://github.com/teamblue-e2/enigma2/tree/7.4](https://github.com/teamblue-e2/enigma2/tree/7.3 "teamBlue E2")
+> [https://github.com/teamblue-e2/enigma2/tree/7.4](https://github.com/teamblue-e2/enigma2/tree/7.4 "teamBlue E2")
 >
 > [https://github.com/teamblue-e2/skin/tree/master](https://github.com/teamblue-e2/skin/tree/master "teamBlue Skin")
 
@@ -61,22 +61,22 @@
     su - teambluebuilder
     ```
 
-1. Create folder teamblue73
+1. Create folder teamblue74
 
     ```sh
-    mkdir -p teamblue73
+    mkdir -p teamblue74
     ```
 
-1. Switch to folder teamblue73
+1. Switch to folder teamblue74
 
     ```sh
-    cd teamblue73
+    cd teamblue74
     ```
 
 1. Clone oe-alliance repository
 
     ```sh
-    git clone https://github.com/oe-alliance/build-enviroment.git -b 5.3
+    git clone https://github.com/oe-alliance/build-enviroment.git -b 5.4
     ```
 
 1. Switch to folder build-enviroment
