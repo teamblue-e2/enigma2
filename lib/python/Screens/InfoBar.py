@@ -1,5 +1,7 @@
 from Tools.Profile import profile
 from enigma import eServiceReference
+from glob import glob
+from os.path import splitext
 
 # workaround for required config entry dependencies.
 import Screens.MovieSelection
@@ -215,6 +217,17 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 		self.servicelist = slist
 		self.infobar = infobar
 		self.lastservice = lastservice or session.nav.getCurrentlyPlayingServiceOrGroup()
+
+		path = service and service.getPath() and splitext(service.getPath())[0] or ""
+		subs = []
+		if path:
+			for sub in ("srt", "ass", "ssa"):
+				subs = glob("%s*.%s" % (path, sub))
+				if subs:
+					break
+		if subs:
+			service.setSubUri(subs[0])  # Support currently only one external sub
+
 		session.nav.playService(service)
 		self.cur_service = service
 		self.returning = False
