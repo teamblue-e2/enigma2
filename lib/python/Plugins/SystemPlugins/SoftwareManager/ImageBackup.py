@@ -17,10 +17,9 @@ from Tools.HardwareInfo import HardwareInfo
 import os
 import sys
 import datetime
-from boxbranding import getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getMachineBuild, getImageFolder, getMachineUBINIZE, getMachineMKUBIFS, getMachineMtdKernel, getMachineMtdRoot, getMachineKernelFile, getMachineRootFile, getImageFileSystem, getImageDistro, getImageVersion
+from boxbranding import getMachineUBINIZE
 import subprocess
 
-VERSION = _("Version %s %s") % (getImageDistro(), getImageVersion())
 
 
 class ImageBackup(Screen):
@@ -91,8 +90,8 @@ class ImageBackup(Screen):
 					_list.append(ChoiceEntryComponent('', ((_("slot%s - %s (current image)") if x == currentimageslot else _("slot%s - %s")) % (x, imagedict[x]["imagename"]), x, False)))
 		else:
 			if BoxInfo.getItem("canRecovery"):
-				_list.append(ChoiceEntryComponent('', (_("internal flash: %s %s as USB Recovery") % (getImageDistro(), getImageVersion()), "x", True)))
-			_list.append(ChoiceEntryComponent('', (_("internal flash:  %s %s ") % (getImageDistro(), getImageVersion()), "x", False)))
+				_list.append(ChoiceEntryComponent('', (_("internal flash: %s %s as USB Recovery") % (self.IMAGEDISTRO, self.DISTROVERSION), "x", True)))
+			_list.append(ChoiceEntryComponent('', (_("internal flash:  %s %s ") % (self.IMAGEDISTRO, self.DISTROVERSION), "x", False)))
 		self["config"].setList(_list)
 
 	def start(self):
@@ -130,7 +129,7 @@ class ImageBackup(Screen):
 		if answer is not None:
 			if answer[1]:
 				self.RECOVERY = answer[3]
-				self.DIRECTORY = "%s/images" % answer[2]
+				self.DIRECTORY = "%s/imagebackups" % answer[2]
 				if not os.path.exists(self.DIRECTORY):
 					try:
 						os.makedirs(self.DIRECTORY)
@@ -138,20 +137,22 @@ class ImageBackup(Screen):
 						self.session.open(MessageBox, _("Cannot create backup directory"), MessageBox.TYPE_ERROR, timeout=10)
 						return
 				self.SLOT = answer[1]
-				self.MODEL = HardwareInfo().get_machine_name()
-				self.OEM = getBrandOEM()
-				self.MACHINEBUILD = getMachineBuild()
-				self.MACHINENAME = getMachineName()
-				self.MACHINEBRAND = getMachineBrand()
-				self.IMAGEFOLDER = getImageFolder()
+				#self.MODEL = HardwareInfo().get_machine_name() #TODO
+				self.MODEL = BoxInfo.getItem("machinebuild")
+				self.OEM = BoxInfo.getItem("brand")
+				self.MACHINEBUILD = BoxInfo.getItem("machinebuild")
+				self.MACHINENAME = BoxInfo.getItem("displaymodel")
+				self.MACHINEBRAND = BoxInfo.getItem("displaybrand")
+				self.IMAGEFOLDER = BoxInfo.getItem("imagedir")
 				self.UBINIZE_ARGS = getMachineUBINIZE()
-				self.MKUBIFS_ARGS = getMachineMKUBIFS()
+				self.MKUBIFS_ARGS = BoxInfo.getItem("mkubifs")
 				self.ROOTFSSUBDIR = "none"
-				self.ROOTFSBIN = getMachineRootFile()
-				self.KERNELBIN = getMachineKernelFile()
-				self.ROOTFSTYPE = getImageFileSystem().strip()
-				self.IMAGEDISTRO = getImageDistro()
-				self.DISTROVERSION = getImageVersion()
+				self.ROOTFSBIN = BoxInfo.getItem("rootfile")
+				self.KERNELBIN = BoxInfo.getItem("kernelfile")
+				self.ROOTFSTYPE = BoxInfo.getItem("imagefs")
+				self.IMAGEDISTRO = BoxInfo.getItem("distro")
+				self.DISTROVERSION = BoxInfo.getItem("imageversion")
+				self.VERSION = _("Version %s %s") % (self.IMAGEDISTRO, self.DISTROVERSION)
 
 				if BoxInfo.getItem("canRecovery"):
 					self.EMMCIMG = BoxInfo.getItem("canRecovery")[0]
@@ -167,8 +168,8 @@ class ImageBackup(Screen):
 					if BoxInfo.getItem("HasRootSubdir"):
 						self.ROOTFSSUBDIR = BoxInfo.getItem("canMultiBoot")[self.SLOT]['rootsubdir']
 				else:
-					self.MTDKERNEL = getMachineMtdKernel()
-					self.MTDROOTFS = getMachineMtdRoot()
+					self.MTDKERNEL = BoxInfo.getItem("mtdkernel")
+					self.MTDROOTFS = BoxInfo.getItem("mtdrootfs")
 
 				print("[Image Backup] BOX MACHINEBUILD = >%s<" % self.MACHINEBUILD)
 				print("[Image Backup] BOX MACHINENAME = >%s<" % self.MACHINENAME)
@@ -211,11 +212,11 @@ class ImageBackup(Screen):
 				self.MAINDESTROOT = "%s/build_%s" % (self.DIRECTORY, self.MODEL)
 
 				self.message = "echo -e '\n"
-				if getMachineBrand().startswith('A') or getMachineBrand().startswith('E') or getMachineBrand().startswith('I') or getMachineBrand().startswith('O') or getMachineBrand().startswith('U') or getMachineBrand().startswith('Xt'):
+				if self.MACHINEBRAND.startswith('A') or self.MACHINEBRAND.startswith('E') or self.MACHINEBRAND.startswith('I') or self.MACHINEBRAND.startswith('O') or self.MACHINEBRAND.startswith('U') or self.MACHINEBRAND.startswith('Xt'):
 					self.message += (_('Back-up Tool for an %s\n') % self.SHOWNAME).upper()
 				else:
 					self.message += (_('Back-up Tool for a %s\n') % self.SHOWNAME).upper()
-				self.message += VERSION + '\n'
+				self.message += self.VERSION + '\n'
 				self.message += "_________________________________________________\n\n"
 				self.message += _("Please be patient, a backup will now be made,\n")
 				self.message += _("because of the used filesystem the back-up\n")
@@ -629,7 +630,7 @@ class ImageBackup(Screen):
 		AboutText += _("By teamblue Image Team") + "\n"
 		AboutText += _("Support at") + " www.gigablue-support.org\n\n"
 		AboutText += _("[Image Info]\n")
-		AboutText += _("Model: %s %s\n") % (getMachineBrand(), getMachineName())
+		AboutText += _("Model: %s %s\n") % (self.MACHINEBRAND, self.MACHINENAME)
 		AboutText += _("Backup Date: %s\n") % strftime("%Y-%m-%d", localtime(self.START))
 
 		if os.path.exists('/proc/stb/info/chipset'):
@@ -638,11 +639,11 @@ class ImageBackup(Screen):
 		AboutText += _("CPU: %s") % about.getCPUString() + "\n"
 		AboutText += _("Cores: %s") % about.getCpuCoresString() + "\n"
 
-		AboutText += _("Version: %s") % getImageVersion() + "\n"
-		AboutText += _("Build: %s") % getImageBuild() + "\n"
+		AboutText += _("Version: %s") % self.DISTROVERSION + "\n"
+		AboutText += _("Build: %s") % BoxInfo.getItem("imagebuild") + "\n"
 		AboutText += _("Kernel: %s") % about.getKernelVersionString() + "\n"
 
-		string = getDriverDate()
+		string = BoxInfo.getItem("driversdate")
 		year = string[0:4]
 		month = string[4:6]
 		day = string[6:8]

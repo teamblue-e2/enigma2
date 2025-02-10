@@ -40,7 +40,8 @@ class HardwareInfo:
 		self.device_brandname = BoxInfo.getItem("displaybrand")
 
 		# standard values
-		self.device_model = self.machine_name = BoxInfo.getItem("machine")
+		self.machine_name = BoxInfo.getItem("machine") # This contains the value where the image is buld from
+		self.device_model = BoxInfo.getItem("model") # This may contain more information about the specific model
 		self.device_hw = BoxInfo.getItem("displaymodel")
 
 		if self.device_revision:
