@@ -129,7 +129,7 @@ class ImageBackup(Screen):
 		if answer is not None:
 			if answer[1]:
 				self.RECOVERY = answer[3]
-				self.DIRECTORY = "%s/imagebackups" % answer[2]
+				self.DIRECTORY = "%s/images" % answer[2]
 				if not os.path.exists(self.DIRECTORY):
 					try:
 						os.makedirs(self.DIRECTORY)
