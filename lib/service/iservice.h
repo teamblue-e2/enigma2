@@ -54,10 +54,14 @@ public:
 #ifndef SWIG
 	int data[8];
 	std::string path;
+	std::string compareSref;
+	bool isStreamRelay = false;
 	std::string suburi;
 #endif
 	std::string getPath() const { return path; }
 	void setPath( const std::string &n ) { path=n; }
+	void setCompareSref( const std::string &n, bool isSR = false) { compareSref=n; isStreamRelay=isSR; }
+	
 	void setSubUri( const std::string &n ) { suburi=n; }
 
 	unsigned int getUnsignedData(unsigned int num) const
@@ -176,7 +180,7 @@ public:
 	{
 		if (!c || type != c.type)
 			return 0;
-		return (memcmp(data, c.data, sizeof(int)*8)==0) && (path == c.path);
+		return ((memcmp(data, c.data, sizeof(int)*8)==0) && (path == c.path)) || (!c.compareSref.empty() && toString() == c.compareSref) || (!compareSref.empty() && compareSref == c.toString());
 	}
 	bool operator!=(const eServiceReference &c) const
 	{

@@ -287,7 +287,7 @@ class AudioSelection(ConfigListScreen, Screen):
 		track = int(audio)
 		if isinstance(track, int):
 			service = self.session.nav.getCurrentService()
-			ref = self.session.nav.getCurrentlyPlayingServiceReference()
+			ref = self.session.nav.getCurrentServiceReferenceOriginal()
 			#ref = ref and eServiceReference(ref.toString())
 			if service.audioTracks().getNumberOfTracks() > track:
 				self.audioTracks.selectTrack(track)
