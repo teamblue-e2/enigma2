@@ -1583,9 +1583,7 @@ RESULT eDVBServicePlay::setFastForward_internal(int ratio, bool final_seek)
 
 RESULT eDVBServicePlay::seek(ePtr<iSeekableService> &ptr)
 {
-	eServiceReferenceDVB sRelayOrigSref;
-	bool isSRService = ((const eServiceReferenceDVB&)m_reference).getSROriginal(sRelayOrigSref);
-	if (m_is_pvr || m_timeshift_enabled || (!m_reference.path.empty() && !isSRService))
+	if (m_is_pvr || m_timeshift_enabled || (!m_reference.path.empty() && !m_reference.isStreamRelay))
 	{
 		ptr = this;
 		return 0;
