@@ -41,6 +41,7 @@ class ServiceName(Converter):
 	def getText(self):
 		service = self.source.service
 		info = None
+		ref = service
 		if isinstance(service, eServiceReference):
 			info = self.source.info
 		elif isinstance(service, iPlayableServicePtr):
@@ -48,7 +49,7 @@ class ServiceName(Converter):
 			ref = None
 		else: # reference
 			info = service and self.source.info
-			ref = service
+
 		if not info:
 			return ""
 		if self.type == self.NAME:
@@ -75,11 +76,11 @@ class ServiceName(Converter):
 		elif self.type == self.STREAM_URL:
 			srpart = "//%s:%s/" % (config.misc.softcam_streamrelay_url.getHTML(), config.misc.softcam_streamrelay_port.value)
 			path = ""
-			if not service:
+			if not ref:
 				refstr = info.getInfoString(iServiceInformation.sServiceref)
 				path = refstr and refstr.split(":")[10].replace("%3a", ":")
-			if "://" in path and "http" not in path:
-				path = SessionObject().session.nav.getCurrentServiceReference().toString().split(":")[10].replace("%3a", ":")
+			else:
+				path = ref.getPath()
 			return "" if path.startswith("//") and path.find(srpart) > -1 and "://" not in path else path
 		elif self.type == self.FORMAT_STRING:
 			name = self.getName(ref, info)
