@@ -100,6 +100,10 @@ class Navigation:
 				self.standbytimer.start(15000, True)
 		if config.usage.remote_fallback_import_restart.value:
 			ImportChannels()
+		if self.__wasTimerWakeup:
+			self.wakeup_timer_enabled = wakeup_time_type == 3 and self.__prevWakeupTime
+			if self.__prevWakeupTime and wakeup_time_type in (0, 1) and not config.misc.RestartUI.value:
+				RecordTimer.RecordTimerEntry.setWasInDeepStandby()
 		if config.misc.RestartUI.value:
 			config.misc.RestartUI.value = False
 			config.misc.RestartUI.save()
@@ -107,7 +111,7 @@ class Navigation:
 		else:
 			if config.usage.remote_fallback_import.value and not config.usage.remote_fallback_import_restart.value:
 				ImportChannels()
-			if startup_to_standby == "yes" or self.__wasTimerWakeup and config.misc.prev_wakeup_time.value and ((wakeup_time_type == 0 or wakeup_time_type == 1) or (wakeup_time_type == 3 and startup_to_standby == "except")):
+			if startup_to_standby == "yes" or (self.__wasTimerWakeup and self.__prevWakeupTime and (wakeup_time_type in (0, 1) or (wakeup_time_type == 3 and startup_to_standby == "except"))):
 				if not Screens.Standby.inTryQuitMainloop:
 					Notifications.AddNotification(Screens.Standby.Standby)
 
