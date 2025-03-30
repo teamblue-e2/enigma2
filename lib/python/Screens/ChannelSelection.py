@@ -2133,15 +2133,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 	def __evServiceStart(self):
 		if self.dopipzap and hasattr(self.session, 'pip'):
-			self.servicelist.setPlayableIgnoreService(self.session.pip.getCurrentServiceReference() or eServiceReference())
+			self.servicelist.setPlayableIgnoreService(self.session.pip.getCurrentService() or eServiceReference())
 		else:
-			service = self.session.nav.getCurrentService()
-			if service:
-				info = service.info()
-				if info:
-					refstr = info.getInfoString(iServiceInformation.sServiceref)
-					refstr = getStreamRelayRef(refstr)
-					self.servicelist.setPlayableIgnoreService(eServiceReference(refstr))
+			self.servicelist.setPlayableIgnoreService(self.session.nav.getCurrentServiceReferenceOriginal() or eServiceReference())
 
 	def __evServiceEnd(self):
 		self.servicelist.setPlayableIgnoreService(eServiceReference())
@@ -2303,12 +2297,17 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if enable_pipzap and self.dopipzap:
 			ref = self.session.pip.getCurrentService()
 			if ref is None or ref != nref:
-				if nref:
-					if not checkParentalControl or Components.ParentalControl.parentalControl.isServicePlayable(nref, boundFunction(self.zap, enable_pipzap=True, checkParentalControl=False)):
-						self.session.pip.playService(nref)
+				nref = self.session.pip.resolveAlternatePipService(nref)
+				if nref and (not checkParentalControl or Components.ParentalControl.parentalControl.isServicePlayable(nref, boundFunction(self.zap, enable_pipzap=True, checkParentalControl=False))):
+					zap_res = self.session.pip.playService(nref)
+					if zap_res == 1:
 						self.__evServiceStart()
 						self.showPipzapMessage()
 						self.setCurrentSelection(nref)
+					elif zap_res == 2:
+						self.retryServicePlayTimer = eTimer()
+						self.retryServicePlayTimer.callback.append(boundFunction(self.zap, enable_pipzap = True, checkParentalControl=False))
+						self.retryServicePlayTimer.start(config.misc.softcam_streamrelay_delay.value, True)
 				else:
 					self.setStartRoot(self.curRoot)
 					self.setCurrentSelection(ref)

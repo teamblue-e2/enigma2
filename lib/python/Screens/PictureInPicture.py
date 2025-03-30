@@ -5,7 +5,7 @@ from Components.SystemInfo import BoxInfo
 from Components.VideoWindow import VideoWindow
 from Components.Sources.StreamService import StreamServiceList
 from Components.config import config, ConfigPosition, ConfigSelection
-from Tools import Notifications
+from Tools.Notifications import AddPopup, RemovePopup
 from Screens.MessageBox import MessageBox
 
 MAX_X = 720
@@ -67,6 +67,9 @@ class PictureInPicture(Screen):
 		self.dishpipActive = session.instantiateDialog(Dishpip)
 		self.currentService = None
 		self.currentServiceReference = None
+		self.CurrentIsStreamRelay = False
+		self.pipservice = None
+		session.nav.pnav.clearPiPService()
 
 		self.choicelist = [("standard", _("Standard"))]
 		if BoxInfo.getItem("VideoDestinationConfigurable"):
@@ -202,9 +205,11 @@ class PictureInPicture(Screen):
 		return self.choicelist[config.av.pip_mode.index][1]
 
 	def playService(self, service):
-		Notifications.RemovePopup("ZapPipError")
+		RemovePopup("ZapPipError")
 		if service is None:
-			return False
+			self.session.nav.pnav.clearPiPService()
+			return 0
+
 		from Screens.InfoBarGenerics import streamrelay
 		orig_ref = self.resolveAlternatePipService(service)
 		ref = orig_ref and streamrelay.streamrelayChecker(orig_ref)[0]
@@ -216,19 +221,23 @@ class PictureInPicture(Screen):
 				self.currentService = None
 				self.currentServiceReference = None
 				if not config.usage.hide_zap_errors.value:
-					Notifications.AddPopup(text="PiP...\n" + _("Connected transcoding, limit - no PiP!"), type=MessageBox.TYPE_ERROR, timeout=5, id="ZapPipError")
-				return False
+					AddPopup(text="PiP...\n" + _("Connected transcoding, limit - no PiP!"), type=MessageBox.TYPE_ERROR, timeout=5, id="ZapPipError")
+				return 0
 			if ref.toString().startswith("4097"):
-				self.pipservice = None
-				self.currentService = None
-				self.currentServiceReference = None
-				if not config.usage.hide_zap_errors.value:
-					Notifications.AddPopup(text=_("Service type 4097 incorrect for PiP!"), type=MessageBox.TYPE_ERROR, timeout=5, id="ZapPipError")
-				return False
+				#Change to service type 1 and try to play a stream as type 1
+				ref = eServiceReference("1" + ref.toString()[4:])
+			self.session.nav.pnav.setPiPService(ref)
 			if not self.isPlayableForPipService(ref):
-				if not config.usage.hide_zap_errors.value:
-					Notifications.AddPopup(text="PiP...\n" + _("No free tuner!"), type=MessageBox.TYPE_ERROR, timeout=5, id="ZapPipError")
-				return False
+				is_stream_relay = self.CurrentIsStreamRelay
+				if is_stream_relay:
+					if self.pipservice:
+						self.pipservice.stop()
+					self.CurrentIsStreamRelay = False
+				if not config.usage.hide_zap_errors.value and not is_stream_relay:
+					AddPopup(text="PiP...\n" + _("No free tuner!"), type=MessageBox.TYPE_ERROR, timeout=5, id="ZapPipError")
+				return 0 if not is_stream_relay else 2
+			print("[PictureInPicture] playing pip service", ref and ref.toString())
+
 			self.pipservice = eServiceCenter.getInstance().play(ref)
 			if self.pipservice and not self.pipservice.setTarget(1, True):
 				if hasattr(self, "dishpipActive") and self.dishpipActive is not None:
@@ -236,16 +245,17 @@ class PictureInPicture(Screen):
 				self.pipservice.start()
 				self.currentService = service
 				self.currentServiceReference = ref
-				print("[PictureInPicture] playing pip service", ref and ref.toString())
-				return True
+				if ref and ref.getStreamRelay():
+					self.CurrentIsStreamRelay = True
+				return 1
 			else:
 				self.pipservice = None
 				self.currentService = None
 				self.currentServiceReference = None
 				print("[PictureInPicture] error play pip service", ref and ref.toString())
 				if not config.usage.hide_zap_errors.value:
-					Notifications.AddPopup(text=_("Incorrect service type for Picture in Picture!"), type=MessageBox.TYPE_ERROR, timeout=5, id="ZapPipError")
-		return False
+					AddPopup(text=_("Incorrect service type for Picture in Picture!"), type=MessageBox.TYPE_ERROR, timeout=5, id="ZapPipError")
+		return 0
 
 	def getCurrentService(self):
 		return self.currentService
@@ -258,7 +268,7 @@ class PictureInPicture(Screen):
 		if playingref is None or service == playingref:
 			return True
 		info = eServiceCenter.getInstance().info(service)
-		oldref = self.currentServiceReference or eServiceReference()
+		oldref = self.currentService or eServiceReference()
 		if info and info.isPlayable(service, oldref):
 			return True
 		return False

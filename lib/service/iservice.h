@@ -61,6 +61,8 @@ public:
 	std::string getPath() const { return path; }
 	void setPath( const std::string &n ) { path=n; }
 	void setCompareSref( const std::string &n, bool isSR = false) { compareSref=n; isStreamRelay=isSR; }
+	bool getStreamRelay() const { return isStreamRelay; }
+	std::string getCompareSref() const { return compareSref; }
 	
 	void setSubUri( const std::string &n ) { suburi=n; }
 
