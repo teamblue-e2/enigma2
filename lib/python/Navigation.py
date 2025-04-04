@@ -24,7 +24,7 @@ from Screens.InfoBarGenerics import streamrelay
 class Navigation:
 	playServiceExtensions = []
 	recordServiceExtensions = []
-	def __init__(self):
+	def __init__(self, nextRecordTimerAfterEventActionAuto=False):
 		if NavigationInstance.instance is not None:
 			raise NavigationInstance.instance
 
