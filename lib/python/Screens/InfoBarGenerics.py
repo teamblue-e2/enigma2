@@ -134,6 +134,9 @@ class ResumePoints():
 
 resumePointsInstance = ResumePoints()
 
+def setResumePoint(session):
+	resumePointsInstance.setResumePoint(session)
+
 
 
 class whitelist:
