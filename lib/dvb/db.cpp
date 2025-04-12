@@ -236,17 +236,20 @@ bool eDVBService::isCrypted()
 
 int eDVBService::isPlayable(const eServiceReference &ref, const eServiceReference &ignore, bool simulate)
 {
-	bool isStreamRelayService = false;
 	eServiceReferenceDVB sRelayOrigSref;
-	ePtr<iPlayableService> refCur;
-	eNavigation::getInstance()->getCurrentService(refCur);
-	if (refCur)
+	eServiceReference refCur;
+	eNavigation::getInstance()->getCurrentServiceReference(refCur);
+	if (refCur && refCur.isStreamRelay)
 	{
-		ePtr<iServiceInformation> tmp_info;
-		refCur->info(tmp_info);
-		std::string ref_s = tmp_info->getInfoString(iServiceInformation::sServiceref);
-		eServiceReferenceDVB currentlyPlaying = eServiceReferenceDVB(ref_s);
-		isStreamRelayService = currentlyPlaying.getSROriginal(sRelayOrigSref);
+		sRelayOrigSref = eServiceReferenceDVB(refCur.compareSref);
+	}
+
+	eServiceReference refCurPiP;
+	eNavigation::getInstance()->getCurrentPiPServiceReference(refCurPiP);
+
+	if (refCurPiP && refCurPiP.isStreamRelay)
+	{
+		sRelayOrigSref = eServiceReferenceDVB(refCurPiP.compareSref);
 	}
 
 	ePtr<eDVBResourceManager> res_mgr;
@@ -262,7 +265,7 @@ int eDVBService::isPlayable(const eServiceReference &ref, const eServiceReferenc
 		((const eServiceReferenceDVB&)ref).getChannelID(chid);
 		((const eServiceReferenceDVB&)ignore).getChannelID(chid_ignore);
 
-		if (isStreamRelayService)
+		if ((refCur && refCur.isStreamRelay) || (refCurPiP && refCurPiP.isStreamRelay))
 		{
 			sRelayOrigSref.getChannelID(chid_ignore_sr);
 		}

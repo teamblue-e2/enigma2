@@ -827,7 +827,7 @@ class Troubleshoot(Screen):
 	def green(self):
 		if self.commandIndex >= self.numberOfCommands:
 			try:
-				os.remove(self.commands[self.commandIndex][4:])
+				os.remove(self.commands[self.commandIndex].rsplit(" ", 1)[1])
 			except:
 				pass
 			self.updateOptions()
@@ -835,7 +835,7 @@ class Troubleshoot(Screen):
 
 	def removeAllLogfiles(self, answer):
 		if answer:
-			for fileName in self.getLogFilesList():
+			for fileName in self.getLogFilesList() + self.getDebugFilesList():
 				try:
 					os.remove(fileName)
 				except:
