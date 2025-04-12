@@ -21,7 +21,6 @@ from Tools.CIHelper import cihelper
 from Tools.XMLTools import stringToXML
 
 import os
-import six
 
 
 class CIselectMainMenu(Screen):
@@ -55,7 +54,7 @@ class CIselectMainMenu(Screen):
 		self.state = {}
 		self.list = []
 		if NUM_CI and NUM_CI > 0:
-			for slot in list(range(NUM_CI)):
+			for slot in range(NUM_CI):
 				state = eDVBCI_UI.getInstance().getState(slot)
 				if state != -1:
 					appname = _("Slot %d") % (slot + 1) + " - " + _("unknown error")
@@ -294,7 +293,7 @@ class CIconfigMenu(Screen):
 					if item[2] == 1:
 						fp.write("\t\t<provider name=\"%s\" dvbnamespace=\"%s\" />\n" % (stringToXML(name), item[3]))
 					else:
-						fp.write("\t\t<service name=\"%s\" ref=\"%s\" />\n" % (stringToXML(name), item[3]))
+						fp.write("\t\t<service name=\"%s\" ref=\"%s\" />\n" % (stringToXML(name), ':'.join(item[3].split(':')[:11])))
 			fp.write("\t</slot>\n")
 			fp.write("</ci>\n")
 			fp.close()
@@ -317,22 +316,22 @@ class CIconfigMenu(Screen):
 		try:
 			tree = parse(self.filename).getroot()
 			for slot in tree.findall("slot"):
-				read_slot = six.ensure_str(getValue(slot.findall("id"), False))
+				read_slot = getValue(slot.findall("id"), False)
 				i = 0
 				for caid in slot.findall("caid"):
-					read_caid = six.ensure_str(caid.get("id"))
+					read_caid = caid.get("id")
 					self.selectedcaid.append((str(read_caid), str(read_caid), i))
 					self.usingcaid.append(int(read_caid, 16))
 					i += 1
 
 				for service in slot.findall("service"):
-					read_service_name = six.ensure_str(service.get("name"))
-					read_service_ref = six.ensure_str(service.get("ref"))
+					read_service_name = service.get("name")
+					read_service_ref = service.get("ref")
 					self.read_services.append(read_service_ref)
 
 				for provider in slot.findall("provider"):
-					read_provider_name = six.ensure_str(provider.get("name"))
-					read_provider_dvbname = six.ensure_str(provider.get("dvbnamespace"))
+					read_provider_name = provider.get("name")
+					read_provider_dvbname = provider.get("dvbnamespace")
 					self.read_providers.append((read_provider_name, read_provider_dvbname))
 
 				self.ci_config.append((int(read_slot), (self.read_services, self.read_providers, self.usingcaid)))
@@ -402,7 +401,7 @@ class CAidSelect(Screen):
 		self.list = SelectionList()
 		self["list"] = self.list
 
-		for listindex in list(range(len(list))):
+		for listindex in range(len(list)):
 			if find_in_list(selected_caids, list[listindex][0], 0):
 				self.list.addSelection(list[listindex][0], list[listindex][1], listindex, True)
 			else:
@@ -551,7 +550,7 @@ class myProviderSelection(ChannelSelectionBase):
 											h = _("W")
 										else:
 											h = _("E")
-										service_name = ("%d.%d" + h) % (orbpos // 10, orbpos % 10)
+										service_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
 								service.setName("%s - %s" % (service_name, service_type))
 								self.servicelist.addService(service)
 						self.servicelist.finishFill()
@@ -683,7 +682,7 @@ def find_in_list(list, search, listpos=0):
 def isModule():
 	NUM_CI = BoxInfo.getItem("CommonInterface")
 	if NUM_CI and NUM_CI > 0:
-		for slot in list(range(NUM_CI)):
+		for slot in range(NUM_CI):
 			state = eDVBCI_UI.getInstance().getState(slot)
 			if state > 0:
 				return True
