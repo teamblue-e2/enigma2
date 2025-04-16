@@ -431,9 +431,14 @@ int eDVBCAHandler::getNumberOfCAServices()
 int eDVBCAHandler::registerService(const eServiceReferenceDVB &ref, int adapter, int demux_nums[2], int servicetype, eDVBCAService *&caservice)
 {
 	CAServiceMap::iterator it = services.find(ref);
+	bool had_streamserver = false;
 	if (it != services.end())
 	{
 		caservice = it->second;
+		// Check if streamserver was already active before adding new type
+		// servicetype 7 = streamserver, 8 = scrambled_streamserver
+		uint32_t mask = caservice->getServiceTypeMask();
+		had_streamserver = (mask & ((1 << 7) | (1 << 8))) != 0;
 	}
 	else
 	{
