@@ -88,19 +88,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 			}
 			return;
 		}
-	}
 
-	if (!remaps.empty())
-	{
-		std::unordered_map<unsigned int, unsigned int>::iterator i = remaps.find(ev->code);
-		if (i != remaps.end())
-		{
-			eDebug("[eRCDeviceInputDev] map: %u->%u", i->first, i->second);
-			ev->code = i->second;
-		}
-	}
-	else
-	{
 #if KEY_PLAY_ACTUALLY_IS_KEY_PLAYPAUSE
 		if (ev->code == KEY_PLAY)
 		{
@@ -113,7 +101,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 
 	if (ev->code == KEY_TV2) {
 		ev->code = KEY_TV;
-	}
 
 #if KEY_F6_TO_KEY_VIDEO
 
@@ -595,12 +582,6 @@ void eRCDeviceInputDev::handleCode(long rccode)
 			input->keyPressed(eRCKey(this, ev->code, eRCKey::flagRepeat)); /*emit*/
 			break;
 	}
-}
-
-int eRCDeviceInputDev::setKeyMapping(const std::unordered_map<unsigned int, unsigned int>& remaps_p)
-{
-	remaps = remaps_p;
-	return eRCInput::remapOk;
 }
 
 eRCDeviceInputDev::eRCDeviceInputDev(eRCInputEventDriver *driver, int consolefd)
