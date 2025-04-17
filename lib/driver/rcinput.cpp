@@ -42,7 +42,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 	if (km == eRCInput::kmAscii)
 	{
 		bool ignore = false;
-		bool ascii = ev->code > 0 && ev->code < 59;
+		bool ascii = (ev->code > 0 && ev->code < 61);
 
 		switch (ev->code)
 		{
@@ -249,6 +249,14 @@ public:
 
 	void add(const char* filename)
 	{
+		for (itemlist::iterator it = items.begin(); it != items.end(); ++it)
+		{
+			if (strcmp((*it)->filename, filename) == 0)
+			{
+				// Ignore if already exists
+				return;
+			}
+		}
 		eDebug("[eInputDeviceInit] adding device %s", filename);
 		eRCInputEventDriver *p = new eRCInputEventDriver(filename);
 		items.push_back(new element(filename, p, new eRCDeviceInputDev(p, consoleFd)));
