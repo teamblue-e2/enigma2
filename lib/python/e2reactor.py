@@ -19,7 +19,6 @@ from twisted.internet import main, posixbase, error
 #from twisted.internet.pollreactor import PollReactor, poller
 
 from enigma import getApplication
-import six
 
 # globals
 reads = {}
@@ -84,7 +83,7 @@ class PollReactor(posixbase.PosixReactorBase):
 		except:
 			# the hard way: necessary because fileno() may disappear at any
 			# moment, thanks to python's underlying sockets impl
-			for fd, fdes in list(selectables.items()):
+			for fd, fdes in selectables.items():
 				if selectable is fdes:
 					break
 			else:
@@ -127,8 +126,8 @@ class PollReactor(posixbase.PosixReactorBase):
 		"""Remove all selectables, and return a list of them."""
 		if self.waker is not None:
 			self.removeReader(self.waker)
-		result = list(selectables.values())
-		fds = list(selectables.keys())
+		result = selectables.values()
+		fds = selectables.keys()
 		reads.clear()
 		writes.clear()
 		selectables.clear()
@@ -140,13 +139,13 @@ class PollReactor(posixbase.PosixReactorBase):
 		return result
 
 	def doPoll(self, timeout,
-			reads=reads,
-			writes=writes,
-			selectables=selectables,
-			select=select,
-			log=log,
-			POLLIN=select.POLLIN,
-			POLLOUT=select.POLLOUT):
+		reads=reads,
+		writes=writes,
+		selectables=selectables,
+		select=select,
+		log=log,
+		POLLIN=select.POLLIN,
+		POLLOUT=select.POLLOUT):
 		"""Poll the poller for new events."""
 
 		if timeout is not None:
@@ -158,8 +157,8 @@ class PollReactor(posixbase.PosixReactorBase):
 				if self.running:
 					self.stop()
 				l = []
-		except select.error as e:
-			if e[0] is errno.EINTR:
+		except OSError as e:
+			if e.errno == errno.EINTR:
 				return
 			else:
 				raise
@@ -175,11 +174,12 @@ class PollReactor(posixbase.PosixReactorBase):
 
 	doIteration = doPoll
 
-	def _doReadOrWrite(self, selectable, fd, event, POLLIN, POLLOUT, log,
-		faildict={
-			error.ConnectionDone: failure.Failure(error.ConnectionDone()),
-			error.ConnectionLost: failure.Failure(error.ConnectionLost())
-		}):
+	def _doReadOrWrite(self, selectable, fd, event, POLLIN, POLLOUT, log, faildict=None):
+		if not faildict:
+			faildict = {
+		error.ConnectionDone: failure.Failure(error.ConnectionDone()),
+		error.ConnectionLost: failure.Failure(error.ConnectionLost())
+		}
 		why = None
 		inRead = False
 		if event & POLL_DISCONNECTED and not (event & POLLIN):
@@ -196,7 +196,7 @@ class PollReactor(posixbase.PosixReactorBase):
 					why = error.ConnectionFdescWentAway('Filedescriptor went away')
 					inRead = False
 			except AttributeError as ae:
-				if "'NoneType' object has no attribute 'writeHeaders'" not in six.text_type(ae):
+				if "'NoneType' object has no attribute 'writeHeaders'" not in str(ae):
 					log.deferr()
 					why = sys.exc_info()[1]
 				else:
