@@ -57,6 +57,7 @@ class Navigation:
 		self.currentServiceIsStreamRelay = False
 		self.skipServiceReferenceReset = False
 		self.__isRestartUI = config.misc.RestartUI.value
+		self.__prevWakeupTime = config.misc.prev_wakeup_time.value
 		startup_to_standby = config.usage.startup_to_standby.value
 		wakeup_time_type = config.misc.prev_wakeup_time_type.value
 
