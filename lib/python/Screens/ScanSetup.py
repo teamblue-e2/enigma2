@@ -14,7 +14,6 @@ from Tools.Directories import fileExists
 from Screens.InfoBar import InfoBar
 from Screens.MessageBox import MessageBox
 from enigma import eTimer, eDVBFrontendParametersSatellite, eComponentScan, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersCable, eConsoleAppContainer, eDVBResourceManager, eDVBFrontendParametersATSC
-import six
 
 
 def buildTerTransponder(frequency,
@@ -215,7 +214,8 @@ class CableTransponderSearchSupport:
 		self.cable_search_session.close(True)
 
 	def getCableTransponderData(self, str):
-		str = six.ensure_str(str)
+		str = str.decode()
+		print("[getCableTransponderData] ", str)
 		#prepend any remaining data from the previous call
 		str = self.remainingdata + str
 		#split in lines

@@ -8,7 +8,6 @@ from Tools.HardwareInfo import HardwareInfo
 from boxbranding import getMachineBuild
 import Components.Task
 import re
-import six
 
 
 def readFile(filename):
@@ -979,7 +978,6 @@ class UnmountTask(Components.Task.LoggingTask):
 	def prepare(self):
 		try:
 			dev = self.hdd.disk_path.split('/')[-1]
-			dev = six.ensure_binary(dev)
 			open('/dev/nomount.%s' % dev, "wb").close()
 		except Exception as e:
 			print("[Harddisk] ERROR: Failed to create /dev/nomount file:", e)
@@ -1042,7 +1040,6 @@ class MkfsTask(Components.Task.LoggingTask):
 		self.fsck_state = None
 
 	def processOutput(self, data):
-		data = six.ensure_str(data)
 		print("[Mkfs]", data)
 		if 'Writing inode tables:' in data:
 			self.fsck_state = 'inode'

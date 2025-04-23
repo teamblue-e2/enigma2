@@ -1,6 +1,5 @@
 from Tools.CList import CList
-from six.moves import reduce
-
+from functools import reduce
 
 # down                       up
 # Render Converter Converter Source
@@ -110,8 +109,7 @@ class Element:
 	suspended = property(lambda self: self.__suspended, setSuspend)
 
 	def checkSuspend(self):
-		if self.downstream_elements:
-			self.suspended = reduce(lambda x, y: x and y.__suspended, self.downstream_elements, True)
+		self.suspended = reduce(lambda x, y: x and y.__suspended, self.downstream_elements, True)
 
 	def doSuspend(self, suspend):
 		pass
