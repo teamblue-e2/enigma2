@@ -21,7 +21,6 @@ from os import popen
 from Tools.StbHardware import getFPVersion
 
 from enigma import eTimer, eLabel, eConsoleAppContainer, getDesktop
-import six
 
 from Components.GUIComponent import GUIComponent
 from skin import applySkinFactor, parameters, parseScale
@@ -180,7 +179,7 @@ class About(Screen):
 
 		AboutText += _("Uptime") + ": " + about.getBoxUptime()
 
-		if BoxInfo.getItem("HDMICEC") and config.hdmicec.enabled.value:
+		if BoxInfo.getItem("HasHDMI-CEC") and config.hdmicec.enabled.value:
 			address = config.hdmicec.fixed_physical_address.value if config.hdmicec.fixed_physical_address.value != "0.0.0.0" else _("not set")
 			AboutText += "\n\n" + _("HDMI-CEC address") + ": " + address
 
@@ -769,7 +768,6 @@ class SystemNetworkInfo(Screen):
 			iNetwork.getLinkState(self.iface, self.dataAvail)
 
 	def dataAvail(self, data):
-		data = six.ensure_str(data)
 		self.LinkState = None
 		for line in data.splitlines():
 			line = line.strip()
@@ -848,7 +846,6 @@ class Troubleshoot(Screen):
 			self["AboutScrollLabel"].setText(_("Some error occurred - Please try later"))
 
 	def dataAvail(self, data):
-		data = six.ensure_str(data)
 		self["AboutScrollLabel"].appendText(data)
 
 	def run_console(self):
