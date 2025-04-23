@@ -3,7 +3,6 @@ from Components.config import config, ConfigSubsection, ConfigInteger, ConfigTex
 from . import Title
 import xml.dom.minidom
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS
-import six
 
 
 class ConfigColor(ConfigSequence):
@@ -62,7 +61,7 @@ class Project:
 		_list.append('<?xml version="1.0" encoding="utf-8" ?>\n')
 		_list.append('<DreamDVDBurnerProject>\n')
 		_list.append('\t<settings ')
-		for key, val in six.iteritems(self.settings.dict()):
+		for key, val in self.settings.dict().items():
 			_list.append(key + '="' + str(val.getValue()) + '" ')
 		_list.append('/>\n')
 		_list.append('\t<titles>\n')
@@ -73,12 +72,12 @@ class Project:
 			_list.append('</path>\n')
 			_list.append('\t\t\t<properties ')
 			audiotracks = []
-			for key, val in six.iteritems(title.properties.dict()):
+			for key, val in title.properties.dict().items():
 				if isinstance(val, ConfigSubList):
 					audiotracks.append('\t\t\t<audiotracks>\n')
 					for audiotrack in val:
 						audiotracks.append('\t\t\t\t<audiotrack ')
-						for subkey, subval in six.iteritems(audiotrack.dict()):
+						for subkey, subval in audiotrack.dict().items():
 							audiotracks.append(subkey + '="' + str(subval.getValue()) + '" ')
 						audiotracks.append(' />\n')
 					audiotracks.append('\t\t\t</audiotracks>\n')
@@ -229,6 +228,7 @@ class MenuTemplate(Project):
 		self.settings.margin_right = ConfigInteger(default=56, limits=(0, 500))
 		self.settings.space_rows = ConfigInteger(default=32, limits=(0, 500))
 		self.settings.space_cols = ConfigInteger(default=24, limits=(0, 500))
+		self.settings.prev_page_text = ConfigText(default="<<<", fixed_size=False)
 		self.settings.next_page_text = ConfigText(default=">>>", fixed_size=False)
 		self.settings.offset_headline = ConfigSequence(seperator=',', default=[0, 0], limits=[(-1, 500), (-1, 500)])
 		self.settings.offset_title = ConfigSequence(seperator=',', default=[0, 0], limits=[(-1, 500), (-1, 500)])

@@ -9,7 +9,6 @@ from Components.Sources.StaticText import StaticText
 from Components.SelectionList import SelectionList
 from twisted.internet.protocol import Protocol, Factory
 import os
-import six
 
 # globals
 hotplugNotifier = []
@@ -81,7 +80,8 @@ class Hotplug(Protocol):
 		self.received = ""
 
 	def dataReceived(self, data):
-		data = six.ensure_str(data)
+		if isinstance(data, bytes):
+			data = data.decode()
 		self.received += data
 		print("[Hotplug.plugin.py] complete", self.received)
 

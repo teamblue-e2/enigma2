@@ -1,5 +1,3 @@
-import six
-
 InfoBarCount = 0
 
 
@@ -44,12 +42,12 @@ class InfoBarBase:
 		else:
 			nav = self.session.nav
 			ServiceEventTracker.setActiveInfoBar(self, not steal_current_service and nav.getCurrentService(), nav.getCurrentlyPlayingServiceOrGroup())
-		self.onClose.append(self._close)
+		self.onClose.append(self.__close)
 		InfoBarBase.infoBarOpened(self)
 		global InfoBarCount
 		InfoBarCount += 1
 
-	def _close(self):
+	def __close(self):
 		ServiceEventTracker.popActiveInfoBar()
 		InfoBarBase.infoBarClosed(self)
 		global InfoBarCount
@@ -120,11 +118,11 @@ class ServiceEventTracker:
 			screen.session.nav.event.append(ServiceEventTracker.event)
 			ServiceEventTracker.navcore = screen.session.nav
 		EventMap = EventMap.setdefault
-		for x in six.iteritems(eventmap):
+		for x in eventmap.items():
 			EventMap(x[0], []).append((self.__passall, screen, x[1]))
 		screen.onClose.append(self.__del_event)
 
 	def __del_event(self):
 		EventMap = ServiceEventTracker.EventMap.setdefault
-		for x in six.iteritems(self.__eventmap):
+		for x in self.__eventmap.items():
 			EventMap(x[0], []).remove((self.__passall, self.__screen, x[1]))

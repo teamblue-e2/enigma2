@@ -2,8 +2,6 @@ import sys
 
 from enigma import ePythonOutput
 
-import six
-
 
 class EnigmaLog:
 	def __init__(self, level):
@@ -12,7 +10,7 @@ class EnigmaLog:
 
 	def write(self, data):
 		if isinstance(data, str):
-			data = six.ensure_str(data, errors="ignore")
+			data = data.decode(encoding="UTF-8", errors="ignore")
 		self.line += data
 		if "\n" in data:
 			ePythonOutput(self.line, self.level)

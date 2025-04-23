@@ -23,7 +23,6 @@ from time import gmtime, strftime, localtime, sleep
 from datetime import date
 from boxbranding import getBoxType, getImageDistro, getMachineBrand, getMachineName
 from . import ShellCompatibleFunctions
-import six
 
 
 def eEnv_resolve_multi(path):
@@ -592,7 +591,8 @@ class installedPlugins(Screen):
 		self.container.execute("%sopkg list-installed | egrep 'enigma2-plugin-|task-base|packagegroup-base'" % self.chroot)
 
 	def dataAvail(self, strData):
-		strData = six.ensure_str(strData)
+		if isinstance(strData, bytes):
+			strData = strData.decode("UTF-8", "ignore")
 		if self.type == self.LIST:
 			strData = self.remainingdata + strData
 			lines = strData.split('\n')
