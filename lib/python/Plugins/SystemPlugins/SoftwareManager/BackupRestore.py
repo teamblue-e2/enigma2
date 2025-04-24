@@ -48,7 +48,7 @@ def InitConfig():
 		'/etc/default/crond', '/etc/dropbear/', '/etc/default/dropbear', '/home/', '/etc/samba/', '/etc/fstab', '/etc/inadyn.conf',
 		'/etc/network/interfaces', '/etc/wpa_supplicant.conf', '/etc/wpa_supplicant.ath0.conf',
 		'/etc/wpa_supplicant.wlan0.conf', '/etc/wpa_supplicant.wlan1.conf', '/etc/resolv.conf', '/etc/default_gw', '/etc/hostname', '/etc/epgimport/', '/etc/exports',
-		'/etc/enigmalight.conf', '/etc/volume.xml', '/etc/ciplus/',
+		'/etc/enigmalight.conf', '/etc/volume.xml', '/etc/ciplus/', "/etc/enigma2/ci_auth_slot_0.bin", "/etc/enigma2/ci_auth_slot_1.bin",
 		'/usr/share/enigma2/display/skin_display_usr.xml',
 		'/usr/share/enigma2/display/userskin.png',
 		'/usr/lib/enigma2/python/Plugins/Extensions/SpecialJump/keymap_user.xml',
@@ -57,8 +57,10 @@ def InitConfig():
 		'/usr/lib/enigma2/python/Plugins/Extensions/TVSpielfilm/db', '/etc/ConfFS',
 		'/etc/rc3.d/S99tuner.sh',
 		'/usr/bin/enigma2_pre_start.sh',
+		"/var/lib/bluetooth/",
 		eEnv.resolve("${datadir}/enigma2/keymap.usr"),
 		eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml")]\
+		+ eEnv_resolve_multi("${sysconfdir}/opkg/*-secret-feed.conf")\
 		+ eEnv_resolve_multi("${datadir}/enigma2/*/skin_user_*.xml")\
 		+ eEnv_resolve_multi("/usr/bin/*cam*")\
 		+ eEnv_resolve_multi("/etc/*.emu")\
