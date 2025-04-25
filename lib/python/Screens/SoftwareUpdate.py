@@ -126,8 +126,9 @@ class UpdatePlugin(Screen, ProtectedScreen):
 
 		# or display a generic warning if fetching failed
 		else:
-			message += "\n" + _("Do you want to update your receiver?")
-			self.session.openWithCallback(self.startActualUpdate, MessageBox, message, default=default, picon=picon)
+			#message += "\n" + _("Do you want to update your receiver?")
+			#self.session.openWithCallback(self.startActualUpdate, MessageBox, message, default=default, picon=picon)
+			self.startActualUpdate(True)
 
 	def showDisclaimer(self, justShow=False):
 		if config.usage.show_update_disclaimer.value or justShow:
