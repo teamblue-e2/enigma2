@@ -2,12 +2,12 @@ import os
 import re
 
 
-class MountPoints:
+class MountPoints():
 	def __init__(self):
 		self.entries = []
 		self.uuids = []
 		self.fstab = "/etc/fstab"
-		self.blkid = "/sbin/blkid"
+		self.blkid = "blkid"
 
 	def read(self):
 		rows = open(self.fstab, "r").read().strip().split("\n")
@@ -52,7 +52,6 @@ class MountPoints:
 				if res[0] == "/dev/%s%i" % (device, partition):
 					mounts.close()
 					return res[1]
-
 		mounts.close()
 		return ""
 
@@ -76,7 +75,7 @@ class MountPoints:
 					self.entries.remove(entry)
 
 	def deleteDisk(self, device):
-		for i in list(range(1, 4)):
+		for i in range(1, 4):
 			res = self.get(device, i)
 			if len(res) > 0:
 				self.delete(res)
