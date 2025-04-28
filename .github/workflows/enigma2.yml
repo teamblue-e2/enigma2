@@ -39,6 +39,7 @@ jobs:
           sudo apt-get install libjpeg-turbo8-dev
           sudo apt-get install libgif-dev
           sudo apt-get install libcurl4-openssl-dev
+          sudo apt-get install libsigc++-3.0-dev
 
       - uses: actions/checkout@v4
 
@@ -75,14 +76,6 @@ jobs:
           cd ../tuxtxt
           autoreconf -i
           ./configure --with-boxtype=generic DVB_API_VERSION=5
-          make
-          sudo make install
-          popd
-          echo installing libsigc++3
-          cd /tmp
-          git clone --depth 1 https://github.com/libsigcplusplus/libsigcplusplus.git
-          cd libsigcplusplus
-          ./autogen.sh
           make
           sudo make install
           popd
