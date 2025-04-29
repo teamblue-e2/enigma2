@@ -3,7 +3,7 @@ from enigma import eDVBCI_UI, eLabel, iPlayableService
 from skin import parameters
 from Components.SystemInfo import BoxInfo
 from Components.VariableText import VariableText
-from os import popen
+import subprocess
 
 class CiModuleControl(Renderer, VariableText):
 	def __init__(self):
@@ -13,7 +13,7 @@ class CiModuleControl(Renderer, VariableText):
 		self.eDVBCIUIInstance and self.eDVBCIUIInstance.ciStateChanged.get().append(self.ciModuleStateChanged)
 		self.text = ""
 		self.allVisible = False
-		self.no_visible_state1 = "ciplushelper" in popen("top -n 1").read()
+		self.no_visible_state1 = "ciplushel" in subprocess.getoutput("top -n1 -b")
 		self.colors = parameters.get("CiModuleControlColors", (0x007F7F7F, 0x00FFFF00, 0x0000FF00, 0x00FF2525)) # "state 0 (no module) gray", "state 1 (init module) yellow", "state 2 (module ready) green", "state -1 (error) red"
 
 	GUI_WIDGET = eLabel
