@@ -136,9 +136,9 @@ class HddInfo(ConfigListScreen, Screen):
 			if readCache:
 				self["readCache"].setText(_("Read cache speed: %s") % readCache[0].lstrip())
 		hdparm.close()
-		hddtemp = os.popen("/usr/sbin/hddtemp -q %s" % device)
+		hddtemp = os.popen("/usr/sbin/hddtemp -q %s | cut -d':' -f3" % device)
 		for line in hddtemp:
-			temp = re.findall(tempRe, line)
+			temp = line.strip()
 			if temp:
-				self["temp"].setText(_("Disk temperature: %s") % temp[0].lstrip())
+				self["temp"].setText(_("Disk temperature: %s °C") % temp.split()[0])
 		hddtemp.close()
