@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-28 15:55+0200\n"
+"POT-Creation-Date: 2025-04-30 15:32+0200\n"
 "PO-Revision-Date: 2007-08-14 10:23+0200\n"
 "Last-Translator: Oriol Pellicer <oriol@elsud.org>\n"
 "Language-Team: \n"
@@ -176,6 +176,9 @@ msgid " - information"
 msgstr "Informació"
 
 msgid " Warning: the selected tuner should not use SCR Unicable type for LNBs because each tuner need a own SCR number."
+msgstr ""
+
+msgid " [immutable]\n"
 msgstr ""
 
 #
@@ -4222,9 +4225,10 @@ msgstr ""
 msgid "Disk state: "
 msgstr "estat de la recerca"
 
-#, python-format
-msgid "Disk temperature: %s"
-msgstr ""
+#
+#, fuzzy, python-format
+msgid "Disk temperature: %s °C"
+msgstr "estat de la recerca"
 
 msgid "Disk temperature: unknown"
 msgstr ""
@@ -4877,6 +4881,9 @@ msgstr ""
 msgid "Enable favourites edit"
 msgstr "activar l'edició dels preferits"
 
+msgid "Enable filtering in SingleEPG"
+msgstr ""
+
 msgid "Enable freesat EPG"
 msgstr ""
 
@@ -4915,6 +4922,9 @@ msgid "Enable remote enigma2 receiver to be tried to tune into services that can
 msgstr ""
 
 msgid "Enable screenshot of LCD in /tmp"
+msgstr ""
+
+msgid "Enable setting a time interval for filtering events in SingleEPG using the 'Stop' button."
 msgstr ""
 
 msgid "Enable teletext caching"
@@ -4997,6 +5007,9 @@ msgstr "fi de l'edició de llistes"
 #, fuzzy
 msgid "End favourites edit"
 msgstr "fi de l'edició de preferits"
+
+msgid "End of the time interval within which an events must start in order to be displayed."
+msgstr ""
 
 #
 msgid "End time"
@@ -7455,6 +7468,11 @@ msgstr ""
 
 msgid "Keep service"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Keep sorting"
+msgstr "Descripció"
 
 msgid "Kenya"
 msgstr ""
@@ -12261,7 +12279,7 @@ msgstr "Seleccionar una pel·lícula"
 msgid "Select channel to record from"
 msgstr "Selecciona el canal a gravar"
 
-msgid "Select char for replacing newlines in epg."
+msgid "Select char for replacing newlines in EPG."
 msgstr ""
 
 msgid "Select copy destination for:"
@@ -13991,6 +14009,9 @@ msgstr ""
 msgid "Start instant recording"
 msgstr "Iniciar gravació?"
 
+msgid "Start of the time interval within which an events must start in order to be displayed."
+msgstr ""
+
 msgid "Start offline decode"
 msgstr ""
 
@@ -15384,6 +15405,11 @@ msgstr "Avui"
 msgid "Toggle Configuration Mode or AutoDisqc"
 msgstr "Mode configuració"
 
+#
+#, fuzzy
+msgid "Toggle Filter Order"
+msgstr "Mode del to"
+
 msgid "Toggle HDMI In"
 msgstr ""
 
@@ -16116,6 +16142,9 @@ msgstr ""
 msgid "Using fixed address"
 msgstr ""
 
+msgid "Using the 'Stop' button will cyclically switch displaying events starting: 'outside the interval', 'within the interval', and 'without filtering', instead of 'within the interval', 'outside the interval', and 'without filtering'."
+msgstr ""
+
 #, python-format
 msgid "Using tuner %s"
 msgstr ""
@@ -16845,6 +16874,9 @@ msgstr ""
 #, fuzzy
 msgid "When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa."
 msgstr "Si s'estableix a Sí, tots els llocs on es mostra la SNR en dB mostraran el percentatge de SNR i viceversa."
+
+msgid "When switching the filter, the selected EPG sorting is preserved."
+msgstr ""
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr ""

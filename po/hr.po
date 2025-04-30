@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-28 15:55+0200\n"
+"POT-Creation-Date: 2025-04-30 15:32+0200\n"
 "PO-Revision-Date: 2020-03-03 08:50+0100\n"
 "Last-Translator: Željko <zeljko2@hi.ht.hr>\n"
 "Language-Team: Željko\n"
@@ -177,6 +177,9 @@ msgid " - information"
 msgstr "Informacije"
 
 msgid " Warning: the selected tuner should not use SCR Unicable type for LNBs because each tuner need a own SCR number."
+msgstr ""
+
+msgid " [immutable]\n"
 msgstr ""
 
 #
@@ -4241,9 +4244,10 @@ msgstr ""
 msgid "Disk state: "
 msgstr "status skeniranja"
 
-#, python-format
-msgid "Disk temperature: %s"
-msgstr ""
+#
+#, fuzzy, python-format
+msgid "Disk temperature: %s °C"
+msgstr "status skeniranja"
 
 msgid "Disk temperature: unknown"
 msgstr ""
@@ -4898,6 +4902,9 @@ msgstr ""
 msgid "Enable favourites edit"
 msgstr "omogući editiranje favorita"
 
+msgid "Enable filtering in SingleEPG"
+msgstr ""
+
 msgid "Enable freesat EPG"
 msgstr ""
 
@@ -4936,6 +4943,9 @@ msgid "Enable remote enigma2 receiver to be tried to tune into services that can
 msgstr ""
 
 msgid "Enable screenshot of LCD in /tmp"
+msgstr ""
+
+msgid "Enable setting a time interval for filtering events in SingleEPG using the 'Stop' button."
 msgstr ""
 
 msgid "Enable teletext caching"
@@ -5018,6 +5028,9 @@ msgstr "završi editiranje paketa"
 #, fuzzy
 msgid "End favourites edit"
 msgstr "završi editiranje favorita"
+
+msgid "End of the time interval within which an events must start in order to be displayed."
+msgstr ""
 
 #
 msgid "End time"
@@ -7484,6 +7497,11 @@ msgstr ""
 
 msgid "Keep service"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Keep sorting"
+msgstr "Opis"
 
 msgid "Kenya"
 msgstr ""
@@ -12300,7 +12318,7 @@ msgstr "Odaberi film"
 msgid "Select channel to record from"
 msgstr "Odaberite kanal s kojeg želite snimati"
 
-msgid "Select char for replacing newlines in epg."
+msgid "Select char for replacing newlines in EPG."
 msgstr ""
 
 msgid "Select copy destination for:"
@@ -14025,6 +14043,9 @@ msgstr ""
 msgid "Start instant recording"
 msgstr "Započeti Snimanje?"
 
+msgid "Start of the time interval within which an events must start in order to be displayed."
+msgstr ""
+
 msgid "Start offline decode"
 msgstr ""
 
@@ -15417,6 +15438,11 @@ msgstr "Danas"
 msgid "Toggle Configuration Mode or AutoDisqc"
 msgstr "Mod Konfiguracije"
 
+#
+#, fuzzy
+msgid "Toggle Filter Order"
+msgstr "Ton mod"
+
 msgid "Toggle HDMI In"
 msgstr ""
 
@@ -16150,6 +16176,9 @@ msgstr ""
 msgid "Using fixed address"
 msgstr ""
 
+msgid "Using the 'Stop' button will cyclically switch displaying events starting: 'outside the interval', 'within the interval', and 'without filtering', instead of 'within the interval', 'outside the interval', and 'without filtering'."
+msgstr ""
+
 #, python-format
 msgid "Using tuner %s"
 msgstr ""
@@ -16880,6 +16909,9 @@ msgstr ""
 #, fuzzy
 msgid "When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa."
 msgstr "Ako je postavljeno na Da, sva mjesta gdje je prikazan SNR u dB prikazat će SNR postotak i obrnuto."
+
+msgid "When switching the filter, the selected EPG sorting is preserved."
+msgstr ""
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr ""

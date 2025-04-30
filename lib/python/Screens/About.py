@@ -855,7 +855,7 @@ class Troubleshoot(Screen):
 		if command == "boxinfo":
 			text = ""
 			for item in BoxInfo.getItemsList():
-				text += '%s = %s %s%s' % (item, str(BoxInfo.getItem(item)), type(BoxInfo.getItem(item)), " [immutable]\n" if item in BoxInfo.getEnigmaInfoList() else "\n")
+				text += '%s = %s %s' % (item, str(BoxInfo.getItem(item)), _(" [immutable]\n") if item in BoxInfo.getEnigmaInfoList() else "\n")
 			self["AboutScrollLabel"].setText(text)
 		elif command.startswith("cat "):
 			try:
