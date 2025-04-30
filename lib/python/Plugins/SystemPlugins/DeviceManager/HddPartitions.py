@@ -14,7 +14,7 @@ from .Disks import Disks
 from .ExtraActionBox import ExtraActionBox
 from .ExtraMessageBox import ExtraMessageBox
 from .MountPoints import MountPoints
-from .HddMount import HddMountDevice
+from .HddMount import HddMount
 import os
 
 FULLHD = False
@@ -296,7 +296,7 @@ class HddPartitions(Screen):
 					self.mountpoints.umount(rmp)
 				self.refreshMP()
 			else:
-				self.session.openWithCallback(self.refreshMP, HddMountDevice, self.disk1, self.sindex + 1)
+				self.session.openWithCallback(self.refreshMP, HddMount, self.disk1, self.sindex + 1)
 
 	def quit(self):
 		self.close()

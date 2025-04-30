@@ -30,10 +30,10 @@ if getDesktop(0).size().width() >= 1920:
 	FULLHD = True
 
 
-class HddMountDevice(Screen):
+class HddMount(Screen):
 	if FULLHD:
 		skin = """
-		<screen name="HddMountDevice" position="center,center" size="560,430" title="Hard Drive Mount">
+		<screen name="HddMount" position="center,center" size="560,430" title="Hard Drive Mount">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
@@ -46,7 +46,7 @@ class HddMountDevice(Screen):
 		</screen>"""
 	else:
 		skin = """
-		<screen name="HddMountDevice" position="center,center" size="560,430" title="Hard Drive Mount">
+		<screen name="HddMount" position="center,center" size="560,430" title="Hard Drive Mount">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/green.png" position="140,0" size="140,40" alphatest="on" />
 			<ePixmap pixmap="skin_default/buttons/yellow.png" position="280,0" size="140,40" alphatest="on" />
