@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-28 15:55+0200\n"
-"PO-Revision-Date: 2021-12-06 10:46+0100\n"
+"POT-Creation-Date: 2025-04-30 15:32+0200\n"
+"PO-Revision-Date: 2025-04-30 15:54+0200\n"
 "Last-Translator: teamblue-e2 <teamblue-e2@online.de>\n"
 "Language-Team: \n"
 "Language: fr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.5\n"
 
 msgid ""
 "\n"
@@ -149,16 +149,16 @@ msgid " (circular LNB)"
 msgstr "Utiliser un LNB circulaire"
 
 msgid " (disabled)"
-msgstr "(Désactivé)"
+msgstr " (Désactivé)"
 
 msgid " (higher than any auto)"
-msgstr "(supérieur à n'importe quel auto)"
+msgstr " (supérieur à n'importe quel auto)"
 
 msgid " (higher than rotor any auto)"
-msgstr "(supérieur à n'importe quel rotor auto)"
+msgstr " (supérieur à n'importe quel rotor auto)"
 
 msgid " (lower than any auto)"
-msgstr "(inférieur à n'importe quel auto)"
+msgstr " (inférieur à n'importe quel auto)"
 
 #, python-format
 msgid " - %d elements exist! Overwrite"
@@ -182,6 +182,9 @@ msgstr "Informations"
 
 msgid " Warning: the selected tuner should not use SCR Unicable type for LNBs because each tuner need a own SCR number."
 msgstr " Attention : le tuner sélectionné ne doit pas utiliser le type SCR Unicable pour les LNBs car chaque tuner a besoin de son propre numéro SCR."
+
+msgid " [immutable]\n"
+msgstr " [immuable]\n"
 
 msgid " min"
 msgstr " min"
@@ -238,7 +241,7 @@ msgid "%H:%M"
 msgstr "%H:%M"
 
 msgid "%R"
-msgstr ""
+msgstr "%R"
 
 msgid "%Y-%m-%d %H:%M:%S"
 msgstr "%Y-%m-%d %H:%M:%S"
@@ -257,7 +260,7 @@ msgstr "%a %e/%m  %-H:%M"
 
 #, python-format
 msgid "%d"
-msgstr ""
+msgstr "%d"
 
 #, fuzzy, python-format
 msgid "%d MB"
@@ -471,12 +474,12 @@ msgstr "%s extrait avec succès."
 #, python-format
 msgid "%s updated package available"
 msgid_plural "%s updated packages available"
-msgstr[0] "%s mise à jour disponible."
+msgstr[0] "%s paquet mis à jour disponible"
 msgstr[1] "%s mise à jour disponibles."
 
 #, python-format
 msgid "%s%s(Default: %s)"
-msgstr ""
+msgstr "%s%s(Par défaut : %s)"
 
 #, python-format
 msgid "%s: %s"
@@ -487,7 +490,7 @@ msgid "'%s' not installed and no known package"
 msgstr "'%s' non installé et aucun paquet connu"
 
 msgid "'Minimum send interval' needs to be enabled to use this option."
-msgstr ""
+msgstr "l'option \"Intervalle d'envoi minimum\" doit être activée pour que cette option puisse être utilisée."
 
 msgid "'Ping' is used for detection device on this address."
 msgstr ""
@@ -752,7 +755,7 @@ msgstr "Un événement répétitif est en cours d'enregistrement. Que voulez-vou
 
 #, python-format
 msgid "A required tool (%s) was not found."
-msgstr "Un outil (%s) nécessaire n'a pas été trouvé"
+msgstr "Un outil requis (%s) n'a pas été trouvé."
 
 msgid "A search for available updates is currently in progress."
 msgstr "Une recherche pour les mises à jour disponibles est actuellement en cours."
@@ -1623,7 +1626,7 @@ msgid "Backup Location"
 msgstr "Localisation des sauvegardes"
 
 msgid "Backup Mode"
-msgstr "mode de sauvegarde."
+msgstr "Mode de sauvegarde"
 
 msgid "Backup completed."
 msgstr "Sauvegarde terminée."
@@ -1980,7 +1983,7 @@ msgid "Cameroon"
 msgstr "Cameroun"
 
 msgid "Can be used for different fps between external subtitles and video."
-msgstr "Peut-être utilisé pour différents fps entre les sous-titres externes et la vidéo"
+msgstr "Peut être utilisé pour des intervalles de temps différents entre les sous-titres externes et la vidéo."
 
 msgid ""
 "Can be used to test defect pixels on TV screen.\n"
@@ -2081,9 +2084,9 @@ msgid ""
 "A record in progress, timeshift or some external tools (like samba, swapfile and nfsd) may cause this problem.\n"
 "Please stop this actions/applications and try again"
 msgstr ""
-"Impossible de formater le lecteur courant.\n"
-"Un enregistrement est en cours, PauseDirect ou certains outils externes (comme samba, fichier de swap et nfsd) peuvent provoquer ce problème.\n"
-"Merci d’arrêter ces actions/application et de réessayer."
+"Impossible de formater le disque actuel.\n"
+"Un enregistrement, une pause direct ou des outils externes (comme samba, fichier swap et nfsd) peuvent causer ce problème.\n"
+"Merci d’arrêter ces actions/applications et essayer de nouveau"
 
 #, python-format
 msgid "Cannot format partition %d"
@@ -2093,8 +2096,8 @@ msgid ""
 "Cannot mount new drive.\n"
 "Please check filesystem or format it and try again"
 msgstr ""
-"Impossible de mounter un nouveau lecteur.\n"
-"Merci de vérifier le système de fichier ou le format et réessayer."
+"Impossible de monter un nouveau disque.\n"
+"Vérifiez le système de fichier ou formatez le et essayez à nouveau"
 
 msgid "Cannot move files on a different disk or system to the trash can"
 msgstr "Impossible de déplacer les fichiers sur un disque ou système différent dans la corbeille"
@@ -2107,18 +2110,18 @@ msgid ""
 "A record in progress, timeshift or some external tools (like samba, swapfile and nfsd) may cause this problem.\n"
 "Please stop this actions/applications and try again"
 msgstr ""
-"Impossible de démonter (umount) le périphérique courant.\n"
-"Un enregistrement est en cours, PauseDirect ou certains outils externes (comme samba, fichier de swap et nfsd) peuvent provoquer ce problème.\n"
-"Merci d’arrêter ces actions/application et de réessayer."
+"Impossible de démonter le périphérique actuel.\n"
+"Un enregistrement, une pause direct ou des outils externes (comme samba, fichier swap et nfsd) peuvent causer ce problème.\n"
+"Merci d’arrêter ces actions/applications et essayer de nouveau"
 
 msgid ""
 "Cannot umount current drive.\n"
 "A record in progress, timeshift or some external tools (like samba, swapfile and nfsd) may cause this problem.\n"
 "Please stop this actions/applications and try again"
 msgstr ""
-"Impossible de démonter (umount) le lecteur courant.\n"
-"Un enregistrement est en cours, PauseDirect ou certains outils externes (comme samba, fichier de swap et nfsd) peuvent provoquer ce problème.\n"
-"Merci d’arrêter ces actions/application et de réessayer."
+"Impossible de démonter le disque actuel.\n"
+"Un enregistrement, une pause direct ou des outils externes (comme samba, fichier swap et nfsd) peuvent causer ce problème.\n"
+"Merci d’arrêter ces actions/applications et essayer de nouveau"
 
 msgid "Capabilities: "
 msgstr "Capacités "
@@ -2581,7 +2584,7 @@ msgid "Configure how recording filenames are constructed."
 msgstr "Configurez la façon dont les noms de fichiers d'enregistrement sont construits."
 
 msgid "Configure how the fan should operate"
-msgstr "Configurer l'activité du ventilateur."
+msgstr "Configure l'activité du ventilateur"
 
 msgid "Configure if and how crypto icons will be shown in the channel selection list."
 msgstr "Configurer si et où les picons d'encryption seront affichés dans la liste des chaînes."
@@ -2801,7 +2804,7 @@ msgid "Configure the speed of the background deletion process. Lower speed will 
 msgstr "Configurez la vitesse du processus de suppression d'arrière-plan. Une vitesse basse consommera moins les performances du disque dur."
 
 msgid "Configure the speed of the fan"
-msgstr "Configurer la vitesse du ventilateur."
+msgstr "Configurer la vitesse du ventilateur"
 
 #, fuzzy
 msgid "Configure the startup of your softcams"
@@ -3166,7 +3169,7 @@ msgid "Current mode: %s \n"
 msgstr "Mode courant: %s \n"
 
 msgid "Current rotor position: "
-msgstr "Position actuelle du rotor :"
+msgstr "Position actuelle du rotor: "
 
 msgid "Current settings:"
 msgstr "Paramètres actuels :"
@@ -3279,7 +3282,7 @@ msgid "DVB Subtitles PID & lang"
 msgstr "PID Sous-titres DVB - lang"
 
 msgid "DVB drivers: "
-msgstr "Pilotes DVB:"
+msgstr "Pilotes DVB :"
 
 msgid "DVB subtitle black transparency"
 msgstr "Transparence des sous-titres DVB"
@@ -3760,8 +3763,8 @@ msgstr "Espace disque à réserver pour les enregistrements (en Go)"
 msgid "Disk state: "
 msgstr "Température du disque: %s"
 
-#, python-format
-msgid "Disk temperature: %s"
+#, fuzzy, python-format
+msgid "Disk temperature: %s °C"
 msgstr "Température du disque: %s"
 
 msgid "Disk temperature: unknown"
@@ -4249,7 +4252,7 @@ msgid "Enable"
 msgstr "Activer"
 
 msgid "Enable 'neutrino' style channel select controlling"
-msgstr "Activer la sélection des chaînes en style ‘neutrino’ "
+msgstr "Activer la sélection des chaînes en style 'neutrino'"
 
 msgid "Enable 'neutrino' style zap controlling"
 msgstr "Activer le contrôle du zap du style 'neutrino'"
@@ -4321,6 +4324,10 @@ msgstr "Activer récepteur distant de repli"
 msgid "Enable favourites edit"
 msgstr "Activer l'édition des favoris"
 
+#, fuzzy
+msgid "Enable filtering in SingleEPG"
+msgstr "Activer EPG Virgin"
+
 msgid "Enable freesat EPG"
 msgstr "Activer EPG freesat"
 
@@ -4338,7 +4345,7 @@ msgid "Enable multiple bouquets"
 msgstr "Activer bouquets multiples"
 
 msgid "Enable or disable Ipv6."
-msgstr "Active/désactive l’IPv6"
+msgstr "Active ou désactive Ipv6."
 
 #, fuzzy
 msgid "Enable or disable using HDMI-CEC."
@@ -4357,6 +4364,9 @@ msgstr "Activer le récepteur enigma2 distant a utiliser pour syntoniser les ser
 msgid "Enable screenshot of LCD in /tmp"
 msgstr "Activer la capture d'écran du LCD dans /tmp"
 
+msgid "Enable setting a time interval for filtering events in SingleEPG using the 'Stop' button."
+msgstr ""
+
 msgid "Enable teletext caching"
 msgstr "Activer la mise en cache du télétexte"
 
@@ -4367,7 +4377,7 @@ msgid "Enable timer conflict detection"
 msgstr "Activer la détection des conflits de la minuterie"
 
 msgid "Enable to display all true/false, yes/no, on/off and enable/disable set up options as a graphical switch."
-msgstr "Permet d’afficher toutes les options vrai/faux, oui/non, on/off et actif/inactif en tant qu’interrupteur graphique"
+msgstr "Permet d’afficher toutes les options vrai/faux, oui/non, on/off et actif/inactif en tant qu’interrupteur graphique."
 
 #, fuzzy
 msgid "Enable twisted log *"
@@ -4426,6 +4436,9 @@ msgstr "Montage du bouquet final"
 #, fuzzy
 msgid "End favourites edit"
 msgstr "Fin de l'édition des favoris"
+
+msgid "End of the time interval within which an events must start in order to be displayed."
+msgstr ""
 
 msgid "End time"
 msgstr "Heure fin"
@@ -4521,7 +4534,7 @@ msgid "Error"
 msgstr "Erreur"
 
 msgid "Error checking disk. The disk may be damaged"
-msgstr "Erreur lors de la vérification du disque. Le disque pourrait être endommagé."
+msgstr "Erreur lors de la vérification du disque. Le disque est peut-être endommagé"
 
 msgid "Error code"
 msgstr "Code d'erreur"
@@ -4553,7 +4566,7 @@ msgstr ""
 "%s"
 
 msgid "Error formatting disk. The disk may be damaged"
-msgstr "Erreur lors du formatage du disque. Le disque pourrait être endommagé."
+msgstr "Erreur lors du formatage du disque. Le disque est peut-être endommagé"
 
 #, python-format
 msgid ""
@@ -4702,7 +4715,7 @@ msgid "Exit editor and write changes (if any)"
 msgstr "Quitter l’éditeur et sauvegarder les changements (si besoin)"
 
 msgid "Exit input device selection."
-msgstr "Quitter sélection périphériques entrée"
+msgstr "Quitte la sélection du périphérique d'entrée."
 
 msgid "Exit media player?"
 msgstr "Quitter media player?"
@@ -4912,7 +4925,7 @@ msgid "Failed"
 msgstr "Échoué"
 
 msgid "Failed to write /tmp/positionersetup.log: "
-msgstr "Échec de l'écriture/tmp/positionersetup.log :"
+msgstr "Échec de l'écriture de /tmp/positionersetup.log :"
 
 msgid "Failed:"
 msgstr "Échoué:"
@@ -5937,7 +5950,7 @@ msgid "If disabled, underline characters in file and directory names are not sho
 msgstr "Si désactivé, les caractères soulignés dans le nom des fichiers et des répertoires ne seront pas affichés et seront remplacés par des espaces."
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
-msgstr "Si vous éditez un fichier, pouvez-vous définir la position de départ du curseur à la fin ou au début de la ligne ?"
+msgstr "Lors de l'édition d'un fichier, peux-tu définir la position de départ du curseur à la fin ou au début de la ligne."
 
 msgid "If enabled, AIT data is included in recordings."
 msgstr "Si activé, les données AIT seront incluses dans les enregistrements."
@@ -6031,7 +6044,7 @@ msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Image créée sur : %s/%s-%s-%s-backup-%s_usb.zip"
 
 msgid "Image creation failed - "
-msgstr "Échec de la sauvegarde."
+msgstr "La création de l'image a échoué -"
 
 msgid "Image revision: "
 msgstr ""
@@ -6101,7 +6114,7 @@ msgstr "Configuration d'Inadyn"
 
 #, python-format
 msgid "Include %s"
-msgstr "inclus %s"
+msgstr "Inclure %s"
 
 msgid "Include AIT in http streams"
 msgstr "Inclure AIT dans les flux HTTP"
@@ -6295,7 +6308,7 @@ msgid "Input"
 msgstr "Entrée"
 
 msgid "Input "
-msgstr "Input (Entrée)"
+msgstr "Input (Entrée) "
 
 #, fuzzy
 msgid "Input Actions"
@@ -6437,7 +6450,7 @@ msgid "Intermediate"
 msgstr "Intermédiaire"
 
 msgid "Internal"
-msgstr "interne"
+msgstr "Interne"
 
 msgid "Internal flash"
 msgstr "Flash interne"
@@ -6497,7 +6510,7 @@ msgid "Is this video mode ok?"
 msgstr "Est-ce que ce mode vidéo est OK ?"
 
 msgid "Is your SCR device externally powered"
-msgstr "Votre dispositif SCR est-il alimenté par une alimentation externe ?"
+msgstr "Ton appareil SCR est-il alimenté de manière externe ?"
 
 msgid "Isle of Man"
 msgstr "Île de Man"
@@ -6606,6 +6619,10 @@ msgid "Keep old drive"
 msgstr "Garder l’ancien disque"
 
 msgid "Keep service"
+msgstr "Garder le service"
+
+#, fuzzy
+msgid "Keep sorting"
 msgstr "Garder le service"
 
 msgid "Kenya"
@@ -6890,7 +6907,7 @@ msgid "Load playlist"
 msgstr "Charger liste lecture"
 
 msgid "Load the EPG data regularly"
-msgstr "Permet au %s %s de lire les données stockées dans le fichier de donnée EPG régulièrement."
+msgstr "Charge régulièrement les données de l'EPG"
 
 msgid "Load unlinked userbouquets"
 msgstr "Charger les userbouquets non liés"
@@ -7753,7 +7770,7 @@ msgid "Network wizard"
 msgstr "Assistant Réseau"
 
 msgid "Network:"
-msgstr "Réseau : "
+msgstr "Réseau:"
 
 msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
 msgstr "Ne jamais déchiffrer le contenu lors de l’enregistrement. Cela remplace les paramètres de temporisation globaux. Si elle est activée, les enregistrements sont stockés encryptés et doivent donc être décryptés après (parfois appelé décodage hors-ligne). Par défaut: désactivé."
@@ -7884,7 +7901,7 @@ msgid "No free index available"
 msgstr "Aucun index libre disponible"
 
 msgid "No free tuner!"
-msgstr "Aucun tuner de libre"
+msgstr "Aucun tuner de libre!"
 
 msgid "No hash calculations configured"
 msgstr "Aucun calcul de hash configuré"
@@ -8194,7 +8211,7 @@ msgid "Only change this setting if you are using a SCR device that has been repr
 msgstr "Changez seulement ce paramètre si vous utilisez un périphérique SCR qui a été reprogrammé avec une programmation particulière. Pour plus d’information consultez la personne qui a reprogrammé votre périphérique."
 
 msgid "Only extensions."
-msgstr "Extensions seules"
+msgstr "Extensions seules."
 
 msgid "Only free scan"
 msgstr "Scanner seulement libre"
@@ -8618,7 +8635,7 @@ msgid "Play"
 msgstr "Lire"
 
 msgid "Play DVD"
-msgstr "Lire DVD..."
+msgstr "Lire DVD"
 
 msgid "Play DVDs"
 msgstr "Lire DVDs"
@@ -8893,7 +8910,7 @@ msgid "Please use the UP and DOWN keys to select your language. Afterwards press
 msgstr "Veuillez utiliser les touches HAUT et BAS pour choisir votre langue. Ensuite pressez le bouton OK."
 
 msgid "Please wait"
-msgstr "Veuillez attendre."
+msgstr "Veuillez patienter"
 
 msgid "Please wait (downloading channel list)"
 msgstr "Veuillez patienter (téléchargement de la liste des chaînes)"
@@ -8962,7 +8979,7 @@ msgid "Please wait... Loading list..."
 msgstr "Veuillez patienter... Chargement de la liste..."
 
 msgid "Please wait...almost ready! "
-msgstr "Veuillez patienter... presque prêt !"
+msgstr "Attends, s'il te plaît... c'est presque prêt !"
 
 msgid "Plugin Browser"
 msgstr "Parcourir les plugins"
@@ -9116,7 +9133,7 @@ msgid "Preferred tuner ATSC for recordings"
 msgstr "Tuner préféré ATSC pour les enregistrements"
 
 msgid "Preferred tuner DVB-C"
-msgstr "Tuner DVB-C préféré "
+msgstr "Tuner DVB-C préféré"
 
 msgid "Preferred tuner DVB-C for recordings"
 msgstr "Tuner DVB-C préféré pour enregistrer"
@@ -9199,7 +9216,7 @@ msgid "Press OK to select a service."
 msgstr "Appuyez sur OK pour sélectionner un service."
 
 msgid "Press OK to select satellites"
-msgstr "Pressez OK pour sélectionner des satellites."
+msgstr "Appuyez sur OK pour sélectionner les satellites"
 
 msgid "Press OK to select the save location of the log file."
 msgstr "Appuyez sur OK et sélectionnez le chemin du répertoire pour le fichier de log."
@@ -9214,7 +9231,7 @@ msgid "Press OK to toggle the selection"
 msgstr "Pressez OK pour basculer le choix"
 
 msgid "Press OK to toggle the selection."
-msgstr "Pressez OK pour basculer le choix"
+msgstr "Appuyez sur OK pour basculer le choix."
 
 msgid "Press OK, save and exit..."
 msgstr "Appuyer sur OK, sauvegarder et quitter…"
@@ -9456,9 +9473,8 @@ msgstr "Aléatoire"
 msgid "Random password"
 msgstr "Mot de passe aléatoire"
 
-#, fuzzy
 msgid "Rass Interactive Actions"
-msgstr "Afficher Rass interactif..."
+msgstr "Actions interactives de Rass"
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
@@ -9591,9 +9607,8 @@ msgstr "Enregistrement en cours"
 msgid "Recording paths"
 msgstr "Chemins pour enregistrer"
 
-#, fuzzy
 msgid "Recording time has been set."
-msgstr "La veille programmée a été désactivée"
+msgstr "La durée d'enregistrement a été réglée."
 
 msgid "Recording type"
 msgstr "Type d'enregistrement"
@@ -9636,7 +9651,7 @@ msgid "Refresh rate"
 msgstr "Vitesse de Rafraîchissement"
 
 msgid "Refresh rate selection."
-msgstr "Sélection de vitesse de rafraîchissement "
+msgstr "Sélection de vitesse de rafraîchissement."
 
 #, fuzzy
 msgid "Refresh screen"
@@ -9749,9 +9764,8 @@ msgstr "Supprimer le répertoire"
 msgid "Remove entry"
 msgstr "Supprimer l'entrée"
 
-#, fuzzy
 msgid "Remove forever"
-msgstr "déplacer le dossier"
+msgstr "Enlever pour toujours"
 
 #, fuzzy
 msgid "Remove from parental protection"
@@ -9798,7 +9812,7 @@ msgid "Remove title"
 msgstr "Retirer titre"
 
 msgid "Removing"
-msgstr "Retrait en cours..."
+msgstr "Suppression"
 
 msgid "Removing Service"
 msgstr "Enlever service"
@@ -10321,7 +10335,7 @@ msgid "Save settings and EPG data"
 msgstr "Sauvegarder les paramètres et les données EPG"
 
 msgid "Save the EPG data regularly"
-msgstr "Permet au %s %s de stocker les données EPG régulièrement."
+msgstr "Sauvegarde régulièrement les données de l'EPG"
 
 #, python-format
 msgid ""
@@ -10373,12 +10387,12 @@ msgstr "Analyser "
 #. TRANSLATORS: option name, indicating which type of (DVB-C) modulation should be scanned. The modulation type is printed in '%s'. E.g.: 'Scan QAM16'
 #, python-format
 msgid "Scan %s"
-msgstr "Analyser %s "
+msgstr "Analyser %s"
 
 #. TRANSLATORS: option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'
 #, python-format
 msgid "Scan %s band"
-msgstr "Analyser bande %s "
+msgstr "Analyser bande %s"
 
 #, fuzzy
 msgid "Scan IP"
@@ -10668,7 +10682,7 @@ msgid "Select channel to record from"
 msgstr "Sélectionner la chaîne à enregistrer"
 
 #, fuzzy
-msgid "Select char for replacing newlines in epg."
+msgid "Select char for replacing newlines in EPG."
 msgstr "Sélectionnez le caractère pour remplacer les retours à la ligne dans l'EPG."
 
 msgid "Select copy destination for:"
@@ -12134,6 +12148,9 @@ msgstr "Démarrer depuis le début"
 msgid "Start instant recording"
 msgstr "Démarrer un enregistrement immédiat"
 
+msgid "Start of the time interval within which an events must start in order to be displayed."
+msgstr ""
+
 msgid "Start offline decode"
 msgstr "Démarrer le décodage hors ligne"
 
@@ -13426,6 +13443,10 @@ msgstr "Aujourd'hui"
 msgid "Toggle Configuration Mode or AutoDisqc"
 msgstr "Mode de configuration : %s"
 
+#, fuzzy
+msgid "Toggle Filter Order"
+msgstr "Changer le mode vidéo"
+
 msgid "Toggle HDMI In"
 msgstr "Basculer l'entrée HDMI"
 
@@ -14057,6 +14078,9 @@ msgstr "Utilisation LNB %d"
 
 msgid "Using fixed address"
 msgstr "Utilisation d'adresse fixe"
+
+msgid "Using the 'Stop' button will cyclically switch displaying events starting: 'outside the interval', 'within the interval', and 'without filtering', instead of 'within the interval', 'outside the interval', and 'without filtering'."
+msgstr ""
 
 #, python-format
 msgid "Using tuner %s"
@@ -14768,6 +14792,9 @@ msgstr "Cette option permet de sélectionner des modes vidéo même s'ils ne son
 #, fuzzy
 msgid "When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa."
 msgstr "S'il est défini sur Oui, tous les endroits où le SNR en dB est affiché afficheront le pourcentage SNR et vice versa."
+
+msgid "When switching the filter, the selected EPG sorting is preserved."
+msgstr ""
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Lorsque le contenu a un rapport d'aspect de 16:9, choisir de redimensionner/étirer l'image."

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue (Apachi70)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-28 15:55+0200\n"
-"PO-Revision-Date: 2025-04-28 15:59+0200\n"
+"POT-Creation-Date: 2025-04-30 15:32+0200\n"
+"PO-Revision-Date: 2025-04-30 15:55+0200\n"
 "Last-Translator: Apachi70 (Openatv),(Teamblue) <teamblue@online.de,openatv@gmail.com>\n"
 "Language-Team: teamblue@t-online.de(apachi70)\n"
 "Language: tr_TR\n"
@@ -182,6 +182,9 @@ msgstr " - Bilgi"
 
 msgid " Warning: the selected tuner should not use SCR Unicable type for LNBs because each tuner need a own SCR number."
 msgstr " Uyarı: Her tuner kendi SCR numarasına ihtiyaç duyduğundan, seçilen tuner LNB'ler için SCR Unicable tipini kullanmamalıdır."
+
+msgid " [immutable]\n"
+msgstr " [değişmez]\n"
 
 msgid " min"
 msgstr " dk"
@@ -3642,8 +3645,8 @@ msgstr "Kayıtlar için ayrılacak disk alanı (GB)"
 msgid "Disk state: "
 msgstr "Disk durumu: "
 
-#, python-format
-msgid "Disk temperature: %s"
+#, fuzzy, python-format
+msgid "Disk temperature: %s °C"
 msgstr "Disk sıcaklığı: %s"
 
 msgid "Disk temperature: unknown"
@@ -4180,6 +4183,10 @@ msgstr "Yedek uzaktan alıcıyı etkinleştir"
 msgid "Enable favourites edit"
 msgstr "Sık kullanılanları düzenlemeyi etkinleştir"
 
+#, fuzzy
+msgid "Enable filtering in SingleEPG"
+msgstr "Virgin EPG etkinleştir"
+
 msgid "Enable freesat EPG"
 msgstr "Freesat EPG etkinleştir"
 
@@ -4212,6 +4219,9 @@ msgstr "Yerel enigma2 alıcısının yerel olarak ayarlanamayan servislere ayarl
 
 msgid "Enable screenshot of LCD in /tmp"
 msgstr "LCD'nin /tmp içindeki ekran görüntüsünü etkinleştirin"
+
+msgid "Enable setting a time interval for filtering events in SingleEPG using the 'Stop' button."
+msgstr ""
 
 msgid "Enable teletext caching"
 msgstr "Teleteks önbelleğini etkinleştir"
@@ -4275,6 +4285,9 @@ msgstr "Buket düzenlemesini bitir"
 
 msgid "End favourites edit"
 msgstr "Favori düzenlemeyi bitir"
+
+msgid "End of the time interval within which an events must start in order to be displayed."
+msgstr ""
 
 msgid "End time"
 msgstr "Bitiş zamanı"
@@ -6373,6 +6386,10 @@ msgid "Keep old drive"
 msgstr "Eski sürücüyü tut"
 
 msgid "Keep service"
+msgstr "Kanalı tut"
+
+#, fuzzy
+msgid "Keep sorting"
 msgstr "Kanalı tut"
 
 msgid "Kenya"
@@ -10274,7 +10291,8 @@ msgstr "Kanal seç"
 msgid "Select channel to record from"
 msgstr "Kaydın yapılacağı kanalı seçin"
 
-msgid "Select char for replacing newlines in epg."
+#, fuzzy
+msgid "Select char for replacing newlines in EPG."
 msgstr "Epg'de yeni satırları değiştirmek için karakter seçin."
 
 msgid "Select copy destination for:"
@@ -11672,6 +11690,9 @@ msgstr "En baştan başla"
 msgid "Start instant recording"
 msgstr "Anında kayıt başlat"
 
+msgid "Start of the time interval within which an events must start in order to be displayed."
+msgstr ""
+
 msgid "Start offline decode"
 msgstr "Çevrimdışı kod çözmeyi başlat"
 
@@ -12920,6 +12941,10 @@ msgstr "Bugün"
 msgid "Toggle Configuration Mode or AutoDisqc"
 msgstr "Yapılandırma Modunu veya AutoDisqc'i Değiştir"
 
+#, fuzzy
+msgid "Toggle Filter Order"
+msgstr "Video modunu aç / kapat"
+
 msgid "Toggle HDMI In"
 msgstr "Geçiş HDMI Girişi"
 
@@ -13531,6 +13556,9 @@ msgstr "LNB %d kullanarak"
 
 msgid "Using fixed address"
 msgstr "Sabit adres kullan"
+
+msgid "Using the 'Stop' button will cyclically switch displaying events starting: 'outside the interval', 'within the interval', and 'without filtering', instead of 'within the interval', 'outside the interval', and 'without filtering'."
+msgstr ""
 
 #, python-format
 msgid "Using tuner %s"
@@ -14226,6 +14254,9 @@ msgstr "Bu seçildiğinde, desteklendiği bildirilmese bile video modlarının s
 #, fuzzy
 msgid "When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa."
 msgstr "Evet olarak ayarlanırsa dB cinsinden SNR'nin görüntülendiği tüm yerler SNR yüzdesini görüntüleyecektir (veya bunun tersi de geçerlidir)."
+
+msgid "When switching the filter, the selected EPG sorting is preserved."
+msgstr ""
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "16:9 görüntü oranı varsa, resmi büyütme/uzatma için seçebilirsiniz."

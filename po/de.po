@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 teamBlue\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-28 15:55+0200\n"
-"PO-Revision-Date: 2025-04-28 15:57+0200\n"
+"POT-Creation-Date: 2025-04-30 15:32+0200\n"
+"PO-Revision-Date: 2025-04-30 15:52+0200\n"
 "Last-Translator: Teamblue teamblue@online.de <teamblue-e2@online.de>\n"
 "Language-Team: Teamblue teamblue@online.de\n"
 "Language: de\n"
@@ -179,6 +179,9 @@ msgstr " - Information"
 
 msgid " Warning: the selected tuner should not use SCR Unicable type for LNBs because each tuner need a own SCR number."
 msgstr " Achtung: Der ausgewählte Tuner sollte nicht den Typ SCR Unicable für LNBs verwenden, da jeder Tuner eine eigene SCR-Nummer benötigt."
+
+msgid " [immutable]\n"
+msgstr " [unveränderlich]\n"
 
 msgid " min"
 msgstr " min"
@@ -3629,8 +3632,8 @@ msgid "Disk state: "
 msgstr "Festplattenstatus: "
 
 #, python-format
-msgid "Disk temperature: %s"
-msgstr "Platten Temperatur: %s"
+msgid "Disk temperature: %s °C"
+msgstr "Festplattentemperatur: %s °C"
 
 msgid "Disk temperature: unknown"
 msgstr "Platten Temperatur: unbekannt"
@@ -4164,6 +4167,9 @@ msgstr "Aktiviere Fallback Remote Receiver"
 msgid "Enable favourites edit"
 msgstr "Favoriteneditor anschalten"
 
+msgid "Enable filtering in SingleEPG"
+msgstr "Aktiviere die Filterung in SingleEPG"
+
 msgid "Enable freesat EPG"
 msgstr "Aktiviere freesat EPG"
 
@@ -4196,6 +4202,9 @@ msgstr "Reserve-Enigma2-Receiver aktivieren, welcher verwendet wird wenn ein Sen
 
 msgid "Enable screenshot of LCD in /tmp"
 msgstr "Aktiviere Bildschirmfoto des LCD in /tmp"
+
+msgid "Enable setting a time interval for filtering events in SingleEPG using the 'Stop' button."
+msgstr "Ermögliche es, ein Zeitintervall für das Filtern von Ereignissen in SingleEPG einzustellen, indem du die Schaltfläche \"Stopp\" verwendest."
 
 msgid "Enable teletext caching"
 msgstr "Aktiviere Teletext Cache"
@@ -4259,6 +4268,9 @@ msgstr "Bouqueteditieren beenden"
 
 msgid "End favourites edit"
 msgstr "Favoriteneditor beenden"
+
+msgid "End of the time interval within which an events must start in order to be displayed."
+msgstr "Ende des Zeitintervalls, in dem ein Ereignis beginnen muss, um angezeigt zu werden."
 
 msgid "End time"
 msgstr "Endzeit"
@@ -6325,6 +6337,9 @@ msgstr "Altes Laufwerk behalten"
 
 msgid "Keep service"
 msgstr "Aktueller Sender"
+
+msgid "Keep sorting"
+msgstr "Weiter sortieren"
 
 msgid "Kenya"
 msgstr "Kenya"
@@ -10190,7 +10205,7 @@ msgstr "Kanal auswählen"
 msgid "Select channel to record from"
 msgstr "Kanal auswählen, von dem aufgenommen werden soll"
 
-msgid "Select char for replacing newlines in epg."
+msgid "Select char for replacing newlines in EPG."
 msgstr "Zeichen zum Ersetzen von Zeilenumbrüchen im EPG auswählen."
 
 msgid "Select copy destination for:"
@@ -11575,6 +11590,9 @@ msgstr "Am Anfang starten"
 msgid "Start instant recording"
 msgstr "Sofortaufnahme beginnen"
 
+msgid "Start of the time interval within which an events must start in order to be displayed."
+msgstr "Beginn des Zeitintervalls, in dem ein Ereignis beginnen muss, um angezeigt zu werden."
+
 msgid "Start offline decode"
 msgstr "Starte lokale Entschlüsselung"
 
@@ -12819,6 +12837,9 @@ msgstr "Heute"
 msgid "Toggle Configuration Mode or AutoDisqc"
 msgstr "Umschalten des Konfigurationsmodus oder AutoDisqc"
 
+msgid "Toggle Filter Order"
+msgstr "Filterreihenfolge umschalten"
+
 msgid "Toggle HDMI In"
 msgstr "Schalte auf HDMI Eingang"
 
@@ -13425,6 +13446,9 @@ msgstr "Verwende LNB %d"
 
 msgid "Using fixed address"
 msgstr "Benutze feste Adresse"
+
+msgid "Using the 'Stop' button will cyclically switch displaying events starting: 'outside the interval', 'within the interval', and 'without filtering', instead of 'within the interval', 'outside the interval', and 'without filtering'."
+msgstr "Wenn du die Schaltfläche \"Stopp\" betätigst, werden zyklisch Ereignisse angezeigt, die mit \"außerhalb des Intervalls\", \"innerhalb des Intervalls\" und \"ohne Filterung\" beginnen, anstatt mit \"innerhalb des Intervalls\", \"außerhalb des Intervalls\" und \"ohne Filterung\"."
 
 #, python-format
 msgid "Using tuner %s"
@@ -14114,6 +14138,9 @@ msgstr "Wenn diese Option aktiviert ist, können Videomodi ausgewählt werden, a
 
 msgid "When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa."
 msgstr "Bei \"Ja\" wird an allen Stellen, an denen der SNR in dB angezeigt wird, ein SNR-Prozentsatz angezeigt und umgekehrt."
+
+msgid "When switching the filter, the selected EPG sorting is preserved."
+msgstr "Wenn du den Filter umschaltest, bleibt die gewählte EPG-Sortierung erhalten."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Skalieren/Strecken wenn Inhalt ein Bildformat von 16:9 aufweist."

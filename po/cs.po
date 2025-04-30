@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenPLi enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-28 15:55+0200\n"
+"POT-Creation-Date: 2025-04-30 15:32+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: IMS <ims@openpli.org>\n"
 "Language-Team: PLi <ims@openpli.org>\n"
@@ -184,6 +184,9 @@ msgstr " - info"
 
 msgid " Warning: the selected tuner should not use SCR Unicable type for LNBs because each tuner need a own SCR number."
 msgstr " Varování: vybraný tuner by neměl používat SCR Unicable typ pro LNB, protože každý tuner potřebuje vlastní SCR číslo SCR."
+
+msgid " [immutable]\n"
+msgstr ""
 
 #
 msgid " min"
@@ -4226,7 +4229,7 @@ msgstr "Stav disku:"
 
 #
 #, fuzzy, python-format
-msgid "Disk temperature: %s"
+msgid "Disk temperature: %s °C"
 msgstr "Stav disku:"
 
 msgid "Disk temperature: unknown"
@@ -4885,6 +4888,11 @@ msgstr "Povolit záložní přijímač"
 msgid "Enable favourites edit"
 msgstr "Povolit úpravu oblíbených"
 
+#
+#, fuzzy
+msgid "Enable filtering in SingleEPG"
+msgstr "Povolit Virgin EPG"
+
 msgid "Enable freesat EPG"
 msgstr "Povolit freesat EPG"
 
@@ -4922,6 +4930,9 @@ msgid "Enable remote enigma2 receiver to be tried to tune into services that can
 msgstr "Na vzdáleném přijímači se budou zkoušet naladit služby, které nelze naladit lokálně (např. tuner je obsazený nebo typ služby není k dispozici na místním tuneru). Zadejte úplnou URL adresu včetně http:// a číslo portu (normálně ...:8001), například http://druhy_box:8001."
 
 msgid "Enable screenshot of LCD in /tmp"
+msgstr ""
+
+msgid "Enable setting a time interval for filtering events in SingleEPG using the 'Stop' button."
 msgstr ""
 
 msgid "Enable teletext caching"
@@ -4999,6 +5010,9 @@ msgstr "Ukončit úpravu přehledu"
 #
 msgid "End favourites edit"
 msgstr "Ukončit úpravu oblíbených"
+
+msgid "End of the time interval within which an events must start in order to be displayed."
+msgstr ""
 
 #
 msgid "End time"
@@ -7407,6 +7421,11 @@ msgstr "Zůstat na programu"
 
 #
 msgid "Keep service"
+msgstr "Zůstat na programu"
+
+#
+#, fuzzy
+msgid "Keep sorting"
 msgstr "Zůstat na programu"
 
 msgid "Kenya"
@@ -12057,7 +12076,7 @@ msgid "Select channel to record from"
 msgstr "Vyberte kanál z kterého chcete nahrávat"
 
 #, fuzzy
-msgid "Select char for replacing newlines in epg."
+msgid "Select char for replacing newlines in EPG."
 msgstr "Vyberte znak, kterým bude nahrazováno odřádkování v EPG."
 
 #
@@ -13679,6 +13698,9 @@ msgstr "Spustit od začátku"
 msgid "Start instant recording"
 msgstr "Spustit okamžité nahrávání"
 
+msgid "Start of the time interval within which an events must start in order to be displayed."
+msgstr ""
+
 #
 msgid "Start offline decode"
 msgstr "Spustit offline dekódování"
@@ -15084,6 +15106,11 @@ msgstr "Dnes"
 msgid "Toggle Configuration Mode or AutoDisqc"
 msgstr "Přepnout na konfigurační mód nebo AutoDisqc"
 
+#
+#, fuzzy
+msgid "Toggle Filter Order"
+msgstr "Přepínat video mód"
+
 msgid "Toggle HDMI In"
 msgstr "Přepnout HDMI vstup"
 
@@ -15791,6 +15818,9 @@ msgstr "Používá se LNB %d"
 
 msgid "Using fixed address"
 msgstr "Používaná pevná adresa"
+
+msgid "Using the 'Stop' button will cyclically switch displaying events starting: 'outside the interval', 'within the interval', and 'without filtering', instead of 'within the interval', 'outside the interval', and 'without filtering'."
+msgstr ""
 
 #, python-format
 msgid "Using tuner %s"
@@ -16561,6 +16591,9 @@ msgstr "Umožňuje zvolit módy videa i přesto, že nejsou označeny jako podpo
 #, fuzzy
 msgid "When set to 'Yes', all locations where SNR is displayed in dB's will show an SNR percentage, and vice versa."
 msgstr "Pokud je nastaveno na Ano, na všech místech, kde je zobrazen SNR v dB, se zobrazí procento SNR a naopak."
+
+msgid "When switching the filter, the selected EPG sorting is preserved."
+msgstr ""
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Pro obsah s poměrem stran 16:9 zvolte, zda chcete změnit velikost/roztáhnout obraz."
