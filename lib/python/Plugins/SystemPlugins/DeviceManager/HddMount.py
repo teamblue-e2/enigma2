@@ -194,9 +194,9 @@ class HddMount(Screen):
 				os.system("mkdir -p /media/hdd/movie")
 
 			if not self.fast:
-				message = _("Device Fixed Mount Point change needs a system restart in order to take effect.\nRestart your %s %s now?" % (BoxInfo.getItem("displaybrand"), BoxInfo.gtItem("displaymodel")))
+				message = _("Device Fixed Mount Point change needs a system restart in order to take effect.\nRestart your %s %s now?" % (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel")))
 				mbox = self.session.openWithCallback(self.restartBox, MessageBox, message, MessageBox.TYPE_YESNO)
-				mbox.setTitle(_("Restart %s %s") % (BoxInfo.getItem("displaybrand"), BoxInfo.gtItem("displaymodel")))
+				mbox.setTitle(_("Restart %s %s") % (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel")))
 			else:
 				self.close()
 

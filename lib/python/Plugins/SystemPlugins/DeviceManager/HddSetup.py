@@ -176,9 +176,9 @@ class HddSetup(Screen):
 			mp.write()
 			mp.mount(disk1, 1, "/media/hdd")
 			os.system("mkdir -p /media/hdd/movie")
-			message = _("Fixed mounted first initialized Storage Device to /media/hdd. It needs a system restart in order to take effect.\nRestart your %s %s now?") % (BoxInfo.getItem("displaybrand"), BoxInfo.gtItem("displaymodel"))
+			message = _("Fixed mounted first initialized Storage Device to /media/hdd. It needs a system restart in order to take effect.\nRestart your %s %s now?") % (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel"))
 			mbox = self.session.openWithCallback(self.restartBox, MessageBox, message, MessageBox.TYPE_YESNO)
-			mbox.setTitle(_("Restart %s %s") % (BoxInfo.getItem("displaybrand"), BoxInfo.gtItem("displaymodel")))
+			mbox.setTitle(_("Restart %s %s") % (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel")))
 
 	def restartBox(self, answer):
 		if answer is True:
