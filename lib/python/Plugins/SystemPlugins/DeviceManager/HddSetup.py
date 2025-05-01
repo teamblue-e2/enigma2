@@ -95,13 +95,16 @@ class HddSetup(Screen):
 		self.mdisks = Disks()
 		self.asHDD = False
 		for disk in self.mdisks.disks:
-			size = int(disk[1] / 1024)
-			if (((float(size) / 1024) / 1024) / 1024) > 1:
-				capacity = "%d %s" % (int(round((((float(size) / 1024) / 1024) / 1024), 2)), "TB")
-			elif ((size / 1024) / 1024) > 1:
-				capacity = "%d %s" % (int(round(((float(size) / 1024) / 1024), 2)), "GB")
+			size_kb = disk[1] / 1024
+			size_mb = size_kb / 1024
+			size_gb = size_mb / 1024
+			size_tb = size_gb / 1024
+			if size_tb > 1:
+				capacity = "%.2f TB" % size_tb
+			elif size_gb > 1:
+				capacity = "%.2f GB" % size_gb
 			else:
-				capacity = "%d %s" % (int(round((float(size) / 1024), 2)), "MB")
+				capacity = "%.2f MB" % size_mb
 			if disk[4] and disk[3]:
 				fullname = disk[4] + " (" + disk[3] + ")"
 			elif disk[4]:
