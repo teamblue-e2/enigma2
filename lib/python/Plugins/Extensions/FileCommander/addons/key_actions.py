@@ -229,7 +229,7 @@ class key_actions(stat_info):
 		if '/' in prog or not path:
 			return os.access(prog, os.X_OK)
 		for _dir in path.split(':'):
-			if os.access(os.path.join(d_ir, prog), os.X_OK):
+			if os.access(os.path.join(_dir, prog), os.X_OK):
 				return True
 		return False
 
