@@ -598,7 +598,7 @@ class MultibootSelection(SelectImage):
 		self.setTitle(_("Multiboot image selector"))
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Reboot"))
-		self["key_yellow"] = StaticText()
+		self["key_yellow"] = StaticText("Delete Image")
 		self["key_blue"] = StaticText()
 		self["description"] = Label()
 		self["config"] = ChoiceList([])
