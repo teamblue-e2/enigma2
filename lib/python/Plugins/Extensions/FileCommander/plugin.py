@@ -1448,11 +1448,11 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self.delete_files = []
 		self.delete_updateDirs = [self.SOURCELIST.getCurrentDirectory()]
 		for _file in self.selectedFiles:
-			print('delete: %s' % file)
+			print('delete: %s' % _file)
 			if not cnt:
-				filename += '%s' % file
+				filename += '%s' % _file
 			elif cnt < 5:
-				filename += ', %s' % file
+				filename += ', %s' % _file
 			elif cnt < 6:
 				filename += ', ...'
 			cnt += 1
