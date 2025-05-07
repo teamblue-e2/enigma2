@@ -305,15 +305,16 @@ class EPGSelection(Screen, HelpableScreen):
 			if self.type == EPG_TYPE_SINGLE:
 				if not config.epg.filter_keepsorting.value:
 					self.resetSortStatus()
-				self.serviceToTitle(self.currentService)
-				title = self.instance.getTitle()
 				if config.epg.filter_reversal.value:
 					self.filtering = self.filtering - 1 if self.filtering else 2
 				else:
 					self.filtering = (self.filtering + 1) % 3
-				title += '' if self.filtering == 0 else "   " + self.getTimespanText()
-				self.setTitle(title)
-				self["list"].fillSingleEPG(self.currentService, self.sort_type, self.filtering)
+				self.fillFilteredSingleEPG('' if self.filtering == 0 else "   " + self.getTimespanText())
+
+	def fillFilteredSingleEPG(self, timespan):
+		self.serviceToTitle(self.currentService)
+		self.setTitle(self.instance.getTitle() + timespan)
+		self["list"].fillSingleEPG(self.currentService, self.sort_type, self.filtering)
 
 	def resetFiltering(self):
 		self.filtering = 0
@@ -329,9 +330,9 @@ class EPGSelection(Screen, HelpableScreen):
 			self.session.openWithCallback(save, MessageBox, _("Set %s as default?") % self.getTimespanText(), type=MessageBox.TYPE_YESNO, simple=True)
 
 	def restoreFilterValues(self):
-	    if hasattr(self, "original_cfg_filter_start") and hasattr(self, "original_cfg_filter_end"):
-		    config.epg.filter_start.value = self.original_cfg_filter_start
-		    config.epg.filter_end.value = self.original_cfg_filter_end
+		if hasattr(self, "original_cfg_filter_start") and hasattr(self, "original_cfg_filter_end"):
+			config.epg.filter_start.value = self.original_cfg_filter_start
+			config.epg.filter_end.value = self.original_cfg_filter_end
 
 	def filterShiftTimespan(self, filter_side, delta):
 		def shiftHour(clock, delta):
@@ -341,26 +342,20 @@ class EPGSelection(Screen, HelpableScreen):
 		clock_start, clock_end = config.epg.filter_start, config.epg.filter_end
 		target = clock_end if (self.filtering == 2 and filter_side == 'start') or (self.filtering != 2 and filter_side == 'end') else clock_start
 		shiftHour(target, delta)
-		self.changeFiltering()
-
-	def changeFiltering(self):
-		self.serviceToTitle(self.currentService)
-		title = self.instance.getTitle() + "   " + self.getTimespanText()
-		self.setTitle(title)
-		self["list"].fillSingleEPG(self.currentService, self.sort_type, self.filtering)
+		self.fillFilteredSingleEPG("   " + self.getTimespanText())
 
 	def getTimespanText(self):
 		begin, end = config.epg.filter_start.value, config.epg.filter_end.value
 		return  "(%02d:%02d - %02d:%02d)" % ((*begin, *end) if self.filtering == 1 else (*end, *begin))
 
 	def filterStartDown(self):
-		if self.filtering: self.filterShiftTimespan('start', -1)
+		self.filtering and self.filterShiftTimespan('start', -1)
 	def filterStartUp(self):
-		if self.filtering: self.filterShiftTimespan('start', 1)
+		self.filtering and self.filterShiftTimespan('start', 1)
 	def filterEndDown(self):
-		if self.filtering: self.filterShiftTimespan('end', -1)
+		self.filtering and self.filterShiftTimespan('end', -1)
 	def filterEndUp(self):
-		if self.filtering: self.filterShiftTimespan('end', 1)
+		self.filtering and self.filterShiftTimespan('end', 1)
 
 	def yellowButtonPressed(self):
 		if self.type == EPG_TYPE_MULTI:
