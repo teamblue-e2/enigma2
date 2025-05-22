@@ -52,7 +52,7 @@ class About(Screen):
 		AboutText = _("Hardware: ") + BoxName + "\n"
 		AboutText += _("Serial: ") + serial + "\n"
 		AboutText += _("CPU: ") + cpu + "\n"
-		AboutText += _("Image: ") + about.getImageTypeString() + " " + ImageType + "\n"
+		AboutText += _("Image: ") + about.getImageTypeString() + "\n"
 		AboutText += _("Image revision: ") + getE2Rev() +  "\n"
 		AboutText += _("OE Version: ") + about.getOEVersionString() + "\n"
 		ImageVersion = _("Last upgrade: ") + about.getImageVersionString()

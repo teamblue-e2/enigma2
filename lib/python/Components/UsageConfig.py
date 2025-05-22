@@ -12,7 +12,7 @@ import os
 import time
 
 
-originalAudioTracks = "orj dos ory org esl qaa qaf und mis mul ORY ORJ Audio_ORJ oth"
+originalAudioTracks = "orj dos ory org esl qaa qaf und qae mis mul ORY ORJ Audio_ORJ oth"
 visuallyImpairedCommentary = "NAR qad"
 
 
@@ -75,7 +75,7 @@ def InitUsageConfig():
 		("keep", _("Keep service")),
 		("reverseB", _("Reverse bouquet buttons")),
 		("keep reverseB", _("Keep service") + " + " + _("Reverse bouquet buttons"))])
-	
+
 	config.usage.servicenum_fontsize = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
 	config.usage.servicenum_fontsize.addNotifier(redrawServiceList, initial_call=False)
 	config.usage.servicename_fontsize = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
@@ -178,6 +178,12 @@ def InitUsageConfig():
 		("simple", _("Simple")),
 		("intermediate", _("Intermediate")),
 		("expert", _("Expert"))])
+
+	config.usage.help_sortorder = ConfigSelection(default="headings+alphabetic", choices=[
+		("headings+alphabetic", _("Alphabetical under headings")),
+		("flat+alphabetic", _("Flat alphabetical")),
+		("flat+remotepos", _("Flat by position on remote")),
+		("flat+remotegroups", _("Flat by key group on remote"))])
 
 	config.usage.startup_to_standby = ConfigSelection(default="no", choices=[
 		("no", _("no")),
@@ -517,11 +523,24 @@ def InitUsageConfig():
 	config.epg.virgin.addNotifier(EpgSettingsChanged)
 	config.epg.opentv.addNotifier(EpgSettingsChanged)
 
-	config.epg.histminutes = ConfigSelectionNumber(min=0, max=120, stepwidth=15, default=0, wraparound=True)
-
+	def wdhm(number):
+		units = (7 * 24 * 60, 24 * 60, 60, 1)
+		for i, d in enumerate(units):
+			if unit := int(number / d):
+				if i == 3:
+					return "%s" % (ngettext("%d minute", "%d minuts", unit) % unit)
+				elif i == 2:
+					return "%s" % (ngettext("%d hour", "%d hours", unit) % unit)
+				elif i == 1:
+					return "%s" % (ngettext("%d day", "%d days", unit) % unit)
+				else:
+					return "%s" % (ngettext("%d week", "%d weeks", unit) % unit)
+		return _("0 minutes")
+	choices = [(0, _('None'))] + [(i, wdhm(i)) for i in [i * 15 for i in range(1, 4)] + [i * 60 for i in range(1, 9)] + [i * 120 for i in range(5, 12)] + [i * 24 * 60 for i in range(1, 8)]]
+	config.epg.histminutes = ConfigSelection(default=0, choices=choices)
 	def EpgHistorySecondsChanged(configElement):
 		from enigma import eEPGCache
-		eEPGCache.getInstance().setEpgHistorySeconds(config.epg.histminutes.getValue() * 60)
+		eEPGCache.getInstance().setEpgHistorySeconds(int(configElement.value) * 60)
 	config.epg.histminutes.addNotifier(EpgHistorySecondsChanged)
 
 	choicelist = [("no", _("no")), ("nothing", _("omit")), ("space", _("space")), ("dot", ". "), ("dash", " - "), ("asterisk", " * "), ("hashtag", " # ")]
@@ -844,7 +863,7 @@ def InitUsageConfig():
 		("nor", _("Norwegian")),
 		("fas per fa pes", _("Persian")),
 		("pol", _("Polish")),
-		("por dub Dub DUB ud1", _("Portuguese")),
+		("por dub Dub DUB ud1 LEG", _("Portuguese")),
 		("ron rum", _("Romanian")),
 		("rus", _("Russian")),
 		("srp scc", _("Serbian")),
@@ -959,7 +978,7 @@ def InitUsageConfig():
 			if not os.path.isfile('/var/spool/cron/crontabs/root') or not 'ntpd' in open('/var/spool/cron/crontabs/root').read():
 				Console().ePopen("echo '30 * * * *    /usr/sbin/ntpd -nq -p %s' >> /var/spool/cron/crontabs/root" % config.ntp.server.value)
 			if not os.path.islink('/etc/network/if-up.d/ntpd'):
-				Console().ePopen("ln -s /usr/bin/ntpd /etc/network/if-up.d/ntpd")
+				Console().ePopen("ln -s /usr/sbin/ntpd /etc/network/if-up.d/ntpd")
 			Console().ePopen("/usr/sbin/ntpd -nq -p %s" % config.ntp.server.value)
 	config.ntp.server = ConfigText("pool.ntp.org", fixed_size=False)
 	config.ntp.timesync = ConfigSelection(default="auto", choices=[("auto", _("auto")), ("dvb", _("Transponder Time")), ("ntp", _("Internet (ntp)"))])

@@ -326,7 +326,7 @@ class EPGList(GUIComponent):
 
 	def fillSingleEPG(self, service):
 		t = int(time())
-		epg_time = t - config.epg.histminutes.getValue() * 60
+		epg_time = t - (int(config.epg.histminutes.value) * 60)
 		test = ['RIBDT', (service.ref.toString(), 0, epg_time, -1)]
 		self.list = self.queryEPG(test)
 		self.l.setList(self.list)
@@ -399,10 +399,10 @@ class EPGList(GUIComponent):
 			print("[EPGList] wrong '%s' skin parameters" % string)
 
 		def setEventItemFont(value):
-			self.eventItemFont = parseFont(value, ((1, 1), (1, 1)))
+			self.eventItemFont = parseFont(value, parent.scale)
 
 		def setEventTimeFont(value):
-			self.eventTimeFont = parseFont(value, ((1, 1), (1, 1)))
+			self.eventTimeFont = parseFont(value, parent.scale)
 
 		def setIconDistance(value):
 			self.iconDistance = parseScale(value)

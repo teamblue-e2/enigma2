@@ -47,7 +47,7 @@ public:
 			return eServiceReferenceDVB(eDVBNamespace(NS), eTransportStreamID(TSID), eOriginalNetworkID(ONID), eServiceID(SID), 0);
 		else
 			return eServiceReferenceDVB();
-		
+
 	}
 
 	void Update(uint16_t lcn, uint32_t signal)
@@ -89,7 +89,7 @@ class eIPTVDBItem
 		int adra_pid;
 		int subtitle_pid;
 		int v_pid;
-		eIPTVDBItem(const std::string sref, const int ampegpid, const int aac3pid, const int aac4pid, const int addppid, const int aaachpid, 
+		eIPTVDBItem(const std::string sref, const int ampegpid, const int aac3pid, const int aac4pid, const int addppid, const int aaachpid,
 					const int aaacpid, const int adrapid, const int subtitlepid, const int vpid) {
 			s_ref = sref;
 			ampeg_pid = ampegpid;
@@ -125,7 +125,7 @@ class eDVBDB: public iDVBChannelList
 	std::map<eServiceReferenceDVB, ePtr<eDVBService> > m_services;
 
 	std::map<std::string, eBouquet> m_bouquets;
-	
+
 	bool m_numbering_mode;
 	int m_load_unlinked_userbouquets;
 #ifdef SWIG
@@ -151,7 +151,7 @@ public:
 	RESULT addOrUpdateBouquet(const std::string &name, const std::string &filename, SWIG_PYOBJECT(ePyObject) services, bool isAddedFirst = false);
 	RESULT addOrUpdateBouquet(const std::string &name, SWIG_PYOBJECT(ePyObject) services, const int type, bool isAddedFirst = false);
 	RESULT appendServicesToBouquet(const std::string &filename, SWIG_PYOBJECT(ePyObject) services);
-	RESULT removeBouquet(const std::string &filename);
+	RESULT removeBouquet(const std::string &filename_regex);
 	RESULT addChannelToDB(const eServiceReference &service, const eDVBFrontendParameters &feparam, SWIG_PYOBJECT(ePyObject) cachedPids, SWIG_PYOBJECT(ePyObject) caPids, const int serviceFlags);
 	void removeServicesFlag(unsigned int flagmask);
 	PyObject *readSatellites(SWIG_PYOBJECT(ePyObject) sat_list, SWIG_PYOBJECT(ePyObject) sat_dict, SWIG_PYOBJECT(ePyObject) tp_dict);

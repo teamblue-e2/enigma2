@@ -1,7 +1,9 @@
 from Components.Converter.Converter import Converter
-from enigma import iServiceInformation, iPlayableService
+from enigma import iServiceInformation, iPlayableService, eServiceReference
 from Screens.InfoBarGenerics import hasActiveSubservicesForCurrentChannel
 from Components.Element import cached
+
+from os import path
 
 
 WIDESCREEN = [3, 4, 7, 8, 0xB, 0xC, 0xF, 0x10]
@@ -111,7 +113,7 @@ class ServiceInfo(Converter):
 				"TsId": (self.TSID, (iPlayableService.evUpdatedInfo,)),
 				"OnId": (self.ONID, (iPlayableService.evUpdatedInfo,)),
 				"Sid": (self.SID, (iPlayableService.evUpdatedInfo,)),
-				"Framerate": (self.FRAMERATE, (iPlayableService.evVideoSizeChanged, iPlayableService.evUpdatedInfo)),
+				"Framerate": (self.FRAMERATE, (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoFramerateChanged, iPlayableService.evUpdatedInfo)),
 				"TransferBPS": (self.TRANSFERBPS, (iPlayableService.evUpdatedInfo)),
 				"HasHBBTV": (self.HAS_HBBTV, (iPlayableService.evUpdatedInfo, iPlayableService.evHBBTVInfo, iPlayableService.evStart)),
 				"AudioTracksAvailable": (self.AUDIOTRACKS_AVAILABLE, (iPlayableService.evUpdatedInfo, iPlayableService.evStart)),
@@ -145,6 +147,13 @@ class ServiceInfo(Converter):
 	def getServiceInfoString(self, info, what, convert=lambda x: "%d" % x):
 		v = info.getInfo(what)
 		if v == -1:
+			if what == iServiceInformation.sFrameRate and path.isfile("/proc/stb/vmpeg/0/framerate"):
+				try:
+					fps = int(open("/proc/stb/vmpeg/0/framerate").readline().strip())
+				except:
+					fps = 0
+				if fps and isinstance(fps, int):
+					return convert(fps)
 			return _("N/A")
 		if v == -2:
 			return info.getInfoString(what)
@@ -153,7 +162,8 @@ class ServiceInfo(Converter):
 	@cached
 	def getBoolean(self):
 		service = self.source.service
-		info = service and service.info()
+		isRef = isinstance(service, eServiceReference)
+		info = service.info() if (service and not isRef) else None
 		if info:
 			if self.type == self.HAS_TELETEXT:
 				tpid = info.getInfo(iServiceInformation.sTXTPID)
@@ -267,7 +277,7 @@ class ServiceInfo(Converter):
 				elif self.type == self.YRES:
 					return self.getServiceInfoString(info, iServiceInformation.sVideoHeight)
 				elif self.type == self.FRAMERATE:
-					return self.getServiceInfoString(info, iServiceInformation.sFrameRate, lambda x: _("%d fps") % ((x + 500) / 1000))
+					return self.getServiceInfoString(info, iServiceInformation.sFrameRate, lambda x: _("%d fps") % ((x + 500) // 1000))
 				elif self.type == self.VPID:
 					return self.getServiceInfoString(info, iServiceInformation.sVideoPID)
 		return ""

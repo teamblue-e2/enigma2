@@ -1,7 +1,6 @@
 from Tools.Profile import profile
 from enigma import eServiceReference
-from glob import glob
-from os.path import splitext
+import os
 
 # workaround for required config entry dependencies.
 import Screens.MovieSelection
@@ -23,7 +22,7 @@ from Screens.InfoBarGenerics import InfoBarShowHide, \
 	InfoBarServiceNotifications, InfoBarPVRState, InfoBarCueSheetSupport, InfoBarBuffer, InfoBarSimpleEventView, \
 	InfoBarSummarySupport, InfoBarMoviePlayerSummarySupport, InfoBarTimeshiftState, InfoBarTeletextPlugin, InfoBarExtensions, \
 	InfoBarSubtitleSupport, InfoBarPiP, InfoBarPlugins, InfoBarServiceErrorPopupSupport, InfoBarJobman, InfoBarPowersaver, \
-	InfoBarHDMI, setResumePoint, delResumePoint
+	InfoBarHDMI, resumePointsInstance
 from Screens.Hotkey import InfoBarHotkey
 
 profile("LOAD:InitBar_Components")
@@ -34,6 +33,12 @@ from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 profile("LOAD:HelpableScreen")
 from Screens.HelpMenu import HelpableScreen
 
+INIT_DEC_PROCPATH = "/proc/stb/video/decodermode"
+
+def setDecoderMode(value):
+	if os.access(INIT_DEC_PROCPATH, os.F_OK):
+		open(INIT_DEC_PROCPATH, "w").write(value)
+		return open(INIT_DEC_PROCPATH, "r").read().strip() == value
 
 class InfoBar(InfoBarBase, InfoBarShowHide,
 	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, InfoBarRdsDecoder,
@@ -147,10 +152,12 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		if service is None:
 			if ref and not self.session.nav.getCurrentlyPlayingServiceOrGroup():
 				self.session.nav.playService(ref)
-		else:
+		elif type(service) is eServiceReference:
 			from Components.ParentalControl import parentalControl
 			if parentalControl.isServicePlayable(service, self.openMoviePlayer):
 				self.openMoviePlayer(service)
+		elif service == True:
+			self.showMovies()
 
 	def openMoviePlayer(self, ref):
 		self.session.open(MoviePlayer, ref, slist=self.servicelist, lastservice=self.session.nav.getCurrentlyPlayingServiceOrGroup(), infobar=self)
@@ -217,17 +224,6 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 		self.servicelist = slist
 		self.infobar = infobar
 		self.lastservice = lastservice or session.nav.getCurrentlyPlayingServiceOrGroup()
-
-		path = service and service.getPath() and splitext(service.getPath())[0] or ""
-		subs = []
-		if path:
-			for sub in ("srt", "ass", "ssa"):
-				subs = glob("%s*.%s" % (path, sub))
-				if subs:
-					break
-		if subs:
-			service.setSubUri(subs[0])  # Support currently only one external sub
-
 		session.nav.playService(service)
 		self.cur_service = service
 		self.returning = False
@@ -275,9 +271,10 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 			self.session.openWithCallback(self.leavePlayerConfirmed, ChoiceBox, title=_("Stop playing this movie?"), list=_list)
 		else:
 			self.leavePlayerConfirmed([True, how])
+			setDecoderMode("normal")
 
 	def leavePlayer(self):
-		setResumePoint(self.session)
+		resumePointsInstance.setResumePoint(self.session)
 		self.handleLeave(config.usage.on_movie_stop.value)
 
 	def leavePlayerOnExit(self):
@@ -297,7 +294,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 
 	def leavePlayerOnExitCallback(self, answer):
 		if answer:
-			setResumePoint(self.session)
+			resumePointsInstance.setResumePoint(self.session)
 			self.handleLeave("quit")
 
 	def hidePipOnExitCallback(self, answer):
@@ -394,7 +391,7 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 		if self.execing and playing:
 			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			if ref:
-				delResumePoint(ref)
+				resumePointsInstance.delResumePoint(ref)
 			self.handleLeave(config.usage.on_movie_eof.value)
 
 	def up(self):
@@ -549,13 +546,15 @@ class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBa
 		self.movieselection_dlg = self.session.openWithCallback(self.movieSelected, Screens.MovieSelection.MovieSelection, ref)
 
 	def movieSelected(self, service):
-		if service is not None:
+		if type(service) is eServiceReference:
 			if self.cur_service and self.cur_service != service:
-				setResumePoint(self.session)
+				resumePointsInstance.setResumePoint(self.session)
 			self.cur_service = service
 			self.is_closing = False
 			self.session.nav.playService(service)
 			self.returning = False
+		elif service == True:
+			self.showMovies()
 		elif self.returning:
 			self.close()
 		else:

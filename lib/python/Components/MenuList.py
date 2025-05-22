@@ -23,8 +23,11 @@ class MenuList(GUIComponent):
 			self.instance.setWrapAround(True)
 
 	def preWidgetRemove(self, instance):
-		instance.setContent(None)
-		instance.selectionChanged.get().remove(self.selectionChanged)
+		try:
+			instance.setContent(None)
+			instance.selectionChanged.get().remove(self.selectionChanged)
+		except:
+			pass
 
 	def selectionChanged(self):
 		for f in self.onSelectionChanged:

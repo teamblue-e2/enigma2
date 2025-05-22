@@ -1,13 +1,12 @@
 from Components.Addons.GUIAddon import GUIAddon
 
-from enigma import eListbox, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_VALIGN_CENTER
+from enigma import eListbox, eListboxPythonMultiContent, gFont, RT_BLEND, RT_HALIGN_LEFT, RT_VALIGN_CENTER
 
 from skin import applySkinFactor, parseFont, parseColor
 
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
-
 
 
 class ScreenHeader(GUIAddon):
@@ -57,9 +56,9 @@ class ScreenHeader(GUIAddon):
 		isOneItem = textItemsCount == 1
 
 		itemHeight = self.instance.size().height()
-		
+
 		for idx, x in enumerate(sequence):
-			if not isinstance(x, StaticText): # assume it is Pixmap
+			if not isinstance(x, StaticText):  # assume it is Pixmap
 				if x.pixmap:
 					itemHeight = self.instance.size().height()
 					pix_size = x.pixmap.size()
@@ -87,7 +86,7 @@ class ScreenHeader(GUIAddon):
 				res.append(MultiContentEntryText(
 					pos=(xPos, yPos),
 					size=(self.instance.size().width() - xPos, itemHeight),
-					font=fontIndex, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER,
+					font=fontIndex, flags=RT_BLEND | RT_HALIGN_LEFT | RT_VALIGN_CENTER,
 					text=x.text,
 					color=foreColor, color_sel=foreColor,
 					backcolor=self.backgroundColor, backcolor_sel=self.backgroundColor))
@@ -114,11 +113,11 @@ class ScreenHeader(GUIAddon):
 		attribs = []
 		for (attrib, value) in self.skinAttributes[:]:
 			if attrib == "titleFont":
-				self.titleFont = parseFont(value, ((1, 1), (1, 1)))
+				self.titleFont = parseFont(value, parent.scale)
 			if attrib == "titleSingleFont":
-				self.titleSingleFont = parseFont(value, ((1, 1), (1, 1)))
+				self.titleSingleFont = parseFont(value, parent.scale)
 			elif attrib == "pathFont":
-				self.pathFont = parseFont(value, ((1, 1), (1, 1)))
+				self.pathFont = parseFont(value, parent.scale)
 			elif attrib == "titleForegroundColor":
 				self.titleForeground = parseColor(value).argb()
 			elif attrib == "pathForegroundColor":

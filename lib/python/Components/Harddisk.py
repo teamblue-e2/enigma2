@@ -559,10 +559,10 @@ class Harddisk:
 		from enigma import eTimer
 
 		# disable HDD standby timer
+		# some external USB bridges require the SCSI protocol
 		if self.bus() == _("External"):
 			Console().ePopen(("sdparm", "sdparm", "--set=SCT=0", self.disk_path))
-		else:
-			Console().ePopen(("hdparm", "hdparm", "-S0", self.disk_path))
+		Console().ePopen(("hdparm", "hdparm", "-S0", self.disk_path))
 		self.timer = eTimer()
 		self.timer.callback.append(self.runIdle)
 		self.idle_running = True
@@ -589,10 +589,10 @@ class Harddisk:
 			self.is_sleeping = True
 
 	def setSleep(self):
+		# some external USB bridges require the SCSI protocol
 		if self.bus() == _("External"):
 			Console().ePopen(("sdparm", "sdparm", "--flexible", "--readonly", "--command=stop", self.disk_path))
-		else:
-			Console().ePopen(("hdparm", "hdparm", "-y", self.disk_path))
+		Console().ePopen(("hdparm", "hdparm", "-y", self.disk_path))
 
 	def setIdleTime(self, idle):
 		self.max_idle_time = idle

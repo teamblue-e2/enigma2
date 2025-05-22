@@ -2,7 +2,6 @@ from Components.GUIComponent import GUIComponent
 from Components.VariableText import VariableText
 
 from enigma import eLabel
-import six
 
 from Tools.NumericalTextInput import NumericalTextInput
 
@@ -24,6 +23,7 @@ class Input(VariableText, GUIComponent, NumericalTextInput):
 		self.visible_width = visible_width
 		self.offset = 0
 		self.overwrite = maxSize or self.type == self.NUMBER
+		self.onChangedEntry = []
 		self.setText(text)
 
 	def __len__(self):
@@ -50,28 +50,28 @@ class Input(VariableText, GUIComponent, NumericalTextInput):
 				for x in self.Text[self.offset:self.offset + self.visible_width]:
 					self.text += (x == " " and " " or "*")
 			else:
-				self.text = six.ensure_str(self.Text[self.offset:self.offset + self.visible_width]) + " "
+				self.text = self.Text[self.offset:self.offset + self.visible_width] + " "
 		else:
 			if self.type == self.PIN:
 				self.text = ""
 				for x in self.Text:
 					self.text += (x == " " and " " or "*")
 			else:
-				self.text = six.ensure_str(self.Text) + " "
+				self.text = self.Text + " "
+		for cb in self.onChangedEntry:
+			if callable(cb):
+				cb()
 
 	def setText(self, text):
 		if not len(text):
 			self.currPos = 0
 			self.Text = ""
 		else:
-			if isinstance(text, str):
-				self.Text = six.ensure_text(text, errors='ignore')
-			else:
-				self.Text = text
+			self.Text = text
 		self.update()
 
 	def getText(self):
-		return six.ensure_str(self.Text)
+		return self.Text
 
 	def createWidget(self, parent):
 		if self.allmarked:
@@ -168,8 +168,6 @@ class Input(VariableText, GUIComponent, NumericalTextInput):
 				self.currPos = 1
 
 	def insertChar(self, ch, pos=False, owr=False, ins=False):
-		if isinstance(ch, bytes):
-			ch = six.ensure_text(ch, errors='ignore')
 		if not pos:
 			pos = self.currPos
 		if ins and not self.maxSize:
@@ -259,7 +257,7 @@ class Input(VariableText, GUIComponent, NumericalTextInput):
 		if self.allmarked:
 			self.deleteAllChars()
 			self.allmarked = False
-		self.insertChar(six.unichr(code), self.currPos, False, False)
+		self.insertChar(chr(code), self.currPos, False, False)
 		self.innerright()
 		self.update()
 

@@ -539,8 +539,8 @@ class RecordTimerEntry(timer.TimerEntry):
 									MoviePlayerinstance.movieselection_dlg.close(None)
 									force = True
 								elif hasattr(MoviePlayerinstance, "execing") and MoviePlayerinstance.execing:
-									from Screens.InfoBarGenerics import setResumePoint
-									setResumePoint(MoviePlayerinstance.session)
+									from Screens.InfoBarGenerics import resumePointsInstance
+									resumePointsInstance.setResumePoint(MoviePlayerinstance.session)
 									MoviePlayerinstance.close()
 									force = True
 							if not force and MediaPlayerinstance and hasattr(MediaPlayerinstance, "execing") and MediaPlayerinstance.execing:
@@ -1170,7 +1170,7 @@ class RecordTimer(timer.Timer):
 		bt = localtime(begin)
 		bday = bt.tm_wday
 		begin2 = 1440 + bt.tm_hour * 60 + bt.tm_min
-		end2 = begin2 + duration / 60
+		end2 = begin2 + duration // 60
 		xbt = localtime(timer.begin)
 		xet = localtime(timer_end)
 		offset_day = False
@@ -1181,7 +1181,7 @@ class RecordTimer(timer.Timer):
 				oday = 6
 			offset_day = timer.repeated & (1 << oday)
 		xbegin = 1440 + xbt.tm_hour * 60 + xbt.tm_min
-		xend = xbegin + ((timer_end - timer.begin) / 60)
+		xend = xbegin + ((timer_end - timer.begin) // 60)
 		if xend < xbegin:
 			xend += 1440
 		if timer.repeated & (1 << bday) and checking_time:
@@ -1271,7 +1271,7 @@ class RecordTimer(timer.Timer):
 		check_offset_time = not config.recording.margin_before.value and not config.recording.margin_after.value
 		end = begin + duration
 		refstr = ':'.join(service.split(':')[:11])
-		timersList = self.getAllTimersList() if not disabledTimers else self.getDisabledTimers()
+		timersList = self.getAllTimersList()[:] if not disabledTimers else self.getDisabledTimers()[:]
 		for x in timersList:
 			if x.isAutoTimer == 1:
 				isAutoTimer = True
@@ -1281,24 +1281,25 @@ class RecordTimer(timer.Timer):
 				continue
 			check = ':'.join(x.service_ref.ref.toString().split(':')[:11]) == refstr
 			if check:
+				time_match = type = type_offset = 0
 				timer_end = x.end
 				timer_begin = x.begin
-				type_offset = 0
-				if not x.repeated and check_offset_time:
+				timer_repeat = x.repeated
+
+				if not timer_repeat and check_offset_time:
 					if 0 < end - timer_end <= 59:
 						timer_end = end
-					elif 0 < timer_begin - begin <= 59:
+					if 0 < timer_begin - begin <= 59:
 						timer_begin = begin
 				if x.justplay:
 					type_offset = 5
 					if (timer_end - x.begin) <= 1:
 						timer_end += 60
-					if x.pipzap and not x.repeated:
+					if x.pipzap and not timer_repeat:
 						type_offset = 30
 				if x.always_zap:
 					type_offset = 10
 
-				timer_repeat = x.repeated
 				# if set 'don't stop current event but disable coming events' for repeat timer
 				running_only_curevent = x.disabled and x.isRunning() and timer_repeat
 				if running_only_curevent:
@@ -1311,7 +1312,7 @@ class RecordTimer(timer.Timer):
 						bt = localtime(begin)
 						bday = bt.tm_wday
 						begin2 = 1440 + bt.tm_hour * 60 + bt.tm_min
-						end2 = begin2 + duration / 60
+						end2 = begin2 + duration // 60
 					xbt = localtime(x.begin)
 					xet = localtime(timer_end)
 					offset_day = False
@@ -1320,12 +1321,12 @@ class RecordTimer(timer.Timer):
 						oday = bday - 1
 						if oday == -1:
 							oday = 6
-						offset_day = x.repeated & (1 << oday)
+						offset_day = timer_repeat & (1 << oday)
 					xbegin = 1440 + xbt.tm_hour * 60 + xbt.tm_min
-					xend = xbegin + ((timer_end - x.begin) / 60)
+					xend = xbegin + ((timer_end - x.begin) // 60)
 					if xend < xbegin:
 						xend += 1440
-					if x.repeated & (1 << bday) and checking_time:
+					if timer_repeat & (1 << bday) and checking_time:
 						if begin2 < xbegin <= end2:
 							if xend < end2:
 								# recording within event

@@ -51,12 +51,12 @@ from sys import maxsize
 import itertools
 import datetime
 from re import match
+from pickle import load as pickle_load, dump as pickle_dump, HIGHEST_PROTOCOL as pickle_HIGHEST_PROTOCOL
 
 ####key debug #
 from keyids import KEYIDS
 
 from RecordTimer import RecordTimerEntry, RecordTimer, findSafeRecordPath
-from six.moves import cPickle as pickle
 import six
 
 # hack alert!
@@ -67,86 +67,73 @@ def isStandardInfoBar(self):
 	return self.__class__.__name__ == "InfoBar"
 
 
-def setResumePoint(session):
-	global resumePointCache, resumePointCacheLast
-	service = session.nav.getCurrentService()
-	ref = session.nav.getCurrentlyPlayingServiceOrGroup()
-	if (service is not None) and (ref is not None): # and (ref.type != 1):
-		# ref type 1 has its own memory...
-		seek = service.seek()
-		if seek:
-			pos = seek.getPlayPosition()
-			if not pos[0]:
-				key = ref.toString()
-				lru = int(time())
-				sl = seek.getLength()
-				if sl:
-					sl = sl[1]
-				else:
-					sl = None
-				resumePointCache[key] = [lru, pos[1], sl]
-				for k, v in list(resumePointCache.items()):
-					if v[0] < lru:
-						candidate = k
-						filepath = os.path.realpath(candidate.split(':')[-1])
-						mountpoint = findMountPoint(filepath)
-						if os.path.ismount(mountpoint) and not os.path.exists(filepath):
-							del resumePointCache[candidate]
-				if lru - resumePointCacheLast > 3600:
-					saveResumePoints()
+class ResumePoints():
+	def __init__(self):
+		self.resumePointFile = "/etc/enigma2/resumepoints.pkl"
+		self.resumePointCache = {}
+		self.loadResumePoints()
+		self.cacheCleanTimer = eTimer()
+		self.cacheCleanTimer.callback.append(self.cleanCache)
+		self.cleanCache()  # get rid of stale entries on reboot
 
+	def loadResumePoints(self):
+		self.resumePointCache.clear()
+		if fileExists(self.resumePointFile):
+			with open(self.resumePointFile, "rb") as f:
+				self.resumePointCache.update(pickle_load(f))
 
-def delResumePoint(ref):
-	global resumePointCache, resumePointCacheLast
-	try:
-		del resumePointCache[ref.toString()]
-	except KeyError:
-		pass
-	if int(time()) - resumePointCacheLast > 3600:
-		saveResumePoints()
+	def saveResumePoints(self):
+		with open(self.resumePointFile, "wb") as f:
+			pickle_dump(self.resumePointCache, f, pickle_HIGHEST_PROTOCOL)
 
+	def delResumePoint(self, ref):
+		if (sref := ref.toString()) in self.resumePointCache:
+			del self.resumePointCache[sref]
+			self.saveResumePoints()
 
-def getResumePoint(session):
-	global resumePointCache
-	ref = session.nav.getCurrentlyPlayingServiceOrGroup()
-	if (ref is not None) and (ref.type != 1):
-		try:
-			entry = resumePointCache[ref.toString()]
-			entry[0] = int(time()) # update LRU timestamp
+	def cleanCache(self):
+		changed = False
+		now = int(time())
+		self.cacheCleanTimer.stop()
+		for sref, v in list(self.resumePointCache.items()):
+			if "%3a//" in sref:  # resume point is stream
+				if now > v[0] + 7 * 24 * 60 * 60:  # keep stream resume points maximum one week
+					del self.resumePointCache[sref]
+					changed = True
+			else:
+				filepath = os.path.realpath(sref.split(':')[-1])
+				mountpoint = findMountPoint(filepath)
+				if os.path.ismount(mountpoint) and not os.path.exists(filepath):
+					del self.resumePointCache[sref]
+					changed = True
+		if changed:
+			self.saveResumePoints()
+		self.cacheCleanTimer.startLongTimer(24 * 60 * 60)  # clean up daily
+
+	def setResumePoint(self, session):
+		service = session.nav.getCurrentService()
+		ref = session.nav.getCurrentlyPlayingServiceOrGroup()
+		if service is not None and ref is not None:  # and (ref.type != 1):
+			# ref type 1 has its own memory...
+			seek = service.seek()
+			if seek:
+				pos = seek.getPlayPosition()
+				if not pos[0]:
+					sref = ref.toString()
+					sl = x[1] if (x := seek.getLength()) else None
+					self.resumePointCache[sref] = [int(time()), pos[1], sl]
+					self.saveResumePoints()
+
+	def getResumePoint(self, session):
+		ref = session.nav.getCurrentlyPlayingServiceOrGroup()
+		if (ref is not None) and (ref.type != 1) and (sref := ref.toString()) in self.resumePointCache:
+			entry = self.resumePointCache[sref]
+			entry[0] = int(time())  # update LRU timestamp
 			return entry[1]
-		except KeyError:
-			return None
 
 
-def saveResumePoints():
-	global resumePointCache, resumePointCacheLast
-	try:
-		f = open('/etc/enigma2/resumepoints.pkl', 'wb')
-		pickle.dump(resumePointCache, f, pickle.HIGHEST_PROTOCOL)
-		f.close()
-	except Exception as ex:
-		print("[saveResumePoints] Failed to write resumepoints:", ex)
-	resumePointCacheLast = int(time())
+resumePointsInstance = ResumePoints()
 
-
-def loadResumePoints():
-	try:
-		f = open('/etc/enigma2/resumepoints.pkl', 'rb')
-		pickleFile = pickle.load(f)
-		f.close()
-		return pickleFile
-	except Exception as ex:
-		print("[loadResumePoints] Failed to load resumepoints:", ex)
-		return {}
-
-
-def updateResumePointCache():
-	global resumePointCache
-	resumePointCache = loadResumePoints()
-
-
-resumePointCache = loadResumePoints()
-resumePointCacheLast = int(time())
 
 
 class whitelist:
@@ -247,21 +234,27 @@ def getPossibleSubservicesForCurrentChannel(current_service):
 
 
 def getActiveSubservicesForCurrentChannel(service):
-	info = service and service.info()
-	current_service = info and ':'.join(info.getInfoString(iServiceInformation.sServiceref).split(':')[:11])
 	activeSubservices = []
-	if current_service:
-		possibleSubservices = getPossibleSubservicesForCurrentChannel(current_service)
-		for subservice in possibleSubservices:
-			events = eEPGCache.getInstance().lookupEvent(['BDTS', (subservice, 0, -1)])
-			if events and len(events) == 1:
-				event = events[0]
-				title = event[2]
-				if title and "Sendepause" not in title:
-					starttime = datetime.datetime.fromtimestamp(event[0]).strftime('%H:%M')
-					endtime = datetime.datetime.fromtimestamp(event[0] + event[1]).strftime('%H:%M')
-					current_show_name = "%s %s-%s" % (title, str(starttime), str(endtime))
-					activeSubservices.append((current_show_name, subservice))
+	if info := service and service.info():
+		sRef = info.getInfoString(iServiceInformation.sServiceref)
+		url = "http://%s:%s/" % (config.misc.softcam_streamrelay_url.getHTML(), config.misc.softcam_streamrelay_port.value)
+		splittedRef = sRef.split(url.replace(":", "%3a"))
+		if len(splittedRef) > 1:
+			sRef = splittedRef[1].split(":")[0].replace("%3a", ":")
+		current_service = ':'.join(sRef.split(':')[:11])
+		if current_service:
+			possibleSubservices = getPossibleSubservicesForCurrentChannel(current_service)
+			epgCache = eEPGCache.getInstance()
+			for subservice in possibleSubservices:
+				events = epgCache.lookupEvent(['BDTS', (subservice, 0, -1)])
+				if events and len(events) == 1:
+					event = events[0]
+					title = event[2]
+					if title and ("Sendepause" not in title and "Sky Sport Kompakt" not in title):
+						starttime = datetime.datetime.fromtimestamp(event[0]).strftime('%H:%M')
+						endtime = datetime.datetime.fromtimestamp(event[0] + event[1]).strftime('%H:%M')
+						current_show_name = "%s [%s-%s]" % (title, str(starttime), str(endtime))
+						activeSubservices.append((current_show_name, subservice))
 	if not activeSubservices:
 		subservices = service and service.subServices()
 		if subservices:
@@ -272,7 +265,8 @@ def getActiveSubservicesForCurrentChannel(service):
 
 
 def hasActiveSubservicesForCurrentChannel(service):
-	return bool(getActiveSubservicesForCurrentChannel(service))
+	activeSubservices = getActiveSubservicesForCurrentChannel(service)
+	return bool(activeSubservices and len(activeSubservices) > 1)
 
 
 class InfoBarDish:
@@ -3527,7 +3521,7 @@ class InfoBarCueSheetSupport:
 					last = pts
 					break
 			else:
-				last = getResumePoint(self.session)
+				last = resumePointsInstance.getResumePoint(self.session)
 			if last is None:
 				return
 			# only resume if at least 10 seconds ahead, or <10 seconds before the end.

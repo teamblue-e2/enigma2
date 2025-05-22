@@ -10,8 +10,7 @@ from sys import _getframe as getframe
 from unicodedata import normalize
 from xml.etree.ElementTree import Element, ParseError, fromstring, parse
 
-from xml.etree.ElementTree import Element, fromstring, parse
-
+from traceback import print_exc
 
 from os.path import exists as pathExists, isdir as pathIsdir, isfile as pathIsfile, join as pathJoin
 

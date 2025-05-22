@@ -1300,8 +1300,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				"description": config.movielist.description.value,
 				"movieoff": config.usage.on_movie_eof.value})
 			self.saveLocalSettings()
-			self._updateButtonTexts()
-			self.reloadList()
+			self.close(True)
 
 	def can_sortby(self, item):
 		return True
@@ -1981,8 +1980,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 						moveServiceFiles(current, trash, name, allowCopy=False)
 						self["list"].removeService(current)
 						# Files were moved to .Trash, ok.
-						from Screens.InfoBarGenerics import delResumePoint
-						delResumePoint(current)
+						from Screens.InfoBarGenerics import resumePointsInstance
+						resumePointsInstance.delResumePoint(current)
 						self.showActionFeedback(_("Deleted") + " " + name)
 						return
 				except OSError as e:
@@ -2019,8 +2018,8 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 				if offline.deleteFromDisk(0):
 					raise Exception("Offline delete failed")
 			self["list"].removeService(current)
-			from Screens.InfoBarGenerics import delResumePoint
-			delResumePoint(current)
+			from Screens.InfoBarGenerics import resumePointsInstance
+			resumePointsInstance.delResumePoint(current)
 			self.showActionFeedback(_("Deleted") + " " + name)
 		except Exception as ex:
 			self.session.open(MessageBox, _("Delete failed!") + "\n" + name + "\n" + str(ex), MessageBox.TYPE_ERROR)

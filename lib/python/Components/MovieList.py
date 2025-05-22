@@ -60,8 +60,8 @@ justStubInfo = StubInfo()
 
 
 def lastPlayPosFromCache(ref):
-	from Screens.InfoBarGenerics import resumePointCache
-	return resumePointCache.get(ref.toString(), None)
+	from Screens.InfoBarGenerics import resumePointsInstance
+	return resumePointsInstance.resumePointCache.get(ref.toString(), None)
 
 
 def moviePlayState(cutsFileName, ref, length):
@@ -116,8 +116,8 @@ def moviePlayState(cutsFileName, ref, length):
 def resetMoviePlayState(cutsFileName, ref=None):
 	try:
 		if ref is not None:
-			from Screens.InfoBarGenerics import delResumePoint
-			delResumePoint(ref)
+			from Screens.InfoBarGenerics import resumePointsInstance
+			resumePointsInstance.delResumePoint(ref)
 		f = open(cutsFileName, 'rb')
 		cutlist = []
 		while True:

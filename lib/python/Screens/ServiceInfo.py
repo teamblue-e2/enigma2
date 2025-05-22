@@ -225,7 +225,7 @@ class ServiceInfo(Screen):
 				else:
 					return (_("Audio PID%s, codec & lang") % ((" %s") % (i + 1) if self.number_of_tracks > 1 and self.show_all else ""), "%04X (%d) - %s - %s" % (to_unsigned(audio_pid), audio_pid, audio_desc, audio_lang), TYPE_TEXT)
 
-			if not self.show_all:
+			if not self.show_all and not self.IPTV:
 				return [create_list(self.audio.getCurrentTrack())]
 			else:
 				track_list = []

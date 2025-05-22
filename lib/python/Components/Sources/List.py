@@ -40,6 +40,12 @@ to generate HTML."""
 		self.__list[index] = data
 		self.entry_changed(index)
 
+	def removeEntry(self, index):
+		if 0 <= index < len(self.__list):
+			self.__list.pop(index)
+			self.changed((self.CHANGED_ALL,))
+			self.listUpdated()
+
 	def count(self):
 		return len(self.__list)
 

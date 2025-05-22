@@ -18,6 +18,8 @@ from enigma import eTimer
 
 import xml.etree.ElementTree
 
+from gettext import dgettext
+
 from Screens.Setup import Setup
 from Components.NimManager import nimmanager  # nimmanager is used in eval(conditional), do not remove this import
 
@@ -90,15 +92,15 @@ class Menu(Screen, ProtectedScreen):
 		conditional = node.get("conditional")
 		if conditional and not eval(conditional):
 			return
-		menu_text = _(x) if (x := node.get("text")) else "* fix me *"
+		menu_text = (dgettext(self.pluginLanguageDomain, x) if self.pluginLanguageDomain else _(x)) if (x := node.get("text")) else "* fix me *"
 		weight = node.get("weight", 50)
-		description = _(x) if (x := node.get("description", "")) else None
+		description = (dgettext(self.pluginLanguageDomain, x) if self.pluginLanguageDomain else _(x)) if (x := node.get("description", "")) else None
 		menupng = MenuEntryPixmap(key, self.png_cache)
 		x = node.get("flushConfigOnClose")
 		if x:
-			a = boundFunction(self.session.openWithCallback, self.menuClosedWithConfigFlush, Menu, node)
+			a = boundFunction(self.session.openWithCallback, self.menuClosedWithConfigFlush, Menu, node, PluginLanguageDomain=self.pluginLanguageDomain)
 		else:
-			a = boundFunction(self.session.openWithCallback, self.menuClosed, Menu, node)
+			a = boundFunction(self.session.openWithCallback, self.menuClosed, Menu, node, PluginLanguageDomain=self.pluginLanguageDomain)
 		#TODO add check if !empty(node.childNodes)
 		destList.append((menu_text, a, key, weight, description, menupng))
 
@@ -127,9 +129,9 @@ class Menu(Screen, ProtectedScreen):
 		conditional = node.get("conditional")
 		if conditional and not eval(conditional):
 			return
-		item_text = _(x) if (x := node.get("text")) else "* fix me *"
+		item_text = (dgettext(self.pluginLanguageDomain, x) if self.pluginLanguageDomain else _(x)) if (x := node.get("text")) else "* fix me *"
 		weight = node.get("weight", 50)
-		description = _(x) if (x := node.get("description", "")) else None
+		description = (dgettext(self.pluginLanguageDomain, x) if self.pluginLanguageDomain else _(x)) if (x := node.get("description", "")) else None
 		menupng = MenuEntryPixmap(key, self.png_cache)
 		for x in node:
 			if x.tag == 'screen':
@@ -190,8 +192,9 @@ class Menu(Screen, ProtectedScreen):
 	def sortByName(self, listentry):
 		return listentry[0].lower()
 
-	def __init__(self, session, parent):
+	def __init__(self, session, parent, PluginLanguageDomain=None):
 		self.parentmenu = parent
+		self.pluginLanguageDomain = PluginLanguageDomain
 		Screen.__init__(self, session)
 		self.menulength = 0
 		self["key_blue"] = StaticText("")
@@ -369,7 +372,7 @@ class Menu(Screen, ProtectedScreen):
 
 	def keyBlue(self):
 		if "user" in config.usage.menu_sort_mode.value:
-			self.session.openWithCallback(self.menuSortCallBack, MenuSort, self.parentmenu)
+			self.session.openWithCallback(self.menuSortCallBack, MenuSort, self.parentmenu, PluginLanguageDomain=self.pluginLanguageDomain)
 		else:
 			return 0
 
@@ -390,10 +393,10 @@ class Menu(Screen, ProtectedScreen):
 
 
 class MenuSort(Menu):
-	def __init__(self, session, parent):
+	def __init__(self, session, parentmenu, PluginLanguageDomain=None):
 		self.somethingChanged = False
-		Menu.__init__(self, session, parent)
-		self.skinName = "MenuSort"
+		Menu.__init__(self, session, parentmenu, PluginLanguageDomain=PluginLanguageDomain)
+		self.skinName = ["MenuSort", "Menu"]
 		self["key_red"] = StaticText(_("Exit"))
 		self["key_green"] = StaticText(_("Save changes"))
 		self["key_yellow"] = StaticText(_("Toggle show/hide"))

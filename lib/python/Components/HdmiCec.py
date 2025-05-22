@@ -1,9 +1,13 @@
 import struct
 import os
-from Components.config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText, ConfigLocations, ConfigDirectory, ConfigNothing
-from enigma import eTimer, eHdmiCEC, eActionMap
+
+from Components.config import config, ConfigSelection, ConfigYesNo, ConfigSubsection, ConfigText, ConfigLocations, ConfigDirectory, ConfigNothing, ConfigIP, ConfigInteger, ConfigSubList
+import urllib.request
+from Components.Console import Console
+from enigma import eHdmiCEC, eActionMap
 from Tools.StbHardware import getFPWasTimerWakeup
 import NavigationInstance
+from enigma import eTimer
 from sys import maxsize
 
 LOGPATH = "/hdd/"
@@ -100,9 +104,25 @@ config.hdmicec.bookmarks = ConfigLocations(default=[LOGPATH])
 config.hdmicec.log_path = ConfigDirectory(LOGPATH)
 config.hdmicec.next_boxes_detect = ConfigYesNo(default=False)
 config.hdmicec.sourceactive_zaptimers = ConfigYesNo(default=False)
+config.hdmicec.ethernet_pc_used = ConfigYesNo(default=False)
+config.hdmicec.pc_ip = ConfigIP(default = [192,168,3,7])
+
+config.hdmicec.ethbox = ConfigSubList()
+def create_box(ip=[192, 168, 1, 1], port=80, used=False):
+    box = ConfigSubsection()
+    box.used = ConfigYesNo(default=used)
+    box.ip = ConfigIP(default=ip)
+    box.port = ConfigInteger(default=port, limits=(1, 65535))
+    return box
+def add_box(ip, port, used=False):
+	config.hdmicec.ethbox.append(create_box(ip=ip, port=port, used=used))
+add_box([192, 168, 3, 41], 80)
+add_box([192, 168, 3, 43], 80)
 
 
 class HdmiCec:
+
+	instance = None
 
 	def __init__(self):
 		assert not HdmiCec.instance, "only one HdmiCec instance is allowed!"
@@ -116,6 +136,12 @@ class HdmiCec:
 		self.repeat = eTimer()
 		self.repeat.timeout.get().append(self.wakeupMessages)
 		self.queue = []
+
+		self.delayEthernetPC = eTimer()
+		self.delayEthernetPC.timeout.get().append(self.ethernetPCActive)
+
+		self.delayEthernetBox = eTimer()
+		self.delayEthernetBox.timeout.get().append(self.ethernetBoxActive)
 
 		self.delay = eTimer()
 		self.delay.timeout.get().append(self.sendStandbyMessages)
@@ -132,7 +158,7 @@ class HdmiCec:
 		self.volumeForwardingDestination = 0
 		self.wakeup_from_tv = False
 		eActionMap.getInstance().bindAction('', -maxsize - 1, self.keyEvent)
-		config.hdmicec.volume_forwarding.addNotifier(self.configVolumeForwarding)
+		config.hdmicec.volume_forwarding.addNotifier(self.configVolumeForwarding, initial_call=False)
 		config.hdmicec.enabled.addNotifier(self.configVolumeForwarding)
 		if config.hdmicec.enabled.value:
 			assert not HdmiCec.instance, "only one HdmiCec instance is allowed!"
@@ -324,7 +350,40 @@ class HdmiCec:
 				self.sendMessage(5, "standby")
 
 	def secondBoxActive(self):
+		if config.hdmicec.ethernet_pc_used.value:
+			self.delayEthernetPC.start(100, True)
+		if any(box.used.value for box in config.hdmicec.ethbox):
+			self.delayEthernetBox.start(200, True)
 		self.sendMessage(0, "getpowerstatus")
+
+	def ethernetPCActive(self):
+		def result(data, retval, extra):
+			if retval == 0:
+				self.useStandby = False
+				print("[HDMI-CEC] found PC corresponding from address %s" % ip)
+		if config.hdmicec.ethernet_pc_used.value:
+			ip = "%d.%d.%d.%d" % tuple(config.hdmicec.pc_ip.value)
+			cmd = "ping -c 1 -W 1 %s >/dev/null 2>&1" % ip
+			Console().ePopen(cmd, result)
+
+	def ethernetBoxActive(self):
+		def getEthernetBoxActive(ip, port):
+			try:
+				response = urllib.request.urlopen("http://%s:%d/web/powerstate" % (ip, port))
+				for line in response:
+					if 'false' in line.decode('utf-8'):
+						self.useStandby = False
+						print("[HDMI-CEC] powered ethernet box %s found" % ip)
+			except Exception as e:
+				print("[HDMI-CEC] error", e)
+
+		for box in config.hdmicec.ethbox:
+			if not self.useStandby: # no further testing is needed
+				break
+			if box.used.value:
+				ip = "%d.%d.%d.%d" % tuple(box.ip.value)
+				port = box.port.value
+				getEthernetBoxActive(ip, port)
 
 	def onLeaveStandby(self):
 		self.wakeupMessages()
