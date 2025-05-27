@@ -10,6 +10,7 @@ from Components.config import config, ConfigSubsection, ConfigNothing, ConfigSel
 from Components.Label import Label
 from Components.Sources.List import List
 from Components.Sources.Boolean import Boolean
+from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import BoxInfo
 from Components.VolumeControl import VolumeControl
 from Components.UsageConfig import originalAudioTracks, visuallyImpairedCommentary
@@ -37,6 +38,7 @@ class AudioSelection(ConfigListScreen, Screen):
 		self["key_green"] = Boolean(False)
 		self["key_yellow"] = Boolean(True)
 		self["key_blue"] = Boolean(False)
+		self["key_menu"] = StaticText(_("MENU"))
 		self.protectContextMenu = True
 		self.Plugins = []
 		ConfigListScreen.__init__(self, [])
