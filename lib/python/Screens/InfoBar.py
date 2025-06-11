@@ -2,6 +2,7 @@ from Tools.Profile import profile
 from enigma import eServiceReference
 from glob import glob
 from os.path import splitext
+import os
 
 # workaround for required config entry dependencies.
 import Screens.MovieSelection
