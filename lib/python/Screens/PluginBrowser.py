@@ -364,6 +364,7 @@ class PluginDownloadBrowser(Screen):
 	def runInstall(self, val):
 		if val:
 			if self.type == self.DOWNLOAD:
+				self.install_settings_name = self["list"].l.getCurrentSelection()[0].name
 				if self["list"].l.getCurrentSelection()[0].name.startswith('settings-'):
 					self.check_settings = True
 					self.startOpkgListInstalled(self.PLUGIN_PREFIX + 'settings-*')
