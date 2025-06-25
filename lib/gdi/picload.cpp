@@ -31,6 +31,80 @@ static std::string getSize(const char* file)
 	return std::to_string((long)(s.st_size / 1024)) + " kB";
 }
 
+static unsigned char *simple_resize_8(unsigned char *orgin, int ox, int oy, int dx, int dy)
+{
+	unsigned char* cr = new unsigned char[dx * dy];
+	if (cr == NULL)
+	{
+		eDebug("[ePicLoad] Error malloc");
+		return(orgin);
+	}
+	const int stride = dx;
+	#pragma omp parallel for
+	for (int j = 0; j < dy; ++j)
+	{
+		unsigned char* k = cr + (j * stride);
+		const unsigned char* p = orgin + (j * oy / dy * ox);
+		for (int i = 0; i < dx; i++)
+		{
+			*k++ = p[i * ox / dx];
+		}
+	}
+	delete [] orgin;
+	return cr;
+}
+
+static unsigned char *color_resize_32(unsigned char * orgin, int ox, int oy, int dx, int dy)
+{
+	unsigned char* cr = new unsigned char[dx * dy * 4];
+	if (cr == NULL)
+	{
+		eDebug("[ePicLoad] resize Error malloc");
+		return orgin;
+	}
+	const int stride = 4 * dx;
+	#pragma omp parallel for
+	for (int j = 0; j < dy; j++)
+	{
+		unsigned char* p = cr + (j * stride);
+		int ya = j * oy / dy;
+		int yb = (j + 1) * oy / dy;
+		if (yb >= oy)
+			yb = oy - 1;
+		for (int i = 0; i < dx; i++, p += 4)
+		{
+			int xa = i * ox / dx;
+			int xb = (i + 1) * ox / dx;
+			if (xb >= ox)
+				xb = ox - 1;
+			int r = 0;
+			int g = 0;
+			int b = 0;
+			int a = 0;
+			int sq = 0;
+			for (int l = ya; l <= yb; l++)
+			{
+				const unsigned char* q = orgin + ((l * ox + xa) * 4);
+				for (int k = xa; k <= xb; k++, q += 4, sq++)
+				{
+					r += q[0];
+					g += q[1];
+					b += q[2];
+					a += q[3];
+				}
+			}
+			if (sq == 0) // prevent division by zero
+				sq = 1;
+			p[0] = r / sq;
+			p[1] = g / sq;
+			p[2] = b / sq;
+			p[3] = a / sq;
+		}
+	}
+	delete [] orgin;
+	return cr;
+}
+
 static unsigned char *color_resize(unsigned char * orgin, int ox, int oy, int dx, int dy)
 {
 	unsigned char* cr = new unsigned char[dx * dy * 3];
@@ -404,7 +478,6 @@ static void png_load(Cfilepara* filepara, int background, bool forceRGB=false)
 		}
 		png_read_end(png_ptr, info_ptr);
 	}
-	png_destroy_read_struct(&png_ptr, &info_ptr, (png_infopp)NULL);
 }
 
 //-------------------------------------------------------------------
@@ -796,7 +869,7 @@ void ePicLoad::decodePic()
 	{
 		case F_PNG:	png_load(m_filepara, m_conf.background);
 				break;
-		case F_JPEG:	m_filepara->pic_buffer = jpeg_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy, m_filepara->max_x, m_filepara->max_y);
+		case F_JPEG: m_filepara->pic_buffer = jpeg_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy, m_filepara->max_x, m_filepara->max_y);
 				break;
 		case F_BMP:	m_filepara->pic_buffer = bmp_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);
 				break;
@@ -877,7 +950,7 @@ void ePicLoad::decodeThumb()
 	{
 		case F_PNG:	png_load(m_filepara, m_conf.background, true);
 				break;
-		case F_JPEG:	m_filepara->pic_buffer = jpeg_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy, m_filepara->max_x, m_filepara->max_y);
+		case F_JPEG: m_filepara->pic_buffer = jpeg_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy, m_filepara->max_x, m_filepara->max_y);
 				break;
 		case F_BMP:	m_filepara->pic_buffer = bmp_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);
 				break;
@@ -912,8 +985,13 @@ void ePicLoad::decodeThumb()
 				imy = (int)( (m_conf.thumbnailsize * ((double)m_filepara->oy)) / ((double)m_filepara->ox) );
 			}
 
-			// eDebug("[ePicLoad] getThumb resize from %dx%d to %dx%d", m_filepara->ox, m_filepara->oy, imx, imy);
-			m_filepara->pic_buffer = color_resize(m_filepara->pic_buffer, m_filepara->ox, m_filepara->oy, imx, imy);
+			if (m_filepara->bits == 8)
+				m_filepara->pic_buffer = simple_resize_8(m_filepara->pic_buffer, m_filepara->ox, m_filepara->oy, imx, imy);
+			else if (m_filepara->bits == 32)
+				m_filepara->pic_buffer = color_resize_32(m_filepara->pic_buffer, m_filepara->ox, m_filepara->oy, imx, imy);
+			else
+				m_filepara->pic_buffer = color_resize(m_filepara->pic_buffer, m_filepara->ox, m_filepara->oy, imx, imy);
+
 			m_filepara->ox = imx;
 			m_filepara->oy = imy;
 
@@ -1313,7 +1391,7 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 			}
 		}
 	}
-	else // 24-bit images
+	else // 24/32-bit images
 	{
 		#pragma omp parallel for
 		for (int y = 0; y < scry; ++y) {
@@ -1328,7 +1406,14 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 					srow[2] = irow[0];
 					srow[1] = irow[1];
 					srow[0] = irow[2];
-					srow[3] = 0xFF; // alpha
+					if (m_filepara->bits < 32)
+					{
+						srow[3] = 0xFF; // alpha opaque
+					}
+					else
+					{
+						srow[3] = irow[3]; // alpha
+					}
 					srow += 4;
 					xind += xscale;
 				}
@@ -1364,7 +1449,14 @@ int ePicLoad::getData(ePtr<gPixmap> &result)
 					srow[2] = r / sq;
 					srow[1] = g / sq;
 					srow[0] = b / sq;
-					srow[3] = 0xFF; // alpha
+					if (m_filepara->bits < 32)
+					{
+						srow[3] = 0xFF; // alpha opaque
+					}
+					else
+					{
+						srow[3] = irow[3]; // alpha
+					}
 					srow += 4;
 					xind += xscale;
 				}
@@ -1413,7 +1505,7 @@ RESULT ePicLoad::setPara(int width, int height, double aspectRatio, int as, bool
 	m_conf.resizetype = resizeType;
 
 	if(bg_str[0] == '#' && strlen(bg_str)==9)
-		m_conf.background = strtoul(bg_str+1, NULL, 16) | 0xFF000000;
+		m_conf.background = static_cast<uint32_t>(strtoul(bg_str+1, NULL, 16));
 	eDebug("[ePicLoad] setPara max-X=%d max-Y=%d aspect_ratio=%lf cache=%d resize=%d bg=#%08X auto_orient=%d",
 			m_conf.max_x, m_conf.max_y, m_conf.aspect_ratio,
 			(int)m_conf.usecache, (int)m_conf.resizetype, m_conf.background, m_conf.auto_orientation);
