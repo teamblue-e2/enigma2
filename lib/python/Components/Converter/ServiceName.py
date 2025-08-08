@@ -131,6 +131,8 @@ class ServiceName(Converter):
 		if not prov:
 			if not ref:
 				prov = info.getInfoString(iServiceInformation.sProvider)
+			else:
+				prov = ""
 		return prov
 
 	def getOrbitalPos(self, ref, info):
