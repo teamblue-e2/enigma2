@@ -193,7 +193,7 @@ class OpkgComponent:
 			self.runCmd("remove " + args['package'])
 		elif cmd == self.CMD_UPGRADE_LIST:
 			self.fetchedList = []
-			self.runCmdEx("list-upgradable")
+			self.runCmdEx("list-upgradable", True)
 		self.setCurrentCommand(cmd)
 
 	def cmdFinished(self, retval):
