@@ -128,6 +128,8 @@ class OpkgComponent:
 	CMD_UPGRADE = 4
 	CMD_UPGRADE_LIST = 5
 
+	UPGRADE_LOG = "/home/root/opkgupgrade.log"
+
 	def __init__(self, opkg='opkg'):
 		self.opkg = opkg
 		self.cmd = eConsoleAppContainer()
@@ -138,8 +140,16 @@ class OpkgComponent:
 	def setCurrentCommand(self, command=None):
 		self.currentCommand = command
 
-	def runCmdEx(self, cmd):
-		self.runCmd("%s %s" % (opkgExtraDestinations(), cmd))
+	def runCmdEx(self, cmd, addDests=False):
+		if type(cmd) is list:
+			command = cmd[0]
+			for x in cmd[1:]:
+				command += " && %s %s " % (self.opkg, x)
+			self.runCmd(command)
+		elif addDests:
+			self.runCmd("%s %s" % (opkgExtraDestinations(), cmd))
+		else:
+			self.runCmd(cmd)
 
 	def runCmd(self, cmd):
 		print("executing", self.opkg, cmd)
@@ -152,17 +162,24 @@ class OpkgComponent:
 		if cmd == self.CMD_UPDATE:
 			self.runCmdEx("update")
 		elif cmd == self.CMD_UPGRADE:
-			if os.path.exists("/home/root/opkgupgrade.log"):
-				os.unlink("/home/root/opkgupgrade.log")
-			append = ""
+			if os.path.exists(UPGRADE_LOG):
+				os.unlink(UPGRADE_LOG)
+			cmds = []
+			for pkg in self.fetchedList:
+				if pkg[0] == "sysvinit":
+					cmds.append("upgrade sysvinit | tee -a %s" % UPGRADE_LOG)
+				elif pkg[0] == "sysvinit-pidof":
+					cmds.append("upgrade sysvinit-pidof | tee -a %s" % UPGRADE_LOG)
+				elif pkg[0] == "initscripts-functions":
+					cmds.append("upgrade initscripts-functions | tee -a %s" % UPGRADE_LOG)
+				elif pkg[0] == "busybox":
+					cmds.append("upgrade busybox | tee -a %s" % UPGRADE_LOG)
 			if args["test_only"]:
-				append = " -test"
+				cmds.append("upgrade -test | tee -a %s" % UPGRADE_LOG)
 			else:
-				for pkg in self.fetchedList:
-					if pkg[0] == "busybox":
-						self.runCmdEx("upgrade busybox | tee -a /home/root/opkgupgrade.log")
-						break
-			self.runCmdEx("upgrade %s | tee -a /home/root/opkgupgrade.log" % append)
+				cmds.append("upgrade | tee -a %s" % UPGRADE_LOG)
+			cmds.append(("upgrade %s | tee -a %s" % (opkgExtraDestinations(), UPGRADE_LOG))
+			self.runCmdEx(cmds, True)
 		elif cmd == self.CMD_LIST:
 			self.fetchedList = []
 			if args['installed_only']:
@@ -261,3 +278,4 @@ class OpkgComponent:
 			# We except unterminated commands
 			what += "\n"
 			self.cmd.write(what, len(what))
+
