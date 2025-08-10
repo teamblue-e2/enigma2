@@ -162,24 +162,24 @@ class OpkgComponent:
 		if cmd == self.CMD_UPDATE:
 			self.runCmdEx("update")
 		elif cmd == self.CMD_UPGRADE:
-			if os.path.exists(UPGRADE_LOG):
-				os.unlink(UPGRADE_LOG)
+			if os.path.exists(self.UPGRADE_LOG):
+				os.unlink(self.UPGRADE_LOG)
 			cmds = []
 			for pkg in self.fetchedList:
 				if pkg[0] == "sysvinit":
-					cmds.append("upgrade sysvinit | tee -a %s" % UPGRADE_LOG)
+					cmds.append("upgrade sysvinit | tee -a %s" % self.UPGRADE_LOG)
 				elif pkg[0] == "sysvinit-pidof":
-					cmds.append("upgrade sysvinit-pidof | tee -a %s" % UPGRADE_LOG)
+					cmds.append("upgrade sysvinit-pidof | tee -a %s" % self.UPGRADE_LOG)
 				elif pkg[0] == "initscripts-functions":
-					cmds.append("upgrade initscripts-functions | tee -a %s" % UPGRADE_LOG)
+					cmds.append("upgrade initscripts-functions | tee -a %s" % self.UPGRADE_LOG)
 				elif pkg[0] == "busybox":
-					cmds.append("upgrade busybox | tee -a %s" % UPGRADE_LOG)
+					cmds.append("upgrade busybox | tee -a %s" % self.UPGRADE_LOG)
 			if args["test_only"]:
-				cmds.append("upgrade -test | tee -a %s" % UPGRADE_LOG)
+				cmds.append("upgrade -test | tee -a %s" % self.UPGRADE_LOG)
 			else:
-				cmds.append("upgrade | tee -a %s" % UPGRADE_LOG)
+				cmds.append("upgrade | tee -a %s" % self.UPGRADE_LOG)
 			if opkgExtraDestinations():
-				cmds.append(("upgrade %s | tee -a %s" % (opkgExtraDestinations(), UPGRADE_LOG)))
+				cmds.append(("upgrade %s | tee -a %s" % (opkgExtraDestinations(), self.UPGRADE_LOG)))
 			self.runCmdEx(cmds, True)
 		elif cmd == self.CMD_LIST:
 			self.fetchedList = []
