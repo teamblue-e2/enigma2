@@ -178,7 +178,8 @@ class OpkgComponent:
 				cmds.append("upgrade -test | tee -a %s" % UPGRADE_LOG)
 			else:
 				cmds.append("upgrade | tee -a %s" % UPGRADE_LOG)
-			cmds.append(("upgrade %s | tee -a %s" % (opkgExtraDestinations(), UPGRADE_LOG))
+			if opkgExtraDestinations():
+				cmds.append(("upgrade %s | tee -a %s" % (opkgExtraDestinations(), UPGRADE_LOG)))
 			self.runCmdEx(cmds, True)
 		elif cmd == self.CMD_LIST:
 			self.fetchedList = []
