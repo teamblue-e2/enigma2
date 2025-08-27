@@ -62,6 +62,8 @@ class AudioSelection(ConfigListScreen, Screen):
 			"cancel": self.cancel,
 			"up": self.keyUp,
 			"down": self.keyDown,
+			"left": self.keyLeft,
+			"right": self.keyRight,
 			"volumeUp": self.volumeUp,
 			"volumeDown": self.volumeDown,
 			"volumeMute": self.volumeMute,
