@@ -2,9 +2,9 @@ name: enigma2 build
 
 on:
   push:
-    branches: [ 7.5-dev ]
+    branches: [ 7.6-dev ]
   pull_request:
-    branches: [ 7.5-dev ]
+    branches: [ 7.6-dev ]
 
 jobs:
   build:
@@ -12,8 +12,8 @@ jobs:
     runs-on: ubuntu-24.04
     strategy:
       matrix:
-        gcc: [13]
-        python: ['3.12']
+        gcc: [14]
+        python: ['3.13']
     steps:
       - name: Install prerequisites
         run: |
