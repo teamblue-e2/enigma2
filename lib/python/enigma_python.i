@@ -471,6 +471,7 @@ extern const char *getGStreamerVersionString();
 extern void dump_malloc_stats(void);
 extern void pauseInit(void);
 extern void resumeInit(void);
+extern bool checkLogin(const char *user, const char *pwd);
 %}
 
 extern void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement, int renderflags = 0);
@@ -485,6 +486,7 @@ extern const char *getGStreamerVersionString();
 extern void dump_malloc_stats(void);
 extern void pauseInit(void);
 extern void resumeInit(void);
+extern bool checkLogin(const char *user, const char *pwd);
 
 %include <lib/python/python_console.i>
 %include <lib/python/python_base.i>
