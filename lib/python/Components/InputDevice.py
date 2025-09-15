@@ -33,8 +33,9 @@ class inputDevices:
 		self.getInputDevices()
 
 	def getInputDevices(self):
-		devices = sorted(os.listdir("/dev/input/"))
+		self.Devices = {}
 
+		devices = sorted(os.listdir("/dev/input/"))
 		for evdev in devices:
 			try:
 				buffer = "\0" * 512
