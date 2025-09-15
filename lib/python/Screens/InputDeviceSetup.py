@@ -51,7 +51,6 @@ class InputDeviceSelection(HelpableScreen, Screen):
 		self["key_blue"] = StaticText("")
 		self["introduction"] = StaticText(self.edittext)
 
-		iInputDevices.getInputDevices()
 		self.devices = [(iInputDevices.getDeviceName(x), x) for x in iInputDevices.getDeviceList()]
 		print("[InputDeviceSelection] found devices :->", len(self.devices), self.devices)
 
