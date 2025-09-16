@@ -734,7 +734,7 @@ class SystemNetworkInfo(Screen):
 
 						signal = status[self.iface]["signal"]
 						if "signal" in self:
-							self.AboutText += _('Signal Strength: %d \n' % signal)
+							self.AboutText += _('Signal Strength: %s \n' % signal)
 
 						if status[self.iface]["encryption"] == "off":
 							if accesspoint == "Not-Associated":
