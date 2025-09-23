@@ -4,7 +4,7 @@ from Screens.Setup import Setup
 from Components.config import getConfigListEntry, ConfigText
 
 
-class ChangePaswordScreen(Setup):
+class ChangePasswordScreen(Setup):
 
 	def __init__(self, session, args=0):
 		self.skinName = ["Setup"]
