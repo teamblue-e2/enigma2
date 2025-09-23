@@ -43,7 +43,7 @@ class ChangePaswordScreen(Setup):
 				message = _("Unable to change password for root user")
 		else:
 			message = _("Current password incorrect")
-		self.session.open(MessageBox, message, MessageBox.TYPE_INFO, timeout=5)
+		self.session.open(MessageBox, message, MessageBox.TYPE_INFO, timeout=5, simple=True)
 
 	def dataAvail(self, data):
 		if data.find(b'password'):
