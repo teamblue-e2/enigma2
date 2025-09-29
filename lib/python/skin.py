@@ -890,10 +890,11 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 
 	for tag in domSkin.findall("include"):
 		filename = tag.attrib.get("filename")
-		if filename:
-			filename = resolveFilename(scope, filename, path_prefix=pathSkin)
-			if isfile(filename):
-				loadSkin(filename, scope=scope, desktop=desktop, screenID=screenID)
+		conditional = not (c := tag.attrib.get("conditional")) or eval(c)
+		if filename and conditional:
+			resolved = resolveFilename(scope, filename, path_prefix=pathSkin)
+			if isfile(resolved):
+				loadSkin(resolved, scope=scope, desktop=desktop, screenID=screenID)
 			else:
 				raise SkinError("Included file '%s' not found" % filename)
 	for tag in domSkin.findall("switchpixmap"):
