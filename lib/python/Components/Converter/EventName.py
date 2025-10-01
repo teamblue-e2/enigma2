@@ -218,6 +218,8 @@ class EventName(Converter):
 				self.type = self.ISRUNNINGSTATUS
 			elif type == "RawRating":
 				self.type = self.RAWRATING
+			elif type == "RawRatingAndCountry":
+				self.type = self.RAWRATINGANDCOUNTRY
 			else:
 				self.type = self.NAME
 
