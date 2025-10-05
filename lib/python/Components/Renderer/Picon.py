@@ -1,7 +1,7 @@
 from os import listdir, path as ospath
 from re import sub
 
-from enigma import ePixmap, eServiceReference
+from enigma import ePixmap, ePicLoad, eServiceReference
 
 from Components.config import config
 from Components.Harddisk import harddiskmanager
@@ -108,34 +108,74 @@ class Picon(Renderer):
 		Renderer.__init__(self)
 		self.pngname = None
 		self.defaultpngname = resolveFilename(SCOPE_CURRENT_SKIN, "picon_default.png")
+		self.usePicLoad = False
+		self.PicLoad = ePicLoad()
+		self.PicLoad.PictureData.get().append(self.updatePicon)
+		self.piconsize = (0, 0)
+		self.service_text = ""
+		self.lastPath = None
+		self.showPicon = True
+
+	def addPath(self, value):
+		if pathExists(value):
+			if not value.endswith('/'):
+				value += '/'
+			if value not in piconLocator.searchPaths:
+				piconLocator.searchPaths.append(value)
 
 	def applySkin(self, desktop, parent):
 		attribs = self.skinAttributes[:]
 		for (attrib, value) in self.skinAttributes:
 			if attrib == "path":
-				piconLocator.addSearchPath(value)
+				self.addPath(value)
 				attribs.remove((attrib, value))
+			elif attrib == "isFrontDisplayPicon":
+				self.showPicon = value == "0"
+				attribs.remove((attrib, value))
+			elif attrib == "usePicLoad":
+				self.usePicLoad = value == "1"
+				attribs.remove((attrib, value))
+			elif attrib == "size":
+				self.piconsize = value
 		self.skinAttributes = attribs
-		rc = Renderer.applySkin(self, desktop, parent)
-		self.changed((self.CHANGED_DEFAULT,))
-		return rc
+		return Renderer.applySkin(self, desktop, parent)
 
 	GUI_WIDGET = ePixmap
 
+	def updatePicon(self, picInfo=None):
+		ptr = self.PicLoad.getData()
+		if ptr is not None and self.instance:
+			self.instance.setPixmap(ptr.__deref__())
+			self.instance.show()
+
 	def changed(self, what):
 		if self.instance:
-			if what[0] in (self.CHANGED_DEFAULT, self.CHANGED_ALL, self.CHANGED_SPECIFIC):
-				pngname = piconLocator.getPiconName(self.source.text)
-				if not pathExists(pngname):  # no picon for service found
+			if self.showPicon or config.usage.show_picon_in_display.value:
+				pngname = ""
+				if what[0] in (self.CHANGED_ALL, self.CHANGED_SPECIFIC):
+					if self.usePicLoad and self.source.text and self.service_text and self.source.text == self.service_text:
+						return
+					self.service_text = self.source.text
+					pngname = piconLocator.getPiconName(self.source.text)
+				else:
+					if what[0] == self.CHANGED_CLEAR:
+						self.service_text = self.pngname = ""
+						if self.visible:
+							self.instance.hide()
+					return
+				if not pngname:  # no picon for service found
 					pngname = self.defaultpngname
 				if self.pngname != pngname:
 					if pngname:
-						self.instance.setScale(1)
-						self.instance.setPixmapFromFile(pngname)
-						self.instance.show()
+						if self.usePicLoad:
+							self.PicLoad.setPara((self.piconsize[0], self.piconsize[1], 0, 0, 1, 1, "#FF000000"))
+							self.PicLoad.startDecode(pngname)
+						else:
+							self.instance.setScale(1)
+							self.instance.setPixmapFromFile(pngname)
+							self.instance.show()
 					else:
 						self.instance.hide()
 					self.pngname = pngname
-			elif what[0] == self.CHANGED_CLEAR:
-				self.pngname = None
+			elif self.visible:
 				self.instance.hide()
