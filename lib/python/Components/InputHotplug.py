@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
-import Components.Netlink
+from Components import Netlink, InputDevice
+from Components.InputDevice import iInputDevices
 import enigma
 import os
 
@@ -7,7 +7,7 @@ import os
 class NetlinkReader:
 	def __init__(self):
 		from twisted.internet import reactor
-		self.nls = Components.Netlink.NetlinkSocket()
+		self.nls = Netlink.NetlinkSocket()
 		reactor.addReader(self)
 
 	def fileno(self):
@@ -26,6 +26,9 @@ class NetlinkReader:
 					elif action == 'remove':
 						print("Removed input device:", devname)
 						enigma.removeInputDevice(os.path.join('/dev', devname))
+					# re-init available input devices
+					iInputDevices.getInputDevices()
+					InputDevice.InitInputDevices()
 				elif subsystem == 'net':
 					from Components.Network import iNetwork
 					iNetwork.hotplug(event)

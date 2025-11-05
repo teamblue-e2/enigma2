@@ -1,6 +1,7 @@
 from os import system, path as os_path
 import sys
 import re
+import six
 
 from enigma import eConsoleAppContainer
 
@@ -394,6 +395,7 @@ class Status:
 		self.WlanConsole.ePopen(cmd, self.iwconfigFinished, iface)
 
 	def iwconfigFinished(self, result, retval, extra_args):
+		result = six.ensure_str(result)
 		iface = extra_args
 		ssid = "off"
 		data = {'essid': False, 'frequency': False, 'accesspoint': False, 'bitrate': False, 'encryption': False, 'quality': False, 'signal': False, 'channel': False, 'encryption_type': False, 'frequency': False, 'frequency_norm': False}
@@ -434,35 +436,38 @@ class Status:
 			scanresults = list(Cell.all(iface, 5))
 			aps = {}
 			if scanresults:
-				for i in list(range(len(scanresults))):
-					bssid = scanresults[i].ssid
-					aps[bssid] = {
-						'active': True,
-						'bssid': scanresults[i].ssid,
-						'essid': scanresults[i].ssid,
-						'channel': scanresults[i].channel,
-						'encrypted': scanresults[i].encrypted,
-						'encryption_type': scanresults[i].encryption_type if scanresults[i].encrypted else "none",
-						'iface': iface,
-						'maxrate': scanresults[i].bitrates,
-						'mode': scanresults[i].mode,
-						'quality': scanresults[i].quality,
-						'signal': scanresults[i].signal,
-						'frequency': scanresults[i].frequency,
-						'frequency_norm': scanresults[i].frequency_norm,
-						'address': scanresults[i].address,
-						'noise': scanresults[i].noise,
-						'pairwise_ciphers': scanresults[i].pairwise_ciphers,
-						'authentication_suites': scanresults[i].authentication_suites,
-					}
-				#data['bitrate'] = aps[ssid]["maxrate"]
-				data['encryption'] = aps[ssid]["encrypted"]
-				data['quality'] = aps[ssid]["quality"]
-				data['signal'] = aps[ssid]["signal"]
-				data['channel'] = aps[ssid]["channel"]
-				data['encryption_type'] = aps[ssid]["encryption_type"]
-				#data['frequency'] = aps[ssid]["frequency"]
-				data['frequency_norm'] = aps[ssid]["frequency_norm"]
+				try:
+					for i in list(range(len(scanresults))):
+						bssid = scanresults[i].ssid
+						aps[bssid] = {
+							'active': True,
+							'bssid': scanresults[i].ssid,
+							'essid': scanresults[i].ssid,
+							'channel': scanresults[i].channel,
+							'encrypted': scanresults[i].encrypted,
+							'encryption_type': scanresults[i].encryption_type if scanresults[i].encrypted else "none",
+							'iface': iface,
+							'maxrate': scanresults[i].bitrates,
+							'mode': scanresults[i].mode,
+							'quality': scanresults[i].quality,
+							'signal': scanresults[i].signal,
+							'frequency': scanresults[i].frequency,
+							'frequency_norm': scanresults[i].frequency_norm,
+							'address': scanresults[i].address,
+							'noise': scanresults[i].noise,
+							'pairwise_ciphers': scanresults[i].pairwise_ciphers,
+							'authentication_suites': scanresults[i].authentication_suites,
+						}
+					#data['bitrate'] = aps[ssid]["maxrate"]
+					data['encryption'] = aps[ssid]["encrypted"]
+					data['quality'] = aps[ssid]["quality"]
+					data['signal'] = aps[ssid]["signal"]
+					data['channel'] = aps[ssid]["channel"]
+					data['encryption_type'] = aps[ssid]["encryption_type"]
+					#data['frequency'] = aps[ssid]["frequency"]
+					data['frequency_norm'] = aps[ssid]["frequency_norm"]
+				except:
+					pass
 
 		self.wlaniface[iface] = data
 		self.backupwlaniface = self.wlaniface

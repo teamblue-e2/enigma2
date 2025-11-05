@@ -25,7 +25,7 @@ weplist = ["ASCII", "HEX"]
 config.plugins.wlan = ConfigSubsection()
 config.plugins.wlan.essid = NoSave(ConfigText(default="", fixed_size=False))
 config.plugins.wlan.hiddenessid = NoSave(ConfigYesNo(default=False))
-config.plugins.wlan.encryption = NoSave(ConfigSelection(list, default="WPA2"))
+config.plugins.wlan.encryption = NoSave(ConfigSelection(list, default="WPA/WPA2"))
 config.plugins.wlan.wepkeytype = NoSave(ConfigSelection(weplist, default="ASCII"))
 config.plugins.wlan.psk = NoSave(ConfigPassword(default="", fixed_size=False))
 
@@ -248,6 +248,7 @@ class WlanScan(Screen):
 			del self.rescanTimer
 			if cur[0] is not None:
 				self.close(cur[0])
+				config.plugins.wlan.encryption = cur[4]
 			else:
 				self.close(None)
 		else:
@@ -267,7 +268,7 @@ class WlanScan(Screen):
 		self.updateAPList()
 
 	def buildEntryComponent(self, essid, bssid, encrypted, iface, maxrate, signal):
-		encryption = encrypted and _("Yes") or _("No")
+		encryption = encrypted # and _("Yes") or _("No")
 		return ((essid, bssid, _("Signal: ") + str(signal), _("Max. bitrate: ") + str(maxrate), _("Encrypted: ") + encryption, _("Interface: ") + str(iface), self.divpng))
 
 	def updateAPList(self):
@@ -315,7 +316,7 @@ class WlanScan(Screen):
 				a = aps[ap]
 				if a['active']:
 					tmpList.append((a['essid'], a['bssid']))
-					compList.append((a['essid'], a['bssid'], a['encrypted'], a['iface'], a['maxrate'], a['signal']))
+					compList.append((a['essid'], a['bssid'], a['encryption_type'], a['iface'], a['maxrate'], a['signal']))
 
 			for entry in tmpList:
 				if entry[0] == "":

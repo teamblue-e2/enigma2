@@ -8,13 +8,13 @@ from Components.Harddisk import harddiskmanager
 from ServiceReference import ServiceReference
 from Components.config import config
 
-searchPaths = []
-lastPiconPath = None
+class paths:
+	searchPaths = []
+	lastPiconPath = None
 
 
 def initPiconPaths():
-	global searchPaths
-	searchPaths = []
+	paths.searchPaths = []
 	for mp in ('/usr/share/enigma2/', '/'):
 		onMountpointAdded(mp)
 	for part in harddiskmanager.getMountedPartitions():
@@ -22,24 +22,22 @@ def initPiconPaths():
 
 
 def onMountpointAdded(mountpoint):
-	global searchPaths
 	try:
 		path = os.path.join(mountpoint, 'picon') + '/'
-		if os.path.isdir(path) and path not in searchPaths:
+		if os.path.isdir(path) and path not in paths.searchPaths:
 			for fn in os.listdir(path):
 				if fn.endswith('.png') or fn.endswith('.svg'):
 					print("[Picon] adding path:", path)
-					searchPaths.append(path)
+					paths.searchPaths.append(path)
 					break
 	except Exception as ex:
 		print("[Picon] Failed to investigate %s:" % mountpoint, ex)
 
 
 def onMountpointRemoved(mountpoint):
-	global searchPaths
 	path = os.path.join(mountpoint, 'picon') + '/'
 	try:
-		searchPaths.remove(path)
+		paths.searchPaths.remove(path)
 		print("[Picon] removed path:", path)
 	except:
 		pass
@@ -53,19 +51,17 @@ def onPartitionChange(why, part):
 
 
 def findPicon(serviceName):
-	global lastPiconPath
-	if lastPiconPath is not None:
+	if paths.lastPiconPath is not None:
 		for ext in ('.png', '.svg'):
-			pngname = lastPiconPath + serviceName + ext
+			pngname = paths.lastPiconPath + serviceName + ext
 			if pathExists(pngname):
 				return pngname
-	global searchPaths
-	for path in searchPaths:
+	for path in paths.searchPaths:
 		if pathExists(path):
 			for ext in ('.png', '.svg'):
 				pngname = path + serviceName + ext
 				if pathExists(pngname):
-					lastPiconPath = path
+					paths.lastPiconPath = path
 					return pngname
 	return ""
 
@@ -89,8 +85,8 @@ def getPiconName(serviceRef):
 		#fallback to 1 for IPTV streams
 		fields[0] = '1'
 		pngname = findPicon('_'.join(fields))
-	if not pngname and fields[2] != '2':
-		#fallback to 1 for TV services with non-standard service types
+	if not pngname and fields[2] != '1':
+		#fallback to 1 for TV services with non-standard service types. And radio services.
 		fields[2] = '1'
 		pngname = findPicon('_'.join(fields))
 	if not pngname: # picon by channel name
@@ -127,11 +123,10 @@ class Picon(Renderer):
 
 	def addPath(self, value):
 		if pathExists(value):
-			global searchPaths
 			if not value.endswith('/'):
 				value += '/'
-			if value not in searchPaths:
-				searchPaths.append(value)
+			if value not in paths.searchPaths:
+				paths.searchPaths.append(value)
 
 	def applySkin(self, desktop, parent):
 		attribs = self.skinAttributes[:]

@@ -33,6 +33,8 @@ class inputDevices:
 		self.getInputDevices()
 
 	def getInputDevices(self):
+		print("[InputDevice] start device enumeration")
+		self.Devices = {}
 		devices = sorted(os.listdir("/dev/input/"))
 
 		for evdev in devices:
@@ -49,6 +51,7 @@ class inputDevices:
 				self.name = None
 
 			if self.name:
+				print("[Inputdevice] adding %s (%s)" % (evdev, self.name))
 				self.Devices[evdev] = {'name': self.name, 'type': self.getInputDeviceType(self.name), 'enabled': False, 'configuredName': None}
 
 	def getInputDeviceType(self, name):
@@ -134,10 +137,11 @@ class InitInputDevices:
 		self.createConfig()
 
 	def createConfig(self, *args):
+		print("[InputDevice] creating config for input devicess")
 		config.inputDevices = ConfigSubsection()
 		for device in sorted(iInputDevices.Devices.keys()):
 			self.currentDevice = device
-			#print "[InputDevice] creating config entry for device: %s -> %s  " % (self.currentDevice, iInputDevices.Devices[device]["name"])
+			print("[InputDevice] creating config entry for device: %s -> %s  " % (self.currentDevice, iInputDevices.Devices[device]["name"]))
 			self.setupConfigEntries(self.currentDevice)
 			self.currentDevice = ""
 
