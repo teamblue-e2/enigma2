@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-30 15:32+0200\n"
+"POT-Creation-Date: 2025-11-05 09:58+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: MCelliotG <mcelliotg@gmail.com>\n"
@@ -1045,6 +1045,9 @@ msgstr "Αλλαγή ρυθμίσεων 3D"
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Ρυθμίστε την ένταση των χρωμάτων έτσι ώστε να διαφέρουν οι χρωματισμοί με τη μέγιστη φωτεινότητα. Όταν τελειώσετε, πιέστε ΟΚ για να κλείσετε τη μικρορύθμιση ή πατήστε ένα νούμερο για να δείτε και άλλες οθόνες δοκιμών."
 
+msgid "Adult Audience, Strong Violence 15+"
+msgstr ""
+
 msgid "Advanced"
 msgstr "Προχωρημένο"
 
@@ -1603,6 +1606,10 @@ msgstr "B"
 msgid "BACK"
 msgstr ""
 
+#, python-format
+msgid "BC%d"
+msgstr ""
+
 msgid "BDMV Bludisc (HDTV titles only)"
 msgstr ""
 
@@ -1716,6 +1723,9 @@ msgid "Bahamas"
 msgstr ""
 
 msgid "Bahrain"
+msgstr ""
+
+msgid "Bambini Accompagnati"
 msgstr ""
 
 msgid "Band"
@@ -2197,6 +2207,9 @@ msgstr "Γλώσσα"
 msgid "Change PIN"
 msgstr "Αλλαγή pin ρυθμίσεων"
 
+msgid "Change Root Password"
+msgstr ""
+
 msgid "Change bouquets in quickzap"
 msgstr "Αλλαγή μπουκέτου στο γρήγορο ζάπινγκ"
 
@@ -2369,6 +2382,9 @@ msgstr ""
 "Έλεγχος tuner %d \n"
 "Πόρτα DiSEqC %s για το %s"
 
+msgid "Children"
+msgstr ""
+
 #, fuzzy
 msgid "Children/Youth/Education/Science"
 msgstr "Εκπαίδευση/Επιστήμη/..."
@@ -2530,6 +2546,10 @@ msgid "Color Actions"
 msgstr "Επιλογή ενέργειας"
 
 msgid "Color format"
+msgstr "Φορμά χρώματος"
+
+#, fuzzy
+msgid "Color space"
 msgstr "Φορμά χρώματος"
 
 #, fuzzy
@@ -3243,6 +3263,9 @@ msgstr ""
 msgid "Current mode: %s \n"
 msgstr "Τρέχουσα λειτουργία: %s \n"
 
+msgid "Current password incorrect"
+msgstr ""
+
 #, fuzzy
 msgid "Current rotor position: "
 msgstr "Τρέχουσα έκδοση:"
@@ -3275,8 +3298,9 @@ msgstr "Χρόνος υπερπήδησης για τα πλήκτρα '7'/'9'"
 msgid "Customize"
 msgstr "Παραμετροποίηση"
 
-msgid "Customize OpenWebIF settings for fallback tuner"
-msgstr ""
+#, fuzzy
+msgid "Customize OpenWebIF settings for fallback receiver"
+msgstr "Όταν είναι ενεργό, μπορείτε να παραμετροποιήσετε τις ρυθμίσεις OpenWebIf για το εφεδρικό tuner"
 
 msgid "Customize channel list cursor behavior"
 msgstr "Ρύθμιση της συμπεριφοράς του κέρσορα στη λίστα καναλιών"
@@ -3402,6 +3426,15 @@ msgstr "Αναπαραγωγή DVD"
 #, fuzzy
 msgid "DVDPlayer Actions"
 msgstr "Αναπαραγωγή DVD"
+
+msgid "Dai 12 anni in su"
+msgstr ""
+
+msgid "Dai 14 anni in su"
+msgstr ""
+
+msgid "Dai 18 anni in su"
+msgstr ""
 
 #, fuzzy
 msgid "Daily"
@@ -4227,6 +4260,10 @@ msgstr ""
 msgid "EPG Select Actions"
 msgstr "Επιλογή ενέργειας"
 
+#, fuzzy
+msgid "EPG filter switching"
+msgstr "Αυτόματη αλλαγή scart"
+
 msgid "EPG language selection 1"
 msgstr "Επιλογή γλώσσας EPG 1"
 
@@ -4245,6 +4282,10 @@ msgstr "Ρυθμίσεις EPG"
 
 msgid "EPG:"
 msgstr ""
+
+#, fuzzy
+msgid "EPGFilter Actions"
+msgstr "Επιλογή ενέργειας"
 
 #, fuzzy
 msgid "EPGRefresh Configuration"
@@ -4454,8 +4495,9 @@ msgstr "Ενεργοποίηση Virgin EPG"
 msgid "Enable freesat EPG"
 msgstr "Ενεργοποίηση freesat EPG"
 
-msgid "Enable import timer from fallback tuner"
-msgstr ""
+#, fuzzy
+msgid "Enable import timer from fallback receiver"
+msgstr "Όταν είναι ενεργό, γίνεται εισαγωγή του χρονοδιακόπτη από το εφεδρικό tuner"
 
 msgid "Enable infobar fade-out"
 msgstr ""
@@ -4564,7 +4606,7 @@ msgstr "τέλος επεξεργασίας μπουκέτου"
 msgid "End favourites edit"
 msgstr "τέλος επεξεργασίας αγαπημένων"
 
-msgid "End of the time interval within which an events must start in order to be displayed."
+msgid "End of the time interval during which events must begin to be displayed. If the filter is active, use keys 3 and 6 to adjust the end time, and key 0 to save."
 msgstr ""
 
 msgid "End time"
@@ -4609,6 +4651,10 @@ msgstr "Εισαγωγή PIN ξανά"
 msgid "Enter an URL where alternative images could be listed for FlashImage."
 msgstr ""
 
+#, fuzzy
+msgid "Enter current password"
+msgstr "Παρακαλώ εισάγετε νέο όνομα:"
+
 msgid "Enter if you are in the east or west hemisphere."
 msgstr ""
 
@@ -4621,6 +4667,10 @@ msgstr "Είσοδος στο κύριο μενού..."
 #, fuzzy
 msgid "Enter multi-file selection mode"
 msgstr "Κλείσιμο επιλογής τίτλου"
+
+#, fuzzy
+msgid "Enter new password"
+msgstr "Παρακαλώ εισάγετε νέο όνομα:"
 
 #, fuzzy
 msgid "Enter persistent PIN code"
@@ -5582,6 +5632,9 @@ msgstr "Πύλη δικτύου"
 #, fuzzy
 msgid "Gateway:"
 msgstr "Πύλη δικτύου"
+
+msgid "General"
+msgstr ""
 
 msgid "General AC3 delay"
 msgstr "Γενική καθυστέρηση AC3"
@@ -6565,9 +6618,6 @@ msgstr "Εγκατάσταση επεκτάσεων"
 msgid "Install local extension"
 msgstr "Εγκατάσταση τοπικής επέκτασης"
 
-msgid "Install picons on"
-msgstr "Εγκατάσταση picons σε"
-
 #, fuzzy
 msgid "Install plugin"
 msgstr "Εγκατάσταση picons σε"
@@ -6653,6 +6703,10 @@ msgstr "Εσωτερική flash"
 
 msgid "Internal hdd only"
 msgstr "Εσωτερικός δίσκος μόνο"
+
+#, fuzzy
+msgid "Internet"
+msgstr "Εσωτερική flash"
 
 msgid "Internet (ntp)"
 msgstr ""
@@ -7320,6 +7374,12 @@ msgid "Marshall Islands"
 msgstr ""
 
 msgid "Martinique"
+msgstr ""
+
+msgid "Mature Adult Audience 15+"
+msgstr ""
+
+msgid "Mature Audience 15+"
 msgstr ""
 
 #, fuzzy
@@ -8034,6 +8094,9 @@ msgstr ""
 msgid "New password"
 msgstr ""
 
+msgid "New password not the same as the repeat password"
+msgstr ""
+
 #, fuzzy
 msgid "News/Current Affairs/Social"
 msgstr "Ειδήσεις & Επικαιρότητα"
@@ -8271,6 +8334,9 @@ msgstr ""
 msgid "No, scan later manually"
 msgstr ""
 
+msgid "Non Classificato"
+msgstr ""
+
 msgid "None"
 msgstr "Κανένα"
 
@@ -8312,6 +8378,10 @@ msgstr "Νορβηγικά"
 
 msgid "Norwegian"
 msgstr "Νορβηγικά"
+
+#, fuzzy
+msgid "Not Classified"
+msgstr "Χωρίς συσχέτιση"
 
 #, fuzzy
 msgid "Not Installed"
@@ -8393,6 +8463,39 @@ msgstr ""
 
 msgid "Number or SMS style data entry"
 msgstr ""
+
+#, fuzzy
+msgid "Numberbuttons Seek"
+msgstr "ανώτερη εκπαίδευση"
+
+#, fuzzy
+msgid "Numberbuttons Zap"
+msgstr "ανώτερη εκπαίδευση"
+
+msgid "Numberzap"
+msgstr ""
+
+msgid "Numberzap or seek backward big step"
+msgstr ""
+
+msgid "Numberzap or seek backward medium step"
+msgstr ""
+
+msgid "Numberzap or seek backward small step"
+msgstr ""
+
+msgid "Numberzap or seek forward big step"
+msgstr ""
+
+msgid "Numberzap or seek forward medium step"
+msgstr ""
+
+msgid "Numberzap or seek forward small step"
+msgstr ""
+
+#, fuzzy
+msgid "Numberzap or zap to previous service"
+msgstr "Επιστροφή στην προηγούμενη υπηρεσία"
 
 #, fuzzy
 msgid "OE Version: "
@@ -8644,6 +8747,9 @@ msgstr "PCR PID"
 msgid "PDC"
 msgstr ""
 
+msgid "PG - Parental Guidance"
+msgstr ""
+
 #, fuzzy
 msgid "PGS file"
 msgstr "%d αρχείο"
@@ -8775,6 +8881,9 @@ msgstr "Γονικός φάκελος"
 msgid "Parent directory"
 msgstr "Γονικός φάκελος"
 
+msgid "Parental Guidance Recommended"
+msgstr ""
+
 msgid "Parental control"
 msgstr "Γονικός έλεγχος"
 
@@ -8840,6 +8949,9 @@ msgstr "Συνέχιση αναπαραγωγής"
 #, fuzzy
 msgid "Pending restart"
 msgstr "Αναμονή / επανεκκίνηση"
+
+msgid "Per Tutti"
+msgstr ""
 
 msgid "Percentage left"
 msgstr "Ποσοστό αριστερά"
@@ -9001,8 +9113,9 @@ msgstr "Παρακαλώ εισάγετε όνομα νέου φάκελου"
 msgid "Please choose an extension..."
 msgstr "Παρακαλώ επιλέξτε μία επέκταση..."
 
+#, fuzzy
 msgid "Please configure the fallback tuner setup?"
-msgstr ""
+msgstr "Ρυθμίστε το εφεδρικό tuner"
 
 msgid ""
 "Please configure your internet connection by filling out the required values.\n"
@@ -9465,6 +9578,9 @@ msgstr "Προτιμώμενο tuner για εγγραφές"
 
 msgid "Preparing... Please wait"
 msgstr "Παρακαλώ περιμένετε, προετοιμασία…"
+
+msgid "Preschool"
+msgstr ""
 
 msgid "Press '0' to toggle PiP mode"
 msgstr "Πιέστε '0' για εναλλαγή λειτουργίας PiP"
@@ -10189,6 +10305,10 @@ msgid "Repeat leave standby messages"
 msgstr "Να θεωρείται ο τερματισμός ως αναμονή"
 
 #, fuzzy
+msgid "Repeat new password"
+msgstr "Παρακαλώ εισάγετε νέο όνομα:"
+
+#, fuzzy
 msgid "Repeat playlist"
 msgstr "επανάληψη λίστας αναπαραγωγής"
 
@@ -10357,6 +10477,9 @@ msgstr ""
 
 msgid "Restoring..."
 msgstr "Επαναφορά..."
+
+msgid "Restricted 18+"
+msgstr ""
 
 msgid "Resume from last position"
 msgstr "Συνέχιση απο τελευταίο σημείο"
@@ -11252,8 +11375,8 @@ msgid "Select the shifted character set for the next character only"
 msgstr ""
 
 #, fuzzy
-msgid "Select the timer from the fallback tuner by default"
-msgstr "Επιλογή διαδρομής ταινίας"
+msgid "Select the timer from the fallback receiver by default"
+msgstr "Όταν είναι ενεργό, γίνεται εισαγωγή του χρονοδιακόπτη από το εφεδρικό tuner"
 
 msgid "Select the tuner that controls the motorised dish."
 msgstr ""
@@ -11496,6 +11619,10 @@ msgstr "Όνομα υπηρεσίας"
 msgid "Services"
 msgstr "Υπηρεσίες"
 
+#, fuzzy, python-format
+msgid "Set %s as default?"
+msgstr "Ορισμός προεπιλογής"
+
 msgid "Set CI assignment for detection of available services."
 msgstr ""
 
@@ -11582,14 +11709,17 @@ msgstr "ορισμός ως υπηρεσία εκκίνησης"
 msgid "Set the MAC-adress of your receiver.\n"
 msgstr "Αλλαγή των ρυθμίσεων nameserver του δέκτη σας.\n"
 
-msgid "Set the User ID of the OpenWebif from your fallback tuner"
-msgstr ""
+#, fuzzy
+msgid "Set the User ID of the OpenWebif from your fallback receiver"
+msgstr "Όταν είναι ενεργό, μπορείτε να παραμετροποιήσετε τις ρυθμίσεις OpenWebIf για το εφεδρικό tuner"
 
-msgid "Set the password of the OpenWebif from your fallback tuner"
-msgstr ""
+#, fuzzy
+msgid "Set the password of the OpenWebif from your fallback receiver"
+msgstr "Όταν είναι ενεργό, μπορείτε να παραμετροποιήσετε τις ρυθμίσεις OpenWebIf για το εφεδρικό tuner"
 
-msgid "Set the port of the OpenWebif from your fallback tuner"
-msgstr ""
+#, fuzzy
+msgid "Set the port of the OpenWebif from your fallback receiver"
+msgstr "Όταν είναι ενεργό, μπορείτε να παραμετροποιήσετε τις ρυθμίσεις OpenWebIf για το εφεδρικό tuner"
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Ρύθμιση τύπου εμφάνισης προόδου στη λίστα καναλιών."
@@ -12144,7 +12274,7 @@ msgid "Signal Strength:"
 msgstr "Ένταση σήματος:"
 
 #, fuzzy, python-format
-msgid "Signal Strength: %d \n"
+msgid "Signal Strength: %s \n"
 msgstr "Ένταση σήματος:"
 
 #, fuzzy
@@ -12613,7 +12743,7 @@ msgstr "Έναρξη  από την αρχή"
 msgid "Start instant recording"
 msgstr "Έναρξη εγγραφής;"
 
-msgid "Start of the time interval within which an events must start in order to be displayed."
+msgid "Start of the time interval during which events must begin to be displayed. If the filter is active, use keys 1 and 4 to adjust the start time, and key 0 to save."
 msgstr ""
 
 msgid "Start offline decode"
@@ -12810,6 +12940,14 @@ msgstr "Ροή"
 msgid "Stream request"
 msgstr "Αίτηση ροής"
 
+#, fuzzy
+msgid "Stream-tv"
+msgstr "Ροή"
+
+#, fuzzy
+msgid "Streaming"
+msgstr "Ροή"
+
 msgid "Streaming clients info"
 msgstr ""
 
@@ -12892,7 +13030,22 @@ msgstr ""
 msgid "Successfully restored /etc/inetd.conf!"
 msgstr ""
 
+msgid "Sucessfully changed password for root user"
+msgstr ""
+
+msgid "Sucessfully cleared password for root user"
+msgstr ""
+
 msgid "Sudan"
+msgstr ""
+
+msgid "Suitable for ages 12+"
+msgstr ""
+
+msgid "Suitable for ages 15+"
+msgstr ""
+
+msgid "Suitable only for Adults"
 msgstr ""
 
 msgid "Sun"
@@ -13623,6 +13776,9 @@ msgstr ""
 msgid "This option sets the picture brightness."
 msgstr ""
 
+msgid "This option sets the picture color space."
+msgstr ""
+
 msgid "This option sets the picture contrast."
 msgstr ""
 
@@ -13927,6 +14083,10 @@ msgstr "Επιλογή λειτουργίας εικόνας"
 msgid "Toggle a cut mark at the current position"
 msgstr "Εναλλαγή σημειωτή αποκοπής στην τρέχουσα θέση"
 
+#, fuzzy
+msgid "Toggle between zap and seek mode"
+msgstr "Ακρόαση ραδιοφώνου..."
+
 msgid "Toggle dashed flickering line for this service"
 msgstr ""
 
@@ -14179,6 +14339,9 @@ msgstr "Τύπος ανίχνευσης"
 msgid "Type:"
 msgstr "Τύπος"
 
+msgid "U - Suitable for all"
+msgstr ""
+
 msgid "UNKNOWN"
 msgstr ""
 
@@ -14188,8 +14351,12 @@ msgstr ""
 msgid "URL"
 msgstr ""
 
+#, fuzzy
 msgid "URL of fallback remote receiver"
-msgstr ""
+msgstr "Διεύθυνση URL του εφεδρικού απομακρυσμένου δέκτη"
+
+msgid "URL of remote receiver for imports"
+msgstr "Διεύθυνση URL του εφεδρικού απομακρυσμένου δέκτη"
 
 msgid "USALS automatically moves a motorised dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
 msgstr ""
@@ -14215,6 +14382,12 @@ msgid "Ukrainian"
 msgstr ""
 
 msgid "Unable to change password"
+msgstr ""
+
+msgid "Unable to change password for root user"
+msgstr ""
+
+msgid "Unable to clear password for root user"
 msgstr ""
 
 msgid "Unable to complete - Kexec Multiboot files missing!"
@@ -14449,6 +14622,9 @@ msgstr ""
 #, fuzzy
 msgid "Use circular LNB"
 msgstr "αριστερόστροφη"
+
+msgid "Use current filter values as default"
+msgstr ""
 
 #, fuzzy
 msgid "Use default spinner"
@@ -15078,31 +15254,30 @@ msgid "When enabled the arrow buttons around the OK button will follow the 'neut
 msgstr ""
 
 msgid "When enabled the left, right, CH+/-, B+/-, P+/- buttons will follow the 'neutrino' style zap controls instead of the enigma2 style."
-msgstr ""
+msgstr "Όταν είναι ενεργό, τα αριστερά και δεξιά CH+/-, B+/-, P+/- πλήκτρα θα ακολουθούν το στυλ ελέγχου ζάπινγκ 'neutrino' αντί του enigma2."
 
-#, fuzzy
 msgid "When enabled the receiver will automatically return to standby when the TV is turned off."
-msgstr "Όταν είναι ενεργό, ο δέκτης θα χρησιμοποιεί αυτόματα το κανάλι ήχου που είχατε προεπιλέξει."
+msgstr "Όταν είναι ενεργό, ο δέκτης θα επιστρέφει αυτόματα στην αναμονή όταν η TV κλείνει."
 
-#, fuzzy
 msgid "When enabled the receiver will automatically wake from standby when the TV is turned on."
-msgstr "Όταν είναι ενεργό, ο δέκτης θα χρησιμοποιεί αυτόματα το κανάλι ήχου που είχατε προεπιλέξει."
+msgstr "Όταν είναι ενεργό, ο δέκτης θα επανέρχεται αυτόματα από την αναμονή όταν η TV ανοίγει."
 
-msgid "When enabled the timer from the fallback tuner is imported"
-msgstr ""
-
-msgid "When enabled the timer from the fallback tuner is the default timer"
-msgstr ""
+msgid "When enabled the timer from the fallback receiver is imported"
+msgstr "Όταν είναι ενεργό, γίνεται εισαγωγή του χρονοδιακόπτη από το εφεδρικό tuner"
 
 msgid "When enabled then when you select a new channel in the channel selection the channel selection will not close. It will only close when you select the current playing service. This is a kind of preview mode"
 msgstr ""
 
 #, fuzzy
+msgid "When enabled timers are created on the fallback received by default"
+msgstr "Όταν είναι ενεργό, γίνεται εισαγωγή του χρονοδιακόπτη από το εφεδρικό tuner"
+
+#, fuzzy
 msgid "When enabled you can control the volume with the arrow buttons instead of getting the channel selection list"
 msgstr "Όταν είναι ενεργό, μπορείτε να μεταβαίνετε στα κανάλια με τα πλήκτρα  CH+/-, B+/-, P+/- αντί να ανοίγετε τη λίστα επιλογής καναλιών."
 
-msgid "When enabled you can customize the OpenWebIf settings for the fallback tuner"
-msgstr ""
+msgid "When enabled you can customize the OpenWebIf settings for the fallback receiver"
+msgstr "Όταν είναι ενεργό, μπορείτε να παραμετροποιήσετε τις ρυθμίσεις OpenWebIf για το εφεδρικό tuner"
 
 msgid "When enabled you can specify a timeframe to ignore the shutdown timer when the receiver is in standby mode"
 msgstr "Όταν είναι ενεργό, μπορείτε να ορίσετε ένα χρονοπλαίσιο αγνόησης του χρονοδιακόπτη τερματισμού όταν ο δέκτης βρίσκεται σε αναμονή"
@@ -15980,6 +16155,10 @@ msgstr "αντίγραφο ασφαλείας των πληροφοριών EPG"
 
 msgid "ballet"
 msgstr "μπαλέτο"
+
+#, python-format
+msgid "bc%d"
+msgstr ""
 
 #, python-format
 msgid "bc%s"

@@ -1,132 +1,129 @@
-import os
-import re
-from Components.Renderer.Renderer import Renderer
-from enigma import ePixmap, ePicLoad, eServiceCenter, eServiceReference, iServiceInformation
-from Tools.Alternatives import GetWithAlternative
-from Tools.Directories import pathExists, SCOPE_SKIN_IMAGE, SCOPE_CURRENT_SKIN, resolveFilename, sanitizeFilename
-from Components.Harddisk import harddiskmanager
-from ServiceReference import ServiceReference
-from Components.config import config
+from os import listdir, path as ospath
+from re import sub
 
-class paths:
-	searchPaths = []
-	lastPiconPath = None
+from enigma import ePixmap, ePicLoad, eServiceReference
+
+from Components.config import config
+from Components.Harddisk import harddiskmanager
+from Components.Renderer.Renderer import Renderer
+from Tools.Alternatives import GetWithAlternative
+from Tools.Directories import pathExists, SCOPE_CURRENT_SKIN, resolveFilename, sanitizeFilename
+
+
+class PiconLocator:
+	def __init__(self, piconDirectories=["picon"]):
+		harddiskmanager.on_partition_list_change.append(self.__onPartitionChange)
+		self.piconDirectories = piconDirectories
+		self.activePiconPath = None
+		self.searchPaths = []
+		for mp in ("/usr/share/enigma2/", "/"):
+			self.__onMountpointAdded(mp)
+		for part in harddiskmanager.getMountedPartitions():
+			self.__onMountpointAdded(part.mountpoint)
+
+	def __onMountpointAdded(self, mountpoint):
+		for piconDirectory in self.piconDirectories:
+			try:
+				path = ospath.join(mountpoint, piconDirectory) + "/"
+				if ospath.isdir(path) and path not in self.searchPaths:
+					for fn in listdir(path):
+						if fn.endswith(".png") or fn.endswith(".svg"):
+							print("[PiconLocator] adding path:", path)
+							self.searchPaths.append(path)
+							break
+			except:
+				pass
+
+	def __onMountpointRemoved(self, mountpoint):
+		for piconDirectory in self.piconDirectories:
+			path = ospath.join(mountpoint, piconDirectory) + "/"
+			try:
+				self.searchPaths.remove(path)
+				print("[PiconLocator] removed path:", path)
+			except:
+				pass
+
+	def __onPartitionChange(self, why, part):
+		if why == "add":
+			self.__onMountpointAdded(part.mountpoint)
+		elif why == "remove":
+			self.__onMountpointRemoved(part.mountpoint)
+
+	def findPicon(self, service):
+		exts = [".png", ".svg"]
+		if self.activePiconPath is not None:
+			for ext in exts:
+				pngname = self.activePiconPath + service + ext
+				if pathExists(pngname):
+					return pngname
+		else:
+			for path in self.searchPaths:
+				for ext in exts:
+					pngname = path + service + ext
+					if pathExists(pngname):
+						self.activePiconPath = path
+						return pngname
+		return ""
+
+	def addSearchPath(self, value):
+		if pathExists(value):
+			if not value.endswith("/"):
+				value += "/"
+			if not value.startswith(("/media/net", "/media/autofs")) and value not in self.searchPaths:
+				self.searchPaths.append(value)
+
+	def getPiconName(self, serviceRef):
+		if serviceRef is None:
+			return ""
+		# remove the path and name fields, and replace ":" by "_"
+		fields = GetWithAlternative(serviceRef).split(":", 10)[:10]
+		if not fields or len(fields) < 10:
+			return ""
+		basenames = ["_".join(fields), (p := "1_0_1_%s_0_0_0") % (x := ("_".join(fields[3:7]))), p % (x[:-4] + "0000")]
+		for basename in dict.fromkeys(basenames).keys():  # skip duplicates, maintain order
+			if pngname := self.findPicon(basename):
+				break
+		if not pngname:  # picon by channel name
+			if (sname := eServiceReference(serviceRef).getServiceName()) and "SID 0x" not in sname and (utf8_name := sanitizeFilename(sname).lower()) and utf8_name != "__":  # avoid lookups on zero length service names
+				legacy_name = sub("[^a-z0-9]", "", utf8_name.replace("&", "and").replace("+", "plus").replace("*", "star"))  # legacy ascii service name picons
+				pngname = self.findPicon(utf8_name) or legacy_name and self.findPicon(legacy_name) or self.findPicon(sub(r"(fhd|uhd|hd|sd|4k)$", "", utf8_name).strip()) or legacy_name and self.findPicon(sub(r"(fhd|uhd|hd|sd|4k)$", "", legacy_name).strip())
+		return pngname
+
+
+piconLocator = None
 
 
 def initPiconPaths():
-	paths.searchPaths = []
-	for mp in ('/usr/share/enigma2/', '/'):
-		onMountpointAdded(mp)
-	for part in harddiskmanager.getMountedPartitions():
-		onMountpointAdded(part.mountpoint)
+	global piconLocator
+	piconLocator = PiconLocator()
 
 
-def onMountpointAdded(mountpoint):
-	try:
-		path = os.path.join(mountpoint, 'picon') + '/'
-		if os.path.isdir(path) and path not in paths.searchPaths:
-			for fn in os.listdir(path):
-				if fn.endswith('.png') or fn.endswith('.svg'):
-					print("[Picon] adding path:", path)
-					paths.searchPaths.append(path)
-					break
-	except Exception as ex:
-		print("[Picon] Failed to investigate %s:" % mountpoint, ex)
-
-
-def onMountpointRemoved(mountpoint):
-	path = os.path.join(mountpoint, 'picon') + '/'
-	try:
-		paths.searchPaths.remove(path)
-		print("[Picon] removed path:", path)
-	except:
-		pass
-
-
-def onPartitionChange(why, part):
-	if why == 'add':
-		onMountpointAdded(part.mountpoint)
-	elif why == 'remove':
-		onMountpointRemoved(part.mountpoint)
-
-
-def findPicon(serviceName):
-	if paths.lastPiconPath is not None:
-		for ext in ('.png', '.svg'):
-			pngname = paths.lastPiconPath + serviceName + ext
-			if pathExists(pngname):
-				return pngname
-	for path in paths.searchPaths:
-		if pathExists(path):
-			for ext in ('.png', '.svg'):
-				pngname = path + serviceName + ext
-				if pathExists(pngname):
-					paths.lastPiconPath = path
-					return pngname
-	return ""
+initPiconPaths()
 
 
 def getPiconName(serviceRef):
-	service = eServiceReference(serviceRef)
-	if service.getPath().startswith("/") and serviceRef.startswith("1:"):
-		info = eServiceCenter.getInstance().info(eServiceReference(serviceRef))
-		refstr = info and info.getInfoString(service, iServiceInformation.sServiceref)
-		serviceRef = refstr and eServiceReference(refstr).toCompareString()
-	#remove the path and name fields, and replace ':' by '_'
-	fields = GetWithAlternative(serviceRef).split(':', 10)[:10]
-	if not fields or len(fields) < 10:
-		return ""
-	pngname = findPicon('_'.join(fields))
-	if not pngname and not fields[6].endswith("0000"):
-		#remove "sub-network" from namespace
-		fields[6] = fields[6][:-4] + "0000"
-		pngname = findPicon('_'.join(fields))
-	if not pngname and fields[0] != '1':
-		#fallback to 1 for IPTV streams
-		fields[0] = '1'
-		pngname = findPicon('_'.join(fields))
-	if not pngname and fields[2] != '1':
-		#fallback to 1 for TV services with non-standard service types. And radio services.
-		fields[2] = '1'
-		pngname = findPicon('_'.join(fields))
-	if not pngname: # picon by channel name
-		if (sname := ServiceReference(serviceRef).getServiceName()) and "SID 0x" not in sname and (utf8_name := sanitizeFilename(sname).lower()) and utf8_name != "__":  # avoid lookups on zero length service names
-			legacy_name = re.sub("[^a-z0-9]", "", utf8_name.replace("&", "and").replace("+", "plus").replace("*", "star"))  # legacy ascii service name picons
-			pngname = findPicon(utf8_name) or legacy_name and findPicon(legacy_name) or findPicon(re.sub(r"(fhd|uhd|hd|sd|4k)$", "", utf8_name).strip()) or legacy_name and findPicon(re.sub(r"(fhd|uhd|hd|sd|4k)$", "", legacy_name).strip())
-			if not pngname and len(legacy_name) > 6:
-				series = re.sub(r"s[0-9]*e[0-9]*$", "", legacy_name)
-				pngname = findPicon(series)
-	return pngname
+	return piconLocator.getPiconName(serviceRef)
 
 
 class Picon(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
+		self.pngname = None
+		self.defaultpngname = resolveFilename(SCOPE_CURRENT_SKIN, "picon_default.png")
 		self.usePicLoad = False
 		self.PicLoad = ePicLoad()
 		self.PicLoad.PictureData.get().append(self.updatePicon)
 		self.piconsize = (0, 0)
-		self.pngname = ""
 		self.service_text = ""
 		self.lastPath = None
-		pngname = findPicon("picon_default")
-		self.defaultpngname = None
 		self.showPicon = True
-		if not pngname:
-			tmp = resolveFilename(SCOPE_CURRENT_SKIN, "picon_default.png")
-			if pathExists(tmp):
-				pngname = tmp
-			else:
-				pngname = resolveFilename(SCOPE_SKIN_IMAGE, "skin_default/picon_default.png")
-		if os.path.getsize(pngname):
-			self.defaultpngname = pngname
 
 	def addPath(self, value):
 		if pathExists(value):
 			if not value.endswith('/'):
 				value += '/'
-			if value not in paths.searchPaths:
-				paths.searchPaths.append(value)
+			if value not in piconLocator.searchPaths:
+				piconLocator.searchPaths.append(value)
 
 	def applySkin(self, desktop, parent):
 		attribs = self.skinAttributes[:]
@@ -161,14 +158,14 @@ class Picon(Renderer):
 					if self.usePicLoad and self.source.text and self.service_text and self.source.text == self.service_text:
 						return
 					self.service_text = self.source.text
-					pngname = getPiconName(self.source.text)
+					pngname = piconLocator.getPiconName(self.source.text)
 				else:
 					if what[0] == self.CHANGED_CLEAR:
 						self.service_text = self.pngname = ""
 						if self.visible:
 							self.instance.hide()
 					return
-				if not pngname: # no picon for service found
+				if not pngname:  # no picon for service found
 					pngname = self.defaultpngname
 				if self.pngname != pngname:
 					if pngname:
@@ -184,7 +181,3 @@ class Picon(Renderer):
 					self.pngname = pngname
 			elif self.visible:
 				self.instance.hide()
-
-
-harddiskmanager.on_partition_list_change.append(onPartitionChange)
-initPiconPaths()

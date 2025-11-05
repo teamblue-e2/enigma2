@@ -15,11 +15,21 @@ class SetupFallbacktuner(Setup):
 	def createConfig(self):
 
 		def set_avahiselect_seperate(configElement):
-			self.seperateBoxes = [("same", _("Same as stream"))] + self.peerStreamingBoxes
+			self.seperateBoxes = self.peerStreamingBoxes
 			if configElement.value not in ("url", "ip") and configElement.value in self.seperateBoxes:
 				self.seperateBoxes.remove(configElement.value)
+			self.seperateBoxes = [("same", _("Same as stream"))] + self.seperateBoxes
+			# import URL's don't need a port, so strip them
+			webifBoxes = []
+			for el in self.seperateBoxes:
+				if isinstance(el, str) and el.count(":") > 1:
+					webifBoxes.append(el.rsplit(":", 1)[0])
+				else:
+					webifBoxes.append(el)
 			default = config.usage.remote_fallback_import_url.value if config.usage.remote_fallback_import_url.value and config.usage.remote_fallback_import_url.value != config.usage.remote_fallback.value else "same"
-			self.avahiselect_seperate = ConfigSelection(default=default, choices=self.seperateBoxes)
+			if default.count(":") > 1:
+				default = default.rsplit(":", 1)[0]
+			self.avahiselect_seperate = ConfigSelection(default=default, choices=webifBoxes)
 			default = config.usage.remote_fallback_dvb_t.value if config.usage.remote_fallback_dvb_t.value and config.usage.remote_fallback_dvb_t.value != config.usage.remote_fallback.value else "same"
 			self.avahi_dvb_t = ConfigSelection(default=default, choices=self.seperateBoxes)
 			default = config.usage.remote_fallback_dvb_c.value if config.usage.remote_fallback_dvb_c.value and config.usage.remote_fallback_dvb_c.value != config.usage.remote_fallback.value else "same"
@@ -52,7 +62,6 @@ class SetupFallbacktuner(Setup):
 		self.ip = ConfigIP(default=ipDefault, auto_jump=True)
 		self.port = ConfigInteger(default=portDefault, limits=(1, 65535))
 		self.ip_seperate = ConfigIP(default=ipDefault, auto_jump=True)
-		self.port_seperate = ConfigInteger(default=portDefault, limits=(1, 65535))
 		self.ip_dvb_t = ConfigIP(default=ipDefault, auto_jump=True)
 		self.port_dvb_t = ConfigInteger(default=portDefault, limits=(1, 65535))
 		self.ip_dvb_c = ConfigIP(default=ipDefault, auto_jump=True)
@@ -69,13 +78,13 @@ class SetupFallbacktuner(Setup):
 			config.usage.remote_fallback_import,
 			_("Import channels and/or EPG from remote receiver URL when receiver is booted")))
 		if config.usage.remote_fallback_enabled.value:
-			self.list.append((_("Enable import timer from fallback tuner"),
+			self.list.append((_("Enable import timer from fallback receiver"),
 				config.usage.remote_fallback_external_timer,
-				_("When enabled the timer from the fallback tuner is imported")))
+				_("When enabled the timer from the fallback receiver is imported")))
 			if config.usage.remote_fallback_external_timer.value:
-				self.list.append((_("Select the timer from the fallback tuner by default"),
+				self.list.append((_("Select the timer from the fallback receiver by default"),
 					config.usage.remote_fallback_external_timer_default,
-					_("When enabled the timer from the fallback tuner is the default timer")))
+					_("When enabled timers are created on the fallback received by default")))
 			self.list.append((_("Fallback remote receiver"),
 				self.avahiselect,
 				_("Destination of fallback remote receiver")))
@@ -89,7 +98,7 @@ class SetupFallbacktuner(Setup):
 			if self.avahiselect.value == "url":
 				self.list.append(("  %s" % _("Fallback remote receiver URL"),
 					config.usage.remote_fallback,
-					_("URL of fallback remote receiver")))
+					_("URL of remote receiver for imports")))
 		if config.usage.remote_fallback_import.value:
 			self.list.append((_("Import remote receiver URL"),
 				self.avahiselect_seperate,
@@ -98,9 +107,6 @@ class SetupFallbacktuner(Setup):
 				self.list.append(("  %s" % _("Fallback remote receiver IP"),
 					self.ip_seperate,
 					_("IP of fallback remote receiver")))
-				self.list.append(("  %s" % _("Fallback remote receiver Port"),
-					self.port_seperate,
-					_("Port of fallback remote receiver")))
 			if self.avahiselect_seperate.value == "url":
 				self.list.append(("  %s" % _("Fallback remote receiver URL"),
 					config.usage.remote_fallback_import_url,
@@ -122,19 +128,19 @@ class SetupFallbacktuner(Setup):
 				config.usage.remote_fallback_nok,
 				_("Show notification when import channels and/or EPG from remote receiver URL did not complete")))
 		if config.usage.remote_fallback_enabled.value and config.usage.remote_fallback.value:
-			self.list.append((_("Customize OpenWebIF settings for fallback tuner"),
+			self.list.append((_("Customize OpenWebIF settings for fallback receiver"),
 				config.usage.remote_fallback_openwebif_customize,
-				_("When enabled you can customize the OpenWebIf settings for the fallback tuner")))
+				_("When enabled you can customize the OpenWebIf settings for the fallback receiver")))
 			if config.usage.remote_fallback_openwebif_customize.value:
 				self.list.append(("  %s" % _("User ID"),
 					config.usage.remote_fallback_openwebif_userid,
-					_("Set the User ID of the OpenWebif from your fallback tuner")))
+					_("Set the User ID of the OpenWebif from your fallback receiver")))
 				self.list.append(("  %s" % _("Password"),
 					config.usage.remote_fallback_openwebif_password,
-					_("Set the password of the OpenWebif from your fallback tuner")))
+					_("Set the password of the OpenWebif from your fallback receiver")))
 				self.list.append(("  %s" % _("Port"),
 					config.usage.remote_fallback_openwebif_port,
-					"  %s" % _("Set the port of the OpenWebif from your fallback tuner")))
+					"  %s" % _("Set the port of the OpenWebif from your fallback receiver")))
 			self.list.append((_("Alternative URLs for DVB-T/C or ATSC"),
 				config.usage.remote_fallback_alternative,
 				_("Set alternative fallback tuners for DVB-T/C or ATSC")))
@@ -189,7 +195,7 @@ class SetupFallbacktuner(Setup):
 		elif self.avahiselect.value != "url":
 			config.usage.remote_fallback.value = self.avahiselect.value
 		if self.avahiselect_seperate.value == "ip":
-			config.usage.remote_fallback_import_url.value = "http://%d.%d.%d.%d:%d" % (tuple(self.ip_seperate.value) + (self.port_seperate.value,))
+			config.usage.remote_fallback_import_url.value = "http://%d.%d.%d.%d" % (tuple(self.ip_seperate.value))
 		elif self.avahiselect_seperate.value == "same":
 			config.usage.remote_fallback_import_url.value = ""
 		elif self.avahiselect_seperate.value != "url":

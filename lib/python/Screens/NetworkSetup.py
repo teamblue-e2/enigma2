@@ -40,7 +40,6 @@ class NetworkAdapterSelection(Screen, HelpableScreen):
 		self["key_green"] = StaticText(_("Select"))
 		self["key_yellow"] = StaticText("")
 		self["key_blue"] = StaticText("")
-		self["key_menu"] = StaticText(_("MENU"))
 		self["introduction"] = StaticText(self.edittext)
 
 		self["OkCancelActions"] = HelpableActionMap(self, ["OkCancelActions"],
@@ -749,8 +748,8 @@ class AdapterSetup(ConfigListScreen, HelpableScreen, Screen):
 	def hideInputHelp(self):
 		current = self["config"].getCurrent()
 		if current == self.wlanSSID or (current and current == self.encryptionKey and config.plugins.wlan.encryption.value != "Unencrypted"):
-			if current[1].helpWindow.instance is not None:
-				current[1].helpWindow.instance.hide()
+			if current[1].help_window.instance is not None:
+				current[1].help_window.instance.hide()
 
 	def KeyText(self):
 		if self['config'].getCurrent() and isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
