@@ -99,7 +99,7 @@ class Network:
 					self.configuredInterfaces.append(ifacename)
 				if iface['dhcp']:
 					fp.write("iface " + ifacename + " inet dhcp\n")
-					fp.write("udhcpc_opts -T1 -t30\n")
+					fp.write("udhcpc_opts -S -T6 -t10\n")
 				if not iface['dhcp']:
 					fp.write("iface " + ifacename + " inet static\n")
 					if 'ip' in iface:
