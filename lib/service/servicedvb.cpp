@@ -2815,19 +2815,20 @@ RESULT eDVBServicePlay::stopTimeshift(bool swToLive)
 	if (!m_timeshift_enabled)
 		return -1;
 
-	// IMPORTANT: When SoftDecoder is active, we must stop it BEFORE switchToLive
-	// Otherwise the SoftDecoder starts and allocates resources, then the old
-	// timeshift CSA session tries to clean up, causing race conditions.
+	// IMPORTANT:
+	// When SoftDecoder is active during timeshift playback via CSA,
+	// the shutdown order is critical to avoid race conditions and
+	// demux PID filter interference.
+	//
 	// The correct order is:
-	// 1. Stop SoftDecoder (if running for timeshift playback via CSA)
-	// 2. Cleanup timeshift CSA session
-	// 3. Switch to live (SoftDecoder can safely allocate resources)
+	// 1. Stop SoftDecoder (prevents CSA resource races).
+	// 2. Cleanup timeshift CSA session.
+	// 3. Stop recorder (prevents PID filters from being removed
+	//    from a newly created live pipeline).
+	// 4. Switch to live (SoftDecoder can safely allocate resources).
 
 	if (m_soft_decoder && m_csa_session && m_csa_session->isActive() && m_soft_decoder->isRunning())
-	{
-		// so we must ensure it's not running before we release the CSA session.
 		m_soft_decoder->stop();
-	}
 
 	// Now safe to detach and cleanup timeshift's CSA session
 	if (m_timeshift_csa_session)
@@ -2838,14 +2839,16 @@ RESULT eDVBServicePlay::stopTimeshift(bool swToLive)
 		m_timeshift_csa_session = nullptr;
 	}
 
-	// NOW switch to live (SoftDecoder can safely allocate resources)
-	if (swToLive)
-		switchToLive();
+	if (m_record)
+	{
+		m_record->stop();
+		m_record = 0;
+	}
 
 	m_timeshift_enabled = 0;
 
-	m_record->stop();
-	m_record = 0;
+	if (swToLive)
+		switchToLive();
 
 	if (m_timeshift_fd >= 0)
 	{
@@ -2948,7 +2951,9 @@ void eDVBServicePlay::stopTapToFD()
 {
 	if(m_tap_recorder != nullptr)
 	{
+		// Stop thread FIRST to prevent race condition with m_serviceDescrambler access
 		m_tap_recorder->stop();
+		m_tap_recorder->setDescrambler(nullptr);
 		m_tap_recorder = nullptr;
 	}
 }
