@@ -20,7 +20,7 @@ from Components.ProgressBar import ProgressBar
 from os import popen
 from Tools.StbHardware import getFPVersion
 
-from enigma import eTimer, eLabel, eConsoleAppContainer, getDesktop
+from enigma import eTimer, eLabel, eConsoleAppContainer, getDesktop, eGetEnigmaDebugLvl, eDVBCSAEngine
 
 from Components.GUIComponent import GUIComponent
 from skin import applySkinFactor, parameters, parseScale
@@ -64,6 +64,12 @@ class About(Screen):
 
 		AboutHeader = _("About") + " " + BoxName
 		self["AboutHeader"] = StaticText(AboutHeader)
+
+		if eDVBCSAEngine.isAvailable():
+			libName = eDVBCSAEngine.getLibraryName()
+			libVersion = eDVBCSAEngine.getLibraryVersion()
+			if libName and libVersion:
+				AboutText += _("Software descrambling: ") + libName + " " + libVersion + "\n"
 
 		GStreamerVersion = about.getGStreamerVersionString().replace("GStreamer", "")
 		self["GStreamerVersion"] = StaticText(GStreamerVersion)
