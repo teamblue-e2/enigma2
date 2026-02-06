@@ -1070,7 +1070,6 @@ int eDVBCAService::buildCAPMT(ePtr<eDVBService> &dvbservice)
 	pidtype[eDVBService::cDDPPID]    = 0x06;
 	pidtype[eDVBService::cAACAPID]   = 0x06;
 	pidtype[eDVBService::cDATAPID]   = 0x90; // Datastream (Blu-ray subtitling)
-	pidtype[eDVBService::cPMTPID]    = 0x0d; // Datastream (DSM CC)
 
 	// cached pids
 	for (int x = 0; x < eDVBService::cacheMax; ++x)
@@ -1096,10 +1095,10 @@ int eDVBCAService::buildCAPMT(ePtr<eDVBService> &dvbservice)
 		}
 	}
 
-	// calculate capmt length (after protocol 3 header)
-	m_capmt[8] = pos - 9; // pos - 5 (header) - 4 (tag+len)
+	// calculate capmt length (offset 8 = position 3 after 5-byte protocol header)
+	m_capmt[8] = pos - 9;
 
-	// calculate programinfo length
+	// calculate programinfo length (offset 13/14 = position 8/9 after 5-byte protocol header)
 	m_capmt[13] = programInfoLength>>8;
 	m_capmt[14] = programInfoLength&0xFF;
 
