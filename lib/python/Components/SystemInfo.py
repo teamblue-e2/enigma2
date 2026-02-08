@@ -1,7 +1,7 @@
 import re
 from hashlib import md5
 from ast import literal_eval
-from enigma import Misc_Options, eDVBCIInterfaces, eDVBResourceManager, eGetEnigmaDebugLvl
+from enigma import Misc_Options, eDVBCIInterfaces, eDVBResourceManager, eGetEnigmaDebugLvl, eDVBCSAEngine
 from Tools.Directories import SCOPE_PLUGINS, SCOPE_SKIN, fileCheck, fileExists, fileHas, pathExists, resolveFilename, isPluginInstalled
 from boxbranding import getBoxType, getMachineBuild, getBrandOEM, getMachineMtdRoot
 
@@ -164,6 +164,7 @@ def setBoxInfoItems():
 		BoxInfo.setItem("CI%dSupportsHighBitrates" % cislot, fileCheck("/proc/stb/tsmux/ci%d_tsclk" % cislot))
 		BoxInfo.setItem("CI%dRelevantPidsRoutingSupport" % cislot, fileCheck("/proc/stb/tsmux/ci%d_relevant_pids_routing" % cislot))
 	BoxInfo.setItem("HasSoftcamInstalled", hassoftcaminstalled())
+	BoxInfo.setItem("HasSoftCSA", eDVBCSAEngine.isAvailable())
 	BoxInfo.setItem("NumVideoDecoders", getNumVideoDecoders())
 	BoxInfo.setItem("PIPAvailable", BoxInfo.getItem("NumVideoDecoders") > 1)
 	BoxInfo.setItem("CanMeasureFrontendInputPower", eDVBResourceManager.getInstance().canMeasureFrontendInputPower())

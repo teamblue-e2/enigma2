@@ -164,6 +164,7 @@ public:
 	void sendEventNoPatEntry();
 	void getHBBTVUrl(std::string &ret) const { ret = m_HBBTVUrl; }
 	void setCaDisable(bool disable) { m_ca_disabled = disable; }
+	void allocatePVRChannel();
 
 	enum serviceType
 	{
@@ -177,7 +178,9 @@ public:
 		streamserver = 7,
 		scrambled_streamserver = 8,
 		streamclient = 9,
-		offline = 10
+		offline = 10,
+		pvrDescramble = 11,
+		scrambled_livetv = 12
 	};
 
 	/* deprecated interface */
