@@ -681,14 +681,10 @@ void eDVBSoftDecoder::updateDecoder(int vpid, int vpidtype, int pcrpid)
 			// This preserves user's previous audio selection for this channel
 			if (m_dvb_service)
 			{
-				// Check all audio cache entries
-				static const eDVBService::cacheID audioCacheTags[] = {
-					eDVBService::cMPEGAPID, eDVBService::cAC3PID, eDVBService::cAACHEAPID,
-					eDVBService::cDDPPID, eDVBService::cAACAPID
-				};
-				for(unsigned int m = 0; m < sizeof(audioCacheTags)/sizeof(audioCacheTags[0]); m++)
+				// Check all audio cache entries using static array from eDVBService
+				for(int m = 0; m < eDVBService::nAudioCacheTags; m++)
 				{
-					int cached_apid = m_dvb_service->getCacheEntry(audioCacheTags[m]);
+					int cached_apid = m_dvb_service->getCacheEntry(eDVBService::audioCacheTags[m]);
 					if (cached_apid != -1)
 					{
 						// Find matching stream index for this cached PID

@@ -15,12 +15,20 @@
 struct service
 {
 	service(unsigned short pmtPid)
-		:pmtPid(pmtPid), serviceType(0xFF), scrambled(false)
+		:pmtPid(pmtPid), serviceType(0xFF), scrambled(false),
+		 pcrPid(0xFFFF), videoPid(0xFFFF), audioPid(0xFFFF),
+		 audioCacheId(eDVBService::cMPEGAPID), videoType(-1)
 	{
 	}
 	unsigned short pmtPid;
 	unsigned char serviceType;
 	bool scrambled;
+	unsigned short pcrPid;
+	unsigned short videoPid;
+	unsigned short audioPid;
+	eDVBService::cacheID audioCacheId;
+	int videoType;  // -1 = MPEG2 (default), 1 = H.264, 4 = MPEG4 Part2, 7 = H.265/HEVC
+	CAID_LIST caids;
 };
 
 class eDVBScan: public sigc::trackable, public iObject
@@ -51,6 +59,7 @@ class eDVBScan: public sigc::trackable, public iObject
 		/* scan state variables */
 	int m_channel_state;
 	int m_ready, m_ready_all;
+	bool m_ch_current_active;
 
 	std::map<eDVBChannelID, ePtr<iDVBFrontendParameters> > m_new_channels;
 	std::map<eDVBChannelID, int> m_tuner_data; // frequency read from tuner for every new channel

@@ -281,16 +281,20 @@ public:
 	{
 		cVPID, cMPEGAPID, cTPID, cPCRPID, cAC3PID,
 		cVTYPE, cACHANNEL, cAC3DELAY, cPCMDELAY,
-		cSUBTITLE, cAACHEAPID=12, cDDPPID, cAACAPID,
+		cSUBTITLE, cAACHEAPID=12, cDDPPID, cDTSPID, cAACAPID,
+		cLPCMPID, cDTSHDPID,
 		cDATAPID, cPMTPID, cDRAAPID, cAC4PID, cacheMax
 	};
 
+	static const cacheID audioCacheTags[];
+	static const int nAudioCacheTags;
 	std::string m_reference_str;
 	int getCacheEntry(cacheID);
 	void setCacheEntry(cacheID, int);
 	void setServiceRef(std::string sref) { m_reference_str = sref; }
 
 	bool cacheEmpty();
+	bool cacheAudioEmpty();
 
 	eDVBService();
 		/* m_service_name_sort is uppercase, with special chars removed, to increase sort performance. */
