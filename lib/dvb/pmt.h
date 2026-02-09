@@ -167,7 +167,6 @@ public:
 	void getHBBTVUrl(std::string &ret) const { ret = m_HBBTVUrl; }
 	void setCaDisable(bool disable) { m_ca_disabled = disable; }
 	void allocatePVRChannel();
-	bool isCiConnected();
 
 	enum serviceType
 	{
