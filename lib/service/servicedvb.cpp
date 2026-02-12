@@ -2304,6 +2304,9 @@ RESULT eDVBServicePlay::selectTrack(unsigned int i)
 		if (i >= program.audioStreams.size())
 			return -2;
 
+		// Update m_current_audio_pid so getCurrentTrack() returns the correct index
+		m_current_audio_pid = program.audioStreams[i].pid;
+
 		// Update audio cache in eDVBService
 		updateAudioCache(program.audioStreams[i].pid, program.audioStreams[i].type);
 
