@@ -143,8 +143,6 @@ public:
 
 		eventStopped,
 		eventChannelAllocated,
-		eventStreamCorrupt,
-		eventCIConnected,  // a CI slot was assigned to this service after recheckPMTHandlers
 	};
 #ifndef SWIG
 	sigc::signal<void(int)> serviceEvent;
