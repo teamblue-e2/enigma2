@@ -204,6 +204,7 @@ public:
 	RESULT setDescrambler(ePtr<iServiceScrambled>);
 	void setDiscardOnTimeout(bool discard);
 	bool waitForFirstData(int timeout_ms);
+	void setMinWrite(size_t size) override;
 private:
 	RESULT startPID(int pid);
 	void stopPID(int pid);
