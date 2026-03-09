@@ -2,11 +2,11 @@
 
 > Ubuntu 24.04 LTS 
 
-## teamBlue 7.6 (based on openPLi) is build using oe-alliance build-environment "7.6" and several git repositories: ##
+## teamBlue 7.5 (based on openPLi) is build using oe-alliance build-environment "7.5" and several git repositories: ##
 
-> [https://github.com/oe-alliance/oe-alliance-core/tree/5.6](https://github.com/oe-alliance/oe-alliance-core/tree/5.5 "OE-Alliance")
+> [https://github.com/oe-alliance/oe-alliance-core/tree/5.5](https://github.com/oe-alliance/oe-alliance-core/tree/5.5 "OE-Alliance")
 >
-> [https://github.com/teamblue-e2/enigma2/tree/7.6](https://github.com/teamblue-e2/enigma2/tree/7.6 "teamBlue E2")
+> [https://github.com/teamblue-e2/enigma2/tree/7.5](https://github.com/teamblue-e2/enigma2/tree/7.5 "teamBlue E2")
 >
 > [https://github.com/teamblue-e2/skin/tree/master](https://github.com/teamblue-e2/skin/tree/master "teamBlue Skin")
 
@@ -61,22 +61,22 @@
     su - teambluebuilder
     ```
 
-1. Create folder teamblue76
+1. Create folder teamblue75
 
     ```sh
-    mkdir -p teamblue76
+    mkdir -p teamblue75
     ```
 
-1. Switch to folder teamblue76
+1. Switch to folder teamblue75
 
     ```sh
-    cd teamblue76
+    cd teamblue75
     ```
 
 1. Clone oe-alliance repository
 
     ```sh
-    git clone https://github.com/oe-alliance/build-enviroment.git -b 5.6
+    git clone https://github.com/oe-alliance/build-enviroment.git -b 5.5
     ```
 
 1. Switch to folder build-enviroment
@@ -127,6 +127,6 @@
 
 
 
-Build Status - branch 7.6:    [![Build Status](https://travis-ci.org/teamblue-e2/enigma2.svg?branch=7.6)](https://travis-ci.org/teamblue-e2/enigma2)
+Build Status - branch 7.5:    [![Build Status](https://travis-ci.org/teamblue-e2/enigma2.svg?branch=7.5)](https://travis-ci.org/teamblue-e2/enigma2)
 
-Build Status - branch 7.6:    [![Build Status](https://circleci.com/gh/teamblue-e2/enigma2.svg?style=shield&branch=7.6)]()
+Build Status - branch 7.5:    [![Build Status](https://circleci.com/gh/teamblue-e2/enigma2.svg?style=shield&branch=7.5)]()
