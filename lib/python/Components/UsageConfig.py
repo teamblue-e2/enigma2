@@ -986,19 +986,25 @@ def InitUsageConfig():
 	config.misc.softcam_streamrelay_port = ConfigInteger(default=17999, limits=(0, 65535))
 	config.misc.softcam_streamrelay_delay = ConfigSelectionNumber(min=0, max=2000, stepwidth=50, default=100, wraparound=True)
 
+	defaultValue = 1 if BoxInfo.getItem('model') in ("gb7252", ) else 0
 	config.softcsa = ConfigSubsection()
 	config.softcsa.decoderRelease = ConfigSelection(default=0, choices=[
 		(0, _("Quick")),
 		(1, _("Normal"))
 	])
-	config.softcsa.syncMode = ConfigSelection(default=0, choices=[
+	config.softcsa.syncMode = ConfigSelection(default=defaultValue, choices=[
 		(0, _("Automatic")),
 		(1, _("Synchronous"))
 	])
 	config.softcsa.waitForDataTimeout = ConfigSelection(
-		default=800,
-		choices=[(x, _("%d ms") % x) for x in range(100, 2001, 100)]
+		default=0,
+		choices=[(0, _("Disabled"))] + [(x, _("%d ms") % x) for x in range(100, 2001, 100)]
 	)
+	config.softcsa.bufferTime = ConfigSelection(
+		default=0,
+		choices=[(0, _("Disabled"))] + [(x, _("%d ms") % x) for x in range(100, 2001, 100)]
+	)
+	config.softcsa.useStreamRelayWhitelist = ConfigYesNo(default=True)
 
 	config.ntp = ConfigSubsection()
 

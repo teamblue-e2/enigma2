@@ -6,10 +6,11 @@ from Screens.ChoiceBox import ChoiceBox
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigListScreen
-from Components.config import config, ConfigSubsection, ConfigNothing, ConfigSelection, ConfigYesNo
+from Components.config import config, ConfigSubsection, ConfigNothing, ConfigSelection, ConfigYesNo, ConfigOnOff, getConfigListEntry
 from Components.Label import Label
 from Components.Sources.List import List
 from Components.Sources.Boolean import Boolean
+from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import BoxInfo
 from Components.VolumeControl import VolumeControl
 from Components.UsageConfig import originalAudioTracks, visuallyImpairedCommentary
@@ -37,6 +38,7 @@ class AudioSelection(ConfigListScreen, Screen):
 		self["key_green"] = Boolean(False)
 		self["key_yellow"] = Boolean(True)
 		self["key_blue"] = Boolean(False)
+		self["key_menu"] = StaticText(_("MENU"))
 		self.protectContextMenu = True
 		self.Plugins = []
 		ConfigListScreen.__init__(self, [])
@@ -60,6 +62,8 @@ class AudioSelection(ConfigListScreen, Screen):
 			"cancel": self.cancel,
 			"up": self.keyUp,
 			"down": self.keyDown,
+			"left": self.keyLeft,
+			"right": self.keyRight,
 			"volumeUp": self.volumeUp,
 			"volumeDown": self.volumeDown,
 			"volumeMute": self.volumeMute,
@@ -118,6 +122,16 @@ class AudioSelection(ConfigListScreen, Screen):
 			if not is_downmix:
 				conflist.append(('',))
 				self["key_red"].setBoolean(False)
+			if BoxInfo.getItem("Canaudiosource"):
+				choice_list = [("0", "PCM"), ("1", "SPDIF"), ("2", _("Bluetooth"))] if BoxInfo.getItem("AmlogicFamily") else [("pcm", "PCM"), ("spdif", "S/PDIF")]
+				self.settings.audio_source = ConfigSelection(choices=choice_list, default=config.av.audio_source.value)
+				self.settings.audio_source.addNotifier(self.setAudioSource, initial_call=False)
+				conflist.append(getConfigListEntry(_("Audio Source"), self.settings.audio_source, None))
+
+			if BoxInfo.getItem("CanBTAudio"):
+				self.settings.btaudio = ConfigOnOff(default=config.av.btaudio.value)
+				self.settings.btaudio.addNotifier(self.changeBTAudio, initial_call=False)
+				conflist.append(getConfigListEntry(_("Bluetooth Audio"), self.settings.btaudio, None))
 
 			if track_num > 0:
 				self.audioChannel = service.audioChannel()
@@ -279,9 +293,18 @@ class AudioSelection(ConfigListScreen, Screen):
 			config.av.downmix_aac.value = configElement.value
 			config.av.downmix_aac.save()
 
+	def changeBTAudio(self, btaudio):
+		config.av.btaudio.value = btaudio.value
+		config.av.btaudio.save()
+
 	def changeMode(self, mode):
 		if mode is not None and self.audioChannel:
 			self.audioChannel.selectChannel(int(mode.getValue()))
+
+
+	def setAudioSource(self, audiosource):
+		config.av.audio_source.setValue(audiosource.value)
+		config.av.audio_source.save()
 
 	def changeAudio(self, audio):
 		track = int(audio)

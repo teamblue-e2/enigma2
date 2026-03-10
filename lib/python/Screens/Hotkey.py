@@ -742,7 +742,7 @@ class InfoBarHotkey:
 					return 0
 			elif selected[0] == "Module":
 				try:
-					exec("from %s import %s" % (selected[1], selected[2]))
+					exec("from %s import %s" % (selected[1], selected[2]), globals())
 					exec("self.session.open(%s)" % ",".join(selected[2:]))
 				except Exception as e:
 					print("[Hotkey] error during executing module %s, screen %s" % (selected[1], selected[2]))

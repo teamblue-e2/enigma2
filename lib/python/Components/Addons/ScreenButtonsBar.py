@@ -11,7 +11,7 @@ from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from Tools.LoadPixmap import LoadPixmap
 
 
-class ColorButtonsSequence(GUIAddon):
+class ScreenButtonsBar(GUIAddon):
 	def __init__(self):
 		GUIAddon.__init__(self)
 		self.foreColor = None
@@ -26,38 +26,75 @@ class ColorButtonsSequence(GUIAddon):
 		self.colorIndicatorStyle = "pixmap"
 		self.orientations = {"orHorizontal": eListbox.orHorizontal, "orVertical": eListbox.orVertical}
 		self.orientation = eListbox.orHorizontal
+		self.actionButtonsPosition = "farRight" # can be left, right, farRight
 		self.renderType = "ImageTextRight"  # Currently supported are ImageTextRight, ImageTextOver and ColorTextOver
 		self.alignment = "left"
 		self.cornerRadius = 0
 		self.pixmaps = {}
 		self.colors = {}
 		self.textRenderer = Label("")
+		self.colorButtonSources = {}
+		self.actionButtonSources = {}
+		self.spacing = applySkinFactor(10)
+		self.spacingBetweenActionAndColorGroups = applySkinFactor(60)
 
 	def onContainerShown(self):
 		for x, val in self.sources.items():
-			if self.constructColorButtonSequence not in val.onChanged:
-				val.onChanged.append(self.constructColorButtonSequence)
+			if x in ("key_red","key_green","key_yellow","key_blue"):
+				self.colorButtonSources[x] = val
+			else:
+				self.actionButtonSources[x] = val
+			if self.constructButtonSequence not in val.onChanged:
+				val.onChanged.append(self.constructButtonSequence)
 		self.textRenderer.GUIcreate(self.relatedScreen.instance)
 		self.l.setItemHeight(self.instance.size().height())
 		self.l.setItemWidth(self.instance.size().width())
-		self.constructColorButtonSequence()
+		self.constructButtonSequence()
 
 	GUI_WIDGET = eListbox
 
-	def updateAddon(self, sequence):
+	def updateAddon(self, sequenceColor, sequenceAction):
 		l_list = []
-		l_list.append((sequence,))
+		l_list.append((sequenceColor, sequenceAction))
 		self.l.setList(l_list)
 
-	def buildEntry(self, sequence):
+	def buildEntry(self, sequence, sequenceAction):
 		res = [None]
-		if len(sequence) == 0:
+		if len(sequence) == 0 and len(sequenceAction) == 0:
 			return res
 		width = self.instance.size().width()
 		height = self.instance.size().height()
-		xPos = width if self.alignment == "right" else 0
+		xPosAction = 0
+		last_pixd_width = 0
+		if self.actionButtonsPosition != "right":
+			xPosAction = width if self.actionButtonsPosition == "farRight" else 0
+			if self.actionButtonsPosition == "farRight":
+				sequenceAction.reverse()
+			for x in sequenceAction:
+				if x in self.pixmaps:
+					pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, self.pixmaps[x]))
+					if pic:
+						pixd_size = pic.size()
+						pixd_width = pixd_size.width()
+						pixd_height = pixd_size.height()
+						pic_x_pos = (xPosAction - pixd_width) if self.actionButtonsPosition == "farRight" else xPosAction
+						res.append(MultiContentEntryPixmapAlphaBlend(
+							pos=(pic_x_pos, (height - pixd_height) // 2),
+							size=(pixd_width, pixd_height),
+							png=pic,
+							backcolor=None, backcolor_sel=None, flags=BT_ALIGN_CENTER))
+						if self.actionButtonsPosition == "farRight":
+							xPosAction -= pixd_width + self.spacing
+						else:
+							xPosAction += pixd_width + self.spacing
+					last_pixd_width = pixd_width
+			if self.actionButtonsPosition == "farRight":
+				xPosAction += last_pixd_width + self.spacing
+
+		xPos = (xPosAction + self.spacingBetweenActionAndColorGroups) if self.actionButtonsPosition != "farRight" else 0
 		yPos = 0
-		minSectorWidth = width // 4
+		width_color_reserved = (width - xPosAction - self.spacingBetweenActionAndColorGroups) if self.actionButtonsPosition != "farRight" else xPosAction - self.spacingBetweenActionAndColorGroups
+		minSectorWidth = width_color_reserved // 4
 
 		pic = None
 		pixd_width = 0
@@ -129,9 +166,10 @@ class ColorButtonsSequence(GUIAddon):
 						text=buttonText, color=textColor, color_sel=textColor, backcolor=backColor, corner_radius=self.cornerRadius))
 
 				xPos += textWidth + textPaddings * 2 + self.spacingButtons
-			if xPos > width and self.layoutStyle != "fluid":
+			if xPos - ((xPosAction + self.spacingBetweenActionAndColorGroups) if self.actionButtonsPosition != "farRight" else 0) > width_color_reserved and self.layoutStyle != "fluid":
+				print("[ScreenButtonsBar] SWITCH TO FLUID: xPos = %d > width = %d" % (xPos, width_color_reserved))
 				self.layoutStyle = "fluid"
-				return self.buildEntry(sequence)
+				return self.buildEntry(sequence, sequenceAction)
 
 		return res
 
@@ -140,30 +178,41 @@ class ColorButtonsSequence(GUIAddon):
 		instance.setContent(self.l)
 		instance.allowNativeKeys(False)
 
-	def constructColorButtonSequence(self):
-		sequence = {}
-		for x, val in self.sources.items():
+	def constructButtonSequence(self):
+		sequenceColor = {}
+		sequenceAction = []
+		for x, val in self.colorButtonSources.items():
 			if hasattr(val, "text") and val.text:
-				sequence[x] = val
+				sequenceColor[x] = val
 
-		self.updateAddon(sequence)
+		for x, val in self.actionButtonSources.items():
+			if hasattr(val, "boolean") and val.boolean and x not in sequenceAction:
+				sequenceAction.append(x)
+
+		self.updateAddon(sequenceColor, sequenceAction)
 
 	def applySkin(self, desktop, parent):
 		attribs = []
 		for (attrib, value) in self.skinAttributes[:]:
-			if attrib == "pixmaps":
+			if attrib == "actionButtonsPos":
+				self.actionButtonsPosition = value
+			elif attrib == "pixmaps":
 				self.pixmaps = dict(item.split(':') for item in value.split(','))
-			elif attrib == "spacing":
+			elif attrib == "spacingColor":
 				self.spacingButtons = parseScale(value)
+			elif attrib == "spacingAction":
+				self.spacing = parseScale(value)
 			elif attrib == "spacingPixmapText":
 				self.spacingPixmapText = parseScale(value)
+			elif attrib == "spacingActionColorGroups":
+				self.spacingBetweenActionAndColorGroups = parseScale(value)
 			elif attrib == "layoutStyle":
 				self.layoutStyle = value
 			elif attrib == "alignment":
 				self.alignment = value
 			elif attrib == "orientation":
 				self.orientation = self.orientations.get(value, self.orientations["orHorizontal"])
-				if self.orientation == eListbox.orVertical:
+				if self.orientation == eListbox.orHorizontal:
 					self.instance.setOrientation(eListbox.orVertical)
 					self.l.setOrientation(eListbox.orVertical)
 				else:

@@ -1,7 +1,7 @@
 import errno
 import xml.etree.ElementTree
 
-from enigma import addFont, eLabel, ePixmap, ePoint, eRect, eSize, eWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gRGB, BT_ALPHATEST, BT_ALPHABLEND
+from enigma import addFont, eLabel, ePixmap, ePoint, eRect, eSize, eWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gRGB, BT_ALPHATEST, BT_ALPHABLEND, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP
 from os.path import basename, dirname, isfile
 
 from Components.config import ConfigSubsection, ConfigText, config
@@ -398,6 +398,9 @@ def parseColor(s):
 	return gRGB(int(s[1:], 0x10))
 
 
+def parseBoolean(attribute, value):
+	return value.lower() in ("1", attribute, "enabled", "on", "true", "yes")
+
 def parseParameter(s):
 	"""This function is responsible for parsing parameters in the skin, it can parse integers, floats, hex colors, hex integers, named colors, fonts and strings."""
 	if s[0] == "*":  # String.
@@ -615,8 +618,36 @@ class AttributeParser:
 			print("[Skin] Error: Invalid alphatest '%s'!  Must be one of 'on', 'off' or 'blend'." % value)
 
 	def scale(self, value):
-		value = 1 if value.lower() in ("1", "enabled", "on", "scale", "true", "yes") else 0
-		self.guiObject.setScale(value)
+		self.guiObject.setScale(int(parseBoolean("scale", value)))
+
+	def scaleFlags(self, value):
+		base = BT_SCALE | BT_KEEP_ASPECT_RATIO
+		try:
+			self.guiObject.setPixmapScale({
+				"none": 0,
+				"scale": BT_SCALE,
+				"scaleKeepAspect": base,
+				"scaleLeftTop": base | BT_HALIGN_LEFT | BT_VALIGN_TOP,
+				"scaleLeftCenter": base | BT_HALIGN_LEFT | BT_VALIGN_CENTER,
+				"scaleLeftBottom": base | BT_HALIGN_LEFT | BT_VALIGN_BOTTOM,
+				"scaleCenterTop": base | BT_HALIGN_CENTER | BT_VALIGN_TOP,
+				"scaleCenter": base | BT_HALIGN_CENTER | BT_VALIGN_CENTER,
+				"scaleCenterBottom": base | BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
+				"scaleRightTop": base | BT_HALIGN_RIGHT | BT_VALIGN_TOP,
+				"scaleRightCenter": base | BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
+				"scaleRightBottom": base | BT_HALIGN_RIGHT | BT_VALIGN_BOTTOM,
+				"moveLeftTop": BT_HALIGN_LEFT | BT_VALIGN_TOP,
+				"moveLeftCenter": BT_HALIGN_LEFT | BT_VALIGN_CENTER,
+				"moveLeftBottom": BT_HALIGN_LEFT | BT_VALIGN_BOTTOM,
+				"moveCenterTop": BT_HALIGN_CENTER | BT_VALIGN_TOP,
+				"moveCenter": BT_HALIGN_CENTER | BT_VALIGN_CENTER,
+				"moveCenterBottom": BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
+				"moveRightTop": BT_HALIGN_RIGHT | BT_VALIGN_TOP,
+				"moveRightCenter": BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
+				"moveRightBottom": BT_HALIGN_RIGHT | BT_VALIGN_BOTTOM
+			}[value])
+		except KeyError:
+			print("[Skin] Error: Invalid scale '%s'!  Must be one of 'none', 'scale', 'scaleKeepAspect', 'scaleLeftTop', 'scaleLeftCenter', 'scaleLeftBotton', 'scaleCenterTop', 'scaleCenter', 'scaleCenterBotton', 'scaleRightTop', 'scaleRightCenter', 'scaleRightBottom', 'moveLeftTop', 'moveLeftCenter', 'moveLeftBotton', 'moveCenterTop', 'moveCenter', 'moveCenterBottom', 'moveRightTop', 'moveRightCenter', 'moveRightBottom' ('Center'/'Centre'/'Middle' are equivalent)." % value)
 
 	def orientation(self, value):  # Used by eSlider and eListBox.
 		try:
@@ -699,10 +730,10 @@ class AttributeParser:
 		self.guiObject.setShadowColor(parseColor(value))
 
 	def selectionDisabled(self, value):
-		self.guiObject.setSelectionEnable(0)
+		self.guiObject.setSelectionEnable(int(not parseBoolean("selectiondisabled", value)))
 
 	def transparent(self, value):
-		self.guiObject.setTransparent(int(value))
+		self.guiObject.setTransparent(int(parseBoolean("transparent", value)))
 
 	def borderColor(self, value):
 		self.guiObject.setBorderColor(parseColor(value))
@@ -738,8 +769,7 @@ class AttributeParser:
 			print("[Skin] Error: Invalid scrollbarMode '%s'!  Must be one of 'showOnDemand', 'showAlways', 'showNever' or 'showLeft'." % value)
 
 	def enableWrapAround(self, value):
-		value = True if value.lower() in ("1", "enabled", "enablewraparound", "on", "true", "yes") else False
-		self.guiObject.setWrapAround(value)
+		self.guiObject.setWrapAround(parseBoolean("enablewraparound", value))
 
 	def pointer(self, value):
 		(name, pos) = value.split(":")
@@ -757,8 +787,7 @@ class AttributeParser:
 		self.guiObject.setShadowOffset(parsePosition(value, self.scaleTuple))
 
 	def noWrap(self, value):
-		value = 1 if value.lower() in ("1", "enabled", "nowrap", "on", "true", "yes") else 0
-		self.guiObject.setNoWrap(value)
+		self.guiObject.setNoWrap(int(parseBoolean("nowrap", value)))
 
 	def split(self, value):
 		pass
@@ -861,10 +890,11 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 
 	for tag in domSkin.findall("include"):
 		filename = tag.attrib.get("filename")
-		if filename:
-			filename = resolveFilename(scope, filename, path_prefix=pathSkin)
-			if isfile(filename):
-				loadSkin(filename, scope=scope, desktop=desktop, screenID=screenID)
+		conditional = not (c := tag.attrib.get("conditional")) or eval(c)
+		if filename and conditional:
+			resolved = resolveFilename(scope, filename, path_prefix=pathSkin)
+			if isfile(resolved):
+				loadSkin(resolved, scope=scope, desktop=desktop, screenID=screenID)
 			else:
 				raise SkinError("Included file '%s' not found" % filename)
 	for tag in domSkin.findall("switchpixmap"):
@@ -1283,7 +1313,7 @@ def readSkin(screen, skin, names, desktop):
 					raise SkinError("For connection '%s' a renderer must be defined with a 'render=' attribute" % wconnection)
 			for converter in widget.findall("convert"):
 				ctype = converter.get("type")
-				nostrip = converter.get("nostrip") and converter.get("nostrip").lower() in ("1", "enabled", "nostrip", "on", "true", "yes")
+				nostrip = converter.get("nostrip") and parseBoolean("nostrip", converter.get("nostrip"))
 				assert ctype, "[Skin] The 'convert' tag needs a 'type' attribute!"
 				# print("[Skin] DEBUG: Converter='%s'." % ctype)
 				try:
@@ -1482,7 +1512,7 @@ def applySkinFactor(*d):
 	"""
 	if len(d) == 1:
 		return int(d[0] * getSkinFactor())
-	return tuple([int(value * getSkinFactor()) if isinstance(value, (int, float)) else value for value in d])
+	return tuple(int(value * getSkinFactor()) if isinstance(value, (int, float)) else value for value in d)
 
 
 def findSkinScreen(names):

@@ -1,4 +1,4 @@
-from Components.config import config, ConfigSlider, ConfigSelection, ConfigYesNo, ConfigEnableDisable, ConfigSubsection, ConfigBoolean, ConfigSelectionNumber, ConfigNothing, NoSave
+from Components.config import config, ConfigSlider, ConfigSelection, ConfigYesNo, ConfigEnableDisable, ConfigSubsection, ConfigBoolean, ConfigSelectionNumber, ConfigNothing, NoSave, ConfigOnOff
 from enigma import eAVSwitch, eDVBVolumecontrol, getDesktop
 from Components.SystemInfo import BoxInfo
 import os
@@ -308,13 +308,14 @@ def InitAVSwitch():
 
 	if BoxInfo.getItem("CanBTAudio"):
 		def setBTAudio(configElement):
-			open("/proc/stb/audio/btaudio", "w").write(configElement.value)
+			open("/proc/stb/audio/btaudio", "w").write("on" if configElement.value else "off")
 		choices = [(ch("off")), (ch("on"))]
 		default = "off"
 		f = "/proc/stb/audio/btaudio_choices"
 		if os.path.exists(f):
 			(choices, default) = readChoices(f, choices, default)
-		config.av.btaudio = ConfigSelection(choices=choices, default="off")
+		#config.av.btaudio = ConfigSelection(choices=choices, default="off")
+		config.av.btaudio = ConfigOnOff(default=False)
 		config.av.btaudio.addNotifier(setBTAudio)
 
 	if BoxInfo.getItem("CanBTAudioDelay"):

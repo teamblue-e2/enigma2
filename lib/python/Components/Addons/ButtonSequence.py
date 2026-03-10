@@ -93,7 +93,7 @@ class ButtonSequence(GUIAddon):
 				self.alignment = value
 			elif attrib == "orientation":
 				self.orientation = self.orientations.get(value, self.orientations["orHorizontal"])
-				if self.orientation == eListbox.orHorizontal:
+				if self.orientation == eListbox.orVertical:
 					self.instance.setOrientation(eListbox.orVertical)
 					self.l.setOrientation(eListbox.orVertical)
 				else:

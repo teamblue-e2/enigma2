@@ -281,6 +281,12 @@ class Network:
 				name = 'Intel'
 			elif name.startswith('brcm') or name.startswith('bcm'):
 				name = 'Broadcom'
+			elif name == 'usb' and os.path.isdir('/sys/module/aic8800_fdrv'):
+				name = 'AIC@8800'
+			elif name == "wlan":
+				name = name.upper()
+		elif os.path.isdir('/tmp/bcm/' + iface):
+			name = 'Broadcom'
 		else:
 			name = _('Unknown')
 
@@ -563,7 +569,10 @@ class Network:
 		# r871x_usb_drv on kernel 2.6.12 is not identifiable over /sys/class/net/'ifacename'/wireless so look also inside /proc/net/wireless
 		device = re_compile('[a-z]{2,}[0-9]*:')
 		ifnames = []
-		fp = open('/proc/net/wireless', 'r')
+		try:
+			fp = open('/proc/net/wireless', 'r')
+		except:
+			fp = ""
 		for line in fp:
 			try:
 				ifnames.append(device.search(line).group()[:-1])

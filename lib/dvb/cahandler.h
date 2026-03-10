@@ -8,6 +8,7 @@
 #include <lib/network/serversocket.h>
 #include <dvbsi++/program_map_section.h>
 #include <lib/base/eptrlist.h>
+#include <memory>
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/esection.h>
 
@@ -105,6 +106,7 @@ public:
 	ePMTClient(eDVBCAHandler *handler, int socket);
 	void sendClientInfo();
 	int writeCAPMTObject(const char* capmt, int len);
+	bool isProtocol3() const { return m_serverInfoReceived; }
 };
 
 class eDVBCAService: public eUnixDomainSocket
@@ -120,7 +122,7 @@ class eDVBCAService: public eUnixDomainSocket
 	int m_version;
 	unsigned char m_capmt[2048];
 	ePtr<eTimer> m_retryTimer;
-	bool m_force_cw_send; // force softcam CW resend on next handlePMT (SR→Live)
+	bool m_force_cw_send; // force softcam CW resend on next processPMTForService()
 public:
 	eDVBCAService(const eServiceReferenceDVB &service, uint32_t id);
 	~eDVBCAService();
@@ -183,7 +185,8 @@ DECLARE_REF(eDVBCAHandler);
 	std::map<uint32_t, uint16_t> m_service_caid;  // serviceId -> CAID (from softcam ECM_INFO)
 	uint32_t serviceIdCounter;
 	bool m_protocol3_established;  // SERVER_INFO received from at least one client
-	bool m_handshake_attempted;    // CLIENT_INFO sent at least once
+
+	std::unique_ptr<eDVBCAService> m_pending_sr_service; // deferred CMD_NOT_SELECTED for SR channel change
 
 	void newConnection(int socket);
 	void processPMTForService(eDVBCAService *service, eTable<ProgramMapSection> *ptr);

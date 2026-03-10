@@ -3,7 +3,7 @@ from __future__ import division
 from Screens.ChannelSelection import ChannelSelection, BouquetSelector, SilentBouquetSelector
 
 from Components.ActionMap import ActionMap, HelpableActionMap
-from Components.ActionMap import NumberActionMap
+from Components.ActionMap import NumberActionMap, HelpableNumberActionMap
 from Components.Harddisk import harddiskmanager, findMountPoint
 from Components.Input import Input
 from Components.Label import Label
@@ -193,17 +193,18 @@ class InfoBarStreamRelay:
 
 	def streamrelayChecker(self, playref):
 		is_stream_relay = False
-		playrefstring, renamestring = self.splitref(playref.toString())
-		if '%3a//' not in playrefstring and playrefstring in self.__srefs:
-			url = "http://%s:%s/" % (config.misc.softcam_streamrelay_url.getHTML(), config.misc.softcam_streamrelay_port.value)
-			if "127.0.0.1" in url:
-				playrefmod = ":".join([("%x" % (int(x[1], 16) + 1)).upper() if x[0] == 6 else x[1] for x in enumerate(playrefstring.split(':'))])
-			else:
-				playrefmod = playrefstring
-			playref = eServiceReference("%s%s%s:%s" % (playrefmod, url.replace(":", "%3a"), playrefstring.replace(":", "%3a"), renamestring or ServiceReference(playref).getServiceName()))
-			is_stream_relay = True
-			print(f"[{self.__class__.__name__}] Play service {playref.toString()} via streamrelay")
-			playref.setCompareSref(playrefstring, True)
+		if config.softcsa.useStreamRelayWhitelist.value:
+			playrefstring, renamestring = self.splitref(playref.toString())
+			if '%3a//' not in playrefstring and playrefstring in self.__srefs:
+				url = "http://%s:%s/" % (config.misc.softcam_streamrelay_url.getHTML(), config.misc.softcam_streamrelay_port.value)
+				if "127.0.0.1" in url:
+					playrefmod = ":".join([("%x" % (int(x[1], 16) + 1)).upper() if x[0] == 6 else x[1] for x in enumerate(playrefstring.split(':'))])
+				else:
+					playrefmod = playrefstring
+				playref = eServiceReference("%s%s%s:%s" % (playrefmod, url.replace(":", "%3a"), playrefstring.replace(":", "%3a"), renamestring or ServiceReference(playref).getServiceName()))
+				is_stream_relay = True
+				print(f"[{self.__class__.__name__}] Play service {playref.toString()} via streamrelay")
+				playref.setCompareSref(playrefstring, True)
 		return playref, is_stream_relay
 
 	def checkService(self, service):
@@ -815,39 +816,50 @@ class InfoBarNumberZap:
 	""" Handles an initial number for NumberZapping """
 
 	def __init__(self):
-		self["NumberActions"] = NumberActionMap(["NumberActions"],
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
+				iPlayableService.evStart: self.__serviceStarted,
+			})
+		self.toggleSeekStatus = False
+		self["NumberActions"] = HelpableNumberActionMap(self, ["NumberActions", "InfobarSeekActions"],
 			{
-				"1": self.keyNumberGlobal,
-				"2": self.keyNumberGlobal,
-				"3": self.keyNumberGlobal,
-				"4": self.keyNumberGlobal,
-				"5": self.keyNumberGlobal,
-				"6": self.keyNumberGlobal,
-				"7": self.keyNumberGlobal,
-				"8": self.keyNumberGlobal,
-				"9": self.keyNumberGlobal,
-				"0": self.keyNumberGlobal,
+				"1": (self.keyNumberGlobal, _('Numberzap or seek backward small step')),
+				"2": (self.keyNumberGlobal, _('Numberzap')),
+				"3": (self.keyNumberGlobal, _('Numberzap or seek forward small step')),
+				"4": (self.keyNumberGlobal, _('Numberzap or seek backward medium step')),
+				"5": (self.keyNumberGlobal, _('Numberzap')),
+				"6": (self.keyNumberGlobal, _('Numberzap or seek forward medium step')),
+				"7": (self.keyNumberGlobal, _('Numberzap or seek backward big step')),
+				"8": (self.keyNumberGlobal, _('Numberzap')),
+				"9": (self.keyNumberGlobal, _('Numberzap or seek forward big step')),
+				"0": (self.keyNumberGlobal, _('Numberzap or zap to previous service')),
+				"toggleSeek": (self.toggleSeek, _("Toggle between zap and seek mode")),
 			})
 
-	def keyNumberGlobal(self, number):
-		seekable = self.getSeek()
-		if seekable:
-			length = seekable.getLength() or (None, 0)
-			if length[1] > 0:
-				key = int(number)
-				time = (-config.seek.selfdefined_13.value, False, config.seek.selfdefined_13.value,
-					-config.seek.selfdefined_46.value, False, config.seek.selfdefined_46.value,
-					-config.seek.selfdefined_79.value, False, config.seek.selfdefined_79.value)[key - 1]
+	def __serviceStarted(self):
+		self.toggleSeekStatus = False
 
-				time = time * 90000
-				seekable.seekRelative(time < 0 and -1 or 1, abs(time))
-				return
+	def toggleSeek(self):
+		self.seekable = self.getSeek()
+		if self.seekable:
+			self.toggleSeekStatus = not self.toggleSeekStatus
+			self.VideoMode_window.setText(_("Numberbuttons Seek") if self.toggleSeekStatus else _("Numberbuttons Zap"))
+
+	def keyNumberGlobal(self, number):
 		if number == 0:
 			if isinstance(self, InfoBarPiP) and self.pipHandles0Action():
 				self.pipDoHandle0Action()
 			elif len(self.servicelist.history) > 1:
 				self.checkTimeshiftRunning(self.recallPrevService)
 		else:
+			if self.toggleSeekStatus:
+				length = self.seekable.getLength() or (None, 0)
+				if length[1] > 0:
+					key = int(number)
+					time = (-config.seek.selfdefined_13.value, False, config.seek.selfdefined_13.value,
+						-config.seek.selfdefined_46.value, False, config.seek.selfdefined_46.value,
+						-config.seek.selfdefined_79.value, False, config.seek.selfdefined_79.value)[key - 1]
+					self.seekable.seekRelative(time < 0 and -1 or 1, abs(time * 90000))
+				return
 			if "TimeshiftActions" in self and self.timeshiftEnabled():
 				ts = self.getTimeshift()
 				if ts and ts.isTimeshiftActive():

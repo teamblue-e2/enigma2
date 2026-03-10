@@ -361,36 +361,9 @@ class PluginDownloadBrowser(Screen):
 		except:
 			pass
 
-	def installDestinationCallback(self, result):
-		if result is not None:
-			dest = result[1]
-			if dest.startswith('/'):
-				# Custom install path, add it to the list too
-				dest = os.path.normpath(dest)
-				extra = '--add-dest %s:%s -d %s' % (dest, dest, dest)
-				Opkg.opkgAddDestination(dest)
-			else:
-				extra = '-d ' + dest
-			self.doInstall(self.installFinished, self["list"].l.getCurrentSelection()[0].name + ' ' + extra)
-		else:
-			self.resetPostInstall()
-
 	def runInstall(self, val):
 		if val:
 			if self.type == self.DOWNLOAD:
-				if self["list"].l.getCurrentSelection()[0].name.startswith("picons-"):
-					supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'reiser', 'reiser4', 'jffs2', 'ubifs', 'rootfs'))
-					candidates = []
-					import Components.Harddisk
-					mounts = Components.Harddisk.getProcMounts()
-					for partition in harddiskmanager.getMountedPartitions(False, mounts):
-						if partition.filesystem(mounts) in supported_filesystems:
-							candidates.append((partition.description, partition.mountpoint))
-					if candidates:
-						from Components.Renderer import Picon
-						self.postInstallCall = Picon.initPiconPaths
-						self.session.openWithCallback(self.installDestinationCallback, ChoiceBox, title=_("Install picons on"), list=candidates)
-					return
 				self.install_settings_name = self["list"].l.getCurrentSelection()[0].name
 				if self["list"].l.getCurrentSelection()[0].name.startswith('settings-'):
 					self.check_settings = True
