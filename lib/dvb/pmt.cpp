@@ -510,15 +510,22 @@ void eDVBServicePMTHandler::getCaIds(std::vector<int> &caids, std::vector<int> &
 
 PyObject *eDVBServicePMTHandler::getHbbTVApplications()
 {
-	ePyObject ret= PyList_New(0);;
+	ePyObject ret= PyList_New(0);
 	if(m_HbbTVApplications.size())
 	{
 		for(HbbTVApplicationInfoListConstIterator infoiter = m_HbbTVApplications.begin() ; infoiter != m_HbbTVApplications.end() ; ++infoiter)
 		{
+			// remove non UTF-8 chars from url (RiC)
+			std::string url = (*infoiter)->m_HbbTVUrl;
+			std::string cleanUrl;
+			for(unsigned char c : url)
+				if(c < 0x80)
+					cleanUrl += c;
+
 			ePyObject tuple = PyTuple_New(6);
 			PyTuple_SET_ITEM(tuple, 0, PyLong_FromLong((*infoiter)->m_ControlCode));
-			PyTuple_SET_ITEM(tuple, 1, PyUnicode_FromString((*infoiter)->m_ApplicationName.c_str()));
-			PyTuple_SET_ITEM(tuple, 2, PyUnicode_FromString((*infoiter)->m_HbbTVUrl.c_str()));
+			PyTuple_SET_ITEM(tuple, 1, PyUnicode_Decode((*infoiter)->m_ApplicationName.c_str(), (*infoiter)->m_ApplicationName.size(), "utf-8", "replace"));
+			PyTuple_SET_ITEM(tuple, 2, PyUnicode_Decode(cleanUrl.c_str(), cleanUrl.size(), "utf-8", "strict"));
 			PyTuple_SET_ITEM(tuple, 3, PyLong_FromLong((*infoiter)->m_OrgId));
 			PyTuple_SET_ITEM(tuple, 4, PyLong_FromLong((*infoiter)->m_AppId));
 			PyTuple_SET_ITEM(tuple, 5, PyLong_FromLong((*infoiter)->m_ProfileCode));
