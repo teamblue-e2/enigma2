@@ -75,11 +75,16 @@ public:
 	sigc::signal<void(int)> m_event;
 
 	int getProtocol() { return m_protocol;}
+	void setProtocol(int i){ m_protocol = i;}
 	void setSession(int se, int st) { m_session_id = se; m_stream_id = st;}
 	static const size_t minWriteDefault = 32 * 1024;
 	static const size_t minWriteMPEG = 4 * 1024;
 	void setMinWrite(size_t s) { m_buffer_min_write = s; }
+	int read_dmx(int fd, void *m_buffer, int size);
+	int pushReply(void *buf, int len);
 	void sendEvent(int evt);
+	static int64_t getTick();
+	static int read_ts(int fd, unsigned char *buf, int size);
 protected:
 	// This method should write the data out and return the number of bytes written.
 	// If result <0, set 'errno'. The simplest implementation is just "::write(m_buffer, ...)"
