@@ -302,7 +302,9 @@ void eDBoxLCD::update()
 					raw[y * 132 + x] = pix ^ inverted;
 			}
 		}
-		write(lcdfd, raw, 132 * 8);
+		if (write(lcdfd, raw, 132 * 8) == -1) {
+			eDebug("[eDboxLCD] write() (1) failed");
+		}
 	}
 	else if (lcd_type == 3)
 	{
@@ -323,7 +325,9 @@ void eDBoxLCD::update()
 						raw[y * width + x] = _buffer[y * width + x] ^ inverted;
 				}
 			}
-			write(lcdfd, raw, _stride * height);
+			if (write(lcdfd, raw, _stride * height) == -1) {
+				eDebug("[eDboxLCD] write() (2) failed");
+			}
 		}
 		else
 		{
@@ -359,7 +363,9 @@ void eDBoxLCD::update()
 			else
 			{
 #endif
-				write(lcdfd, _buffer, _stride * res.height());
+			if (write(lcdfd, _buffer, _stride * res.height()) == -1) {
+				eDebug("[eDboxLCD] write() (3) failed");
+			}
 #ifdef LCD_COLOR_BITORDER_RGB565
 			}
 #endif
@@ -390,7 +396,9 @@ void eDBoxLCD::update()
 					raw[y * 64 + x] = pix;
 			}
 		}
-		write(lcdfd, raw, 64 * 64);
+		if (write(lcdfd, raw, 64 * 64) == -1) {
+			eDebug("[eDboxLCD] write() (4) failed");
+		}
 	}
 	dumpLCD2PNG();
 #endif
