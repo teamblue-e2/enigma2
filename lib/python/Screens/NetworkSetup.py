@@ -510,7 +510,8 @@ class AdapterSetup(ConfigListScreen, HelpableScreen, Screen):
 		self.dhcpConfigEntry.addNotifier(self.createSetup, initial_call=False)
 		self.ipConfigEntry = NoSave(ConfigIP(default=iNetwork.getAdapterAttribute(self.iface, "ip")) or [0, 0, 0, 0])
 		self.netmaskConfigEntry = NoSave(ConfigIP(default=iNetwork.getAdapterAttribute(self.iface, "netmask") or [255, 0, 0, 0]))
-		self.hasGatewayConfigEntry = NoSave(ConfigYesNo(default=iNetwork.getAdapterAttribute(self.iface, "gateway") and True or False))
+		gw = iNetwork.getAdapterAttribute(self.iface, "gateway")
+		self.hasGatewayConfigEntry = NoSave(ConfigYesNo(default=(gw and gw != [0,0,0,0]) and True or False))
 		self.hasGatewayConfigEntry.addNotifier(self.createSetup, initial_call=False)
 		self.gatewayConfigEntry = NoSave(ConfigIP(default=iNetwork.getAdapterAttribute(self.iface, "gateway") or [0, 0, 0, 0]))
 		nameserver = (iNetwork.getIfaceNameservers(self.iface) + [[0, 0, 0, 0]] * 2)[:2]
@@ -1556,6 +1557,107 @@ class NetworkAdapterTest(Screen):
 			pass
 		else:
 			iStatus.stopWlanConsole()
+
+
+class NetworkMountsMenu(Screen, HelpableScreen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		HelpableScreen.__init__(self)
+		self.setTitle(_("Mounts"))
+		self.session = session
+		self.onChangedEntry = []
+		self.mainmenu = self.genMainMenu()
+		self["menulist"] = MenuList(self.mainmenu)
+		self["key_red"] = StaticText(_("Close"))
+		self["introduction"] = StaticText()
+
+		self["WizardActions"] = HelpableActionMap(self, "WizardActions",
+		{
+			"up": (self.up, _("Move up to previous entry")),
+			"down": (self.down, _("Move down to next entry")),
+			"left": (self.left, _("Move up to first entry")),
+			"right": (self.right, _("Move down to last entry")),
+		})
+
+		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
+		{
+			"cancel": (self.close, _("Exit mounts setup menu")),
+			"ok": (self.ok, _("Select menu entry")),
+		})
+
+		self["ColorActions"] = HelpableActionMap(self, "ColorActions",
+		{
+			"red": (self.close, _("Exit networkadapter setup menu")),
+		})
+
+		self["actions"] = NumberActionMap(["WizardActions", "ShortcutActions"],
+		{
+			"ok": self.ok,
+			"back": self.close,
+			"up": self.up,
+			"down": self.down,
+			"red": self.close,
+			"left": self.left,
+			"right": self.right,
+		}, -2)  # noqa: E123
+
+		if self.selectionChanged not in self["menulist"].onSelectionChanged:
+			self["menulist"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
+
+	def createSummary(self):
+		from Screens.PluginBrowser import PluginBrowserSummary
+		return PluginBrowserSummary
+
+	def selectionChanged(self):
+		item = self["menulist"].getCurrent()
+		if item:
+			if item[1][0] == "extendedSetup":
+				self["introduction"].setText(_(item[1][1]))
+			name = str(self["menulist"].getCurrent()[0])
+			desc = self["introduction"].text
+		else:
+			name = ""
+			desc = ""
+		for cb in self.onChangedEntry:
+			cb(name, desc)
+
+	def ok(self):
+		if self["menulist"].getCurrent()[1][0] == "extendedSetup":
+			self.extended = self["menulist"].getCurrent()[1][2]
+			self.extended(self.session)
+
+	def up(self):
+		self["menulist"].up()
+
+	def down(self):
+		self["menulist"].down()
+
+	def left(self):
+		self["menulist"].pageUp()
+
+	def right(self):
+		self["menulist"].pageDown()
+
+	def genMainMenu(self):
+		menu = []
+		self.extended = None
+		self.extendedSetup = None
+		for p in plugins.getPlugins(PluginDescriptor.WHERE_NETWORKMOUNTS):
+			callFnc = p.fnc["ifaceSupported"](self)
+			if callFnc is not None:
+				self.extended = callFnc
+				if "menuEntryName" in p.fnc:
+					menuEntryName = p.fnc["menuEntryName"](self)
+				else:
+					menuEntryName = _("Extended Setup...")
+				if "menuEntryDescription" in p.fnc:
+					menuEntryDescription = p.fnc["menuEntryDescription"](self)
+				else:
+					menuEntryDescription = _("Extended Networksetup Plugin...")
+				self.extendedSetup = ("extendedSetup", menuEntryDescription, self.extended)
+				menu.append((menuEntryName, self.extendedSetup))
+		return menu
 
 
 class NetworkPassword(ConfigListScreen, Screen):

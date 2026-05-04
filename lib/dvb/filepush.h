@@ -19,7 +19,7 @@ class eFilePushThread: public eThread, public sigc::trackable, public iObject
 {
 	DECLARE_REF(eFilePushThread);
 public:
-	eFilePushThread(int prio_class=IOPRIO_CLASS_BE, int prio_level=0, int blocksize=188, size_t buffersize=188*1024, int flags=0);
+	eFilePushThread(int blocksize=188, size_t buffersize=188*1024, int flags=0);
 	~eFilePushThread();
 	void thread();
 	void stop();
@@ -41,8 +41,6 @@ public:
 protected:
 	virtual void filterRecordData(const unsigned char *data, int len);
 private:
-	int prio_class;
-	int prio;
 	iFilePushScatterGather *m_sg;
 	int m_stop;
 	int m_fd_dest;
@@ -100,9 +98,9 @@ protected:
 	size_t m_buffersize;
 	unsigned char* m_buffer;
 	unsigned int m_overflow_count;
+	int m_stop;
 	size_t m_buffer_fill;
 	size_t m_buffer_min_write = minWriteDefault;
-	int m_stop;
 private:
 	eFixedMessagePump<int> m_messagepump;
 	void recvEvent(const int &evt);
