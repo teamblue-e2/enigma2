@@ -138,6 +138,7 @@ self.session.openWithCallback(msgClosed, EpgSaveMsg)
 				<!-- Menu / Settings / System / Network Menu -->
 				<menu key="network_menu" weight="30" level="0" text="Network">
 					<item key="network_setup" weight="0" level="0" text="Basic settings"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
+					<item key="netmounts_setup" level="1" text="Mounts" weight="2"><screen module="NetworkSetup" screen="NetworkMountsMenu" /></item>
 					<item key="password_setup" weight="3"  level="1" text="Password setup"><screen module="NetworkSetup" screen="NetworkPassword"/></item>
 					<item key="netnfs_setup" weight="5" level="1" text="NFS setup"><screen module="NetworkTools" screen="NetworkNfs"/></item>
 					<item key="netsatpi_setup" weight="10" level="2" text="SATPI Setup"><screen module="NetworkTools" screen="NetworkSATPI"/></item>
