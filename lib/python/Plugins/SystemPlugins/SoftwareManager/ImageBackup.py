@@ -283,8 +283,6 @@ class ImageBackup(Screen):
 					cmdlist.append(cmd3)
 
 				if self.MODEL in ("gbquad4k", "gbue4k", "gbx34k", "gbquad4kpro"):
-					cmdlist.append('echo "' + _("Create:") + " boot dump" + '"')
-					cmdlist.append("dd if=/dev/mmcblk0p1 of=%s/boot.bin" % self.WORKDIR)
 					cmdlist.append('echo "' + _("Create:") + " rescue dump" + '"')
 					cmdlist.append("dd if=/dev/mmcblk0p3 of=%s/rescue.bin" % self.WORKDIR)
 
@@ -515,9 +513,10 @@ class ImageBackup(Screen):
 			cmdlist.append('echo "rename this file to "force" to force an update without confirmation" > %s/noforce' % self.MAINDEST)
 
 		if self.MODEL in ("gbquad4k", "gbue4k", "gbx34k", "gbquad4kpro"):
-			os.system('mv %s/boot.bin %s/boot.bin' % (self.WORKDIR, self.MAINDEST))
 			os.system('mv %s/rescue.bin %s/rescue.bin' % (self.WORKDIR, self.MAINDEST))
-			os.system('cp -f /usr/share/gpt.bin %s/gpt.bin' % (self.MAINDEST))
+			for fileName in ("boot.bin", "gpt.bin", "boot4.bin", "gpt4.bin"):
+				if os.path.exists(f"/usr/share/{fileName}"):
+					os.system(f"cp -f /usr/share/{fileName} {self.MAINDEST}")
 
 		if self.MACHINEBUILD in ("h9", "i55plus"):
 			os.system('mv %s/fastboot.bin %s/fastboot.bin' % (self.WORKDIR, self.MAINDEST))
