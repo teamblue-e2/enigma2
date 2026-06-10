@@ -94,6 +94,9 @@ class BoxInformation:
 		self.boxInfo[item] = value
 		return True
 
+	def setMutableItem(self, item, value):
+		self.boxInfo[item] = value
+
 	def deleteItem(self, item, *args, **kws):
 		del self.boxInfo[item]
 		return True
