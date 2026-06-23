@@ -25,6 +25,7 @@ from enigma import eTimer, eLabel, eConsoleAppContainer, getDesktop, eGetEnigmaD
 from Components.GUIComponent import GUIComponent
 from skin import applySkinFactor, parameters, parseScale
 
+import re
 import os
 import glob
 
@@ -48,7 +49,14 @@ class About(Screen):
 			serial = Boxserial
 		cpu = about.getCPUInfoString()
 
+		hwVersion = popen('cat /proc/stb/info/version').read().strip()
+		if hwVersion:
+			match = re.search(r"\brev[0-9]+\b", hwVersion)
+			if match:
+				hwVersion = match.group(0)
+
 		AboutText = _("Hardware: ") + BoxName + "\n"
+		AboutText += _("Hardware revision: ") + hwVersion + "\n"
 		AboutText += _("Serial: ") + serial + "\n"
 		AboutText += _("CPU: ") + cpu + "\n"
 		AboutText += _("Image: ") + about.getImageTypeString() + "\n"
