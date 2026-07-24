@@ -776,7 +776,6 @@ int eTextPara::renderString(const char *string, int rflags, int border)
 	{
 		int isprintable=1;
 		int flags = nextflags;
-		nextflags = 0;
 		unsigned long chr = *i;
 
 		if (!(rflags&RS_DIRECT))
@@ -878,6 +877,11 @@ nprint:				isprintable=0;
 		}
 		if (isprintable)
 		{
+			nextflags = 0;
+
+			if (activate_colorreset)
+				flags |= GS_COLORRESET;
+
 			FT_UInt index = 0;
 
 				/* FIXME: our font doesn't seem to have a hyphen, so use hyphen-minus for it. */
