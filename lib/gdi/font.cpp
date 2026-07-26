@@ -240,7 +240,7 @@ float fontRenderClass::getLineHeight(const gFont& font)
 	singleLock s(ftlock);
 	FT_Face current_face;
 	if ((FTC_Manager_LookupFace(cacheManager, fnt->scaler.face_id, &current_face) < 0) ||
-	    (FTC_Manager_LookupSize(cacheManager, &fnt->scaler, &fnt->size) < 0))
+		(FTC_Manager_LookupSize(cacheManager, &fnt->scaler, &fnt->size) < 0))
 	{
 		eDebug("[Font] FTC_Manager_Lookup_Size failed!");
 		return 0;
@@ -602,11 +602,11 @@ void eTextPara::setFont(Font *fnt, Font *replacement, Font *fallback)
 	if (replacement_font)
 	{
 		if ((FTC_Manager_LookupFace(fontRenderClass::instance->cacheManager,
-					    replacement_font->scaler.face_id,
-					    &replacement_face) < 0) ||
-		    (FTC_Manager_LookupSize(fontRenderClass::instance->cacheManager,
-					    &replacement_font->scaler,
-					    &replacement_font->size) < 0))
+						replacement_font->scaler.face_id,
+						&replacement_face) < 0) ||
+			(FTC_Manager_LookupSize(fontRenderClass::instance->cacheManager,
+						&replacement_font->scaler,
+						&replacement_font->size) < 0))
 		{
 			eDebug("[eTextPara] setFont: FTC_Manager_Lookup_Size replacement_font failed!");
 			return;
@@ -615,11 +615,11 @@ void eTextPara::setFont(Font *fnt, Font *replacement, Font *fallback)
 	if (current_font)
 	{
 		if ((FTC_Manager_LookupFace(fontRenderClass::instance->cacheManager,
-					    current_font->scaler.face_id,
-					    &current_face) < 0) ||
-		    (FTC_Manager_LookupSize(fontRenderClass::instance->cacheManager,
-					    &current_font->scaler,
-					    &current_font->size) < 0))
+						current_font->scaler.face_id,
+						&current_face) < 0) ||
+			(FTC_Manager_LookupSize(fontRenderClass::instance->cacheManager,
+						&current_font->scaler,
+						&current_font->size) < 0))
 		{
 			eDebug("[eTextPara] setFont: FTC_Manager_Lookup_Size current_font failed!");
 			return;
@@ -628,11 +628,11 @@ void eTextPara::setFont(Font *fnt, Font *replacement, Font *fallback)
 	if (fallback_font)
 	{
 		if ((FTC_Manager_LookupFace(fontRenderClass::instance->cacheManager,
-					    fallback_font->scaler.face_id,
-					    &fallback_face) < 0) ||
-		    (FTC_Manager_LookupSize(fontRenderClass::instance->cacheManager,
-					    &fallback_font->scaler,
-					    &fallback_font->size) < 0))
+						fallback_font->scaler.face_id,
+						&fallback_face) < 0) ||
+			(FTC_Manager_LookupSize(fontRenderClass::instance->cacheManager,
+						&fallback_font->scaler,
+						&fallback_font->size) < 0))
 		{
 			eDebug("[eTextPara] FTC_Manager_Lookup_Size failed!");
 			return;
@@ -690,11 +690,11 @@ int eTextPara::renderString(const char *string, int rflags, int border)
 	}
 
 	if ((FTC_Manager_LookupFace(fontRenderClass::instance->cacheManager,
- 				    current_font->scaler.face_id,
- 				    &current_face) < 0) ||
-	    (FTC_Manager_LookupSize(fontRenderClass::instance->cacheManager,
-				    &current_font->scaler,
-				    &current_font->size) < 0))
+					current_font->scaler.face_id,
+					&current_face) < 0) ||
+		(FTC_Manager_LookupSize(fontRenderClass::instance->cacheManager,
+					&current_font->scaler,
+					&current_font->size) < 0))
 	{
 		eDebug("[eTextPara] renderString: FTC_Manager_Lookup_Size current_font failed!");
 		return -1;
@@ -940,11 +940,11 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 		return;
 
 	if ((FTC_Manager_LookupFace(fontRenderClass::instance->cacheManager,
- 				    current_font->scaler.face_id,
- 				    &current_face) < 0) ||
-	    (FTC_Manager_LookupSize(fontRenderClass::instance->cacheManager,
-				    &current_font->scaler,
-				    &current_font->size) < 0))
+					current_font->scaler.face_id,
+					&current_face) < 0) ||
+		(FTC_Manager_LookupSize(fontRenderClass::instance->cacheManager,
+					&current_font->scaler,
+					&current_font->size) < 0))
 	{
 		eDebug("[eTextPara] FTC_Manager_Lookup_Size failed!");
 		return;
