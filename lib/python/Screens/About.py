@@ -179,7 +179,7 @@ class About(Screen):
 		for partition in harddiskmanager.getMountedPartitions(False, mounts):
 			if partition.mountpoint == '/':
 				continue
-			hddinfo += "%s:\n" % (partition.description)
+			hddinfo += "Description: %s\n" % (partition.description)
 			hddinfo += _("Mountpoint: %s (%s)\n") % (partition.mountpoint,partition.device)
 			free=(("%s MB" % (partition.free()//(1024**2)) if partition.free()//(1024**2) <= 1024 else ("%.2f GB" % (partition.free()/(1024**3)))))
 			total=(("%s MB" % (partition.total()//(1024**2)) if partition.total()//(1024**2) <= 1024 else ("%.2f GB" % (partition.total()/(1024**3)))))

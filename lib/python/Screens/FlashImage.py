@@ -14,7 +14,7 @@ from Components.SystemInfo import BoxInfo
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, getBackupFilename, getBackupPath
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, fileExists, pathExists, fileHas
-from Tools.Downloader import downloadWithProgress
+from Tools.Downloader import DownloadWithProgress
 from Tools.HardwareInfo import HardwareInfo
 from Tools.Multiboot import getImagelist, getCurrentImage, getCurrentImageMode, deleteImage, restoreImages
 import os
@@ -387,7 +387,7 @@ class FlashImage(Screen):
 			if "://" in self.source:
 				self["header"].setText(_("Downloading Image"))
 				self["info"].setText(self.imagename)
-				self.downloader = downloadWithProgress(self.source, self.zippedimage)
+				self.downloader = DownloadWithProgress(self.source, self.zippedimage)
 				self.downloader.addProgress(self.downloadProgress)
 				self.downloader.addEnd(self.downloadEnd)
 				self.downloader.addError(self.downloadError)
@@ -404,7 +404,8 @@ class FlashImage(Screen):
 		self.downloader.stop()
 		self.session.openWithCallback(self.abort, MessageBox, _("Error during downloading image\n%s\n%s") % (self.imagename, reason), type=MessageBox.TYPE_ERROR, simple=True)
 
-	def downloadEnd(self,filename=None):
+	def downloadEnd(self, filename):
+		self.zippedimage = filename
 		self.downloader.stop()
 		self.unzip()
 
