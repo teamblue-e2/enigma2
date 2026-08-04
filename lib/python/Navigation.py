@@ -13,7 +13,7 @@ from time import time
 import RecordTimer
 import Screens.Standby
 import NavigationInstance
-import ServiceReference
+from ServiceReference import ServiceReference, isPlayableForCur
 from Screens.InfoBar import InfoBar
 from Components.Sources.StreamService import StreamServiceList
 from Screens.InfoBarGenerics import streamrelay
@@ -223,7 +223,7 @@ class Navigation:
 			if ref.flags & eServiceReference.isGroup:
 				oldref = oldservref or eServiceReference()
 				playref = getBestPlayableServiceReference(ref, oldref)
-				if playref and config.misc.use_ci_assignment.value and not ServiceReference.isPlayableForCur(playref):
+				if playref and config.misc.use_ci_assignment.value and not isPlayableForCur(playref):
 					alternative_ci_ref = ResolveCiAlternative(ref, playref)
 					if alternative_ci_ref:
 						playref = alternative_ci_ref
