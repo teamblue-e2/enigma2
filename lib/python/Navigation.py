@@ -356,7 +356,7 @@ class Navigation:
 		service = None
 		if not simulate:
 			print("[Navigation] recording service: %s" % (str(ref)))
-		if isinstance(ref, ServiceReference.ServiceReference):
+		if isinstance(ref, ServiceReference):
 			ref = ref.ref
 		if not simulate:
 			print("[Navigation] recording service: %s" % (ref and ref.toString() or "None"))
