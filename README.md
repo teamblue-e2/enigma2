@@ -2,11 +2,11 @@
 
 > Ubuntu 24.04 LTS 
 
-## teamBlue 7.6 (based on openPLi) is build using oe-alliance build-environment "7.6" and several git repositories: ##
+## teamBlue 8.0 (based on openPLi) is build using oe-alliance build-environment "8.0" and several git repositories: ##
 
-> [https://github.com/oe-alliance/oe-alliance-core/tree/5.6](https://github.com/oe-alliance/oe-alliance-core/tree/5.5 "OE-Alliance")
+> [https://github.com/oe-alliance/oe-alliance-core/tree/6.0](https://github.com/oe-alliance/oe-alliance-core/tree/6.0 "OE-Alliance")
 >
-> [https://github.com/teamblue-e2/enigma2/tree/7.6](https://github.com/teamblue-e2/enigma2/tree/7.6 "teamBlue E2")
+> [https://github.com/teamblue-e2/enigma2/tree/8.0](https://github.com/teamblue-e2/enigma2/tree/8.0 "teamBlue E2")
 >
 > [https://github.com/teamblue-e2/skin/tree/master](https://github.com/teamblue-e2/skin/tree/master "teamBlue Skin")
 
@@ -76,7 +76,7 @@
 1. Clone oe-alliance repository
 
     ```sh
-    git clone https://github.com/oe-alliance/build-enviroment.git -b 5.6
+    git clone https://github.com/oe-alliance/build-enviroment.git -b 6.0
     ```
 
 1. Switch to folder build-enviroment
