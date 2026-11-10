@@ -98,6 +98,7 @@ public:
 #define GS_HYPHEN 32
 #define GS_COLORCHANGE 64
 #define GS_LF 128
+#define GS_COLORRESET 256
 #define GS_CANBREAK (GS_ISSPACE|GS_SOFTHYPHEN|GS_HYPHEN)
 
 struct pGlyph
@@ -214,7 +215,7 @@ public:
 	{
 		ASSERT(g >= 0);
 		ASSERT(g < (int)glyphs.size());
-		glyphs[g].flags &= ~f;
+		glyphs[g].flags |= f;
 	}
 };
 
