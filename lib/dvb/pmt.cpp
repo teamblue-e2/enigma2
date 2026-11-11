@@ -361,7 +361,12 @@ void eDVBServicePMTHandler::AITready(int error)
 							for(; interactionit != nameDescriptor->getApplicationNames()->end(); ++interactionit)
 							{
 								applicationName = (*interactionit)->getApplicationName();
-								if(controlCode == 1) m_ApplicationName = applicationName;
+								if(applicationName.size() > 0 && !isUTF8(applicationName)) {
+									applicationName = convertLatin1UTF8(applicationName);
+								}
+								if(controlCode == 1) {
+									m_ApplicationName = applicationName;
+								}
 								break;
 							}
 							break;
@@ -406,12 +411,17 @@ void eDVBServicePMTHandler::AITready(int error)
 							break;
 						}
 					}
+					// Quick'n'dirty hack to prevent crashes because of invalid UTF-8 characters
+					// The root cause is in the SimpleApplicationLocationDescriptor or the AIT is buggy
+					if(SALDescPath.size() == 1)
+						SALDescPath="";
+
 					hbbtvUrl = TPDescPath + SALDescPath;
 				}
 				if(!hbbtvUrl.empty())
 				{
 					const char* uu = hbbtvUrl.c_str();
-					struct aitInfo aitinfo;
+					struct aitInfo aitinfo = {};
 					aitinfo.id = appid;
 					aitinfo.name = applicationName;
 					aitinfo.url = hbbtvUrl;
